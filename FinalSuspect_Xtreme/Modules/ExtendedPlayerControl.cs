@@ -40,13 +40,13 @@ static class ExtendedPlayerControl
     {
         if (player != null)
         {
-            return  player?.Data?.Role?.Role ?? GetRoleType(player.PlayerId);
+            return  GetRoleType(player.PlayerId);
         }
         return RoleTypes.Crewmate;
     }
     public static RoleTypes GetRoleType(byte id)
     {
-        return Utils.GetPlayerById(id)?.Data?.Role?.Role ?? PlayerData.AllPlayerData[id].roleWhenAlive;
+        return CustomPlayerData.GetRoleById(id);
     }
     public static bool IsImpostor(this PlayerControl pc)
     {
@@ -92,10 +92,5 @@ static class ExtendedPlayerControl
     }
     public static bool IsModClient(this PlayerControl player) => Main.playerVersion.ContainsKey(player.PlayerId);
 
-    public static bool IsAlive(this PlayerControl target)
-    {
-
-        return !target.Data.Disconnected && !target.Data.IsDead;
-    }
     
 }

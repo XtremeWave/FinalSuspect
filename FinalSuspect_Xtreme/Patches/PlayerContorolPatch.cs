@@ -7,7 +7,7 @@ using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace FinalSuspect_Xtreme;
 
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
+
 [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.BootFromVent))]
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
 class MurderPlayerPatch
@@ -21,6 +21,33 @@ class MurderPlayerPatch
             return false;
         }
         return true;
+    }
+}
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
+class DiePatch
+{
+
+    public static bool Prefix()
+    {
+        if (GameStates.IsLobby)
+        {
+            RPC.NotificationPop(GetString("Warning.RoomBroken"));
+            return false;
+        }
+        return true;
+    }
+    public static void Postfix(PlayerControl __instance)
+    {
+        __instance.GetPlayerData().SetDead();
+    }
+}
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoSetRole))]
+class CoSetRolePatch
+{
+    public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] RoleTypes roleTypes)
+    {
+        __instance.GetPlayerData().SetRole(roleTypes);
+        __instance.GetPlayerData().SetIsImp(__instance?.Data?.Role?.IsImpostor ?? false);
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
@@ -66,29 +93,22 @@ class FixedUpdatePatch
         {
             if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
             var rt = "";
-            var roleType = __instance.Data.Role.Role;
-            var dead = __instance.Data.IsDead;
-
-            if (!GameStates.IsLocalGame)
-            {
-                var disconnected = __instance.Data.Disconnected;
-
-                PlayerData.AllPlayerData[__instance.PlayerId].roleAfterDead = roleType;
-                PlayerData.AllPlayerData[__instance.PlayerId].Dead = dead;
-                PlayerData.AllPlayerData[__instance.PlayerId].Disconnected = disconnected;
-            }
+            var roleType = __instance.GetRoleType();
+            var dead = !__instance.IsAlive();
 
             color = Utils.GetRoleColorCode(roleType);
-            if (self
-                || (PlayerControl.LocalPlayer.Data.IsDead && dead && PlayerControl.LocalPlayer.Data.Role.Role is RoleTypes.GuardianAngel)
-                || PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.Role.Role is not RoleTypes.GuardianAngel)
+            if (
+                self || 
+                !PlayerControl.LocalPlayer.IsAlive() && 
+                ((dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel)||
+                (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
             {
                 rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
             }
             else if (PlayerControl.LocalPlayer.IsImpostor() && __instance.IsImpostor())
             {
                 color = "#ff1919";
-                if (PlayerControl.LocalPlayer.Data.IsDead)
+                if (!PlayerControl.LocalPlayer.IsAlive())
                 {
                     rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
                 }
@@ -131,7 +151,7 @@ class PlayerControlSetTasksPatch
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] Il2CppSystem.Collections.Generic.List<NetworkedPlayerInfo.TaskInfo> tasks)
     {
         var pc = __instance;
-        PlayerData.AllPlayerData[pc.PlayerId].TotalTaskCount = tasks.Count;
+        pc.GetPlayerData().SetTaskTotalCount(tasks.Count);
     }
 }
 
@@ -143,7 +163,7 @@ class PlayerControlCompleteTaskPatch
     {
         var pc = __instance;
         Logger.Info($"TaskComplete:{pc.GetNameWithRole()}", "CompleteTask");
-        PlayerData.AllPlayerData[pc.PlayerId].CompleteTaskCount++;
+        pc.GetPlayerData().CompleteTask();
 
         GameData.Instance.RecomputeTaskCounts();
         Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");

@@ -134,14 +134,9 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.OnDestroy)), HarmonyPostfix]
     public static void OnDestroy_Postfix(IntroCutscene __instance)
     {
-        foreach (var kvp in PlayerData.AllPlayerData)
+        foreach (var pc in Main.AllPlayerControls)
         {
-            var id = kvp.Key;
-            var data = kvp.Value;
-            data.IsImpostor = data.Player?.Data?.Role?.IsImpostor ?? false;
-            data.roleWhenAlive = data.Player.Data.RoleWhenAlive.Value;
-            data.PlayerInfo = data.Player.Data;
-            PlayerData.AllPlayerData[id] = data;
+            pc.GetPlayerData().SetInfo(pc.Data);
         }
         Logger.Info("OnDestroy", "IntroCutscene");
     }

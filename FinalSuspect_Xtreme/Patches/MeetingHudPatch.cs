@@ -29,12 +29,12 @@ public static class MeetingHudPatch
 
             foreach (var pva in __instance.playerStates)
             {
-                var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-                if (pc == null) continue;
-                pva.NameText.text = pc.GetTrueName();
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
-                var roleTextMeeting = UnityEngine.Object.Instantiate(pva.NameText);
+                var pc = Utils.GetPlayerById(pva.TargetPlayerId);
+                pva.NameText.text = pc.GetTrueName();
+
+                var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";
                 roleTextMeeting.enabled = false;
                 roleTextMeeting.transform.SetParent(pva.NameText.transform);
@@ -45,67 +45,47 @@ public static class MeetingHudPatch
 
                 // 役職とサフィックスを同時に表示する必要が出たら要改修
                 var suffixBuilder = new StringBuilder(32);
-                var roleType = pc.Data.Role.Role;
-                var dead = pc.Data.IsDead;
-                var disconnected = pc.Data.Disconnected;
 
-                PlayerData.AllPlayerData[pc.PlayerId].roleAfterDead = roleType;
-                PlayerData.AllPlayerData[pc.PlayerId].Dead = dead;
-                PlayerData.AllPlayerData[pc.PlayerId].Disconnected = disconnected;
-                var name = PlayerData.AllPlayerData[pc.PlayerId].PlayerName;
+                var roleType = pc.GetRoleType();
+                var dead = !pc.IsAlive();
+
+                
+                var name = pc.GetPlayerName();
                 var color = Utils.GetRoleColorCode(roleType);
+                bool append = false;
 
                 if (pc == PlayerControl.LocalPlayer)
                 {
-                    pva.NameText.text =
-    $"<color={color}>{pva.NameText.text}</color>";
-                    suffixBuilder.Append
-                        (
-                        $"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>"
-                        );
+                    append = true;
                 }
                 else
                 {
 
-                    if ((PlayerControl.LocalPlayer.Data.IsDead && dead && PlayerControl.LocalPlayer.Data.Role.Role is RoleTypes.GuardianAngel)
-                || PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.Role.Role is not RoleTypes.GuardianAngel)
-                    
-                        {
-                        pva.NameText.text =
-                            $"<color={color}>{name}</color>";
-                        suffixBuilder.Append
-                        (
-                            $"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>");
+                    if (!PlayerControl.LocalPlayer.IsAlive() &&(
+                        (dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel) || 
+                        (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
+                    {
+                        append = true;
                     }
                     else if (PlayerControl.LocalPlayer.IsImpostor() && pc.IsImpostor())
                     {
-                        if (PlayerControl.LocalPlayer.Data.IsDead)
-                        {
-                            pva.NameText.text =
-    $"<color=#ff1919>{name}</color>";
-                            suffixBuilder.Append
-                        (
-                                   $"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>");
-                        }
-                        else
-                        {
-
-                            pva.NameText.text =
-                            $"<color=#FF1919>{name}</color>";
-
-                        }
+                        color = "#ff1919";
+                        if (!PlayerControl.LocalPlayer.IsAlive()) append = true;
+                        
                     }
                     else
                     {
 
-                        pva.NameText.text =
-                        $"<color=#FFFFFF>{name}</color>";
-
-
+                        color = "#ffffff";
 
                     }
 
                 }
+
+                pva.NameText.text =$"<color={color}>{name}</color>";
+                if (append)
+                    suffixBuilder.Append($"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>");
+
                 if (suffixBuilder.Length > 0)
                 {
                     roleTextMeeting.text = suffixBuilder.ToString() + $" {Utils.GetProgressText(pc)}";

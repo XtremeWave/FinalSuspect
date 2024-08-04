@@ -114,12 +114,12 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var datas = PlayerData.AllPlayerData;
-        var thisdata = datas[id];
+        var thisdata = CustomPlayerData.GetPlayerDataById(id);
 
         var builder = new StringBuilder();
-        var longestNameByteCount =
-            PlayerData.AllPlayerData.Values.Select(data => data.PlayerName.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
+        var longestNameByteCount = CustomPlayerData.GetLongestNameByteCount();
+
+
         var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
 
 
@@ -131,13 +131,14 @@ public static class Utils
         pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 8f : 4.5f;
 
         builder.AppendFormat("<pos={0}em>", pos);
-        var oldrole = thisdata.roleWhenAlive;
+
+        var oldrole = thisdata.RoleWhenAlive;
+        var newrole = thisdata.RoleAfterDeath;
         builder.Append(ColorString(GetRoleColor(oldrole), GetString($"{oldrole}")));
-        if (thisdata.Dead && !thisdata.Disconnected)
+
+        if (thisdata.IsDead && !thisdata.IsDisconnected && newrole != oldrole)
         {
-            var role = thisdata.roleAfterDead;
-            if (role != oldrole)
-                builder.Append($"=> {ColorString(GetRoleColor(role), GetRoleString($"{role}"))}");
+            builder.Append($"=> {ColorString(GetRoleColor(newrole), GetRoleString($"{newrole}"))}");
         }
         builder.Append("</pos>");
 
@@ -242,7 +243,7 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null) player = PlayerData.AllPlayerData[playerId].Player;
+        if (player == null) player = CustomPlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -264,11 +265,12 @@ public static class Utils
     public static string GetProgressText(PlayerControl pc = null)
     {
         
-        var dead = pc.Data.IsDead;
+        var dead = !pc.IsAlive();
 
         var enable = !pc.IsImpostor() && (pc == PlayerControl.LocalPlayer ||
-                (PlayerControl.LocalPlayer.Data.IsDead && dead && PlayerControl.LocalPlayer.Data.Role.Role is RoleTypes.GuardianAngel) ||
-                (PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.Role.Role is not RoleTypes.GuardianAngel));
+           !PlayerControl.LocalPlayer.IsAlive() &&(
+                (  dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel) ||
+                (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)));
 
 
         pc ??= PlayerControl.LocalPlayer;
@@ -284,17 +286,17 @@ public static class Utils
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var state = PlayerData.AllPlayerData[playerId];
-        if (state.IsImpostor) return "";
+        var data = CustomPlayerData.GetPlayerDataById(playerId);
+        if (data.IsImpostor) return "";
         Color TextColor;
         var TaskCompleteColor = Color.green; //タスク完了後の色
         var NonCompleteColor = Color.yellow; //カウントされない人外は白色
 
-        var NormalColor = state.TotalTaskCount == state.CompleteTaskCount ? TaskCompleteColor : NonCompleteColor;
+        var NormalColor = data.TotalTaskCount == data.CompleteTaskCount ? TaskCompleteColor : NonCompleteColor;
 
         TextColor = comms ? Color.gray : NormalColor;
-        string Completed = comms ? "?" : $"{state.CompleteTaskCount}";
-        return ColorString(TextColor, $"({Completed}/{state.TotalTaskCount})");
+        string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
+        return ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
     }
     public static bool IsActive(SystemTypes type)

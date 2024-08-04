@@ -109,10 +109,11 @@ class OnPlayerLeftPatch
             Logger.Error("错误的客户端数据：数据为空", "Session");
             return;
         }
-        Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
         Main.playerVersion?.Remove(data.Character.PlayerId);
+        CustomPlayerData.GetPlayerDataById(data.Character.PlayerId).SetDisconnected();
 
+        Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
         if (AmongUsClient.Instance.AmHost)
         {

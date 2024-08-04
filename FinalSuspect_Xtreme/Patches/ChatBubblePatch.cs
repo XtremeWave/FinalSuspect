@@ -39,9 +39,11 @@ public static class ChatBubblePatch
         }
         if (GameStates.IsInGame)
         {
+            var dead = CustomPlayerData.GetPlayerDataById(__instance.playerInfo.PlayerId).IsDead;
             if (__instance.playerInfo.PlayerId == PlayerControl.LocalPlayer.PlayerId
-                || (PlayerControl.LocalPlayer.Data.IsDead && Utils.GetPlayerById(__instance.playerInfo.PlayerId).Data.IsDead && PlayerControl.LocalPlayer.Data.Role.Role is RoleTypes.GuardianAngel)
-                || PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.Role.Role is not RoleTypes.GuardianAngel)
+                || !PlayerControl.LocalPlayer.IsAlive() && 
+                ((dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel)
+                || ( PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
             __instance.NameText.color = Utils.GetPlayerById(__instance.playerInfo.PlayerId).GetRoleColor();
         }
         
