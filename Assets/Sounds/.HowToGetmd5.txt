@@ -1,0 +1,16 @@
+//请注意，请将{{path}}改为自己要获取的文件夹路径
+以下是在PowerShell运行的命令（Win+R打开PowerShell）：
+//"Please note, please change the {{path}} to your own path
+Here is the command to run in PowerShell (Win+R to open PowerShell):
+
+
+$folderPath = "C:\Users\YJNSH\Documents\Tencent Files\639083778\FileRecv\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\Assets\Sounds"
+$outputFile = Join-Path -Path $folderPath -ChildPath ".md5Pair.txt"
+
+Set-Content -Path $outputFile -Value $null
+
+Get-ChildItem -Path $folderPath -File -Recurse | Where-Object { $_.Name -notmatch '\.md5Pair\.txt|\.HowToGetmd5\.txt' } | ForEach-Object {
+    $file = $_.FullName
+    $md5 = Get-FileHash -Path $file -Algorithm MD5
+    Add-Content -Path $outputFile -Value "$($md5.Hash.ToLower())  $($file.Replace($folderPath, ''))"
+}

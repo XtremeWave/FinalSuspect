@@ -1,0 +1,12 @@
+﻿#Number:100050
+#Title:TownOfNewEpic_Xtreme v1.3
+#SubTitle:★★★★热浪来袭！★★★★
+#ShortTitle:★TONEX v1.3
+#Date:2024-07-26T19:00:00Z
+#-----------------------------
+# 简体中文
+
+
+## 对应官方版本
+- 基于 AmongUs v2024.6.18
+- 基于 Town Of Host v5.1.7 & Town Of Next v3.0.1

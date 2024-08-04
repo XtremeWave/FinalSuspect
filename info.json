@@ -1,0 +1,37 @@
+{
+  "version": "0.0.0",
+  "verHead": "1.0",
+  "verDate": "20240811",
+
+  "versionPre": "",
+  "verDatePre": "",
+
+  "verTestName": "",
+  "verTestNum": "",
+
+
+  "minVer": "latest",
+  "creation": "1",
+  "allowStart": "true",
+  "CanUpdate": "true",
+  "DebugVer": "0.0.0",
+
+  "md5Pre": "",
+  "md5": "",
+  "announcement": {
+    "Preview": "Welcome",
+    "SChinese": "让我们返璞归真",
+    "English": "Thank you to all players for your support over the past year!"
+  },
+
+  "url": {
+    "github": "https://github.com/XtremeWave/TownOfNewEpic_Xtreme/releases/latest/download/TONEX.dll",
+    "gitee": "https://gitee.com/TEAM_TONEX/TownOfNewEpic_Xtreme/releases/download/{{showVer}}/TONEX.dll",
+    "website": "https://cn-sy1.rains3.com/xtremewave/TONEX.dll",
+    "website2": "https://tohex.club/Resource/Download/TONEX.dll",
+    "githubmus": "https://github.com/XtremeWave/TownOfNewEpic_Xtreme/raw/TONEX/Assets/Sounds/{{sound}}.wav",
+    "giteemus": "https://gitee.com/TEAM_TONEX/TownOfNewEpic_Xtreme/raw/TONEX/Assets/Sounds/{{sound}}.wav",
+    "websitemus": "https://sounds.tonex.cc/Sounds/{{sound}}.wav",
+    "website2mus": "https://tohex.club/Resource/Sounds/{{sound}}.wav"
+  }
+}

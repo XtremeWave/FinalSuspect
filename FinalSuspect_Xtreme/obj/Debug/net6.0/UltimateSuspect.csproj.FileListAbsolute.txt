@@ -1,0 +1,15 @@
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\GitInfo.cache
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.csproj.AssemblyReference.cache
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.GeneratedMSBuildEditorConfig.editorconfig
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.AssemblyInfoInputs.cache
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.AssemblyInfo.cs
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.csproj.CoreCompileInputs.cache
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.sourcelink.json
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\Export\Debug\net6.0\UltimateSuspect.deps.json
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\Export\Debug\net6.0\UltimateSuspect.dll
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\Export\Debug\net6.0\UltimateSuspect.pdb
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.csproj.Fody.CopyLocal.cache
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.dll
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\refint\UltimateSuspect.dll
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\UltimateSuspect.pdb
+D:\QQ\OtherFiles\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\TONEX\obj\Debug\net6.0\ref\UltimateSuspect.dll
