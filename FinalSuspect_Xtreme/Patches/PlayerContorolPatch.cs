@@ -36,9 +36,11 @@ class DiePatch
         }
         return true;
     }
-    public static void Postfix(PlayerControl __instance)
+    public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] DeathReason deathReason, [HarmonyArgument(1)] bool assginGhostRole)
     {
-        __instance.GetPlayerData().SetDead();
+        if (!assginGhostRole) return;
+        __instance.SetDeathReason((DataDeathReason)deathReason);
+        __instance.SetDead();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoSetRole))]
@@ -46,8 +48,8 @@ class CoSetRolePatch
 {
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] RoleTypes roleTypes)
     {
-        __instance.GetPlayerData().SetRole(roleTypes);
-        __instance.GetPlayerData().SetIsImp(__instance?.Data?.Role?.IsImpostor ?? false);
+        __instance.SetRole(roleTypes);
+        __instance.SetIsImp(Utils.IsImpostor(roleTypes));
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
@@ -61,6 +63,7 @@ class FixedUpdatePatch
         var self = __instance == PlayerControl.LocalPlayer;
         var color ="#ffffff";
         var nametext = __instance.GetTrueName();
+        var dr = false;
 
         if (GameStates.IsLobby)
         {
@@ -92,9 +95,13 @@ class FixedUpdatePatch
         else if (GameStates.IsInGame)
         {
             if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+
             var rt = "";
             var roleType = __instance.GetRoleType();
             var dead = !__instance.IsAlive();
+
+           
+
 
             color = Utils.GetRoleColorCode(roleType);
             if (
@@ -104,6 +111,7 @@ class FixedUpdatePatch
                 (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
             {
                 rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
+                dr = true;
             }
             else if (PlayerControl.LocalPlayer.IsImpostor() && __instance.IsImpostor())
             {
@@ -111,6 +119,8 @@ class FixedUpdatePatch
                 if (!PlayerControl.LocalPlayer.IsAlive())
                 {
                     rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
+                    dr = true;
+
                 }
             }
             else
@@ -126,7 +136,11 @@ class FixedUpdatePatch
             RoleText.transform.SetLocalY(0.2f);
 
         }
+
         __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
+        if (dr && !PlayerControl.LocalPlayer.IsAlive())
+            __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
+
 
     }
 }
@@ -151,7 +165,7 @@ class PlayerControlSetTasksPatch
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] Il2CppSystem.Collections.Generic.List<NetworkedPlayerInfo.TaskInfo> tasks)
     {
         var pc = __instance;
-        pc.GetPlayerData().SetTaskTotalCount(tasks.Count);
+        pc.SetTaskTotalCount(tasks.Count);
     }
 }
 
@@ -163,7 +177,7 @@ class PlayerControlCompleteTaskPatch
     {
         var pc = __instance;
         Logger.Info($"TaskComplete:{pc.GetNameWithRole()}", "CompleteTask");
-        pc.GetPlayerData().CompleteTask();
+        pc.OnCompleteTask();
 
         GameData.Instance.RecomputeTaskCounts();
         Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");

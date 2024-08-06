@@ -10,7 +10,7 @@ namespace FinalSuspect_Xtreme;
 internal class CoStartGamePatch
 {
 
-    public static void Postfix(AmongUsClient __instance)
+    public static void Postfix()
     {
         GameModuleInitializerAttribute.InitializeAll();
 

@@ -46,7 +46,7 @@ static class ExtendedPlayerControl
     }
     public static RoleTypes GetRoleType(byte id)
     {
-        return CustomPlayerData.GetRoleById(id);
+        return GamePlayerData.GetRoleById(id);
     }
     public static bool IsImpostor(this PlayerControl pc)
     {

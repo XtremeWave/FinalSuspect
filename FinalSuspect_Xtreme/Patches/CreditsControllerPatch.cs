@@ -32,18 +32,12 @@ public class CreditsControllerPatch
                 "",
                 //Others
                 $"<size=120%>{GetString("Contributors")}</size>",
-                $"KARPED1EM - {GetString("Creater")}",
-                $"Niko233 - {GetString("Contributor")}",
-                //$"Moe - {GetString("Contributor")}",
-                //$"ryuk - {GetString("Contributor")}",
-                //$"Gurge44 - {GetString("Contributor")}",
-                $"Amongus(水木年华) - {GetString("Contributor")}",
-                //$"Lonnie - {GetString("Contributor")}",
-                $"Yu(Night_瓜) - {GetString("Contributor")}",
-                $"天寸梦初 - {GetString("Contributor")}",
-                //$"Commandf1(in TONX) - {GetString("Contributor")}",
-                //$"SolarFlare(in TONX) - {GetString("Contributor")}",
-                //$"Mousse(in TONX) - {GetString("Contributor")}",
+                $"- KARPED1EM",
+                $"- Niko233",
+                $"- Amongus(水木年华)",
+                $"- Yu(Night_瓜)",
+                $"- 天寸梦初",
+
             };
         var acList = new List<string>()
             {

@@ -14,15 +14,6 @@ public enum CustomRPC
 {
     VersionCheck = 99,
     RequestRetryVersionCheck = 100,
-    PlaySound,
-
-    PlayCustomSound,
-    ShowPopUp,
-    NotificationPop,
-    SetKickReason,
-
-    //FinalSuspect_Xtreme
-    ColorFlash,
 }
 public enum Sounds
 {
@@ -34,55 +25,22 @@ public enum Sounds
     CopyCode,
     Test,
 }
-/*
+
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
 internal class RPCHandlerPatch
 {
     public static bool TrustedRpc(byte id)
- => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck or CustomRPC.AntiBlackout or CustomRPC.Judge or CustomRPC.Swap or CustomRPC.Guess or CustomRPC.OnClickMeetingButton or CustomRPC.PlaySound or CustomRPC.IsDisabledAction or CustomRPC.SetAction ;
+ => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck /*or  CustomRPC.PlaySound */;
 
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
-        if (Main.AssistivePluginMode.Value) return true;
-        var rpcType = (RpcCalls)callId;
-        MessageReader subReader = MessageReader.Get(reader);
         if (EAC.ReceiveRpc(__instance, callId, reader)) return false;
+
         Logger.Info($"{__instance?.Data?.PlayerId}({(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : __instance?.Data?.PlayerName)}):{callId}({RPC.GetRpcName(callId)})", "ReceiveRPC");
 
-        switch (rpcType)
-        {
-            case RpcCalls.SetName: //SetNameRPC
-                subReader.ReadUInt32();
-                string name = subReader.ReadString();
-                if (subReader.BytesRemaining > 0 && subReader.ReadBoolean()) return false;
-                Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
-                break;
-            case RpcCalls.SetRole: //SetRoleRPC
-                var role = (RoleTypes)subReader.ReadUInt16();
-                var canOverriddenRole = subReader.ReadBoolean();
-                Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
-                break;
-            case RpcCalls.SendChat: // Free chat
-                var text = subReader.ReadString();
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
-                ChatCommands.OnReceiveChat(__instance, text, out var canceled);
-                if (canceled) return false;
-                break;
-            case RpcCalls.SendQuickChat:
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
-                ChatCommands.OnReceiveChat(__instance, "Some message from quick chat", out var canceledQuickChat);
-                if (canceledQuickChat) return false;
-                break;
-            case RpcCalls.StartMeeting:
-                var p = Utils.GetPlayerById(subReader.ReadByte());
-                Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
-                break;
-        }
 
-        if (__instance.PlayerId != 0
-                && Enum.IsDefined(typeof(CustomRPC), (int)callId)
-                && !TrustedRpc(callId)) //ホストではなく、CustomRPCで、VersionCheckではない
+        if (__instance.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !TrustedRpc(callId))
         {
             Logger.Warn($"{__instance?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
@@ -91,6 +49,11 @@ internal class RPCHandlerPatch
                 Utils.KickPlayer(__instance.GetClientId(), false, "InvalidRPC");
                 Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                 RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), __instance?.Data?.PlayerName));
+            }
+            else if (!Main.playerVersion.TryGetValue(0, out _))
+            {
+                Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
+                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), __instance?.Data?.PlayerName, callId));
             }
             return false;
         }
@@ -101,22 +64,11 @@ internal class RPCHandlerPatch
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
-        if (Main.AssistivePluginMode.Value && (CustomRPC)callId is not CustomRPC.VersionCheck and not CustomRPC.RequestRetryVersionCheck) return;
-        //CustomRPC以外は処理しない
-        if (callId < (byte)CustomRPC.VersionCheck) return;
+        if ((CustomRPC)callId is not CustomRPC.VersionCheck and not CustomRPC.RequestRetryVersionCheck) return;
 
         var rpcType = (CustomRPC)callId;
         switch (rpcType)
         {
-            case CustomRPC.AntiBlackout:
-                {
-                    Logger.Fatal($"{__instance?.Data?.PlayerName}({__instance.PlayerId}): Change Role Setting Postfix 错误，根据设定继续游戏", "Anti-black");
-                    _ = new LateTask(() =>
-                    {
-                        Logger.SendInGame(string.Format(GetString("RpcAntiBlackOutIgnored"), __instance?.Data?.PlayerName), true);
-                    }, 3f, "Anti-Black Msg SendInGame");
-                }
-                break;
             case CustomRPC.VersionCheck:
                 try
                 {
@@ -160,74 +112,28 @@ internal class RPCHandlerPatch
             case CustomRPC.RequestRetryVersionCheck:
                 RPC.RpcVersionCheck();
                 break;
-            case CustomRPC.SetDeathReason:
-                RPC.GetDeathReason(reader);
-                break;
-            case CustomRPC.EndGame:
-                RPC.EndGame(reader);
-                break;
-            case CustomRPC.PlaySound:
-                byte playerID = reader.ReadByte();
-                Sounds sound = (Sounds)reader.ReadByte();
-                RPC.PlaySound(playerID, sound);
-                break;
-            case CustomRPC.ShowPopUp:
-                string msg = reader.ReadString();
-                HudManager.Instance.ShowPopUp(msg);
-                break;
-            case CustomRPC.SetNameColorData:
-                NameColorManager.ReceiveRPC(reader);
-                break;
-            case CustomRPC.SetRealKiller:
-                byte targetId = reader.ReadByte();
-                byte killerId = reader.ReadByte();
-                RPC.SetRealKiller(targetId, killerId);
-                break;
-            case CustomRPC.PlayCustomSound:
-                CustomSoundsManager.ReceiveRPC(reader);
-                break;
-            case CustomRPC.SuicideWithAnime:
-                var playerId = reader.ReadByte();
-                var pc = Utils.GetPlayerById(playerId);
-                pc?.RpcSuicideWithAnime(true);
-                break;
-            case CustomRPC.SetKillTimer:
-                float time = reader.ReadSingle();
-                PlayerControl.LocalPlayer.SetKillTimer(time);
-                break;
-            case CustomRPC.SyncAllPlayerNames:
-                Main.AllPlayerNames = new();
-                int num = reader.ReadInt32();
-                for (int i = 0; i < num; i++)
-                    Main.AllPlayerNames.TryAdd(reader.ReadByte(), reader.ReadString());
-                break;
-            case CustomRPC.SyncNameNotify:
-                NameNotifyManager.ReceiveRPC(reader);
-                break;
-            case CustomRPC.SetAction:
-                ExtendedPlayerControl.ReceiveSetAction(reader);
-                break;
-            case CustomRPC.IsDisabledAction:
-                ExtendedPlayerControl.ReceiveIsDisabledActionion(reader);
-                break;
-            case CustomRPC.KillFlash:
-                Utils.FlashColor(new(1f, 0f, 0f, 0.3f));
-                if (Constants.ShouldPlaySfx()) RPC.PlaySound(PlayerControl.LocalPlayer.PlayerId, Sounds.KillSound);
-                break;
-            case CustomRPC.ColorFlash:
-                Utils.FlashColor(Utils.color2);
-                break;
-            case CustomRPC.NotificationPop:
-                NotificationPopperPatch.AddItem(reader.ReadString());
-                break;
-            case CustomRPC.SetKickReason:
-                ShowDisconnectPopupPatch.ReasonByHost = reader.ReadString();
-                break;
+            //case CustomRPC.PlaySound:
+            //    byte playerID = reader.ReadByte();
+            //    Sounds sound = (Sounds)reader.ReadByte();
+            //    RPC.PlaySound(playerID, sound);
+            //    break;
+            //case CustomRPC.ShowPopUp:
+            //    string msg = reader.ReadString();
+            //    HudManager.Instance.ShowPopUp(msg);
+            //    break;
+            //case CustomRPC.PlayCustomSound:
+            //    CustomSoundsManager.ReceiveRPC(reader);
+            //    break;
+            //case CustomRPC.NotificationPop:
+            //    NotificationPopperPatch.AddItem(reader.ReadString());
+            //    break;
+            //case CustomRPC.SetKickReason:
+            //    ShowDisconnectPopupPatch.ReasonByHost = reader.ReadString();
+            //    break;
         }
     }
 }
 
-*/
 internal static class RPC
 {
     //来源：https://github.com/music-discussion/TownOfHost-TheOtherRoles/blob/main/Modules/RPC.cs
@@ -235,18 +141,18 @@ internal static class RPC
     {
         if (AmongUsClient.Instance.AmHost)
             PlaySound(PlayerID, sound);
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaySound, SendOption.Reliable, -1);
-        writer.Write(PlayerID);
-        writer.Write((byte)sound);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
+        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaySound, SendOption.Reliable, -1);
+        //writer.Write(PlayerID);
+        //writer.Write((byte)sound);
+        //AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
-    public static void ShowPopUp(this PlayerControl pc, string msg)
-    {
-        if (!AmongUsClient.Instance.AmHost) return;
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ShowPopUp, SendOption.Reliable, pc.GetClientId());
-        writer.Write(msg);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
+    //public static void ShowPopUp(this PlayerControl pc, string msg)
+    //{
+    //    if (!AmongUsClient.Instance.AmHost) return;
+    //    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ShowPopUp, SendOption.Reliable, pc.GetClientId());
+    //    writer.Write(msg);
+    //    AmongUsClient.Instance.FinishRpcImmediately(writer);
+    //}
     public static async void RpcVersionCheck()
     {
 
@@ -315,14 +221,14 @@ internal static class RPC
         string rpcName;
         if ((rpcName = Enum.GetName(typeof(RpcCalls), callId)) != null) { }
         else if ((rpcName = Enum.GetName(typeof(CustomRPC), callId)) != null) { }
-        else rpcName = callId.ToString();
+        else rpcName = callId.ToString() + "(INVALID)";
         return rpcName;
     }
     public static void NotificationPop(string text)
     {
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.NotificationPop, Hazel.SendOption.Reliable, -1);
-        writer.Write(text);
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
+        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.NotificationPop, Hazel.SendOption.Reliable, -1);
+        //writer.Write(text);
+        //AmongUsClient.Instance.FinishRpcImmediately(writer);
         NotificationPopperPatch.AddItem(text);
     }
 }

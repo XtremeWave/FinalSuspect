@@ -43,6 +43,11 @@ ImpostorGhostBlurb: "继续破坏设施"
 CrewmateGhostBlurbLong: "完成任务，别拖后腿！"
 ImpostorGhostBlurbLong: "破坏设施，协助存活的队友取得胜利"
 
+# 死因 / Death Reason
+DeathReason.Kill: "被杀"
+DeathReason.Exile: "驱逐"
+DeathReason.Disconnect: "断连"
+
 # 客户端选项 / Client Options
 FinalSuspect_XtremeOptions: "Final Suspect 选项"
 Back: "返回"
@@ -144,6 +149,8 @@ KickBecauseDiffrentVersionOrMod: "【{0}】因安装了不同版本的模组被�
 Warning: "警告"
 Warning.MismatchedVersion: "{0}\n安装了其它版本的 {1}"
 Warning.AutoExitAtMismatchedVersion: "您的 {0} 版本与房主不同\n您将在 {1} 秒内被踢出"
+Warning.InvalidRpc: "{0} 因为发送了无效的数据被踢出"
+Warning.InvalidRpc_NotHost: "{0} 疑似使用了作弊插件，请提示房主及时踢出(无效的Rpc:{1})"
 Warning.CantKickDev: "很抱歉，您无法踢出开发者"
 Warning.RoomBroken: "很抱歉，该房间遭受炸房攻击，请到其他房间进行游戏"
 

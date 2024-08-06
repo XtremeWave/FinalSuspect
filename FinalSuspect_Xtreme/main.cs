@@ -43,9 +43,9 @@ public class Main : BasePlugin
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2024.6.18";
     public static readonly bool IsPublicAvailableOnThisVersion = true;
-    public const string PluginVersion = "0.2.0";
-    public const string ShowVersion_Head = "0.2_20240802";
-    public const string ShowVersion_TestText = "_Debug_10";
+    public const string PluginVersion = "1.0.0";
+    public const string ShowVersion_Head = "1.0_20240807";
+    public const string ShowVersion_TestText = "";
     public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
     public const int PluginCreation = 1;
     // == 链接相关设定 / Link Config ==
@@ -69,24 +69,20 @@ public class Main : BasePlugin
     public static string CredentialsText;
     public static NormalGameOptionsV08 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
     //Client Options
-    public static ConfigEntry<string> HideName { get; private set; }
-    public static ConfigEntry<string> HideColor { get; private set; }
-    public static ConfigEntry<int> MessageWait { get; private set; }
-    public static ConfigEntry<bool> ShowResults { get; private set; }
-
     public static ConfigEntry<bool> KickPlayerFriendCodeNotExist { get; private set; }
     public static ConfigEntry<bool> ApplyDenyNameList { get; private set; }
     public static ConfigEntry<bool> ApplyBanList { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
-    //public static ConfigEntry<bool> CanPublic { get; private set; }
     public static ConfigEntry<string> AprilFoolsMode { get; private set; }
     public static ConfigEntry<bool> AutoStartGame { get; private set; }
     public static ConfigEntry<bool> AutoEndGame { get; private set; }
     public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
     public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
+
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
+
 
     public static Dictionary<byte, PlayerVersion> playerVersion = new();
 
@@ -95,30 +91,23 @@ public class Main : BasePlugin
         "NoAprilFoolsMode", "HorseMode", "LongMode"
     };
     //Other Configs
+    public static ConfigEntry<string> HideName { get; private set; }
+    public static ConfigEntry<string> HideColor { get; private set; }
+    public static ConfigEntry<int> MessageWait { get; private set; }
+    public static ConfigEntry<bool> ShowResults { get; private set; }
     public static ConfigEntry<string> WebhookURL { get; private set; }
-    public static ConfigEntry<float> LastKillCooldown { get; private set; }
-    public static ConfigEntry<float> LastShapeshifterCooldown { get; private set; }
+
+
     public static Dictionary<byte, string> AllPlayerNames = new();
-    public static Dictionary<(byte, byte), string> LastNotifyNames;
-    public static Dictionary<byte, Color32> PlayerColors = new();
     public static Dictionary<RoleTypes, string> roleColors;
-    public static List<byte> winnerList = new();
-    public static List<string> winnerNameList = new();
     public static List<int> clientIdList = new();
     public static List<(string, byte, string)> MessagesToSend = new();
 
-    public static Dictionary<byte, float> AllPlayerKillCooldown = new();
-    public static Dictionary<byte, float> AllPlayerVision = new();
-    public static Dictionary<byte, List<string>> SetRolesList = new();
     /// <summary>
     /// 基本的に速度の代入は禁止.スピードは増減で対応してください.
     /// </summary>
     public static Dictionary<byte, float> AllPlayerSpeed = new();
-    public const float MinSpeed = 0.0001f;
-    public static int AliveImpostorCount;
-    public static bool VisibleTasksCount = false;
     public static string HostNickName = "";
-    public static bool introDestroyed = false;
     public static bool IsInitialRelease = DateTime.Now.Month == 2 && DateTime.Now.Day is 9;
     public static bool IsAprilFools = DateTime.Now.Month == 4 && DateTime.Now.Day is 1;
     public const float RoleTextSize = 2f;
@@ -135,11 +124,6 @@ public class Main : BasePlugin
     public static Main Instance;
 
     //TONX
-
-    public static Dictionary<byte, Vent> LastEnteredVent = new();
-    public static Dictionary<byte, Vector2> LastEnteredVentLocation = new();
-    public static Dictionary<int, int> SayStartTimes = new();
-    public static Dictionary<int, int> SayBanwordsTimes = new();
 
     public static bool NewLobby = false;
 
@@ -166,9 +150,7 @@ public class Main : BasePlugin
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
-        //CanPublic = Config.Bind("Client Options", "CanPublic", true);
         AprilFoolsMode = Config.Bind("Client Options", "AprilFoolsMode", allAprilFoolsModes[0]);
-        //LongMode = Config.Bind("Client Options", "LongMode", false);
         KickPlayerFriendCodeNotExist = Config.Bind("Client Options", "AutoStartGame", true);
         ApplyBanList = Config.Bind("Client Options", "ApplyBanList", true);
         ApplyDenyNameList = Config.Bind("Client Options", "ApplyDenyNameList", true);
@@ -223,9 +205,6 @@ public class Main : BasePlugin
 
         WebhookURL = Config.Bind("Other", "WebhookURL", "none");
         MessageWait = Config.Bind("Other", "MessageWait", 1);
-
-        LastKillCooldown = Config.Bind("Other", "LastKillCooldown", (float)30);
-        LastShapeshifterCooldown = Config.Bind("Other", "LastShapeshifterCooldown", (float)30);
 
         hasArgumentException = false;
         ExceptionMessage = "";

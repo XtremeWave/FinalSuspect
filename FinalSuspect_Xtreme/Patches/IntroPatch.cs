@@ -92,27 +92,16 @@ class IntroCutscenePatch
         StartFadeIntro(__instance, new Color32(140, 255, 255, byte.MaxValue), PlayerControl.LocalPlayer.GetRoleColor());
 
 
-        if (Input.GetKey(KeyCode.RightShift))
-        {
-            __instance.TeamTitle.text = "明天就跑路啦";
-            __instance.ImpostorText.gameObject.SetActive(true);
-            __instance.ImpostorText.text = "嘿嘿嘿嘿嘿嘿";
-            __instance.TeamTitle.color = Color.cyan;
-            StartFadeIntro(__instance, Color.cyan, Color.yellow);
-        }
         if (Input.GetKey(KeyCode.RightControl))
         {
             __instance.TeamTitle.text = "警告";
             __instance.ImpostorText.gameObject.SetActive(true);
             __instance.ImpostorText.text = "请远离无知的玩家";
             __instance.TeamTitle.color = Color.magenta;
-            StartFadeIntro(__instance, Color.magenta, Color.magenta);
+            StartFadeIntro(__instance, Color.red, Color.magenta);
         }
     }
-    public static AudioClip GetIntroSound(RoleTypes roleType)
-    {
-        return RoleManager.Instance.AllRoles.Where((role) => role.Role == roleType).FirstOrDefault().IntroSound;
-    }
+
     private static async void StartFadeIntro(IntroCutscene __instance, Color start, Color end)
     {
         await Task.Delay(1000);
@@ -134,10 +123,6 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.OnDestroy)), HarmonyPostfix]
     public static void OnDestroy_Postfix(IntroCutscene __instance)
     {
-        foreach (var pc in Main.AllPlayerControls)
-        {
-            pc.GetPlayerData().SetInfo(pc.Data);
-        }
         Logger.Info("OnDestroy", "IntroCutscene");
     }
 }

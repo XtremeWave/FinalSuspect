@@ -75,9 +75,9 @@ public static class Utils
         AmongUsClient.Instance.KickPlayer(playerId, ban);
         //}, Math.Max(AmongUsClient.Instance.Ping / 500f, 1f), "Kick Player");
 
-        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetKickReason, SendOption.Reliable, -1);
-        writer.Write(GetString($"DCNotify.{reason}"));
-        AmongUsClient.Instance.FinishRpcImmediately(writer);
+        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetKickReason, SendOption.Reliable, -1);
+        //writer.Write(GetString($"DCNotify.{reason}"));
+        //AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static string PadRightV2(this object text, int num)
     {
@@ -96,7 +96,8 @@ public static class Utils
         file.CopyTo(@filename);
         if (PlayerControl.LocalPlayer != null)
         {
-            if (popup) PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.ShowVersion}-{t}.log"));
+            if (popup) //PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.ShowVersion}-{t}.log"));
+                HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.ShowVersion}-{t}.log"));
             else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.ShowVersion}-{t}.log"));
         }
         ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe")
@@ -114,10 +115,10 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var thisdata = CustomPlayerData.GetPlayerDataById(id);
+        var thisdata = GamePlayerData.GetPlayerDataById(id);
 
         var builder = new StringBuilder();
-        var longestNameByteCount = CustomPlayerData.GetLongestNameByteCount();
+        var longestNameByteCount = GamePlayerData.GetLongestNameByteCount();
 
 
         var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
@@ -126,17 +127,18 @@ public static class Utils
         var colorId = thisdata.PlayerColor;
         builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.PlayerName));
         builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
+        pos += 4f;
 
-        //pos += 4f;
+        builder.AppendFormat("<pos={0}em>", pos).Append(GetVitalText(id, true)).Append("</pos>");
         pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 8f : 4.5f;
 
         builder.AppendFormat("<pos={0}em>", pos);
 
-        var oldrole = thisdata.RoleWhenAlive;
-        var newrole = thisdata.RoleAfterDeath;
+        var oldrole = thisdata.RoleWhenAlive ?? RoleTypes.Crewmate;
+        var newrole = thisdata.RoleAfterDeath ?? (thisdata.IsImpostor? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost);
         builder.Append(ColorString(GetRoleColor(oldrole), GetString($"{oldrole}")));
 
-        if (thisdata.IsDead && !thisdata.IsDisconnected && newrole != oldrole)
+        if (thisdata.IsDead  && newrole != oldrole)
         {
             builder.Append($"=> {ColorString(GetRoleColor(newrole), GetRoleString($"{newrole}"))}");
         }
@@ -243,24 +245,11 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null) player = CustomPlayerData.GetPlayerById(playerId);
+        if (player == null) player = GamePlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
 
-    //public static string GetVitalText(byte playerId, bool RealKillerColor = false, bool summary = false)
-    //{
-    //    var state = PlayerState.GetByPlayerId(playerId);
-    //    string deathReason = state.IsDead ? GetString("DeathReason." + state.DeathReason) : (summary ? "" : GetString("Alive"));
-    //    if (RealKillerColor)
-    //    {
-    //        var KillerId = state.GetRealKiller();
-    //        Color color = KillerId != byte.MaxValue ? Main.PlayerColors[KillerId] : GetRoleColor(CustomRoles.MedicalExaminer);
-    //        if (state.DeathReason is CustomDeathReason.Disconnected or CustomDeathReason.Vote) color = new Color32(255, 255, 255, 60);
-    //        deathReason = ColorString(color, deathReason);
-    //    }
-    //    return deathReason;
-    //}
 
     public static string GetProgressText(PlayerControl pc = null)
     {
@@ -286,18 +275,43 @@ public static class Utils
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var data = CustomPlayerData.GetPlayerDataById(playerId);
+        var data = GamePlayerData.GetPlayerDataById(playerId);
         if (data.IsImpostor) return "";
         Color TextColor;
         var TaskCompleteColor = Color.green; //タスク完了後の色
         var NonCompleteColor = Color.yellow; //カウントされない人外は白色
 
-        var NormalColor = data.TotalTaskCount == data.CompleteTaskCount ? TaskCompleteColor : NonCompleteColor;
+        var NormalColor = data.TaskCompleted ? TaskCompleteColor : NonCompleteColor;
 
-        TextColor = comms ? Color.gray : NormalColor;
+        TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
         string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
         return ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
+    }
+    public static string GetVitalText(byte playerId,  bool summary = false)
+    {
+        var data = GamePlayerData.GetPlayerDataById(playerId);
+
+        string deathReason = data.IsDead ? GetString("DeathReason." + data.MyDeathReason) : "";
+
+
+        Color color = Palette.CrewmateBlue;
+        switch (data.MyDeathReason)
+        {
+            case DataDeathReason.Disconnect:
+                color = Palette.DisabledGrey;
+                break;
+            case DataDeathReason.Kill:
+                color = Palette.ImpostorRed;
+                break;
+            case DataDeathReason.Exile:
+                color = Palette.Purple;
+                break;
+        }
+        if (!summary && data.IsDead) deathReason = "(" + deathReason + ")";
+        deathReason = ColorString(color, deathReason);
+
+        return deathReason;
     }
     public static bool IsActive(SystemTypes type)
     {
@@ -358,6 +372,19 @@ public static class Utils
                     var mushroomMixupSabotageSystem = ShipStatus.Instance.Systems[type].TryCast<MushroomMixupSabotageSystem>();
                     return mushroomMixupSabotageSystem != null && mushroomMixupSabotageSystem.IsActive;
                 }
+            default:
+                return false;
+        }
+    }
+    public static bool IsImpostor(RoleTypes role)
+    {
+        switch (role)
+        {
+            case RoleTypes.Impostor:
+            case RoleTypes.Shapeshifter:
+            case RoleTypes.Phantom:
+            case RoleTypes.ImpostorGhost:
+                return true;
             default:
                 return false;
         }

@@ -81,10 +81,16 @@ public static class MeetingHudPatch
                     }
 
                 }
-
+                if (pc.GetPlayerData().IsDisconnected)
+                    color = "#"+ColorHelper.ColorToHex(Color.gray);
                 pva.NameText.text =$"<color={color}>{name}</color>";
+
                 if (append)
+                {
+                    if (!PlayerControl.LocalPlayer.IsAlive())
+                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId);
                     suffixBuilder.Append($"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>");
+                }
 
                 if (suffixBuilder.Length > 0)
                 {
@@ -124,6 +130,8 @@ public static class MeetingHudPatch
                     }
                 }
             }
+          //  MeetingHudPatch.StartPatch.Postfix(__instance);
+                
 
 
         }

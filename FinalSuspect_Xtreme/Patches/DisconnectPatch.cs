@@ -3,15 +3,6 @@ using static FinalSuspect_Xtreme.Translator;
 
 namespace FinalSuspect_Xtreme;
 
-[HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnDisconnected))]
-internal class OnDisconnectedPatch
-{
-    public static void Postfix(AmongUsClient __instance)
-    {
-
-        Main.VisibleTasksCount = false;
-    }
-}
 
 [HarmonyPatch(typeof(DisconnectPopup), nameof(DisconnectPopup.DoShow))]
 internal class ShowDisconnectPopupPatch

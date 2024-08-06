@@ -27,17 +27,8 @@ public class ModUpdater
 #if DEBUG
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "info.json")}",
 #else
-        "https://raw.githubusercontent.com/XtremeWave/TownOfNewEpic_Xtreme/_develop_v1.5/info.json",
-        "https://raw.githubusercontent.com/XtremeWave/TownOfNewEpic_Xtreme/_develop_v1.4/info.json",
-        "https://raw.githubusercontent.com/XtremeWave/TownOfNewEpic_Xtreme/_develop_v1.3/info.json",
         "https://raw.githubusercontent.com/XtremeWave/TownOfNewEpic_Xtreme/FinalSuspect_Xtreme/info.json",
-        "https://cdn.jsdelivr.net/gh/XtremeWave/TownOfNewEpic_Xtreme/info.json",
-         //"https://tonx-1301425958.cos.ap-shanghai.myqcloud.com/info.json",
-        "https://cn-sy1.rains3.com/xtremewave/info.json",
-        "https://gitee.com/TEAM_FinalSuspect_Xtreme/TownOfNewEpic_Xtreme/raw/FinalSuspect_Xtreme/info.json",
-        "https://gitee.com/TEAM_FinalSuspect_Xtreme/TownOfNewEpic_Xtreme/raw/_develop_v1.3/info.json",
-        "https://gitee.com/TEAM_FinalSuspect_Xtreme/TownOfNewEpic_Xtreme/raw/_develop_v1.4/info.json",
-        "https://gitee.com/TEAM_FinalSuspect_Xtreme/TownOfNewEpic_Xtreme/raw/_develop_v1.5/info.json",
+        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSuspect_Xtreme/info.json",
          
 
 #endif

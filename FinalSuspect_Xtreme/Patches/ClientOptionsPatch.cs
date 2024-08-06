@@ -24,6 +24,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientActionItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
     private static ClientOptionItem_Boolean GodMode;
+
     public static MoreActionItem SoundBtn;
     public static MoreActionItem SoundManagerBtn;
 
@@ -154,15 +155,7 @@ public static class OptionsMenuBehaviourStartPatch
         {
             SoundBtn = MoreActionItem.Create("SoundOption", () =>
             {
-                try
-                {
-                    SoundPanel.CustomBackground.gameObject.SetActive(true);
-                    
-                }
-                catch (System.Exception ex)
-                {
-                    Logger.Exception(ex, "Sounds");
-                }
+                SoundPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
         }
 
@@ -170,34 +163,29 @@ public static class OptionsMenuBehaviourStartPatch
         {
             SoundManagerBtn = MoreActionItem.Create("SoundManager", () =>
             {
-
-
                 SoundManagerPanel.CustomBackground?.gameObject?.SetActive(true);
-
-
             }, __instance);
         }
+
+        SoundBtn.ToggleButton.Text.text = Translator.GetString("SoundOptions");
+        SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
+        SoundBtn.ToggleButton.Background.color = Main.ModColor32;
+        SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions");
+        SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
+        SoundManagerBtn.ToggleButton.Background.color = Main.ModColor32;
         if (!GameStates.IsNotJoined)
         {
             SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
             SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
             SoundManagerBtn.ToggleButton.Background.color = Palette.DisabledGrey;
         }
-        else
-        {
-            SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions");
-            SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-            SoundManagerBtn.ToggleButton.Background.color = Main.ModColor32;
-        }
-        SoundBtn.ToggleButton.Text.text = Translator.GetString("SoundOptions");
-        SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        SoundBtn.ToggleButton.Background.color = Main.ModColor32;
-        
+
+
         SoundPanel.Init(__instance);
         SoundManagerPanel.Init(__instance);
 
         if (ModUnloaderScreen.Popup == null)
-        ModUnloaderScreen.Init(__instance);
+            ModUnloaderScreen.Init(__instance);
 
     }
 }

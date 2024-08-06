@@ -21,7 +21,7 @@ class EndGamePatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
     {
         SummaryText = new();
-        foreach (var id in CustomPlayerData.AllCustomPlayerData.Keys)
+        foreach (var id in GamePlayerData.AllGamePlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
     }
 }
@@ -189,13 +189,13 @@ class SetEverythingUpPatch
 
 
 
-        foreach (var kvp in CustomPlayerData.AllCustomPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
+        foreach (var kvp in GamePlayerData.AllGamePlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
             sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(EndGamePatch.SummaryText[id]);
         }
-        foreach (var kvp in CustomPlayerData.AllCustomPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
+        foreach (var kvp in GamePlayerData.AllGamePlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;

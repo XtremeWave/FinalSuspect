@@ -86,8 +86,6 @@ class OnPlayerJoinedPatch
         if (AmongUsClient.Instance.AmHost)
         {
             RPC.RpcVersionCheck();
-            if (Main.SayStartTimes.ContainsKey(client.Id)) Main.SayStartTimes.Remove(client.Id);
-            if (Main.SayBanwordsTimes.ContainsKey(client.Id)) Main.SayBanwordsTimes.Remove(client.Id);
            // if (Main.NewLobby) Cloud.ShareLobby();
         }
         
@@ -110,10 +108,17 @@ class OnPlayerLeftPatch
             return;
         }
 
-        Main.playerVersion?.Remove(data.Character.PlayerId);
-        CustomPlayerData.GetPlayerDataById(data.Character.PlayerId).SetDisconnected();
+
+        if (GameStates.IsInGame)
+        {
+            data.Character.SetDisconnected();
+            data.Character.SetDeathReason(DataDeathReason.Disconnect);
+
+        }
 
         Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
+
+        Main.playerVersion?.Remove(data.Character.PlayerId);
 
         if (AmongUsClient.Instance.AmHost)
         {

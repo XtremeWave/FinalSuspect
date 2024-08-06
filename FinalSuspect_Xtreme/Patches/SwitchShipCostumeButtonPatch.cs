@@ -39,9 +39,9 @@ public class SwitchShipCostumeButtonPatch
         ShipStatus.Instance.gameObject.transform.FindChild("Helloween")?.gameObject.SetActive(Costume == 1);
         ShipStatus.Instance.gameObject.transform.FindChild("BirthdayDecorSkeld")?.gameObject.SetActive(Costume == 2);
         Sounds sounds = Sounds.TaskComplete;
-        if (Costume == 0) sounds = Sounds.TaskUpdateSound;
+        if (Costume == 0) sounds = Sounds.KillSound; 
         if (Costume == 1) sounds = Sounds.ImpTransform;
-        if (Costume == 2) sounds = Sounds.CopyCode;
+        if (Costume == 2) sounds = Sounds.TaskUpdateSound;
         RPC.PlaySoundRPC(PlayerControl.LocalPlayer.PlayerId, sounds);
         return false;
     }
