@@ -27,8 +27,8 @@ public class ModUpdater
 #if DEBUG
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "info.json")}",
 #else
-        "https://raw.githubusercontent.com/XtremeWave/TownOfNewEpic_Xtreme/FinalSuspect_Xtreme/info.json",
-        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSuspect_Xtreme/info.json",
+        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect_Xtreme/FinalSus/info.json",
+        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSus/info.json",
          
 
 #endif
@@ -55,8 +55,6 @@ public class ModUpdater
     public static bool CanUpdate = false;
     public static string verHead = "";
     public static string verDate = "";
-    public static string verTestName = "";
-    public static string verTestNum = "";
     public static Version minimumVersion = null;
     public static int creation = 0;
     public static string md5 = "";
@@ -228,30 +226,19 @@ public class ModUpdater
             JObject data = JObject.Parse(result);
 
             verHead = new(data["verHead"]?.ToString());
-            verTestName = new(data["verTestName"]?.ToString());
-            verTestNum = new(data["verTestNum"]?.ToString());
 
             DebugVer = new(data["DebugVer"]?.ToString());
 
             
             CanUpdate = bool.Parse(new(data["CanUpdate"]?.ToString()));
 
-            if (verTestName == "Preview")
-            {
-                verDate = new(data["verDatePre"]?.ToString());
-                md5 = data["md5Pre"]?.ToString();
-                latestVersion = new(data["versionPre"]?.ToString());
-            }
-            else
-            {
+            
+            
                 verDate = new(data["verDate"]?.ToString());
                 md5 = data["md5"]?.ToString();
                 latestVersion = new(data["version"]?.ToString());
-            }
-
-            var vertestname = (verTestName == "") ? "" : $"_{verTestName}";
-            var vertesttext = (verTestNum == "") ? "" : $"{vertestname}_{verTestNum}";
-            showVer = $"{verHead}_{verDate}{vertesttext}";
+            
+            showVer = $"{verHead}_{verDate}";
 
             var minVer = data["minVer"]?.ToString();
             minimumVersion = minVer.ToLower() == "latest" ? latestVersion : new(minVer);
@@ -261,10 +248,6 @@ public class ModUpdater
             JObject announcement = data["announcement"].Cast<JObject>();
             announcement_en = announcement["English"]?.ToString();
             announcement_zh = announcement["SChinese"]?.ToString();
-            if (verTestName == "Preview")
-            {
-                announcement_en = announcement_zh = announcement["Preview"]?.ToString();
-            }
 
             JObject downloadUrl = data["url"].Cast<JObject>();
             downloadUrl_github = downloadUrl["github"]?.ToString();

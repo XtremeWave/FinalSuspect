@@ -49,13 +49,16 @@ internal class RPCHandlerPatch
                 Utils.KickPlayer(__instance.GetClientId(), false, "InvalidRPC");
                 Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                 RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), __instance?.Data?.PlayerName));
+                return false;
+
             }
-            else if (!Main.playerVersion.TryGetValue(0, out _))
+            if (!Main.playerVersion.TryGetValue(0, out _))
             {
                 Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
                 RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), __instance?.Data?.PlayerName, callId));
+                return false;
+
             }
-            return false;
         }
 
         return true;

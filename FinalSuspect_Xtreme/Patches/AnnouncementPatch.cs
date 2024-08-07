@@ -64,6 +64,7 @@ public class ModNewsHistory
             else if (line.StartsWith("#ShortTitle:")) mn.ShortTitle = line.Replace("#ShortTitle:", string.Empty);
             else if (line.StartsWith("#Date:")) mn.Date = line.Replace("#Date:", string.Empty);
             else if (line.StartsWith("#---")) continue;
+            else if (line.StartsWith("# ")) continue;
             else
             {
                 if (line.StartsWith("## ")) line = line.Replace("## ", "<b>") + "</b>";

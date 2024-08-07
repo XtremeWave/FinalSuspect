@@ -1,13 +1,7 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "verHead": "1.0",
   "verDate": "20240811",
-
-  "versionPre": "",
-  "verDatePre": "",
-
-  "verTestName": "",
-  "verTestNum": "",
 
 
   "minVer": "latest",
@@ -19,9 +13,8 @@
   "md5Pre": "",
   "md5": "",
   "announcement": {
-    "Preview": "Welcome",
-    "SChinese": "让我们返璞归真",
-    "English": "Thank you to all players for your support over the past year!"
+    "SChinese": "返璞归真",
+    "English": "return to simplicity"
   },
 
   "url": {

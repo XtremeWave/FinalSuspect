@@ -137,7 +137,7 @@ public static class SoundManagerPanel
             
             if (isDownloading)
             {
-                buttontext = GetString("downloading");
+                buttontext = GetString("downloadInProgress");
                 buttonColor = Color.yellow;
                 enable = false;
             }

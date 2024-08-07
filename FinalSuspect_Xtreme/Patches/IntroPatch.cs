@@ -54,7 +54,7 @@ class IntroCutscenePatch
         if (!Main.EnableRoleBackGround.Value) return;
         if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
         __instance.ImpostorText.gameObject.SetActive(true);
-        var onlyimp = GameOptionsManager.Instance.currentNormalGameOptions.NumImpostors == 1;
+        var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
 
         Color color = onlyimp ? Palette.DisabledGrey : new Color32(255, 25, 25, byte.MaxValue);
         string colorcode= onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : "FF1919";
@@ -66,7 +66,7 @@ class IntroCutscenePatch
         __instance.ImpostorText.text = $"<color=#{colorcode}>";
         __instance.ImpostorText.text += onlyimp ? 
             GetString("ImpostorNumImpOnly"):
-            $"{string.Format(GetString("ImpostorNumImp"), GameOptionsManager.Instance.currentNormalGameOptions.NumImpostors)}";
+            $"{string.Format(GetString("ImpostorNumImp"), GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount))}";
 
         __instance.ImpostorText.text += "\n" + (onlyimp ?
             GetString("ImpostorIntroTextOnly"):
@@ -85,7 +85,7 @@ class IntroCutscenePatch
 
         __instance.TeamTitle.text = $"{GetString("TeamCrewmate")}";
         __instance.ImpostorText.text = 
-            $"{string.Format(GetString("ImpostorNumCrew"), GameOptionsManager.Instance.currentNormalGameOptions.NumImpostors)}";
+            $"{string.Format(GetString("ImpostorNumCrew"), GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount))}";
         __instance.ImpostorText.text += "\n" + GetString("CrewmateIntroText");
         __instance.TeamTitle.color = new Color32(140, 255, 255, byte.MaxValue);
 
