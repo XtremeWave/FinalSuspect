@@ -25,10 +25,10 @@ public class ModUpdater
     private static IReadOnlyList<string> URLs => new List<string>
     {
 #if DEBUG
-        $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "info.json")}",
+        $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "fs_info.json")}",
 #else
-        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect_Xtreme/FinalSus/info.json",
-        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSus/info.json",
+        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect_Xtreme/FinalSus/fs_info.json",
+        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSus/fs_info.json",
          
 
 #endif

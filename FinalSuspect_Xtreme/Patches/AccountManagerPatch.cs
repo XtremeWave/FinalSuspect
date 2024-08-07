@@ -44,6 +44,7 @@ public static class UpdateFriendCodeUIPatch
         {
             newRequest.transform.localPosition -= new Vector3(0f, 0f, 10f);
             newRequest.transform.localScale = new Vector3(0.8f, 1f, 1f);
+            
         }
 
         if (GameHeader = GameObject.Find("BarSprite"))
