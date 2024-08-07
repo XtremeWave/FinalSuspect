@@ -1,24 +1,24 @@
 <div align="center">
 	
-![XtremeWave-TONEX](Assets/XtremeWave-TONEX.png)
+![FSX-XW](Assets/FSX&XW.png)
 
-**TownOfNewEpic_Xtreme，Among Us Mod的出色贡献者**
+**FinalSuspect_Xtreme，你最好的Among Us原版辅助插件。**
 
-<img src="https://badgen.net/github/license/XtremeWave/TownOfNewEpic_Xtreme" alt="Licences">
-<img src="https://badgen.net/github/tag/XtremeWave/TownOfNewEpic_Xtreme" alt="LatestTag">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/TownOfNewEpic_Xtreme" alt="Downloads">
-<img src="https://badgen.net/github/watchers/XtremeWave/TownOfNewEpic_Xtreme" alt="Watchers">
-<img src="https://badgen.net/github/stars/XtremeWave/TownOfNewEpic_Xtreme" alt="Stars">
-<img src="https://badgen.net/github/forks/XtremeWave/TownOfNewEpic_Xtreme" alt="Forks">
-<img src="https://badgen.net/github/prs/XtremeWave/TownOfNewEpic_Xtreme" alt="PRs">
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licences">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="LatestTag">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Downloads">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Watchers">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Stars">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
+<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
 [English](README.md) [简体中文]
 
-[TONEX官方网站](https://tonex.cc) | [XtremeWave官方网站](https://www.xtreme.net.cn)
+[FSX官方网站](https://fsusx.top.cc) | [XtremeWave官方网站](https://www.xtreme.net.cn)
 
 </div>
 
-## 关于我们
+<!--## 关于我们
 自2023年5月20日起，Town Of Host Edited(TOHE)停止了开发。<br>
 为了延续TOHE的“火种”，我们开发了一个名为Town Of Host Edited-Xi(TOHEX)的分支项目<br>
 然而，这个项目的开发并不是一帆风顺，我们的口碑持续下滑，我们的开发毫无成果。<br>
@@ -30,14 +30,14 @@
 
 <div align="right">
 ——XtremeWave
-</div>
+</div>-->
 
 ## 须知
 本模组不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。<br>
 此处包含的部分材料是Innersloth LLC的财产。
 
 ## 部分想法来源与支持
- - [Town Of Host](https://github.com/tukasa0001/TownOfHost)
+<!-- - [Town Of Host](https://github.com/tukasa0001/TownOfHost)
  - [Town Of Next(原Town Of Host Edited)](https://github.com/KARPED1EM/TownOfHostEdited)
  - [Town Of Host_Y](https://github.com/Yumenopai/TownOfHost_Y)
  - [Town Of Host:The Other Roles](https://github.com/music-discussion/TownOfHost-TheOtherRoles)
@@ -54,12 +54,13 @@
  - [The Other Roles: GM Haoming Edition](https://github.com/haoming37/TheOtherRoles-GM-Haoming)
  - [The Other Roles: GM IA Edition](https://github.com/dabao40/TheOtherRolesGMIA)
  - [Clash Of Gods](https://github.com/CognifyDev/ClashOfGods)
- - [Town Of Crew:Sea Of Shark](https://github.com/yiTOC/TOCS)
+ - [Town Of Crew:Sea Of Shark](https://github.com/yiTOC/TOCS)-->
+ - [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles)
  
 ***感谢这些模组以及他们优秀的想法，是他们造就了我们。***<br>
 ***更要感谢长久以来支持我们的玩家们。是您们给予了我们继续这个项目的动力!***
 
-## 特别鸣谢
+<!--## 特别鸣谢
 ### [Town Of Host](https://github.com/tukasa0001/TownOfHost) :
 - 开发者：[tukasa0001](https://github.com/tukasa0001)
 - 一切都基于Town Of Host
@@ -106,7 +107,7 @@
 ### [Endless Host Roles(原Town Of Host Edited Plus)](https://github.com/Gurge44/EndlessHostRoles) :
 - 开发者：[Gurge44](https://github.com/Gurge44)
 - 许多职业想法
-- 提供: 摸宠物事件
+- 提供: 摸宠物事件-->
 
 ## 开发者成员
 ### XtremeWave成员
@@ -131,25 +132,21 @@
  - 白糖 - **文创组-翻译**
 
 ### 贡献者
- - [KARPED1EM](https://github.com/KARPED1EM) - **技术支持**
+<!-- - [KARPED1EM](https://github.com/KARPED1EM) - **技术支持**
  - [Yu(原名：Night)](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc)开发者**
  - ryuk - **新功能与优秀的想法**
- - [Amongus](https://github.com/XiezibanWrite) - **翻译与技术支持**
+ - [Amongus](https://github.com/XiezibanWrite) - **翻译与技术支持**-->
  - [NikoCat233](https://github.com/NikoCat233) - **技术支持**
- - [Farewell](https://github.com/ksduye) - **咨询支持**
+<!-- - [Farewell](https://github.com/ksduye) - **咨询支持**-->
  - [LezaiYa](https://github.com/LezaiYa1) - **咨询支持**
- - [Imp11](https://github.com/dabao40) - **咨询支持**
- - [FangKuai](https://github.com/FangKuaiYa) - **咨询支持**
+<!-- - [Imp11](https://github.com/dabao40) - **咨询支持**
+ - [FangKuai](https://github.com/FangKuaiYa) - **咨询支持**-->
 
 ## 星标历史
-[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/TownOfNewEpic_Xtreme&type=Date)](https://star-history.com/#XtremeWave/TownOfNewEpic_Xtreme&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
 
-## 我们的其它开源项目
- - [TONEX官方网站](https://github.com/XtremeWave/TownOfNewEpic_XtremeSite) -使用了 VuePress-reco.
- - [TONEX车队姬](https://github.com/XtremeWave/TownOfNewEpic_Xtreme_CHAN) - 由天梦LK提供技术支持.
-
-## :warning: 遇到问题/bug :warning:
+<!--## :warning: 遇到问题/bug :warning:
 |      你       |      如何解决     |
 |:------------:|:---------------------------------:|
 |    提出弱智问题    | 想都别想|
-| 礼貌且问题明确并给出日志 | 尽全力帮助您|
+| 礼貌且问题明确并给出日志 | 尽全力帮助您|-->
