@@ -12,11 +12,19 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[English] [简体中文](README_zh.md)
-
 [FSX Website](https://fsusx.top) | [XtremeWave Website](https://www.xtreme.net.cn)
 
 </div>
+
+
+## Languages
+[English] <br>
+[にほんご](README_ja.md)<br>
+[português](README_pt.md)<br>
+[русский язык](README_ru.md)<br>
+[繁體中文](README_zh-TW.md)<br>
+[简体中文](README_zh.md)<br>
+
 
 ## Regarding
 This plugin is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC.<br>
