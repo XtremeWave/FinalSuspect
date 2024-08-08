@@ -35,7 +35,7 @@ internal class RPCHandlerPatch
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
-        if (EAC.ReceiveRpc(__instance, callId, reader)) return false;
+        if (EAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost) return false;
 
         Logger.Info($"{__instance?.Data?.PlayerId}({(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : __instance?.Data?.PlayerName)}):{callId}({RPC.GetRpcName(callId)})", "ReceiveRPC");
 

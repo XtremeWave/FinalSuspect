@@ -7,36 +7,30 @@ using static FinalSuspect_Xtreme.Translator;
 namespace FinalSuspect_Xtreme;
 
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
-public static class UpdateFriendCodeUIPatch
+public static class AwakeFriendCodeUIPatch
 {
-    private static GameObject VersionShower;
-    private static GameObject GameHeader;
-    private static GameObject CustomGameHeader;
-
+    private static GameObject BarSprit;
+    private static GameObject CustomBarSprit;
+    public static GameObject FriendsButton;
     public static void Prefix(AccountTab __instance)
     {
 
-        string credentialsText = string.Format(GetString("MainMenuCredential"), $"<color={Main.TeamColor}>XtremeWave</color>");
-        credentialsText += "\t\t\t";
-        string versionText = $"<color={Main.ModColor}>FSX</color> - <color=#C8FF78>v{Main.ShowVersion}</color>";
 
-#if DEBUG
-        versionText = $"<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
-#endif
-
-        credentialsText += versionText;
-
-        var friendCode = GameObject.Find("FriendCode");
-        if (friendCode != null && VersionShower == null)
+        if (BarSprit = GameObject.Find("BarSprite"))
         {
-            VersionShower = Object.Instantiate(friendCode, friendCode.transform.parent);
-            VersionShower.name = "FinalSuspect_Xtreme Version Shower";
-            VersionShower.transform.localPosition = friendCode.transform.localPosition + new Vector3(2.8f, 0f, 0f);
-            VersionShower.transform.localScale *= 1.7f;
-            var TMP = VersionShower.GetComponent<TextMeshPro>();
-            TMP.alignment = TextAlignmentOptions.Right;
-            TMP.fontSize = 30f;
-            TMP.SetText(credentialsText);
+            CustomBarSprit = new();
+            CustomBarSprit.transform.SetParent(BarSprit.transform.parent);
+            CustomBarSprit.transform.localScale = BarSprit.transform.localScale;
+            CustomBarSprit.transform.localPosition = BarSprit.transform.localPosition;
+
+            static void ResetParent(GameObject obj)
+            {
+                obj.transform.SetParent(CustomBarSprit.transform);
+            }
+            BarSprit.ForEachChild((Il2CppSystem.Action<GameObject>)ResetParent);
+
+            BarSprit.SetActive(false);
+
         }
 
         var newRequest = GameObject.Find("NewRequest");
@@ -46,27 +40,20 @@ public static class UpdateFriendCodeUIPatch
             newRequest.transform.localScale = new Vector3(0.8f, 1f, 1f);
         }
 
-        if (GameHeader = GameObject.Find("BarSprite"))
+
+        FriendsButton = GameObject.Find("FriendsButton");
+        if (FriendsButton != null)
         {
-            CustomGameHeader = new();
-            CustomGameHeader.transform.SetParent(GameHeader.transform.parent);
-            CustomGameHeader.transform.localScale = GameHeader.transform.localScale;
-            CustomGameHeader.transform.localPosition = GameHeader.transform.localPosition;
-
-            static void ResetParent(GameObject obj) 
-            {
-                obj.transform.SetParent(CustomGameHeader.transform);
-            }
-            GameHeader.ForEachChild((Il2CppSystem.Action<GameObject>)ResetParent);
-
-            GameHeader.SetActive(false);
-            Logger.Info($"{GameHeader.active}", "");
-
+            //FriendsButton.SetActive(__instance.friendCode.gameObject.active);
         }
+
     }
-    static void CopyObj(GameObject x)
+}
+[HarmonyPatch(typeof(AccountTab), nameof(AccountTab.UpdateVisuals))]
+public static class UpdateFriendCodeUIPatch
+{
+    public static void Prefix(AccountTab __instance)
     {
-        var obj = Object.Instantiate(x, x.transform.parent);
-        obj.name = x.name + "_";
+
     }
 }

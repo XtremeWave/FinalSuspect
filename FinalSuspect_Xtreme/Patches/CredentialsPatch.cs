@@ -15,24 +15,24 @@ internal class PingTrackerUpdatePatch
 {
     private static float deltaTime;
     public static string ServerName = "";
-    private static TextMeshPro pingTrackerCredential = null;
-    private static AspectPosition pingTrackerCredentialAspectPos = null;
+    private static TextMeshPro CreditTextCredential = null;
+    private static AspectPosition CreditTextCredentialAspectPos = null;
     private static void Postfix(PingTracker __instance)
     {
-        if (pingTrackerCredential == null)
+        if (CreditTextCredential == null)
         {
             var uselessPingTracker = Object.Instantiate(__instance, __instance.transform.parent);
-            pingTrackerCredential = uselessPingTracker.GetComponent<TextMeshPro>();
+            CreditTextCredential = uselessPingTracker.GetComponent<TextMeshPro>();
             Object.Destroy(uselessPingTracker);
-            pingTrackerCredential.alignment = TextAlignmentOptions.TopRight;
-            pingTrackerCredential.color = new(1f, 1f, 1f, 0.7f);
-            pingTrackerCredential.rectTransform.pivot = new(1f, 1f);  // 中心を右上角に設定
-            pingTrackerCredentialAspectPos = pingTrackerCredential.GetComponent<AspectPosition>();
-            pingTrackerCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
+            CreditTextCredential.alignment = TextAlignmentOptions.TopRight;
+            CreditTextCredential.color = new(1f, 1f, 1f, 0.7f);
+            CreditTextCredential.rectTransform.pivot = new(1f, 1f);  // 中心を右上角に設定
+            CreditTextCredentialAspectPos = CreditTextCredential.GetComponent<AspectPosition>();
+            CreditTextCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
         }
-        if (pingTrackerCredentialAspectPos)
+        if (CreditTextCredentialAspectPos)
         {
-            pingTrackerCredentialAspectPos.DistanceFromEdge = 
+            CreditTextCredentialAspectPos.DistanceFromEdge = 
                 DestroyableSingleton<HudManager>.InstanceExists && DestroyableSingleton<HudManager>.Instance.Chat.chatButton.gameObject.active 
                 ? new(2.5f, 0f, -800f)
                         : new(1.8f, 0f, -800f);
@@ -41,9 +41,9 @@ internal class PingTrackerUpdatePatch
         
         sb.Append(Main.CredentialsText);
 
-        pingTrackerCredential.text = sb.ToString();
+        CreditTextCredential.text = sb.ToString();
         if ((GameSettingMenu.Instance?.gameObject?.active ?? false) || GameStates.IsMeeting)
-            pingTrackerCredential.text = "";
+            CreditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
         string color = "#ff4500";
@@ -76,11 +76,14 @@ internal class VersionShowerStartPatch
 {
     public static GameObject OVersionShower;
     private static TextMeshPro VisitText;
+    private static TextMeshPro CreditTextCredential = null;
+    private static AspectPosition CreditTextCredentialAspectPos = null;
+
 
     private static void Postfix(VersionShower __instance)
     {
         TMPTemplate.SetBase(__instance.text);
-       
+
         Main.CredentialsText = $"\r\n<size=120%>" +
             $"<color={Main.TeamColor}>==</color> <color={Main.ModColor}>{Main.ModName}</color> <color={Main.TeamColor}>==</color>"
             + "</size>";
@@ -106,7 +109,7 @@ internal class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && VisitText == null)
         {
             VisitText = Object.Instantiate(__instance.text);
-            VisitText.name = "FinalSuspect_Xtreme User Counter";
+            VisitText.name = "FinalSuspect_Xtreme s";
             VisitText.alignment = TextAlignmentOptions.Left;
             VisitText.text = ModUpdater.visit > 0
                 ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), Main.ModColor)
@@ -123,9 +126,39 @@ internal class VersionShowerStartPatch
             var ap2 = VisitText.GetComponent<AspectPosition>();
             if (ap2 != null) Object.Destroy(ap2);
         };
+
+        if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
+        {
+            string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={Main.TeamColor}>XtremeWave</color>");
+            credentialsText += "\n";
+            string versionText = $"<color={Main.ModColor}>FSX</color> - <color=#C8FF78>v{Main.ShowVersion}</color>";
+
+#if DEBUG
+        versionText = $"<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
+#endif
+
+            credentialsText += versionText;
+
+
+            CreditTextCredential = Object.Instantiate(__instance.text);
+            CreditTextCredential.name = "FinalSuspect_Xtreme c";
+            CreditTextCredential.alignment = TextAlignmentOptions.Right;
+            CreditTextCredential.text = credentialsText;
+            CreditTextCredential.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+            CreditTextCredential.transform.localPosition = new Vector3(0.3f, -2.6f, 0f);
+            // 查找并获取 "VisitText" 的 TMP 文本对象
+
+            CreditTextCredential.enabled = GameObject.Find("FinalSuspect_Xtreme Background") != null;
+
+            var ap1 = OVersionShower.GetComponent<AspectPosition>();
+            if (ap1 != null) Object.Destroy(ap1);
+            var ap2 = CreditTextCredential.GetComponent<AspectPosition>();
+            if (ap2 != null) Object.Destroy(ap2);
+        }
+
+
     }
 }
-
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.First)]
 internal class TitleLogoPatch
 {
@@ -152,6 +185,7 @@ internal class TitleLogoPatch
         var standardActiveSprite = __instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
         var minorActiveSprite = __instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
 
+        var friendsButton = AwakeFriendCodeUIPatch.FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
         {
             {new List<PassiveButton>() {__instance.playButton, __instance.inventoryButton, __instance.shopButton},
@@ -160,6 +194,8 @@ internal class TitleLogoPatch
                 (minorActiveSprite, new( 0.5216f, 0.7765f, 1f, 0.8f), shade, Color.white, Color.white) },
             {new List<PassiveButton>() {__instance.creditsButton, __instance.quitButton},
                 (minorActiveSprite, new(0.7294f, 0.6353f, 1.0f, 0.8f), shade, Color.white, Color.white) },
+            {new List<PassiveButton>() {friendsButton },
+                (minorActiveSprite, new(0.0235f, 0f, 0.8f, 0.8f), shade, Color.white, Color.white) },
         };
 
         void FormatButtonColor(PassiveButton button, Sprite borderType, Color inActiveColor, Color activeColor, Color inActiveTextColor, Color activeTextColor)

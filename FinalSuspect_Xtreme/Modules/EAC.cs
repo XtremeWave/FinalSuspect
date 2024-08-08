@@ -19,9 +19,11 @@ internal class EAC
     }
     public static void WarnHost(int denum = 1)
     {
+
         DeNum += denum;
         if (ErrorText.Instance != null)
         {
+            if (AmongUsClient.Instance.AmHost)
             ErrorText.Instance.CheatDetected = DeNum > 3;
             ErrorText.Instance.SBDetected = DeNum > 10;
             if (ErrorText.Instance.CheatDetected)
@@ -32,7 +34,6 @@ internal class EAC
     }
     public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader)
     {
-        if (!AmongUsClient.Instance.AmHost) return false;
         if (pc == null || reader == null || pc.AmOwner) return false;
         //if (pc.GetClient()?.PlatformData?.Platform is Platforms.Android or Platforms.IPhone or Platforms.Switch or Platforms.Playstation or Platforms.Xbox or Platforms.StandaloneMac) return false;
         try
@@ -102,7 +103,7 @@ internal class EAC
                     break;
                 case RpcCalls.StartMeeting:
                     MeetingTimes++;
-                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby)
+                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby || GameStates.IsInTask)
                     {
                         WarnHost();
                         Report(pc, "非法召集会议");
@@ -112,7 +113,7 @@ internal class EAC
                     break;
                 case RpcCalls.ReportDeadBody:
                     var bodyid = sr.ReadByte();
-                    if (!GameStates.IsInGame)
+                    if (!GameStates.IsInGame || GameStates.IsInTask)
                     {
                         WarnHost();
                         Report(pc, "非法报告尸体");
@@ -140,7 +141,7 @@ internal class EAC
                     break;
                 case RpcCalls.MurderPlayer:
                     var murdered = sr.ReadNetObject<PlayerControl>();
-                    if (GameStates.IsLobby)
+                    if (GameStates.IsLobby || GameStates.IsInTask)
                     {
                         Report(pc, "大厅直接击杀");
                         if (murdered != null && !LobbyDeadBodies.Contains(murdered.PlayerId))
@@ -154,7 +155,7 @@ internal class EAC
                     Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】直接击杀，已驳回", "EAC");
                     return true;
                 case RpcCalls.CheckMurder:
-                    if (GameStates.IsLobby)
+                    if (GameStates.IsLobby || GameStates.IsInTask)
                     {
                         WarnHost();
                         Report(pc, "CheckMurder在大厅");

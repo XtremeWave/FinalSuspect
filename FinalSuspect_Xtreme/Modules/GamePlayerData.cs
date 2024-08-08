@@ -71,7 +71,7 @@ public class GamePlayerData
                 pc,
                 pc.GetTrueName(),
                 colorId);
-            AllGamePlayerData.Add(id, data);
+            AllGamePlayerData[id] = data;
         }
 
     }
@@ -136,7 +136,7 @@ internal class DataFixedUpdate
 {
     static bool Prefix(PlayerControl __instance)
     {
-        if (!GameStates.IsInGame) return true;
+        if (!GameStates.IsInTask) return true;
         DisconnectSync(__instance);
         DeathSync(__instance);
         DeathReasonSync(__instance);
