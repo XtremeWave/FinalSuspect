@@ -140,6 +140,8 @@ public static class Translator
             if (name.StartsWith("pt")) return SupportedLangs.Brazilian;
             if (name.StartsWith("zh_CHT")) return SupportedLangs.TChinese;
             if (name.StartsWith("zh")) return SupportedLangs.SChinese;
+            if (name.StartsWith("ja")) return SupportedLangs.Japanese;
+
             return TranslationController.Instance?.currentLanguage?.languageID ?? SupportedLangs.English;
         }
         catch

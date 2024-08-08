@@ -22,7 +22,7 @@
 [にほんご](README_ja.md)<br>
 [português](README_pt.md)<br>
 [русский язык](README_ru.md)<br>
-[繁體中文](README_zh-TW.md)<br>
+[繁體中文](README_zh_CHT.md)<br>
 [简体中文](README_zh.md)<br>
 
 
