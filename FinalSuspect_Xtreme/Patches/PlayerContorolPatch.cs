@@ -9,6 +9,19 @@ namespace FinalSuspect_Xtreme;
 
 
 [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.BootFromVent))]
+class BootFromVentPatch
+{
+
+    public static bool Prefix()
+    {
+        if (GameStates.IsLobby)
+        {
+            RPC.NotificationPop(GetString("Warning.RoomBroken"));
+            return false;
+        }
+        return true;
+    }
+}
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
 class MurderPlayerPatch
 {
@@ -24,9 +37,9 @@ class MurderPlayerPatch
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
+        if (target.GetPlayerData().RealKiller != null) return;
         target.SetDeathReason(DataDeathReason.Kill);
-        target.GetPlayerData().RealKiller = __instance.GetPlayerData();
-        target.GetPlayerData().Murdered = true;
+        target.SetRealKiller(__instance);
         target.SetDead();
     }
 }

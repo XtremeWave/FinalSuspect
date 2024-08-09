@@ -127,10 +127,10 @@ public static class Utils
         var colorId = thisdata.PlayerColor;
         builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.PlayerName));
         builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
-        pos += 4f;
+        pos += 4.5f;
 
         builder.AppendFormat("<pos={0}em>", pos).Append(GetVitalText(id, true)).Append("</pos>");
-        pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 10f : 6.5f;
+        pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 14f : 10.5f;
 
         builder.AppendFormat("<pos={0}em>", pos);
 
@@ -276,14 +276,14 @@ public static class Utils
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
         var data = GamePlayerData.GetPlayerDataById(playerId);
-        if (data.IsImpostor) return "";
-        Color TextColor;
-        var TaskCompleteColor = Color.green; //タスク完了後の色
-        var NonCompleteColor = Color.yellow; //カウントされない人外は白色
+        if (data.IsImpostor)
+        {
+            var KillColor = data.IsDisconnected ? Color.gray : Palette.ImpostorRed;
+            return ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
+        }
 
-        var NormalColor = data.TaskCompleted ? TaskCompleteColor : NonCompleteColor;
-
-        TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
+        var NormalColor = data.TaskCompleted ? Color.green : Color.yellow;
+        Color TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
         string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
         return ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
@@ -309,8 +309,7 @@ public static class Utils
                 color = Palette.Purple;
                 break;
         }
-        if (!summary && data.IsDead) deathReason = "(" + deathReason + ")";
-        deathReason = ColorString(color, deathReason);
+        if (!summary && data.IsDead) deathReason = "(" + deathReason;
 
         if (data.MyDeathReason is DataDeathReason.Kill)
         {
@@ -319,6 +318,9 @@ public static class Utils
             deathReason += ColorString(killercolor, data.RealKiller.PlayerName);
             deathReason += "</size>";
         }
+        if (!summary && data.IsDead) deathReason += ")";
+        deathReason = ColorString(color, deathReason);
+
 
         return deathReason;
     }

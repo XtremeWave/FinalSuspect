@@ -34,7 +34,7 @@ internal class EAC
     }
     public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader)
     {
-        if (pc == null || reader == null || pc.AmOwner) return false;
+        if (pc == null || reader == null || pc.AmOwner || !AmongUsClient.Instance.AmHost) return false;
         //if (pc.GetClient()?.PlatformData?.Platform is Platforms.Android or Platforms.IPhone or Platforms.Switch or Platforms.Playstation or Platforms.Xbox or Platforms.StandaloneMac) return false;
         try
         {
@@ -103,7 +103,7 @@ internal class EAC
                     break;
                 case RpcCalls.StartMeeting:
                     MeetingTimes++;
-                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby || GameStates.IsInTask)
+                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法召集会议");
@@ -113,17 +113,12 @@ internal class EAC
                     break;
                 case RpcCalls.ReportDeadBody:
                     var bodyid = sr.ReadByte();
-                    if (!GameStates.IsInGame || GameStates.IsInTask)
+                    if (!GameStates.IsInGame || GameStates.IsMeeting)
                     {
                         WarnHost();
                         Report(pc, "非法报告尸体");
                         Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法报告尸体，已驳回", "EAC");
                         return true;
-                    }
-                    else
-                    {
-                        Report(pc, "尝试举报可能被非法击杀的尸体");
-                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】尝试举报可能被非法击杀的尸体，已驳回", "EAC");
                     }
                     break;
                 case RpcCalls.SetColor:
@@ -141,7 +136,7 @@ internal class EAC
                     break;
                 case RpcCalls.MurderPlayer:
                     var murdered = sr.ReadNetObject<PlayerControl>();
-                    if (GameStates.IsLobby || GameStates.IsInTask)
+                    if (GameStates.IsLobby || GameStates.IsMeeting)
                     {
                         Report(pc, "大厅直接击杀");
                         if (murdered != null && !LobbyDeadBodies.Contains(murdered.PlayerId))
@@ -155,7 +150,7 @@ internal class EAC
                     Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】直接击杀，已驳回", "EAC");
                     return true;
                 case RpcCalls.CheckMurder:
-                    if (GameStates.IsLobby || GameStates.IsInTask)
+                    if (GameStates.IsLobby || GameStates.IsMeeting)
                     {
                         WarnHost();
                         Report(pc, "CheckMurder在大厅");
@@ -172,16 +167,7 @@ internal class EAC
                         return true;
                     }
                     break;
-                    //case RpcCalls.ExtendLobbyTimer:
-                    //{
-                    //    if (GameStates.IsLobby)
-                    //    {
-                    //        WarnHost();
-                    //        Report(pc, "非法延长大厅计时器");
-                    //        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法延长大厅计时器，已驳回", "EAC");
-                    //        return true;
-                    //    }
-                    //    break;
+
 
             }
 
@@ -286,25 +272,6 @@ internal class EAC
                         return true;
                     }
                     break;
-                    //case 43:
-                    //    if (sr.BytesRemaining > 0 && sr.ReadBoolean()) return false;
-                    //    if (GameStates.IsInGame)
-                    //    {
-                    //        WarnHost();
-                    //        Report(pc, "非法设置游戏名称");
-                    //        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法设置名称，已驳回", "EAC");
-                    //        return true;
-                    //    }
-                    //    break;
-                    //case 61:
-                    //    if (GameStates.IsLobby)
-                    //    {
-                    //        WarnHost();
-                    //        Report(pc, "非法延长大厅计时器");
-                    //        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法延长大厅计时器，已驳回", "EAC");
-                    //        return true;
-                    //    }
-                    //    break;
             }
         }
         catch (Exception e)

@@ -3,6 +3,7 @@ using FinalSuspect_Xtreme.Attributes;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
+using static UnityEngine.GraphicsBuffer;
 
 namespace FinalSuspect_Xtreme;
 
@@ -18,7 +19,7 @@ public class GamePlayerData
     public bool IsImpostor { get; private set; }
     public bool IsDead { get; private set; }
     public bool IsDisconnected { get; private set; }
-    public bool Murdered { get; set; }
+    public bool Murdered { get; private set; }
     public bool Exiled { get; set; }
 
 
@@ -27,7 +28,7 @@ public class GamePlayerData
     public bool RoleAssgined { get; private set; }
 
     public DataDeathReason MyDeathReason { get; private set; }
-    public GamePlayerData RealKiller { get;  set; }
+    public GamePlayerData RealKiller { get; private set; }
 
     public int TotalTaskCount { get; private set; }
     public int CompleteTaskCount { get; private set; } = 0;
@@ -38,6 +39,8 @@ public class GamePlayerData
             return TotalTaskCount == CompleteTaskCount;
         }
     }
+    public int KillCount { get; set; } = 0;
+
     ///////////////\\\\\\\\\\\\\\\
 
     public GamePlayerData(
@@ -58,6 +61,7 @@ public class GamePlayerData
         TotalTaskCount = 0;
         MyDeathReason = DataDeathReason.None;
         RealKiller = null;
+        KillCount = 0;
     }
 
     [GameModuleInitializer]
@@ -110,6 +114,12 @@ public class GamePlayerData
         if (MyDeathReason == DataDeathReason.None || focus)
             MyDeathReason = deathReason;
     }
+    public void SetRealKiller(GamePlayerData killer)
+    {
+        killer.KillCount++;
+        Murdered = true;
+        RealKiller = killer;
+    }
     public void SetTaskTotalCount(int TaskTotalCount) => TotalTaskCount = TaskTotalCount;
     public void CompleteTask() => CompleteTaskCount++;
 
@@ -128,6 +138,12 @@ static class PlayerControlDataExtensions
     public static void SetRole(this PlayerControl pc, RoleTypes role) => pc.GetPlayerData().SetRole(role);
     public static void SetDeathReason(this PlayerControl pc, DataDeathReason deathReason, bool focus = false)
         => pc.GetPlayerData().SetDeathReason(deathReason, focus);
+    public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
+    {
+        pc.GetPlayerData().SetRealKiller(killer.GetPlayerData());
+
+    }
+
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetPlayerData().SetTaskTotalCount(TaskTotalCount);
     public static void OnCompleteTask(this PlayerControl pc) => pc.GetPlayerData().CompleteTask();
 }

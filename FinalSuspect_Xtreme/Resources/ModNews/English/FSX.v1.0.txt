@@ -14,8 +14,8 @@ Mod! Vanilla? New optimizations!
 ## Summary of Updates
 - Fixes: 7
 - Optimizations: 6
-- Changes: 2
-- Additions: 7
+- Changes: 3
+- Additions: 8
 - Remakes: 1
 - Deletions: 0
 
@@ -54,6 +54,8 @@ Optimized by: Slok
 Changed by: Slok
 - Moved main menu module information to a new location.
 Changed by: Slok
+- Victory status will not be displayed when showing the last summary now."
+Changed by: Slok
 
 ## Additions
 - Added success/failure prompts for completed music downloads.
@@ -69,6 +71,8 @@ Produced by: Niko, Slok
 - Server: Niko233[AS_CN2]
 Produced by: Niko, Slok
 - Haunt now displays opponent's role and name colors based on their role.
+Produced by: Slok
+- The last summaey now show the kill count, deathreason, task count and the murderer
 Produced by: Slok
 
 ## Remake

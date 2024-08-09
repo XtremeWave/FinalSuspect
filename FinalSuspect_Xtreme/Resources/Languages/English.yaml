@@ -233,12 +233,15 @@ DCNotify.NotLogin: "Non-logged players are not allowed in this room"
 # 任务栏 / Task Panel
 PressF1ShowRoleDescription: "Press F1 to view your role description"
 FakeTask: "Fake Task:"
+KillCount: "Kills"
 
 # 复盘信息 / Last Results
 RoleSummaryText: "Last Results:"
 ShowResults: "Show Last Results"
 HideResults: "Hide Last Results"
 NoInfoExists: "No last results available"
+CrewsWin: "<color=8cffff>Crewmates Win</color>"
+ImpsWin: "<color=ff1919>Impostors Win</color>"
 
 # 禁用公开
 DisabledByProgram: "Public room operations have been disabled by the program"

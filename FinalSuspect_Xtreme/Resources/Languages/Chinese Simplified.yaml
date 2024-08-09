@@ -230,15 +230,18 @@ DCNotify.ModVersionIncorrect: "您模组的版本与房主不同"
 DCNotify.LowLevel: "您的等级未达到该房间的等级要求"
 DCNotify.NotLogin: "该房间不允许未登录的玩家加入"
 
-# 任务栏 / Task Panel
+# 任务与栏相关 / Task Panel
 PressF1ShowRoleDescription: "按F1查看您的职业介绍"
 FakeTask: "假任务："
+KillCount: "击杀"
 
 # 复盘信息 / Last Results
 RoleSummaryText: "复盘信息:"
 ShowResults: "显示复盘信息"
 HideResults: "隐藏复盘信息"
 NoInfoExists: "没有存在的上局信息"
+CrewsWin: "<color=8cffff>船员阵营胜利</color>"
+ImpsWin: "<color=ff1919>伪装者阵营胜利</color>"
 
 # 禁用公开
 DisabledByProgram: "公开房间的操作已被程序禁用"
