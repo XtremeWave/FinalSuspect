@@ -128,10 +128,6 @@ public static class Translator
     }
     public static SupportedLangs GetUserLangByRegion()
     {
-#if DEBUG
-        if (Environment.UserName == "Leever")
-            return SupportedLangs.SChinese;
-#endif
         try
         {
             var name = CultureInfo.CurrentUICulture.Name;

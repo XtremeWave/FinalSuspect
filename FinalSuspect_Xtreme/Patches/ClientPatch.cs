@@ -16,25 +16,25 @@ internal class MakePublicPatch
 
         //#if RELEASE
 
-            if (!Main.AllowPublicRoom)
-            {
-                var message = GetString("DisabledByProgram");
-                Logger.Info(message, "MakePublicPatch");
-                Logger.SendInGame(message);
-                return false;
-            }
-            if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate) || !VersionChecker.IsSupported || !Main.IsPublicAvailableOnThisVersion)
-            {
-                var message = "";
-                message = GetString("PublicNotAvailableOnThisVersion");
-                if (ModUpdater.isBroken) message = GetString("ModBrokenMessage");
-                if (ModUpdater.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
-                Logger.Info(message, "MakePublicPatch");
-                Logger.SendInGame(message);
-                return false;
-            
+        if (!Main.AllowPublicRoom)
+        {
+            var message = GetString("DisabledByProgram");
+            Logger.Info(message, "MakePublicPatch");
+            Logger.SendInGame(message);
+            return false;
         }
-//#endif
+        if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate) || !VersionChecker.IsSupported || !Main.IsPublicAvailableOnThisVersion)
+        {
+            var message = "";
+            message = GetString("PublicNotAvailableOnThisVersion");
+            if (ModUpdater.isBroken) message = GetString("ModBrokenMessage");
+            if (ModUpdater.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
+            Logger.Info(message, "MakePublicPatch");
+            Logger.SendInGame(message);
+            return false;
+
+        }
+        //#endif
         return true;
     }
 }

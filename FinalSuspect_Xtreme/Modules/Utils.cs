@@ -130,7 +130,7 @@ public static class Utils
         pos += 4f;
 
         builder.AppendFormat("<pos={0}em>", pos).Append(GetVitalText(id, true)).Append("</pos>");
-        pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 8f : 4.5f;
+        pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 10f : 6.5f;
 
         builder.AppendFormat("<pos={0}em>", pos);
 
@@ -303,6 +303,7 @@ public static class Utils
                 break;
             case DataDeathReason.Kill:
                 color = Palette.ImpostorRed;
+                deathReason += "<=" ;
                 break;
             case DataDeathReason.Exile:
                 color = Palette.Purple;
@@ -310,6 +311,14 @@ public static class Utils
         }
         if (!summary && data.IsDead) deathReason = "(" + deathReason + ")";
         deathReason = ColorString(color, deathReason);
+
+        if (data.MyDeathReason is DataDeathReason.Kill)
+        {
+            var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
+            deathReason += "<size=80%>";
+            deathReason += ColorString(killercolor, data.RealKiller.PlayerName);
+            deathReason += "</size>";
+        }
 
         return deathReason;
     }

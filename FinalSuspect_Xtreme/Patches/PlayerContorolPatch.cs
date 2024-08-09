@@ -22,6 +22,13 @@ class MurderPlayerPatch
         }
         return true;
     }
+    public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
+    {
+        target.SetDeathReason(DataDeathReason.Kill);
+        target.GetPlayerData().RealKiller = __instance.GetPlayerData();
+        target.GetPlayerData().Murdered = true;
+        target.SetDead();
+    }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
 class DiePatch
@@ -36,10 +43,10 @@ class DiePatch
         }
         return true;
     }
-    public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] DeathReason deathReason, [HarmonyArgument(1)] bool assginGhostRole)
+    public static void Postfix(PlayerControl __instance, [HarmonyArgument(1)] bool assginGhostRole)
     {
         if (!assginGhostRole) return;
-        __instance.SetDeathReason((DataDeathReason)deathReason);
+        __instance.SetDeathReason(DataDeathReason.Kill);
         __instance.SetDead();
     }
 }

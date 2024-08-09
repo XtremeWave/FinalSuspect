@@ -112,7 +112,6 @@ class OnPlayerLeftPatch
         if (GameStates.IsInGame)
         {
             data.Character.SetDisconnected();
-            data.Character.SetDeathReason(DataDeathReason.Disconnect);
 
         }
 

@@ -28,7 +28,7 @@ public class Main : BasePlugin
     public static readonly string ModName = "Final Suspect_Xtreme";
     public static readonly string TeamColor = "#cdfffd";
     public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
-    public static readonly string ModColor = "#CECDFF";
+    public static readonly string ModColor = "#CECDFD";
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
     public static readonly Color32 OutColor = new(180,179,231, 255);
     public static readonly Color32 ModColor32_semi_transparent = new (206, 205, 253, 160);
@@ -50,13 +50,13 @@ public class Main : BasePlugin
     public const int PluginCreation = 1;
     // == 链接相关设定 / Link Config ==
     public static readonly bool ShowWebsiteButton = true;
-    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://www.xtreme.net.cn" : "https://www.xtreme.net.cn";
+    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://fsusx.top/" : "https://fsusx.top/en/";
     public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=4ojpzbUU42giZZeQ-DTaal-tC5RIpL46&authKey=49OYQwsCza2x5eHGdXDHXD1M%2FvYvQcEhJBNL5h8Gq7AxOu5eMfTc6g2edtlsMuCm&noverify=0&group_code=733425569";
     public static readonly bool ShowDiscordButton = true;
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
     public static readonly bool ShowGithubUrl = true;
-    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/TownOfNewEpic_Xtreme";
+    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect_Xtreme";
 
     // ==========
 
@@ -257,6 +257,7 @@ public class Main : BasePlugin
 
         Harmony.PatchAll();
 
+        if (Environment.UserName == "Leever")
         if (!DebugModeManager.AmDebugger) ConsoleManager.DetachConsole();
         else ConsoleManager.CreateConsole();
 

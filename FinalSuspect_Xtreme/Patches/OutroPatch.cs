@@ -124,6 +124,7 @@ class SetEverythingUpPatch
         //        break;
         //}
 
+
         //foreach (var role in CustomWinnerHolder.AdditionalWinnerRoles)
         //{
         //    var addWinnerRole = (CustomRoles)role;
@@ -186,6 +187,7 @@ class SetEverythingUpPatch
 
 
         CustomWinnerColor = !DidHumansWin ? "#FF1919" : "#8CFFFF";
+        __instance.WinText.color.SetAlpha(0.35f);
 
 
 

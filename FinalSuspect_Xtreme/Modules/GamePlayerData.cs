@@ -1,11 +1,8 @@
 ﻿using AmongUs.GameOptions;
 using FinalSuspect_Xtreme.Attributes;
 using HarmonyLib;
-using Sentry.Unity.NativeUtils;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using static Rewired.Data.UserDataStore_PlayerPrefs.ControllerAssignmentSaveInfo;
 
 namespace FinalSuspect_Xtreme;
 
@@ -21,6 +18,7 @@ public class GamePlayerData
     public bool IsImpostor { get; private set; }
     public bool IsDead { get; private set; }
     public bool IsDisconnected { get; private set; }
+    public bool Murdered { get; set; }
     public bool Exiled { get; set; }
 
 
@@ -29,6 +27,7 @@ public class GamePlayerData
     public bool RoleAssgined { get; private set; }
 
     public DataDeathReason MyDeathReason { get; private set; }
+    public GamePlayerData RealKiller { get;  set; }
 
     public int TotalTaskCount { get; private set; }
     public int CompleteTaskCount { get; private set; } = 0;
@@ -52,11 +51,13 @@ public class GamePlayerData
         IsImpostor = false;
         IsDead = false;
         Exiled = false;
+        Murdered = false;
         IsDisconnected = false;
         RoleAssgined = false;
         CompleteTaskCount = 0;
         TotalTaskCount = 0;
         MyDeathReason = DataDeathReason.None;
+        RealKiller = null;
     }
 
     [GameModuleInitializer]
@@ -92,6 +93,7 @@ public class GamePlayerData
     { 
         IsDisconnected = true;
         SetDead();
+        SetDeathReason(DataDeathReason.Disconnect);
     }
     public void SetIsImp(bool isimp) => IsImpostor = isimp;
     public void SetRole(RoleTypes role)  
@@ -163,6 +165,8 @@ internal class DataFixedUpdate
     {
         var data = pc.GetPlayerData();
         if (data.Exiled && data.MyDeathReason != DataDeathReason.Exile) pc.SetDeathReason(DataDeathReason.Exile, true);
+        if (data.Murdered && data.MyDeathReason != DataDeathReason.Kill) pc.SetDeathReason(DataDeathReason.Kill, true);
+
 
     }
 }

@@ -17,7 +17,7 @@ Mod! Vanilla? New optimizations!
 - Changes: 2
 - Additions: 7
 - Remakes: 1
-- Deletions:: 0
+- Deletions: 0
 
 ## Fixes
 - Fixed the bug of anti-cheat mistakenly flagging players when reporting corpses.
@@ -56,19 +56,19 @@ Changed by: Slok
 Changed by: Slok
 
 ## Additions
-Added success/failure prompts for completed music downloads.
+- Added success/failure prompts for completed music downloads.
 Produced by: Slok
-Client Settings: Disable original music.
+- Client Settings: Disable original music.
 Produced by: Slok
-Enhanced anti-cheat measures.
+- Enhanced anti-cheat measures.
 Produced by: Lezaiya
-Updated player nameplates in real-time when players exit meetings, regardless of whether the plugin-loaded player is the host.
+- Updated player nameplates in real-time when players exit meetings, regardless of whether the plugin-loaded player is the host.
 Produced by: Slok
-Server: Niko233[NA_US2]
+- Server: Niko233[NA_US2]
 Produced by: Niko, Slok
-Server: Niko233[AS_CN2]
+- Server: Niko233[AS_CN2]
 Produced by: Niko, Slok
-Specter of the Shadowy Ghost now displays opponent's role and name colors based on their role.
+- Haunt now displays opponent's role and name colors based on their role.
 Produced by: Slok
 
 ## Remake
