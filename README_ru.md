@@ -12,11 +12,17 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Форки">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[Английский](README.md) [简体中文]
-
 [Официальный сайт FSX](https://fsusx.top.cc) | [Официальный сайт XtremeWave](https://www.xtreme.net.cn)
 
 </div>
+
+## Язык
+[English](README.md) <br>
+[にほんご](README_ja.md)<br>
+[português](README_pt.md)<br>
+[русский язык]<br>
+[繁體中文](README_zh_CHT.md)<br>
+[简体中文](README_zh.md)<br>
 
 ## Информация
 Этот плагин не является частью Among Us или Innersloth LLC, и его содержимое не получило одобрения или спонсирования от Innersloth LLC.<br>
