@@ -27,7 +27,6 @@ class OnGameJoinedPatch
 
         if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
         Main.AllPlayerNames = new();
-        ShowDisconnectPopupPatch.ReasonByHost = string.Empty;
         GameStates.InGame = false;
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();

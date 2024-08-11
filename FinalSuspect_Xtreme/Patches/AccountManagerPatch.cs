@@ -28,7 +28,6 @@ public static class AwakeFriendCodeUIPatch
                 obj.transform.SetParent(CustomBarSprit.transform);
             }
             BarSprit.ForEachChild((Il2CppSystem.Action<GameObject>)ResetParent);
-
             BarSprit.SetActive(false);
 
         }
@@ -42,18 +41,10 @@ public static class AwakeFriendCodeUIPatch
 
 
         FriendsButton = GameObject.Find("FriendsButton");
-        if (FriendsButton != null)
-        {
-            //FriendsButton.SetActive(__instance.friendCode.gameObject.active);
-        }
-
-    }
-}
-[HarmonyPatch(typeof(AccountTab), nameof(AccountTab.UpdateVisuals))]
-public static class UpdateFriendCodeUIPatch
-{
-    public static void Prefix(AccountTab __instance)
-    {
+        //if (FriendsButton != null)
+        //{
+        //    FriendsButton.SetActive(__instance.friendCode.gameObject.active);
+        //}
 
     }
 }

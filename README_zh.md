@@ -2,7 +2,7 @@
 	
 ![FSX-XW](Assets/FSX&XW.png)
 
-**FinalSuspect_Xtreme，你最好的Among Us原版辅助插件。**
+**FinalSuspect_Xtreme，你最棒的Among Us原版辅助插件。**
 
 <img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licences">
 <img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="LatestTag">
@@ -12,11 +12,28 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[English](README.md) [简体中文]
-
 [FSX官方网站](https://fsusx.top.cc) | [XtremeWave官方网站](https://www.xtreme.net.cn)
 
 </div>
+
+## 语言
+***本插件支持Among Us所支持的全部语言！***<br>
+[English](README.md) <br>
+[Latam](README_es_LA.md)<br>
+[Brasileiro](README_pt_BR.md)<br>
+[Português](README_pt.md)<br>
+[한국어](README_ko.md)<br>
+[Русский](README_ru.md)<br>
+[Nederlands](README_nl.md)<br>
+[Filipino](README_tl.md)<br>
+[Français](README_fr.md)<br>
+[Deutsch](README_de.md)<br>
+[Italiano](README_it.md)<br>
+[日本語](README_ja.md)<br>
+[Español](README_es.md)<br>
+[简体中文]<br>
+[繁體中文](README_zh_CHT.md)<br>
+[Gaeilge](README_ga.md)<br>
 
 ## 须知
 本插件不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。<br>

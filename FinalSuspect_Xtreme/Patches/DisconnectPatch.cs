@@ -9,7 +9,6 @@ internal class ShowDisconnectPopupPatch
 {
     public static DisconnectReasons Reason;
     public static string StringReason;
-    public static string ReasonByHost = string.Empty;
     public static void Postfix(DisconnectPopup __instance)
     {
         _ = new LateTask(() =>
@@ -24,9 +23,7 @@ internal class ShowDisconnectPopupPatch
                         __instance._textArea.text = text;
                 }
 
-                if (!string.IsNullOrEmpty(ReasonByHost))
-                    SetText(string.Format(GetString("DCNotify.Description"), ReasonByHost));
-                else switch (Reason)
+                switch (Reason)
                     {
                         case DisconnectReasons.Hacking:
                             SetText(GetString("DCNotify.Hacking"));

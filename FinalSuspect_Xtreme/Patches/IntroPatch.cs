@@ -1,19 +1,7 @@
-using AmongUs.GameOptions;
 using HarmonyLib;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
-
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
-
-using Hazel;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-
-using FinalSuspect_Xtreme.Modules.SoundInterface;
-
 
 namespace FinalSuspect_Xtreme;
 
@@ -24,7 +12,6 @@ class IntroCutscenePatch
     public static void ShowRole_Postfix(IntroCutscene __instance)
     {
         if (!Main.EnableRoleBackGround.Value) return;
-
 
         _ = new LateTask(() =>
         {
@@ -40,7 +27,6 @@ class IntroCutscenePatch
             __instance.RoleBlurbText.text = cr.GetRoleInfoForVanilla();
 
         }, 0.0001f, "Override Role Text");
-
 
     }
     [HarmonyPatch(nameof(IntroCutscene.CoBegin)), HarmonyPrefix]

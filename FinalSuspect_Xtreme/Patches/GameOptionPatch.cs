@@ -1,11 +1,5 @@
 ﻿using AmongUs.GameOptions;
 using HarmonyLib;
-using static FinalSuspect_Xtreme.Translator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace FinalSuspect_Xtreme.Patches;
@@ -19,4 +13,16 @@ class RoleOptionSettingUpdateValuesAndTextPatch
         __instance.titleText.color = Color.white;
     }
 
+}
+[HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.SwitchGameMode))]
+class SwitchGameModePatch
+{
+    public static bool HnSMode = false;
+    public static void Postfix(GameModes gameMode)
+    {
+        if (gameMode != GameModes.HideNSeek) HnSMode = false;
+        else HnSMode = true;
+
+
+    }
 }

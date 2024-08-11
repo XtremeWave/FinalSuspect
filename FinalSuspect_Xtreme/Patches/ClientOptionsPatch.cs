@@ -3,7 +3,6 @@ using FinalSuspect_Xtreme.Modules.ClientOptions;
 using FinalSuspect_Xtreme.Modules.MoreOptions;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using UnityEngine;
-using BepInEx.Configuration;
 
 namespace FinalSuspect_Xtreme;
 

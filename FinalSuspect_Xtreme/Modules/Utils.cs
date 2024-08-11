@@ -1,6 +1,4 @@
-using AmongUs.Data;
 using AmongUs.GameOptions;
-using Hazel;
 using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
 using System;
@@ -13,9 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.Playables;
 using static FinalSuspect_Xtreme.Translator;
-using static UnityEngine.ParticleSystem.PlaybackState;
 
 namespace FinalSuspect_Xtreme;
 
@@ -62,6 +58,8 @@ public static class Utils
         var text = role.ToString();
 
         var Info = "Blurb" + (InfoLong ? "Long" : "");
+
+        if (!GameStates.IsStandardMode) text = "HnS" + text;
 
         return GetString($"{text}{Info}");
     }
@@ -126,9 +124,10 @@ public static class Utils
 
         var colorId = thisdata.PlayerColor;
         builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.PlayerName));
-        builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
-        pos += 4.5f;
 
+            builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
+            pos += 4.5f;
+        
         builder.AppendFormat("<pos={0}em>", pos).Append(GetVitalText(id, true)).Append("</pos>");
         pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 14f : 10.5f;
 
@@ -276,12 +275,22 @@ public static class Utils
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
         var data = GamePlayerData.GetPlayerDataById(playerId);
+        if (!GameStates.IsStandardMode)
+        {
+            if (data.IsImpostor)
+            {
+                var KillColor = Palette.ImpostorRed;
+                return ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
+            }
+            return "";
+        }
+
+        
         if (data.IsImpostor)
         {
             var KillColor = data.IsDisconnected ? Color.gray : Palette.ImpostorRed;
             return ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
         }
-
         var NormalColor = data.TaskCompleted ? Color.green : Color.yellow;
         Color TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
         string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
@@ -292,11 +301,11 @@ public static class Utils
     {
         var data = GamePlayerData.GetPlayerDataById(playerId);
 
-        string deathReason = data.IsDead ? GetString("DeathReason." + data.MyDeathReason) : "";
+        string deathReason = data.IsDead ? GetString("DeathReason." + data.RealDeathReason) : "";
 
 
         Color color = Palette.CrewmateBlue;
-        switch (data.MyDeathReason)
+        switch (data.RealDeathReason)
         {
             case DataDeathReason.Disconnect:
                 color = Palette.DisabledGrey;
@@ -311,7 +320,7 @@ public static class Utils
         }
         if (!summary && data.IsDead) deathReason = "(" + deathReason;
 
-        if (data.MyDeathReason is DataDeathReason.Kill)
+        if (data.RealDeathReason is DataDeathReason.Kill)
         {
             var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
             deathReason += "<size=80%>";
@@ -326,7 +335,7 @@ public static class Utils
     }
     public static bool IsActive(SystemTypes type)
     {
-        // ないものはfalse
+        if (!GameStates.IsStandardMode) return false;
         if (!ShipStatus.Instance.Systems.ContainsKey(type))
         {
             return false;

@@ -15,7 +15,7 @@ using static Il2CppSystem.Globalization.CultureInfo;
 namespace FinalSuspect_Xtreme;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
-class EndGamePatch
+class AmongUsClientEndGamePatch
 {
     public static Dictionary<byte, string> SummaryText = new();
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
@@ -23,6 +23,9 @@ class EndGamePatch
         SummaryText = new();
         foreach (var id in GamePlayerData.AllGamePlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
+        GamePlayerData.AllGamePlayerData.Values.ToArray().Do(data => data.Dispose());
+
+
     }
 }
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
@@ -44,8 +47,24 @@ class SetEverythingUpPatch
         //          ==勝利陣営表示==
         //#######################################
         Logger.Info("胜利阵营显示", "SetEverythingUpPatch");
-        string CustomWinnerColor = "#ffffff";
+
+
+
+
+        var WinnerTextObject = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
+        WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
+        WinnerTextObject.transform.localScale = new(0.6f, 0.6f, 0.6f);
+        var WinnerText = WinnerTextObject.GetComponent<TMPro.TextMeshPro>(); //WinTextと同じ型のコンポーネントを取得
+        WinnerText.fontSizeMin = 3f;
+
+        string CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
+        __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
+        __instance.WinText.text = DidHumansWin ? GetString("CrewmatesWin") : GetString("ImpostorsWin");
+        WinnerText.text = DidHumansWin ? GetString("CrewmatesWinBlurb") : GetString("ImpostorsWinBlurb");
+
+
         __instance.WinText.gameObject.SetActive(!showInitially);
+        WinnerTextObject.SetActive(!showInitially);
 
         //ShowResult:
         Logger.Info("最终结果显示", "SetEverythingUpPatch");
@@ -60,7 +79,10 @@ class SetEverythingUpPatch
                var setToActive = !roleSummary.gameObject.activeSelf;
                roleSummary.gameObject.SetActive(setToActive);
                Main.ShowResults.Value = setToActive;
+
                __instance.WinText.gameObject.SetActive(!setToActive);
+               WinnerTextObject.SetActive(!setToActive);
+
                showHideButton.Label.text = GetString(setToActive ? "HideResults" : "ShowResults");
            },
            GetString(showInitially ? "HideResults" : "ShowResults"))
@@ -71,24 +93,20 @@ class SetEverythingUpPatch
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
-
-
-
-        CustomWinnerColor = !DidHumansWin ? "#FF1919" : "#8CFFFF";
-
+        sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
 
         foreach (var kvp in GamePlayerData.AllGamePlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
-            sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(EndGamePatch.SummaryText[id]);
+            sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
         foreach (var kvp in GamePlayerData.AllGamePlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
-            sb.Append($"\n　 ").Append(EndGamePatch.SummaryText[id]);
+            sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
 
         }
         Logger.Info("判断胜利结束", "SetEverythingUpPatch");

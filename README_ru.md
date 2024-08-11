@@ -1,11 +1,11 @@
 <div align="center">
-	
+
 ![FSX-XW](Assets/FSX&XW.png)
 
-**FinalSuspect_Xtreme, ваш лучший помощник для оригинальной игры Among Us.**
+**FinalSuspect_Xtreme, лучший оригинальный плагин для Among Us.**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Лицензия">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="Последний тег">
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Лицензии">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="ПоследнийТег">
 <img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Загрузки">
 <img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Наблюдатели">
 <img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Звезды">
@@ -16,28 +16,38 @@
 
 </div>
 
-## Язык
+## Языки
+***Этот плагин поддерживает все языки, поддерживаемые Among Us!***<br>
 [English](README.md) <br>
-[にほんご](README_ja.md)<br>
-[português](README_pt.md)<br>
-[русский язык]<br>
-[繁體中文](README_zh_CHT.md)<br>
+[Latam](README_es_LA.md)<br>
+[Brasileiro](README_pt_BR.md)<br>
+[Português](README_pt.md)<br>
+[한국어](README_ko.md)<br>
+[Русский]<br>
+[Nederlands](README_nl.md)<br>
+[Filipino](README_tl.md)<br>
+[Français](README_fr.md)<br>
+[Deutsch](README_de.md)<br>
+[Italiano](README_it.md)<br>
+[日本語](README_ja.md)<br>
+[Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
+[繁體中文](README_zh_CHT.md)<br>
+[Gaeilge](README_ga.md)<br>
 
-## Информация
-Этот плагин не является частью Among Us или Innersloth LLC, и его содержимое не получило одобрения или спонсирования от Innersloth LLC.<br>
+## Уведомление
+Этот плагин не связан с Among Us или Innersloth LLC, и содержимое, которое он включает, не поддерживается и не спонсируется Innersloth LLC.<br>
 Некоторые материалы здесь являются собственностью Innersloth LLC.
 
-### Участники
+### Контрибьюторы
  - [KARPED1EM](https://github.com/KARPED1EM) - **Техническая поддержка**
- - [Yu (ранее известен как Night)](https://github.com/Night-GUA) - **Разработчик TOHEX**
+ - [Yu (бывший Night)](https://github.com/Night-GUA) - **Разработчик [TOHEX](https://tohex.cc)**
  - [Amongus](https://github.com/XiezibanWrite) - **Перевод и техническая поддержка**
  - [NikoCat233](https://github.com/NikoCat233) - **Техническая поддержка**
- - [Farewell](https://github.com/ksduye) - **Консультационная поддержка**
- - [LezaiYa](https://github.com/LezaiYa1) - **Консультационная поддержка**
- - [Imp11](https://github.com/dabao40) - **Консультационная поддержка**
- - [FangKuai](https://github.com/FangKuaiYa) - **Консультационная поддержка**
+ - [Farewell](https://github.com/ksduye) - **Поддержка консультаций**
+ - [LezaiYa](https://github.com/LezaiYa1) - **Поддержка консультаций**
+ - [Imp11](https://github.com/dabao40) - **Поддержка консультаций**
+ - [FangKuai](https://github.com/FangKuaiYa) - **Поддержка консультаций**
 
-## История звезд
-[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
-</html>
+## История звёзд
+[![График истории звёзд](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)

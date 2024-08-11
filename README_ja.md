@@ -1,36 +1,53 @@
-<div align="center">
-	
+ï»¿<div align="center">
+
 ![FSX-XW](Assets/FSX&XW.png)
 
-**FinalSuspect_Xtreme¡¢¤¢¤Ê¤¿¤Î¾¿˜O¤ÎAmong Us¥ª¥ê¥¸¥Ê¥ë¥¢¥·¥¹¥¿¥ó¥È¥×¥é¥°¥¤¥ó¡£**
+**FinalSuspect_Xtremeã€Among Us ã®æœ€é«˜ã®ã‚ªãƒªã‚¸ãƒŠãƒ« Mod ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã™ã€‚**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licences">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="LatestTag">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Downloads">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Watchers">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Stars">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="ãƒ©ã‚¤ã‚»ãƒ³ã‚¹">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="æœ€æ–°ã‚¿ã‚°">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ•°">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="ã‚¦ã‚©ãƒƒãƒãƒ£ãƒ¼">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="ã‚¹ã‚¿ãƒ¼">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="ãƒ•ã‚©ãƒ¼ã‚¯æ•°">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[English](README.md) [¼òÌåÖĞÎÄ]
-
-[FSX ¹«Ê½¥¦¥§¥Ö¥µ¥¤¥È](https://fsusx.top.cc) | [XtremeWave ¹«Ê½¥¦¥§¥Ö¥µ¥¤¥È](https://www.xtreme.net.cn)
+[FSX å…¬å¼ã‚µã‚¤ãƒˆ](https://fsusx.top.cc) | [XtremeWave å…¬å¼ã‚µã‚¤ãƒˆ](https://www.xtreme.net.cn)
 
 </div>
 
-## ×¢ÒâÊÂí—
-¤³¤Î¥×¥é¥°¥¤¥ó¤ÏAmong Us¤äInnersloth LLC¤È¤ÏévßB¤·¤Æ¤ª¤é¤º¡¢Innersloth LLC¤Ë¤è¤ë³ĞÕJ¤Ş¤¿¤ÏÖ§Ô®¤òÊÜ¤±¤Æ¤¤¤Ş¤»¤ó¡£<br>
-¤³¤³¤Ëº¬¤Ş¤ì¤ëËØ²Ä¤ÎÒ»²¿¤ÏInnersloth LLC¤ÎØ”®b¤Ç¤¹¡£
+## è¨€èª
+***ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯ Among Us ãŒã‚µãƒãƒ¼ãƒˆã™ã‚‹ã™ã¹ã¦ã®è¨€èªã«å¯¾å¿œã—ã¦ã„ã¾ã™ï¼***<br>
+[English](README.md) <br>
+[Latam](README_es_LA.md)<br>
+[Brasileiro](README_pt_BR.md)<br>
+[PortuguÃªs](README_pt.md)<br>
+[í•œêµ­ì–´](README_ko.md)<br>
+[Ğ ÑƒÑÑĞºĞ¸Ğ¹](README_ru.md)<br>
+[Nederlands](README_nl.md)<br>
+[Filipino](README_tl.md)<br>
+[FranÃ§ais](README_fr.md)<br>
+[Deutsch](README_de.md)<br>
+[Italiano](README_it.md)<br>
+[æ—¥æœ¬èª]<br>
+[EspaÃ±ol](README_es.md)<br>
+[ç®€ä½“ä¸­æ–‡](README_zh.md)<br>
+[ç¹é«”ä¸­æ–‡](README_zh_CHT.md)<br>
+[Gaeilge](README_ga.md)<br>
 
-### Ø•Ï×Õß
- - [KARPED1EM](https://github.com/KARPED1EM) - **¼¼Ğg¥µ¥İ©`¥È**
- - [Yu£¨¾ÉÃû£ºNight£©](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc)¤Îé_°kÕß**
- - [Amongus](https://github.com/XiezibanWrite) - **·­ÔU¤È¼¼Ğg¥µ¥İ©`¥È**
- - [NikoCat233](https://github.com/NikoCat233) - **¼¼Ğg¥µ¥İ©`¥È**
- - [Farewell](https://github.com/ksduye) - **ÏàÕ„¥µ¥İ©`¥È**
- - [LezaiYa](https://github.com/LezaiYa1) - **ÏàÕ„¥µ¥İ©`¥È**
- - [Imp11](https://github.com/dabao40) - **ÏàÕ„¥µ¥İ©`¥È**
- - [FangKuai](https://github.com/FangKuaiYa) - **ÏàÕ„¥µ¥İ©`¥È**
+## æ³¨æ„
+ã“ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯ Among Us ã¾ãŸã¯ Innersloth LLC ã¨ã¯é–¢ä¿‚ãŒãªãã€å«ã¾ã‚Œã¦ã„ã‚‹å†…å®¹ã¯ Innersloth LLC ã«ã‚ˆã£ã¦æ‰¿èªã¾ãŸã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚<br>
+ã“ã“ã«ã‚ã‚‹ã„ãã¤ã‹ã®è³‡æ–™ã¯ Innersloth LLC ã®æ‰€æœ‰ç‰©ã§ã™ã€‚
 
-## ¥¹¥¿©`¤ÎÂÄšs
-[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+### è²¢çŒ®è€…
+ - [KARPED1EM](https://github.com/KARPED1EM) - **æŠ€è¡“ã‚µãƒãƒ¼ãƒˆ**
+ - [Yuï¼ˆæ—§åï¼šNightï¼‰](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc) é–‹ç™ºè€…**
+ - [Amongus](https://github.com/XiezibanWrite) - **ç¿»è¨³ã¨æŠ€è¡“ã‚µãƒãƒ¼ãƒˆ**
+ - [NikoCat233](https://github.com/NikoCat233) - **æŠ€è¡“ã‚µãƒãƒ¼ãƒˆ**
+ - [Farewell](https://github.com/ksduye) - **ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°ã‚µãƒãƒ¼ãƒˆ**
+ - [LezaiYa](https://github.com/LezaiYa1) - **ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°ã‚µãƒãƒ¼ãƒˆ**
+ - [Imp11](https://github.com/dabao40) - **ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°ã‚µãƒãƒ¼ãƒˆ**
+ - [FangKuai](https://github.com/FangKuaiYa) - **ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°ã‚µãƒãƒ¼ãƒˆ**
+
+## ã‚¹ã‚¿ãƒ¼ã®æ­´å²
+[![ã‚¹ã‚¿ãƒ¼ã®æ­´å²ãƒãƒ£ãƒ¼ãƒˆ](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)

@@ -42,6 +42,14 @@ ImpostorGhostBlurb: "继续破坏设施"
 CrewmateGhostBlurbLong: "完成任务，别拖后腿！"
 ImpostorGhostBlurbLong: "破坏设施，协助存活的队友取得胜利"
 
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "活到最后！"
+HnSEngineerBlurbLong: "坚持活下来，直到时间结束，完成任务可以推进时间。\n利用通风口和威胁指示器躲藏！\n开始计时后，伪装者会开始追杀你！"
+HnSImpostorBlurb: "杀光所有人！"
+HnSImpostorBlurbLong: "在规定时间内，杀死所有船员！\n必须尽快行动！并且无法进入通风口。\n在最后关头，你将获得速度提升和行踪提示！"
+HnSCrewmateGhostBlurb: "给你的队友加油打气"
+HnSCrewmateGhostBlurbLong: "去！给！你！的！队！友！加！油！"
+
 # 死因 / Death Reason
 DeathReason.Kill: "被杀"
 DeathReason.Exile: "驱逐"
@@ -240,8 +248,13 @@ RoleSummaryText: "复盘信息:"
 ShowResults: "显示复盘信息"
 HideResults: "隐藏复盘信息"
 NoInfoExists: "没有存在的上局信息"
-CrewsWin: "<color=8cffff>船员阵营胜利</color>"
-ImpsWin: "<color=ff1919>伪装者阵营胜利</color>"
+CrewsWin: "<color=#8cffff>船员阵营胜利</color>"
+CrewmatesWin: "船员胜利"
+CrewmatesWinBlurb: "任何邪恶终将绳之以法！"
+ImpsWin: "<color=#ff1919>伪装者阵营胜利</color>"
+ImpostorsWin: "伪装者胜利"
+ImpostorsWinBlurb: "黑暗笼罩世界"
+HideSummaryTextToShowWinText: "<color=#ffff00>隐藏复盘信息查看胜利文本</color>"
 
 # 禁用公开
 DisabledByProgram: "公开房间的操作已被程序禁用"

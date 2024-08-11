@@ -18,13 +18,23 @@
 
 
 ## Languages
+***This plugin supports all languages supported by Among Us!***<br>
 [English] <br>
-[にほんご](README_ja.md)<br>
-[português](README_pt.md)<br>
-[русский язык](README_ru.md)<br>
-[繁體中文](README_zh_CHT.md)<br>
-[简体中文](README_zh.md)<br>
-
+[Latam](README_es_LA.md) <br>
+[Brasileiro](README_pt_BR.md) <br>
+[Português](README_pt.md) <br>
+[한국어](README_ko.md) <br>
+[Русский](README_ru.md) <br>
+[Nederlands](README_nl.md) <br>
+[Filipino](README_tl.md) <br>
+[Français](README_fr.md) <br>
+[Deutsch](README_de.md) <br>
+[Italiano](README_it.md) <br>
+[日本語](README_ja.md) <br>
+[Español](README_es.md) <br>
+[简体中文](README_zh.md) <br>
+[繁體中文](README_zh_CHT.md) <br>
+[Gaeilge](README_ga.md) <br>
 
 ## Regarding
 This plugin is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC.<br>

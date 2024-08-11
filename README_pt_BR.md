@@ -20,8 +20,8 @@
 ***Este plugin suporta todos os idiomas suportados pelo Among Us!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
-[Brasileiro](README_pt_BR.md)<br>
-[Português]<br>
+[Brasileiro]<br>
+[Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
 [Русский](README_ru.md)<br>
 [Nederlands](README_nl.md)<br>

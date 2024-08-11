@@ -37,7 +37,7 @@ class MurderPlayerPatch
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        if (target.GetPlayerData().RealKiller != null) return;
+        if (target.GetPlayerData().RealKiller != null && !target.Data.IsDead) return;
         target.SetDeathReason(DataDeathReason.Kill);
         target.SetRealKiller(__instance);
         target.SetDead();

@@ -44,8 +44,8 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.6.18";
     public static readonly bool IsPublicAvailableOnThisVersion = true;
     public const string PluginVersion = "1.0.0";
-    public const string ShowVersion_Head = "1.0_20240809";
-    public const string ShowVersion_TestText = "";
+    public const string ShowVersion_Head = "1.0_20240811";
+    public const string ShowVersion_TestText = "_Preview";
     public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
     public const int PluginCreation = 1;
     // == 链接相关设定 / Link Config ==

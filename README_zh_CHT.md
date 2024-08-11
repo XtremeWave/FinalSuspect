@@ -1,36 +1,53 @@
 <div align="center">
-	
+
 ![FSX-XW](Assets/FSX&XW.png)
 
-**FinalSuspect_Xtreme，你最好的Among Us原版輔助插件。**
+**FinalSuspect_Xtreme，Among Us 的最佳原版插件。**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licences">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="LatestTag">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Downloads">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Watchers">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Stars">
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="許可證">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="最新標籤">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="下載次數">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="關注者">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="星標">
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[English](README.md) [簡體中文]
-
-[FSX官方網站](https://fsusx.top.cc) | [XtremeWave官方網站](https://www.xtreme.net.cn)
+[FSX 官方網站](https://fsusx.top.cc) | [XtremeWave 官方網站](https://www.xtreme.net.cn)
 
 </div>
 
-## 須知
-本插件不隸屬於 Among Us 或 Innersloth LLC，其包含的內容也未得到 Innersloth LLC 的認可或以其他方式贊助。<br>
-此處包含的部分材料是 Innersloth LLC 的財產。
+## 語言
+***此插件支援 Among Us 所支援的所有語言！***<br>
+[English](README.md) <br>
+[Latam](README_es_LA.md)<br>
+[Brasileiro](README_pt_BR.md)<br>
+[Português](README_pt.md)<br>
+[한국어](README_ko.md)<br>
+[Русский](README_ru.md)<br>
+[Nederlands](README_nl.md)<br>
+[Filipino](README_tl.md)<br>
+[Français](README_fr.md)<br>
+[Deutsch](README_de.md)<br>
+[Italiano](README_it.md)<br>
+[日本語](README_ja.md)<br>
+[Español](README_es.md)<br>
+[简体中文](README_zh.md)<br>
+[繁體中文]<br>
+[Gaeilge](README_ga.md)<br>
+
+## 注意事項
+此插件並未隸屬於 Among Us 或 Innersloth LLC，所包含的內容也未經 Innersloth LLC 認可或贊助。<br>
+此處部分資料為 Innersloth LLC 的財產。
 
 ### 貢獻者
- - [KARPED1EM](https://github.com/KARPED1EM) - **技術支持**
- - [Yu(原名：Night)](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc)開發者**
- - [Amongus](https://github.com/XiezibanWrite) - **翻譯與技術支持**
- - [NikoCat233](https://github.com/NikoCat233) - **技術支持**
- - [Farewell](https://github.com/ksduye) - **諮詢支持**
- - [LezaiYa](https://github.com/LezaiYa1) - **諮詢支持**
- - [Imp11](https://github.com/dabao40) - **諮詢支持**
- - [FangKuai](https://github.com/FangKuaiYa) - **諮詢支持**
+ - [KARPED1EM](https://github.com/KARPED1EM) - **技術支援**
+ - [Yu（原名：Night）](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc) 開發者**
+ - [Amongus](https://github.com/XiezibanWrite) - **翻譯與技術支援**
+ - [NikoCat233](https://github.com/NikoCat233) - **技術支援**
+ - [Farewell](https://github.com/ksduye) - **諮詢支援**
+ - [LezaiYa](https://github.com/LezaiYa1) - **諮詢支援**
+ - [Imp11](https://github.com/dabao40) - **諮詢支援**
+ - [FangKuai](https://github.com/FangKuaiYa) - **諮詢支援**
 
 ## 星標歷史
-[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+[![星標歷史圖表](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)

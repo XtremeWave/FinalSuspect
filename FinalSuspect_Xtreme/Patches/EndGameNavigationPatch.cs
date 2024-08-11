@@ -3,7 +3,7 @@
 namespace FinalSuspect_Xtreme;
 
 [HarmonyPatch]
-public class EngGamePatch
+public class EndGameNavigationPatch
 {
     [HarmonyPatch(typeof(EndGameNavigation), nameof(EndGameNavigation.ShowDefaultNavigation)), HarmonyPostfix]
     public static void ShowDefaultNavigation_Postfix(EndGameNavigation __instance)

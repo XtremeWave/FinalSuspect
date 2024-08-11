@@ -8,7 +8,7 @@ namespace FinalSuspect_Xtreme.Patches;
 [HarmonyPatch(typeof(ChatBubble))]
 public static class ChatBubblePatch
 {
-
+    // ¡È∏–¿¥‘¥£∫YAC
     [HarmonyPatch(nameof(ChatBubble.SetName)), HarmonyPostfix]
     public static void SetName_Postfix(ChatBubble __instance)
     {

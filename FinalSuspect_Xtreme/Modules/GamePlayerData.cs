@@ -1,13 +1,14 @@
 ﻿using AmongUs.GameOptions;
 using FinalSuspect_Xtreme.Attributes;
 using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static UnityEngine.GraphicsBuffer;
 
 namespace FinalSuspect_Xtreme;
 
-public class GamePlayerData
+public class GamePlayerData : IDisposable
 {
     ///////////////PLAYER_INFO\\\\\\\\\\\\\\\
     public static Dictionary<byte, GamePlayerData> AllGamePlayerData;
@@ -27,7 +28,7 @@ public class GamePlayerData
     public RoleTypes? RoleAfterDeath { get; private set; }
     public bool RoleAssgined { get; private set; }
 
-    public DataDeathReason MyDeathReason { get; private set; }
+    public DataDeathReason RealDeathReason { get; private set; }
     public GamePlayerData RealKiller { get; private set; }
 
     public int TotalTaskCount { get; private set; }
@@ -39,7 +40,7 @@ public class GamePlayerData
             return TotalTaskCount == CompleteTaskCount;
         }
     }
-    public int KillCount { get; set; } = 0;
+    public int KillCount { get; private set; }
 
     ///////////////\\\\\\\\\\\\\\\
 
@@ -51,17 +52,10 @@ public class GamePlayerData
         Player = player;
         PlayerName = playername;
         PlayerColor = colorId;
-        IsImpostor = false;
-        IsDead = false;
-        Exiled = false;
-        Murdered = false;
-        IsDisconnected = false;
-        RoleAssgined = false;
-        CompleteTaskCount = 0;
-        TotalTaskCount = 0;
-        MyDeathReason = DataDeathReason.None;
+        IsImpostor = IsDead = Exiled = Murdered = IsDisconnected = RoleAssgined = false;
+        CompleteTaskCount = KillCount = TotalTaskCount = 0;
+        RealDeathReason = DataDeathReason.None;
         RealKiller = null;
-        KillCount = 0;
     }
 
     [GameModuleInitializer]
@@ -106,13 +100,12 @@ public class GamePlayerData
             RoleWhenAlive = role;
         else
             RoleAfterDeath = role;
-
         RoleAssgined = true;
     }
     public void SetDeathReason(DataDeathReason deathReason, bool focus = false)
     {
-        if (MyDeathReason == DataDeathReason.None || focus)
-            MyDeathReason = deathReason;
+        if (RealDeathReason == DataDeathReason.None || focus)
+            RealDeathReason = deathReason;
     }
     public void SetRealKiller(GamePlayerData killer)
     {
@@ -124,7 +117,13 @@ public class GamePlayerData
     public void CompleteTask() => CompleteTaskCount++;
 
 
-
+#pragma warning disable CA1816
+    public void Dispose()
+    {
+        AllGamePlayerData.Remove(Player.PlayerId);
+        Player = null;
+    }
+#pragma warning restore CA1816
 }
 static class PlayerControlDataExtensions
 {
@@ -141,7 +140,6 @@ static class PlayerControlDataExtensions
     public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
     {
         pc.GetPlayerData().SetRealKiller(killer.GetPlayerData());
-
     }
 
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetPlayerData().SetTaskTotalCount(TaskTotalCount);
@@ -180,8 +178,8 @@ internal class DataFixedUpdate
     static void DeathReasonSync(PlayerControl pc)
     {
         var data = pc.GetPlayerData();
-        if (data.Exiled && data.MyDeathReason != DataDeathReason.Exile) pc.SetDeathReason(DataDeathReason.Exile, true);
-        if (data.Murdered && data.MyDeathReason != DataDeathReason.Kill) pc.SetDeathReason(DataDeathReason.Kill, true);
+        if (data.Exiled && data.RealDeathReason != DataDeathReason.Exile) pc.SetDeathReason(DataDeathReason.Exile, true);
+        if (data.Murdered && data.RealDeathReason != DataDeathReason.Kill) pc.SetDeathReason(DataDeathReason.Kill, true);
 
 
     }

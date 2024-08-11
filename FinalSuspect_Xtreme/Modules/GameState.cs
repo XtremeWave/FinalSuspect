@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FinalSuspect_Xtreme.Attributes;
+using FinalSuspect_Xtreme.Patches;
 
 namespace FinalSuspect_Xtreme;
 public class PlayerVersion
@@ -42,6 +43,7 @@ public static class GameStates
     public static bool IsShip => ShipStatus.Instance != null;
     public static bool IsCanMove => PlayerControl.LocalPlayer?.CanMove is true;
     public static bool IsDead => PlayerControl.LocalPlayer?.Data?.IsDead is true;
+    public static bool IsStandardMode => SwitchGameModePatch.HnSMode is false;
     public static bool IsVanillaServer
     {
         get
@@ -54,13 +56,4 @@ public static class GameStates
                    regionInfo.Servers.All(serverInfo => serverInfo.Ip.EndsWith(Domain, StringComparison.Ordinal));
         }
     }
-}
-public static class MeetingStates
-{
-    public static DeadBody[] DeadBodies = null;
-    public static NetworkedPlayerInfo ReportTarget = null;
-    public static bool IsEmergencyMeeting => ReportTarget == null;
-    public static bool IsExistDeadBody => DeadBodies.Length > 0;
-    public static bool MeetingCalled = false;
-    public static bool FirstMeeting = true;
 }
