@@ -1,6 +1,6 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
-using System.Drawing;
+//using System.Drawing;
 using UnityEngine;
 
 namespace FinalSuspect_Xtreme.Patches;
@@ -8,7 +8,8 @@ namespace FinalSuspect_Xtreme.Patches;
 [HarmonyPatch(typeof(ChatBubble))]
 public static class ChatBubblePatch
 {
-    // 灵感来源：YAC
+    private static bool IsModdedMsg(string name) => name.EndsWith('\0');
+
     [HarmonyPatch(nameof(ChatBubble.SetName)), HarmonyPostfix]
     public static void SetName_Postfix(ChatBubble __instance)
     {
@@ -48,10 +49,20 @@ public static class ChatBubblePatch
         }
         
     }
+    // 灵感来源：YAC
+
     [HarmonyPatch(nameof(ChatBubble.SetText)), HarmonyPrefix]
     public static void SetText_Prefix(ChatBubble __instance, ref string chatText)
     {
+        bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
         var sr = __instance.transform.FindChild("Background").GetComponent<SpriteRenderer>();
+        if (modded)
+        {
+            sr.color = Color.black;
+            chatText = Utils.ColorString(Color.white, chatText.TrimEnd('\0'));
+            __instance.SetLeft();
+            return;
+        }
         if (Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive())
             sr.color = Main.ModColor32_semi_transparent;
         else

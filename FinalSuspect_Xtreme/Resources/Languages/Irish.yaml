@@ -1,0 +1,282 @@
+﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+
+# 当前翻译文件语言的ID / Language ID of current file
+LangID: "15"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "Impostóirí"
+TypeCrewmate: "Comhoibritheoirí"
+
+# 阵营 / Teams
+TeamImpostor: "Team-Impostor"
+TeamImpostorOnly: "Impostor"
+TeamCrewmate: "Team-Crewmate"
+
+# 内鬼数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>Tá {0} Impostóirí inár dTeam</color>"
+ImpostorNumImpOnly: "<color=#ff1919>Tá laige amháin Impostor sa slua</color>"
+ImpostorNumCrew: "<color=#8cffff>Tá </color><color=#ff1919>{0}</color><color=#8cffff> Impostóirí inár measc</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>Lig don olc an domhan a ghlacadh!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>Is féidir liom a bheith i m'aonar, ach tá neart neamhiontaofa agam!</color>"
+CrewmateIntroText: "<color=#8cffff>Críochnaigh do chuid tascanna, comhoibrigh chun na críochnaigh a réiteach!</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "Comhoibrí"
+Engineer: "Innealtóir"
+Scientist: "Eolaí"
+Tracker: "Saoiteoir"
+Noisemaker: "Tuarascóir"
+GuardianAngel: "Aingeal Caomhnóra"
+Impostor: "Impostor"
+Shapeshifter: "Athrúchóir"
+Phantom: "Pantom"
+CrewmateGhost: "Spiorad Comhoibritheora"
+ImpostorGhost: "Spiorad Impostor"
+CrewmateGhostBlurb: "Críochnaigh do thascanna"
+ImpostorGhostBlurb: "Lean ort ag cur isteach ar na háiseanna"
+CrewmateGhostBlurbLong: "Críochnaigh tascanna, ná déan mhoill!"
+ImpostorGhostBlurbLong: "Cur isteach ar na háiseanna, cabhraigh le Impostóirí atá beo chun bua a bhaint amach."
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "Mar atá tú beo go dtí deireadh!"
+HnSEngineerBlurbLong: "Fan beo go dtí go críochnaíonn an t-am; beidh tascanna a chríochnú ag síneadh an ama. \nÚsáid vents agus comhoibritheoirí comhoibríochta chun iompú! \nNuair a thosaíonn an t-am, tosóidh an Impostor ag fiach ort!"
+HnSImpostorBlurb: "Scrios gach duine!"
+HnSImpostorBlurbLong: "Maraigh gach comhoibrí laistigh den am teoranta! \nCaithfidh tú gníomhú go tapa! Níl vents ar fáil. \nAg an nóiméad deireanach, gheobhaidh tú luas ardaithe agus comhoibritheoirí comhoibritheoirí!"
+HnSCrewmateGhostBlurb: "Tacaigh le do chomhghleacaithe"
+HnSCrewmateGhostBlurbLong: "Téigh! Tacaigh! Le haghaidh! Do! Chomhghleacaithe!"
+
+# 死因 / Death Reason
+DeathReason.Kill: "Maraithe"
+DeathReason.Exile: "Éalaigh"
+DeathReason.Disconnect: "Ceangaltán Briste"
+
+# 客户端选项 / Client Options
+FinalSuspect_XtremeOptions: "Roghanna FinalSuspect_Xtreme"
+Back: "Ar ais"
+Yes: "Sea"
+No: "Níl"
+UnloadMod: "Athraigh go Vanilla"
+UnloadWarning: "<color=#ffff00><size=200%>Rabhadh</size></color>\nChun an mod a athghníomhachtú, ní mór duit an cluiche a atosú.\nAr mhaith leat leanúint ar aghaidh ar aon chuma?"
+CannotUnloadDuringGame: "Ní féidir athrú go vanilla laistigh den chluiche"
+Cancel: "Cealaigh"
+Unload: "Maidir"
+DumpLog: "Eisiúint Log"
+UnlockFPS: "Díghlasáil FPS"
+KickPlayerFriendCodeNotExist: "Bain na imreoirí nach bhfuil logáilte isteach."
+ApplyDenyNameList: "Bain na himreoirí atá ag úsáid ainmneacha neamhleor"
+ApplyBanList: "Bain na himreoirí atá coscánach"
+VersionCheat: "Téigh thart ar Sheiceáil Comhoiriúnachta Mod"
+GodMode: "Modh Dia"
+NoAprilFoolsMode: "Modh Bean Clasaiceach"
+LongMode: "Modh fada Aibreán Fools"
+HorseMode: "Modh Con Aibreán Fools"
+AutoStartGame: "Tosaigh go huathoibríoch ag Líon comhoiriúnach"
+AutoEndGame: "Téigh ar ais go Lobby ag Críoch"
+SwitchVanilla: "Athraigh go Vanilla"
+FastBoot: "Boot Tapa"
+EnableRoleBackGround: "Cumas Intro Cúlra Saincheaptha"
+EnableMapBackGround: "Cumas Dath Map Saincheaptha"
+DisableVanillaSound: "Díghníomhachtú Ceol Among Us"
+FinalSuspect_XtremeFeatures: "Gnéithe Final Suspect"
+SoundOptions: "Mo Cheolta"
+SoundManagerOptions: "Bainistíocht Tionachta"
+ChangeOutfit: "Athraigh Gúna"
+OnlyAvailableInMainMenu: "Ar fáil amháin i Main Menu"
+
+# 提示 / Tips
+updatePleaseWait: "Téigh i dtaithí..."
+updateInProgress: "Nuashonrú ar siúl..."
+downloadInProgress: "Á íoslódáil..."
+Playing: "Ag imirt..."
+downloadSucceed: "Rathúil íoslódáil!"
+downloadFailure: "Theip ar íoslódáil =("
+PleaseWait: "Téigh i dtaithí..."
+
+# 更新检查
+Retry: "Athróidh"
+updateCheckPopupTitle: "Seiceáil Nuashonruithe"
+updateCheckFailedRetry: "Theip ar sheiceáil nuashonruithe :(\nAthróidh?"
+updateCheckFailedExit: "Theip ar sheiceáil nuashonruithe :(\nSeiceáil do cheangal líonra agus iarracht a dhéanamh arís."
+
+# 更新提醒 / Update reminder
+UpdateBySelfTitle: "Rabhadh Nuashonraithe"
+updateNotice: "Rabhadh Nuashonraithe"
+UpdateBySelfText: "Ní thacaíonn an leagan seo le nuashonruithe laige. Déan nuashonrú go lámhleabhar."
+updateButton: "Nuashonraigh Anois"
+updatePopupTitle: "Nuashonraigh Anois"
+updatePopupTitleFialed: "Theip ar Nuashonrú"
+updatePopupTitleDone: "Nuashonrú Comhlíonta"
+
+# 选择更新渠道 / update Chose Source
+updateChoseSource: "Roghnaigh foinsí nuashonraithe\nMá tá tú neamhchinnte, roghnaigh cibé [Gitee (moltar do China)] nó [Láithreán Oifigiúil (is féidir go mbeidh sé níos fearr ná Gitee)]"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.Website: "Láithreán Oifigiúil"
+
+# 更新结束提示 / Update completion prompts
+updateRestart: "Aththosaigh an cluiche chun athruithe a chur i bhfeidhm :)"
+updatePingFialed: "Cúis: {0}\nB'fhéidir go bhfuil an cainéal roghnaithe neamh-inmhianaithe ar feadh tamaill. Déan iarracht athrú ar choinníollacha íoslódála."
+updateFileMd5Incorrect: "Cúis: Earráid i gcruthán comhoiriúnachta\nNí ísleofar an leagan comhoiriúnach ón gcainéal seo. Déan iarracht athrú ar choinníollacha íoslódála."
+downloadFailed: "Cúis: Éirí as íoslódáil nó stopadh\nDéanaigh iarracht arís tar éis an líonra a athrú nó nuashonrú go lámhleabhar."
+
+# 无法加入公开游戏原因 / Unable to join public game reasons
+onSetPublicNoLatest: "Tá nuashonrú tábhachtach againn. Le do thoil, nuashonraigh an mod seo.\nMura ndéanann tú, ní féidir leat seomraí poiblí a bheith i láthair."
+CanNotJoinPublicRoomNoLatest: "Tá nuashonrú tábhachtach againn. Le do thoil, nuashonraigh an mod seo.\nMura ndéanann tú, ní féidir leat seomraí poiblí a bheith i láthair."
+ModBrokenMessage: "Tá comhoiriúnachtaí mod briste. Le do thoil, atosigh an cluiche nó athshocraigh an mod seo."
+UnsupportedVersion: "Tá do leagan Among Us neamhchomhoiriúnach le FinalSuspect_Xtreme.\nLe do thoil, nuashonraigh do chluiche."
+
+# Audio playback
+PlayMode0: "Seinn Uair amháin"
+PlayMode1: "Athraigh Aonair"
+PlayMode2: "Crónán"
+PlayMode3: "Sraith"
+Stop: "Stop"
+CanPlay: "← Cliceáil le hImirt"
+NoFound: "[Comhábhar Duine]"
+NextPage: "Leathanach Conradh"
+PreviousPage: "Leathanach Roimhe"
+
+# 音频添加 / Audio addition
+download: "Íoslódáil"
+delete: "Scrios"
+NewSound: "Cuir Ceol Nua"
+PleaseEnterMusic: "Cuir isteach ainm na ceol"
+SoundManagerAlreadyExists: "Tá an t-ainm ceoil seo cheana féin"
+NotAllowedMusic: "Níl formáid ainm ceoil ceadaithe"
+
+# 界面提示 / Interface tips
+CustomSoundManagerHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Nuair a chuirtear do cheol féin, tabhair faoi deara go gcuirfidh tú ainm an cheoil i 'Bainistíocht Tionachta' agus cuirfidh tú an comhoiriúnacht comhoiriúnach sa 'Among Us/FinalSuspect_Data/Sounds' comhoiriúnacht (formáidí tacaíocht: .wav). Is féidir ceol a imirt i 'Mo Cheol'."
+# , .flac, .aiff, .mp3, .aac, .ogg, .m4a
+CustomSoundHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Má tá cosán comhoiriúnachta ceoil áitiúil atá ar iarraidh, beidh '[Comhábhar Duine]' le feiceáil."
+
+# 主界面音乐提醒 / Main interface music reminder
+MusicNotYet: "Tá comhoiriúnacht comhoiriúnachta ceoil reatha mar neamhcomhoiriúnach"
+AudioNYPro: "Chun taithí gaimhníochta feabhsaithe a fháil, íoslódáil ár gceaol i 'Baile - Socruithe - Tuilleadh Feidhmeanna - Bainistíocht Tionachta'"
+
+# 官方音乐
+Mus.SpringRejoicesinParallelUniverses: "Ríomhaire Éalaí in Aonaid Comhoiriúnachta -Slok7565"
+Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
+Mus.NeverGonnaGiveYouUp: "Ní rachaidh mé a thabhairt duit -Rick Astley"
+Mus.RejoiceThisSEASONRespectThisWORLD: "Laoigh go hÉagsúil SEASON Respect This WORLD -Slok7565"
+Mus.TheDomeofTruth: "An Dome na Fírinne -Slok7565"
+Mus.HopeStillExists: "Tá dóchas ann fós -Slok7565"
+Mus.HeartGuidedbyLight: "Croí Treoraithe ag Solas -Slok7565"
+Mus.unavoidable: "ní féidir a sheachaint -Slok7565"
+Mus.GuardianandDream: "Conradh agus Aisling -Slok7565"
+Mus.AFamiliarPromise: "Gealltanas Eagna -Slok7565"
+Mus.TheTruthFadesAway: "Imíonn an Fírinne -Slok7565"
+Mus.Mendax: "Mendax -Slok7565"
+Mus.MendaxsTimeForExperiment: "Am Experiment Mendax! -Slok7565"
+Mus.StarfallIntoDarkness: "Titim Réaltaí i dTuarastal -Slok7565"
+Mus.StarsFallWithDomeCrumbles: "Réaltaí a thiteann leis an Dome -Slok7565"
+
+# 信息 / Messages
+Message.KickedByDenyName: "[{0}] a cuireadh amach mar gheall ar ainm a comhoiriúnacht [{1}]"
+Message.BanedByBanList: "[{0}] a cuireadh ar liosta toirmeasc mar gheall ar cur síos ar an liosta toirmeasc."
+Message.BanedByEACList: "【{0}】 cuireadh ar liosta EAC mar gheall ar a bheith ar liosta toirmeasc."
+Message.DumpfileSaved: "Tá an comhoiriúnacht log comhoiriúnachta a shábháil go rathúil ar an deasc, ainm comhoiriúnacht: {0}"
+Message.KickedByNoFriendCode: "[{0}] a cuireadh amach mar gheall ar a gcód cairde nach bhfuil ann."
+Message.AddedPlayerToBanList: "Cuirtear [{0}] leis an liosta toirmeasc"
+Message.KickedByEAC: "[{0}] a cuireadh amach ag EAC, cúis: {1}"
+Message.BanedByEAC: "【{0}】 Cuireadh amach ag EAC, cúis:{1}"
+Message.NoticeByEAC: "[{0}] Déanadh: {1}"
+Message.WarnWhoSayBanWord: "{0} dúirt focal toirmiscthe~"
+
+# 通知 / Notifications
+PlayerLeft: "[{0}] d'fhág an cluiche"
+PlayerKickByHost: "[{0}] a cuireadh amach ag óst"
+PlayerBanByHost: "[{0}] a cuireadh ar liosta toirmeasc ag óst"
+PlayerLeftCuzError: "[{0}] d'fhág an cluiche mar gheall ar earráid"
+PlayerLeftByAU-Anticheat: "[{0}] a cuireadh amach ag cosaint anti-chlár (ní bhaineann le FinalSuspect_Xtreme)"
+KickAndriodPlayer: "【{0}】 a cuireadh amach mar gheall ar socruithe guthán"
+KickBecauseLowLevel: "[{0}] a cuireadh amach mar gheall ar leibhéal ró-íseal"
+KickBecauseDiffrentVersionOrMod: "[{0}] a cuireadh amach mar gheall ar leagan mod éagsúil"
+
+# 警告 / Warnings
+Warning: "Rabhadh!"
+Warning.MismatchedVersion: "{0}\nTéann leagan difriúil le {1}"
+Warning.AutoExitAtMismatchedVersion: "Níl leagan nó leagan difriúil ag óst {0}\nBeidh tú ar an eolas i {1}"
+Warning.InvalidRpc: "Cuireadh {0} amach mar gheall ar RPC neamhbhailí.\nLe do thoil, seiceáil go bhfuil aon mods eile seachas FinalSuspect_Xtreme suiteáilte."
+Warning.InvalidRpc_NotHost: "{0} amhras ar úsáid cheats. Le do thoil, comhairle a thabhairt don óst chun iad a chur amach <color=#ffff00>(RPC Neamhbhailí: {1})</color>"
+Warning.CantKickDev: "Tá brón orm, ní féidir leat an forbróir a chur amach"
+Warning.RoomBroken: "Tá brón orm, tá an seomra briste. Le do thoil, téigh chuig seomra eile chun do chluiche a leanúint."
+
+## 错误等级 / Error Levels
+ErrorLevel1: "D’fhéadfadh laigeanna a bheith ann."
+ErrorLevel2: "D’fhéadfadh seo a bheith mar bhotún."
+ErrorLevel3: "Níor cheart go gcuirfí an leagan seo amach."
+
+# 反作弊 / EAC
+EAC.CheatDetected.HighLevel: "Rabhadh: G detectíodh leibhéal ard cheat ag EAC."
+EAC.CheatDetected.LowLevel: "Rabhadh: G detectíodh leibhéal íseal cheat ag EAC. Tá hack amháin ag imreoirí."
+EAC.CheatDetected.EAC: "Ag úsáid clár cheat (e.g., AUM, YuMenu, SM, srl.)"
+
+# 模组信息 / Mod Infos
+Contributors: "Comhoibritheoirí"
+Acknowledgement: "Aitheantas"
+
+# 断连提示 / Disconect Reasons
+DCNotify.Hacking: "Cuireadh tú amach ag an cosaint-chlár.\n (d'fhéadfadh úsáid an mod a bheith cosúil le cheats)"
+DCNotify.Banned: "Ní cheadaítear duit dul isteach sa seomra seo"
+DCNotify.Kicked: "Cuireadh tú amach as an seomra"
+DCNotify.DCFromServer: "Tá tú tar éis scaradh ón freastalaí.\nD’fhéadfadh sé seo a bheith mar gheall ar laigeacht i do líonra.\nD’fhéadfadh sé seo a bheith mar gheall ar laigeacht sa freastalaí freisin."
+DCNotify.GameNotFound: "Ní bhfuarthas an seomra atá ceaptha, d’fhéadfadh go bhfuil an seomra briste\nnó seiceáil má tá tú tar éis seomra difriúil a roghnú ón seomra"
+DCNotify.GameStarted: "Tá an cluiche tosnaithe cheana féin, le do thoil fan go dtí go mbeidh sé críochnaithe"
+DCNotify.GameFull: "Tá an seomra lán, le do thoil déan iarracht arís níos déanaí"
+DCNotify.IncorrectVersion: "Tá do leagan de Among Us difriúil ón seomra seo"
+DCNotify.Description: "Cuireadh tú amach ón gcluiche.\nMar gheall ar: {0}"
+DCNotify.DenyName: "Tá carachtair neamhghnácha i do leasainm"
+DCNotify.BanList: "Tá tú curtha ar liosta toirmeasc ag óst"
+DCNotify.EACList: "Tá tú curtha ar liosta EAC"
+DCNotify.CheatDetected: "Tá tú faoi amhras go bhfuil tú ag úsáid cheats ag EAC"
+DCNotify.InvalidRPC: "D’fhéadfadh go bhfuil mod difriúil suiteáilte ná an óst nó d’fhéadfadh go bhfuil do mod atá coireach le modh malicious"
+DCNotify.ModVersionIncorrect: "Tá do leagan mod difriúil ón óst"
+DCNotify.LowLevel: "Ní chomhoireann do leibhéal leis an riachtanas do seomra"
+DCNotify.NotLogin: "Ní cheadaítear imreoirí nach bhfuil logáilte isteach sa seomra seo"
+
+# 任务栏 / Task Panel
+PressF1ShowRoleDescription: "Cliceáil F1 chun cur síos ar do ról a fheiceáil"
+FakeTask: "Tasc Bréige:"
+KillCount: "Maraíodh"
+
+# 复盘信息 / Last Results
+RoleSummaryText: "Torthaí Deireanacha:"
+ShowResults: "Taispeáin Torthaí Deireanacha"
+HideResults: "Folaigh Torthaí Deireanacha"
+NoInfoExists: "Níl torthaí deireanacha ar fáil"
+CrewsWin: "<color=#8cffff>Conradh na hFoireann-Crewmate</color>"
+CrewmatesWin: "Bua na Crew"
+CrewmatesWinBlurb: "Déantar éagórach a thabhairt chun cearta!"
+ImpsWin: "<color=#ff1919>Conradh na hFoireann-Impostor</color>"
+ImpostorsWin: "Bua na hImpostors"
+ImpostorsWinBlurb: "Luíonn an dorchadas ar an domhan"
+HideSummaryTextToShowWinText: "<color=#ffff00>Folaigh eolas achoimre chun an téacs bua a fheiceáil</color>"
+
+# 禁用公开 / Disable Public
+DisabledByProgram: "Tá gníomhachtaí seomraí poiblí as comhoiriúnacht ag an gclár"
+PublicNotAvailableOnThisVersion: "Ní bhíonn seomraí poiblí ar fáil ar leagan seo de FinalSuspect_Xtreme"
+
+# 主页 / Main UI
+FinalSuspect_XtremeVisitorCount: "Guímid go mbeidh <color={0}>taithí gaimhníochta sultmhar</color> agat!"
+ConnectToFinalSuspect_XtremeServerFailed: "Theip ar nasc leis an freastalaí FinalSuspect_Xtreme"
+Website: "Suíomh Oifigiúil"
+MainMenuCredential: "{0} © 2024"
+
+# 大厅列表显示 / Lobby List
+IPhone: "IPhone"
+Android: "Android"
+
+# 延迟显示 / Ping Tracker
+Ping: "Ping"
+FrameRate: "Ráta Fráma"
+Server: "Freastalaí"
+Local: "<color=#D1FA87>Áitiúil</color>"
+
+# 其他
+HongKong: "HongKong"
+FPSSetTo: "Tosaíonn ráta fráma: {0}"

@@ -72,3 +72,14 @@ internal class ChatCommands
         return true;
     }
 }
+[HarmonyPatch(typeof(ChatController), nameof(ChatController.AddChat))]
+internal class ChatAdd
+{
+    public static void Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer, [HarmonyArgument(1)] string chatText)
+    {
+
+        SpamManager.CheckSpam(sourcePlayer, ref chatText);
+
+    }
+}
+

@@ -21,7 +21,7 @@ public static class ServerAddManager
         
         serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos = new();
-    //    regionInfos.Add(CreateHttp("154.21.201.164", $"XtremeWave[{Translator.GetString("HongKong")}]", 22023, false));
+        regionInfos.Add(CreateHttp("154.21.201.164", $"XtremeWave[{Translator.GetString("HongKong")}]", 22023, false));
         regionInfos.Add(CreateHttp("au-us.niko233.me", "Niko233[NA_US]", 443, true));
         regionInfos.Add(CreateHttp("au-us2.niko233.me", "Niko233[NA_US2]", 443, true));
 

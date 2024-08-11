@@ -23,7 +23,6 @@ class AmongUsClientEndGamePatch
         SummaryText = new();
         foreach (var id in GamePlayerData.AllGamePlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
-        GamePlayerData.AllGamePlayerData.Values.ToArray().Do(data => data.Dispose());
 
 
     }
@@ -122,6 +121,7 @@ class SetEverythingUpPatch
                 parent: showHideButton.Button.transform);
         roleSummary.transform.localPosition = new(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+        GamePlayerData.AllGamePlayerData.Values.ToArray().Do(data => data.Dispose());
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

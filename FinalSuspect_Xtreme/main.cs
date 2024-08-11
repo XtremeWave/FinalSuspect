@@ -4,13 +4,11 @@ using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
-using BepInEx.Unity.IL2CPP.Utils.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FinalSuspect_Xtreme.Attributes;
-
 using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 
@@ -32,7 +30,6 @@ public class Main : BasePlugin
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
     public static readonly Color32 OutColor = new(180,179,231, 255);
     public static readonly Color32 ModColor32_semi_transparent = new (206, 205, 253, 160);
-    public static readonly bool AllowPublicRoom = true;
     public static readonly string ForkId = "FinalSuspect_Xtreme";
     public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
     // == 认证设定 / Authentication Config ==
@@ -93,7 +90,6 @@ public class Main : BasePlugin
     //Other Configs
     public static ConfigEntry<string> HideName { get; private set; }
     public static ConfigEntry<string> HideColor { get; private set; }
-    public static ConfigEntry<int> MessageWait { get; private set; }
     public static ConfigEntry<bool> ShowResults { get; private set; }
     public static ConfigEntry<string> WebhookURL { get; private set; }
 
@@ -101,12 +97,7 @@ public class Main : BasePlugin
     public static Dictionary<byte, string> AllPlayerNames = new();
     public static Dictionary<RoleTypes, string> roleColors;
     public static List<int> clientIdList = new();
-    public static List<(string, byte, string)> MessagesToSend = new();
 
-    /// <summary>
-    /// 基本的に速度の代入は禁止.スピードは増減で対応してください.
-    /// </summary>
-    public static Dictionary<byte, float> AllPlayerSpeed = new();
     public static string HostNickName = "";
     public static bool IsInitialRelease = DateTime.Now.Month == 2 && DateTime.Now.Day is 9;
     public static bool IsAprilFools = DateTime.Now.Month == 4 && DateTime.Now.Day is 1;
@@ -204,7 +195,6 @@ public class Main : BasePlugin
         DebugModeManager.Auth(DebugKeyAuth, DebugKeyInput.Value);
 
         WebhookURL = Config.Bind("Other", "WebhookURL", "none");
-        MessageWait = Config.Bind("Other", "MessageWait", 1);
 
         hasArgumentException = false;
         ExceptionMessage = "";

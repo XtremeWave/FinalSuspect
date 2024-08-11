@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
+using Mono.Cecil.Mdb;
 namespace FinalSuspect_Xtreme;
 
 public enum CustomRPC
@@ -39,6 +40,33 @@ internal class RPCHandlerPatch
 
         Logger.Info($"{__instance?.Data?.PlayerId}({(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : __instance?.Data?.PlayerName)}):{callId}({RPC.GetRpcName(callId)})", "ReceiveRPC");
 
+        var rpcType = (RpcCalls)callId;
+        MessageReader subReader = MessageReader.Get(reader);
+
+        switch (rpcType)
+        {
+            case RpcCalls.SetName: //SetNameRPC
+                subReader.ReadUInt32();
+                string name = subReader.ReadString();
+                Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
+                break;
+            case RpcCalls.SetRole: //SetRoleRPC
+                var role = (RoleTypes)subReader.ReadUInt16();
+                var canOverriddenRole = subReader.ReadBoolean();
+                Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
+                break;
+            case RpcCalls.SendChat: // Free chat
+                var text = subReader.ReadString();
+                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
+                break;
+            case RpcCalls.SendQuickChat:
+                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
+                break;
+            case RpcCalls.StartMeeting:
+                var p = Utils.GetPlayerById(subReader.ReadByte());
+                Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
+                break;
+        }
 
         if (__instance.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !TrustedRpc(callId))
         {

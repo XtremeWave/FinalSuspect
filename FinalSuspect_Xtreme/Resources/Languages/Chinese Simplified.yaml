@@ -185,6 +185,7 @@ Message.AddedPlayerToBanList: "【{0}】被添加至黑名单"
 Message.KickedByEAC: "【{0}】被EAC踢出，理由：{1}"
 Message.BanedByEAC: "【{0}】被EAC封禁，理由：{1}"
 Message.NoticeByEAC: "检测到【{0}】：{1}"
+Message.WarnWhoSayBanWord: "【{0}】说了违禁词~"
 
 # 通知 / Notifications
 PlayerLeft: "【{0}】离开了游戏"
@@ -277,5 +278,5 @@ Server: "服务器"
 Local: "<color=#D1FA87>本地</color>"
 
 # 其他
-HongKong: 香港
+HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"

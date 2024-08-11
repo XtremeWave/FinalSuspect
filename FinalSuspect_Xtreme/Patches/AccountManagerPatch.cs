@@ -1,8 +1,5 @@
 ﻿using HarmonyLib;
-using TMPro;
 using UnityEngine;
-
-using static FinalSuspect_Xtreme.Translator;
 
 namespace FinalSuspect_Xtreme;
 

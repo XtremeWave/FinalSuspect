@@ -13,7 +13,7 @@ Mod! Vanilla? New optimizations!
 
 ## Summary of Updates
 - Fixes: 7
-- Optimizations: 6
+- Optimizations: 7
 - Changes: 3
 - Additions: 8
 - Remakes: 1
@@ -48,13 +48,15 @@ Optimized by: Slok
 Optimized by: Slok
 - Optimized main menu button colors.
 Optimized by: Slok
+- Optimized win text
+Optimized by: Slok
 
 ## Changes
 - Removed language information from in-game update announcements.
 Changed by: Slok
 - Moved main menu module information to a new location.
 Changed by: Slok
-- Victory status will not be displayed when showing the last summary now."
+- Victory status will not be displayed when showing the last results now."
 Changed by: Slok
 
 ## Additions
@@ -72,7 +74,7 @@ Produced by: Niko, Slok
 Produced by: Niko, Slok
 - Haunt now displays opponent's role and name colors based on their role.
 Produced by: Slok
-- The last summaey now show the kill count, deathreason, task count and the murderer
+- The last results now show the kill count, deathreason, task count and the murderer
 Produced by: Slok
 
 ## Remake

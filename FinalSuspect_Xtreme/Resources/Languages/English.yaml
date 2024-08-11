@@ -42,6 +42,14 @@ ImpostorGhostBlurb: "Continue sabotaging facilities"
 CrewmateGhostBlurbLong: "Complete tasks, don't lag behind!"
 ImpostorGhostBlurbLong: "Sabotage facilities, assist surviving impostors in achieving victory."
 
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "Survive until the end!"
+HnSEngineerBlurbLong: "Stay alive until time runs out; completing tasks will extend the time. \nUse vents and threat indicators to hide! \nOnce the timer starts, the Impostor will begin hunting you!"
+HnSImpostorBlurb: "Eliminate everyone!"
+HnSImpostorBlurbLong: "Kill all crew members within the time limit! \nYou must act quickly! Vents are not accessible. \nAt the last moment, you'll receive a speed boost and tracking hints!"
+HnSCrewmateGhostBlurb: "Cheer on your teammates"
+HnSCrewmateGhostBlurbLong: "Go! Cheer! For! Your! Teammates!"
+
 # 死因 / Death Reason
 DeathReason.Kill: "Killed"
 DeathReason.Exile: "Exiled"
@@ -177,6 +185,7 @@ Message.AddedPlayerToBanList: "Added [{0}] to the ban list"
 Message.KickedByEAC: "[{0}]Kicked by EAC, reason: {1}"
 Message.BanedByEAC: "【{0}】Kicked by EAC, reason:{1}"
 Message.NoticeByEAC: "[{0}] Detected: {1}"
+Message.WarnWhoSayBanWord: "{0} said a banned word~"
 
 # 通知 / Notifications
 PlayerLeft: "[{0}] left the game"
@@ -205,7 +214,7 @@ ErrorLevel3: "This version shouldn't have been released."
 # 反作弊 / EAC
 EAC.CheatDetected.HighLevel: "Warning: EAC detected High Level of cheats."
 EAC.CheatDetected.LowLevel: "Warning: EAC detected Low Level of cheats. One of the players is hacking."
-
+EAC.CheatDetected.EAC: "Using cheat programs (e.g., AUM, YuMenu, SM, etc.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Contributors"
@@ -240,8 +249,13 @@ RoleSummaryText: "Last Results:"
 ShowResults: "Show Last Results"
 HideResults: "Hide Last Results"
 NoInfoExists: "No last results available"
-CrewsWin: "<color=8cffff>Crewmates Win</color>"
-ImpsWin: "<color=ff1919>Impostors Win</color>"
+CrewsWin: "<color=#8cffff>Team-Crewmate Win</color>"
+CrewmatesWin: "Crewmates Win"
+CrewmatesWinBlurb: "Evil will always be brought to justice!"
+ImpsWin: "<color=#ff1919>Team-Impostor Win</color>"
+ImpostorsWin: "Impostors Win"
+ImpostorsWinBlurb: "Darkness envelops the world"
+HideSummaryTextToShowWinText: "<color=#ffff00>Hide recap information to view victory text</color>"
 
 # 禁用公开
 DisabledByProgram: "Public room operations have been disabled by the program"
@@ -264,5 +278,5 @@ Server: "Server"
 Local: "<color=#D1FA87>Local</color>"
 
 # 其他
-HongKong: HongKong
+HongKong: "HongKong"
 FPSSetTo: "Frame rate cap set to: {0}"

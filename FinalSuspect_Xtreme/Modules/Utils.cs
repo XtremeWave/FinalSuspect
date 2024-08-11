@@ -227,7 +227,6 @@ public static class Utils
     {
         if (!AmongUsClient.Instance.AmHost) return;
         var player = PlayerControl.LocalPlayer;
-        if (title == "") title = "<color=#aaaaff>" + GetString("DefaultSystemMessageTitle") + "</color>";
         var name = player.Data.PlayerName;
         player.SetName(title + '\0');
         DestroyableSingleton<HudManager>.Instance?.Chat?.AddChat(player, text);

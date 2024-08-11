@@ -1,0 +1,282 @@
+#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+
+#当前翻译文件语言的ID / Language ID of current file
+LangID: "4"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "임포스터"
+TypeCrewmate: "크루메이트"
+
+# 阵营 / Teams
+TeamImpostor: "팀-임포스터"
+TeamImpostorOnly: "임포스터"
+TeamCrewmate: "팀-크루메이트"
+
+# 内鬼数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>우리 팀에 {0}명의 임포스터가 있습니다</color>"
+ImpostorNumImpOnly: "<color=#ff1919>군중 속에 1명의 임포스터만 있습니다</color>"
+ImpostorNumCrew: "<color=#8cffff>우리 중에 </color><color=#ff1919>{0}</color><color=#8cffff>명의 임포스터가 있습니다</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>악의가 세상을 감싸다!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>혼자일 수도 있지만, 무한한 힘을 가지고 있습니다!</color>"
+CrewmateIntroText: "<color=#8cffff>작업을 완료하고, 문제를 해결하기 위해 단결하라!</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "크루메이트"
+Engineer: "엔지니어"
+Scientist: "과학자"
+Tracker: "추적자"
+Noisemaker: "소음 제조기"
+GuardianAngel: "가디언 엔젤"
+Impostor: "임포스터"
+Shapeshifter: "변신자"
+Phantom: "팬텀"
+CrewmateGhost: "크루메이트 유령"
+ImpostorGhost: "임포스터 유령"
+CrewmateGhostBlurb: "작업을 완료하세요"
+ImpostorGhostBlurb: "시설을 방해하세요"
+CrewmateGhostBlurbLong: "작업을 완료하고 뒤처지지 마세요!"
+ImpostorGhostBlurbLong: "시설을 방해하고 생존하는 임포스터를 도와 승리하세요."
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "끝까지 생존하세요!"
+HnSEngineerBlurbLong: "시간이 다 될 때까지 살아남으세요; 작업을 완료하면 시간이 연장됩니다. \n통로와 위협 표시기를 사용하여 숨으세요! \n타이머가 시작되면, 임포스터가 사냥을 시작합니다!"
+HnSImpostorBlurb: "모두를 제거하세요!"
+HnSImpostorBlurbLong: "시간 제한 내에 모든 크루 멤버를 제거하세요! \n신속하게 행동해야 합니다! 통로는 접근할 수 없습니다. \n마지막 순간에는 속도 증가와 추적 힌트를 받습니다!"
+HnSCrewmateGhostBlurb: "팀원을 응원하세요"
+HnSCrewmateGhostBlurbLong: "가자! 응원! 팀원을 위해!"
+
+# 死因 / Death Reason
+DeathReason.Kill: "사망"
+DeathReason.Exile: "추방"
+DeathReason.Disconnect: "연결 끊김"
+
+# 客户端选项 / Client Options
+FinalSuspect_XtremeOptions: "FinalSuspect_Xtreme 옵션"
+Back: "뒤로"
+Yes: "예"
+No: "아니오"
+UnloadMod: "기본 모드로 전환"
+UnloadWarning: "<color=#ffff00><size=200%>경고</size></color>\n모드를 다시 활성화하려면 게임을 재시작해야 합니다.\n계속하시겠습니까?"
+CannotUnloadDuringGame: "게임 중에는 기본 모드로 전환할 수 없습니다"
+Cancel: "취소"
+Unload: "언로드"
+DumpLog: "로그 출력"
+UnlockFPS: "FPS 잠금 해제"
+KickPlayerFriendCodeNotExist: "로그인하지 않은 플레이어 추방"
+ApplyDenyNameList: "부적절한 닉네임을 사용하는 플레이어 추방"
+ApplyBanList: "금지된 플레이어 추방"
+VersionCheat: "모드 버전 동기화 검사 우회"
+GodMode: "갓 모드"
+NoAprilFoolsMode: "클래식 빈 모드"
+LongMode: "4월 바보 긴 모드"
+HorseMode: "4월 바보 말 모드"
+AutoStartGame: "풀 로비에서 자동 시작"
+AutoEndGame: "게임 종료 후 자동 로비 복귀"
+SwitchVanilla: "기본 모드로 전환"
+FastBoot: "빠른 부팅"
+EnableRoleBackGround: "커스텀 소개 배경 활성화"
+EnableMapBackGround: "커스텀 맵 색상 활성화"
+DisableVanillaSound: "Among U의 음악 비활성화"
+FinalSuspect_XtremeFeatures: "Final Suspect 기능"
+SoundOptions: "내 음악"
+SoundManagerOptions: "오디오 관리"
+ChangeOutfit: "복장 변경"
+OnlyAvailableInMainMenu: "메인 메뉴에서만 사용 가능"
+
+# 提示 / Tips
+updatePleaseWait: "잠시만 기다려 주세요..."
+updateInProgress: "업데이트 진행 중..."
+downloadInProgress: "다운로드 중..."
+Playing: "재생 중..."
+downloadSucceed: "다운로드 성공!"
+downloadFailure: "다운로드 실패 =("
+PleaseWait: "잠시만 기다려 주세요..."
+
+# 更新检查
+Retry: "재시도"
+updateCheckPopupTitle: "업데이트 확인"
+updateCheckFailedRetry: "업데이트 확인 실패 :(\n재시도 하시겠습니까?"
+updateCheckFailedExit: "업데이트 확인 실패 :(\n네트워크 연결을 확인하고 다시 시도해 주세요."
+
+# 更新提醒 / Update reminder
+UpdateBySelfTitle: "업데이트 알림"
+updateNotice: "업데이트 알림"
+UpdateBySelfText: "이 버전은 원클릭 업데이트를 지원하지 않습니다. 수동으로 업데이트 해주세요."
+updateButton: "지금 업데이트"
+updatePopupTitle: "업데이트 지금"
+updatePopupTitleFialed: "업데이트 실패"
+updatePopupTitleDone: "업데이트 완료"
+
+# 选择更新渠道 / update Chose Source
+updateChoseSource: "업데이트 소스를 선택해 주세요\n모르시면 [Gitee (중국 추천)] 또는 [공식 웹사이트 (Gitee보다 좋을 수 있음)]를 선택하세요"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.Website: "공식 웹사이트"
+
+# 更新结束提示 / Update completion prompts
+updateRestart: "변경 사항을 적용하려면 게임을 재시작하세요 :)"
+updatePingFialed: "이유: {0}\n선택한 채널이 일시적으로 사용할 수 없을 수 있습니다. 다운로드 채널을 변경해 보세요."
+updateFileMd5Incorrect: "이유: 파일 체크섬 오류\n이 채널의 파일 버전이 최신이 아닙니다. 다운로드 채널을 변경해 보세요."
+downloadFailed: "이유: 다운로드 시간 초과 또는 중단\n네트워크를 변경한 후 다시 시도하거나 수동으로 업데이트 해주세요."
+
+# 无法加入公开游戏原因 / Unable to join public game reasons
+onSetPublicNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트 해주세요.\n그렇지 않으면 공개 방에 참여할 수 없습니다."
+CanNotJoinPublicRoomNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트 해주세요.\n그렇지 않으면 공개 방에 참여할 수 없습니다."
+ModBrokenMessage: "모드 파일이 손상되었습니다. 게임을 재시작하거나 이 모드를 다시 설치하세요."
+UnsupportedVersion: "당신의 Among Us 버전이 FinalSuspect_Xtreme와 호환되지 않습니다.\n게임을 업데이트 해주세요."
+
+# Audio playback
+PlayMode0: "한 번 재생"
+PlayMode1: "단일 반복"
+PlayMode2: "셔플"
+PlayMode3: "순차 재생"
+Stop: "중지"
+CanPlay: "← 클릭하여 재생"
+NoFound: "[파일 없음]"
+NextPage: "다음 페이지"
+PreviousPage: "이전 페이지"
+
+# 音频添加 / Audio addition
+download: "다운로드"
+delete: "삭제"
+NewSound: "새 음악 추가"
+PleaseEnterMusic: "음악 이름을 입력해 주세요"
+SoundManagerAlreadyExists: "이 음악 이름은 이미 존재합니다"
+NotAllowedMusic: "음악 이름 형식이 허용되지 않습니다"
+
+# 界面提示 / Interface tips
+CustomSoundManagerHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
+# , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav)"
+CustomSoundHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 직접 음악을 추가할 수 있습니다. 로컬 음악 자원 경로가 누락된 경우 '[파일 없음]'으로 표시됩니다."
+
+# 主界面音乐提醒 / Main interface music reminder
+MusicNotYet: "현재 음악 파일이 불완전하게 감지되었습니다"
+AudioNYPro: "향상된 게임 경험을 위해 '홈-설정-더 많은 기능-오디오 관리'에서 오디오를 다운로드하세요"
+
+# 官方音乐
+Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
+Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
+Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
+Mus.HopeStillExists: "Hope Still Exists -Slok7565"
+Mus.HeartGuidedbyLight: "Heart Guided by Light -Slok7565"
+Mus.unavoidable: "unavoidable -Slok7565"
+Mus.GuardianandDream: "Guardian and Dream -Slok7565"
+Mus.AFamiliarPromise: "A Familiar Promise... -Slok7565"
+Mus.TheTruthFadesAway: "The Truth Fades Away -Slok7565"
+Mus.Mendax: "Mendax -Slok7565"
+Mus.MendaxsTimeForExperiment: "Mendax's Time For Experiment! -Slok7565"
+Mus.StarfallIntoDarkness: "Starfall Into Darkness -Slok7565"
+Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
+
+# 信息 / Messages
+Message.KickedByDenyName: "[{0}] 닉네임이 [{1}]와 일치하여 추방되었습니다."
+Message.BanedByBanList: "[{0}] 과거에 금지된 플레이어로 인해 금지되었습니다."
+Message.BanedByEACList: "【{0}】는 EAC 금지 목록에 있어 금지되었습니다."
+Message.DumpfileSaved: "로그 파일이 성공적으로 데스크탑에 저장되었습니다. 파일 이름: {0}"
+Message.KickedByNoFriendCode: "[{0}]의 친구 코드가 존재하지 않아 추방되었습니다."
+Message.AddedPlayerToBanList: "[{0}]를 금지 목록에 추가했습니다."
+Message.KickedByEAC: "[{0}] EAC에 의해 추방되었습니다. 이유: {1}"
+Message.BanedByEAC: "【{0}】 EAC에 의해 추방되었습니다. 이유: {1}"
+Message.NoticeByEAC: "[{0}] 감지됨: {1}"
+Message.WarnWhoSayBanWord: "{0}가 금지된 말을 했습니다~"
+
+# 通知 / Notifications
+PlayerLeft: "[{0}] 게임을 떠났습니다"
+PlayerKickByHost: "[{0}] 호스트에 의해 추방되었습니다"
+PlayerBanByHost: "[{0}] 호스트에 의해 금지되었습니다"
+PlayerLeftCuzError: "[{0}] 오류로 인해 게임을 떠났습니다"
+PlayerLeftByAU-Anticheat: "[{0}] AmongU의 공식 안티치트에 의해 추방되었습니다 (FinalSuspect_Xtreme와 관련 없음)"
+KickAndriodPlayer: "【{0}】는 '전화기 없음' 설정으로 인해 추방되었습니다"
+KickBecauseLowLevel: "[{0}]의 레벨이 너무 낮아서 추방되었습니다"
+KickBecauseDiffrentVersionOrMod: "[{0}]의 모드 버전이 다르거나 모드가 다른 버전이어서 추방되었습니다"
+
+# 警告 / Warnings
+Warning: "경고!"
+Warning.MismatchedVersion: "{0}\n의 {1} 버전이 다릅니다"
+Warning.AutoExitAtMismatchedVersion: "호스트의 {0} 버전이 없거나 다릅니다\n{1} 내에 추방됩니다"
+Warning.InvalidRpc: "{0}가 잘못된 RPC를 수신하여 추방되었습니다.\n호스트에게 FinalSuspect_Xtreme 외의 다른 모드가 설치되지 않았는지 확인하세요."
+Warning.InvalidRpc_NotHost: "{0}는 치트를 사용하는 것으로 의심됩니다. 호스트에게 추방할 것을 알리세요 <color=#ffff00>(잘못된 Rpc:{1})</color>"
+Warning.CantKickDev: "죄송하지만 개발자는 추방할 수 없습니다"
+Warning.RoomBroken: "죄송하지만 이 방은 파괴되었습니다. 다른 방으로 이동해 게임을 계속하세요."
+
+## 错误等级 / Error Levels
+ErrorLevel1: "버그가 발생할 수 있습니다."
+ErrorLevel2: "버그일 수 있습니다."
+ErrorLevel3: "이 버전은 출시되어서는 안됩니다."
+
+# 反作弊 / EAC
+EAC.CheatDetected.HighLevel: "경고: EAC에서 고급 치트를 감지했습니다."
+EAC.CheatDetected.LowLevel: "경고: EAC에서 저급 치트를 감지했습니다. 플레이어 중 하나가 해킹하고 있습니다."
+EAC.CheatDetected.EAC: "치트 프로그램 사용 중 (예: AUM, YuMenu, SM 등)"
+
+# 模组信息 / Mod Infos
+Contributors: "기여자"
+Acknowledgement: "감사의 말"
+
+# 断连提示 / Disconect Reasons
+DCNotify.Hacking: "치트 방지 시스템에 의해 추방되었습니다.\n (모듈 사용이 치트로 오해될 수 있습니다)"
+DCNotify.Banned: "이 방에 들어갈 수 없습니다"
+DCNotify.Kicked: "방에서 추방되었습니다"
+DCNotify.DCFromServer: "서버에서 연결이 끊겼습니다.\n 네트워크 불안정성 또는 서버 불안정성 때문일 수 있습니다."
+DCNotify.GameNotFound: "지정된 방을 찾을 수 없습니다. 방이 해산되었거나 방과 다른 서버를 선택했는지 확인하십시오."
+DCNotify.GameStarted: "게임이 이미 시작되었습니다. 게임이 끝날 때까지 기다려 주십시오."
+DCNotify.GameFull: "방이 가득 차 있습니다. 나중에 다시 시도해 주십시오."
+DCNotify.IncorrectVersion: "Among Us 버전이 이 방과 다릅니다."
+DCNotify.Description: "게임에서 추방되었습니다.\n사유: {0}"
+DCNotify.DenyName: "닉네임에 불규칙한 문자가 포함되어 있습니다"
+DCNotify.BanList: "호스트에 의해 금지되었습니다"
+DCNotify.EACList: "EAC에 의해 금지되었습니다"
+DCNotify.CheatDetected: "EAC에 의해 치트 사용이 감지되었습니다"
+DCNotify.InvalidRPC: "호스트와 다른 모드를 설치했거나 모드가 악의적으로 수정되었을 수 있습니다"
+DCNotify.ModVersionIncorrect: "모드 버전이 호스트와 다릅니다"
+DCNotify.LowLevel: "레벨이 이 방의 요구 사항을 충족하지 않습니다"
+DCNotify.NotLogin: "로그인하지 않은 플레이어는 이 방에 들어갈 수 없습니다"
+
+# 任务栏 / Task Panel
+PressF1ShowRoleDescription: "F1을 눌러 역할 설명을 보십시오"
+FakeTask: "가짜 작업:"
+KillCount: "킬 수"
+
+# 复盘信息 / Last Results
+RoleSummaryText: "지난 결과:"
+ShowResults: "지난 결과 보기"
+HideResults: "지난 결과 숨기기"
+NoInfoExists: "지난 결과가 없습니다"
+CrewsWin: "<color=#8cffff>팀-크루메이트 승리</color>"
+CrewmatesWin: "크루메이트 승리"
+CrewmatesWinBlurb: "악은 항상 정의를 받게 됩니다!"
+ImpsWin: "<color=#ff1919>팀-임포스터 승리</color>"
+ImpostorsWin: "임포스터 승리"
+ImpostorsWinBlurb: "어둠이 세상을 감쌉니다"
+HideSummaryTextToShowWinText: "<color=#ffff00>승리 문구를 보려면 요약 정보를 숨기세요</color>"
+
+# 禁用公开 / Disable Public
+DisabledByProgram: "프로그램에 의해 공개 방 작업이 비활성화되었습니다"
+PublicNotAvailableOnThisVersion: "이 FinalSuspect_Xtreme 버전에서는 공개 방이 사용 불가능합니다"
+
+# 主页 / Main UI
+FinalSuspect_XtremeVisitorCount: "즐거운 <color={0}>게임 경험</color>을 기원합니다!"
+ConnectToFinalSuspect_XtremeServerFailed: "FinalSuspect_Xtreme 서버에 연결하지 못했습니다"
+Website: "공식 웹사이트"
+MainMenuCredential: "{0} © 2024"
+
+# 大厅列表显示 / Lobby List
+IPhone: "아이폰"
+Android: "안드로이드"
+
+# 延迟显示 / Ping Tracker
+Ping: "핑"
+FrameRate: "프레임 속도"
+Server: "서버"
+Local: "<color=#D1FA87>로컬</color>"
+
+# 其他
+HongKong: "홍콩"
+FPSSetTo: "프레임 속도 제한 설정: {0}"

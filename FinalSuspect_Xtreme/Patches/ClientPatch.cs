@@ -12,17 +12,7 @@ internal class MakePublicPatch
 {
     public static bool Prefix(GameStartManager __instance)
     {
-        // 定数設定による公開ルームブロック
 
-        //#if RELEASE
-
-        if (!Main.AllowPublicRoom)
-        {
-            var message = GetString("DisabledByProgram");
-            Logger.Info(message, "MakePublicPatch");
-            Logger.SendInGame(message);
-            return false;
-        }
         if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate) || !VersionChecker.IsSupported || !Main.IsPublicAvailableOnThisVersion)
         {
             var message = "";
@@ -34,7 +24,6 @@ internal class MakePublicPatch
             return false;
 
         }
-        //#endif
         return true;
     }
 }
@@ -43,8 +32,6 @@ class MMOnlineManagerStartPatch
 {
     public static void Postfix(MMOnlineManager __instance)
     {
-        //#if RELEASE
-
         if (!(ModUpdater.hasUpdate || ModUpdater.isBroken || !VersionChecker.IsSupported || !Main.IsPublicAvailableOnThisVersion)) return;
         var obj = GameObject.Find("FindGameButton");
         if (obj)
@@ -68,14 +55,8 @@ class MMOnlineManagerStartPatch
             {
                 message = GetString("UnsupportedVersion");
             }
-            else if (!Main.AllowPublicRoom)
-            {
-                message = GetString("PublicNotAvailableOnThisVersion");
-            }
             textObj.text = $"<size=2>{Utils.ColorString(Color.red, message)}</size>";
         }
-
-        //#endif
     }
 
 }
