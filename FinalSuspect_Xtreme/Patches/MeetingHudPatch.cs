@@ -1,15 +1,7 @@
 using HarmonyLib;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
-using YamlDotNet.Core;
-using static FinalSuspect_Xtreme.Translator;
-using static UnityEngine.GraphicsBuffer;
-using System.Xml.Serialization;
 using AmongUs.GameOptions;
-using InnerNet;
 
 namespace FinalSuspect_Xtreme;
 
@@ -20,10 +12,6 @@ public static class MeetingHudPatch
     [HarmonyPriority(Priority.First)]
     class StartPatch
     {
-        public static void Prefix()
-        {
-            Logger.Info("------------会议开始------------", "Phase");
-        }
         public static void Postfix(MeetingHud __instance)
         {
 
@@ -32,7 +20,7 @@ public static class MeetingHudPatch
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
                 var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-                pva.NameText.text = pc.GetTrueName();
+                pva.NameText.text = pc.GetRealName();
 
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";

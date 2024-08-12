@@ -68,7 +68,7 @@ public class GamePlayerData : IDisposable
             var id = pc.PlayerId;
             var data = new GamePlayerData(
                 pc,
-                pc.GetTrueName(),
+                pc.GetRealName(),
                 colorId);
             AllGamePlayerData[id] = data;
         }

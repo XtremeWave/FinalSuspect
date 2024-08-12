@@ -56,7 +56,7 @@ DeathReason.Exile: "추방"
 DeathReason.Disconnect: "연결 끊김"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "FinalSuspect_Xtreme 옵션"
+FinalSuspect_XtremeOptions: "Final Suspect 옵션"
 Back: "뒤로"
 Yes: "예"
 No: "아니오"

@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using static FinalSuspect_Xtreme.Translator;
+using Il2CppSystem.Runtime.Remoting.Messaging;
 
 namespace FinalSuspect_Xtreme;
 internal class EAC
@@ -135,9 +136,10 @@ internal class EAC
                     }
                     break;
                 case RpcCalls.MurderPlayer:
-                    var murdered = sr.ReadNetObject<PlayerControl>();
                     if (GameStates.IsLobby || GameStates.IsMeeting)
                     {
+                        var murdered = sr.ReadNetObject<PlayerControl>();
+
                         Report(pc, "大厅直接击杀");
                         if (murdered != null && !LobbyDeadBodies.Contains(murdered.PlayerId))
                         {
@@ -146,9 +148,7 @@ internal class EAC
                         Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】大厅直接击杀，已驳回", "EAC");
                         return true;
                     }
-                    Report(pc, "直接击杀");
-                    Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】直接击杀，已驳回", "EAC");
-                    return true;
+                    break;
                 case RpcCalls.CheckMurder:
                     if (GameStates.IsLobby || GameStates.IsMeeting)
                     {
@@ -284,9 +284,9 @@ internal class EAC
     }
     public static void Report(PlayerControl pc, string reason)
     {
-        string msg = $"{pc.GetClientId()}|{pc.FriendCode}|{pc.Data.PlayerName}|{reason}";
-        Cloud.SendData(msg);
-        Logger.Warn($"EAC报告：{pc.GetRealName()}: {reason}", "EAC Cloud");
+        //string msg = $"{pc.GetClientId()}|{pc.FriendCode}|{pc.Data.PlayerName}|{reason}";
+        //Cloud.SendData(msg);
+        //Logger.Warn($"EAC报告：{pc.GetRealName()}: {reason}", "EAC Cloud");
     }
     public static bool ReceiveInvalidRpc(PlayerControl pc, byte callId)
     {

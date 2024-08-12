@@ -26,7 +26,6 @@ class OnGameJoinedPatch
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
 
         if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
-        Main.AllPlayerNames = new();
         GameStates.InGame = false;
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();

@@ -37,6 +37,11 @@ class MurderPlayerPatch
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
+        if (GameStates.IsLobby)
+        {
+            RPC.NotificationPop(GetString("Warning.RoomBroken"));
+            return;
+        }
         if (target.GetPlayerData().RealKiller != null && !target.Data.IsDead) return;
         target.SetDeathReason(DataDeathReason.Kill);
         target.SetRealKiller(__instance);
@@ -82,7 +87,7 @@ class FixedUpdatePatch
         
         var self = __instance == PlayerControl.LocalPlayer;
         var color ="#ffffff";
-        var nametext = __instance.GetTrueName();
+        var nametext = __instance.GetRealName();
         var dr = false;
 
         if (GameStates.IsLobby)
@@ -204,20 +209,6 @@ class PlayerControlCompleteTaskPatch
     }
 }
 #region 名称检查
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckName))]
-class PlayerControlCheckNamePatch
-{
-    public static void Postfix(PlayerControl __instance, string playerName)
-    {
-        if (!AmongUsClient.Instance.AmHost || !GameStates.IsLobby ) return;
-
-        var name = playerName;
-        Main.AllPlayerNames.Remove(__instance.PlayerId);
-        Main.AllPlayerNames.TryAdd(__instance.PlayerId, name);
-
-    }
-}
-
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckName))]
 class CmdCheckNameVersionCheckPatch
 {

@@ -94,7 +94,6 @@ public class Main : BasePlugin
     public static ConfigEntry<string> WebhookURL { get; private set; }
 
 
-    public static Dictionary<byte, string> AllPlayerNames = new();
     public static Dictionary<RoleTypes, string> roleColors;
     public static List<int> clientIdList = new();
 

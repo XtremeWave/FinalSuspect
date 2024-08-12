@@ -42,7 +42,7 @@ class IntroCutscenePatch
         __instance.ImpostorText.gameObject.SetActive(true);
         var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
 
-        Color color = onlyimp ? Palette.DisabledGrey : new Color32(255, 25, 25, byte.MaxValue);
+        Color color = new Color32(255, 25, 25, byte.MaxValue);
         string colorcode= onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : "FF1919";
         __instance.TeamTitle.text = onlyimp?
             GetString("TeamImpostorOnly"):

@@ -57,7 +57,7 @@ class SetEverythingUpPatch
         WinnerText.fontSizeMin = 3f;
 
         string CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
-        __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
+        __instance.BackgroundBar.material.color = __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
         __instance.WinText.text = DidHumansWin ? GetString("CrewmatesWin") : GetString("ImpostorsWin");
         WinnerText.text = DidHumansWin ? GetString("CrewmatesWinBlurb") : GetString("ImpostorsWinBlurb");
 

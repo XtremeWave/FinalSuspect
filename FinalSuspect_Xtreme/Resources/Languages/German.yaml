@@ -56,7 +56,7 @@ DeathReason.Exile: "Verbannt"
 DeathReason.Disconnect: "Getrennt"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "FinalSuspect_Xtreme Optionen"
+FinalSuspect_XtremeOptions: "Final Suspect Optionen"
 Back: "Zurück"
 Yes: "Ja"
 No: "Nein"

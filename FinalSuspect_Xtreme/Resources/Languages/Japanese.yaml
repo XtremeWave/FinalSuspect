@@ -1,7 +1,7 @@
 ﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
 
 #当前翻译文件语言的ID / Language ID of current file
-LangID: "0"
+LangID: "11"
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
 TextBelowVersionText: ""
@@ -56,7 +56,7 @@ DeathReason.Exile: "追放されました"
 DeathReason.Disconnect: "接続が切れました"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "FinalSuspect_Xtreme オプション"
+FinalSuspect_XtremeOptions: "Final Suspect オプション"
 Back: "戻る"
 Yes: "はい"
 No: "いいえ"

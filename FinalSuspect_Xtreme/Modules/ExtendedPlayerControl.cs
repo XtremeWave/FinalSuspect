@@ -82,10 +82,6 @@ static class ExtendedPlayerControl
         return Utils.GetRoleColor(player.GetRoleType());
     }
 
-    public static string GetTrueName(this PlayerControl player)
-    {
-        return Main.AllPlayerNames.TryGetValue(player.PlayerId, out var name) ? name : GetRealName(player, GameStates.IsMeeting);
-    }
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
         return isMeeting ? player?.Data?.PlayerName : player?.name;
