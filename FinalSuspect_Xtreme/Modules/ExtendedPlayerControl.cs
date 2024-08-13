@@ -1,17 +1,7 @@
-using AmongUs.Data;
 using AmongUs.GameOptions;
-using HarmonyLib;
-using Hazel;
 using InnerNet;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
-
-using FinalSuspect_Xtreme.Attributes;
 
 
 namespace FinalSuspect_Xtreme;
@@ -46,7 +36,7 @@ static class ExtendedPlayerControl
     }
     public static RoleTypes GetRoleType(byte id)
     {
-        return GamePlayerData.GetRoleById(id);
+        return XtremeGameData.PlayerData.GetRoleById(id);
     }
     public static bool IsImpostor(this PlayerControl pc)
     {
@@ -70,7 +60,7 @@ static class ExtendedPlayerControl
 
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)
     {
-        var ret = $"{player?.Data?.PlayerName}" + (GameStates.IsInGame? $"({Utils.GetRoleName(player.GetRoleType())})" : "");
+        var ret = $"{player?.Data?.PlayerName}" + (XtremeGameData.GameStates.IsInGame? $"({Utils.GetRoleName(player.GetRoleType())})" : "");
         return (forUser ? ret : ret.RemoveHtmlTags());
     }
     public static string GetRoleColorCode(this PlayerControl player)
@@ -81,12 +71,67 @@ static class ExtendedPlayerControl
     {
         return Utils.GetRoleColor(player.GetRoleType());
     }
-
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
         return isMeeting ? player?.Data?.PlayerName : player?.name;
     }
-    public static bool IsModClient(this PlayerControl player) => Main.playerVersion.ContainsKey(player.PlayerId);
+    public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;
+    public static void GetLobbyText(this PlayerControl player, ref string nametext, out string colorstr)
+    {
+        colorstr = "#ffffff";
+        if (!XtremeGameData.GameStates.IsLobby) return;
+        if (Main.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
+        {
+            if (Main.ForkId != ver.forkId)
+            {
+                nametext = $"<size=1.5>{ver.forkId}</size>\n{nametext}";
+                colorstr = "#BFFFB9";
+            }
+            else if (Main.version.CompareTo(ver.version) == 0)
+            {
+                var currectbranch = ver.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})";
+                nametext = currectbranch
+                    ? nametext : $"<size=1.5>{ver.tag}</size>\n{nametext}";
+                colorstr = currectbranch ? "#B1FFE7" : "#ffff00";
+            }
+            else
+            {
+                nametext = $"<size=1.5>v{ver.version}</size>\n{nametext}";
+                colorstr = "#ff0000";
+            }
+        }
+        else
+        {
+            colorstr = player.IsLocalPlayer() ? "#B1FFE7" : "#E1E0B3";
+        }
+    }
+    public static bool GetGameText(
+        this PlayerControl player,
+        out string colorstr,
+        out bool appendText,
+        out string roleText)
+    {
+        colorstr = default;
+        appendText = false;
+        roleText = "";
 
-    
+        if (!XtremeGameData.GameStates.IsInGame) return false;
+        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return false;
+
+        var roleType = player.GetRoleType();
+        colorstr = "#ffffff";
+
+        if (Utils.CanSeeOthersRole(player, out bool bothImp))
+        {
+            appendText = true;
+            colorstr = Utils.GetRoleColorCode(roleType);
+        }
+        else if (bothImp) colorstr = "#ff1919";
+
+        if (appendText)
+            roleText = $"<color={colorstr}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color> {Utils.GetProgressText(player)}";
+
+        return true;
+    }
+        
 }

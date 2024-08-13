@@ -102,7 +102,7 @@ public class ErrorText : MonoBehaviour
                 text = SBDetected ? GetString("EAC.CheatDetected.HighLevel") : GetString("EAC.CheatDetected.LowLevel");
             Text.enabled = true;
         }
-        if (GameStates.IsInGame && maxLevel != 3 && !CheatDetected)
+        if (XtremeGameData.GameStates.IsInGame && maxLevel != 3 && !CheatDetected)
             text += $"\n{GetString("TerminateCommand")}: Shift+L+Enter";
         Text.text = text;
     }

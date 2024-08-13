@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class DebugModeManager
 {

@@ -67,7 +67,7 @@ internal class EAC
                 //    }
                 //    break;
                 case RpcCalls.CheckName:
-                    if (!GameStates.IsLobby)
+                    if (!XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法修改名字");
@@ -77,7 +77,7 @@ internal class EAC
                     break;
                 //case RpcCalls.SetRole:
                 //    var role = (RoleTypes)sr.ReadUInt16();
-                //    if (GameStates.IsLobby && (role is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost))
+                //    if (XtremeGameData.GameStates.IsLobby && (role is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost))
                 //    {
                 //        WarnHost();
                 //        Report(pc, "非法设置状态为幽灵");
@@ -85,6 +85,20 @@ internal class EAC
                 //        return true;
                 //    }
                 //    break;
+                case RpcCalls.SendChatNote:
+                    if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsInTask)
+                    {
+                        var murdered = sr.ReadNetObject<PlayerControl>();
+
+                        Report(pc, "非法发送投票标签");
+                        if (murdered != null && !LobbyDeadBodies.Contains(murdered.PlayerId))
+                        {
+                            LobbyDeadBodies.Add(murdered.PlayerId);
+                        }
+                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法发送投票标签，已驳回", "EAC");
+                        return true;
+                    }
+                    break;
                 case RpcCalls.SendChat:
                     var text = sr.ReadString();
                     if (text.StartsWith("/")) return false;
@@ -104,7 +118,7 @@ internal class EAC
                     break;
                 case RpcCalls.StartMeeting:
                     MeetingTimes++;
-                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby)
+                    if ((XtremeGameData.GameStates.IsMeeting && MeetingTimes > 3) || XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法召集会议");
@@ -114,7 +128,7 @@ internal class EAC
                     break;
                 case RpcCalls.ReportDeadBody:
                     var bodyid = sr.ReadByte();
-                    if (!GameStates.IsInGame || GameStates.IsMeeting)
+                    if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsMeeting)
                     {
                         WarnHost();
                         Report(pc, "非法报告尸体");
@@ -127,7 +141,7 @@ internal class EAC
                     var color = sr.ReadByte();
                     if (pc.Data.DefaultOutfit.ColorId != -1 &&
                         (Main.AllPlayerControls.Where(x => x.Data.DefaultOutfit.ColorId == color).Count() >= 5
-                        || !GameStates.IsLobby || color < 0 || color > 18))
+                        || XtremeGameData.GameStates.IsInGame || color < 0 || color > 18))
                     {
                         WarnHost();
                         Report(pc, "非法设置颜色");
@@ -136,30 +150,30 @@ internal class EAC
                     }
                     break;
                 case RpcCalls.MurderPlayer:
-                    if (GameStates.IsLobby || GameStates.IsMeeting)
+                    if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsMeeting)
                     {
                         var murdered = sr.ReadNetObject<PlayerControl>();
 
-                        Report(pc, "大厅直接击杀");
+                        Report(pc, "非法击杀");
                         if (murdered != null && !LobbyDeadBodies.Contains(murdered.PlayerId))
                         {
                             LobbyDeadBodies.Add(murdered.PlayerId);
                         }
-                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】大厅直接击杀，已驳回", "EAC");
+                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法击杀，已驳回", "EAC");
                         return true;
                     }
                     break;
                 case RpcCalls.CheckMurder:
-                    if (GameStates.IsLobby || GameStates.IsMeeting)
+                    if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsMeeting)
                     {
                         WarnHost();
-                        Report(pc, "CheckMurder在大厅");
+                        Report(pc, "非法检查击杀");
                         Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法检查击杀，已驳回", "EAC");
                         return true;
                     }
                     break;
                 case RpcCalls.BootFromVent:
-                    if (GameStates.IsLobby)
+                    if (XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法在大厅炸管");
@@ -173,15 +187,9 @@ internal class EAC
 
             switch (callId)
             {
-                case 101:
-                    var AUMChat = sr.ReadString();
-                    WarnHost();
-                    Report(pc, "AUM");
-                    HandleCheat(pc, GetString("EAC.CheatDetected.EAC"));
-                    return true;
                 case 7:
                 case 8:
-                    if (!GameStates.IsLobby)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置颜色");
@@ -191,7 +199,7 @@ internal class EAC
                     break;
                 case 11:
                     MeetingTimes++;
-                    if ((GameStates.IsMeeting && MeetingTimes > 3) || GameStates.IsLobby)
+                    if ((XtremeGameData.GameStates.IsMeeting && MeetingTimes > 3) || XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法召集会议");
@@ -201,7 +209,7 @@ internal class EAC
                     break;
                 case 5:
                     string name = sr.ReadString();
-                    if (GameStates.IsInGame)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置游戏名称");
@@ -210,7 +218,7 @@ internal class EAC
                     }
                     break;
                 case 47:
-                    if (GameStates.IsLobby)
+                    if (XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法击杀");
@@ -219,7 +227,7 @@ internal class EAC
                     }
                     break;
                 case 12:
-                    if (GameStates.IsLobby)
+                    if (XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法击杀");
@@ -228,7 +236,7 @@ internal class EAC
                     }
                     break;
                 case 34:
-                    if (GameStates.IsLobby)
+                    if (XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
                         Report(pc, "非法在大厅炸管");
@@ -237,7 +245,7 @@ internal class EAC
                     }
                     break;
                 case 41:
-                    if (GameStates.IsInGame)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置宠物");
@@ -246,7 +254,7 @@ internal class EAC
                     }
                     break;
                 case 40:
-                    if (GameStates.IsInGame)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置皮肤");
@@ -255,7 +263,7 @@ internal class EAC
                     }
                     break;
                 case 42:
-                    if (GameStates.IsInGame)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置面部装扮");
@@ -264,7 +272,7 @@ internal class EAC
                     }
                     break;
                 case 39:
-                    if (GameStates.IsInGame)
+                    if (XtremeGameData.GameStates.IsInGame)
                     {
                         WarnHost();
                         Report(pc, "非法设置帽子");
@@ -318,6 +326,7 @@ internal class EAC
     }
     public static void HandleCheat(PlayerControl pc, string text)
     {
+        Utils.KickPlayer(pc.GetClientId(), true, "CheatDetected");
         //switch (Options.CheatResponses.GetInt())
         //{
         //    case 0:

@@ -1,8 +1,8 @@
 using HarmonyLib;
 using FinalSuspect_Xtreme.Modules.ClientOptions;
-using FinalSuspect_Xtreme.Modules.MoreOptions;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using UnityEngine;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 
@@ -24,8 +24,8 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean VersionCheat;
     private static ClientOptionItem_Boolean GodMode;
 
-    public static MoreActionItem SoundBtn;
-    public static MoreActionItem SoundManagerBtn;
+    public static ClientFeatureItem SoundBtn;
+    public static ClientFeatureItem SoundManagerBtn;
 
     private static bool reseted = false;
     public static void Postfix(OptionsMenuBehaviour __instance)
@@ -72,7 +72,7 @@ public static class OptionsMenuBehaviourStartPatch
                 }
                 
             }
-            if (!GameStates.IsNotJoined)
+            if (!XtremeGameData.GameStates.IsNotJoined)
             {
                 AprilFoolsMode.ToggleButton.GetComponent<PassiveButton>().enabled = false;
                 AprilFoolsMode.ToggleButton.Background.color = Palette.DisabledGrey;
@@ -112,7 +112,7 @@ public static class OptionsMenuBehaviourStartPatch
             AutoStartGame = ClientOptionItem_Boolean.Create("AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
             static void AutoStartButtonToggle()
             {
-                if (Main.AutoStartGame.Value == false && GameStates.IsCountDown)
+                if (Main.AutoStartGame.Value == false && XtremeGameData.GameStates.IsCountDown)
                 {
                     GameStartManager.Instance.ResetStartState();
                 }
@@ -152,7 +152,7 @@ public static class OptionsMenuBehaviourStartPatch
         var mouseMoveToggle = __instance.DisableMouseMovement;
         if ((SoundBtn == null || SoundBtn.ToggleButton == null))
         {
-            SoundBtn = MoreActionItem.Create("SoundOption", () =>
+            SoundBtn = ClientFeatureItem.Create("SoundOption", () =>
             {
                 SoundPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
@@ -160,7 +160,7 @@ public static class OptionsMenuBehaviourStartPatch
 
         if ((SoundManagerBtn == null || SoundManagerBtn.ToggleButton == null))
         {
-            SoundManagerBtn = MoreActionItem.Create("SoundManager", () =>
+            SoundManagerBtn = ClientFeatureItem.Create("SoundManager", () =>
             {
                 SoundManagerPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
@@ -172,7 +172,7 @@ public static class OptionsMenuBehaviourStartPatch
         SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions");
         SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
         SoundManagerBtn.ToggleButton.Background.color = Main.ModColor32;
-        if (!GameStates.IsNotJoined)
+        if (!XtremeGameData.GameStates.IsNotJoined)
         {
             SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
             SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
@@ -195,7 +195,7 @@ public static class OptionsMenuBehaviourClosePatch
     public static void Postfix()
     {
         ClientActionItem.CustomBackground?.gameObject?.SetActive(false);
-        MoreActionItem.CustomBackground?.gameObject?.SetActive(false);
+        ClientFeatureItem.CustomBackground?.gameObject?.SetActive(false);
         ModUnloaderScreen.Hide();
         SoundPanel.Hide();
         SoundManagerPanel.Hide();

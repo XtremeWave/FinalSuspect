@@ -80,7 +80,7 @@ public class GameStartManagerPatch
             //timerText.transform.localPosition += new Vector3(-0.5f, -2.6f, 0f);
             timerText.transform.localPosition += new Vector3(-0.55f,  -0.4f, 0f);
             timerText.transform.localScale = new(0.7f, 0.7f, 1f);
-            timerText.gameObject.SetActive(AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame && GameStates.IsVanillaServer);
+            timerText.gameObject.SetActive(AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame && XtremeGameData.GameStates.IsVanillaServer);
 
             cancelButton = Object.Instantiate(__instance.StartButton, __instance.transform);
             var cancelLabel = cancelButton.GetComponentInChildren<TextMeshPro>();
@@ -148,7 +148,7 @@ public class GameStartManagerPatch
                 if (updateTimer >= 50)
                 {
                     updateTimer = 0;
-                    if (GameData.Instance.PlayerCount >= 14 && !GameStates.IsCountDown)
+                    if (GameData.Instance.PlayerCount >= 14 && !XtremeGameData.GameStates.IsCountDown)
                     {
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
                         GameStartManager.Instance.countDownTimer = 10;
@@ -220,7 +220,7 @@ public class GameStartManagerPatch
             }
             timerText.text = "";
             // Lobby timer
-            if (!GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame || !GameStates.IsVanillaServer || !AmongUsClient.Instance.AmHost) return;
+            if (!GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame || !XtremeGameData.GameStates.IsVanillaServer || !AmongUsClient.Instance.AmHost) return;
 
             timer = Mathf.Max(0f, timer -= Time.deltaTime);
             int minutes = (int)timer / 60;
@@ -252,7 +252,7 @@ class ResetStartStatePatch
 {
     public static void Prefix(GameStartManager __instance)
     {
-        if (GameStates.IsCountDown)
+        if (XtremeGameData.GameStates.IsCountDown)
         {
             SoundManager.Instance.StopSound(__instance.gameStartSound);
 

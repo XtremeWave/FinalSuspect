@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using Mono.Cecil.Mdb;
+using FinalSuspect_Xtreme.Modules.Managers;
 namespace FinalSuspect_Xtreme;
 
 public enum CustomRPC
@@ -36,37 +37,47 @@ internal class RPCHandlerPatch
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
-        if (EAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost) return false;
+        if (EAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost)
+        {
+            Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
+            return false;
+        }
 
         Logger.Info($"{__instance?.Data?.PlayerId}({(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : __instance?.Data?.PlayerName)}):{callId}({RPC.GetRpcName(callId)})", "ReceiveRPC");
 
         var rpcType = (RpcCalls)callId;
         MessageReader subReader = MessageReader.Get(reader);
 
-        switch (rpcType)
+        try
         {
-            case RpcCalls.SetName: //SetNameRPC
-                subReader.ReadUInt32();
-                string name = subReader.ReadString();
-                Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
-                break;
-            case RpcCalls.SetRole: //SetRoleRPC
-                var role = (RoleTypes)subReader.ReadUInt16();
-                var canOverriddenRole = subReader.ReadBoolean();
-                Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
-                break;
-            case RpcCalls.SendChat: // Free chat
-                var text = subReader.ReadString();
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
-                break;
-            case RpcCalls.SendQuickChat:
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
-                break;
-            case RpcCalls.StartMeeting:
-                var p = Utils.GetPlayerById(subReader.ReadByte());
-                Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
-                break;
+
+
+            switch (rpcType)
+            {
+                case RpcCalls.SetName: //SetNameRPC
+                    subReader.ReadUInt32();
+                    string name = subReader.ReadString();
+                    Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
+                    break;
+                case RpcCalls.SetRole: //SetRoleRPC
+                    var role = (RoleTypes)subReader.ReadUInt16();
+                    var canOverriddenRole = subReader.ReadBoolean();
+                    Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
+                    break;
+                case RpcCalls.SendChat: // Free chat
+                    var text = subReader.ReadString();
+                    Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
+                    break;
+                case RpcCalls.SendQuickChat:
+                    Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
+                    break;
+                case RpcCalls.StartMeeting:
+                    var p = Utils.GetPlayerById(subReader.ReadByte());
+                    Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
+                    break;
+            }
         }
+        catch { }
 
         if (__instance.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !TrustedRpc(callId))
         {
@@ -106,7 +117,7 @@ internal class RPCHandlerPatch
                     Version version = Version.Parse(reader.ReadString());
                     string tag = reader.ReadString();
                     string forkId = reader.ReadString();
-                    Main.playerVersion[__instance.PlayerId] = new PlayerVersion(version, tag, forkId);
+                    Main.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
 
                     if (Main.VersionCheat.Value && __instance.OwnerId == AmongUsClient.Instance.HostId) RPC.RpcVersionCheck();
 
@@ -172,18 +183,7 @@ internal static class RPC
     {
         if (AmongUsClient.Instance.AmHost)
             PlaySound(PlayerID, sound);
-        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaySound, SendOption.Reliable, -1);
-        //writer.Write(PlayerID);
-        //writer.Write((byte)sound);
-        //AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
-    //public static void ShowPopUp(this PlayerControl pc, string msg)
-    //{
-    //    if (!AmongUsClient.Instance.AmHost) return;
-    //    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ShowPopUp, SendOption.Reliable, pc.GetClientId());
-    //    writer.Write(msg);
-    //    AmongUsClient.Instance.FinishRpcImmediately(writer);
-    //}
     public static async void RpcVersionCheck()
     {
 
@@ -200,7 +200,7 @@ internal static class RPC
             writer.Write(cheating ? Main.playerVersion[0].forkId : Main.ForkId);
             writer.EndMessage();
         }
-        Main.playerVersion[PlayerControl.LocalPlayer.PlayerId] = new PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
+        Main.playerVersion[PlayerControl.LocalPlayer.PlayerId] = new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
 
 
     }

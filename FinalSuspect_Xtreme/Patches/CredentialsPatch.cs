@@ -42,7 +42,7 @@ internal class PingTrackerUpdatePatch
         sb.Append(Main.CredentialsText);
 
         CreditTextCredential.text = sb.ToString();
-        if ((GameSettingMenu.Instance?.gameObject?.active ?? false) || GameStates.IsMeeting)
+        if ((GameSettingMenu.Instance?.gameObject?.active ?? false) || XtremeGameData.GameStates.IsMeeting)
             CreditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
@@ -60,12 +60,12 @@ internal class PingTrackerUpdatePatch
         __instance.text.text = 
             $"<color={color}>{GetString("Ping")}:{ping} <size=60%>ms</size></color>" + "  " 
             + $"<color=#00a4ff>{GetString("FrameRate")}:{fps} <size=60%>FPS</size></color>" +
-            $"{"    <color=#FFDCB1>◈</color>" + (GameStates.IsOnlineGame ? ServerName : GetString("Local"))}";
+            $"{"    <color=#FFDCB1>◈</color>" + (XtremeGameData.GameStates.IsOnlineGame ? ServerName : GetString("Local"))}";
 
         //__instance.text.transform.localPosition = 
         //    new Vector3(
         //        __instance.text.transform.localPosition.x, 
-        //    GameStates.IsInGame? __instance.text.transform.localPosition.y + 0.2f: __instance.text.transform.localPosition.y  - 0.2f, 
+        //    XtremeGameData.GameStates.IsInGame? __instance.text.transform.localPosition.y + 0.2f: __instance.text.transform.localPosition.y  - 0.2f, 
         //    __instance.text.transform.localPosition.z);
 
 
@@ -178,7 +178,7 @@ internal class TitleLogoPatch
 
     private static void Postfix(MainMenuManager __instance)
     {
-
+        ResolutionManager.SetResolution(1920, 1080, true);
         GameObject.Find("BackgroundTexture")?.SetActive(!MainMenuManagerPatch.ShowedBak);
 
         Color shade = new(0f, 0f, 0f, 0f);
@@ -214,16 +214,19 @@ internal class TitleLogoPatch
         }
 
         foreach (var kvp in mainButtons)
+        {
             kvp.Key.Do(button =>
-            FormatButtonColor(button, kvp.Value.Item1, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4, kvp.Value.Item5));
-
+            {
+                FormatButtonColor(button, kvp.Value.Item1, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4, kvp.Value.Item5);
+            });
+        
+        }
         try
         {
-            mainButtons.Keys.Flatten().DoIf(x => x != null, x => x.buttonText.color = Color.white);
+            mainButtons?.Keys?.Flatten()?.DoIf(x => x != null, x => x.buttonText.color = Color.white);
         }
-        catch
-        {
-        }
+        catch { }
+
 
         if (!(ModStamp = GameObject.Find("ModStamp"))) return;
         ModStamp.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);

@@ -1,5 +1,4 @@
 using HarmonyLib;
-using System.Text;
 using UnityEngine;
 using AmongUs.GameOptions;
 
@@ -20,7 +19,7 @@ public static class MeetingHudPatch
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
                 var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-                pva.NameText.text = pc.GetRealName();
+                pva.NameText.text = pc.GetDataName();
 
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";
@@ -31,59 +30,27 @@ public static class MeetingHudPatch
                 roleTextMeeting.gameObject.name = "RoleTextMeeting";
                 roleTextMeeting.enableWordWrapping = false;
 
-                // 役職とサフィックスを同時に表示する必要が出たら要改修
-                var suffixBuilder = new StringBuilder(32);
 
-                var roleType = pc.GetRoleType();
-                var dead = !pc.IsAlive();
+                pc.GetGameText(out string color, out bool appendText, out string roleText);
 
-                
-                var name = pc.GetPlayerName();
-                var color = Utils.GetRoleColorCode(roleType);
-                bool append = false;
-
-                if (pc == PlayerControl.LocalPlayer)
-                {
-                    append = true;
-                }
-                else
-                {
-
-                    if (!PlayerControl.LocalPlayer.IsAlive() &&(
-                        (dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel) || 
-                        (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
-                    {
-                        append = true;
-                    }
-                    else if (PlayerControl.LocalPlayer.IsImpostor() && pc.IsImpostor())
-                    {
-                        color = "#ff1919";
-                        if (!PlayerControl.LocalPlayer.IsAlive()) append = true;
-                        
-                    }
-                    else
-                    {
-
-                        color = "#ffffff";
-
-                    }
-
-                }
-                if (pc.GetPlayerData().IsDisconnected)
-                    color = "#"+ColorHelper.ColorToHex(Color.gray);
-                pva.NameText.text =$"<color={color}>{name}</color>";
-
-                if (append)
+                if (appendText)
                 {
                     if (!PlayerControl.LocalPlayer.IsAlive())
                         pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId);
-                    suffixBuilder.Append($"<color={color}><size=80%>{Translator.GetRoleString(roleType.ToString())}</size></color>");
                 }
 
-                if (suffixBuilder.Length > 0)
+                pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";
+
+                if (roleText.Length > 0)
                 {
-                    roleTextMeeting.text = suffixBuilder.ToString() + $" {Utils.GetProgressText(pc)}";
+                    roleTextMeeting.text = roleText;
                     roleTextMeeting.enabled = true;
+                }
+
+                if (pc.GetPlayerData().IsDisconnected)
+                {
+                    color = "#" + ColorHelper.ColorToHex(Color.gray);
+                    pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";
                 }
 
             }
@@ -117,9 +84,7 @@ public static class MeetingHudPatch
                         playerVoteArea.SetDead(__instance.reporterId == playerById.PlayerId, flag, playerById.Role.Role == RoleTypes.GuardianAngel);
                     }
                 }
-            }
-          //  MeetingHudPatch.StartPatch.Postfix(__instance);
-                
+            }                
 
 
         }

@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect_Xtreme.Modules.Managers;
+using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect_Xtreme;

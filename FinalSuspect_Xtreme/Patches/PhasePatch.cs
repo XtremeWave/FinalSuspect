@@ -15,7 +15,7 @@ class AmongUsClientOnGameEndPatch
 {
     public static void Postfix()
     {
-        GameStates.InGame = false;
+        XtremeGameData.GameStates.InGame = false;
         Logger.Info("-----------游戏结束-----------", "Phase");
     }
 }
@@ -34,5 +34,13 @@ class MeetingHudOnDestroyPatch
     public static void Postfix()
     {
         Logger.Info("------------会议结束------------", "Phase");
+    }
+}
+[HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
+class IntroCutsceneOnDestroyPatch
+{
+    public static void Postfix()
+    {
+        Logger.Info("OnDestroy", "IntroCutscene");
     }
 }

@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect_Xtreme.Modules.MoreOptions;
+namespace FinalSuspect_Xtreme.Modules.ClientOptions;
 
-public class MoreActionItem
+public class ClientFeatureItem
 {
     public ToggleButtonBehaviour ToggleButton { get; set; }
     public Action OnClickAction { get; protected set; }
@@ -13,7 +13,7 @@ public class MoreActionItem
     public static ToggleButtonBehaviour ModOptionsButton { get; private set; }
     private static int numItems = 0;
 
-    protected MoreActionItem(
+    protected ClientFeatureItem(
         string name,
         OptionsMenuBehaviour optionsMenuBehaviour)
     {
@@ -94,7 +94,7 @@ public class MoreActionItem
             ToggleButton.transform.localPosition = new Vector3(
                 // 現在のオプション数を基に位置を計算
                 numItems % 2 == 0 ? -1.3f : 1.3f,
-                2.2f - (0.5f * (numItems / 2)),
+                2.2f - 0.5f * (numItems / 2),
                 -6f);
             ToggleButton.name = name;
             ToggleButton.Text.text = Translator.GetString(name);
@@ -116,7 +116,7 @@ public class MoreActionItem
     /// <param name="onClickAction">クリック時に発火するアクション</param>
     /// <param name="optionsMenuBehaviour">OptionsMenuBehaviourのインスタンス</param>
     /// <returns>作成したアイテム</returns>
-    public static MoreActionItem Create(
+    public static ClientFeatureItem Create(
         string name,
         Action onClickAction,
         OptionsMenuBehaviour optionsMenuBehaviour)
@@ -133,7 +133,7 @@ public class MoreActionItem
         {
             OnClickAction?.Invoke();
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Logger.Exception(ex, "MoreActions");
         }

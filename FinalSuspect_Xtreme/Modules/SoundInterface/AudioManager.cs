@@ -1,17 +1,10 @@
-﻿using AmongUs.Data;
-using HarmonyLib;
-using Hazel;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using FinalSuspect_Xtreme.Attributes;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
-using Epic.OnlineServices;
 
 namespace FinalSuspect_Xtreme;
 
@@ -41,7 +34,8 @@ public static class AudioManager
     {
         "GongXiFaCaiLiuDeHua",
         "NeverGonnaGiveYouUp",
-        "RejoiceThisSEASONRespectThisWORLD",
+                "RejoiceThisSEASONRespectThisWORLD",
+
         "SpringRejoicesinParallelUniverses",
         "AFamiliarPromise",
         "GuardianandDream",
@@ -61,6 +55,7 @@ public static class AudioManager
 
     public static List<string> NotUp = new()
     {
+                "RejoiceThisSEASONRespectThisWORLD",
 
 
     };

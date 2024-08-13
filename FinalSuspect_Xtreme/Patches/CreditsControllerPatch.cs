@@ -13,23 +13,10 @@ public class CreditsControllerPatch
     {
         var devList = new List<string>()
             {
-                //$"<color=#bd262a><size=150%>{GetString("FromChina")}</size></color>",
-                //XtremeWave
                 $"<size=120%><color={Main.ModColor}>{Main.ModName}</color></size>",
                 $"<color=#fffcbe>By</color> <color={Main.TeamColor}>XtremeWave</color>",
-                //$"喜 - {GetString("Collaborators")}",
-                //$"Slok7565 - {GetString("Collaborators")}",
-                //$"Zeyan - {GetString("Collaborators")}",
-                //$"玖咪 - {GetString("PullRequester")}",
-                //$"杰慕斯 - {GetString("PullRequester")}",
-                //$"caaattt - {GetString("Art")}",
-                //$"小黄117 - {GetString("Art")}",
-                //$"QingFeng - {GetString("PullRequester")}",
-                //$"中立小黑 - {GetString("PullRequester")}",
-                //$"㍿ - {GetString("Innovation")}",
-                //$"Hartex - {GetString("Promotion")}",
-                "",
-                "",
+                " ",
+                "   ",
                 //Others
                 $"<size=120%>{GetString("Contributors")}</size>",
                 $"- KARPED1EM",

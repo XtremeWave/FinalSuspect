@@ -21,7 +21,7 @@ internal class ControllerManagerUpdatePatch
         //切换自定义设置的页面
 
         //职业介绍
-        if (GameStates.IsInGame && (GameStates.IsCanMove || GameStates.IsMeeting))
+        if (XtremeGameData.GameStates.IsInGame && (XtremeGameData.GameStates.IsCanMove || XtremeGameData.GameStates.IsMeeting))
         {
             if (Input.GetKey(KeyCode.F1))
             {
@@ -68,7 +68,7 @@ internal class ControllerManagerUpdatePatch
         //-- 下面是主机专用的命令--//
         if (!AmongUsClient.Instance.AmHost) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && GameStates.IsCountDown)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && XtremeGameData.GameStates.IsCountDown)
         {
             Logger.Info("倒计时修改为0", "KeyCommand");
             GameStartManager.Instance.countDownTimer = 0;
@@ -76,7 +76,7 @@ internal class ControllerManagerUpdatePatch
 
 
         //倒计时取消
-        if (Input.GetKeyDown(KeyCode.C) && GameStates.IsCountDown)
+        if (Input.GetKeyDown(KeyCode.C) && XtremeGameData.GameStates.IsCountDown)
         {
             Logger.Info("重置倒计时", "KeyCommand");
             GameStartManager.Instance.ResetStartState();

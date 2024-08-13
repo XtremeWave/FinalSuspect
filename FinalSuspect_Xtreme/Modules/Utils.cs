@@ -59,7 +59,7 @@ public static class Utils
 
         var Info = "Blurb" + (InfoLong ? "Long" : "");
 
-        if (!GameStates.IsStandardMode) text = "HnS" + text;
+        if (!XtremeGameData.GameStates.IsStandardMode) text = "HnS" + text;
 
         return GetString($"{text}{Info}");
     }
@@ -67,15 +67,9 @@ public static class Utils
     public static void KickPlayer(int playerId, bool ban, string reason)
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        OnPlayerLeftPatch.Add(playerId);
-        //_ = new LateTask(() =>
-        //{
         AmongUsClient.Instance.KickPlayer(playerId, ban);
-        //}, Math.Max(AmongUsClient.Instance.Ping / 500f, 1f), "Kick Player");
+        OnPlayerLeftPatch.Add(playerId);
 
-        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetKickReason, SendOption.Reliable, -1);
-        //writer.Write(GetString($"DCNotify.{reason}"));
-        //AmongUsClient.Instance.FinishRpcImmediately(writer);
     }
     public static string PadRightV2(this object text, int num)
     {
@@ -113,10 +107,10 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var thisdata = GamePlayerData.GetPlayerDataById(id);
+        var thisdata = XtremeGameData.PlayerData.GetPlayerDataById(id);
 
         var builder = new StringBuilder();
-        var longestNameByteCount = GamePlayerData.GetLongestNameByteCount();
+        var longestNameByteCount = XtremeGameData.PlayerData.GetLongestNameByteCount();
 
 
         var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
@@ -243,7 +237,7 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null) player = GamePlayerData.GetPlayerById(playerId);
+        if (player == null) player = XtremeGameData.PlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -251,30 +245,23 @@ public static class Utils
 
     public static string GetProgressText(PlayerControl pc = null)
     {
-        
-        var dead = !pc.IsAlive();
-
-        var enable = !pc.IsImpostor() && (pc == PlayerControl.LocalPlayer ||
-           !PlayerControl.LocalPlayer.IsAlive() &&(
-                (  dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel) ||
-                (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)));
-
-
         pc ??= PlayerControl.LocalPlayer;
+
+        var enable = !pc.IsImpostor() && Utils.CanSeeOthersRole(pc, out _);
+
+
         var comms = IsActive(SystemTypes.Comms);
         string text = GetProgressText(pc.PlayerId, comms);
         return enable? text : "";
     }
     private static string GetProgressText(byte playerId, bool comms = false)
     {
-        var ProgressText = new StringBuilder();
-        ProgressText.Append(GetTaskProgressText(playerId, comms));
-        return ProgressText.ToString();
+        return GetTaskProgressText(playerId, comms);
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var data = GamePlayerData.GetPlayerDataById(playerId);
-        if (!GameStates.IsStandardMode)
+        var data = XtremeGameData.PlayerData.GetPlayerDataById(playerId);
+        if (!XtremeGameData.GameStates.IsStandardMode)
         {
             if (data.IsImpostor)
             {
@@ -298,12 +285,12 @@ public static class Utils
     }
     public static string GetVitalText(byte playerId,  bool summary = false)
     {
-        var data = GamePlayerData.GetPlayerDataById(playerId);
+        var data = XtremeGameData.PlayerData.GetPlayerDataById(playerId);
+        if (!data.IsDead) return "";
 
-        string deathReason = data.IsDead ? GetString("DeathReason." + data.RealDeathReason) : "";
-
-
+        string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
+
         switch (data.RealDeathReason)
         {
             case DataDeathReason.Disconnect:
@@ -311,22 +298,26 @@ public static class Utils
                 break;
             case DataDeathReason.Kill:
                 color = Palette.ImpostorRed;
-                deathReason += "<=" ;
+                var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
+                if (summary)
+                {
+                    deathReason += "<=";
+                    deathReason += "<size=80%>";
+                    deathReason += ColorString(killercolor, data.RealKiller.PlayerName);
+                    deathReason += "</size>";
+                }
+                else
+                {
+                    deathReason = ColorString(killercolor, deathReason);
+                }
                 break;
             case DataDeathReason.Exile:
                 color = Palette.Purple;
                 break;
         }
-        if (!summary && data.IsDead) deathReason = "(" + deathReason;
 
-        if (data.RealDeathReason is DataDeathReason.Kill)
-        {
-            var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
-            deathReason += "<size=80%>";
-            deathReason += ColorString(killercolor, data.RealKiller.PlayerName);
-            deathReason += "</size>";
-        }
-        if (!summary && data.IsDead) deathReason += ")";
+        if (!summary) deathReason = "(" + deathReason + ")";
+
         deathReason = ColorString(color, deathReason);
 
 
@@ -334,7 +325,7 @@ public static class Utils
     }
     public static bool IsActive(SystemTypes type)
     {
-        if (!GameStates.IsStandardMode) return false;
+        if (!XtremeGameData.GameStates.IsStandardMode) return false;
         if (!ShipStatus.Instance.Systems.ContainsKey(type))
         {
             return false;
@@ -407,6 +398,20 @@ public static class Utils
             default:
                 return false;
         }
+    }
+    public static bool CanSeeOthersRole(PlayerControl target, out bool bothImp)
+    {
+        var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
+        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
+        var BothDeathCanSee = LocalDead && ((!target.IsAlive() && IsAngel) || !IsAngel);
+        bothImp = PlayerControl.LocalPlayer.IsImpostor() && target.IsImpostor();
+
+
+        if (target.IsLocalPlayer() ||
+            BothDeathCanSee ||
+            bothImp && LocalDead)
+            return true;
+        return false;
     }
 
 }

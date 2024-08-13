@@ -30,7 +30,7 @@ public static class SoundManagerPanel
     public static void Init(OptionsMenuBehaviour optionsMenuBehaviour)
     {
         var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
-        if (!GameStates.IsNotJoined) return;
+        if (!XtremeGameData.GameStates.IsNotJoined) return;
 
         if (CustomBackground == null)
         {

@@ -20,9 +20,6 @@ class SwitchGameModePatch
     public static bool HnSMode = false;
     public static void Postfix(GameModes gameMode)
     {
-        if (gameMode != GameModes.HideNSeek) HnSMode = false;
-        else HnSMode = true;
-
-
+        HnSMode = gameMode == GameModes.HideNSeek;
     }
 }

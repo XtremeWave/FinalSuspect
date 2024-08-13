@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 

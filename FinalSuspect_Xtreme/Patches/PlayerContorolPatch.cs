@@ -14,7 +14,7 @@ class BootFromVentPatch
 
     public static bool Prefix()
     {
-        if (GameStates.IsLobby)
+        if (XtremeGameData.GameStates.IsLobby)
         {
             RPC.NotificationPop(GetString("Warning.RoomBroken"));
             return false;
@@ -28,7 +28,7 @@ class MurderPlayerPatch
 
     public static bool Prefix()
     {
-        if (GameStates.IsLobby)
+        if (XtremeGameData.GameStates.IsLobby)
         {
             RPC.NotificationPop(GetString("Warning.RoomBroken"));
             return false;
@@ -37,15 +37,12 @@ class MurderPlayerPatch
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        if (GameStates.IsLobby)
+        if (XtremeGameData.GameStates.IsLobby)
         {
             RPC.NotificationPop(GetString("Warning.RoomBroken"));
             return;
         }
-        if (target.GetPlayerData().RealKiller != null && !target.Data.IsDead) return;
-        target.SetDeathReason(DataDeathReason.Kill);
         target.SetRealKiller(__instance);
-        target.SetDead();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
@@ -54,18 +51,12 @@ class DiePatch
 
     public static bool Prefix()
     {
-        if (GameStates.IsLobby)
+        if (XtremeGameData.GameStates.IsLobby)
         {
             RPC.NotificationPop(GetString("Warning.RoomBroken"));
             return false;
         }
         return true;
-    }
-    public static void Postfix(PlayerControl __instance, [HarmonyArgument(1)] bool assginGhostRole)
-    {
-        if (!assginGhostRole) return;
-        __instance.SetDeathReason(DataDeathReason.Kill);
-        __instance.SetDead();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoSetRole))]
@@ -83,89 +74,26 @@ class FixedUpdatePatch
     public static void Postfix(PlayerControl __instance)
     {
         if (__instance == null) return;
-
         
-        var self = __instance == PlayerControl.LocalPlayer;
-        var color ="#ffffff";
         var nametext = __instance.GetRealName();
-        var dr = false;
+        __instance.GetLobbyText(ref nametext, out string color);
 
-        if (GameStates.IsLobby)
+        var ingame = __instance.GetGameText(out string colorgame, out bool appendText, out string roleText);
+
+        if (ingame)
         {
-            if (Main.playerVersion.TryGetValue(__instance.PlayerId, out var ver) && ver != null)
-            {
-                if (Main.ForkId != ver.forkId)
-                {
-                    nametext = $"<size=1.5>{ver.forkId}</size>\n{nametext}";
-                    color = "#BFFFB9";
-                }
-                else if (Main.version.CompareTo(ver.version) == 0)
-                {
-                    var currectbranch = ver.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})";
-                    nametext = currectbranch
-                        ? nametext : $"<size=1.5>{ver.tag}</size>\n{nametext}";
-                    color = currectbranch ? "#B1FFE7" : "#ffff00";
-                }
-                else
-                {
-                    nametext = $"<size=1.5>v{ver.version}</size>\n{nametext}";
-                    color = "#ff0000";
-                }
-            }
-            else 
-            {
-                color = self ? "#B1FFE7" : "#E1E0B3";
-            }
-        }
-        else if (GameStates.IsInGame)
-        {
-            if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
-
-            var rt = "";
-            var roleType = __instance.GetRoleType();
-            var dead = !__instance.IsAlive();
-
-           
-
-
-            color = Utils.GetRoleColorCode(roleType);
-            if (
-                self || 
-                !PlayerControl.LocalPlayer.IsAlive() && 
-                ((dead && PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel)||
-                (PlayerControl.LocalPlayer.GetRoleType() is not RoleTypes.GuardianAngel)))
-            {
-                rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
-                dr = true;
-            }
-            else if (PlayerControl.LocalPlayer.IsImpostor() && __instance.IsImpostor())
-            {
-                color = "#ff1919";
-                if (!PlayerControl.LocalPlayer.IsAlive())
-                {
-                    rt = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
-                    dr = true;
-
-                }
-            }
-            else
-            {
-                color = "#ffffff";
-            }
-
+            color = colorgame;
             var RoleTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
             var RoleText = RoleTextTransform.GetComponent<TMPro.TextMeshPro>();
 
             RoleText.enabled = true;
-            RoleText.text = $"<color={color}>" + rt + $"</color> {Utils.GetProgressText(__instance)}";
+            RoleText.text = roleText;
             RoleText.transform.SetLocalY(0.2f);
 
+            if (appendText && !PlayerControl.LocalPlayer.IsAlive())
+                __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
         }
-
         __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
-        if (dr && !PlayerControl.LocalPlayer.IsAlive())
-            __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
-
 
     }
 }
@@ -197,7 +125,6 @@ class PlayerControlSetTasksPatch
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CompleteTask))]
 class PlayerControlCompleteTaskPatch
 {
-
     public static void Postfix(PlayerControl __instance)
     {
         var pc = __instance;
@@ -208,14 +135,12 @@ class PlayerControlCompleteTaskPatch
         Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");
     }
 }
-#region 名称检查
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckName))]
 class CmdCheckNameVersionCheckPatch
 {
-    public static void Postfix(PlayerControl __instance)
+    public static void Postfix()
     {
         if (AmongUsClient.Instance.AmHost)
            RPC.RpcVersionCheck();
     }
 }
-#endregion

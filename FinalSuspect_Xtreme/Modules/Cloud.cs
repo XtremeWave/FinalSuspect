@@ -46,7 +46,7 @@ internal class Cloud
     {
         try
         {
-            if (!Main.NewLobby || !GameStates.IsLobby) return false;
+            if (!Main.NewLobby || !XtremeGameData.GameStates.IsLobby) return false;
             if (!AmongUsClient.Instance.AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) return false;
 
             if (IP == null || LOBBY_PORT == 0) throw new("Has no ip or port");

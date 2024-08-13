@@ -7,7 +7,7 @@ using FinalSuspect_Xtreme.Attributes;
 using UnityEngine;
 using Il2CppSystem.IO;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class ServerAddManager
 {
@@ -18,10 +18,10 @@ public static class ServerAddManager
     {
 
 
-        
+
         serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos = new();
-        regionInfos.Add(CreateHttp("154.21.201.164", $"XtremeWave[{Translator.GetString("HongKong")}]", 22023, false));
+        //    regionInfos.Add(CreateHttp("154.21.201.164", $"XtremeWave[{Translator.GetString("HongKong")}]", 22023, false));
         regionInfos.Add(CreateHttp("au-us.niko233.me", "Niko233[NA_US]", 443, true));
         regionInfos.Add(CreateHttp("au-us2.niko233.me", "Niko233[NA_US2]", 443, true));
 
@@ -35,7 +35,7 @@ public static class ServerAddManager
             regionInfos.Add(CreateHttp("au.3q.fan", "小猫354[北京]", 22020, false));
             regionInfos.Add(CreateHttp("45yun.cn", "小猫服[北京]", 22000, false));
             regionInfos.Add(CreateHttp("player.fangkuai.fun", "方块服[北京]", 22024, true));
-            
+
         }
         regionInfos.Add(CreateHttp("au-as.duikbo.at", "Modded Asia (MAS)", 443, true));
         regionInfos.Add(CreateHttp("www.aumods.xyz", "Modded NA (MNA)", 443, true));
@@ -68,7 +68,7 @@ public static class ServerAddManager
             "Niko233[NA_US]" => "Niko[US]",
             "Niko233[AS_CN2]" => "Niko[CN2]",
             "Niko233[NA_US2]" => "Niko[US2]",
-            "XtremeWave[HongKong]" =>  "XW[HK]",
+            "XtremeWave[HongKong]" => "XW[HK]",
 
             _ => serverName,
         };

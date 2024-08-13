@@ -8,8 +8,6 @@ using UnityEngine;
 using static FinalSuspect_Xtreme.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
-using System.IO;
-
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
@@ -20,8 +18,8 @@ public static class SoundPanel
     public static OptionsMenuBehaviour OptionsMenuBehaviourNow { get; private set; }
 
     public static int currentPage { get; private set; } = 1;
-    public static int itemsPerPage { get; private set; } = 7;
-    public static int totalPageCount { get; private set; } = (AllMusics.Count + itemsPerPage - 1) / itemsPerPage;
+    public static int itemsPerPage => 7;
+    public static int totalPageCount => (AllMusics.Count + itemsPerPage - 1) / itemsPerPage;
 
     private static int numItems = 0;
     public static int PlayMode = 0;
@@ -38,7 +36,6 @@ public static class SoundPanel
             OptionsMenuBehaviourNow = optionsMenuBehaviour;
         if (CustomBackground == null)
         {
-             totalPageCount= (AllMusics.Count + itemsPerPage - 1) / itemsPerPage;
             currentPage = 1;
             numItems = 0;
             PlayMode = 0;
@@ -68,12 +65,10 @@ public static class SoundPanel
             stopButton.name = "stopButton";
             stopButton.Text.text = GetString("Stop");
             stopButton.Background.color = Palette.DisabledGrey;
+
             var stopPassiveButton = stopButton.GetComponent<PassiveButton>();
             stopPassiveButton.OnClick = new();
-            stopPassiveButton.OnClick.AddListener(new Action(() =>
-            {
-                                CustomSoundsManager.StopPlay();
-            }));
+            stopPassiveButton.OnClick.AddListener(new Action(CustomSoundsManager.StopPlay));
 
             AddPageNavigationButton(optionsMenuBehaviour);
 
@@ -107,17 +102,14 @@ public static class SoundPanel
         nextPagePassiveButton.OnClick.AddListener(new Action(() =>
         {
             
-            currentPage++; // 增加到下一页
-            Logger.Info($"cp:{currentPage}", "test");
-            Logger.Info($"tp:{totalPageCount}", "test");
-            // 判断是否到达最后一页，如果是则回到第一页
+            currentPage++;
+
             if (currentPage > totalPageCount)
             {
                 currentPage = 1;
             }
 
-            // 刷新标签列表
-               RefreshTagList() ;
+            RefreshTagList() ;
         }));
     }
     static void AddChangePlayModeButton(OptionsMenuBehaviour optionsMenuBehaviour)
@@ -146,7 +138,6 @@ public static class SoundPanel
     }
     public static void RefreshTagList()
     {
-        totalPageCount = (AllMusics.Count + itemsPerPage - 1) / itemsPerPage;
         Items?.Do(Object.Destroy);
         Items = new();
         numItems = 0;
@@ -154,15 +145,14 @@ public static class SoundPanel
         Logger.Info($"cp:{currentPage}", "test");
 
         
-        int startIndex = (currentPage - 1) * itemsPerPage; // 当前页的起始索引
+        int startIndex = (currentPage - 1) * itemsPerPage; 
 
-        // 遍历从起始索引开始的音频，直到达到本页数量上限或 AllMusics 没有更多音乐
         int count = 0;
         foreach (var soundp in AllMusics.Skip(startIndex))
         {
             if (count >= itemsPerPage)
             {
-                break; // 已达到本页数量上限，退出循环
+                break; 
             }
 
             var sound = soundp.Key;
@@ -203,7 +193,6 @@ public static class SoundPanel
                 Logger.Info($"Play {sound}:{path}", "SoundsPanel");
                 if (ConvertExtension(ref path))
                 {
-
                     CustomSoundsManager.Play(sound, 1, true);
                 }
                 
@@ -242,7 +231,6 @@ public static class SoundPanel
         }
         finally
         {
-            // 在 finally 块中增加当前页面的标签数量
             numItems++;
         }
 

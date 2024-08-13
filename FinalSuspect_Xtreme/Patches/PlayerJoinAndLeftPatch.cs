@@ -11,6 +11,7 @@ using FinalSuspect_Xtreme.Modules;
 
 
 using static FinalSuspect_Xtreme.Translator;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 
@@ -21,12 +22,12 @@ class OnGameJoinedPatch
     {
         
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
-        Main.playerVersion = new Dictionary<byte, PlayerVersion>();
+        Main.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
 
-        if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
-        GameStates.InGame = false;
+        if (!Main.VersionCheat.Value && AmongUsClient.Instance.AmHost) RPC.RpcVersionCheck();
+        XtremeGameData.GameStates.InGame = false;
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();
 
@@ -107,10 +108,9 @@ class OnPlayerLeftPatch
         }
 
 
-        if (GameStates.IsInGame)
+        if (XtremeGameData.GameStates.IsInGame)
         {
             data.Character.SetDisconnected();
-
         }
 
         Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");

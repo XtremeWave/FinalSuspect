@@ -15,13 +15,12 @@ internal class ExilePatch
     {
         public static void Prefix(ExileController __instance)
         {
+            if (__instance.exiled == null || __instance.exiled.PlayerId < 0 || __instance.exiled.PlayerId > 14) return;
             try
             {
-                if (__instance.exiled != null)
-                {
-                    GamePlayerData.GetPlayerDataById(__instance.exiled.PlayerId).Exiled = true;
-                    GamePlayerData.GetPlayerById(__instance.exiled.PlayerId).SetDeathReason(DataDeathReason.Exile);
-                }
+                XtremeGameData.PlayerData.GetPlayerDataById(__instance.exiled.PlayerId).Exiled = true;
+                XtremeGameData.PlayerData.GetPlayerById(__instance.exiled.PlayerId).SetDeathReason(DataDeathReason.Exile);
+
             }
             catch { }
         }

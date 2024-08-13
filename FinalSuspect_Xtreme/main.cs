@@ -11,6 +11,7 @@ using System.Reflection;
 using FinalSuspect_Xtreme.Attributes;
 using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 [assembly: AssemblyFileVersion(FinalSuspect_Xtreme.Main.PluginVersion)]
 [assembly: AssemblyInformationalVersion(FinalSuspect_Xtreme.Main.PluginVersion)]
@@ -29,6 +30,7 @@ public class Main : BasePlugin
     public static readonly string ModColor = "#CECDFD";
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
     public static readonly Color32 OutColor = new(180,179,231, 255);
+    public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
     public static readonly Color32 ModColor32_semi_transparent = new (206, 205, 253, 160);
     public static readonly string ForkId = "FinalSuspect_Xtreme";
     public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
@@ -41,7 +43,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.6.18";
     public static readonly bool IsPublicAvailableOnThisVersion = true;
     public const string PluginVersion = "1.0.0";
-    public const string ShowVersion_Head = "1.0_20240811";
+    public const string ShowVersion_Head = "1.0_20240813";
     public const string ShowVersion_TestText = "_Preview";
     public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
     public const int PluginCreation = 1;
@@ -81,7 +83,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> GodMode { get; private set; }
 
 
-    public static Dictionary<byte, PlayerVersion> playerVersion = new();
+    public static Dictionary<byte, XtremeGameData.PlayerVersion> playerVersion = new();
 
     public static readonly string[] allAprilFoolsModes =
     {

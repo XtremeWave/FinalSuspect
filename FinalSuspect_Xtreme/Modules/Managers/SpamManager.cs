@@ -7,7 +7,7 @@ using System.Text;
 using FinalSuspect_Xtreme.Attributes;
 using static FinalSuspect_Xtreme.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class SpamManager
 {

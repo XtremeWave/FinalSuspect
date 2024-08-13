@@ -255,7 +255,7 @@ CrewmatesWinBlurb: "Evil will always be brought to justice!"
 ImpsWin: "<color=#ff1919>Team-Impostor Win</color>"
 ImpostorsWin: "Impostors Win"
 ImpostorsWinBlurb: "Darkness envelops the world"
-HideSummaryTextToShowWinText: "<color=#ffff00>Hide recap information to view victory text</color>"
+HideSummaryTextToShowWinText: "<color=#ffff00>Hide last result to view victory text</color>"
 
 # 禁用公开
 DisabledByProgram: "Public room operations have been disabled by the program"

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 # pragma warning disable CA1416
 public static class RegistryManager

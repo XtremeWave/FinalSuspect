@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using FinalSuspect_Xtreme.Attributes;
 using static FinalSuspect_Xtreme.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class BanManager
 {
@@ -97,7 +97,7 @@ public static class BanManager
             {
                 if (line == "") continue;
                 if (Main.AllPlayerControls.Any(p => p.IsDev() && line.Contains(p.FriendCode))) continue;
-                if (Regex.IsMatch(player.PlayerName, line) 
+                if (Regex.IsMatch(player.PlayerName, line)
                     || Regex.IsMatch(player.PlayerName.ToLower(), "ez hacked"))
                 {
                     Utils.KickPlayer(player.Id, false, "DenyName");
@@ -162,8 +162,8 @@ public static class BanManager
         => CheckEACStatus(player?.FriendCode, player?.GetHashedPuid());
     public static bool CheckEACStatus(string friendCode, string hashedPuid)
         => EACList.Any(line =>
-        (!string.IsNullOrWhiteSpace(friendCode) && line.Contains(friendCode)) ||
-        (!string.IsNullOrWhiteSpace(hashedPuid) && line.Contains(hashedPuid)));
+        !string.IsNullOrWhiteSpace(friendCode) && line.Contains(friendCode) ||
+        !string.IsNullOrWhiteSpace(hashedPuid) && line.Contains(hashedPuid));
 }
 [HarmonyPatch(typeof(BanMenu), nameof(BanMenu.Select))]
 class BanMenuSelectPatch

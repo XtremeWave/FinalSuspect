@@ -32,7 +32,7 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.CoBegin)), HarmonyPrefix]
     public static void CoBegin_Prefix()
     {
-        GameStates.InGame = true;
+        XtremeGameData.GameStates.InGame = true;
     }
     [HarmonyPatch(nameof(IntroCutscene.BeginImpostor)), HarmonyPostfix]
     public static void BeginImpostor_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam)
@@ -106,9 +106,5 @@ class IntroCutscenePatch
             __instance.BackgroundBar.material.color = LerpingColor;
         }
     }
-    [HarmonyPatch(nameof(IntroCutscene.OnDestroy)), HarmonyPostfix]
-    public static void OnDestroy_Postfix(IntroCutscene __instance)
-    {
-        Logger.Info("OnDestroy", "IntroCutscene");
-    }
+
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 
@@ -118,26 +119,31 @@ internal class KickPlayerPatch
 {
     public static bool Prefix(InnerNetClient __instance, int clientId, bool ban)
     {
-        if (Main.AllPlayerControls.Where(p => p.IsDev()).Any(p => AmongUsClient.Instance.GetRecentClient(clientId).FriendCode == p.FriendCode))
+        try
         {
-            Logger.SendInGame(GetString("Warning.CantKickDev"));
-            return false;
-        }
-        if (!AmongUsClient.Instance.AmHost) return true;
+            if (Main.AllPlayerControls.Where(p => p.IsDev()).Any(p => AmongUsClient.Instance.GetRecentClient(clientId).FriendCode == p.FriendCode))
+            {
+                Logger.SendInGame(GetString("Warning.CantKickDev"));
+                return false;
+            }
 
-        if (!OnPlayerLeftPatch.ClientsProcessed.Contains(clientId))
-        {
-            OnPlayerLeftPatch.Add(clientId);
-            if (ban)
+            if (!AmongUsClient.Instance.AmHost) return true;
+
+            if (!OnPlayerLeftPatch.ClientsProcessed.Contains(clientId))
             {
-                BanManager.AddBanPlayer(AmongUsClient.Instance.GetRecentClient(clientId));
-                RPC.NotificationPop(string.Format(GetString("PlayerBanByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
-            }
-            else
-            {
-                RPC.NotificationPop(string.Format(GetString("PlayerKickByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
+                OnPlayerLeftPatch.Add(clientId);
+                if (ban)
+                {
+                    BanManager.AddBanPlayer(AmongUsClient.Instance.GetRecentClient(clientId));
+                    RPC.NotificationPop(string.Format(GetString("PlayerBanByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
+                }
+                else
+                {
+                    RPC.NotificationPop(string.Format(GetString("PlayerKickByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
+                }
             }
         }
+        catch { }
         return true;
     }
 }

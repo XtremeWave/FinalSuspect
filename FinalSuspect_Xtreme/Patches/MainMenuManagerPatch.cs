@@ -6,6 +6,7 @@ using FinalSuspect_Xtreme.Templates;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 

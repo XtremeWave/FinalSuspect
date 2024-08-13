@@ -30,7 +30,7 @@ class TaskPanelBehaviourPatch
     // タスク表示の文章が更新・適用された後に実行される
     public static void Postfix(TaskPanelBehaviour __instance)
     {
-        if (!GameStates.IsInGame) return;
+        if (!XtremeGameData.GameStates.IsInGame) return;
         PlayerControl player = PlayerControl.LocalPlayer;
         var role = player.GetRoleType();
         var taskText = __instance.taskText.text;

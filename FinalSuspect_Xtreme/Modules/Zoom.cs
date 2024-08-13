@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme;
 
@@ -14,8 +15,8 @@ public static class Zoom
     private static bool ResetButtons = false;
     public static void Postfix()
     {
-        if (!GameStates.IsLobby && !GameStates.IsDead) return;
-        if ((GameStates.IsShip || GameStates.IsLobby) && !GameStates.IsMeeting && GameStates.IsCanMove && !InGameRoleInfoMenu.Showing)
+        if (!XtremeGameData.GameStates.IsLobby && !XtremeGameData.GameStates.IsDead) return;
+        if ((XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby) && !XtremeGameData.GameStates.IsMeeting && XtremeGameData.GameStates.IsCanMove && !InGameRoleInfoMenu.Showing)
         {
             if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
             if (Input.mouseScrollDelta.y > 0)
@@ -24,7 +25,7 @@ public static class Zoom
             }
             if (Input.mouseScrollDelta.y < 0)
             {
-                if (GameStates.IsDead || GameStates.IsFreePlay || DebugModeManager.AmDebugger || GameStates.IsLobby || Main.GodMode.Value)
+                if (XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsFreePlay || DebugModeManager.AmDebugger || XtremeGameData.GameStates.IsLobby || Main.GodMode.Value)
                 {
                     if (Camera.main.orthographicSize < 18.0f)
                     {
@@ -52,7 +53,7 @@ public static class Zoom
             Camera.main.orthographicSize = 3.0f;
             HudManager.Instance.UICamera.orthographicSize = 3.0f;
             HudManager.Instance.Chat.transform.localScale = Vector3.one;
-            if (GameStates.IsMeeting) MeetingHud.Instance.transform.localScale = Vector3.one;
+            if (XtremeGameData.GameStates.IsMeeting) MeetingHud.Instance.transform.localScale = Vector3.one;
         }
         else
         {
