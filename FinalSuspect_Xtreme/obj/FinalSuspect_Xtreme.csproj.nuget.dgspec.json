@@ -55,7 +55,7 @@
             "AmongUs.GameLibs.Steam": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2024.6.18, )"
+              "version": "[2024.8.13, )"
             },
             "BepInEx.IL2CPP.MSBuild": {
               "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",

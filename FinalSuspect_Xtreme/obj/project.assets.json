@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "AmongUs.GameLibs.Steam/2024.6.18": {
+      "AmongUs.GameLibs.Steam/2024.8.13": {
         "type": "package",
         "build": {
           "build/AmongUs.GameLibs.Steam.props": {}
@@ -1991,13 +1991,13 @@
     }
   },
   "libraries": {
-    "AmongUs.GameLibs.Steam/2024.6.18": {
-      "sha512": "xb+HP1xXn4/ES8AgXpk9xeoW568LFYw5NTjY6bHwd6vQjHDf2kT1xHMmQ1me5Vfee/Gp69YIMZDXUAUToG7Elg==",
+    "AmongUs.GameLibs.Steam/2024.8.13": {
+      "sha512": "xYZBHQJcwSF5wABtJIZlmpNwZ7jXWafe6vid6/YEWSxpk1fcYLxz42bHSTYcGjpu4wVz1p1ZG/QC4Eu0SbGhrg==",
       "type": "package",
-      "path": "amongus.gamelibs.steam/2024.6.18",
+      "path": "amongus.gamelibs.steam/2024.8.13",
       "files": [
         ".nupkg.metadata",
-        "amongus.gamelibs.steam.2024.6.18.nupkg.sha512",
+        "amongus.gamelibs.steam.2024.8.13.nupkg.sha512",
         "amongus.gamelibs.steam.nuspec",
         "build/AddressablesPlayAssetDelivery.dll",
         "build/AmongUs.GameLibs.Steam.props",
@@ -6600,7 +6600,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "AmongUs.GameLibs.Steam >= 2024.6.18",
+      "AmongUs.GameLibs.Steam >= 2024.8.13",
       "BepInEx.IL2CPP.MSBuild >= 2.1.0-rc.1",
       "BepInEx.Unity.IL2CPP >= 6.0.0-be.674",
       "Costura.Fody >= 5.8.0-alpha0098",
@@ -6667,7 +6667,7 @@
           "AmongUs.GameLibs.Steam": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2024.6.18, )"
+            "version": "[2024.8.13, )"
           },
           "BepInEx.IL2CPP.MSBuild": {
             "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",

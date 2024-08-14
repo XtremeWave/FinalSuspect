@@ -27,10 +27,8 @@ public static class SoundManagerNewWindow
     }
     public static void Init()
     {
-
-
         Window = Object.Instantiate(AccountManager.Instance.transform.FindChild("InfoTextBox").gameObject, SoundManagerPanel.CustomBackground.transform.parent);
-        Window.name = "New Name Tag Window";
+        Window.name = "New Music Window";
         Window.transform.FindChild("Background").localScale *= 0.7f;
         Window.transform.localPosition += Vector3.back * 21;
          Object.Destroy(Window.transform.FindChild("Button2").gameObject);

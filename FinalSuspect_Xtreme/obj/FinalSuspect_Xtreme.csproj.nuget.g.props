@@ -16,6 +16,6 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)costura.fody\5.8.0-alpha0098\build\Costura.Fody.props" Condition="Exists('$(NuGetPackageRoot)costura.fody\5.8.0-alpha0098\build\Costura.Fody.props')" />
     <Import Project="$(NuGetPackageRoot)bepinex.il2cpp.msbuild\2.1.0-rc.1\build\BepInEx.IL2CPP.MSBuild.props" Condition="Exists('$(NuGetPackageRoot)bepinex.il2cpp.msbuild\2.1.0-rc.1\build\BepInEx.IL2CPP.MSBuild.props')" />
-    <Import Project="$(NuGetPackageRoot)amongus.gamelibs.steam\2024.6.18\build\AmongUs.GameLibs.Steam.props" Condition="Exists('$(NuGetPackageRoot)amongus.gamelibs.steam\2024.6.18\build\AmongUs.GameLibs.Steam.props')" />
+    <Import Project="$(NuGetPackageRoot)amongus.gamelibs.steam\2024.8.13\build\AmongUs.GameLibs.Steam.props" Condition="Exists('$(NuGetPackageRoot)amongus.gamelibs.steam\2024.8.13\build\AmongUs.GameLibs.Steam.props')" />
   </ImportGroup>
 </Project>

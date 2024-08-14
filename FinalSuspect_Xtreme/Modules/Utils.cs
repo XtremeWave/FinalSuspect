@@ -59,7 +59,7 @@ public static class Utils
 
         var Info = "Blurb" + (InfoLong ? "Long" : "");
 
-        if (!XtremeGameData.GameStates.IsStandardMode) text = "HnS" + text;
+        if (!XtremeGameData.GameStates.IsNormalGame) text = "HnS" + text;
 
         return GetString($"{text}{Info}");
     }
@@ -261,7 +261,7 @@ public static class Utils
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
         var data = XtremeGameData.PlayerData.GetPlayerDataById(playerId);
-        if (!XtremeGameData.GameStates.IsStandardMode)
+        if (!XtremeGameData.GameStates.IsNormalGame)
         {
             if (data.IsImpostor)
             {
@@ -325,7 +325,7 @@ public static class Utils
     }
     public static bool IsActive(SystemTypes type)
     {
-        if (!XtremeGameData.GameStates.IsStandardMode) return false;
+        if (!XtremeGameData.GameStates.IsNormalGame) return false;
         if (!ShipStatus.Instance.Systems.ContainsKey(type))
         {
             return false;

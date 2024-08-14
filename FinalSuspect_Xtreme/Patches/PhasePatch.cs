@@ -37,10 +37,12 @@ class MeetingHudOnDestroyPatch
     }
 }
 [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
-class IntroCutsceneOnDestroyPatch
+public static class IntroCutsceneOnDestroyPatch
 {
+    public static bool introDestroyed;
     public static void Postfix()
     {
+        introDestroyed = true;
         Logger.Info("OnDestroy", "IntroCutscene");
     }
 }

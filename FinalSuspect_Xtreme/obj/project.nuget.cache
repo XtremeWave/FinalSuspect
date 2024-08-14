@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7E2e1ZOhDes=",
+  "dgSpecHash": "49gREibNjVQ=",
   "success": true,
   "projectFilePath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Slok7\\.nuget\\packages\\amongus.gamelibs.steam\\2024.6.18\\amongus.gamelibs.steam.2024.6.18.nupkg.sha512",
+    "C:\\Users\\Slok7\\.nuget\\packages\\amongus.gamelibs.steam\\2024.8.13\\amongus.gamelibs.steam.2024.8.13.nupkg.sha512",
     "C:\\Users\\Slok7\\.nuget\\packages\\asmresolver\\5.1.0\\asmresolver.5.1.0.nupkg.sha512",
     "C:\\Users\\Slok7\\.nuget\\packages\\asmresolver.dotnet\\5.1.0\\asmresolver.dotnet.5.1.0.nupkg.sha512",
     "C:\\Users\\Slok7\\.nuget\\packages\\asmresolver.pe\\5.1.0\\asmresolver.pe.5.1.0.nupkg.sha512",

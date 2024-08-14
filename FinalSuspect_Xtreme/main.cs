@@ -40,10 +40,10 @@ public class Main : BasePlugin
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     // == 版本相关设定 / Version Config ==
-    public const string LowestSupportedVersion = "2024.6.18";
+    public const string LowestSupportedVersion = "2024.8.13";
     public static readonly bool IsPublicAvailableOnThisVersion = true;
     public const string PluginVersion = "1.0.0";
-    public const string ShowVersion_Head = "1.0_20240813";
+    public const string ShowVersion_Head = "1.0_20240814";
     public const string ShowVersion_TestText = "_Preview";
     public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
     public const int PluginCreation = 1;
@@ -67,6 +67,8 @@ public class Main : BasePlugin
     public static bool ExceptionMessageIsShown = false;
     public static string CredentialsText;
     public static NormalGameOptionsV08 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
+    public static HideNSeekGameOptionsV08 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
+
     //Client Options
     public static ConfigEntry<bool> KickPlayerFriendCodeNotExist { get; private set; }
     public static ConfigEntry<bool> ApplyDenyNameList { get; private set; }

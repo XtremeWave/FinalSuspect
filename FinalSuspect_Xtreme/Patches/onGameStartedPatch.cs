@@ -12,6 +12,7 @@ internal class CoStartGamePatch
 
     public static void Postfix()
     {
+        IntroCutsceneOnDestroyPatch.introDestroyed = false;
         GameModuleInitializerAttribute.InitializeAll();
 
     }

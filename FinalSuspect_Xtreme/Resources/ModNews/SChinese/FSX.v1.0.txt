@@ -8,7 +8,7 @@
 模组！原版？新优化！
 
 ## 对应官方版本
-- 基于 AmongUs v2024.6.18
+- 基于 AmongUs v2024.8.13
 - 基于 Town Of New Epic_Xtreme v1.3_20240726
 
 ## 更新内容

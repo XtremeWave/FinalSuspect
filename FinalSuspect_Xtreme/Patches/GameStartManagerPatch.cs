@@ -10,6 +10,7 @@ using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
+using FinalSuspect_Xtreme.Patches;
 
 namespace FinalSuspect_Xtreme;
 
@@ -19,6 +20,15 @@ public static class GameStartManagerUpdatePatch
     public static void Prefix(GameStartManager __instance)
     {
         __instance.MinPlayers = 1;
+
+        if (CreateOptionsPickerPatch.SetDleks)
+        {
+            if (XtremeGameData.GameStates.IsNormalGame)
+                Main.NormalOptions.MapId = 3;
+
+            else if (XtremeGameData.GameStates.IsHideNSeek)
+                Main.HideNSeekOptions.MapId = 3;
+        }
     }
 }
 //タイマーとコード隠し

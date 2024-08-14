@@ -17,8 +17,26 @@ public class LobbyStartPatch
         SpriteRenderer renderer = Paint.GetComponent<SpriteRenderer>();
         renderer.sprite = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 290f);
     }
-
-
+}
+[HarmonyPatch(typeof(LobbyBehaviour))]
+public class LobbyBehaviourPatch
+{
+    [HarmonyPatch(nameof(LobbyBehaviour.Update)), HarmonyPostfix]
+    public static void Update_Postfix(LobbyBehaviour __instance)
+    {
+        System.Func<ISoundPlayer, bool> lobbybgm = x => x.Name.Equals("MapTheme");
+        ISoundPlayer MapThemeSound = SoundManager.Instance.soundPlayers.Find(lobbybgm);
+        if (Main.DisableVanillaSound.Value)
+        {
+            if (MapThemeSound == null) return;
+            SoundManager.Instance.StopNamedSound("MapTheme");
+        }
+        else
+        {
+            if (MapThemeSound != null) return;
+            SoundManager.Instance.CrossFadeSound("MapTheme", __instance.MapTheme, 0.5f);
+        }
+    }
 }
 [HarmonyPatch(typeof(HostInfoPanel), nameof(HostInfoPanel.SetUp))]
 public static class HostInfoPanelUpdatePatch
@@ -35,7 +53,6 @@ public static class HostInfoPanelUpdatePatch
             string hostName = Main.HostNickName;
             string youLabel = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.HostYouLabel);
 
-            // Set text in host info panel
             HostText.text = $"<color=#{htmlStringRgb}>{hostName}</color>  <size=90%><b><font=\"Barlow-BoldItalic SDF\" material=\"Barlow-BoldItalic SDF Outline\">({youLabel})";
         }
     }
