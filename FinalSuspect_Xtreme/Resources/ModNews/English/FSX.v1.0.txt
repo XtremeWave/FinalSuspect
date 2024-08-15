@@ -15,7 +15,7 @@ Mod! Vanilla? New optimizations!
 - Fixes: 7
 - Optimizations: 7
 - Changes: 3
-- Additions: 8
+- Additions: 9
 - Remakes: 1
 - Deletions: 0
 
@@ -76,6 +76,8 @@ Produced by: Niko, Slok
 Produced by: Slok
 - The last results now show the kill count, deathreason, task count and the murderer
 Produced by: Slok
+- Map: Dleks eht
+Source: Town Of Host : Enhanced
 
 ## Remake
 - Remade client option：Change Outfits[Classic Bean Mode - April Fools Horse Mode - April Fools Long Mode](only available in main menu)
