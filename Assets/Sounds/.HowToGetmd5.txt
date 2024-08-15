@@ -4,7 +4,7 @@
 Here is the command to run in PowerShell (Win+R to open PowerShell):
 
 
-$folderPath = "C:\Users\YJNSH\Documents\Tencent Files\639083778\FileRecv\TownOfNewEpic_Xtreme\TownOfNewEpic_Xtreme\Assets\Sounds"
+$folderPath = "D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\Export\Release\net6.0"
 $outputFile = Join-Path -Path $folderPath -ChildPath ".md5Pair.txt"
 
 Set-Content -Path $outputFile -Value $null

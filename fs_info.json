@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "verHead": "1.0",
-  "verDate": "20240814",
+  "verDate": "20240815",
 
 
   "minVer": "latest",
@@ -10,8 +10,7 @@
   "CanUpdate": "true",
   "DebugVer": "0.0.0",
 
-  "md5Pre": "",
-  "md5": "",
+  "md5": "2e41727d5e868073b2b434e6549dac8d",
   "announcement": {
     "SChinese": "返璞归真",
     "English": "return to simplicity"
