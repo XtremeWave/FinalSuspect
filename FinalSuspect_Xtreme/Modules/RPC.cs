@@ -257,9 +257,6 @@ internal static class RPC
     }
     public static void NotificationPop(string text)
     {
-        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.NotificationPop, Hazel.SendOption.Reliable, -1);
-        //writer.Write(text);
-        //AmongUsClient.Instance.FinishRpcImmediately(writer);
         NotificationPopperPatch.AddItem(text);
     }
 }

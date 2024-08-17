@@ -38,10 +38,6 @@ public static class AwakeFriendCodeUIPatch
 
 
         FriendsButton = GameObject.Find("FriendsButton");
-        //if (FriendsButton != null)
-        //{
-        //    FriendsButton.SetActive(__instance.friendCode.gameObject.active);
-        //}
 
     }
 }

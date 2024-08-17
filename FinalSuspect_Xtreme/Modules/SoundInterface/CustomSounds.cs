@@ -20,31 +20,9 @@ namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
 public static class CustomSoundsManager
 {
-    public static void RPCPlayCustomSound(this PlayerControl pc, string sound, int playmode = 0, bool force = false)
-    {
-        if (pc == null || pc.AmOwner)
-        {
-            Play(sound, playmode);
-            return;
-        }
-        if (!force) if (!AmongUsClient.Instance.AmHost || !pc.IsModClient()) return;
-        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlayCustomSound, SendOption.Reliable, pc.GetClientId());
-        //writer.Write(sound);
-        //AmongUsClient.Instance.FinishRpcImmediately(writer);
-    }
-    public static void RPCPlayCustomSoundAll(string sound)
-    {
-        if (!AmongUsClient.Instance.AmHost) return;
-        //MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlayCustomSound, SendOption.Reliable, -1);
-        //writer.Write(sound);
-        //AmongUsClient.Instance.FinishRpcImmediately(writer);
-        Play(sound, 0);
-    }
-    public static void ReceiveRPC(MessageReader reader) => Play(reader.ReadString(), 0);
-
     public static readonly string SOUNDS_PATH = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/";
 
-    public static void Play(string sound, int playmode = 0, bool forcePlay = false)
+    public static void Play(string sound, int playmode = 0)
     {
         if (!Constants.ShouldPlaySfx()) return;
         var path = SOUNDS_PATH + sound + ".wav";
@@ -53,7 +31,7 @@ public static class CustomSoundsManager
         DirectoryInfo folder = new(SOUNDS_PATH);
         if ((folder.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
             folder.Attributes = FileAttributes.Normal;
-        //getExtension(path);
+
         if (!ConvertExtension(ref path)) return;
         switch (playmode)
         {

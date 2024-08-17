@@ -5,7 +5,7 @@ using static CosmeticsLayer;
 namespace FinalSuspect_Xtreme;
 
 // 来源：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
-// 来源：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
+// 来源：TOHE
 [HarmonyPatch(typeof(AprilFoolsMode), nameof(AprilFoolsMode.ShouldLongAround))]
 public static class AprilFoolsModePatch
 {

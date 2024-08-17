@@ -127,8 +127,6 @@ internal class KickPlayerPatch
                 return false;
             }
 
-            if (!AmongUsClient.Instance.AmHost) return true;
-
             if (!OnPlayerLeftPatch.ClientsProcessed.Contains(clientId))
             {
                 OnPlayerLeftPatch.Add(clientId);

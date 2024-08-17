@@ -50,22 +50,10 @@ static class ExtendedPlayerControl
         }
         return false;
     }
-    public static bool IsImpostor(byte id) => IsImpostor(Utils.GetPlayerById(id));
-
-    /*public static GameOptionsData DeepCopy(this GameOptionsData opt)
-    {
-        var optByte = opt.ToBytes(5);
-        return GameOptionsData.FromBytes(optByte);
-    }*/
-
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)
     {
         var ret = $"{player?.Data?.PlayerName}" + (XtremeGameData.GameStates.IsInGame? $"({Utils.GetRoleName(player.GetRoleType())})" : "");
         return (forUser ? ret : ret.RemoveHtmlTags());
-    }
-    public static string GetRoleColorCode(this PlayerControl player)
-    {
-        return Utils.GetRoleColorCode(player.GetRoleType());
     }
     public static Color GetRoleColor(this PlayerControl player)
     {

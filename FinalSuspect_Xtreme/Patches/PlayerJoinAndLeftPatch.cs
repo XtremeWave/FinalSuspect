@@ -115,30 +115,26 @@ class OnPlayerLeftPatch
 
         Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
-        Main.playerVersion?.Remove(data.Character.PlayerId);
+        Main.playerVersion.Remove(data.Character.PlayerId);
 
-        if (AmongUsClient.Instance.AmHost)
+
+        // 附加描述掉线原因
+        switch (reason)
         {
-
-            // 附加描述掉线原因
-            //var reason_str = "";
-            switch (reason)
-            {
-                case DisconnectReasons.Hacking:
-                    RPC.NotificationPop(string.Format(GetString("PlayerLeftByAU-Anticheat"), data?.PlayerName));
-                    break;
-                case DisconnectReasons.Error:
-                    RPC.NotificationPop(string.Format(GetString("PlayerLeftCuzError"), data?.PlayerName));
-                    break;
-                case DisconnectReasons.Kicked:
-                case DisconnectReasons.Banned:
-                    break;
-                default:
-                    if (!ClientsProcessed.Contains(data?.Id ?? 0))
-                        RPC.NotificationPop(string.Format(GetString("PlayerLeft"), data?.PlayerName));
-                    break;
-            }
-            ClientsProcessed.Remove(data?.Id ?? 0);
+            case DisconnectReasons.Hacking:
+                RPC.NotificationPop(string.Format(GetString("PlayerLeftByAU-Anticheat"), data?.PlayerName));
+                break;
+            case DisconnectReasons.Error:
+                RPC.NotificationPop(string.Format(GetString("PlayerLeftCuzError"), data?.PlayerName));
+                break;
+            case DisconnectReasons.Kicked:
+            case DisconnectReasons.Banned:
+                break;
+            default:
+                if (!ClientsProcessed.Contains(data?.Id ?? 0))
+                    RPC.NotificationPop(string.Format(GetString("PlayerLeft"), data?.PlayerName));
+                break;
         }
+        ClientsProcessed.Remove(data?.Id ?? 0);
     }
 }

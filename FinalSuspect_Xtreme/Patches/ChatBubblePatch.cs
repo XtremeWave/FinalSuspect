@@ -13,8 +13,9 @@ public static class ChatBubblePatch
     [HarmonyPatch(nameof(ChatBubble.SetName)), HarmonyPostfix]
     public static void SetName_Postfix(ChatBubble __instance, [HarmonyArgument(3)] Color colors)
     {
-        
+
         var player = Utils.GetPlayerById(__instance.playerInfo.PlayerId);
+        var sr = __instance.transform.FindChild("Background").GetComponent<SpriteRenderer>();
 
         var __ = "";
         player.GetLobbyText(ref __, out string color);
@@ -24,17 +25,20 @@ public static class ChatBubblePatch
         {
             if (colors == Color.green)
             {
-                var sr = __instance.transform.FindChild("Background").GetComponent<SpriteRenderer>();
                 sr.color = Main.HalfYellow;
                 __instance.NameText.color = Main.TeamColor32;
                 return;
             }
             if (Utils.CanSeeOthersRole(player, out bool bothImp) || bothImp)
                 __instance.NameText.color = Utils.GetPlayerById(__instance.playerInfo.PlayerId).GetRoleColor();
+
         }
-        
+        sr.color = Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive() ? 
+            Main.ModColor32_semi_transparent     // 灵感来源：YAC
+            : new Color32(255, 0, 0, 120);
+
+
     }
-    // 灵感来源：YAC
 
     [HarmonyPatch(nameof(ChatBubble.SetText)), HarmonyPrefix]
     public static void SetText_Prefix(ChatBubble __instance, ref string chatText)
@@ -48,9 +52,5 @@ public static class ChatBubblePatch
             __instance.SetLeft();
             return;
         }
-        if (Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive())
-            sr.color = sr.color == Main.HalfYellow ? Main.HalfYellow :Main.ModColor32_semi_transparent;
-        else
-            sr.color = sr.color == Main.HalfYellow ? Main.HalfYellow : new Color32(255, 0, 0, 120);
     }
 }

@@ -61,8 +61,9 @@ public static class MeetingHudPatch
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
     class UpdatePatch
     {
-        public static void Prefix(MeetingHud __instance)
+        public static void Postfix(MeetingHud __instance)
         {
+            if (AmongUsClient.Instance.AmHost) return;
             if (PlayerControl.LocalPlayer.Data.IsDead && !__instance.amDead)
             {
                 __instance.SetForegroundForDead();

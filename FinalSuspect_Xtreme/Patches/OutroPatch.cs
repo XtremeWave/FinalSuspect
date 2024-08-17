@@ -1,16 +1,11 @@
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TMPro;
-using FinalSuspect_Xtreme.Modules;
-
-using FinalSuspect_Xtreme.Patches;
 using FinalSuspect_Xtreme.Templates;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
-using static Il2CppSystem.Globalization.CultureInfo;
 
 namespace FinalSuspect_Xtreme;
 
@@ -23,8 +18,6 @@ class AmongUsClientEndGamePatch
         SummaryText = new();
         foreach (var id in XtremeGameData.PlayerData.AllPlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
-
-
     }
 }
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
@@ -45,11 +38,6 @@ class SetEverythingUpPatch
         //#######################################
         //          ==勝利陣営表示==
         //#######################################
-        Logger.Info("胜利阵营显示", "SetEverythingUpPatch");
-
-
-
-
         var WinnerTextObject = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
         WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
         WinnerTextObject.transform.localScale = new(0.6f, 0.6f, 0.6f);
@@ -66,8 +54,8 @@ class SetEverythingUpPatch
         WinnerTextObject.SetActive(!showInitially);
 
         //ShowResult:
-        Logger.Info("最终结果显示", "SetEverythingUpPatch");
-        showHideButton = new SimpleButton(
+        showHideButton = 
+        new SimpleButton(
            __instance.transform,
            "ShowHideResultsButton",
            new(-4.5f, 2.6f, -14f),  // 比 BackgroundLayer(z = -13) 更靠前
@@ -78,10 +66,8 @@ class SetEverythingUpPatch
                var setToActive = !roleSummary.gameObject.activeSelf;
                roleSummary.gameObject.SetActive(setToActive);
                Main.ShowResults.Value = setToActive;
-
                __instance.WinText.gameObject.SetActive(!setToActive);
                WinnerTextObject.SetActive(!setToActive);
-
                showHideButton.Label.text = GetString(setToActive ? "HideResults" : "ShowResults");
            },
            GetString(showInitially ? "HideResults" : "ShowResults"))
@@ -108,7 +94,6 @@ class SetEverythingUpPatch
             sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
 
         }
-        Logger.Info("判断胜利结束", "SetEverythingUpPatch");
 
 
         roleSummary = TMPTemplate.Create(
@@ -122,9 +107,5 @@ class SetEverythingUpPatch
         roleSummary.transform.localPosition = new(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
         XtremeGameData.PlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        ////////Utils.ApplySuffix();
     }
 }

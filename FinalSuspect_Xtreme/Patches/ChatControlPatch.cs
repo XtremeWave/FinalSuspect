@@ -55,13 +55,10 @@ internal class ChatCommands
     public static List<string> SentHistory = new();
     public static bool Prefix(ChatController __instance)
     {
-
-        // クイックチャットなら横流し
         if (__instance.quickChatField.Visible)
         {
             return true;
         }
-        // 入力欄に何も書かれてなければブロック
         if (string.IsNullOrWhiteSpace(__instance.freeChatField.textArea.text))
         {
             return false;

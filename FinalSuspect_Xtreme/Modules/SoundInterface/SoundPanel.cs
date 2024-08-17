@@ -193,7 +193,7 @@ public static class SoundPanel
                 Logger.Info($"Play {sound}:{path}", "SoundsPanel");
                 if (ConvertExtension(ref path))
                 {
-                    CustomSoundsManager.Play(sound, 1, true);
+                    CustomSoundsManager.Play(sound, 1);
                 }
                 
             }));

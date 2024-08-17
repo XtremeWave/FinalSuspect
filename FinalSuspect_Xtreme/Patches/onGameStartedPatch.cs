@@ -9,7 +9,6 @@ namespace FinalSuspect_Xtreme;
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
 internal class CoStartGamePatch
 {
-
     public static void Postfix()
     {
         IntroCutsceneOnDestroyPatch.introDestroyed = false;
