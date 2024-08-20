@@ -15,6 +15,8 @@ using TMPro;
 using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
+using System.Runtime.InteropServices;
+using FinalSuspect_Xtreme.Attributes;
 
 namespace FinalSuspect_Xtreme;
 
@@ -77,13 +79,7 @@ public class ModUpdater
 
         if (!isChecked && firstStart) CheckForUpdate();
         SetUpdateButtonStatus();
-        //if (File.Exists(@$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/Birthday.wav"))
-        //{
-        //    CustomSoundsManager.Play("Birthday", 0);
-        //}
         firstStart = false;
-        //CreateUIElements.Instance.Initialize();
-        //CreateUIElements.Instance.Load();
     }
     public static void SetUpdateButtonStatus()
     {
@@ -315,6 +311,19 @@ public class ModUpdater
             {
                 if (path.EndsWith(Path.GetFileName(Assembly.GetExecutingAssembly().Location))) continue;
                 if (path.EndsWith("FinalSuspect_Xtreme.dll") || path.EndsWith("Downloader.dll")) continue;
+
+                try
+                {
+                    IntPtr hModule = LoadLibrary(Path.GetFileName(path));
+
+                    if (hModule != IntPtr.Zero)
+                    {
+                        // 卸载 DLL
+                        bool result = FreeLibrary(hModule);
+
+                    }
+                }
+                catch { }
                 Logger.Info($"{Path.GetFileName(path)} Deleted", "DeleteOldFiles");
                 File.Delete(path);
             }
@@ -392,4 +401,11 @@ public class ModUpdater
             return "";
         }
     }
+
+
+    [DllImport("kernel32.dll")]
+    private static extern bool FreeLibrary(IntPtr hModule);
+
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr LoadLibrary(string lpFileName);
 }

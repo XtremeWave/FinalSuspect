@@ -99,31 +99,26 @@ public class MainMenuManagerPatch
             return button;
         }
 
-        var extraLinkName = "";
-        var extraLinkUrl = "";
-        var extraLinkEnabled = false;
-        if (IsChineseUser ? Main.ShowQQButton : Main.ShowDiscordButton)
-        {
-            extraLinkName = IsChineseUser ? "QQ群" : "Discord";
-            extraLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
-            extraLinkEnabled = true;
-        }
+
+
+        var extraLinkName = IsChineseUser ? "QQ群" : "Discord";
+        var extraLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
 
         if (InviteButton == null) InviteButton = CreatButton(extraLinkName, () => { Application.OpenURL(extraLinkUrl); });
-        InviteButton.gameObject.SetActive(extraLinkEnabled);
+        InviteButton.gameObject.SetActive(true);
         InviteButton.name = "FinalSuspect_Xtreme Extra Link Button";
 
         if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => Application.OpenURL(Main.WebsiteUrl));
-        WebsiteButton.gameObject.SetActive(Main.ShowWebsiteButton);
+        WebsiteButton.gameObject.SetActive(true);
         WebsiteButton.name = "FinalSuspect_Xtreme Website Button";
 
         if (GithubButton == null) GithubButton = CreatButton("Github", () => Application.OpenURL(Main.GithubRepoUrl));
-        GithubButton.gameObject.SetActive(Main.ShowGithubUrl);
+        GithubButton.gameObject.SetActive(true);
         GithubButton.name = "FinalSuspect_Xtreme Github Button";
         PlayButton = __instance.playButton.gameObject;
+
         if (UpdateButton == null)
         {
-            
             UpdateButton = Object.Instantiate(PlayButton, PlayButton.transform.parent);
             UpdateButton.name = "FinalSuspect_Xtreme Update Button";
             UpdateButton.transform.localPosition = PlayButton.transform.localPosition - new Vector3(0f, 0f, 3f);

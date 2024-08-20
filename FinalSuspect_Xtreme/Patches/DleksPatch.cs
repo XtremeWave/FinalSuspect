@@ -4,6 +4,7 @@ using HarmonyLib;
 namespace FinalSuspect_Xtreme.Patches;
 
 // Thanks Galster (https://github.com/Galster-dev)
+// Source:TOHE
 [HarmonyPatch(typeof(AmongUsClient._CoStartGameHost_d__32), nameof(AmongUsClient._CoStartGameHost_d__32.MoveNext))]
 public static class DleksPatch
 {

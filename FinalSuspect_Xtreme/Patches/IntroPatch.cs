@@ -12,18 +12,17 @@ class IntroCutscenePatch
     public static void ShowRole_Postfix(IntroCutscene __instance)
     {
         if (!Main.EnableRoleBackGround.Value) return;
+        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
 
         _ = new LateTask(() =>
         {
             var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
             var cr = roleType;
-            __instance.YouAreText.color = Utils.GetRoleColor(cr);
+            __instance.YouAreText.color = __instance.RoleText.color = __instance.RoleBlurbText.color = Utils.GetRoleColor(cr);
             __instance.RoleText.text = Utils.GetRoleName(cr);
-            __instance.RoleText.color = Utils.GetRoleColor(cr);
             __instance.RoleText.fontWeight = TMPro.FontWeight.Thin;
             __instance.RoleText.SetOutlineColor(Utils.ShadeColor(Utils.GetRoleColor(cr), 0.1f).SetAlpha(0.38f));
             __instance.RoleText.SetOutlineThickness(0.17f);
-            __instance.RoleBlurbText.color = Utils.GetRoleColor(cr);
             __instance.RoleBlurbText.text = cr.GetRoleInfoForVanilla();
 
         }, 0.0001f, "Override Role Text");
@@ -39,6 +38,7 @@ class IntroCutscenePatch
     {
         if (!Main.EnableRoleBackGround.Value) return;
         if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+
         __instance.ImpostorText.gameObject.SetActive(true);
         var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
 

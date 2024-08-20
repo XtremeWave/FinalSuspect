@@ -10,6 +10,7 @@ using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using Mono.Cecil.Mdb;
 using FinalSuspect_Xtreme.Modules.Managers;
+using Il2CppSystem.CodeDom;
 namespace FinalSuspect_Xtreme;
 
 public enum CustomRPC
@@ -34,7 +35,7 @@ internal class RPCHandlerPatch
     public static bool TrustedRpc(byte id)
  => (CustomRPC)id is CustomRPC.VersionCheck or CustomRPC.RequestRetryVersionCheck /*or  CustomRPC.PlaySound */;
 
-    public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
+    public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
         if (EAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost)
@@ -78,36 +79,49 @@ internal class RPCHandlerPatch
             }
         }
         catch { }
-
-        if (__instance.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !TrustedRpc(callId))
+        switch (callId)
         {
-            Logger.Warn($"{__instance?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
-            if (AmongUsClient.Instance.AmHost)
-            {
-                if (!EAC.ReceiveInvalidRpc(__instance, callId)) return false;
-                Utils.KickPlayer(__instance.GetClientId(), false, "InvalidRPC");
-                Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), __instance?.Data?.PlayerName));
-                return false;
-
-            }
-            if (!Main.playerVersion.TryGetValue(0, out _))
-            {
-                Logger.Warn($"收到来自 {__instance?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), __instance?.Data?.PlayerName, callId));
-                return false;
-
-            }
+            case 80:
+                callId = 99;
+                return true;
         }
+
+
+        if (CheckForInvalidRpc(__instance, callId))
+        {
+            return false;
+        }
+       
 
         return true;
         
     }
+    static bool CheckForInvalidRpc(PlayerControl player, byte callId)
+    {
+        if (player.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !TrustedRpc(callId))
+        {
+            Logger.Warn($"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
+            if (AmongUsClient.Instance.AmHost)
+            {
+                if (!EAC.ReceiveInvalidRpc(player, callId)) return true;
+                Utils.KickPlayer(player.GetClientId(), false, "InvalidRPC");
+                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
+                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));
+                return true;
+
+            }
+            if (!Main.playerVersion.TryGetValue(0, out _))
+            {
+                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
+                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
+                return true;
+
+            }
+        }
+        return false;
+    }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
-
-        if ((CustomRPC)callId is not CustomRPC.VersionCheck and not CustomRPC.RequestRetryVersionCheck) return;
-
         var rpcType = (CustomRPC)callId;
         switch (rpcType)
         {
@@ -117,9 +131,14 @@ internal class RPCHandlerPatch
                     Version version = Version.Parse(reader.ReadString());
                     string tag = reader.ReadString();
                     string forkId = reader.ReadString();
+                    if (forkId is not Main.ForkId and not "TOHE" and not "TONEX")
+                    {
+
+                    }
+
                     Main.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
 
-                    if (Main.VersionCheat.Value && __instance.OwnerId == AmongUsClient.Instance.HostId) RPC.RpcVersionCheck();
+                    if (!Main.VersionCheat.Value && __instance.OwnerId == AmongUsClient.Instance.HostId) RPC.RpcVersionCheck();
 
                     if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
                         Main.playerVersion[__instance.PlayerId] = Main.playerVersion[0];

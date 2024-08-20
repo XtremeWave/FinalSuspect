@@ -298,6 +298,7 @@ internal class EAC
     }
     public static bool ReceiveInvalidRpc(PlayerControl pc, byte callId)
     {
+
         switch (callId)
         {
             case unchecked((byte)42069):

@@ -11,7 +11,7 @@ public class SwitchShipCostumeButtonPatch
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Awake)), HarmonyPostfix]
     public static void ShipStatusFixedUpdate(ShipStatus __instance)
     {
-        if (Main.NormalOptions.MapId != 0)
+        if (Main.NormalOptions.MapId is not 0 and not 3 && SwitchShipCostumeButton)
         {
             Object.Destroy(SwitchShipCostumeButton);
             return;

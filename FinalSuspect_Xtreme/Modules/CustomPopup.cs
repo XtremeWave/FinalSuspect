@@ -48,17 +48,6 @@ public static class CustomPopup
 
         TitleTMP.text = title;
         InfoTMP.text = info;
-//        if (TitleTMP != null)
-//            TitleTMP.transform.localPosition += Vector3.back * 100;
-//        if (InfoTMP != null)
-  //          InfoTMP.transform.localPosition += Vector3.back * 100;
-    //          if (Fill != null)
-      //            Fill.transform.localPosition += Vector3.back * 200;
- //       if (InfoScreen != null)
-   //        InfoScreen.transform.localPosition += Vector3.back * 200;
-     //         if (ActionButtonPrefab != null)
-       //           ActionButtonPrefab.transform.localPosition += Vector3.back * 100;
-        //
 
         ActionButtons?.Do(b => Object.Destroy(b.gameObject));
         ActionButtons = new();
@@ -71,11 +60,7 @@ public static class CustomPopup
                 var button = Object.Instantiate(ActionButtonPrefab, InfoScreen.transform);
                 var tmp = button.transform.FindChild("Text_TMP").GetComponent<TextMeshPro>();
                 tmp.text = text;
-  //              if (tmp != null)
-    //                tmp.transform.localPosition += Vector3.back * 150;
                 button.OnClick = new();
-      //          if (button != null)
-        //            button.transform.localPosition += Vector3.back * 150;
                 button.OnClick.AddListener((Action)(() =>
                 {
                     InfoScreen.SetActive(false);
@@ -141,26 +126,22 @@ public static class CustomPopup
                 FillTemp = Fill;
             }
             Fill.transform.SetLocalZ(-100f);
-           Fill.name = "FinalSuspect_Xtreme Info Popup Fill";
-         //   Fill.transform.localPosition += Vector3.back * 150;
-           Fill.SetActive(false);
+            Fill.name = "FinalSuspect_Xtreme Info Popup Fill";
+            Fill.SetActive(false);
 
             InfoScreen = Object.Instantiate(DOBScreen.FindChild("InfoPage").gameObject);
             InfoScreen.transform.SetLocalZ(-110f);
-    //        InfoScreen.transform.localPosition += Vector3.back * 150;
             InfoScreen.name = "FinalSuspect_Xtreme Info Popup Page";
             InfoScreen.SetActive(false);
 
             TitleTMP = InfoScreen.transform.FindChild("Title Text").GetComponent<TextMeshPro>();
             TitleTMP.transform.localPosition = new(0f, 2.3f, 3f);
-        //    TitleTMP.transform.localPosition += Vector3.back * 150;
             TitleTMP.DestroyTranslator();
             TitleTMP.text = "";
 
             InfoTMP = InfoScreen.transform.FindChild("InfoText_TMP").GetComponent<TextMeshPro>();
             InfoTMP.GetComponent<RectTransform>().sizeDelta = new(7f, 1.3f);
             InfoTMP.transform.localScale = new(1f, 1f, 1f);
-  //          InfoTMP.transform.localPosition += Vector3.back * 150;
             InfoTMP.DestroyTranslator();
             InfoTMP.text = "";
 
@@ -168,7 +149,6 @@ public static class CustomPopup
             ActionButtonPrefab.gameObject.name = "ActionButtonPrefab";
             ActionButtonPrefab.transform.localScale = new(0.66f, 0.66f, 0.66f);
             ActionButtonPrefab.transform.localPosition = new(0f, -0.65f, 3f);
-          //  ActionButtonPrefab.transform.localPosition += Vector3.back * 150;
             ActionButtonPrefab.transform.FindChild("Text_TMP").GetComponent<TextMeshPro>().DestroyTranslator();
             ActionButtonPrefab.gameObject.SetActive(false);
         }

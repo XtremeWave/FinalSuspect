@@ -31,8 +31,8 @@ public class Main : BasePlugin
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
     public static readonly Color32 OutColor = new(180,179,231, 255);
     public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
-    public static readonly Color32 ModColor32_semi_transparent = new (206, 205, 253, 160);
-    public static readonly string ForkId = "FinalSuspect_Xtreme";
+    public static readonly Color32 HalfModColor32 = new (206, 205, 253, 160);
+    public const string ForkId = "FinalSuspect_Xtreme";
     public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
@@ -41,20 +41,15 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2024.8.13";
-    public static readonly bool IsPublicAvailableOnThisVersion = true;
     public const string PluginVersion = "1.0.0";
     public const string ShowVersion_Head = "1.0_20240814";
     public const string ShowVersion_TestText = "_Preview";
     public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
     public const int PluginCreation = 1;
     // == 链接相关设定 / Link Config ==
-    public static readonly bool ShowWebsiteButton = true;
     public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://fsusx.top/" : "https://fsusx.top/en/";
-    public static readonly bool ShowQQButton = true;
     public static readonly string QQInviteUrl = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=4ojpzbUU42giZZeQ-DTaal-tC5RIpL46&authKey=49OYQwsCza2x5eHGdXDHXD1M%2FvYvQcEhJBNL5h8Gq7AxOu5eMfTc6g2edtlsMuCm&noverify=0&group_code=733425569";
-    public static readonly bool ShowDiscordButton = true;
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
-    public static readonly bool ShowGithubUrl = true;
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect_Xtreme";
 
     // ==========
@@ -107,12 +102,8 @@ public class Main : BasePlugin
     public const float RoleTextSize = 2f;
 
     public static IEnumerable<PlayerControl> AllPlayerControls => 
-        //(PlayerControl.AllPlayerControls == null || PlayerControl.AllPlayerControls.Count == 0) && LoadEnd
-        //? AllPlayerControls : 
         PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
     public static IEnumerable<PlayerControl> AllAlivePlayerControls => 
-        //(PlayerControl.AllPlayerControls == null || PlayerControl.AllPlayerControls.Count == 0) && LoadEnd
-        //? AllAlivePlayerControls :
         PlayerControl.AllPlayerControls.ToArray().Where(p => p != null && p.IsAlive() && !p.Data.Disconnected);
 
     public static Main Instance;
@@ -158,36 +149,11 @@ public class Main : BasePlugin
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect_Xtreme");
         FinalSuspect_Xtreme.Logger.Enable();
-        FinalSuspect_Xtreme.Logger.Disable("NotifyRoles");
         FinalSuspect_Xtreme.Logger.Disable("SwitchSystem");
         FinalSuspect_Xtreme.Logger.Disable("ModNews");
-        FinalSuspect_Xtreme.Logger.Disable("CustomRpcSender");
-        FinalSuspect_Xtreme.Logger.Disable("CoBegin");
         if (!DebugModeManager.AmDebugger)
         {
-            FinalSuspect_Xtreme.Logger.Disable("CheckRelease");
-            FinalSuspect_Xtreme.Logger.Disable("CustomRpcSender");
-            //FinalSuspect_Xtreme.Logger.Disable("ReceiveRPC");
-            FinalSuspect_Xtreme.Logger.Disable("SendRPC");
-            FinalSuspect_Xtreme.Logger.Disable("SetRole");
-            FinalSuspect_Xtreme.Logger.Disable("Info.Role");
-            FinalSuspect_Xtreme.Logger.Disable("TaskState.Init");
-            //FinalSuspect_Xtreme.Logger.Disable("Vote");
-            FinalSuspect_Xtreme.Logger.Disable("RpcSetNamePrivate");
-            //FinalSuspect_Xtreme.Logger.Disable("SendChat");
-            FinalSuspect_Xtreme.Logger.Disable("SetName");
-            //FinalSuspect_Xtreme.Logger.Disable("AssignRoles");
-            //FinalSuspect_Xtreme.Logger.Disable("RepairSystem");
-            //FinalSuspect_Xtreme.Logger.Disable("MurderPlayer");
-            //FinalSuspect_Xtreme.Logger.Disable("CheckMurder");
-            FinalSuspect_Xtreme.Logger.Disable("PlayerControl.RpcSetRole");
-            FinalSuspect_Xtreme.Logger.Disable("SyncCustomSettings");
-            FinalSuspect_Xtreme.Logger.Disable("CancelPet");
-            FinalSuspect_Xtreme.Logger.Disable("Pet");
-            //FinalSuspect_Xtreme.Logger.Disable("SetScanner");
             FinalSuspect_Xtreme.Logger.Disable("test");
-            FinalSuspect_Xtreme.Logger.Disable("ver");
-            FinalSuspect_Xtreme.Logger.Disable("RpcTeleport");
         }
         //FinalSuspect_Xtreme.Logger.isDetail = true;
 
@@ -244,7 +210,6 @@ public class Main : BasePlugin
         handler.Info($"{nameof(ThisAssembly.Git.Tag)}: {ThisAssembly.Git.Tag}");
 
         ClassInjector.RegisterTypeInIl2Cpp<ErrorText>();
-
 
         SystemEnvironment.SetEnvironmentVariables();
 

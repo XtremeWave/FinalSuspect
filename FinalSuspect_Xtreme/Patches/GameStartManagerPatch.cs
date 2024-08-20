@@ -121,7 +121,7 @@ public class GameStartManagerPatch
             // Make Public Button
             //#if RELEASE
 
-            if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate)  || !VersionChecker.IsSupported || !Main.IsPublicAvailableOnThisVersion)
+            if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate)  || !VersionChecker.IsSupported)
             {
                 __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
                 __instance.HostPrivateButton.activeTextColor = Palette.DisabledClear;
