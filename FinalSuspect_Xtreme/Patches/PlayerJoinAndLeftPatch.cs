@@ -22,7 +22,7 @@ class OnGameJoinedPatch
     {
         
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
-        Main.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
+        XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
 
@@ -115,7 +115,7 @@ class OnPlayerLeftPatch
 
         Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
-        Main.playerVersion.Remove(data.Character.PlayerId);
+        XtremeGameData.PlayerVersion.playerVersion.Remove(data.Character.PlayerId);
 
 
         // 附加描述掉线原因

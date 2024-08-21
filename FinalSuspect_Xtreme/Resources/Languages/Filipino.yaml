@@ -84,7 +84,7 @@ EnableMapBackGround: "I-enable ang Custom Map Color"
 DisableVanillaSound: "I-disable ang Musika ng Among Us"
 FinalSuspect_XtremeFeatures: "Mga Tampok ng Final Suspect"
 SoundOptions: "Aking Musika"
-SoundManagerOptions: "Pamamahala ng Tunog"
+AudioManagementOptions: "Pamamahala ng Tunog"
 ChangeOutfit: "Palitan ang Kasuotan"
 OnlyAvailableInMainMenu: "Magagamit lamang sa Main Menu"
 
@@ -146,11 +146,11 @@ download: "I-download"
 delete: "Tanggalin"
 NewSound: "Magdagdag ng Bagong Tunog"
 PleaseEnterMusic: "Ilagay ang pangalan ng musika"
-SoundManagerAlreadyExists: "Mayroon nang tunog na pangalan na ito"
+AudioManagementAlreadyExists: "Mayroon nang tunog na pangalan na ito"
 NotAllowedMusic: "Hindi pinapayagang format ng pangalan ng musika"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/FinalSuspect_Data/Sounds' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
+CustomAudioManagementHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/FinalSuspect_Data/Sounds' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kung nawawala ang lokal na landas ng musika, makikita ang '[Kakaibang Nilalaman]'."
 

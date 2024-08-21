@@ -12,7 +12,7 @@ class IntroCutscenePatch
     public static void ShowRole_Postfix(IntroCutscene __instance)
     {
         if (!Main.EnableRoleBackGround.Value) return;
-        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+        if (XtremeGameData.GameStates.OtherModHost) return;
 
         _ = new LateTask(() =>
         {
@@ -37,7 +37,7 @@ class IntroCutscenePatch
     public static void BeginImpostor_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam)
     {
         if (!Main.EnableRoleBackGround.Value) return;
-        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+        if (XtremeGameData.GameStates.OtherModHost) return;
 
         __instance.ImpostorText.gameObject.SetActive(true);
         var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
@@ -67,7 +67,7 @@ class IntroCutscenePatch
     public static void BeginCrewmate_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay)
     {
         if (!Main.EnableRoleBackGround.Value) return;
-        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+        if (XtremeGameData.GameStates.OtherModHost) return;
 
         __instance.TeamTitle.text = $"{GetString("TeamCrewmate")}";
         __instance.ImpostorText.text = 
@@ -100,7 +100,7 @@ class IntroCutscenePatch
             Color LerpingColor = Color.Lerp(start, end, time);
             if (__instance == null || milliseconds > 500)
             {
-                Logger.Info("ループを終了します", "StartFadeIntro");
+                Logger.Info("退出当前循环", "StartFadeIntro");
                 break;
             }
             __instance.BackgroundBar.material.color = LerpingColor;

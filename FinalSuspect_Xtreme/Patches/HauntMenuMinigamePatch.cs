@@ -9,13 +9,11 @@ public static class HauntMenuMinigameSetFilterTextPatch
     {
         if (__instance.HauntTarget != null)
         {
-            // 役職表示をカスタムロール名で上書き
-            __instance.NameText.text = Utils.ColorString(
-                Utils.GetRoleColor(__instance.HauntTarget.GetRoleType()),
-                __instance.NameText.text);
-            __instance.FilterText.text = Utils.ColorString(
-                Utils.GetRoleColor(__instance.HauntTarget.GetRoleType()),
-                Utils.GetRoleName(__instance.HauntTarget.GetRoleType()));
+            var role = __instance.HauntTarget.GetRoleType();
+            var color = Utils.GetRoleColor(role);
+            var rn = Utils.GetRoleName(role);
+            __instance.NameText.text = Utils.ColorString(color, __instance.NameText.text);
+            __instance.FilterText.text = Utils.ColorString(color, rn);
             return false;
         }
         return true;

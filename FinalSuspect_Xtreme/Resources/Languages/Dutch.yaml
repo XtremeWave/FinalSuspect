@@ -84,7 +84,7 @@ EnableMapBackGround: "Activeer Aangepaste Kaartkleur"
 DisableVanillaSound: "Deactiveer Among U's Muziek"
 FinalSuspect_XtremeFeatures: "Final Suspect Kenmerken"
 SoundOptions: "Mijn Muziek"
-SoundManagerOptions: "Audio Beheer"
+AudioManagementOptions: "Audio Beheer"
 ChangeOutfit: "Verander Outfit"
 OnlyAvailableInMainMenu: "Alleen Beschikbaar In Hoofdmenu"
 
@@ -146,11 +146,11 @@ download: "Download"
 delete: "Verwijder"
 NewSound: "Nieuwe Muziek Toevoegen"
 PleaseEnterMusic: "Voer Muzieknaam In"
-SoundManagerAlreadyExists: "Deze muzieknaam bestaat al"
+AudioManagementAlreadyExists: "Deze muzieknaam bestaat al"
 NotAllowedMusic: "Muzieknaam formaat is niet toegestaan"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "Je kunt muziek downloaden die wordt ondersteund door XtremeWave of je eigen muziek toevoegen in 「Audio Beheer」. Bij het toevoegen van je eigen muziek, zorg ervoor dat je de muzieknaam toevoegt in 'Audio Beheer' en het overeenkomstige audiobestand plaatst in de 'Among Us/FinalSuspect_Data/Sounds' map (ondersteunde formaten: .wav). Muziek kan worden afgespeeld in 'Mijn Muziek'."
+CustomAudioManagementHelp: "Je kunt muziek downloaden die wordt ondersteund door XtremeWave of je eigen muziek toevoegen in 「Audio Beheer」. Bij het toevoegen van je eigen muziek, zorg ervoor dat je de muzieknaam toevoegt in 'Audio Beheer' en het overeenkomstige audiobestand plaatst in de 'Among Us/FinalSuspect_Data/Sounds' map (ondersteunde formaten: .wav). Muziek kan worden afgespeeld in 'Mijn Muziek'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Je kunt muziek downloaden die wordt ondersteund door XtremeWave of je eigen muziek toevoegen in 「Audio Beheer」. Als het lokale muziekbronpad ontbreekt, wordt '[Bestand Ontbreekt]' weergegeven."
 

@@ -25,7 +25,6 @@ class BootFromVentPatch
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
 class MurderPlayerPatch
 {
-
     public static bool Prefix()
     {
         if (XtremeGameData.GameStates.IsLobby)
@@ -92,9 +91,31 @@ class FixedUpdatePatch
 
             if (appendText && !PlayerControl.LocalPlayer.IsAlive())
                 __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
+
+            DisconnectSync(__instance);
+            DeathSync(__instance);
         }
         __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
 
+    }
+    static void DisconnectSync(PlayerControl pc)
+    {
+        if (!XtremeGameData.GameStates.IsInTask) return;
+        var data = pc.GetPlayerData();
+        var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
+        var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
+        var Role_NotAssgin = data.RoleWhenAlive == null;
+
+        if (currectlyDisconnect || Task_NotAssgin || Role_NotAssgin)
+        {
+            pc.SetDisconnected();
+            pc.SetDeathReason(DataDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
+        }
+    }
+    static void DeathSync(PlayerControl pc)
+    {
+        if (!XtremeGameData.GameStates.IsInTask || pc.GetPlayerData().IsDead) return;
+        if (pc.Data.IsDead) pc.SetDead();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]

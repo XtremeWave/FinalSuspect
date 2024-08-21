@@ -6,13 +6,13 @@ using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using Newtonsoft.Json;
-using static FinalSuspect_Xtreme.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using System.IO;
 using System.Linq;
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
-public static class SoundManagerNewWindow
+public static class AudioManagementNewWindow
 {
     public static GameObject Window { get; private set; }
     public static GameObject Info { get; private set; }
@@ -27,7 +27,7 @@ public static class SoundManagerNewWindow
     }
     public static void Init()
     {
-        Window = Object.Instantiate(AccountManager.Instance.transform.FindChild("InfoTextBox").gameObject, SoundManagerPanel.CustomBackground.transform.parent);
+        Window = Object.Instantiate(AccountManager.Instance.transform.FindChild("InfoTextBox").gameObject, AudioManagementPanel.CustomBackground.transform.parent);
         Window.name = "New Music Window";
         Window.transform.FindChild("Background").localScale *= 0.7f;
         Window.transform.localPosition += Vector3.back * 21;
@@ -83,7 +83,7 @@ public static class SoundManagerNewWindow
             if (AllMusics.ContainsKey(code))
             {
                 ConfirmButton.SetActive(false);
-                colorInfoTmp.text = GetString("SoundManagerAlreadyExist");
+                colorInfoTmp.text = GetString("AudioManagementAlreadyExist");
                 colorInfoTmp.color = Color.blue;
             }
             else if (reg.IsMatch(code))
@@ -97,8 +97,8 @@ public static class SoundManagerNewWindow
                 Window.SetActive(false);
                 SaveToFile(code);
                 ReloadTag(code);
-                SoundManagerPanel.RefreshTagList();
-                SoundPanel.RefreshTagList();
+                AudioManagementPanel.RefreshTagList();
+                MyMusicPanel.RefreshTagList();
                 return;
             }
 

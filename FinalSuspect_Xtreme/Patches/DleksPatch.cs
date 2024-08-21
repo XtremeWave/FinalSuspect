@@ -75,7 +75,6 @@ class AutoSelectDleksPatch
     {
         if (__instance.Title == StringNames.GameMapName)
         {
-            // vanilla clamps this to not auto select dleks
             __instance.Value = GameOptionsManager.Instance.CurrentGameOptions.MapId;
         }
     }
@@ -84,15 +83,12 @@ class AutoSelectDleksPatch
 public static class VentSetButtonsPatch
 {
     public static bool ShowButtons = false;
-    // Fix arrows buttons in vent on Dleks map and "Index was outside the bounds of the array" errors
     private static bool Prefix(Vent __instance, [HarmonyArgument(0)] ref bool enabled)
     {
-        // if map is Dleks
         if (XtremeGameData.GameStates.DleksIsActive && IntroCutsceneOnDestroyPatch.introDestroyed)
         {
             enabled = false;
-            if (XtremeGameData.GameStates.IsMeeting) 
-                ShowButtons = false;
+                ShowButtons = !XtremeGameData.GameStates.IsMeeting;
         }
         return true;
     }
@@ -131,7 +127,6 @@ public static class VentSetButtonsPatch
 [HarmonyPatch(typeof(Vent), nameof(Vent.TryMoveToVent))]
 class VentTryMoveToVentPatch
 {
-    // Update arrows buttons when player move to vents
     private static void Postfix(Vent __instance, [HarmonyArgument(0)] Vent otherVent)
     {
         if (__instance == null || otherVent == null || !XtremeGameData.GameStates.DleksIsActive) return;
@@ -144,10 +139,8 @@ class VentTryMoveToVentPatch
 [HarmonyPatch(typeof(Vent), nameof(Vent.UpdateArrows))]
 class VentUpdateArrowsPatch
 {
-    // Fixes "Index was outside the bounds of the array" errors when arrows updates in vent on Dleks map
     private static bool Prefix()
     {
-        // if map is not Dleks
         return !XtremeGameData.GameStates.DleksIsActive;
     }
 }

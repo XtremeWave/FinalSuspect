@@ -84,7 +84,7 @@ EnableMapBackGround: "Enable Custom Map Color"
 DisableVanillaSound: "Disable Among U's Musics"
 FinalSuspect_XtremeFeatures: "Final Suspect Features"
 SoundOptions: "My Musics"
-SoundManagerOptions: "Audio Management"
+AudioManagementOptions: "Audio Management"
 ChangeOutfit: "Change Outfit"
 OnlyAvailableInMainMenu: "Only Available In Main Menu"
 
@@ -146,11 +146,11 @@ download: "Download"
 delete: "Delete"
 NewSound: "Add New Music"
 PleaseEnterMusic: "Please Enter Music Name"
-SoundManagerAlreadyExists: "This music name already exists"
+AudioManagementAlreadyExists: "This music name already exists"
 NotAllowedMusic: "Music name format is not allowed"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. When adding your own music, ensure you add the music name in 'Audio Management' and place the corresponding audio file in the 'Among Us/FinalSuspect_Data/Sounds' folder (supported formats: .wav). Music can be played in 'My Music'."
+CustomAudioManagementHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. When adding your own music, ensure you add the music name in 「Audio Management」 and place the corresponding audio file in the 「Among Us/FinalSuspect_Data/Sounds」 folder (supported formats: .wav). Music can be played in 「My Music」."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. If the local music resource path is missing, it will display '[File Missing]'."
 

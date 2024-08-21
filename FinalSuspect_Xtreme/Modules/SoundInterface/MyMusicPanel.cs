@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
-public static class SoundPanel
+public static class MyMusicPanel
 {
     public static SpriteRenderer CustomBackground { get; private set; }
     public static List<GameObject> Items { get; private set; }

@@ -109,7 +109,7 @@ internal class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && VisitText == null)
         {
             VisitText = Object.Instantiate(__instance.text);
-            VisitText.name = "FinalSuspect_Xtreme s";
+            VisitText.name = "FinalSuspect_Xtreme VisitText";
             VisitText.alignment = TextAlignmentOptions.Left;
             VisitText.text = ModUpdater.visit > 0
                 ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), Main.ModColor)
@@ -141,7 +141,7 @@ internal class VersionShowerStartPatch
 
 
             CreditTextCredential = Object.Instantiate(__instance.text);
-            CreditTextCredential.name = "FinalSuspect_Xtreme c";
+            CreditTextCredential.name = "FinalSuspect_Xtreme CreditTex";
             CreditTextCredential.alignment = TextAlignmentOptions.Right;
             CreditTextCredential.text = credentialsText;
             CreditTextCredential.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);

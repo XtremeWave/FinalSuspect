@@ -84,7 +84,7 @@ EnableMapBackGround: "커스텀 맵 색상 활성화"
 DisableVanillaSound: "Among U의 음악 비활성화"
 FinalSuspect_XtremeFeatures: "Final Suspect 기능"
 SoundOptions: "내 음악"
-SoundManagerOptions: "오디오 관리"
+AudioManagementOptions: "오디오 관리"
 ChangeOutfit: "복장 변경"
 OnlyAvailableInMainMenu: "메인 메뉴에서만 사용 가능"
 
@@ -146,11 +146,11 @@ download: "다운로드"
 delete: "삭제"
 NewSound: "새 음악 추가"
 PleaseEnterMusic: "음악 이름을 입력해 주세요"
-SoundManagerAlreadyExists: "이 음악 이름은 이미 존재합니다"
+AudioManagementAlreadyExists: "이 음악 이름은 이미 존재합니다"
 NotAllowedMusic: "음악 이름 형식이 허용되지 않습니다"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
+CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
 # , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav)"
 CustomSoundHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 직접 음악을 추가할 수 있습니다. 로컬 음악 자원 경로가 누락된 경우 '[파일 없음]'으로 표시됩니다."
 

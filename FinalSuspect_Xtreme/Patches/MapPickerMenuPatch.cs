@@ -93,20 +93,10 @@ class CreateOptionsPickerPatch
 
             if (DleksButton != null)
             {
-                if (__instance.selectedMapId == 3)
-                {
-                    SetDleks = true;
-                }
-                else
-                {
-                    SetDleks = false;
-                }
+                SetDleks = __instance.selectedMapId == 3;
             }
 
-            if (__instance.selectedMapId == 3)
-                return false;
-
-            return true;
+            return !SetDleks;
         }
     }
 

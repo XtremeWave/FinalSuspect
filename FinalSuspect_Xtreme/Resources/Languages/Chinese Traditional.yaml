@@ -84,7 +84,7 @@ EnableMapBackGround: "啟用插件地圖背景顏色"
 DisableVanillaSound: "禁用原版遊戲音樂"
 FinalSuspect_XtremeFeatures: "Final Suspect 功能"
 SoundOptions: "我的音樂"
-SoundManagerOptions: "音訊管理"
+AudioManagementOptions: "音訊管理"
 ChangeOutfit: "切換形象"
 OnlyAvailableInMainMenu: "僅在首頁使用"
 
@@ -146,11 +146,11 @@ download: "下載"
 delete: "刪除"
 NewSound: "新增音樂"
 PleaseEnterMusic: "請輸入音樂名"
-SoundManagerAlreadyExists: "該音樂名已存在"
+AudioManagementAlreadyExists: "該音樂名已存在"
 NotAllowedMusic: "音樂名稱格式不合規"
 
 # 界面提示
-CustomSoundManagerHelp: "您可以在「音訊管理」中下載 XtremeWave 支援的音樂或添加自己的音樂。當您添加自己的音樂時，請在「音訊管理」中添加音樂名並在路徑“Among Us/FinalSuspect_Data/Sounds”文件夾內添加同名音頻文件（支援格式：.wav）。音樂可在「我的音樂」中播放。"
+CustomAudioManagementHelp: "您可以在「音訊管理」中下載 XtremeWave 支援的音樂或添加自己的音樂。當您添加自己的音樂時，請在「音訊管理」中添加音樂名並在路徑“Among Us/FinalSuspect_Data/Sounds”文件夾內添加同名音頻文件（支援格式：.wav）。音樂可在「我的音樂」中播放。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "您可以在「音訊管理」中下載 XtremeWave 支援的音樂或添加自己的音樂，如果音樂本地資源路徑不存在則會顯示「【文件丟失】」"
 

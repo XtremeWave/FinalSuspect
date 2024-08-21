@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
-using static FinalSuspect_Xtreme.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules;
 

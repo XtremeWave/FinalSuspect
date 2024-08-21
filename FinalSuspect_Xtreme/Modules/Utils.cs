@@ -107,10 +107,10 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var thisdata = XtremeGameData.PlayerData.GetPlayerDataById(id);
+        var thisdata = XtremeGameData.XtremePlayerData.GetPlayerDataById(id);
 
         var builder = new StringBuilder();
-        var longestNameByteCount = XtremeGameData.PlayerData.GetLongestNameByteCount();
+        var longestNameByteCount = XtremeGameData.XtremePlayerData.GetLongestNameByteCount();
 
 
         var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
@@ -237,7 +237,7 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null) player = XtremeGameData.PlayerData.GetPlayerById(playerId);
+        if (player == null) player = XtremeGameData.XtremePlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -260,7 +260,7 @@ public static class Utils
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var data = XtremeGameData.PlayerData.GetPlayerDataById(playerId);
+        var data = XtremeGameData.XtremePlayerData.GetPlayerDataById(playerId);
         if (!XtremeGameData.GameStates.IsNormalGame)
         {
             if (data.IsImpostor)
@@ -285,8 +285,10 @@ public static class Utils
     }
     public static string GetVitalText(byte playerId,  bool summary = false)
     {
-        var data = XtremeGameData.PlayerData.GetPlayerDataById(playerId);
+        var data = XtremeGameData.XtremePlayerData.GetPlayerDataById(playerId);
         if (!data.IsDead) return "";
+        if (data.IsDead && data.RealDeathReason == DataDeathReason.None)
+            data.SetDeathReason(DataDeathReason.Exile);//WarpUp未执行时的处理
 
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
@@ -299,17 +301,11 @@ public static class Utils
             case DataDeathReason.Kill:
                 color = Palette.ImpostorRed;
                 var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
+
                 if (summary)
-                {
-                    deathReason += "<=";
-                    deathReason += "<size=80%>";
-                    deathReason += ColorString(killercolor, data.RealKiller.PlayerName);
-                    deathReason += "</size>";
-                }
+                    deathReason += $"<=<size=80%>{ColorString(killercolor, data.RealKiller.PlayerName)}</size>";
                 else
-                {
                     deathReason = ColorString(killercolor, deathReason);
-                }
                 break;
             case DataDeathReason.Exile:
                 color = Palette.Purple;

@@ -84,7 +84,7 @@ EnableMapBackGround: "カスタムマップカラーを有効化"
 DisableVanillaSound: "Among Us の音楽を無効化"
 FinalSuspect_XtremeFeatures: "Final Suspect 機能"
 SoundOptions: "私の音楽"
-SoundManagerOptions: "オーディオ管理"
+AudioManagementOptions: "オーディオ管理"
 ChangeOutfit: "アウトフィットを変更"
 OnlyAvailableInMainMenu: "メインメニューでのみ利用可能"
 
@@ -146,11 +146,11 @@ download: "ダウンロード"
 delete: "削除"
 NewSound: "新しい音楽を追加"
 PleaseEnterMusic: "音楽の名前を入力してください"
-SoundManagerAlreadyExists: "この音楽名はすでに存在します"
+AudioManagementAlreadyExists: "この音楽名はすでに存在します"
 NotAllowedMusic: "音楽名の形式が許可されていません"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。独自の音楽を追加する場合は、「オーディオ管理」に音楽名を追加し、対応するオーディオファイルを「Among Us/FinalSuspect_Data/Sounds」フォルダに置いてください（サポートされている形式: .wav）。音楽は「私の音楽」で再生できます。"
+CustomAudioManagementHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。独自の音楽を追加する場合は、「オーディオ管理」に音楽名を追加し、対応するオーディオファイルを「Among Us/FinalSuspect_Data/Sounds」フォルダに置いてください（サポートされている形式: .wav）。音楽は「私の音楽」で再生できます。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。ローカルの音楽リソースパスが欠落している場合は、「[ファイルが見つかりません]」と表示されます。"
 

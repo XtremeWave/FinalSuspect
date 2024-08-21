@@ -52,9 +52,6 @@ public class GameStartManagerPatch
             __instance.GameRoomNameCode.text = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
             timer = 600f;
 
-            // Reset lobby countdown timer
-            //MatchMakerGameButtonSetGamePatch.allGames.Where(x => x.GameId == AmongUsClient.Instance.GameId).Do(x => timer = x.Age);
-
             HideName = Object.Instantiate(__instance.GameRoomNameCode, __instance.GameRoomNameCode.transform);
             HideName.gameObject.SetActive(true);
             HideName.name = "HideName";
@@ -115,19 +112,11 @@ public class GameStartManagerPatch
             }));
             cancelButton.gameObject.SetActive(false);
 
-            Logger.Info("CancelButton instantiated and configured", "test");
-            if (!AmongUsClient.Instance.AmHost) return;
-
-            // Make Public Button
-            //#if RELEASE
-
-            if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate)  || !VersionChecker.IsSupported)
+            if (AmongUsClient.Instance.AmHost && (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate)  || !VersionChecker.IsSupported))
             {
                 __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
                 __instance.HostPrivateButton.activeTextColor = Palette.DisabledClear;
             }
-
-            //#endif
 
 
         }
@@ -158,10 +147,12 @@ public class GameStartManagerPatch
                 if (updateTimer >= 50)
                 {
                     updateTimer = 0;
-                    if (GameData.Instance.PlayerCount >= 14 && !XtremeGameData.GameStates.IsCountDown)
+                    var maxPlayers = GameManager.Instance.LogicOptions.MaxPlayers;
+                    if (GameData.Instance.PlayerCount >= maxPlayers - 1 && !XtremeGameData.GameStates.IsCountDown)
                     {
                         GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
                         GameStartManager.Instance.countDownTimer = 10;
+
                     }
                 }
             }
@@ -241,7 +232,7 @@ public class GameStartManagerPatch
         }
         private static bool MatchVersions(byte playerId, bool acceptVanilla = false)
         {
-            if (!Main.playerVersion.TryGetValue(playerId, out var version)) return acceptVanilla;
+            if (!XtremeGameData.PlayerVersion.playerVersion.TryGetValue(playerId, out var version)) return acceptVanilla;
             return Main.ForkId == version.forkId
                 && Main.version.CompareTo(version.version) == 0
                 && version.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})";

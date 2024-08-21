@@ -36,7 +36,7 @@ static class ExtendedPlayerControl
     }
     public static RoleTypes GetRoleType(byte id)
     {
-        return XtremeGameData.PlayerData.GetRoleById(id);
+        return XtremeGameData.XtremePlayerData.GetRoleById(id);
     }
     public static bool IsImpostor(this PlayerControl pc)
     {
@@ -68,7 +68,7 @@ static class ExtendedPlayerControl
     {
         colorstr = "#ffffff";
         if (!XtremeGameData.GameStates.IsLobby) return;
-        if (Main.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
+        if (XtremeGameData.PlayerVersion.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
         {
             if (Main.ForkId != ver.forkId)
             {
@@ -104,7 +104,7 @@ static class ExtendedPlayerControl
         roleText = "";
 
         if (!XtremeGameData.GameStates.IsInGame) return false;
-        if (Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return false;
+        if (XtremeGameData.GameStates.OtherModHost) return false;
 
         var roleType = player.GetRoleType();
         colorstr = "#ffffff";

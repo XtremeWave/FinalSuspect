@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FinalSuspect_Xtreme.Modules.SoundInterface;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 #nullable enable
 public static class AudioManager
@@ -97,7 +97,7 @@ public static class AudioManager
         {
             FinalSuspectSounds.TryAdd(file, false);
         }
-        
+
         if (!Directory.Exists(TAGS_DIRECTORY_PATH)) Directory.CreateDirectory(TAGS_DIRECTORY_PATH);
         if (!Directory.Exists(CustomSoundsManager.SOUNDS_PATH)) Directory.CreateDirectory(CustomSoundsManager.SOUNDS_PATH);
 
@@ -119,17 +119,17 @@ public static class AudioManager
         string sound = Path.GetFileNameWithoutExtension(path);
         if (sound != null && !AllSounds.ContainsKey(sound) && !FinalSuspectMusic.ContainsKey(sound))
         {
-            CustomMusic.TryAdd(sound,false);
+            CustomMusic.TryAdd(sound, false);
             Logger.Info($"Sound Loaded: {sound}", "AudioManager");
         }
     }
 #nullable disable
     public static bool ConvertExtension(ref string path)
     {
-        if (path == null)  return false;
-        List<string> extensions = new(){ ".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a" };
+        if (path == null) return false;
+        List<string> extensions = new() { ".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a" };
 
-        
+
         while (!File.Exists(path))
         {
             var currectpath = path;
@@ -163,7 +163,6 @@ public static class AudioManager
 
         try
         {
-            // 异步读取音频文件的字节数据
             audioData = await ReadAllBytesAsync(filePath);
         }
         catch (Exception e)
@@ -172,11 +171,9 @@ public static class AudioManager
             return null;
         }
 
-        // 创建一个新的AudioClip
         AudioClip audioClip = AudioClip.Create(name, audioData.Length / 2, 2, 44100, false);
         float[] floatData = ConvertBytesToFloats(audioData);
 
-        // 将字节流数据加载到AudioClip中
         audioClip.SetData(floatData, 0);
 
         return audioClip;
@@ -196,15 +193,13 @@ public static class AudioManager
             return memoryStream.ToArray();
         }
     }
-
-    // 将音频字节数据转换为浮点数数组
     private static float[] ConvertBytesToFloats(byte[] audioBytes)
     {
-        float[] floatData = new float[audioBytes.Length / 2]; // 2 bytes to 1 float
+        float[] floatData = new float[audioBytes.Length / 2];
 
         for (int i = 0; i < floatData.Length; i++)
         {
-            floatData[i] = (float)BitConverter.ToInt16(audioBytes, i * 2) / 32768.0f; // Convert to float (-1.0 to 1.0)
+            floatData[i] = BitConverter.ToInt16(audioBytes, i * 2) / 32768.0f;
         }
 
         return floatData;

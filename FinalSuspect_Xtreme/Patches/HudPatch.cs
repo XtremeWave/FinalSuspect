@@ -1,13 +1,6 @@
-using AmongUs.GameOptions;
 using HarmonyLib;
-using Hazel.Dtls;
-using LibCpp2IL.Elf;
 using System.Linq;
 using System.Text;
-using TMPro;
-
-
-
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 
@@ -62,67 +55,7 @@ class TaskPanelBehaviourPatch
 
         AllText += $"\r\n\r\n</color><size=70%>{GetString("PressF1ShowRoleDescription")}</size>";
 
-
-
-
         __instance.taskText.text = AllText;
 
-
-        // RepairSenderの表示
-        if (RepairSender.enabled && AmongUsClient.Instance.NetworkMode != NetworkModes.OnlineGame)
-            __instance.taskText.text = RepairSender.GetText();
-    }
-}
-
-class RepairSender
-{
-    public static bool enabled = false;
-    public static bool TypingAmount = false;
-
-    public static int SystemType;
-    public static int amount;
-
-    public static void Input(int num)
-    {
-        if (!TypingAmount)
-        {
-            //SystemType入力中
-            SystemType *= 10;
-            SystemType += num;
-        }
-        else
-        {
-            //Amount入力中
-            amount *= 10;
-            amount += num;
-        }
-    }
-    public static void InputEnter()
-    {
-        if (!TypingAmount)
-        {
-            //SystemType入力中
-            TypingAmount = true;
-        }
-        else
-        {
-            //Amount入力中
-            Send();
-        }
-    }
-    public static void Send()
-    {
-        ShipStatus.Instance.RpcUpdateSystem((SystemTypes)SystemType, (byte)amount);
-        Reset();
-    }
-    public static void Reset()
-    {
-        TypingAmount = false;
-        SystemType = 0;
-        amount = 0;
-    }
-    public static string GetText()
-    {
-        return SystemType.ToString() + "(" + ((SystemTypes)SystemType).ToString() + ")\r\n" + amount;
     }
 }

@@ -15,14 +15,12 @@ internal class ExilePatch
     {
         public static void Prefix(ExileController __instance)
         {
-            if (__instance.initData.networkedPlayer == null || __instance.initData.networkedPlayer.PlayerId < 0 || __instance.initData.networkedPlayer.PlayerId > 14) return;
-            try
-            {
-                XtremeGameData.PlayerData.GetPlayerDataById(__instance.initData.networkedPlayer.PlayerId).Exiled = true;
-                XtremeGameData.PlayerData.GetPlayerById(__instance.initData.networkedPlayer.PlayerId).SetDeathReason(DataDeathReason.Exile);
-
-            }
-            catch { }
+            if (__instance.initData.networkedPlayer == null || 
+                __instance.initData.networkedPlayer.PlayerId < 0 || 
+                __instance.initData.networkedPlayer.PlayerId > 14) return;
+            var player = XtremeGameData.XtremePlayerData.GetPlayerById(__instance.initData.networkedPlayer.PlayerId);
+            player.SetDead();
+            player.SetDeathReason(DataDeathReason.Exile, true);
         }
     }
 }

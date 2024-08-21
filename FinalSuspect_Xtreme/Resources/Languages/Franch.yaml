@@ -84,7 +84,7 @@ EnableMapBackGround: "Activer la couleur de la carte personnalisée"
 DisableVanillaSound: "Désactiver les musiques d'Among Us"
 FinalSuspect_XtremeFeatures: "Fonctionnalités Final Suspect"
 SoundOptions: "Mes Musiques"
-SoundManagerOptions: "Gestion Audio"
+AudioManagementOptions: "Gestion Audio"
 ChangeOutfit: "Changer de tenue"
 OnlyAvailableInMainMenu: "Disponible uniquement dans le menu principal"
 
@@ -146,11 +146,11 @@ download: "Télécharger"
 delete: "Supprimer"
 NewSound: "Ajouter de la nouvelle musique"
 PleaseEnterMusic: "Veuillez entrer le nom de la musique"
-SoundManagerAlreadyExists: "Ce nom de musique existe déjà"
+AudioManagementAlreadyExists: "Ce nom de musique existe déjà"
 NotAllowedMusic: "Format de nom de musique non autorisé"
 
 # 界面提示 / Interface tips
-CustomSoundManagerHelp: "Vous pouvez télécharger de la musique prise en charge par XtremeWave ou ajouter votre propre musique dans 「Gestion Audio」. Lors de l'ajout de votre propre musique, assurez-vous d'ajouter le nom de la musique dans 'Gestion Audio' et placez le fichier audio correspondant dans le dossier 'Among Us/FinalSuspect_Data/Sounds' (formats pris en charge : .wav). La musique peut être lue dans 'Mes Musiques'."
+CustomAudioManagementHelp: "Vous pouvez télécharger de la musique prise en charge par XtremeWave ou ajouter votre propre musique dans 「Gestion Audio」. Lors de l'ajout de votre propre musique, assurez-vous d'ajouter le nom de la musique dans 'Gestion Audio' et placez le fichier audio correspondant dans le dossier 'Among Us/FinalSuspect_Data/Sounds' (formats pris en charge : .wav). La musique peut être lue dans 'Mes Musiques'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Vous pouvez télécharger de la musique prise en charge par XtremeWave ou ajouter votre propre musique dans 「Gestion Audio」. Si le chemin de la ressource musicale locale est manquant, il affichera '[Fichier manquant]'."
 

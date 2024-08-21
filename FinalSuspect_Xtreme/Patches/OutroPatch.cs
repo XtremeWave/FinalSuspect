@@ -16,7 +16,7 @@ class AmongUsClientEndGamePatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
     {
         SummaryText = new();
-        foreach (var id in XtremeGameData.PlayerData.AllPlayerData.Keys)
+        foreach (var id in XtremeGameData.XtremePlayerData.AllPlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
     }
 }
@@ -81,13 +81,13 @@ class SetEverythingUpPatch
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
 
-        foreach (var kvp in XtremeGameData.PlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
+        foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
             sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
-        foreach (var kvp in XtremeGameData.PlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
+        foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
@@ -106,6 +106,6 @@ class SetEverythingUpPatch
                 parent: showHideButton.Button.transform);
         roleSummary.transform.localPosition = new(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
-        XtremeGameData.PlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+        XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
     }
 }

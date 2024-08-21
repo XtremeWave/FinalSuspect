@@ -110,7 +110,7 @@ internal class RPCHandlerPatch
                 return true;
 
             }
-            if (!Main.playerVersion.TryGetValue(0, out _))
+            if (!XtremeGameData.GameStates.ModHost)
             {
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
                 RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
@@ -136,12 +136,12 @@ internal class RPCHandlerPatch
 
                     }
 
-                    Main.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
+                    XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
 
                     if (!Main.VersionCheat.Value && __instance.OwnerId == AmongUsClient.Instance.HostId) RPC.RpcVersionCheck();
 
                     if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
-                        Main.playerVersion[__instance.PlayerId] = Main.playerVersion[0];
+                        XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = XtremeGameData.PlayerVersion.playerVersion[0];
 
                     // Kick Unmached Player Start
                     if (AmongUsClient.Instance.AmHost && tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
@@ -207,19 +207,19 @@ internal static class RPC
     {
 
 
-        if (!AmongUsClient.Instance.AmHost && Main.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
+        if (!AmongUsClient.Instance.AmHost && XtremeGameData.PlayerVersion.playerVersion.TryGetValue(0, out var ver) && Main.ForkId != ver.forkId) return;
 
         while (PlayerControl.LocalPlayer == null) await Task.Delay(500);
-        if (Main.playerVersion.ContainsKey(0) || !Main.VersionCheat.Value)
+        if (XtremeGameData.GameStates.ModHost && !Main.VersionCheat.Value)
         {
             bool cheating = Main.VersionCheat.Value;
             MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.VersionCheck, SendOption.Reliable);
-            writer.Write(cheating ? Main.playerVersion[0].version.ToString() : Main.PluginVersion);
-            writer.Write(cheating ? Main.playerVersion[0].tag : $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
-            writer.Write(cheating ? Main.playerVersion[0].forkId : Main.ForkId);
+            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].version.ToString() : Main.PluginVersion);
+            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].tag : $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
+            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].forkId : Main.ForkId);
             writer.EndMessage();
         }
-        Main.playerVersion[PlayerControl.LocalPlayer.PlayerId] = new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
+        XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
 
 
     }

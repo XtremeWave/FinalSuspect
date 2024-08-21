@@ -11,8 +11,6 @@ public static class AwakeFriendCodeUIPatch
     public static GameObject FriendsButton;
     public static void Prefix(AccountTab __instance)
     {
-
-
         if (BarSprit = GameObject.Find("BarSprite"))
         {
             CustomBarSprit = new();

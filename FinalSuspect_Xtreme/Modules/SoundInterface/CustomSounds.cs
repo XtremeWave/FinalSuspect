@@ -7,7 +7,7 @@ using HarmonyLib;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Media;
-using static FinalSuspect_Xtreme.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using System.Linq;
 using static Il2CppSystem.Xml.XmlWellFormedWriter.AttributeValueCache;
 //using Il2CppSystem.IO;
@@ -75,7 +75,7 @@ public static class CustomSoundsManager
 
 
         }
-        if (SoundPanel.PlayMode == 2)
+        if (MyMusicPanel.PlayMode == 2)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -88,7 +88,7 @@ public static class CustomSoundsManager
             }
 
         }
-        else if (SoundPanel.PlayMode == 3)
+        else if (MyMusicPanel.PlayMode == 3)
         {
             var musicn = mus.IndexOf(MusicNow);
             for (int i = 0; i < 10; i++)
@@ -128,7 +128,7 @@ public static class CustomSoundsManager
         isinternal = false;
         new LateTask(() =>
         {
-            SoundPanel.RefreshTagList();
+            MyMusicPanel.RefreshTagList();
         }, 0.01f);
 
     }
@@ -170,7 +170,7 @@ public static class CustomSoundsManager
 }
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlaySoundImmediate))]
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlaySound))]
-public class SoundManagerPlaySoundPatch
+public class AudioManagementPlaySoundPatch
 {
     public static bool Prefix(SoundManager __instance, [HarmonyArgument(0)] AudioClip clip, [HarmonyArgument(1)] bool loop)
     {
@@ -196,7 +196,7 @@ public class SoundManagerPlaySoundPatch
 }
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlayDynamicSound))]
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlayNamedSound))]
-public class SoundManagerPlayDynamicandNamedSoundPatch
+public class AudioManagementPlayDynamicandNamedSoundPatch
 {
     public static bool Prefix([HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
     {
@@ -221,7 +221,7 @@ public class SoundManagerPlayDynamicandNamedSoundPatch
 }
 
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.StopAllSound))]
-public class SoundManagerStopPatch
+public class AudioManagementStopPatch
 {
     public static bool Prefix()
     {
@@ -245,7 +245,7 @@ public class SoundManagerStopPatch
     }
 }
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.CrossFadeSound))]
-public class SoundManagerCrossFadeSoundPatch
+public class AudioManagementCrossFadeSoundPatch
 {
     public static bool Prefix([HarmonyArgument(1)] AudioClip clip)
     {

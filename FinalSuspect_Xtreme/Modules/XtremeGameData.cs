@@ -12,10 +12,10 @@ namespace FinalSuspect_Xtreme;
 public static class XtremeGameData
 {
 
-    public class PlayerData : IDisposable
+    public class XtremePlayerData : IDisposable
     {
         ///////////////PLAYER_INFO\\\\\\\\\\\\\\\
-        public static Dictionary<byte, PlayerData> AllPlayerData;
+        public static Dictionary<byte, XtremePlayerData> AllPlayerData;
         public PlayerControl Player { get; private set; }
 
         public string PlayerName { get; private set; }
@@ -23,9 +23,7 @@ public static class XtremeGameData
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
-        public bool IsDisconnected { get; private set; }
-        public bool Murdered { get; private set; }
-        public bool Exiled { get; set; }
+        public bool IsDisconnected => RealDeathReason == DataDeathReason.Disconnect;
 
 
         public RoleTypes? RoleWhenAlive { get; private set; }
@@ -33,22 +31,16 @@ public static class XtremeGameData
         public bool RoleAssgined { get; private set; }
 
         public DataDeathReason RealDeathReason { get; private set; }
-        public PlayerData RealKiller { get; private set; }
+        public XtremePlayerData RealKiller { get; private set; }
 
         public int TotalTaskCount { get; private set; }
-        public int CompleteTaskCount { get; private set; } = 0;
-        public bool TaskCompleted
-        {
-            get
-            {
-                return TotalTaskCount == CompleteTaskCount;
-            }
-        }
+        public int CompleteTaskCount { get; private set; }
+        public bool TaskCompleted => TotalTaskCount == CompleteTaskCount;
         public int KillCount { get; private set; }
 
         ///////////////\\\\\\\\\\\\\\\
 
-        public PlayerData(
+        public XtremePlayerData(
         PlayerControl player,
         string playername,
         int colorId)
@@ -56,7 +48,7 @@ public static class XtremeGameData
             Player = player;
             PlayerName = playername;
             PlayerColor = colorId;
-            IsImpostor = IsDead = Exiled = Murdered = IsDisconnected = RoleAssgined = false;
+            IsImpostor = IsDead = RoleAssgined = false;
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
             RealDeathReason = DataDeathReason.None;
             RealKiller = null;
@@ -64,7 +56,7 @@ public static class XtremeGameData
 
 
         ///////////////FUNCTIONS\\\\\\\\\\\\\\\
-        public static PlayerData GetPlayerDataById(byte id) => AllPlayerData[id] ?? null;
+        public static XtremePlayerData GetPlayerDataById(byte id) => AllPlayerData[id] ?? null;
         public static PlayerControl GetPlayerById(byte id) => GetPlayerDataById(id).Player ?? Utils.GetPlayerById(id);
         public static string GetPlayerNameById(byte id) => GetPlayerDataById(id).PlayerName;
 
@@ -78,7 +70,6 @@ public static class XtremeGameData
         public void SetDead() => IsDead = true;
         public void SetDisconnected()
         {
-            IsDisconnected = true;
             SetDead();
             SetDeathReason(DataDeathReason.Disconnect);
         }
@@ -96,12 +87,11 @@ public static class XtremeGameData
             if (IsDead && RealDeathReason == DataDeathReason.None || focus)
                 RealDeathReason = deathReason;
         }
-        public void SetRealKiller(PlayerData killer)
+        public void SetRealKiller(XtremePlayerData killer)
         {
             SetDead();
             SetDeathReason(DataDeathReason.Kill);
             killer.KillCount++;
-            Murdered = true;
             RealKiller = killer;
 
         }
@@ -118,11 +108,7 @@ public static class XtremeGameData
             {
                 var colorId = pc.Data.DefaultOutfit.ColorId;
                 var id = pc.PlayerId;
-                var data = new PlayerData(
-                    pc,
-                    pc.GetRealName(),
-                    colorId);
-                AllPlayerData[id] = data;
+                AllPlayerData[id] = new XtremePlayerData(pc, pc.GetRealName(), colorId);
             }
 
         }
@@ -137,6 +123,8 @@ public static class XtremeGameData
 
     public class PlayerVersion
     {
+        public static Dictionary<byte, PlayerVersion> playerVersion = new();
+
         public readonly Version version;
         public readonly string tag;
         public readonly string forkId;
@@ -147,26 +135,23 @@ public static class XtremeGameData
             tag = tag_str;
             this.forkId = forkId;
         }
-        public bool IsEqual(PlayerVersion pv)
-        {
-            return pv.version == version && pv.tag == tag;
-        }
+
     }
     public static class GameStates
     {
         public static bool InGame = false;
-        public static bool AlreadyDied = false;
-        public static bool IsModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x => x.OwnerId == AmongUsClient.Instance.HostId && x.IsModClient());
+        public static bool OtherModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x => 
+        x.OwnerId == AmongUsClient.Instance.HostId && x.OtherModClient());
+        public static bool ModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
+x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
         public static bool IsLobby => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.Joined && !IsFreePlay;
         public static bool IsInGame => InGame || IsFreePlay;
-        public static bool IsEnded => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.Ended;
         public static bool IsNotJoined => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.NotJoined;
         public static bool IsOnlineGame => AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame;
         public static bool IsLocalPlayerGame => AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame;
         public static bool IsFreePlay => AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay;
         public static bool IsInTask => InGame && !MeetingHud.Instance;
         public static bool IsMeeting => InGame && MeetingHud.Instance;
-        public static bool IsVoting => IsMeeting && MeetingHud.Instance.state is MeetingHud.VoteStates.Voted or MeetingHud.VoteStates.NotVoted;
         public static bool IsCountDown => GameStartManager.InstanceExists && GameStartManager.Instance.startState == GameStartManager.StartingStates.Countdown;
         public static bool IsShip => ShipStatus.Instance != null;
         public static bool IsCanMove => PlayerControl.LocalPlayer?.CanMove is true;
@@ -196,9 +181,9 @@ public static class XtremeGameData
 
 
 
-    public static PlayerData GetPlayerData(this PlayerControl pc) => PlayerData.GetPlayerDataById(pc.PlayerId) ?? null;
+    public static XtremePlayerData GetPlayerData(this PlayerControl pc) => XtremePlayerData.GetPlayerDataById(pc.PlayerId) ?? null;
     public static bool IsAlive(this PlayerControl pc) => GameStates.IsLobby || pc?.GetPlayerData()?.IsDead == false;
-    public static string GetDataName(this PlayerControl pc) => PlayerData.GetPlayerNameById(pc.PlayerId);
+    public static string GetDataName(this PlayerControl pc) => XtremePlayerData.GetPlayerNameById(pc.PlayerId);
     public static void SetDead(this PlayerControl pc) => pc.GetPlayerData().SetDead();
     public static void SetDisconnected(this PlayerControl pc) => pc.GetPlayerData().SetDisconnected();
     public static void SetIsImp(this PlayerControl pc, bool isimp) => pc.GetPlayerData().SetIsImp(isimp);
@@ -212,47 +197,12 @@ public static class XtremeGameData
     }
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetPlayerData().SetTaskTotalCount(TaskTotalCount);
     public static void OnCompleteTask(this PlayerControl pc) => pc.GetPlayerData().CompleteTask();
-    public static bool IsModClient(this PlayerControl player) => Main.playerVersion.ContainsKey(player.PlayerId);
+    public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId);
+    public static bool OtherModClient(byte id) => PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId != ver.forkId;
 
-}
+    public static bool ModClient(this PlayerControl player) => ModClient(player.PlayerId);
+    public static bool ModClient(byte id) => PlayerVersion.playerVersion.ContainsKey(id);
 
-
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-internal class DataFixedUpdate
-{
-    static bool Prefix(PlayerControl __instance)
-    {
-        if (!XtremeGameData.GameStates.IsInTask) return true;
-        DisconnectSync(__instance);
-        DeathSync(__instance);
-        DeathReasonSync(__instance);
-        return true;
-    }
-    static void DisconnectSync(PlayerControl pc)
-    {
-        var data = pc.GetPlayerData();
-        var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
-        var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
-        var Role_NotAssgin = data.RoleWhenAlive == null;
-
-        if (currectlyDisconnect || Task_NotAssgin || Role_NotAssgin)
-        {
-            pc.SetDisconnected();
-            pc.SetDeathReason(DataDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
-        }
-    }
-    static void DeathSync(PlayerControl pc)
-    {
-        if (pc.Data.IsDead && !pc.GetPlayerData().IsDead) pc.SetDead();
-    }
-    static void DeathReasonSync(PlayerControl pc)
-    {
-        var data = pc.GetPlayerData();
-        if (data.Exiled && data.RealDeathReason != DataDeathReason.Exile) pc.SetDeathReason(DataDeathReason.Exile, true);
-        if (data.Murdered && data.RealDeathReason != DataDeathReason.Kill) pc.SetDeathReason(DataDeathReason.Kill, true);
-
-
-    }
 }
 public enum DataDeathReason
 {

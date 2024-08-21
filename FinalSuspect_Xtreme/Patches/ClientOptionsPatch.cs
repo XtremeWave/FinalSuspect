@@ -25,7 +25,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean GodMode;
 
     public static ClientFeatureItem SoundBtn;
-    public static ClientFeatureItem SoundManagerBtn;
+    public static ClientFeatureItem AudioManagementBtn;
 
     private static bool reseted = false;
     public static void Postfix(OptionsMenuBehaviour __instance)
@@ -154,34 +154,34 @@ public static class OptionsMenuBehaviourStartPatch
         {
             SoundBtn = ClientFeatureItem.Create("SoundOption", () =>
             {
-                SoundPanel.CustomBackground?.gameObject?.SetActive(true);
+                MyMusicPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
         }
 
-        if ((SoundManagerBtn == null || SoundManagerBtn.ToggleButton == null))
+        if ((AudioManagementBtn == null || AudioManagementBtn.ToggleButton == null))
         {
-            SoundManagerBtn = ClientFeatureItem.Create("SoundManager", () =>
+            AudioManagementBtn = ClientFeatureItem.Create("SoundManager", () =>
             {
-                SoundManagerPanel.CustomBackground?.gameObject?.SetActive(true);
+                AudioManagementPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
         }
 
         SoundBtn.ToggleButton.Text.text = Translator.GetString("SoundOptions");
         SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
         SoundBtn.ToggleButton.Background.color = Main.ModColor32;
-        SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions");
-        SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        SoundManagerBtn.ToggleButton.Background.color = Main.ModColor32;
+        AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions");
+        AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
+        AudioManagementBtn.ToggleButton.Background.color = Main.ModColor32;
         if (!XtremeGameData.GameStates.IsNotJoined)
         {
-            SoundManagerBtn.ToggleButton.Text.text = Translator.GetString("SoundManagerOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
-            SoundManagerBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-            SoundManagerBtn.ToggleButton.Background.color = Palette.DisabledGrey;
+            AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
+            AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+            AudioManagementBtn.ToggleButton.Background.color = Palette.DisabledGrey;
         }
 
 
-        SoundPanel.Init(__instance);
-        SoundManagerPanel.Init(__instance);
+        MyMusicPanel.Init(__instance);
+        AudioManagementPanel.Init(__instance);
 
         if (ModUnloaderScreen.Popup == null)
             ModUnloaderScreen.Init(__instance);
@@ -197,7 +197,7 @@ public static class OptionsMenuBehaviourClosePatch
         ClientActionItem.CustomBackground?.gameObject?.SetActive(false);
         ClientFeatureItem.CustomBackground?.gameObject?.SetActive(false);
         ModUnloaderScreen.Hide();
-        SoundPanel.Hide();
-        SoundManagerPanel.Hide();
+        MyMusicPanel.Hide();
+        AudioManagementPanel.Hide();
     }
 }

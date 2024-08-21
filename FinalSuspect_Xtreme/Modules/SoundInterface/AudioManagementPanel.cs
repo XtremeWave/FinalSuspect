@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 
@@ -13,7 +13,7 @@ using AmongUs.HTTP;
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
-public static class SoundManagerPanel
+public static class AudioManagementPanel
 {
     public static SpriteRenderer CustomBackground { get; private set; }
     public static GameObject Slider { get; private set; }
@@ -60,14 +60,14 @@ public static class SoundManagerPanel
             newButton.Background.color = Palette.White;
             var newPassiveButton = newButton.GetComponent<PassiveButton>();
             newPassiveButton.OnClick = new();
-            newPassiveButton.OnClick.AddListener(new Action(SoundManagerNewWindow.Open));
+            newPassiveButton.OnClick.AddListener(new Action(AudioManagementNewWindow.Open));
 
             var helpText = Object.Instantiate(CustomPopup.InfoTMP.gameObject, CustomBackground.transform);
             helpText.name = "Help Text";
             helpText.transform.localPosition = new(-1.25f, -2.15f, -15f);
             helpText.transform.localScale = new(1f, 1f, 1f);
             var helpTextTMP = helpText.GetComponent<TextMeshPro>();
-            helpTextTMP.text = GetString("CustomSoundManagerHelp");
+            helpTextTMP.text = GetString("CustomAudioManagementHelp");
             helpText.gameObject.GetComponent<RectTransform>().sizeDelta = new(2.45f, 1f);
 
             var sliderTemplate = AccountManager.Instance.transform.FindChild("MainSignInWindow/SignIn/AccountsMenu/Accounts/Slider").gameObject;
@@ -183,7 +183,7 @@ public static class SoundManagerPanel
                         Delete(sound);
                         ReloadTag(sound);
                         RefreshTagList();
-                        SoundPanel.RefreshTagList();
+                        MyMusicPanel.RefreshTagList();
                     }
                     catch (Exception ex)
                     {
@@ -224,7 +224,7 @@ public static class SoundManagerPanel
                                     RefreshTagList();
                                 }, 3f);
                             }
-                            SoundPanel.RefreshTagList();
+                            MyMusicPanel.RefreshTagList();
                         },0.01f);
                     });
                 }
