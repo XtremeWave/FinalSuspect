@@ -86,9 +86,7 @@ public class ModUpdater
         MainMenuManagerPatch.UpdateButton.SetActive(isChecked && hasUpdate && (firstStart || forceUpdate));
         MainMenuManagerPatch.PlayButton.SetActive(!MainMenuManagerPatch.UpdateButton.activeSelf);
         var buttonText = MainMenuManagerPatch.UpdateButton.transform.FindChild("FontPlacer").GetChild(0).GetComponent<TextMeshPro>();
-        Logger.Info(showVer, "ver");
         buttonText.text = $"{(CanUpdate? GetString("updateButton"): GetString("updateNotice"))}\nv{showVer?.ToString() ?? " ???"}";
-        Logger.Info(showVer.ToString(), "ver");
     }
     public static void Retry()
     {

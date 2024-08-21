@@ -72,30 +72,38 @@ class FixedUpdatePatch
 {
     public static void Postfix(PlayerControl __instance)
     {
+
         if (__instance == null) return;
-        
-        var nametext = __instance.GetRealName();
-        __instance.GetLobbyText(ref nametext, out string color);
 
-        var ingame = __instance.GetGameText(out string colorgame, out bool appendText, out string roleText);
-
-        if (ingame)
+        try
         {
-            color = colorgame;
-            var RoleTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
-            var RoleText = RoleTextTransform.GetComponent<TMPro.TextMeshPro>();
+            var nametext = __instance.GetRealName();
+            __instance.GetLobbyText(ref nametext, out string color);
 
-            RoleText.enabled = true;
-            RoleText.text = roleText;
-            RoleText.transform.SetLocalY(0.2f);
+            var ingame = __instance.GetGameText(out string colorgame, out bool appendText, out string roleText);
 
-            if (appendText && !PlayerControl.LocalPlayer.IsAlive())
-                __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
+            if (ingame)
+            {
+                color = colorgame;
+                var RoleTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
+                var RoleText = RoleTextTransform.GetComponent<TMPro.TextMeshPro>();
 
-            DisconnectSync(__instance);
-            DeathSync(__instance);
+                RoleText.enabled = true;
+                RoleText.text = roleText;
+                RoleText.transform.SetLocalY(0.2f);
+
+                if (appendText && !PlayerControl.LocalPlayer.IsAlive())
+                    __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
+
+                DisconnectSync(__instance);
+                DeathSync(__instance);
+            }
+            __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
         }
-        __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
+        catch
+        {
+            XtremeGameData.XtremePlayerData.Init();
+        }
 
     }
     static void DisconnectSync(PlayerControl pc)

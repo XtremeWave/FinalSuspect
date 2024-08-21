@@ -119,8 +119,8 @@ public static class Utils
         var colorId = thisdata.PlayerColor;
         builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.PlayerName));
 
-            builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
-            pos += 4.5f;
+        builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
+        pos += 4.5f;
         
         builder.AppendFormat("<pos={0}em>", pos).Append(GetVitalText(id, true)).Append("</pos>");
         pos += DestroyableSingleton<TranslationController>.Instance.currentLanguage.languageID == SupportedLangs.English ? 14f : 10.5f;
@@ -247,7 +247,7 @@ public static class Utils
     {
         pc ??= PlayerControl.LocalPlayer;
 
-        var enable = !pc.IsImpostor() && Utils.CanSeeOthersRole(pc, out _);
+        var enable = CanSeeOthersRole(pc, out var bothImp) || bothImp;
 
 
         var comms = IsActive(SystemTypes.Comms);

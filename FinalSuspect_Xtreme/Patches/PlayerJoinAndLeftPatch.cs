@@ -12,6 +12,7 @@ using FinalSuspect_Xtreme.Modules;
 
 using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules.Managers;
+using System.Linq;
 
 namespace FinalSuspect_Xtreme;
 
@@ -56,6 +57,7 @@ class DisconnectInternalPatch
         ErrorText.Instance.SBDetected = false;
         ErrorText.Instance.Clear();
         Cloud.StopConnect();
+        XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
     }
 }
