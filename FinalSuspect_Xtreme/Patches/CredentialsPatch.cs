@@ -178,7 +178,6 @@ internal class TitleLogoPatch
 
     private static void Postfix(MainMenuManager __instance)
     {
-        ResolutionManager.SetResolution(1920, 1080, true);
         GameObject.Find("BackgroundTexture")?.SetActive(!MainMenuManagerPatch.ShowedBak);
 
         Color shade = new(0f, 0f, 0f, 0f);

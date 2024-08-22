@@ -58,16 +58,16 @@ public static class ChatBubblePatch
 
         if (XtremeGameData.GameStates.IsInGame)
         {
-            if (__instance.NameText.color == Color.green)
-            {
-                bgcolor = Main.HalfYellow;
-                namecolor = Main.TeamColor32;
-                return;
-            }
+
             if (Utils.CanSeeOthersRole(player, out bool bothImp) || bothImp)
                 namecolor = Utils.GetPlayerById(__instance.playerInfo.PlayerId).GetRoleColor();
             if (!Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive())
                 bgcolor = new Color32(255, 0, 0, 120);
+            if (__instance.NameText.color == Color.green)
+            {
+                bgcolor = Main.HalfYellow;
+                namecolor = Main.TeamColor32;
+            }
 
         }
 
