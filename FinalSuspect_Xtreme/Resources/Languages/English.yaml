@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>Local</color>"
 # 其他
 HongKong: "HongKong"
 FPSSetTo: "Frame rate cap set to: {0}"
+BrowsingMode: "Browsing Mode"

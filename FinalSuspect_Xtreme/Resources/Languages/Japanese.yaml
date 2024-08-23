@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>ローカル</color>"
 # 其他
 HongKong: "香港"
 FPSSetTo: "フレームレートの上限設定: {0}"
+BrowsingMode: "ブラウジングモード"

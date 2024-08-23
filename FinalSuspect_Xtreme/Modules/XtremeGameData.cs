@@ -115,6 +115,7 @@ public static class XtremeGameData
 #pragma warning disable CA1816
         public void Dispose()
         {
+            if (GameStates.IsLobby) return;
             AllPlayerData.Remove(Player.PlayerId);
             Player = null;
         }
@@ -150,8 +151,8 @@ x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
         public static bool IsOnlineGame => AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame;
         public static bool IsLocalPlayerGame => AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame;
         public static bool IsFreePlay => AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay;
-        public static bool IsInTask => InGame && !MeetingHud.Instance;
-        public static bool IsMeeting => InGame && MeetingHud.Instance;
+        public static bool IsInTask => IsInGame && !MeetingHud.Instance;
+        public static bool IsMeeting => IsInGame && MeetingHud.Instance;
         public static bool IsCountDown => GameStartManager.InstanceExists && GameStartManager.Instance.startState == GameStartManager.StartingStates.Countdown;
         public static bool IsShip => ShipStatus.Instance != null;
         public static bool IsCanMove => PlayerControl.LocalPlayer?.CanMove is true;

@@ -15,8 +15,13 @@ public static class InGameRoleInfoMenu
 
     public static GameObject Menu;
 
-    public static GameObject MainInfo;
-    public static TextMeshPro MainInfoTMP => MainInfo.GetComponent<TextMeshPro>();
+    public static GameObject RoleInfo;
+    public static GameObject RoleCharacterIllustration;
+    public static SpriteRenderer RoleCharacterIllustrationSP => RoleCharacterIllustration.GetComponent<SpriteRenderer>();
+
+
+
+    public static TextMeshPro RoleInfoTMP => RoleInfo.GetComponent<TextMeshPro>();
 
     public static void Init()
     {
@@ -37,13 +42,18 @@ public static class InGameRoleInfoMenu
         Object.Destroy(Menu.transform.FindChild("BackButton").gameObject);
         Object.Destroy(Menu.transform.FindChild("EvenMoreInfo").gameObject);
 
-        MainInfo = Menu.transform.FindChild("InfoText_TMP").gameObject;
-        MainInfo.name = "Main Role Info";
-        MainInfo.DestroyTranslator();
-        MainInfo.transform.localPosition = new(-2.3f, 0.8f, 4f);
-        MainInfo.GetComponent<RectTransform>().sizeDelta = new(4.5f, 10f);
-        MainInfoTMP.alignment = TextAlignmentOptions.Left;
-        MainInfoTMP.fontSize = 2f;
+        RoleInfo = Menu.transform.FindChild("InfoText_TMP").gameObject;
+        RoleInfo.name = "Role Info";
+        RoleInfo.DestroyTranslator();
+        RoleInfo.transform.localPosition = new(-2.3f, 0.8f, 4f);
+        RoleInfo.GetComponent<RectTransform>().sizeDelta = new(4.5f, 10f);
+        RoleInfoTMP.alignment = TextAlignmentOptions.Left;
+        RoleInfoTMP.fontSize = 2f;
+
+        RoleCharacterIllustration = new GameObject("Character Illustration") { layer = 5 };
+        RoleCharacterIllustration.transform.SetParent(Menu.transform);
+        RoleCharacterIllustration.AddComponent<SpriteRenderer>();
+        RoleCharacterIllustration.transform.localPosition = new(2.3f, 0.8f, 4f);
 
     }
 
@@ -60,7 +70,8 @@ public static class InGameRoleInfoMenu
         var roleTeam = player.IsImpostor()? "Impostor":"Crewmate";
         builder.AppendFormat("<size={0}> ({1})\n", BodySize, Translator.GetString($"Team{roleTeam}"));
         builder.AppendFormat("<size={0}>{1}\n", BodySize, player?.GetRoleType().GetRoleInfoForVanilla(true) ?? "");
-        MainInfoTMP.text = builder.ToString();
+        RoleInfoTMP.text = builder.ToString();
+        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.CI_{role}.png", 320f);
     }
 
     public static void Show()

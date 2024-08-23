@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>本地</color>"
 # 其他
 HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"
+BrowsingMode: "浏览模式"

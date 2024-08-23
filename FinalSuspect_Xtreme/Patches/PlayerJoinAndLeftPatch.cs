@@ -48,17 +48,20 @@ class DisconnectInternalPatch
 {
     public static void Prefix(InnerNetClient __instance, DisconnectReasons reason, string stringReason)
     {
-        ShowDisconnectPopupPatch.Reason = reason;
-        ShowDisconnectPopupPatch.StringReason = stringReason;
+        try
+        {
+            ShowDisconnectPopupPatch.Reason = reason;
+            ShowDisconnectPopupPatch.StringReason = stringReason;
 
-        Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
+            Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
+            XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
-        ErrorText.Instance.CheatDetected = false;
-        ErrorText.Instance.SBDetected = false;
-        ErrorText.Instance.Clear();
-        Cloud.StopConnect();
-        XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
-
+            ErrorText.Instance.CheatDetected = false;
+            ErrorText.Instance.SBDetected = false;
+            ErrorText.Instance.Clear();
+            Cloud.StopConnect();
+        }
+        catch { }
     }
 }
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]

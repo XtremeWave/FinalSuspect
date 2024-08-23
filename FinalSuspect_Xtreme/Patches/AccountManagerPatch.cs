@@ -42,20 +42,20 @@ public static class AwakeFriendCodeUIPatch
     }
 }
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
-class AwakeAccountManager
+public static class AwakeAccountManager
 {
-    public static Sprite[] sprites = { 
+    public static Sprite[] AllRoleCharacterIllustration = {
         Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Crewmate.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Scientist.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Scientist.png", 450f),
         Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Engineer.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Tracker.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Noisemaker.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_CrewmateGhost.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_GuardainAngel.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Impostor.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Shapeshifter.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Phantom.png", 450f),
-        //Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_ImpostorGhost.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Tracker.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Noisemaker.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_CrewmateGhost.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_GuardianAngel.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Impostor.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Shapeshifter.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Phantom.png", 450f),
+        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_ImpostorGhost.png", 450f),
 
 
     }; 
@@ -82,34 +82,35 @@ class AwakeAccountManager
         __instance.StartCoroutine(SwitchCharacterIllustration(Sprite));
         crewpet_walk0001.SetActive(false);
 
-        static IEnumerator SwitchCharacterIllustration(SpriteRenderer spriter)
+        
+
+    }
+    public static IEnumerator SwitchCharacterIllustration(SpriteRenderer spriter)
+    {
+        while (true)
         {
-            while (true)
+            if (AllRoleCharacterIllustration.Length == 0) yield break;
+
+            spriter.sprite = AllRoleCharacterIllustration[currentIndex];
+            var p = 1f;
+            while (p > 0f)
             {
-                if (sprites.Length == 0) yield break;
-
-                spriter.sprite = sprites[currentIndex];
-                var p = 1f;
-                while (p > 0f)
-                {
-                    p -= Time.deltaTime * 2.8f;
-                    float alpha = 1 - p;
-                    spriter.color = Color.white.AlphaMultiplied(alpha);
-                    yield return null;
-                }
-                currentIndex = (currentIndex + 1) % sprites.Length;
+                p -= Time.deltaTime * 2.8f;
+                float alpha = 1 - p;
+                spriter.color = Color.white.AlphaMultiplied(alpha);
+                yield return null;
+            }
+            currentIndex = (currentIndex + 1) % AllRoleCharacterIllustration.Length;
 
 
-                yield return new WaitForSeconds(1f);
-                p = 1f;
-                while (p > 0f)
-                {
-                    p -= Time.deltaTime * 2.8f;
-                    spriter.color = Color.white.AlphaMultiplied(p);
-                    yield return null;
-                }
+            yield return new WaitForSeconds(1f);
+            p = 1f;
+            while (p > 0f)
+            {
+                p -= Time.deltaTime * 2.8f;
+                spriter.color = Color.white.AlphaMultiplied(p);
+                yield return null;
             }
         }
-
     }
 }

@@ -13,7 +13,6 @@ internal class CoStartGamePatch
     {
         IntroCutsceneOnDestroyPatch.introDestroyed = false;
         GameModuleInitializerAttribute.InitializeAll();
-
     }
 
 }

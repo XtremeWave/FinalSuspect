@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>로컬</color>"
 # 其他
 HongKong: "홍콩"
 FPSSetTo: "프레임 속도 제한 설정: {0}"
+BrowsingMode: "탐색 모드"

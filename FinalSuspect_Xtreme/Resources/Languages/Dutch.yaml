@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>Lokaal</color>"
 # 其他
 HongKong: "Hongkong"
 FPSSetTo: "Frame rate cap ingesteld op: {0}"
+BrowsingMode: "Bladermodus"

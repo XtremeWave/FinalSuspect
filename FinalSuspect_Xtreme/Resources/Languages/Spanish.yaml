@@ -280,3 +280,4 @@ Local: "<color=#D1FA87>Local</color>"
 # 其他
 HongKong: "HongKong"
 FPSSetTo: "Límite de tasa de fotogramas establecido en: {0}"
+BrowsingMode: "Modo de navegación"

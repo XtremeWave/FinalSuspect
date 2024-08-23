@@ -13,7 +13,6 @@ public class LoadPatch
     static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png", 150f);
     static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo-Blurred.png", 150f);
     static TMPro.TextMeshPro loadText = null!;
-    public static string LoadingText { set { loadText.text = value; } }
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
     {
