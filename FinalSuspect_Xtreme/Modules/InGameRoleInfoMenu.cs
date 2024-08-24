@@ -71,7 +71,10 @@ public static class InGameRoleInfoMenu
         builder.AppendFormat("<size={0}> ({1})\n", BodySize, Translator.GetString($"Team{roleTeam}"));
         builder.AppendFormat("<size={0}>{1}\n", BodySize, player?.GetRoleType().GetRoleInfoForVanilla(true) ?? "");
         RoleInfoTMP.text = builder.ToString();
-        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.CI_{role}.png", 320f);
+        var HnSPrefix = "";
+        if (!XtremeGameData.GameStates.IsNormalGame && player.IsAlive())
+            HnSPrefix = "HnS";
+        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.CI_{HnSPrefix + role}.png", 320f);
     }
 
     public static void Show()

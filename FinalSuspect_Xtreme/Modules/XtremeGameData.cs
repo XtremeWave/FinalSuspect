@@ -80,7 +80,7 @@ public static class XtremeGameData
                 RoleWhenAlive = role;
             else
                 RoleAfterDeath = role;
-            RoleAssgined = true;
+            RoleAssgined = !GameStates.IsFreePlay;
         }
         public void SetDeathReason(DataDeathReason deathReason, bool focus = false)
         {
@@ -118,6 +118,12 @@ public static class XtremeGameData
             if (GameStates.IsLobby) return;
             AllPlayerData.Remove(Player.PlayerId);
             Player = null;
+            PlayerName = null ;
+            PlayerColor = -1 ;
+            IsImpostor = IsDead = RoleAssgined = false;
+            CompleteTaskCount = KillCount = TotalTaskCount = 0;
+            RealDeathReason = DataDeathReason.None;
+            RealKiller = null;
         }
 #pragma warning restore CA1816
     }
