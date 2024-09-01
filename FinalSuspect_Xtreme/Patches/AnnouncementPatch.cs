@@ -114,7 +114,7 @@ public class ModNewsHistory
 
         return true;
     }
-    static Sprite ModLabel = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 1000f);
+    static Sprite TeamLogoSprite = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 1000f);
 
 
 
@@ -124,18 +124,14 @@ public class ModNewsHistory
     public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)
     {
         if (announcement.Number < 100000) return;
-        var obj = new GameObject("ModLabel") { layer = 5 };
-        obj.transform.SetParent(__instance.transform);
-        obj.transform.localPosition = new Vector3(-0.81f, 0.16f, 0.5f);
-        obj.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-        var renderer = obj.AddComponent<SpriteRenderer>();
-        renderer.sprite = ModLabel;
-        renderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        var TeamLogo = new GameObject("TeamLogo") { layer = 5 };
+        TeamLogo.transform.SetParent(__instance.transform);
+        TeamLogo.transform.localPosition = new Vector3(-0.81f, 0.16f, 0.5f);
+        TeamLogo.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        var sr = TeamLogo.AddComponent<SpriteRenderer>();
+        sr.sprite = TeamLogoSprite;
+        sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 
-        var Announcement = GameObject.Find("Announcement");
-        var Sizer = Announcement.transform.FindChild("Sizer");
-        var Background_old = Sizer.FindChild("Background");
-        var WhiteColor_Old = Background_old.FindChild("WhiteColor");
     }
 }
 

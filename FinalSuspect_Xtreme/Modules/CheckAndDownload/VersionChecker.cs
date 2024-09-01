@@ -13,6 +13,20 @@ namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 public static class VersionChecker
 {
+    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.LowerThanNormal)]
+    public class Start
+    {
+        public static void Postfix()
+        {
+
+            CustomPopup.Init();
+
+            if (!isChecked && firstStart) CheckForUpdate();
+            ModUpdater.SetUpdateButtonStatus();
+            firstStart = false;
+        }
+    }
+
     private static IReadOnlyList<string> URLs => new List<string>
     {
 #if DEBUG
@@ -63,16 +77,6 @@ public static class VersionChecker
         }
     }
 
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPostfix, HarmonyPriority(Priority.LowerThanNormal)]
-    public static void StartPostfix()
-    {
-
-        CustomPopup.Init();
-
-        if (!isChecked && firstStart) CheckForUpdate();
-        ModUpdater.SetUpdateButtonStatus();
-        firstStart = false;
-    }
     public static void Retry()
     {
         retried++;
@@ -180,15 +184,15 @@ public static class VersionChecker
 
             var githubUrl = downloadUrl["githubUrl"]?.ToString();
             var giteeUrl = downloadUrl["giteeUrl"]?.ToString();
-            var objectstorage = downloadUrl["objectstorage"]?.ToString();
+            var objectstorage = downloadUrl["objectstorageUrl"]?.ToString();
 
             MusicDownloader.downloadUrl_github = githubUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
             ModUpdater.downloadUrl_github = githubUrl + "releases/latest/download/FinalSuspect_Xtreme.dll";
             MusicDownloader.downloadUrl_gitee = giteeUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_gitee = downloadUrl["gitee"]?.ToString() + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
+            ModUpdater.downloadUrl_gitee = giteeUrl + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
             MusicDownloader.downloadUrl_objectstorage = objectstorage + "Sounds/{{sound}}.wav";
             ModUpdater.downloadUrl_objectstorage = objectstorage + "FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_aumodsite = downloadUrl["tone_website"]?.ToString();
+            MusicDownloader.downloadUrl_aumodsite = downloadUrl["aumodsiteUrl"]?.ToString();
 
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
