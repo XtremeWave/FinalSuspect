@@ -5,6 +5,8 @@ using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
+
 
 namespace FinalSuspect_Xtreme;
 
@@ -14,12 +16,12 @@ internal class MakePublicPatch
     public static bool Prefix(GameStartManager __instance)
     {
 
-        if (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate) || !VersionChecker.IsSupported )
+        if (VersionChecker.isBroken || (VersionChecker.hasUpdate && VersionChecker.forceUpdate) || !VersionChecker.IsSupported )
         {
             var message = "";
             message = GetString("PublicNotAvailableOnThisVersion");
-            if (ModUpdater.isBroken) message = GetString("ModBrokenMessage");
-            if (ModUpdater.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
+            if (VersionChecker.isBroken) message = GetString("ModBrokenMessage");
+            if (VersionChecker.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
             Logger.Info(message, "MakePublicPatch");
             Logger.SendInGame(message);
             return false;
@@ -33,7 +35,7 @@ class MMOnlineManagerStartPatch
 {
     public static void Postfix(MMOnlineManager __instance)
     {
-        if (!(ModUpdater.hasUpdate || ModUpdater.isBroken || !VersionChecker.IsSupported)) return;
+        if (!(VersionChecker.hasUpdate || VersionChecker.isBroken || !VersionChecker.IsSupported)) return;
         var obj = GameObject.Find("FindGameButton");
         if (obj)
         {
@@ -44,11 +46,11 @@ class MMOnlineManagerStartPatch
             textObj.name = "CanNotJoinPublic";
             textObj.DestroyTranslator();
             string message = "";
-            if (ModUpdater.hasUpdate)
+            if (VersionChecker.hasUpdate)
             {
                 message = GetString("CanNotJoinPublicRoomNoLatest");
             }
-            else if (ModUpdater.isBroken)
+            else if (VersionChecker.isBroken)
             {
                 message = GetString("ModBrokenMessage");
             }

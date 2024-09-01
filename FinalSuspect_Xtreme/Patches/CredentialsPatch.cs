@@ -7,6 +7,7 @@ using UnityEngine;
 
 using static FinalSuspect_Xtreme.Translator;
 using System.Linq;
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 namespace FinalSuspect_Xtreme;
 
@@ -111,7 +112,7 @@ internal class VersionShowerStartPatch
             VisitText = Object.Instantiate(__instance.text);
             VisitText.name = "FinalSuspect_Xtreme VisitText";
             VisitText.alignment = TextAlignmentOptions.Left;
-            VisitText.text = ModUpdater.visit > 0
+            VisitText.text = VersionChecker.visit > 0
                 ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), Main.ModColor)
                 : GetString("ConnectToFinalSuspect_XtremeServerFailed");
             VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);

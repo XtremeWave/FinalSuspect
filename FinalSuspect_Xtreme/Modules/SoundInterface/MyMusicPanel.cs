@@ -8,6 +8,8 @@ using UnityEngine;
 using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
+using static FinalSuspect_Xtreme.Modules.Managers.CustomSoundsManager;
+
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
@@ -68,7 +70,7 @@ public static class MyMusicPanel
 
             var stopPassiveButton = stopButton.GetComponent<PassiveButton>();
             stopPassiveButton.OnClick = new();
-            stopPassiveButton.OnClick.AddListener(new Action(CustomSoundsManager.StopPlay));
+            stopPassiveButton.OnClick.AddListener(new Action(StopPlay));
 
             AddPageNavigationButton(optionsMenuBehaviour);
 
@@ -193,7 +195,7 @@ public static class MyMusicPanel
                 Logger.Info($"Play {sound}:{path}", "SoundsPanel");
                 if (ConvertExtension(ref path))
                 {
-                    CustomSoundsManager.Play(sound, 1);
+                    Play(sound, 1);
                 }
                 
             }));

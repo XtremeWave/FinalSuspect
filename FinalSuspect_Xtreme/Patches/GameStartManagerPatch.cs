@@ -11,6 +11,8 @@ using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect_Xtreme.Patches;
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
+
 
 namespace FinalSuspect_Xtreme;
 
@@ -112,7 +114,7 @@ public class GameStartManagerPatch
             }));
             cancelButton.gameObject.SetActive(false);
 
-            if (AmongUsClient.Instance.AmHost && (ModUpdater.isBroken || (ModUpdater.hasUpdate && ModUpdater.forceUpdate)  || !VersionChecker.IsSupported))
+            if (AmongUsClient.Instance.AmHost && (VersionChecker.isBroken || (VersionChecker.hasUpdate && VersionChecker.forceUpdate)  || !VersionChecker.IsSupported))
             {
                 __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
                 __instance.HostPrivateButton.activeTextColor = Palette.DisabledClear;

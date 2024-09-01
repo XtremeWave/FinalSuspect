@@ -7,7 +7,7 @@ using UnityEngine;
 using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
-
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
 

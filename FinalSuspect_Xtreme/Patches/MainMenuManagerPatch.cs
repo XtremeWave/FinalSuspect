@@ -7,6 +7,7 @@ using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 namespace FinalSuspect_Xtreme;
 
@@ -132,7 +133,7 @@ public class MainMenuManagerPatch
                 UpdateButton.SetActive(false);
                 if (!DebugModeManager.AmDebugger || !Input.GetKey(KeyCode.LeftShift))
                 {
-                    if (ModUpdater.CanUpdate)
+                    if (VersionChecker.CanUpdate)
                     {
                         ModUpdater.StartUpdate();
                     }

@@ -11,26 +11,19 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using static FinalSuspect_Xtreme.Translator;
-using FinalSuspect_Xtreme.Modules;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 [HarmonyPatch]
 public class MusicDownloader
 {
     public static string DownloadFileTempPath = "FinalSuspect_Data/Sounds/{{sound}}.wav";
 
-    public static string Url_github = "";
-    public static string Url_gitee = ""; 
-    public static string Url_website = "";
-    public static string Url_website2 = "";
     public static string downloadUrl_github = "";
-    public static string downloadUrl_gitee = "";
-    public static string downloadUrl_website = "";
-    public static string downloadUrl_website2 = "";
+    public static string downloadUrl_gitee = ""; 
+    public static string downloadUrl_objectstorage = "";
+    public static string downloadUrl_aumodsite = "";
 
     public static async Task<bool> StartDownload(string sound, string url = "waitToSelect")
     {
@@ -41,11 +34,11 @@ public class MusicDownloader
         }
         var DownloadFileTempPath = "FinalSuspect_Data/Sounds/{{sound}}.wav";
         
-        var downloadUrl_github = Url_github.Replace("{{sound}}", $"{sound}");
-        var downloadUrl_gitee = Url_gitee.Replace("{{sound}}", $"{sound}");
-        var downloadUrl_website = Url_website.Replace("{{sound}}", $"{sound}");
+        var downloaddownloadUrl_github = downloadUrl_github.Replace("{{sound}}", $"{sound}");
+        var downloaddownloadUrl_gitee = downloadUrl_gitee.Replace("{{sound}}", $"{sound}");
+        var downloaddownloadUrl_objectstorage = downloadUrl_objectstorage.Replace("{{sound}}", $"{sound}");
         if (url == "waitToSelect")
-            url = IsChineseLanguageUser ? downloadUrl_website : downloadUrl_github;
+            url = IsChineseLanguageUser ? downloaddownloadUrl_objectstorage : downloaddownloadUrl_github;
 
         if (!IsValidUrl(url))
         {
@@ -75,15 +68,15 @@ public class MusicDownloader
             {
                 Logger.Error($"Md5 Wrong in {url}", "DownloadSound");
                 File.Delete(filePath);
-                if (url == downloadUrl_website && IsChineseLanguageUser || url == downloadUrl_github && !IsChineseLanguageUser)
+                if (url == downloaddownloadUrl_objectstorage && IsChineseLanguageUser || url == downloaddownloadUrl_github && !IsChineseLanguageUser)
                 {
 
-                    url = downloadUrl_gitee;
+                    url = downloaddownloadUrl_gitee;
                     goto retry;
                 }
-                else if (url == downloadUrl_gitee && IsChineseLanguageUser)
+                else if (url == downloaddownloadUrl_gitee && IsChineseLanguageUser)
                 {
-                    url = downloadUrl_github;
+                    url = downloaddownloadUrl_github;
                     goto retry;
                 }
                 else 
@@ -137,7 +130,7 @@ public class MusicDownloader
         {"NeverGonnaGiveYouUp","354cab3103b7e033c6e31d12766eb59c" },
         {"RejoiceThisSEASONRespectThisWORLD","7AB4778744242E4CFA0468568308EA9B"},
         {"SpringRejoicesinParallelUniverses","D92528104A82DBBFADB4FF251929BA5E"},
-{"AFamiliarPromise", "a3672341f586b4d81efba6d4278cfeae"},
+        {"AFamiliarPromise", "a3672341f586b4d81efba6d4278cfeae"},
 {"GuardianandDream", "cd8fb04bad5755937496eed60c4892f3"},
 {"HeartGuidedbyLight", "f1ded08a59936b8e1db95067a69b006e"},
 {"HopeStillExists", "8d5ba9ac283e156ab2c930f7b63a4a36"},

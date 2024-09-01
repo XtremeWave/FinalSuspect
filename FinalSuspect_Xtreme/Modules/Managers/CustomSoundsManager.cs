@@ -14,9 +14,10 @@ using static Il2CppSystem.Xml.XmlWellFormedWriter.AttributeValueCache;
 using UnityEngine;
 using Steamworks;
 using UnityEngine.Audio;
+using FinalSuspect_Xtreme.Modules.SoundInterface;
 
 
-namespace FinalSuspect_Xtreme.Modules.SoundInterface;
+namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class CustomSoundsManager
 {
