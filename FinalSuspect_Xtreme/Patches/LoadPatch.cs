@@ -11,7 +11,7 @@ public class LoadPatch
     static Sprite Team_Logo = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 120f);
     static Sprite Glow = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png");
     static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png", 150f);
-    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo-Blurred.png", 150f);
+    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png", 150f);
     static TMPro.TextMeshPro loadText = null!;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start

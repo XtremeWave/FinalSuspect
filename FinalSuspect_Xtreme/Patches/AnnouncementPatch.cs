@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace FinalSuspect_Xtreme;
 
@@ -113,4 +114,29 @@ public class ModNewsHistory
 
         return true;
     }
+    static Sprite ModLabel = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 1000f);
+
+
+
+    //public static bool first = true;
+    //YuEzTool
+    [HarmonyPatch(typeof(AnnouncementPanel), nameof(AnnouncementPanel.SetUp)), HarmonyPostfix]
+    public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)
+    {
+        if (announcement.Number < 100000) return;
+        var obj = new GameObject("ModLabel") { layer = 5 };
+        obj.transform.SetParent(__instance.transform);
+        obj.transform.localPosition = new Vector3(-0.81f, 0.16f, 0.5f);
+        obj.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        var renderer = obj.AddComponent<SpriteRenderer>();
+        renderer.sprite = ModLabel;
+        renderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
+        var Announcement = GameObject.Find("Announcement");
+        var Sizer = Announcement.transform.FindChild("Sizer");
+        var Background_old = Sizer.FindChild("Background");
+        var WhiteColor_Old = Background_old.FindChild("WhiteColor");
+    }
 }
+
+

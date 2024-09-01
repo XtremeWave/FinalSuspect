@@ -1,8 +1,8 @@
-﻿#Number:100000
+﻿#Number:100001
 #Title:终极嫌疑 v1.0
-#SubTitle:★★★★返璞归真★★★★
+#SubTitle:★★★★正式发布！★★★★
 #ShortTitle:★FSX v1.0
-#Date:2024-08-14T19:00:00Z
+#Date:2024-10-01T19:00:00Z
 #-----------------------------
 # 简体中文
 模组！原版？新优化！
@@ -37,15 +37,16 @@
 - InnerSloth打开游戏动画改为FinalSuspect打开游戏动画
 制作: Slok
 参考: The Other Roles Community Edition
-- InnerSloth加载动画更改为FinalSuspect的加载动画
-制作: Slok
-
-## 新增
-- 显示职业详情时同时会显示职业立绘
+- InnerSloth加载动画更改为FinalSuspect的立绘轮播加载动画
 制作: Slok, 小黄117, KpCam
 
-## 重制
-- 重制客户端设置：切换形象[经典豆子模式-愚人节牧马模式-愚人节长颈豆模式](仅主界面可用)
+## 新增
+- 按下F1显示职业详情时同时会显示职业立绘
+制作: Slok, 小黄117, KpCam
+- 模组公告左侧会显示模组XtremeWave标识
 制作: Slok
+参考: Yu Ez Tool
+
+## 重制
 
 ## 删除
