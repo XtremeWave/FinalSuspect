@@ -18,9 +18,7 @@ public static class VersionChecker
     {
         public static void Postfix()
         {
-
             CustomPopup.Init();
-
             if (!isChecked && firstStart) CheckForUpdate();
             ModUpdater.SetUpdateButtonStatus();
             firstStart = false;
@@ -109,7 +107,7 @@ public static class VersionChecker
             Logger.Info("File MD5: " + md5, "CheckRelease");
             Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
             Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
-            Logger.Info("Wensite Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
+            Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
             Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
             Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
 
