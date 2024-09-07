@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj": {}
+    "D:\\zhuomian\\code\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj": {}
   },
   "projects": {
-    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj": {
+    "D:\\zhuomian\\code\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj",
+        "projectUniqueName": "D:\\zhuomian\\code\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj",
         "projectName": "FinalSuspect_Xtreme",
-        "projectPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj",
-        "packagesPath": "C:\\Users\\Slok7\\.nuget\\packages\\",
-        "outputPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\obj\\",
+        "projectPath": "D:\\zhuomian\\code\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme.csproj",
+        "packagesPath": "C:\\Users\\aaa11_t7v0chn\\.nuget\\packages\\",
+        "outputPath": "D:\\zhuomian\\code\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Slok7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aaa11_t7v0chn\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,10 +26,9 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.bepinex.dev/v3/index.json": {},
-          "https://nuget.samboy.dev/v3/index.json": {}
+          "https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -41,11 +40,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -109,12 +103,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

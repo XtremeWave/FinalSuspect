@@ -100,8 +100,8 @@ PleaseWait: "请稍候……"
 # 更新检查
 Retry: "重试"
 updateCheckPopupTitle: "更新检查"
-updateCheckFailedRetry: "检查更新失败 :(\n要重试吗？"
-updateCheckFailedExit: "检查更新失败 :(\n请检查您的网络强度后重试"
+updateCheckFailedRetry: "检查更新失败 :(\n要重试吗？\n或者试试关掉你的加速器？"
+updateCheckFailedExit: "检查更新失败 :(\n请检查您的网络强度后重试\n或者试试关掉你的加速器？"
 
 # 更新提醒
 UpdateBySelfTitle: "更新提示"
