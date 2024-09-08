@@ -127,7 +127,7 @@ public class Main : BasePlugin
     public override void Load()
     {
         Instance = this;
-        
+
         // From YuEzTools
         ResourceUtils.WriteToFileFromResource(
             "BepInEx/core/YamlDotNet.dll",
@@ -135,7 +135,7 @@ public class Main : BasePlugin
         ResourceUtils.WriteToFileFromResource(
             "BepInEx/core/YamlDotNet.xml",
             "FinalSuspect_Xtreme.Resources.InDLL.Depends.YamlDotNet.xml");
-        
+
         //Client Options
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "FSX");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");

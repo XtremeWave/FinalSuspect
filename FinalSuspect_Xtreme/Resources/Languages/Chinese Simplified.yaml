@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "该音乐名已存在"
 NotAllowedMusic: "音乐名称格式不合规"
 
 # 界面提示
-CustomAudioManagementHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐。当您添加自己的音乐时，请您在「音频管理」中添加音乐名并在路径“Among Us/FinalSuspect_Data/Sounds”文件夹内添加同名音频文件（支持格式：.wav）。音乐可在「我的音乐」中播放。"
+CustomAudioManagementHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐。当您添加自己的音乐时，请您在「音频管理」中添加音乐名并在路径“Among Us/FinalSuspect_Data/Resources/Audios”文件夹内添加同名音频文件（支持格式：.wav）。音乐可在「我的音乐」中播放。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐，如果音乐本地资源路径不存在则会显示「【文件丢失】」"
 

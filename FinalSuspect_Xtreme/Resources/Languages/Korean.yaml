@@ -150,8 +150,8 @@ AudioManagementAlreadyExists: "이 음악 이름은 이미 존재합니다"
 NotAllowedMusic: "음악 이름 형식이 허용되지 않습니다"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
-# , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav)"
+CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Resources/Audios' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
+# , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Resources/Audios' 폴더에 넣어주세요 (지원 포맷: .wav)"
 CustomSoundHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 직접 음악을 추가할 수 있습니다. 로컬 음악 자원 경로가 누락된 경우 '[파일 없음]'으로 표시됩니다."
 
 # 主界面音乐提醒 / Main interface music reminder

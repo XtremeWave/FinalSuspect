@@ -64,6 +64,12 @@ public static class VersionChecker
 
     private static int retried = 0;
     private static bool firstLaunch = true;
+
+    public static string GithubUrl;
+    public static string GiteeUrl;
+    public static string ObjectStorageUrl;
+    public static string AUModSiteUrl;
+
     public static void Check()
     {
         var amongUsVersion = Version.Parse(Application.version);
@@ -180,17 +186,10 @@ public static class VersionChecker
 
             JObject downloadUrl = data["url"].Cast<JObject>();
 
-            var githubUrl = downloadUrl["githubUrl"]?.ToString();
-            var giteeUrl = downloadUrl["giteeUrl"]?.ToString();
-            var objectstorage = downloadUrl["objectstorageUrl"]?.ToString();
-
-            MusicDownloader.downloadUrl_github = githubUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_github = githubUrl + "releases/latest/download/FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_gitee = giteeUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_gitee = giteeUrl + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_objectstorage = objectstorage + "Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_objectstorage = objectstorage + "FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_aumodsite = downloadUrl["aumodsiteUrl"]?.ToString();
+            GithubUrl = downloadUrl["githubUrl"]?.ToString();
+            GiteeUrl = downloadUrl["giteeUrl"]?.ToString();
+            ObjectStorageUrl = downloadUrl["objectstorageUrl"]?.ToString();
+            AUModSiteUrl = downloadUrl["aumodsiteUrl"]?.ToString();
 
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;

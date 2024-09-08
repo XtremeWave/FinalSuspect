@@ -21,7 +21,7 @@ namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class CustomSoundsManager
 {
-    public static readonly string SOUNDS_PATH = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/";
+    public static readonly string SOUNDS_PATH = @"FinalSuspect_Data/Resources/Audios";
 
     public static void Play(string sound, int playmode = 0)
     {
@@ -30,8 +30,8 @@ public static class CustomSoundsManager
 
         if (!Directory.Exists(SOUNDS_PATH)) Directory.CreateDirectory(SOUNDS_PATH);
         DirectoryInfo folder = new(SOUNDS_PATH);
-        if ((folder.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
-            folder.Attributes = FileAttributes.Normal;
+        if ((folder.Attributes & FileAttributes.Normal) == FileAttributes.Normal)
+            folder.Attributes = FileAttributes.Hidden;
 
         if (!ConvertExtension(ref path)) return;
         switch (playmode)
@@ -54,10 +54,10 @@ public static class CustomSoundsManager
 
     [DllImport("winmm.dll")]
     public static extern bool PlaySound(string Filename, int Mod, int Flags);
-    public static void AutoPlay(string sound, string soundname)
+    public static void AutoPlay(string sound, string name)
     {
         Play(sound);
-        MusicNow = soundname;
+        MusicNow = name;
         MusicPlaybackCompletedHandler();
     }
 
@@ -81,7 +81,7 @@ public static class CustomSoundsManager
             for (int i = 0; i < 10; i++)
             {
                 var select = mus[rd.Next(0, mus.Count)];
-                var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{select}.wav";
+                var path = @$"FinalSuspect_Data/Resources/Audios/{select}.wav";
                 if (ConvertExtension(ref path))
                     StartPlayWait(path);
                 else
@@ -98,7 +98,7 @@ public static class CustomSoundsManager
                 if (index > mus.Count - 2)
                     index = -1;
                 var select = mus[index + 1];
-                var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{select}.wav";
+                var path = @$"FinalSuspect_Data/Resources/Audios/{select}.wav";
                 if (ConvertExtension(ref path))
                 {
                     StartPlayWait(path);

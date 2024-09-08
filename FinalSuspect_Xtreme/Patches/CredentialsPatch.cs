@@ -78,7 +78,6 @@ internal class VersionShowerStartPatch
     public static GameObject OVersionShower;
     private static TextMeshPro VisitText;
     private static TextMeshPro CreditTextCredential = null;
-    private static AspectPosition CreditTextCredentialAspectPos = null;
 
 
     private static void Postfix(VersionShower __instance)

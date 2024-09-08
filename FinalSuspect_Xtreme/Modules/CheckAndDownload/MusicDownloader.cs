@@ -12,88 +12,82 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
 
 namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 [HarmonyPatch]
 public class MusicDownloader
 {
-    public static string DownloadFileTempPath = "FinalSuspect_Data/Sounds/{{sound}}.wav";
+    public static string SavePath = "FinalSuspect_Data/Resources/Audios";
 
-    public static string downloadUrl_github = "";
-    public static string downloadUrl_gitee = ""; 
-    public static string downloadUrl_objectstorage = "";
-    public static string downloadUrl_aumodsite = "";
+    public static readonly string downloadUrl_github = GithubUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
+    public static readonly string downloadUrl_gitee = GiteeUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
+    public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "Sounds/{{sound}}.wav";
+    public static readonly string downloadUrl_aumodsite = AUModSiteUrl + "Sounds/{{sound}}.wav";
 
     public static async Task<bool> StartDownload(string sound, string url = "waitToSelect")
     {
-        retry:
-        if (!Directory.Exists(@"./FinalSuspect_Data/Sounds"))
-        {
-            Directory.CreateDirectory(@"./FinalSuspect_Data/Sounds");
-        }
-        var DownloadFileTempPath = "FinalSuspect_Data/Sounds/{{sound}}.wav";
+        if (!Directory.Exists(SavePath))
         
-        var downloaddownloadUrl_github = downloadUrl_github.Replace("{{sound}}", $"{sound}");
-        var downloaddownloadUrl_gitee = downloadUrl_gitee.Replace("{{sound}}", $"{sound}");
-        var downloaddownloadUrl_objectstorage = downloadUrl_objectstorage.Replace("{{sound}}", $"{sound}");
+        Directory.CreateDirectory(SavePath);
+        
+        var filePath = $"{SavePath}/{sound}.wav";
+        string DownloadFileTempPath = filePath + ".xwm";
+
+    retry:
+
         if (url == "waitToSelect")
-            url = IsChineseLanguageUser ? downloaddownloadUrl_objectstorage : downloaddownloadUrl_github;
+            url = IsChineseLanguageUser ? downloadUrl_objectstorage : downloadUrl_github;
+        url = url.Replace("{{sound}}", $"{sound}");
+
 
         if (!IsValidUrl(url))
         {
             Logger.Error($"Invalid URL: {url}", "DownloadSound", false);
             return false;
         }
-        DownloadFileTempPath = DownloadFileTempPath.Replace("{{sound}}", $"{sound}");
-        string filePath = DownloadFileTempPath + ".xwmus";
-        File.Create(filePath).Close();
+
+        File.Create(DownloadFileTempPath).Close();
        
 
         Logger.Msg("Start Downloading from: " + url, "DownloadSound");
-        Logger.Msg("Saving file to: " + DownloadFileTempPath, "DownloadSound");
+        Logger.Msg("Saving file to: " + filePath, "DownloadSound");
 
         try
         {
-           
-            
-            using var client = new HttpClientDownloadWithProgress(url, filePath);
+            using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
             client.ProgressChanged += OnDownloadProgressChanged;
             await client.StartDownload();
             Thread.Sleep(100);
             if (
                 !md5ForFiles.ContainsKey(sound)
-                || GetMD5HashFromFile(filePath).ToLower() != md5ForFiles[sound].ToLower()
-                || !File.Exists(filePath))
+                || GetMD5HashFromFile(DownloadFileTempPath).ToLower() != md5ForFiles[sound].ToLower()
+                || !File.Exists(DownloadFileTempPath))
             {
                 Logger.Error($"Md5 Wrong in {url}", "DownloadSound");
-                File.Delete(filePath);
-                if (url == downloaddownloadUrl_objectstorage && IsChineseLanguageUser || url == downloaddownloadUrl_github && !IsChineseLanguageUser)
+                File.Delete(DownloadFileTempPath);
+                if (url == downloadUrl_objectstorage && IsChineseLanguageUser)
                 {
-
-                    url = downloaddownloadUrl_gitee;
+                    url = downloadUrl_gitee;
                     goto retry;
                 }
-                else if (url == downloaddownloadUrl_gitee && IsChineseLanguageUser)
+                else if (url == downloadUrl_github && !IsChineseLanguageUser)
                 {
-                    url = downloaddownloadUrl_github;
+                    url = downloadUrl_objectstorage;
                     goto retry;
                 }
                 else 
-                if (!string.IsNullOrEmpty(filePath))
-                    File.Delete(filePath);
+                    File.Delete(DownloadFileTempPath);
             }
-            File.Move(filePath, DownloadFileTempPath);
+            File.Move(DownloadFileTempPath, filePath);
             Logger.Info($"Succeed in {url}", "DownloadSound");
             return true;
         }
         catch (Exception ex)
         {
             Logger.Error($"Failed to download\n{ex.Message}", "DownloadSound", false);
-            if (!string.IsNullOrEmpty(filePath))
-            {
-                File.Delete(filePath);
-            }
+            File.Delete(DownloadFileTempPath);
             return false;
         }
         

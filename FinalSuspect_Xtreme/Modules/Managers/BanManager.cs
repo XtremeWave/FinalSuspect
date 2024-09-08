@@ -15,8 +15,8 @@ namespace FinalSuspect_Xtreme.Modules.Managers;
 
 public static class BanManager
 {
-    private static readonly string DENY_NAME_LIST_PATH = @"./FinalSuspect_Data/DenyName.txt";
-    private static readonly string BAN_LIST_PATH = @"./FinalSuspect_Data/BanList.txt";
+    private static readonly string DENY_NAME_LIST_PATH = @"FinalSuspect_Data/Ban/DenyName.txt";
+    private static readonly string BAN_LIST_PATH = @"FinalSuspect_Data/Ban/BanList.txt";
     private static List<string> EACList = new();
 
     [PluginModuleInitializer]
@@ -25,6 +25,8 @@ public static class BanManager
         try
         {
             Directory.CreateDirectory("FinalSuspect_Data");
+            Directory.CreateDirectory("FinalSuspect_Data/Ban");
+
 
             if (!File.Exists(BAN_LIST_PATH))
             {

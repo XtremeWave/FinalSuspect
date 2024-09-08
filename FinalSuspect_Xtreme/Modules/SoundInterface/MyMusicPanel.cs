@@ -159,7 +159,7 @@ public static class MyMusicPanel
 
             var sound = soundp.Key;
             var name = AllFinalSuspect.ContainsKey(sound) ? GetString($"Mus.{sound}") : sound;
-            var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{sound}.wav";
+            var path = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
             RefreshTags(optionsMenuBehaviour, name, sound, path); 
 
             count++;

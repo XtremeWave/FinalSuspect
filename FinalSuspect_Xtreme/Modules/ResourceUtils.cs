@@ -16,7 +16,7 @@ public static class ResourceUtils
         if (stream != null) File.WriteAllBytes(toPath, stream.ReadFully());
     }
 
-    public static Sprite? LoadSpriteFromResources(string path, float pixelsPerUnit)
+    public static Sprite LoadSpriteFromResources(string path, float pixelsPerUnit)
     {
         try
         {
@@ -35,7 +35,7 @@ public static class ResourceUtils
         return null;
     }
 
-    public static Texture2D? LoadTextureFromDisk(string path)
+    public static Texture2D LoadTextureFromDisk(string path)
     {
         try
         {
@@ -55,7 +55,7 @@ public static class ResourceUtils
         return null;
     }
 
-    public static Sprite? LoadSprite(string path, float pixelsPerUnit = 1f)
+    public static Sprite LoadSprite(string path, float pixelsPerUnit = 1f)
     {
         try
         {

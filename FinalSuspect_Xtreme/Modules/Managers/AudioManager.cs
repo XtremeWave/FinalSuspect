@@ -11,7 +11,7 @@ namespace FinalSuspect_Xtreme.Modules.Managers;
 #nullable enable
 public static class AudioManager
 {
-    public static readonly string TAGS_DIRECTORY_PATH = @"./FinalSuspect_Data/SoundNames/";
+    public static readonly string TAGS_DIRECTORY_PATH = @"FinalSuspect_Data/Resources/AudioNames";
 
     public static IReadOnlyDictionary<string, bool> FinalSuspectMusic => FinalSuspectOfficialMusic;
 

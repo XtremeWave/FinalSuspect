@@ -115,7 +115,7 @@ public static class AudioManagementPanel
             Object.Destroy(button.GetComponent<UIScrollbarHelper>());
             Object.Destroy(button.GetComponent<NumberButton>());
 
-            var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{sound}.wav";
+            var path = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
             var renderer = button.GetComponent<SpriteRenderer>();
             var rollover = button.GetComponent<ButtonRolloverHandler>();
 
@@ -131,7 +131,7 @@ public static class AudioManagementPanel
             var isDownloading = IsDownloading.Contains(sound);
             var InTip = DownloadDone.ContainsKey(sound);
             var audioExist = ConvertExtension(ref path);
-            var audioNameExist = File.Exists(@$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/SoundNames/{sound}.json");
+            var audioNameExist = File.Exists(@$"FinalSuspect_Data/Resources/AudioNames/{sound}.json");
             var isXWMus = AllFinalSuspect.ContainsKey(sound);
             var unpublished = NotUp.Contains(sound);
             
@@ -245,16 +245,16 @@ public static class AudioManagementPanel
     static void Delete(string sound)
     {
         DeleteSoundInName(sound);
-            DeleteSoundInFile(sound);
+        DeleteSoundInFile(sound);
     }
-    static void DeleteSoundInName(string soundname)
+    static void DeleteSoundInName(string name)
     {
-        if (AllFinalSuspect.ContainsKey(soundname)) return;
+        if (AllFinalSuspect.ContainsKey(name)) return;
         try
         {
 
-            var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/SoundNames/{soundname}.json";
-            Logger.Info($"{soundname} Deleted", "DeleteSound");
+            var path = @$"FinalSuspect_Data/Resources/AudioNames/{name}.json";
+            Logger.Info($"{name} Deleted", "DeleteSound");
                 File.Delete(path);
             
         }
@@ -268,7 +268,7 @@ public static class AudioManagementPanel
     {
         try
         {
-            var path2 = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{sound}.wav";
+            var path2 = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
             Logger.Info($"{Path.GetFileName(path2)} Deleted", "DeleteSound");
             File.Delete(path2);
         }
