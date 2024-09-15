@@ -102,7 +102,7 @@ class FixedUpdatePatch
         }
         catch
         {
-            XtremeGameData.XtremePlayerData.Init();
+            XtremeGameData.XtremePlayerData.InitializeAll();
         }
 
     }

@@ -101,7 +101,7 @@ public static class XtremeGameData
 
 
         [GameModuleInitializer]
-        public static void Init()
+        public static void InitializeAll()
         {
             AllPlayerData = new();
             foreach (var pc in PlayerControl.AllPlayerControls)
@@ -110,7 +110,6 @@ public static class XtremeGameData
                 var id = pc.PlayerId;
                 AllPlayerData[id] = new XtremePlayerData(pc, pc.GetRealName(), colorId);
             }
-
         }
 #pragma warning disable CA1816
         public void Dispose()
