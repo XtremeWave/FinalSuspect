@@ -148,160 +148,53 @@ public static class Utils
     
     public static Dictionary<string, Sprite> CachedSprites = new();
 
-    public static Sprite LoadSprite(string path, float pixelsPerUnit = 1f)
+    public static Sprite LoadSprite(string file, float pixelsPerUnit = 1f)
     {
         try
         {
-            if (CachedSprites.TryGetValue(path + pixelsPerUnit, out var sprite)) return sprite;
-            Texture2D texture = LoadTextureFromResources(path);
+            if (CachedSprites.TryGetValue(file + pixelsPerUnit, out var sprite)) return sprite;
+            Texture2D texture = LoadTextureFromResources(file);
             sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
             sprite.hideFlags |= HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
-            return CachedSprites[path + pixelsPerUnit] = sprite;
+            return CachedSprites[file + pixelsPerUnit] = sprite;
         }
         catch
         {
-            Logger.Error($"读入Texture失败：{path}", "LoadImage");
+            Logger.Error($"读入Texture失败：{file}", "LoadImage");
         }
         return null;
     }
-/*#pragma warning disable CA1416
 
-    public static Sprite LoadGaussianBlurSprite(string path, float pixelsPerUnit = 1f, int blurSize = 1)
+    public static Texture2D LoadTextureFromResources(string file)
     {
+        var path = @"FinalSuspect_Data/Resources/Images/" + file;
+
         try
         {
-            if (CachedSprites.TryGetValue(path + pixelsPerUnit, out var sprite)) return sprite;
-
-            Texture2D texture = LoadTextureFromResources(path);
-
-            var image = Texture2DToBitmap(texture);
-            System.Drawing.Bitmap blurredImage = new(image.Width, image.Height);
-
-            double[,] kernel = CreateGaussianKernel(blurSize);
-            int kernelSize = kernel.GetLength(0);
-
-            for (int x = 0; x < image.Width; x++)
+            if (!File.Exists(path))
             {
-                for (int y = 0; y < image.Height; y++)
-                {
-                    System.Drawing.Color color = ApplyKernel(image, x, y, kernel);
-                    blurredImage.SetPixel(x, y, color);
-                }
+                Logger.Error($"文件不存在：{path}", "LoadTexture");
+                goto InDLL;
             }
 
-            Texture2D newtexture = BitmapToTexture2D(blurredImage);
-            sprite = Sprite.Create(newtexture, new(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
-            sprite.hideFlags |= HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
-            return CachedSprites[path + pixelsPerUnit] = sprite;
-        }
-        catch
-        {
-            Logger.Error($"读入Texture失败：{path}", "LoadImage");
-        }
-        return null;
-    }
-
-    public static Texture2D BitmapToTexture2D(System.Drawing.Bitmap bitmap)
-    {
-        int width = bitmap.Width;
-        int height = bitmap.Height;
-
-        Texture2D texture = new (width, height, TextureFormat.RGBA32, false);
-
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
+            byte[] fileData = File.ReadAllBytes(path);
+            var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+            if (ImageConversion.LoadImage(texture, fileData))
             {
-                System.Drawing.Color pixelColor = bitmap.GetPixel(x, y);
-                Color unityColor = new Color32(pixelColor.R, pixelColor.G, pixelColor.B, pixelColor.A);
-                texture.SetPixel(x, y, unityColor);
+                return texture;
+            }
+            else
+            {
+                Logger.Error($"无法读取图片：{path}", "LoadTexture");
             }
         }
-
-        texture.Apply();
-
-        return texture;
-
-    }
-    public static System.Drawing.Bitmap Texture2DToBitmap(Texture2D texture)
-    {
-        int width = texture.width;
-        int height = texture.height;
-
-        System.Drawing.Bitmap bitmap = new (width, height, PixelFormat.Format32bppArgb);
-        Color[] pixels = texture.GetPixels();
-        for (int y = 0; y < height; y++)
+        catch (Exception ex)
         {
-            for (int x = 0; x < width; x++)
-            {
-                Color unityColor = pixels[x + y * width];
-
-                int r = (int)(unityColor.r * 255);
-                int g = (int)(unityColor.g * 255);
-                int b = (int)(unityColor.b * 255);
-                int a = (int)(unityColor.a * 255);
-
-                System.Drawing.Color pixelColor = System.Drawing.Color.FromArgb(a, r, g, b);
-                bitmap.SetPixel(x, y, pixelColor);
-            }
+            Logger.Error($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
         }
+        InDLL:
+        path = "FinalSuspect_Xtreme.Resources.Images." + file;
 
-        return bitmap;
-    }
-    private static double[,] CreateGaussianKernel(int size)
-    {
-        double[,] kernel = new double[size, size];
-        double sigma = size / 2.0;
-        double sum = 0.0;
-        int center = size / 2;
-
-        for (int y = 0; y < size; y++)
-        {
-            for (int x = 0; x < size; x++)
-            {
-                double xOffset = x - center;
-                double yOffset = y - center;
-                double exponent = -(xOffset * xOffset + yOffset * yOffset) / (2 * sigma * sigma);
-                kernel[x, y] = Math.Exp(exponent) / (2 * Math.PI * sigma * sigma);
-                sum += kernel[x, y];
-            }
-        }
-
-        for (int y = 0; y < size; y++)
-        {
-            for (int x = 0; x < size; x++)
-            {
-                kernel[x, y] /= sum;
-            }
-        }
-
-        return kernel;
-    }
-    private static System.Drawing.Color ApplyKernel(System.Drawing.Bitmap image, int x, int y, double[,] kernel)
-    {
-        int kernelSize = kernel.GetLength(0);
-        int halfKernelSize = kernelSize / 2;
-        double r = 0, g = 0, b = 0;
-
-        for (int ky = -halfKernelSize; ky <= halfKernelSize; ky++)
-        {
-            for (int kx = -halfKernelSize; kx <= halfKernelSize; kx++)
-            {
-                int px = Math.Clamp(x + kx, 0, image.Width - 1);
-                int py = Math.Clamp(y + ky, 0, image.Height - 1);
-                System.Drawing.Color pixelColor = image.GetPixel(px, py);
-                r += pixelColor.R * kernel[kx + halfKernelSize, ky + halfKernelSize];
-                g += pixelColor.G * kernel[kx + halfKernelSize, ky + halfKernelSize];
-                b += pixelColor.B * kernel[kx + halfKernelSize, ky + halfKernelSize];
-            }
-        }
-
-        return System.Drawing.Color.FromArgb(Math.Clamp((int)r, 0, 255), Math.Clamp((int)g, 0, 255), Math.Clamp((int)b, 0, 255));
-    }
-#pragma warning restore CA1416*/
-
-    public static Texture2D LoadTextureFromResources(string path)
-    {
         try
         {
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
@@ -317,6 +210,7 @@ public static class Utils
         }
         return null;
     }
+
     public static string ColorString(Color32 color, string str) => $"<color=#{color.r:x2}{color.g:x2}{color.b:x2}{color.a:x2}>{str}</color>";
     /// <summary>
     /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。

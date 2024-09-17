@@ -45,19 +45,19 @@ public static class AwakeFriendCodeUIPatch
 public static class AwakeAccountManager
 {
     public static Sprite[] AllRoleCharacterIllustration = {
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Crewmate.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_HnSEngineer.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Scientist.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Engineer.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Tracker.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Noisemaker.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_CrewmateGhost.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_GuardianAngel.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Impostor.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_HnSImpostor.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Shapeshifter.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_Phantom.png", 450f),
-        Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.CI_ImpostorGhost.png", 450f),
+        Utils.LoadSprite("CI_Crewmate.png", 450f),
+        Utils.LoadSprite("CI_HnSEngineer.png", 450f),
+        Utils.LoadSprite("CI_Scientist.png", 450f),
+        Utils.LoadSprite("CI_Engineer.png", 450f),
+        Utils.LoadSprite("CI_Tracker.png", 450f),
+        Utils.LoadSprite("CI_Noisemaker.png", 450f),
+        Utils.LoadSprite("CI_CrewmateGhost.png", 450f),
+        Utils.LoadSprite("CI_GuardianAngel.png", 450f),
+        Utils.LoadSprite("CI_Impostor.png", 450f),
+        Utils.LoadSprite("CI_HnSImpostor.png", 450f),
+        Utils.LoadSprite("CI_Shapeshifter.png", 450f),
+        Utils.LoadSprite("CI_Phantom.png", 450f),
+        Utils.LoadSprite("CI_ImpostorGhost.png", 450f),
 
 
     }; 

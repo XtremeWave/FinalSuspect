@@ -1,17 +1,24 @@
 ﻿using BepInEx.Unity.IL2CPP.Utils;
+using static FinalSuspect_Xtreme.Modules.CheckAndDownload.ResourcesDownloader;
+using static FinalSuspect_Xtreme.Translator;
+using System;
 using HarmonyLib;
 using System.Collections;
 using UnityEngine;
+using ListStr= System.Collections.Generic.List<string>;
+using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
+using System.IO;
+using System.Collections.Generic;
 
 namespace FinalSuspect_Xtreme.Patches;
 
 
 public class LoadPatch
 {
-    static Sprite Team_Logo = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.LobbyPaint.png", 120f);
-    static Sprite Glow = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png");
-    static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png", 150f);
-    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme.Resources.Images.FinalSuspect_Xtreme-Logo.png", 150f);
+    static Sprite Team_Logo = Utils.LoadSprite("LobbyPaint.png", 120f);
+    static Sprite Glow = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png");
+    static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png", 150f);
+    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png", 150f);
     static TMPro.TextMeshPro loadText = null!;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
@@ -25,6 +32,7 @@ public class LoadPatch
         }
         private static IEnumerator InitializeRefdata(SplashManager __instance)
         {
+            #region Anima
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
             yield return new WaitForSeconds(2f);
@@ -71,12 +79,14 @@ public class LoadPatch
             modlogo.color = Color.white;
             modlogo_Blurred.gameObject.SetActive(false);
             modlogo.transform.localScale = Vector3.one;
-
+            #endregion
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
             loadText.fontStyle = TMPro.FontStyles.Bold;
-            loadText.text = "Loading...";
             loadText.color = Color.white.AlphaMultiplied(0.3f);
+            #region LoadAmongUs
+            loadText.text = "Loading...";
+
             yield return DestroyableSingleton<ReferenceDataManager>.Instance.Initialize();
             try
             {
@@ -85,6 +95,93 @@ public class LoadPatch
             catch
             { }
             yield return new WaitForSeconds(0.5f);
+            #endregion
+            #region Checking
+            loadText.text = "Checking For Files...";
+            string remoteResourcesUrl;
+            ListStr remoteImageList = new()
+        {
+            "CI_Crewmate.png",
+            "CI_CrewmateGhost.png",
+            "CI_Engineer.png",
+            "CI_GuardianAngel.png",
+            "CI_HnSEngineer.png",
+            "CI_HnSImpostor.png",
+            "CI_Impostor.png",
+            "CI_ImpostorGhost.png",
+            "CI_Noicemaker.png",
+            "CI_Phantom.png",
+            "CI_Scientist.png",
+            "CI_Shapeshifter.png",
+            "DleksBanner.png",
+            "DleksBanner-Wordart.png",
+            "DleksButton.png",
+            "FinalSuspect_Xtreme-BG.jpg",
+            "FinalSuspect_Xtreme-Logo.png",
+            "FinalSuspect_Xtreme-Logo-Blurred.png",
+            "LobbyPaint.png",
+            "RightPanelCloseButton.png",
+        };
+            ListStr remoteDependList = new()
+        {
+            "YamlDotNet.dll",
+            "YamlDotNet.xml",
+        };
+            remoteResourcesUrl = IsChineseLanguageUser ? ImagedownloadUrl_gitee : ImagedownloadUrl_github;
+
+            DictionaryStr needDownloadsPath = new();
+            foreach (var resource in remoteImageList)
+            {
+                string localFilePath = ImagesSavePath + resource;
+                if (!File.Exists(localFilePath))
+                {
+                    needDownloadsPath.Add(remoteResourcesUrl + "Images/" + resource, localFilePath);
+                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                }
+            }
+            remoteResourcesUrl = IsChineseLanguageUser ? DependsdownloadUrl_gitee : DependsdownloadUrl_github;
+
+            foreach (var resource in remoteDependList)
+            {
+                string localFilePath = DependsSavePath  + resource;
+                if (!File.Exists(localFilePath))
+                {
+                    needDownloadsPath.Add(remoteResourcesUrl + "Depends/" + resource, localFilePath);
+                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
+
+                }
+            }
+            #endregion
+            #region Downloading
+            foreach (var resources in needDownloadsPath)
+            {
+                loadText.text = "Downloading Resources...";
+                var task = StartDownload(resources.Key, resources.Value);
+                var startTime = Time.time; // 记录开始时间
+                const float timeout = 20f; // 设置超时时间，单位为秒
+
+                while (!task.IsCompleted)
+                {
+                    if (Time.time - startTime > timeout)
+                    {
+                        Logger.Warn($"Download of {resources.Key} timed out.", "Download Resource");
+                        break;
+                    }
+                    yield return null; // 每帧等待
+                }
+
+                // 检查任务是否成功完成
+                if (task.IsFaulted)
+                {
+                    Logger.Error($"Download of {resources.Key} failed: {task.Exception}", "Download Resource");
+                }
+            }
+            yield return new WaitForSeconds(0.5f);
+
+            #endregion
+            loadText.text = "Loading...";
+
+            yield return new WaitForSeconds(1f);
 
             loadText.text = "Loading Completed!";
             for (int i = 0; i < 3; i++)

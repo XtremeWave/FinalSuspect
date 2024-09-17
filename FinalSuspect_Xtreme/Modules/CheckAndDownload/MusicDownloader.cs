@@ -33,7 +33,7 @@ public class MusicDownloader
         Directory.CreateDirectory(SavePath);
         
         var filePath = $"{SavePath}/{sound}.wav";
-        string DownloadFileTempPath = filePath + ".xwm";
+        string DownloadFileTempPath = filePath + ".xwr";
 
         var url = IsChineseLanguageUser ? downloadUrl_objectstorage : downloadUrl_github;
 
