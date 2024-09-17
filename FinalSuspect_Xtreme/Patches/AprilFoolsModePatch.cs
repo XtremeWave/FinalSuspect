@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2CppSystem;
+using InnerNet;
 using static CosmeticsLayer;
 
 namespace FinalSuspect_Xtreme;
@@ -59,7 +60,7 @@ public static class GetHnsBodyType_Patch
         }
         else if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
         {
-            if (player.IsImpostor())
+            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
             {
                 __result = PlayerBodyTypes.Normal;
                 return;
@@ -69,7 +70,7 @@ public static class GetHnsBodyType_Patch
         }
         else if (AprilFoolsMode.ShouldLongAround())
         {
-            if (player.IsImpostor())
+            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
             {
                 __result = PlayerBodyTypes.LongSeeker;
                 return;
@@ -79,7 +80,7 @@ public static class GetHnsBodyType_Patch
         }
         else
         {
-            if (player.IsImpostor())
+            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
             {
                 __result = PlayerBodyTypes.Seeker;
                 return;

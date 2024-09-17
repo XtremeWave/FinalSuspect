@@ -26,7 +26,7 @@ public class MusicDownloader
     public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "Sounds/{{sound}}.wav";
     public static readonly string downloadUrl_aumodsite = AUModSiteUrl + "Sounds/{{sound}}.wav";
 
-    public static async Task<bool> StartDownload(string sound, string url = "waitToSelect")
+    public static async Task<bool> StartDownload(string sound)
     {
         if (!Directory.Exists(SavePath))
         
@@ -35,10 +35,9 @@ public class MusicDownloader
         var filePath = $"{SavePath}/{sound}.wav";
         string DownloadFileTempPath = filePath + ".xwm";
 
-    retry:
+        var url = IsChineseLanguageUser ? downloadUrl_objectstorage : downloadUrl_github;
 
-        if (url == "waitToSelect")
-            url = IsChineseLanguageUser ? downloadUrl_objectstorage : downloadUrl_github;
+    retry:
         url = url.Replace("{{sound}}", $"{sound}");
 
 
@@ -80,8 +79,9 @@ public class MusicDownloader
                 else 
                     File.Delete(DownloadFileTempPath);
             }
-            File.Move(DownloadFileTempPath, filePath);
+
             Logger.Info($"Succeed in {url}", "DownloadSound");
+            File.Move(DownloadFileTempPath, filePath);
             return true;
         }
         catch (Exception ex)

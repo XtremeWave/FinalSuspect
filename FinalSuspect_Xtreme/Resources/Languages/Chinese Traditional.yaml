@@ -93,8 +93,8 @@ updatePleaseWait: "請稍候……"
 updateInProgress: "更新中……"
 downloadInProgress: "下載中……"
 Playing: "播放中……"
-downloadSucceed: "下載成功!"
-downloadFailure: "下載失敗=("
+DownLoadSucceedNotice: "下載成功!"
+DownLoadFailureNotice: "下載失敗=("
 PleaseWait: "請稍候……"
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "如果您希望提高您的遊戲體驗，請在「首頁-設定-�
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "異世慶同春 -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜發財 -劉德華"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜發財"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "慶此春 敬此世 -Slok7565"
 Mus.TheDomeofTruth: "真理蒼穹 -Slok7565"
 Mus.HopeStillExists: "希望長存 -Slok7565"

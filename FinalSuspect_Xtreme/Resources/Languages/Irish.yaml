@@ -93,8 +93,8 @@ updatePleaseWait: "Téigh i dtaithí..."
 updateInProgress: "Nuashonrú ar siúl..."
 downloadInProgress: "Á íoslódáil..."
 Playing: "Ag imirt..."
-downloadSucceed: "Rathúil íoslódáil!"
-downloadFailure: "Theip ar íoslódáil =("
+DownLoadSucceedNotice: "Rathúil íoslódáil!"
+DownLoadFailureNotice: "Theip ar íoslódáil =("
 PleaseWait: "Téigh i dtaithí..."
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "Chun taithí gaimhníochta feabhsaithe a fháil, íoslódáil ár g
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Ríomhaire Éalaí in Aonaid Comhoiriúnachta -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Ní rachaidh mé a thabhairt duit -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Ní rachaidh mé a thabhairt duit"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Laoigh go hÉagsúil SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "An Dome na Fírinne -Slok7565"
 Mus.HopeStillExists: "Tá dóchas ann fós -Slok7565"

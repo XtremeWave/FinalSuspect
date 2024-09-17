@@ -93,8 +93,8 @@ updatePleaseWait: "잠시만 기다려 주세요..."
 updateInProgress: "업데이트 진행 중..."
 downloadInProgress: "다운로드 중..."
 Playing: "재생 중..."
-downloadSucceed: "다운로드 성공!"
-downloadFailure: "다운로드 실패 =("
+DownLoadSucceedNotice: "다운로드 성공!"
+DownLoadFailureNotice: "다운로드 실패 =("
 PleaseWait: "잠시만 기다려 주세요..."
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "향상된 게임 경험을 위해 '홈-설정-더 많은 기능-오
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
 Mus.HopeStillExists: "Hope Still Exists -Slok7565"

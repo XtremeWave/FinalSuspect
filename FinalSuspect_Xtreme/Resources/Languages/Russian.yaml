@@ -93,8 +93,8 @@ updatePleaseWait: "Пожалуйста, подождите..."
 updateInProgress: "Обновление в процессе..."
 downloadInProgress: "Скачивание..."
 Playing: "Играет..."
-downloadSucceed: "Скачивание успешно!"
-downloadFailure: "Скачивание не удалось =("
+DownLoadSucceedNotice: "Скачивание успешно!"
+DownLoadFailureNotice: "Скачивание не удалось =("
 PleaseWait: "Пожалуйста, подождите..."
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "Для улучшения игрового опыта скачай�
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Весна радуется в параллельных вселенных -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Радуйтесь этому СЕЗОНУ, уважайте этот МИР -Slok7565"
 Mus.TheDomeofTruth: "Купол истины -Slok7565"
 Mus.HopeStillExists: "Надежда всё ещё существует -Slok7565"

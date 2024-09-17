@@ -93,8 +93,8 @@ updatePleaseWait: "Pakiusap maghintay..."
 updateInProgress: "Nag-uupdate..."
 downloadInProgress: "Nagda-download..."
 Playing: "Naglalaro..."
-downloadSucceed: "Matagumpay na na-download!"
-downloadFailure: "Nabigo ang pag-download =("
+DownLoadSucceedNotice: "Matagumpay na na-download!"
+DownLoadFailureNotice: "Nabigo ang pag-download =("
 PleaseWait: "Pakiusap maghintay..."
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "Para sa mas pinahusay na karanasan sa musika, i-download ang aming 
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Computer Escape sa Compatibility -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Hindi kita iiwan -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Hindi kita iiwan"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Tuwa sa SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "Ang Dome ng Katotohanan -Slok7565"
 Mus.HopeStillExists: "May Pag-asa Pa -Slok7565"

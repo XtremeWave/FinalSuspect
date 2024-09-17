@@ -6,22 +6,26 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
 using static FinalSuspect_Xtreme.Modules.Managers.CustomSoundsManager;
+using FinalSuspect_Xtreme.Modules.Managers;
+using UnityEngine.UIElements;
 
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
 public static class MyMusicPanel
 {
+    static bool first;
     public static SpriteRenderer CustomBackground { get; private set; }
     public static List<GameObject> Items { get; private set; }
     public static OptionsMenuBehaviour OptionsMenuBehaviourNow { get; private set; }
 
     public static int currentPage { get; private set; } = 1;
     public static int itemsPerPage => 7;
-    public static int totalPageCount => (AllMusics.Count + itemsPerPage - 1) / itemsPerPage;
+    public static int totalPageCount => (finalMusics.Count + itemsPerPage - 1) / itemsPerPage;
 
     private static int numItems = 0;
     public static int PlayMode = 0;
@@ -34,7 +38,7 @@ public static class MyMusicPanel
     public static void Init(OptionsMenuBehaviour optionsMenuBehaviour)
     {
         var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
-
+        first = true;
             OptionsMenuBehaviourNow = optionsMenuBehaviour;
         if (CustomBackground == null)
         {
@@ -42,7 +46,7 @@ public static class MyMusicPanel
             numItems = 0;
             PlayMode = 0;
             CustomBackground = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
-            CustomBackground.name = "Name Tag Panel Background";
+            CustomBackground.name = "My Music Panel Background";
             CustomBackground.transform.localScale = new(0.9f, 0.9f, 1f);
             CustomBackground.transform.localPosition += Vector3.back * 18;
             CustomBackground.gameObject.SetActive(false);
@@ -144,66 +148,49 @@ public static class MyMusicPanel
         Items = new();
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        Logger.Info($"cp:{currentPage}", "test");
+        Logger.Info($"currentPage:{currentPage}", "MyMusicPanel");
 
         
-        int startIndex = (currentPage - 1) * itemsPerPage; 
+        int startIndex = (currentPage - 1) * itemsPerPage;
 
         int count = 0;
-        foreach (var soundp in AllMusics.Skip(startIndex))
+        foreach (var audio in finalMusics.Skip(startIndex))
         {
             if (count >= itemsPerPage)
             {
                 break; 
             }
 
-            var sound = soundp.Key;
-            var name = AllFinalSuspect.ContainsKey(sound) ? GetString($"Mus.{sound}") : sound;
-            var path = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
-            RefreshTags(optionsMenuBehaviour, name, sound, path); 
+            RefreshTags(optionsMenuBehaviour, audio); 
 
             count++;
            
         }
         
     }
-    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, string name, string sound, string path)
+    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, FinalMusic audio)
     {
-       
+
         try
         {
             var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
+            var name = audio.Name;
+            var path = audio.Path;
+            var filename = audio.FileName;
+            var author = audio.Author;
+            var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist || CustomAudios.Contains(filename);
 
-            // 计算标签在当前页面中的位置
+
             float offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
             float offsetY = 2.2f - (0.5f * (numItems / 2));
             float offsetZ = -4f;
 
-            // 创建标签按钮
             var ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
             ToggleButton.transform.localPosition = new Vector3(offsetX, offsetY, offsetZ);
-            numItems++; // 增加当前页面的标签数量
-
-            ToggleButton.name = name;
-            ToggleButton.Text.text = name;
+            ToggleButton.name = "Btn-" + filename;
+            ToggleButton.Text.text = $"{name}{(author != string.Empty ? $" -{author}" : "")}";
             ToggleButton.Background.color = Color.white;
-            var audioExist = ConvertExtension(ref path);
-            var passiveButton = ToggleButton.GetComponent<PassiveButton>();
-            passiveButton.OnClick = new();
-            passiveButton.OnClick.AddListener(new Action( () =>
-            {
-                Logger.Info($"Play {sound}:{path}", "SoundsPanel");
-                if (ConvertExtension(ref path))
-                {
-                    Play(sound, 1);
-                }
-                
-            }));
-
-            ToggleButton.Background.color = audioExist ?
-                (FinalSuspectMusic.ContainsKey(sound) ? Color.cyan : Color.green) :
-                Palette.DisabledGrey;
-
+            numItems++; 
 
             offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
             offsetY = 2.2f - (0.5f * (numItems / 2));
@@ -212,22 +199,41 @@ public static class MyMusicPanel
             var previewText = Object.Instantiate(optionsMenuBehaviour.DisableMouseMovement.Text, CustomBackground.transform);
             previewText.transform.localPosition = new Vector3(offsetX, offsetY, offsetZ);
             previewText.fontSize = ToggleButton.Text.fontSize;
+            previewText.name = "PreText-" + filename;
 
+            Color color;
+            string preview;
 
-            string preview = audioExist ? GetString("CanPlay") : GetString("NoFound");
-            if (SoundManager.Instance != null && SoundManager.Instance.allSources != null)
+            if (audio.CurrectAudioStates is AudiosStates.IsPlaying)
             {
-                foreach (var aso in SoundManager.Instance.allSources)
-                {
-                    if (aso.Key != null && AllSoundClips.Values.Any(ac => ac != null && ac.name == aso.Key.name &&ac.name == sound))
-                    {
-                        preview = GetString("Playing");
-                        ToggleButton.Background.color = Main.OutColor;
-                        break;
-                    }
-                }
+                preview = GetString("Playing");
+                color = Main.OutColor;
             }
+            else if (audioExist)
+            {
+                color = audio.UnOfficial ? Color.green : Color.cyan;
+                preview = GetString("CanPlay");
+            }
+            else
+            {
+                color = Palette.DisabledGrey;
+                preview = GetString("NoFound");
+            }
+            
+
             previewText.text = preview;
+            ToggleButton.Background.color = color;
+
+
+            var passiveButton = ToggleButton.GetComponent<PassiveButton>();
+            passiveButton.OnClick = new();
+            passiveButton.OnClick.AddListener(new Action(OnClick));
+            void OnClick()
+            {
+                Logger.Info($"Try To Play {filename}:{path}", "MyMusicPanel");
+                Play(audio);
+            }
+
             Items.Add(ToggleButton.gameObject);
             Items.Add(previewText.gameObject);
         }

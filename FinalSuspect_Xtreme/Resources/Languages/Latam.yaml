@@ -93,8 +93,8 @@ updatePleaseWait: "Por favor, espere……"
 updateInProgress: "En actualización……"
 downloadInProgress: "En descarga……"
 Playing: "En reproducción……"
-downloadSucceed: "Descarga exitosa!"
-downloadFailure: "La descarga falló=("
+DownLoadSucceedNotice: "Descarga exitosa!"
+DownLoadFailureNotice: "La descarga falló=("
 PleaseWait: "Por favor, espere……"
 
 # 更新检查
@@ -160,8 +160,8 @@ AudioNYPro: "Para una experiencia de juego mejorada, descarga nuestro audio en �
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
 Mus.HopeStillExists: "Hope Still Exists -Slok7565"

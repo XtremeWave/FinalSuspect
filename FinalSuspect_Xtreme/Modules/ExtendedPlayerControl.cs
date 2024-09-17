@@ -30,7 +30,7 @@ static class ExtendedPlayerControl
     {
         if (player != null)
         {
-            return  GetRoleType(player.PlayerId);
+            return GetRoleType(player.PlayerId);
         }
         return RoleTypes.Crewmate;
     }
