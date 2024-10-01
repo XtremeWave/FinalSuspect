@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FinalSuspect_Xtreme.Modules;
-
+// 来源：Town Of Next
 public class HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath) : IDisposable
 {
     private readonly string _downloadUrl = downloadUrl;

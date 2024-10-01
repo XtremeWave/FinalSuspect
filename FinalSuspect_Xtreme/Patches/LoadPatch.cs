@@ -1,15 +1,15 @@
 ﻿using BepInEx.Unity.IL2CPP.Utils;
-using static FinalSuspect_Xtreme.Modules.CheckAndDownload.ResourcesDownloader;
+using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.ResourcesDownloader;
 using static FinalSuspect_Xtreme.Translator;
 using System;
 using HarmonyLib;
 using System.Collections;
 using UnityEngine;
-using ListStr= System.Collections.Generic.List<string>;
+using ListStr = System.Collections.Generic.List<string>;
 using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
 using System.IO;
 using System.Collections.Generic;
-using FinalSuspect_Xtreme.Modules.CheckAndDownload;
+using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 namespace FinalSuspect_Xtreme.Patches;
 

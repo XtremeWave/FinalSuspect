@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, o melhor plugin original para Among Us.**
 
@@ -41,7 +41,7 @@ Alguns materiais aqui são propriedade da Innersloth LLC.
 
 ### Contribuintes
  - [KARPED1EM](https://github.com/KARPED1EM) - **Suporte Técnico**
- - [Yu (anteriormente Night)](https://github.com/Night-GUA) - **Desenvolvedor do [TOHEX](https://tohex.cc)**
+ - [Yu (anteriormente Night)](https://github.com/Night-GUA) - **Suporte Técnico**
  - [Amongus](https://github.com/XiezibanWrite) - **Tradução e Suporte Técnico**
  - [NikoCat233](https://github.com/NikoCat233) - **Suporte Técnico**
  - [Farewell](https://github.com/ksduye) - **Suporte de Consulta**

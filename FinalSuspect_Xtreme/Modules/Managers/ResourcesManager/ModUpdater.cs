@@ -12,12 +12,11 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
-using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
+using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 [HarmonyPatch]
 public class ModUpdater

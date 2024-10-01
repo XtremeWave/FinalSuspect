@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.IO;
 using FinalSuspect_Xtreme.Attributes;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 public static class VersionChecker
 {

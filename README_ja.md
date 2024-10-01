@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme、Among Us の最高のオリジナル Mod プラグインです。**
 
@@ -41,7 +41,7 @@
 
 ### 貢献者
  - [KARPED1EM](https://github.com/KARPED1EM) - **技術サポート**
- - [Yu（旧名：Night）](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc) 開発者**
+ - [Yu（旧名：Night）](https://github.com/Night-GUA) - **技術サポート**
  - [Amongus](https://github.com/XiezibanWrite) - **翻訳と技術サポート**
  - [NikoCat233](https://github.com/NikoCat233) - **技術サポート**
  - [Farewell](https://github.com/ksduye) - **コンサルティングサポート**

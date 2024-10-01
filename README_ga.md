@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, an mod breiseán is fearr le haghaidh Among Us.**
 
@@ -41,7 +41,7 @@ Tá roinnt de na hábhair atá anseo maoin ag Innersloth LLC.
 
 ### Conribí
  - [KARPED1EM](https://github.com/KARPED1EM) - **Tacaíocht Theicniúil**
- - [Yu (roimhe seo Night)](https://github.com/Night-GUA) - **Forbróir [TOHEX](https://tohex.cc)**
+ - [Yu (roimhe seo Night)](https://github.com/Night-GUA) - **Tacaíocht Theicniúil**
  - [Amongus](https://github.com/XiezibanWrite) - **Aistriúchán agus Tacaíocht Theicniúil**
  - [NikoCat233](https://github.com/NikoCat233) - **Tacaíocht Theicniúil**
  - [Farewell](https://github.com/ksduye) - **Tacaíocht Comhairle**

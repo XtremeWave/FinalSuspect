@@ -7,7 +7,7 @@ using UnityEngine;
 
 using static FinalSuspect_Xtreme.Translator;
 using System.Linq;
-using FinalSuspect_Xtreme.Modules.CheckAndDownload;
+using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 namespace FinalSuspect_Xtreme;
 

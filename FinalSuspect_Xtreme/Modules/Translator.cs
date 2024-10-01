@@ -86,7 +86,7 @@ public static class Translator
 
     public static string GetString(string str, SupportedLangs langId)
     {
-        var res = $"<INVALID:{str}>";
+        var res = $"<STRMISS:{str}>";
         
         try
         {
@@ -112,8 +112,8 @@ public static class Translator
         }
         catch (Exception Ex)
         {
-            Logger.Fatal($"Error oucured at [{str}] in String.csv", "Translator");
-            Logger.Error("Here was the error:\n" + Ex.ToString(), "Translator");
+            Logger.Fatal($"Error oucured at [{str}] in yaml", "Translator");
+            Logger.Error("Error:\n" + Ex.ToString(), "Translator");
         }
         return res;
     }

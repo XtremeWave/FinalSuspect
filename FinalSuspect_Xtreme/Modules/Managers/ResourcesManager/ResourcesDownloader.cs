@@ -12,11 +12,11 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
+using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
 using UnityEngine;
 using FinalSuspect_Xtreme.Modules.Managers;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 public class ResourcesDownloader
 {
@@ -35,7 +35,7 @@ public class ResourcesDownloader
 
     public static System.Collections.IEnumerable CheckForFiles()
     {
-        
+
         yield break;
     }
 
@@ -71,7 +71,7 @@ public class ResourcesDownloader
             File.Delete(DownloadImageFileTempPath);
             return false;
         }
-        
+
     }
     private static bool IsValidUrl(string url)
     {
@@ -81,7 +81,7 @@ public class ResourcesDownloader
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
         string msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Logger.Info(msg , "Download Resources");
+        Logger.Info(msg, "Download Resources");
     }
     public static string GetMD5HashFromFile(string fileName)
     {

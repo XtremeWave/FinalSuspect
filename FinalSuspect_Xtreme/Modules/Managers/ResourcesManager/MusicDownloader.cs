@@ -12,9 +12,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
+using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 [HarmonyPatch]
 public class MusicDownloader
@@ -29,9 +29,9 @@ public class MusicDownloader
     public static async Task<bool> StartDownload(string sound)
     {
         if (!Directory.Exists(SavePath))
-        
-        Directory.CreateDirectory(SavePath);
-        
+
+            Directory.CreateDirectory(SavePath);
+
         var filePath = $"{SavePath}/{sound}.wav";
         string DownloadFileTempPath = filePath + ".xwr";
 
@@ -48,7 +48,7 @@ public class MusicDownloader
         }
 
         File.Create(DownloadFileTempPath).Close();
-       
+
 
         Logger.Msg("Start Downloading from: " + url, "DownloadSound");
         Logger.Msg("Saving file to: " + filePath, "DownloadSound");
@@ -76,7 +76,7 @@ public class MusicDownloader
                     url = downloadUrl_objectstorage;
                     goto retry;
                 }
-                else 
+                else
                     File.Delete(DownloadFileTempPath);
             }
 
@@ -90,7 +90,7 @@ public class MusicDownloader
             File.Delete(DownloadFileTempPath);
             return false;
         }
-        
+
     }
     private static bool IsValidUrl(string url)
     {
@@ -100,7 +100,7 @@ public class MusicDownloader
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
         string msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Logger.Info(msg , "DownloadSounds");
+        Logger.Info(msg, "DownloadSounds");
     }
     public static string GetMD5HashFromFile(string fileName)
     {
