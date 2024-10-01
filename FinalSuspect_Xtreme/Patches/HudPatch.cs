@@ -66,7 +66,7 @@ class TaskPanelBehaviourPatch
 public static class HudManagerPatch
 {
     static GameObject ModLoading = null;
-    //static GameObject WarningText = null;
+
 
     private static int currentIndex = 0;
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]

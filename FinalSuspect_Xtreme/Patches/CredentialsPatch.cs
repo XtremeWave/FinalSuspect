@@ -88,7 +88,7 @@ internal class VersionShowerStartPatch
             $"<color={Main.TeamColor}>==</color> <color={Main.ModColor}>{Main.ModName}</color> <color={Main.TeamColor}>==</color>"
             + "</size>";
         Main.CredentialsText += $"\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
-        Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.ShowVersion}</color>";
+        Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
         Main.CredentialsText += $"\r\n<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
@@ -131,7 +131,7 @@ internal class VersionShowerStartPatch
         {
             string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={Main.TeamColor}>XtremeWave</color>");
             credentialsText += "\n";
-            string versionText = $"<color={Main.ModColor}>FSX</color> - <color=#C8FF78>v{Main.ShowVersion}</color>";
+            string versionText = $"<color={Main.ModColor}>FSX</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
         versionText = $"<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
