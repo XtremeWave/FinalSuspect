@@ -5,11 +5,13 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
+using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
+using FinalSuspect_Xtreme.Modules.Managers;
 using static FinalSuspect_Xtreme.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect_Xtreme.Modules.CheckAndDownload;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
+using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
@@ -20,8 +22,6 @@ public static class AudioManagementPanel
     public static Dictionary<string, GameObject> Items { get; private set; }
 
     static int numItems = 0;
-    static List<string> IsDownloading = new();
-    static Dictionary<string, bool> DownloadDone = new();
     public static void Hide()
     {
         if (CustomBackground != null)
@@ -36,7 +36,7 @@ public static class AudioManagementPanel
         {
             numItems = 0;
             CustomBackground = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
-            CustomBackground.name = "Name Tag Panel Background";
+            CustomBackground.name = "Audio Management Panel Background";
             CustomBackground.transform.localScale = new(0.9f, 0.9f, 1f);
             CustomBackground.transform.localPosition += Vector3.back * 18;
             CustomBackground.gameObject.SetActive(false);
@@ -55,7 +55,7 @@ public static class AudioManagementPanel
 
             var newButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
             newButton.transform.localPosition = new(1.3f, -1.88f, -16f);
-            newButton.name = "New Tag";
+            newButton.name = "New Audio";
             newButton.Text.text = GetString("NewSound");
             newButton.Background.color = Palette.White;
             var newPassiveButton = newButton.GetComponent<PassiveButton>();
@@ -74,7 +74,7 @@ public static class AudioManagementPanel
             if (sliderTemplate != null && Slider == null)
             {
                 Slider = Object.Instantiate(sliderTemplate, CustomBackground.transform);
-                Slider.name = "Name Tags Slider";
+                Slider.name = "Audio Management Slider";
                 Slider.transform.localPosition = new Vector3(0f, 0.5f, -11f);
                 Slider.transform.localScale = new Vector3(1f, 1f, 1f);
                 Slider.GetComponent<SpriteRenderer>().size = new(5f, 4f);
@@ -90,6 +90,7 @@ public static class AudioManagementPanel
     }
     public static void RefreshTagList()
     {
+        if (!XtremeGameData.GameStates.IsNotJoined) return;
         numItems = 0;
         var scroller = Slider.GetComponent<Scroller>();
         scroller.Inner.gameObject.ForEachChild((Action<GameObject>)(DestroyObj));
@@ -103,62 +104,67 @@ public static class AudioManagementPanel
 
         Items?.Values?.Do(Object.Destroy);
         Items = new();
-
-        foreach (var soundp in AllFiles)
+        foreach (var audio in finalMusics)
+        
         {
-            var sound = soundp.Key;
             numItems++;
+            var filename = audio.FileName;
+
             var button = Object.Instantiate(buttonPrefab, scroller.Inner);
             button.transform.localPosition = new(-1f, 1.6f - 0.6f * numItems, -10.5f);
             button.transform.localScale = new(1.2f, 1.2f, 1.2f);
-            button.name = "Sound Item For " + sound;
-            Object.Destroy(button.GetComponent<UIScrollbarHelper>());
-            Object.Destroy(button.GetComponent<NumberButton>());
+            button.name = "Btn-" + filename;
 
-            var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{sound}.wav";
             var renderer = button.GetComponent<SpriteRenderer>();
             var rollover = button.GetComponent<ButtonRolloverHandler>();
 
             var previewText = Object.Instantiate(button.transform.GetChild(0).GetComponent<TextMeshPro>(), button.transform);
             previewText.transform.SetLocalX(1.9f);
             previewText.fontSize = 1f;
-            
+            previewText.name = "PreText-" + filename;
+
+
+            Object.Destroy(button.GetComponent<UIScrollbarHelper>());
+            Object.Destroy(button.GetComponent<NumberButton>());
+
             string buttontext;
             Color buttonColor;
             bool enable = true;
             string preview = "???";
 
-            var isDownloading = IsDownloading.Contains(sound);
-            var InTip = DownloadDone.ContainsKey(sound);
-            var audioExist = ConvertExtension(ref path);
-            var audioNameExist = File.Exists(@$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/SoundNames/{sound}.json");
-            var isXWMus = AllFinalSuspect.ContainsKey(sound);
-            var unpublished = NotUp.Contains(sound);
+            var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist || CustomAudios.Contains(filename);
+            var unpublished = audio.unpublished;
             
-            if (isDownloading)
+            if (audio.CurrectAudioStates == AudiosStates.IsDownLoading)
             {
                 buttontext = GetString("downloadInProgress");
                 buttonColor = Color.yellow;
                 enable = false;
             }
-            else if (InTip)
+            else if (audio.CurrectAudioStates is AudiosStates.DownLoadSucceedNotice or AudiosStates.DownLoadFailureNotice)
             {
-                DownloadDone.TryGetValue(sound, out var succeed);
-                buttontext = succeed ? GetString("downloadSucceed") : GetString("downloadFailure");
+                var succeed = audio.CurrectAudioStates is AudiosStates.DownLoadSucceedNotice;
+                buttontext = GetString($"{audio.CurrectAudioStates}");
                 buttonColor = succeed ? Color.cyan : Palette.Brown;
                 enable = false;
             }
             else
             {
-                if (audioExist)
+                if (audio.CurrectAudioStates == AudiosStates.IsPlaying)
+                {
+                    buttontext = GetString("Playing");
+                    buttonColor = Color.red;
+                    enable = false;
+                }
+                else if (audioExist)
                 {
                     buttontext = GetString("delete");
-                    buttonColor = isXWMus ? Color.red : Palette.Purple;
+                    buttonColor = !audio.UnOfficial ? Color.red : Palette.Purple;
                 }
                 else
                 {
-                    buttontext = isXWMus ? GetString("download") : GetString("NoFound");
-                    buttonColor = isXWMus ? Color.green : Color.black;
+                    buttontext = !audio.UnOfficial ? GetString("download") : GetString("NoFound");
+                    buttonColor = !audio.UnOfficial ? Color.green : Color.black;
                 }
             }
             if (unpublished)
@@ -166,65 +172,36 @@ public static class AudioManagementPanel
                 buttonColor = Palette.DisabledGrey;
                 enable = false;
             }
-            if (sound != null)
-                preview = isXWMus ? GetString($"Mus.{sound}") : sound;
+            preview = audio.Name;
 
 
             var passiveButton = button.GetComponent<PassiveButton>();
             passiveButton.OnClick = new();
             passiveButton.OnClick.AddListener(new Action(() =>
             {
-
-
-                if (audioExist || audioNameExist)
+                if (audioExist)
                 {
-                    try
-                    {
-                        Delete(sound);
-                        ReloadTag(sound);
-                        RefreshTagList();
-                        MyMusicPanel.RefreshTagList();
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.Error($"{ex}", "Delete");
-                    }
+                    Delete(audio);
 
                 }
                 else
                 {
-                    IsDownloading.Remove(sound);
-                    IsDownloading.Add(sound);
+                    audio.CurrectAudioStates = audio.LastAudioStates = AudiosStates.IsDownLoading;
                     RefreshTagList();
-                    var task = MusicDownloader.StartDownload(sound);
+                    var task = MusicDownloader.StartDownload(filename);
                     task.ContinueWith(t => 
                     {
                         new LateTask(() =>
                         {
-                            IsDownloading.Remove(sound);
-                            ReloadTag(sound);
-                            DownloadDone.Remove(sound);
-                            if (t.Result)
+                            audio.CurrectAudioStates = audio.LastAudioStates = t.Result ? AudiosStates.DownLoadSucceedNotice : AudiosStates.DownLoadFailureNotice;
+                            RefreshTagList();
+
+                            new LateTask(() =>
                             {
-                                DownloadDone.Add(sound, true);
+                                new FinalMusic(music: audio.CurrectAudio);
                                 RefreshTagList();
-                                new LateTask(() =>
-                                {
-                                    DownloadDone.Remove(sound);
-                                    RefreshTagList();
-                                }, 3f);
-                            }
-                            else
-                            {
-                                DownloadDone.Add(sound, false);
-                                RefreshTagList();
-                                new LateTask(() =>
-                                {
-                                    DownloadDone.Remove(sound);
-                                    RefreshTagList();
-                                }, 3f);
-                            }
-                            MyMusicPanel.RefreshTagList();
+                                MyMusicPanel.RefreshTagList();
+                            }, 3f);
                         },0.01f);
                     });
                 }
@@ -234,7 +211,7 @@ public static class AudioManagementPanel
             rollover.OutColor = renderer.color = buttonColor;
             button.GetComponent<PassiveButton>().enabled = enable;
             previewText.text = preview;
-            Items.Add(sound, button);
+            Items.Add(filename, button);
         }
 
         scroller.SetYBoundsMin(0f);
@@ -242,40 +219,30 @@ public static class AudioManagementPanel
     }
 
 
-    static void Delete(string sound)
+    public static void Delete(FinalMusic audio)
     {
+        var sound = audio.FileName;
         DeleteSoundInName(sound);
-            DeleteSoundInFile(sound);
+        DeleteSoundInFile(sound);
+        new FinalMusic(music: audio.CurrectAudio);
+        RefreshTagList();
+        MyMusicPanel.RefreshTagList();
     }
-    static void DeleteSoundInName(string soundname)
+    static void DeleteSoundInName(string name)
     {
-        if (AllFinalSuspect.ContainsKey(soundname)) return;
-        try
+        var lines = File.ReadAllLines(TAGS_PATH);
+        var updatedLines = lines.Where(line => !line.Trim().Equals(name, StringComparison.Ordinal)).ToArray();
+        var writer = new StreamWriter(TAGS_PATH);
+        foreach (var line in updatedLines)
         {
-
-            var path = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/SoundNames/{soundname}.json";
-            Logger.Info($"{soundname} Deleted", "DeleteSound");
-                File.Delete(path);
-            
+            writer.WriteLine(line);
         }
-        catch (Exception e)
-        {
-            Logger.Error($"清除文件名称失败\n{e}", "DeleteOldFiles");
-        }
-        return;
+        
+        ReloadTag(name);
     }
     static void DeleteSoundInFile(string sound)
     {
-        try
-        {
-            var path2 = @$"{Environment.CurrentDirectory.Replace(@"\", "/")}./FinalSuspect_Data/Sounds/{sound}.wav";
-            Logger.Info($"{Path.GetFileName(path2)} Deleted", "DeleteSound");
-            File.Delete(path2);
-        }
-        catch (Exception e)
-        {
-            Logger.Error($"清除文件失败\n{e}", "DeleteSound");
-        }
-        return;
+        var path = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
+        File.Delete(path);
     }
 }

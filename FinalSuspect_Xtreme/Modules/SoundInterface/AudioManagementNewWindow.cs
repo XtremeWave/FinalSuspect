@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
 using System.IO;
 using System.Linq;
+using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme.Modules.SoundInterface;
 
@@ -80,7 +82,7 @@ public static class AudioManagementNewWindow
             var code = EnterBox.GetComponent<TextBoxTMP>().text;
             var reg = new Regex(@"^(\s{1}|)$");
 
-            if (AllMusics.ContainsKey(code))
+            if (finalMusics.Any(x => x.Name == code))
             {
                 ConfirmButton.SetActive(false);
                 colorInfoTmp.text = GetString("AudioManagementAlreadyExist");
@@ -117,20 +119,11 @@ public static class AudioManagementNewWindow
         buttonPrefab.SetActive(false);
         enterPrefab.SetActive(false);
     }
-    private static bool SaveToFile(string friendCode)
+    private static bool SaveToFile(string name)
     {
-       
-        Il2CppSystem.IO.StringWriter sw = new();
-        JsonWriter JsonWriter = new JsonTextWriter(sw);
-        JsonWriter.WriteStartObject();
 
-
-        JsonWriter.WriteEndObject();
-        sw.Flush();
-
-        string fileName = TAGS_DIRECTORY_PATH + friendCode.Trim() + ".json";
-        if (!File.Exists(fileName)) File.Create(fileName).Close();
-        File.WriteAllText(fileName, sw.ToString());
+        using StreamWriter sr = new(TAGS_PATH, true);
+        sr.WriteLine(name);
         return true;
     }
 }

@@ -272,6 +272,7 @@ internal static class RPC
         if ((rpcName = Enum.GetName(typeof(RpcCalls), callId)) != null) { }
         else if ((rpcName = Enum.GetName(typeof(CustomRPC), callId)) != null) { }
         else rpcName = callId.ToString() + "(INVALID)";
+
         return rpcName;
     }
     public static void NotificationPop(string text)

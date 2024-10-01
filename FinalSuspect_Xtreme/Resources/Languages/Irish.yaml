@@ -93,8 +93,8 @@ updatePleaseWait: "Téigh i dtaithí..."
 updateInProgress: "Nuashonrú ar siúl..."
 downloadInProgress: "Á íoslódáil..."
 Playing: "Ag imirt..."
-downloadSucceed: "Rathúil íoslódáil!"
-downloadFailure: "Theip ar íoslódáil =("
+DownLoadSucceedNotice: "Rathúil íoslódáil!"
+DownLoadFailureNotice: "Theip ar íoslódáil =("
 PleaseWait: "Téigh i dtaithí..."
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Tá an t-ainm ceoil seo cheana féin"
 NotAllowedMusic: "Níl formáid ainm ceoil ceadaithe"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Nuair a chuirtear do cheol féin, tabhair faoi deara go gcuirfidh tú ainm an cheoil i 'Bainistíocht Tionachta' agus cuirfidh tú an comhoiriúnacht comhoiriúnach sa 'Among Us/FinalSuspect_Data/Sounds' comhoiriúnacht (formáidí tacaíocht: .wav). Is féidir ceol a imirt i 'Mo Cheol'."
+CustomAudioManagementHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Nuair a chuirtear do cheol féin, tabhair faoi deara go gcuirfidh tú ainm an cheoil i 'Bainistíocht Tionachta' agus cuirfidh tú an comhoiriúnacht comhoiriúnach sa 'Among Us/FinalSuspect_Data/Resources/Audios' comhoiriúnacht (formáidí tacaíocht: .wav). Is féidir ceol a imirt i 'Mo Cheol'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Má tá cosán comhoiriúnachta ceoil áitiúil atá ar iarraidh, beidh '[Comhábhar Duine]' le feiceáil."
 
@@ -160,8 +160,8 @@ AudioNYPro: "Chun taithí gaimhníochta feabhsaithe a fháil, íoslódáil ár g
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Ríomhaire Éalaí in Aonaid Comhoiriúnachta -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Ní rachaidh mé a thabhairt duit -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Ní rachaidh mé a thabhairt duit"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Laoigh go hÉagsúil SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "An Dome na Fírinne -Slok7565"
 Mus.HopeStillExists: "Tá dóchas ann fós -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Áitiúil</color>"
 HongKong: "HongKong"
 FPSSetTo: "Tosaíonn ráta fráma: {0}"
 BrowsingMode: "Mód brabhsála"
+
+# 加载
+LanguageFilesLoadingComplete: "Críochnaithe le h-ualaí téacs aistriúcháin!"
+CheckingForFiles: "Ag fíorú comhoiriúnachta comhad acmhainní..."
+DownloadingResources: "Ag íoslódáil comhoibrithe acmhainní..."
+Loading: "Á luchtú..."
+LoadingComplete: "Críochnaithe le luchtú!"
+

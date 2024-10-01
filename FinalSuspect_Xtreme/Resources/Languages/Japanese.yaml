@@ -93,8 +93,8 @@ updatePleaseWait: "お待ちください..."
 updateInProgress: "更新中..."
 downloadInProgress: "ダウンロード中..."
 Playing: "再生中..."
-downloadSucceed: "ダウンロード成功!"
-downloadFailure: "ダウンロード失敗 =("
+DownLoadSucceedNotice: "ダウンロード成功!"
+DownLoadFailureNotice: "ダウンロード失敗 =("
 PleaseWait: "お待ちください..."
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "この音楽名はすでに存在します"
 NotAllowedMusic: "音楽名の形式が許可されていません"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。独自の音楽を追加する場合は、「オーディオ管理」に音楽名を追加し、対応するオーディオファイルを「Among Us/FinalSuspect_Data/Sounds」フォルダに置いてください（サポートされている形式: .wav）。音楽は「私の音楽」で再生できます。"
+CustomAudioManagementHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。独自の音楽を追加する場合は、「オーディオ管理」に音楽名を追加し、対応するオーディオファイルを「Among Us/FinalSuspect_Data/Resources/Audios」フォルダに置いてください（サポートされている形式: .wav）。音楽は「私の音楽」で再生できます。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "XtremeWave対応の音楽をダウンロードするか、独自の音楽を「オーディオ管理」に追加できます。ローカルの音楽リソースパスが欠落している場合は、「[ファイルが見つかりません]」と表示されます。"
 
@@ -160,8 +160,8 @@ AudioNYPro: "ゲーム体験を向上させるために、「ホーム-設定-�
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
 Mus.HopeStillExists: "Hope Still Exists -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>ローカル</color>"
 HongKong: "香港"
 FPSSetTo: "フレームレートの上限設定: {0}"
 BrowsingMode: "ブラウジングモード"
+
+# 加载
+LanguageFilesLoadingComplete: "翻訳テキストの読み込みが完了しました！"
+CheckingForFiles: "リソースファイルの整合性を確認中..."
+DownloadingResources: "リソースファイルをダウンロード中..."
+Loading: "読み込み中..."
+LoadingComplete: "読み込み完了！"
+

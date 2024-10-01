@@ -1,6 +1,6 @@
 <div align="center">
 	
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme，你最棒的Among Us原版辅助插件。**
 
@@ -41,7 +41,7 @@
 
 ### 贡献者
  - [KARPED1EM](https://github.com/KARPED1EM) - **技术支持**
- - [Yu(原名：Night)](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc)开发者**
+ - [Yu(原名：Night)](https://github.com/Night-GUA) - **技术支持**
  - [Amongus](https://github.com/XiezibanWrite) - **翻译与技术支持**-->
  - [NikoCat233](https://github.com/NikoCat233) - **技术支持**
  - [Farewell](https://github.com/ksduye) - **咨询支持**

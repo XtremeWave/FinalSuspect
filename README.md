@@ -1,6 +1,6 @@
 <div align="center">
 	
-![FSX-XtremeWave](Assets/FSX&XW.png)
+![FSX-XtremeWave](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, Your best functional tool for Among Us**
 
@@ -42,7 +42,7 @@ Portions of the materials contained herein are property of Innersloth LLC. © In
 
 ### Contributors
  - [KARPED1EM](https://github.com/KARPED1EM) - **Technical Support**
- - [Yu(Original Name: Night)](https://github.com/night-gua) - **Developer of [TOHEX](https://tohex.cc)**
+ - [Yu(Original Name: Night)](https://github.com/night-gua) - **Technical Support**
  - [Amongus](https://github.com/XiezibanWrite) - **Translation &amp; Technical Support**-->
  - [NikoCat233](https://github.com/NikoCat233) - **Technical Support**
  - [Farewell](https://github.com/ksduye) - **Consultation Support**

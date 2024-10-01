@@ -93,8 +93,8 @@ updatePleaseWait: "잠시만 기다려 주세요..."
 updateInProgress: "업데이트 진행 중..."
 downloadInProgress: "다운로드 중..."
 Playing: "재생 중..."
-downloadSucceed: "다운로드 성공!"
-downloadFailure: "다운로드 실패 =("
+DownLoadSucceedNotice: "다운로드 성공!"
+DownLoadFailureNotice: "다운로드 실패 =("
 PleaseWait: "잠시만 기다려 주세요..."
 
 # 更新检查
@@ -150,8 +150,8 @@ AudioManagementAlreadyExists: "이 음악 이름은 이미 존재합니다"
 NotAllowedMusic: "음악 이름 형식이 허용되지 않습니다"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
-# , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Sounds' 폴더에 넣어주세요 (지원 포맷: .wav)"
+CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 직접 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에서 음악 이름을 입력하고 해당 오디오 파일을 'Among Us/FinalSuspect_Data/Resources/Audios' 폴더에 넣어주세요 (지원 포맷: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
+# , .flac, .aiff, .aac 등 포맷도 지원합니다. 파일은 'Among Us/FinalSuspect_Data/Resources/Audios' 폴더에 넣어주세요 (지원 포맷: .wav)"
 CustomSoundHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 직접 음악을 추가할 수 있습니다. 로컬 음악 자원 경로가 누락된 경우 '[파일 없음]'으로 표시됩니다."
 
 # 主界面音乐提醒 / Main interface music reminder
@@ -160,8 +160,8 @@ AudioNYPro: "향상된 게임 경험을 위해 '홈-설정-더 많은 기능-오
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
 Mus.HopeStillExists: "Hope Still Exists -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>로컬</color>"
 HongKong: "홍콩"
 FPSSetTo: "프레임 속도 제한 설정: {0}"
 BrowsingMode: "탐색 모드"
+
+# 加载
+LanguageFilesLoadingComplete: "번역 텍스트 로딩 완료!"
+CheckingForFiles: "리소스 파일 무결성 확인 중..."
+DownloadingResources: "리소스 파일 다운로드 중..."
+Loading: "로딩 중..."
+LoadingComplete: "로딩 완료!"
+

@@ -93,8 +93,8 @@ updatePleaseWait: "请稍候……"
 updateInProgress: "更新中……"
 downloadInProgress: "下载中……"
 Playing: "播放中……"
-downloadSucceed: "下载成功!"
-downloadFailure: "下载失败=("
+DownLoadSucceedNotice: "下载成功!"
+DownLoadFailureNotice: "下载失败=("
 PleaseWait: "请稍候……"
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "该音乐名已存在"
 NotAllowedMusic: "音乐名称格式不合规"
 
 # 界面提示
-CustomAudioManagementHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐。当您添加自己的音乐时，请您在「音频管理」中添加音乐名并在路径“Among Us/FinalSuspect_Data/Sounds”文件夹内添加同名音频文件（支持格式：.wav）。音乐可在「我的音乐」中播放。"
+CustomAudioManagementHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐。当您添加自己的音乐时，请您在「音频管理」中添加音乐名并在路径“Among Us/FinalSuspect_Data/Resources/Audios”文件夹内添加同名音频文件（支持格式：.wav）。音乐可在「我的音乐」中播放。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐，如果音乐本地资源路径不存在则会显示「【文件丢失】」"
 
@@ -160,8 +160,8 @@ AudioNYPro: "如果您希望提高您的游戏体验，请在「主页-设置-�
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "异世庆同春 -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -刘德华"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "庆此春 敬此世 -Slok7565"
 Mus.TheDomeofTruth: "真理苍穹 -Slok7565"
 Mus.HopeStillExists: "希望长存 -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>本地</color>"
 HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"
 BrowsingMode: "浏览模式"
+
+# 加载
+LanguageFilesLoadingComplete: "翻译文本加载完成！"
+CheckingForFiles: "校验资源文件完整性..."
+DownloadingResources: "下载资源文件..."
+Loading: "加载中..."
+LoadingComplete: "加载完成！"
+

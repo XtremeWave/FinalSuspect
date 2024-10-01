@@ -93,8 +93,8 @@ updatePleaseWait: "Por favor, aguarde..."
 updateInProgress: "Atualização em andamento..."
 downloadInProgress: "Baixando..."
 Playing: "Jogando..."
-downloadSucceed: "Download bem-sucedido!"
-downloadFailure: "Falha no download =("
+DownLoadSucceedNotice: "Download bem-sucedido!"
+DownLoadFailureNotice: "Falha no download =("
 PleaseWait: "Por favor, aguarde..."
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Este nome de música já existe"
 NotAllowedMusic: "Formato de nome de música não permitido"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Você pode baixar músicas compatíveis com XtremeWave ou adicionar suas próprias músicas em 「Gerenciamento de Áudio」. Ao adicionar suas próprias músicas, certifique-se de adicionar o nome da música em 'Gerenciamento de Áudio' e colocar o arquivo de áudio correspondente na pasta 'Among Us/FinalSuspect_Data/Sounds' (formatos suportados: .wav). A música pode ser reproduzida em 'Minhas Músicas'."
+CustomAudioManagementHelp: "Você pode baixar músicas compatíveis com XtremeWave ou adicionar suas próprias músicas em 「Gerenciamento de Áudio」. Ao adicionar suas próprias músicas, certifique-se de adicionar o nome da música em 'Gerenciamento de Áudio' e colocar o arquivo de áudio correspondente na pasta 'Among Us/FinalSuspect_Data/Resources/Audios' (formatos suportados: .wav). A música pode ser reproduzida em 'Minhas Músicas'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Você pode baixar músicas compatíveis com XtremeWave ou adicionar suas próprias músicas em 「Gerenciamento de Áudio」. Se o caminho do recurso de música local estiver ausente, será exibido '[Arquivo Ausente]'."
 
@@ -160,8 +160,8 @@ AudioNYPro: "Para uma melhor experiência de jogo, baixe nosso áudio em 「Iní
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "A Primavera Regozija em Universos Paralelos -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Regocije-se Nesta TEMPORADA Respeite Este MUNDO -Slok7565"
 Mus.TheDomeofTruth: "A Cúpula da Verdade -Slok7565"
 Mus.HopeStillExists: "A Esperança Ainda Existe -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "Hong Kong"
 FPSSetTo: "Limite de taxa de quadros definido para: {0}"
 BrowsingMode: "Modo de navegação"
+
+# 加载
+LanguageFilesLoadingComplete: "Carregamento de textos de tradução completo!"
+CheckingForFiles: "Verificando a integridade dos arquivos de recursos..."
+DownloadingResources: "Baixando arquivos de recursos..."
+Loading: "Carregando..."
+LoadingComplete: "Carregamento completo!"
+

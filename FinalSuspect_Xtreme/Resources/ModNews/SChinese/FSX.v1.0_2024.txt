@@ -9,15 +9,20 @@
 
 ## 对应官方版本
 - 基于 AmongUs v2024.8.13
-- 基于 Town Of New Epic_Xtreme v1.3_20240726
 
 ## 更新内容
 - 修正: 7
-- 优化: 7
-- 更改: 3
-- 新增: 9
+- 优化: 2
+- 更改: 4
+- 新增: 4
 - 重制: 1
 - 删除: 0
+
+## 参与者
+- Slok
+- 小黑117
+- KpCam
+- Yu
 
 ## 修正
 - 修复了「人满自动开始游戏」只有在14人以上才会开始的问题
@@ -32,13 +37,19 @@
 ## 优化
 - 优化代码以提升运行效率
 制作: Slok
+- 将图片储存于远程以优化文件大小
+制作: Slok
 
 ## 更改
-- InnerSloth打开游戏动画改为FinalSuspect打开游戏动画
+- 将InnerSloth打开游戏动画改为FinalSuspect打开游戏动画
 制作: Slok
-参考: The Other Roles Community Edition
-- InnerSloth加载动画更改为FinalSuspect的立绘轮播加载动画
+参考: The Other Roles Community Edition, Nebula On The Ship
+- 将InnerSloth加载动画更改为FinalSuspect的立绘轮播加载动画
 制作: Slok, 小黄117, KpCam
+- 「音频管理」中不可删除播放中的音乐
+制作: Slok
+- 本项目不再作为Town Of New Epic_Xtreme及其父系分支，而是作为独立项目
+决定: Slok
 
 ## 新增
 - 按下F1显示职业详情时同时会显示职业立绘
@@ -46,7 +57,13 @@
 - 模组公告左侧会显示模组XtremeWave标识
 制作: Slok
 参考: Yu Ez Tool
+- 玩家未装载YamlDotNet.dll与YamlDotNet.xml的情况下仍然可以加载翻译
+制作: Yu, Slok
+- 新增简体中文更新检查失败时关闭加速器的提示 
+制作: Yu
 
 ## 重制
+- 「音频管理」&「我的音乐」系统重写
+制作: Slok
 
 ## 删除

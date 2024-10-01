@@ -1,6 +1,6 @@
 <div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, лучший оригинальный плагин для Among Us.**
 
@@ -41,7 +41,7 @@
 
 ### Контрибьюторы
  - [KARPED1EM](https://github.com/KARPED1EM) - **Техническая поддержка**
- - [Yu (бывший Night)](https://github.com/Night-GUA) - **Разработчик [TOHEX](https://tohex.cc)**
+ - [Yu (бывший Night)](https://github.com/Night-GUA) - **Техническая поддержка**
  - [Amongus](https://github.com/XiezibanWrite) - **Перевод и техническая поддержка**
  - [NikoCat233](https://github.com/NikoCat233) - **Техническая поддержка**
  - [Farewell](https://github.com/ksduye) - **Поддержка консультаций**

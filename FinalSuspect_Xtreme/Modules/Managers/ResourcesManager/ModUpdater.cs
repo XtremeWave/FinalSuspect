@@ -12,12 +12,11 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
-using FinalSuspect_Xtreme.Modules;
 using UnityEngine;
 using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
+using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 [HarmonyPatch]
 public class ModUpdater
@@ -27,9 +26,9 @@ public class ModUpdater
     public static string announcement_pre = "";
     public static string announcement_zh = "";
     public static string announcement_en = "";
-    public static string downloadUrl_github = "";
-    public static string downloadUrl_gitee = "";
-    public static string downloadUrl_objectstorage = "";
+    public static readonly string downloadUrl_github = GithubUrl + "releases/latest/download/FinalSuspect_Xtreme.dll";
+    public static readonly string downloadUrl_gitee = GiteeUrl + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
+    public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "FinalSuspect_Xtreme.dll";
 
 
     public static void SetUpdateButtonStatus()
@@ -110,7 +109,7 @@ public class ModUpdater
             }
             var fileName = Assembly.GetExecutingAssembly().Location;
             File.Move(fileName, fileName + ".bak");
-            File.Move("BepInEx/plugins/FinalSuspect_Xtreme.dll.temp", fileName);
+            File.Move(DownloadFileTempPath, fileName);
             return (true, null);
         }
         catch (Exception ex)

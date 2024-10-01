@@ -18,8 +18,8 @@
 
   "url": {
     "githubUrl": "https://github.com/XtremeWave/FinalSuspect_Xtreme/",
-    "giteeUrl": "https://gitee.com/FinalSuspect_Xtreme/FinalSuspect_Xtreme/",
+    "giteeUrl": "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/",
     "objectstorageUrl": "https://cn-sy1.rains3.com/xtremewave/",
-    "aumodsiteUrl": "https://xw.aumod.site/Sounds/{{sound}}.wav"
+    "aumodsiteUrl": "https://xw.aumod.site/"
   }
 }

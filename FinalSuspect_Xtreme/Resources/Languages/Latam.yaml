@@ -93,8 +93,8 @@ updatePleaseWait: "Por favor, espere……"
 updateInProgress: "En actualización……"
 downloadInProgress: "En descarga……"
 Playing: "En reproducción……"
-downloadSucceed: "Descarga exitosa!"
-downloadFailure: "La descarga falló=("
+DownLoadSucceedNotice: "Descarga exitosa!"
+DownLoadFailureNotice: "La descarga falló=("
 PleaseWait: "Por favor, espere……"
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Ya existe"
 NotAllowedMusic: "Formato de nombre incorrecto"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Al agregar tu propia música, asegúrate de añadir el nombre de la música en 'Audio Management' y colocar el archivo de audio correspondiente en la carpeta 'Among Us/FinalSuspect_Data/Sounds' (formatos compatibles: .wav). La música se puede reproducir en 'Mi Música'."
+CustomAudioManagementHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Al agregar tu propia música, asegúrate de añadir el nombre de la música en 'Audio Management' y colocar el archivo de audio correspondiente en la carpeta 'Among Us/FinalSuspect_Data/Resources/Audios' (formatos compatibles: .wav). La música se puede reproducir en 'Mi Música'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Si falta la ruta de la fuente de música local, se mostrará '[Archivo Falta]'."
 
@@ -160,8 +160,8 @@ AudioNYPro: "Para una experiencia de juego mejorada, descarga nuestro audio en �
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Spring Rejoices in Parallel Universes -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Rejoice This SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "The Dome of Truth -Slok7565"
 Mus.HopeStillExists: "Hope Still Exists -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "Hong Kong"
 FPSSetTo: "Límite de frecuencia de imagen establecido en: {0}"
 BrowsingMode: "Modo de navegación"
+
+# 加载
+LanguageFilesLoadingComplete: "¡Carga de textos de traducción completa!"
+CheckingForFiles: "Verificando la integridad de los archivos de recursos..."
+DownloadingResources: "Descargando archivos de recursos..."
+Loading: "Cargando..."
+LoadingComplete: "¡Carga completa!"
+

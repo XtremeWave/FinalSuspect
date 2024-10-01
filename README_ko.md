@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FSX-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, Among Us의 최고의 오리지널 모드 플러그인.**
 
@@ -41,7 +41,7 @@
 
 ### 기여자
  - [KARPED1EM](https://github.com/KARPED1EM) - **기술 지원**
- - [Yu (이전 Night)](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc) 개발자**
+ - [Yu (이전 Night)](https://github.com/Night-GUA) - **기술 지원**
  - [Amongus](https://github.com/XiezibanWrite) - **번역 및 기술 지원**
  - [NikoCat233](https://github.com/NikoCat233) - **기술 지원**
  - [Farewell](https://github.com/ksduye) - **상담 지원**

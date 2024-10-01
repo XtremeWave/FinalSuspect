@@ -24,16 +24,15 @@ class SetVentOutlinePatch
 [HarmonyPatch(typeof(TaskPanelBehaviour), nameof(TaskPanelBehaviour.SetTaskText))]
 class TaskPanelBehaviourPatch
 {
-    // タスク表示の文章が更新・適用された後に実行される
     public static void Postfix(TaskPanelBehaviour __instance)
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
+
         PlayerControl player = PlayerControl.LocalPlayer;
         var role = player.GetRoleType();
         var taskText = __instance.taskText.text;
         if (taskText == "None") return;
 
-        // 役職説明表示
 
         var RoleWithInfo = $"{Utils.GetRoleName(role)}:\r\n";
         RoleWithInfo += role.GetRoleInfoForVanilla();
@@ -67,7 +66,7 @@ class TaskPanelBehaviourPatch
 public static class HudManagerPatch
 {
     static GameObject ModLoading = null;
-    static GameObject WarningText = null;
+    //static GameObject WarningText = null;
 
     private static int currentIndex = 0;
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
@@ -138,10 +137,8 @@ public static class HudManagerPatch
     {
         public static void Prefix([HarmonyArgument(3)] ref bool showLoader)
         {
-
             ModLoading.SetActive(showLoader);
             showLoader = false;
-
         }
 
     }

@@ -74,7 +74,7 @@ public static class InGameRoleInfoMenu
         var HnSPrefix = "";
         if (!XtremeGameData.GameStates.IsNormalGame && player.IsAlive())
             HnSPrefix = "HnS";
-        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"FinalSuspect_Xtreme.Resources.Images.CI_{HnSPrefix + role}.png", 320f);
+        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
     }
 
     public static void Show()

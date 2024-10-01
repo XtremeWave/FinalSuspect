@@ -93,8 +93,8 @@ updatePleaseWait: "Pakiusap maghintay..."
 updateInProgress: "Nag-uupdate..."
 downloadInProgress: "Nagda-download..."
 Playing: "Naglalaro..."
-downloadSucceed: "Matagumpay na na-download!"
-downloadFailure: "Nabigo ang pag-download =("
+DownLoadSucceedNotice: "Matagumpay na na-download!"
+DownLoadFailureNotice: "Nabigo ang pag-download =("
 PleaseWait: "Pakiusap maghintay..."
 
 # 更新检查
@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Mayroon nang tunog na pangalan na ito"
 NotAllowedMusic: "Hindi pinapayagang format ng pangalan ng musika"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/FinalSuspect_Data/Sounds' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
+CustomAudioManagementHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/FinalSuspect_Data/Resources/Audios' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kung nawawala ang lokal na landas ng musika, makikita ang '[Kakaibang Nilalaman]'."
 
@@ -160,8 +160,8 @@ AudioNYPro: "Para sa mas pinahusay na karanasan sa musika, i-download ang aming 
 
 # 官方音乐
 Mus.SpringRejoicesinParallelUniverses: "Computer Escape sa Compatibility -Slok7565"
-Mus.GongXiFaCaiLiuDeHua: "恭喜发财 -Andy Lau"
-Mus.NeverGonnaGiveYouUp: "Hindi kita iiwan -Rick Astley"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Hindi kita iiwan"
 Mus.RejoiceThisSEASONRespectThisWORLD: "Tuwa sa SEASON Respect This WORLD -Slok7565"
 Mus.TheDomeofTruth: "Ang Dome ng Katotohanan -Slok7565"
 Mus.HopeStillExists: "May Pag-asa Pa -Slok7565"
@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "HongKong"
 FPSSetTo: "Naka-set ang frame rate cap sa: {0}"
 BrowsingMode: "Mode ng pag-browse"
+
+# 加载
+LanguageFilesLoadingComplete: "Kumpletong Pag-load ng Teksto ng Pagsasalin!"
+CheckingForFiles: "Nire-review ang integridad ng mga resource file..."
+DownloadingResources: "Binababa ang mga resource file..."
+Loading: "Naglo-load..."
+LoadingComplete: "Kumpleto na ang pag-load!"
+

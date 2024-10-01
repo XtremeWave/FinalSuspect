@@ -8,8 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.IO;
+using FinalSuspect_Xtreme.Attributes;
 
-namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
+namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
 
 public static class VersionChecker
 {
@@ -64,6 +65,12 @@ public static class VersionChecker
 
     private static int retried = 0;
     private static bool firstLaunch = true;
+
+    public static string GithubUrl;
+    public static string GiteeUrl;
+    public static string ObjectStorageUrl;
+    public static string AUModSiteUrl;
+
     public static void Check()
     {
         var amongUsVersion = Version.Parse(Application.version);
@@ -80,6 +87,39 @@ public static class VersionChecker
         retried++;
         CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("PleaseWait"), null);
         _ = new LateTask(CheckForUpdate, 0.3f, "Retry Check Update");
+    }
+    [PluginModuleInitializer]
+    public static void CheckForInit()
+    {
+        isChecked = false;
+
+        foreach (var url in GetInfoFileUrlList())
+        {
+            if (GetVersionInfo(url).GetAwaiter().GetResult())
+            {
+                isChecked = true;
+                break;
+            }
+        }
+
+        Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
+        isBroken = !isChecked;
+        if (isChecked)
+        {
+            Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
+            Logger.Info("Latest Version: " + latestVersion.ToString(), "CheckRelease");
+            Logger.Info("Minimum Version: " + minimumVersion.ToString(), "CheckRelease");
+            Logger.Info("Creation: " + creation.ToString(), "CheckRelease");
+            Logger.Info("Force Update: " + forceUpdate, "CheckRelease");
+            Logger.Info("File MD5: " + md5, "CheckRelease");
+            Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
+            Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
+            Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
+            Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
+            Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
+
+        }
+
     }
     public static void CheckForUpdate()
     {
@@ -180,17 +220,10 @@ public static class VersionChecker
 
             JObject downloadUrl = data["url"].Cast<JObject>();
 
-            var githubUrl = downloadUrl["githubUrl"]?.ToString();
-            var giteeUrl = downloadUrl["giteeUrl"]?.ToString();
-            var objectstorage = downloadUrl["objectstorageUrl"]?.ToString();
-
-            MusicDownloader.downloadUrl_github = githubUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_github = githubUrl + "releases/latest/download/FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_gitee = giteeUrl + "raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_gitee = giteeUrl + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_objectstorage = objectstorage + "Sounds/{{sound}}.wav";
-            ModUpdater.downloadUrl_objectstorage = objectstorage + "FinalSuspect_Xtreme.dll";
-            MusicDownloader.downloadUrl_aumodsite = downloadUrl["aumodsiteUrl"]?.ToString();
+            GithubUrl = downloadUrl["githubUrl"]?.ToString();
+            GiteeUrl = downloadUrl["giteeUrl"]?.ToString();
+            ObjectStorageUrl = downloadUrl["objectstorageUrl"]?.ToString();
+            AUModSiteUrl = downloadUrl["aumodsiteUrl"]?.ToString();
 
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
