@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>로컬</color>"
 HongKong: "홍콩"
 FPSSetTo: "프레임 속도 제한 설정: {0}"
 BrowsingMode: "탐색 모드"
+
+# 加载
+LanguageFilesLoadingComplete: "번역 텍스트 로딩 완료!"
+CheckingForFiles: "리소스 파일 무결성 확인 중..."
+DownloadingResources: "리소스 파일 다운로드 중..."
+Loading: "로딩 중..."
+LoadingComplete: "로딩 완료!"
+

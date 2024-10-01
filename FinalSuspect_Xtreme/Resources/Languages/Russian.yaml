@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Локально</color>"
 HongKong: Гонконг
 FPSSetTo: "Ограничение частоты кадров установлено на: {0}"
 BrowsingMode: "Режим просмотра"
+
+# 加载
+LanguageFilesLoadingComplete: "Загрузка текстов перевода завершена!"
+CheckingForFiles: "Проверка целостности файлов ресурсов..."
+DownloadingResources: "Скачивание файлов ресурсов..."
+Loading: "Загрузка..."
+LoadingComplete: "Загрузка завершена!"
+

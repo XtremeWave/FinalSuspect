@@ -230,8 +230,14 @@ public static class AudioManagementPanel
     }
     static void DeleteSoundInName(string name)
     {
-        var path = @$"FinalSuspect_Data/Resources/AudioNames/{name}.json";
-        File.Delete(path);
+        var lines = File.ReadAllLines(TAGS_PATH);
+        var updatedLines = lines.Where(line => !line.Trim().Equals(name, StringComparison.Ordinal)).ToArray();
+        var writer = new StreamWriter(TAGS_PATH);
+        foreach (var line in updatedLines)
+        {
+            writer.WriteLine(line);
+        }
+        
         ReloadTag(name);
     }
     static void DeleteSoundInFile(string sound)

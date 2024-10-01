@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using static FinalSuspect_Xtreme.Translator;
 using static FinalSuspect_Xtreme.Modules.CheckAndDownload.VersionChecker;
 using UnityEngine;
+using FinalSuspect_Xtreme.Modules.Managers;
 
 namespace FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
@@ -22,13 +23,13 @@ public class ResourcesDownloader
     public static string ImagesSavePath = "FinalSuspect_Data/Resources/Images/";
     public static string DependsSavePath = "BepInEx/core/";
 
-    public static readonly string ImagedownloadUrl_github = GithubUrl + "raw/FinalSuspect_Xtreme/Assets/";
-    public static readonly string ImagedownloadUrl_gitee = GiteeUrl + "raw/FinalSuspect_Xtreme/Assets/";
+    public static readonly string ImagedownloadUrl_github = GithubUrl + "raw/FinalSus/Assets/";
+    public static readonly string ImagedownloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/";
     public static readonly string ImagedownloadUrl_objectstorage = ObjectStorageUrl;
     public static readonly string ImagedownloadUrl_aumodsite = AUModSiteUrl;
 
-    public static readonly string DependsdownloadUrl_github = GithubUrl + "raw/FinalSuspect_Xtreme/Assets/";
-    public static readonly string DependsdownloadUrl_gitee = GiteeUrl + "raw/FinalSuspect_Xtreme/Assets/";
+    public static readonly string DependsdownloadUrl_github = GithubUrl + "raw/FinalSus/Assets/";
+    public static readonly string DependsdownloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/";
     public static readonly string DependsdownloadUrl_objectstorage = ObjectStorageUrl;
     public static readonly string DependsedownloadUrl_aumodsite = AUModSiteUrl;
 
@@ -40,13 +41,10 @@ public class ResourcesDownloader
 
     public static async Task<bool> StartDownload(string resourcepath, string localpath)
     {
-        if (!Directory.Exists(ImagesSavePath))
-        Directory.CreateDirectory(ImagesSavePath);
-        if (!Directory.Exists(DependsSavePath))
-            Directory.CreateDirectory(DependsSavePath);
 
 
-        string DownloadImageFileTempPath = resourcepath + ".xwr";
+
+        string DownloadImageFileTempPath = localpath + ".xwr";
 
         if (!IsValidUrl(resourcepath))
         {
@@ -54,25 +52,22 @@ public class ResourcesDownloader
             return false;
         }
 
-        File.Create(localpath).Close();
-       
-
-        Logger.Msg("Start Downloading from: " + resourcepath, "DownloadSound");
-        Logger.Msg("Saving file to: " + localpath, "DownloadSound");
+        File.Create(DownloadImageFileTempPath).Close();
+        Logger.Msg("Start Downloading from: " + resourcepath, "Download Resources");
+        Logger.Msg("Saving file to: " + localpath, "Download Resources");
 
         try
         {
             using var client = new HttpClientDownloadWithProgress(resourcepath, DownloadImageFileTempPath);
-            client.ProgressChanged += OnDownloadProgressChanged;
             await client.StartDownload();
             Thread.Sleep(100);
-            Logger.Info($"Succeed in {resourcepath}", "DownloadSound");
+            Logger.Info($"Succeed in {resourcepath}", "Download Resources");
             File.Move(DownloadImageFileTempPath, localpath);
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to download\n{ex.Message}", "DownloadSound", false);
+            Logger.Error($"Failed to download\n{ex.Message}", "Download Resources", false);
             File.Delete(DownloadImageFileTempPath);
             return false;
         }
@@ -86,7 +81,7 @@ public class ResourcesDownloader
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
         string msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Logger.Info(msg , "Download Resouces");
+        Logger.Info(msg , "Download Resources");
     }
     public static string GetMD5HashFromFile(string fileName)
     {

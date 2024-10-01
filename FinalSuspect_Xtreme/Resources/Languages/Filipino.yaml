@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "HongKong"
 FPSSetTo: "Naka-set ang frame rate cap sa: {0}"
 BrowsingMode: "Mode ng pag-browse"
+
+# 加载
+LanguageFilesLoadingComplete: "Kumpletong Pag-load ng Teksto ng Pagsasalin!"
+CheckingForFiles: "Nire-review ang integridad ng mga resource file..."
+DownloadingResources: "Binababa ang mga resource file..."
+Loading: "Naglo-load..."
+LoadingComplete: "Kumpleto na ang pag-load!"
+

@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Áitiúil</color>"
 HongKong: "HongKong"
 FPSSetTo: "Tosaíonn ráta fráma: {0}"
 BrowsingMode: "Mód brabhsála"
+
+# 加载
+LanguageFilesLoadingComplete: "Críochnaithe le h-ualaí téacs aistriúcháin!"
+CheckingForFiles: "Ag fíorú comhoiriúnachta comhad acmhainní..."
+DownloadingResources: "Ag íoslódáil comhoibrithe acmhainní..."
+Loading: "Á luchtú..."
+LoadingComplete: "Críochnaithe le luchtú!"
+

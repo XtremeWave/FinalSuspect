@@ -173,7 +173,7 @@ public static class Utils
         {
             if (!File.Exists(path))
             {
-                Logger.Error($"文件不存在：{path}", "LoadTexture");
+                Logger.Warn($"文件不存在：{path}", "LoadTexture");
                 goto InDLL;
             }
 
@@ -185,12 +185,12 @@ public static class Utils
             }
             else
             {
-                Logger.Error($"无法读取图片：{path}", "LoadTexture");
+                Logger.Warn($"无法读取图片：{path}", "LoadTexture");
             }
         }
         catch (Exception ex)
         {
-            Logger.Error($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
+            Logger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
         }
         InDLL:
         path = "FinalSuspect_Xtreme.Resources.Images." + file;

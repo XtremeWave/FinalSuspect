@@ -281,3 +281,10 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "HongKong"
 FPSSetTo: "Frame rate cap set to: {0}"
 BrowsingMode: "Browsing Mode"
+
+# 加载
+LanguageFilesLoadingComplete: "Translation Loading Complete!"
+CheckingForFiles: "Verifying Resource File Integrity..."
+DownloadingResources: "Downloading Resource Files..."
+Loading: "Loading..."
+LoadingComplete: "Loading Complete!"

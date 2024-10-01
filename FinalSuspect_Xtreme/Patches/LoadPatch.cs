@@ -9,6 +9,7 @@ using ListStr= System.Collections.Generic.List<string>;
 using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
 using System.IO;
 using System.Collections.Generic;
+using FinalSuspect_Xtreme.Modules.CheckAndDownload;
 
 namespace FinalSuspect_Xtreme.Patches;
 
@@ -83,9 +84,9 @@ public class LoadPatch
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
             loadText.fontStyle = TMPro.FontStyles.Bold;
-            loadText.color = Color.white.AlphaMultiplied(0.3f);
             #region LoadAmongUs
-            loadText.text = "Loading...";
+            loadText.color = Color.white.AlphaMultiplied(0.3f);
+            loadText.text = "Loading Translation...";
 
             yield return DestroyableSingleton<ReferenceDataManager>.Instance.Initialize();
             try
@@ -96,9 +97,46 @@ public class LoadPatch
             { }
             yield return new WaitForSeconds(0.5f);
             #endregion
-            #region Checking
-            loadText.text = "Checking For Files...";
+            ListStr remoteDependList = new()
+        {
+            "YamlDotNet.dll",
+            "YamlDotNet.xml",
+        };
+            if (!Directory.Exists(ImagesSavePath))
+                Directory.CreateDirectory(ImagesSavePath);
+            if (!Directory.Exists(DependsSavePath))
+                Directory.CreateDirectory(DependsSavePath);
             string remoteResourcesUrl;
+
+            remoteResourcesUrl = IsChineseLanguageUser ? DependsdownloadUrl_gitee : DependsdownloadUrl_github;
+
+            foreach (var resource in remoteDependList)
+            {
+                string localFilePath = DependsSavePath + resource;
+                if (!File.Exists(localFilePath))
+                {
+                    var task = StartDownload(remoteResourcesUrl + "Depends/" + resource, localFilePath);
+                    while (!task.IsCompleted)
+                    {
+                        yield return null;
+                    }
+
+                    if (task.IsFaulted)
+                    {
+                        Logger.Error($"Download of {remoteResourcesUrl + "Depends/" + resource} failed: {task.Exception}", "Download Resource");
+                    }
+                }
+            }
+
+            loadText.text = GetString("LanguageFilesLoadingComplete");
+            yield return new WaitForSeconds(1f);
+            #region Checking
+            loadText.text = GetString("CheckingForFiles");
+
+            while (!VersionChecker.isChecked)
+            {
+                yield return null;
+            }
             ListStr remoteImageList = new()
         {
             "CI_Crewmate.png",
@@ -109,23 +147,16 @@ public class LoadPatch
             "CI_HnSImpostor.png",
             "CI_Impostor.png",
             "CI_ImpostorGhost.png",
-            "CI_Noicemaker.png",
+            "CI_Noisemaker.png",
             "CI_Phantom.png",
             "CI_Scientist.png",
             "CI_Shapeshifter.png",
+            "CI_Tracker.png",
             "DleksBanner.png",
             "DleksBanner-Wordart.png",
             "DleksButton.png",
             "FinalSuspect_Xtreme-BG.jpg",
-            "FinalSuspect_Xtreme-Logo.png",
-            "FinalSuspect_Xtreme-Logo-Blurred.png",
-            "LobbyPaint.png",
             "RightPanelCloseButton.png",
-        };
-            ListStr remoteDependList = new()
-        {
-            "YamlDotNet.dll",
-            "YamlDotNet.xml",
         };
             remoteResourcesUrl = IsChineseLanguageUser ? ImagedownloadUrl_gitee : ImagedownloadUrl_github;
 
@@ -139,38 +170,24 @@ public class LoadPatch
                     Logger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
-            remoteResourcesUrl = IsChineseLanguageUser ? DependsdownloadUrl_gitee : DependsdownloadUrl_github;
-
-            foreach (var resource in remoteDependList)
-            {
-                string localFilePath = DependsSavePath  + resource;
-                if (!File.Exists(localFilePath))
-                {
-                    needDownloadsPath.Add(remoteResourcesUrl + "Depends/" + resource, localFilePath);
-                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
-
-                }
-            }
             #endregion
             #region Downloading
+            yield return new WaitForSeconds(0.5f);
+            FileAttributes attributes = File.GetAttributes(ImagesSavePath);
+            File.SetAttributes(ImagesSavePath, attributes | FileAttributes.Hidden);
+
             foreach (var resources in needDownloadsPath)
             {
-                loadText.text = "Downloading Resources...";
-                var task = StartDownload(resources.Key, resources.Value);
-                var startTime = Time.time; // 记录开始时间
-                const float timeout = 20f; // 设置超时时间，单位为秒
+                Color yellow = new Color32(252, 255, 152, 255);
+                loadText.color = yellow.AlphaMultiplied(0.3f);
 
+                loadText.text = GetString("DownloadingResources");
+                var task = StartDownload(resources.Key, resources.Value);
                 while (!task.IsCompleted)
                 {
-                    if (Time.time - startTime > timeout)
-                    {
-                        Logger.Warn($"Download of {resources.Key} timed out.", "Download Resource");
-                        break;
-                    }
-                    yield return null; // 每帧等待
+                    yield return null; 
                 }
 
-                // 检查任务是否成功完成
                 if (task.IsFaulted)
                 {
                     Logger.Error($"Download of {resources.Key} failed: {task.Exception}", "Download Resource");
@@ -179,11 +196,14 @@ public class LoadPatch
             yield return new WaitForSeconds(0.5f);
 
             #endregion
-            loadText.text = "Loading...";
+            loadText.color = Color.white.AlphaMultiplied(0.3f);
+            loadText.text = GetString("Loading");
 
             yield return new WaitForSeconds(1f);
+            Color green = new Color32(185, 255, 181, 255);
+            loadText.color = green.AlphaMultiplied(0.3f);
 
-            loadText.text = "Loading Completed!";
+            loadText.text = GetString("LoadingComplete");
             for (int i = 0; i < 3; i++)
             {
                 loadText.gameObject.SetActive(false);
@@ -191,6 +211,7 @@ public class LoadPatch
                 loadText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(0.03f);
             }
+            yield return new WaitForSeconds(0.5f);
 
             GameObject.Destroy(loadText.gameObject);
 

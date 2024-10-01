@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Lokaal</color>"
 HongKong: "Hongkong"
 FPSSetTo: "Frame rate cap ingesteld op: {0}"
 BrowsingMode: "Bladermodus"
+
+# 加载
+LanguageFilesLoadingComplete: "Vertalingstekst laden voltooid!"
+CheckingForFiles: "Integriteit van bronbestanden controleren..."
+DownloadingResources: "Bronbestanden downloaden..."
+Loading: "Laden..."
+LoadingComplete: "Laden voltooid!"
+

@@ -122,7 +122,7 @@ public static class AudioManagementNewWindow
     private static bool SaveToFile(string name)
     {
 
-        using StreamWriter sr = new(TAGS_PATH);
+        using StreamWriter sr = new(TAGS_PATH, true);
         sr.WriteLine(name);
         return true;
     }

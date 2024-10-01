@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>ローカル</color>"
 HongKong: "香港"
 FPSSetTo: "フレームレートの上限設定: {0}"
 BrowsingMode: "ブラウジングモード"
+
+# 加载
+LanguageFilesLoadingComplete: "翻訳テキストの読み込みが完了しました！"
+CheckingForFiles: "リソースファイルの整合性を確認中..."
+DownloadingResources: "リソースファイルをダウンロード中..."
+Loading: "読み込み中..."
+LoadingComplete: "読み込み完了！"
+

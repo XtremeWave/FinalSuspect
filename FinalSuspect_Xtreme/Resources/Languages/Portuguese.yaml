@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>Local</color>"
 HongKong: "Hong Kong"
 FPSSetTo: "Limitação de FPS definida para: {0}"
 BrowsingMode: "Modo de navegação"
+
+# 加载
+LanguageFilesLoadingComplete: "Carregamento dos textos de tradução concluído!"
+CheckingForFiles: "Verificando a integridade dos arquivos de recursos..."
+DownloadingResources: "Abaixando arquivos de recursos..."
+Loading: "Carregando..."
+LoadingComplete: "Carregamento completo!"
+

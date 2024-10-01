@@ -281,3 +281,11 @@ Local: "<color=#D1FA87>本地</color>"
 HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"
 BrowsingMode: "浏览模式"
+
+# 加载
+LanguageFilesLoadingComplete: "翻译文本加载完成！"
+CheckingForFiles: "校验资源文件完整性..."
+DownloadingResources: "下载资源文件..."
+Loading: "加载中..."
+LoadingComplete: "加载完成！"
+
