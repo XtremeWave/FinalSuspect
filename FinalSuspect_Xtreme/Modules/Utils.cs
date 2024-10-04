@@ -388,7 +388,7 @@ public static class Utils
                 }
             case SystemTypes.Comms:
                 {
-                    if (mapId is 1 or 5)
+                    if (mapId is 1 or 3 or 5)
                     {
                         var HqHudSystemType = ShipStatus.Instance.Systems[type].Cast<HqHudSystemType>();
                         return HqHudSystemType != null && HqHudSystemType.IsActive;

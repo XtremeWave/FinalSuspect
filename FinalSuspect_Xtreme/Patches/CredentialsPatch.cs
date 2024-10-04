@@ -85,13 +85,13 @@ internal class VersionShowerStartPatch
         TMPTemplate.SetBase(__instance.text);
 
         Main.CredentialsText = $"\r\n<size=120%>" +
-            $"<color={Main.TeamColor}>==</color> <color={Main.ModColor}>{Main.ModName}</color> <color={Main.TeamColor}>==</color>"
+            $"<color={ColorHelper.TeamColor}>==</color> <color={ColorHelper.ModColor}>{Main.ModName}</color> <color={ColorHelper.TeamColor}>==</color>"
             + "</size>";
         Main.CredentialsText += $"\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
         Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
-        Main.CredentialsText += $"\r\n<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
+        Main.CredentialsText += $"\r\n<color={ColorHelper.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
 #endif
 
 #if RELEASE
@@ -112,7 +112,7 @@ internal class VersionShowerStartPatch
             VisitText.name = "FinalSuspect_Xtreme VisitText";
             VisitText.alignment = TextAlignmentOptions.Left;
             VisitText.text = VersionChecker.visit > 0
-                ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), Main.ModColor)
+                ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), ColorHelper.ModColor)
                 : GetString("ConnectToFinalSuspect_XtremeServerFailed");
             VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);
@@ -129,12 +129,12 @@ internal class VersionShowerStartPatch
 
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
         {
-            string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={Main.TeamColor}>XtremeWave</color>");
+            string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={ColorHelper.TeamColor}>XtremeWave</color>");
             credentialsText += "\n";
-            string versionText = $"<color={Main.ModColor}>FSX</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+            string versionText = $"<color={ColorHelper.ModColor}>FSX</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
-        versionText = $"<color={Main.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
+        versionText = $"<color={ColorHelper.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
 #endif
 
             credentialsText += versionText;

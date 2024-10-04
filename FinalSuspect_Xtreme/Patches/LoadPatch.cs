@@ -16,6 +16,7 @@ namespace FinalSuspect_Xtreme.Patches;
 
 public class LoadPatch
 {
+    //参考：TORCE
     static Sprite Team_Logo = Utils.LoadSprite("LobbyPaint.png", 120f);
     static Sprite Glow = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png");
     static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png", 150f);

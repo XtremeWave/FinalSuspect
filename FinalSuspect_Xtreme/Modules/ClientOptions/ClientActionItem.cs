@@ -70,7 +70,7 @@ public class ClientActionItem
                 ModOptionsButton.transform.localPosition = pos != null ? pos.Value + new Vector3(1.24f, 0f, 0f) : new(1.24f, -2.4f, 1f);
                 ModOptionsButton.name = "FinalSuspect_Xtreme Options";
                 ModOptionsButton.Text.text = Translator.GetString("FinalSuspect_XtremeOptions");
-                if (ColorUtility.TryParseHtmlString(Main.ModColor, out var modColor))
+                if (ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor))
                     ModOptionsButton.Background.color = modColor;
                 var modOptionsPassiveButton = ModOptionsButton.GetComponent<PassiveButton>();
                 modOptionsPassiveButton.OnClick = new();

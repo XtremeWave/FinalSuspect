@@ -25,15 +25,11 @@ public class Main : BasePlugin
 {
     // == 程序基本设定 / Program Config ==
     public static readonly string ModName = "Final Suspect_Xtreme";
-    public static readonly string TeamColor = "#cdfffd";
-    public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
-    public static readonly string ModColor = "#cecdfd";
-    public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
-    public static readonly Color32 OutColor = new(180,179,231, 255);
-    public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
-    public static readonly Color32 HalfModColor32 = new (206, 205, 253, 160);
     public const string ForkId = "FinalSuspect_Xtreme";
+    public const string PluginVersion = "1.0.0";
     public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
+    public const int PluginCreation = 2;
+
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
@@ -43,19 +39,17 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.8.13";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241001";
+    public const string DisplayedVersion_Date = "20241004";
     /// <summary>
     /// 测试信息；
     /// 支持的内容：Alpha, Beta, Canary, Dev, Preview
     /// </summary>
     public const string DisplayedVersion_TestText = "Dev";
-    public const int DisplayedVersion_Creation = 1;
+    public const int DisplayedVersion_TestCreation = 8;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
-        $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_Creation}" : "")}";
+        $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
 
-    public const string PluginVersion = "1.0.0";
-    public const int PluginCreation = 2;
 
     // == 链接相关设定 / Link Config ==
     public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://xtreme.net.cn" : "https://xtreme.net.cn/en/";
@@ -139,7 +133,7 @@ public class Main : BasePlugin
 
         //Client Options
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "FSX");
-        HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
+        HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ColorHelper.ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);

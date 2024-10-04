@@ -27,4 +27,13 @@ public static class ColorHelper
     private const float MarkerSat = 1f;
     private const float MarkerVal = 1f;
     private const float MarkerAlpha = 0.2f;
+
+    public static readonly string TeamColor = "#cdfffd"; 
+    public static readonly string ModColor = "#cecdfd";
+
+    public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
+    public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
+    public static readonly Color32 OutColor = new(180, 179, 231, 255);
+    public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
+    public static readonly Color32 HalfModColor32 = new(206, 205, 253, 160);
 }

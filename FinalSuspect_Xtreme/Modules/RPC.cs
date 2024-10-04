@@ -244,9 +244,6 @@ internal static class RPC
                 case Sounds.Yeehawfrom:
                     SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
                     break;
-                case Sounds.CopyCode:
-                    SoundManager.Instance.PlaySoundImmediate(DestroyableSingleton<LobbyInfoPane>.Instance.CopyCodeSound, false, 1f);
-                    break;
             }
         }
     }

@@ -207,7 +207,7 @@ public static class MyMusicPanel
             if (audio.CurrectAudioStates is AudiosStates.IsPlaying)
             {
                 preview = GetString("Playing");
-                color = Main.OutColor;
+                color = ColorHelper.OutColor;
             }
             else if (audioExist)
             {

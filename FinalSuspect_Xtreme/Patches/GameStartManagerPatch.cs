@@ -33,7 +33,6 @@ public static class GameStartManagerUpdatePatch
         }
     }
 }
-//タイマーとコード隠し
 public class GameStartManagerPatch
 {
     private static float timer = 600f;
@@ -59,7 +58,7 @@ public class GameStartManagerPatch
             HideName.name = "HideName";
             HideName.color =
                 ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
-                ColorUtility.TryParseHtmlString(Main.ModColor, out var modColor) ? modColor : HideName.color;
+                ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor) ? modColor : HideName.color;
             HideName.text = Main.HideName.Value;
             Logger.Info("HideName instantiated and configured", "test");
 
@@ -182,7 +181,7 @@ public class GameStartManagerPatch
                 if (!canStartGame)
                 {
                     __instance.StartButton.gameObject.SetActive(false);
-                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={Main.ModColor}>{Main.ModName}</color>"));
+                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
                 }
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!cancelButton.gameObject.active);
@@ -201,7 +200,7 @@ public class GameStartManagerPatch
                         SceneChanger.ChangeScene("MainMenu");
                     }
                     if (exitTimer != 0)
-                        warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={Main.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
+                        warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
                 }
             }
             if (warningMessage == "")

@@ -168,10 +168,10 @@ public static class OptionsMenuBehaviourStartPatch
 
         SoundBtn.ToggleButton.Text.text = Translator.GetString("SoundOptions");
         SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        SoundBtn.ToggleButton.Background.color = Main.ModColor32;
+        SoundBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
         AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions");
         AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        AudioManagementBtn.ToggleButton.Background.color = Main.ModColor32;
+        AudioManagementBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
         if (!XtremeGameData.GameStates.IsNotJoined)
         {
             AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");

@@ -49,7 +49,7 @@ public sealed class ClientOptionItem_Boolean : ClientActionItem
     {
         if (ToggleButton == null) return;
 
-        var color = Config.Value ? Main.OutColor : new Color32(77, 77, 77, byte.MaxValue);
+        var color = Config.Value ? ColorHelper.OutColor : new Color32(77, 77, 77, byte.MaxValue);
         ToggleButton.Background.color = color;
         ToggleButton.Rollover?.ChangeOutColor(color);
     }

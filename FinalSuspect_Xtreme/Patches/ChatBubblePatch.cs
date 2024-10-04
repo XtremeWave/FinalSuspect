@@ -23,7 +23,7 @@ public static class ChatBubblePatch
             return;
         }
 
-        var bgcolor = Main.HalfModColor32;
+        var bgcolor = ColorHelper.HalfModColor32;
         //var t = chatText;
 
         //BoxCollider2D instance_collider = sr.gameObject.AddComponent<BoxCollider2D>();
@@ -65,8 +65,8 @@ public static class ChatBubblePatch
                 bgcolor = new Color32(255, 0, 0, 120);
             if (__instance.NameText.color == Color.green)
             {
-                bgcolor = Main.HalfYellow;
-                namecolor = Main.TeamColor32;
+                bgcolor = ColorHelper.HalfYellow;
+                namecolor = ColorHelper.TeamColor32;
             }
 
         }

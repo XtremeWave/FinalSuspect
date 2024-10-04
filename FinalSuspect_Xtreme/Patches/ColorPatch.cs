@@ -10,13 +10,13 @@ class ButtonRolloverHandlerPatch
     public static void DoMouseOver_Prefix(ButtonRolloverHandler __instance)
     {
         if (__instance.OverColor == new Color(0, 1, 0, 1) || __instance.OverColor == Palette.AcceptedGreen)
-            __instance.OverColor = Main.ModColor32;
+            __instance.OverColor = ColorHelper.ModColor32;
     }
     [HarmonyPatch(nameof(ButtonRolloverHandler.ChangeOutColor)), HarmonyPrefix]
     public static void ChangeOutColor_Prefix(ButtonRolloverHandler __instance, ref Color color)
     {
         if (color.r == 0 && color.g == 1 && color.b is > 0.163f and < 0.165f && color.a == 1)
-            color = Main.OutColor;
+            color = ColorHelper.OutColor;
     }
 }
 [HarmonyPatch(typeof(Palette))]

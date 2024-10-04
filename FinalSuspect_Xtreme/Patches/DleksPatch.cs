@@ -68,17 +68,17 @@ class AllMapIconsPatch
         __instance.AllMapIcons.Add(DleksIncon);
     }
 }
-//[HarmonyPatch(typeof(StringOption), nameof(StringOption.Start))]
-//class AutoSelectDleksPatch
-//{
-//    private static void Postfix(StringOption __instance)
-//    {
-//        if (__instance.Title == StringNames.GameMapName)
-//        {
-//            __instance.Value = GameOptionsManager.Instance.CurrentGameOptions.MapId;
-//        }
-//    }
-//}
+[HarmonyPatch(typeof(StringOption), nameof(StringOption.Start))]
+class AutoSelectDleksPatch
+{
+    private static void Postfix(StringOption __instance)
+    {
+        if (__instance.Title == StringNames.GameMapName)
+        {
+            __instance.Value = GameOptionsManager.Instance.CurrentGameOptions.MapId;
+        }
+    }
+}
 [HarmonyPatch(typeof(Vent), nameof(Vent.SetButtons))]
 public static class VentSetButtonsPatch
 {
