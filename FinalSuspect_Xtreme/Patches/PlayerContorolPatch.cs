@@ -1,11 +1,11 @@
 using HarmonyLib;
 using System.Text;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using AmongUs.GameOptions;
 using static UnityEngine.ParticleSystem.PlaybackState;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 
 [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.BootFromVent))]

@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
-using FinalSuspect_Xtreme.Modules;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules;
+using FinalSuspect.Modules.Managers;
 using LogLevel = BepInEx.Logging.LogLevel;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 class Webhook
 {
@@ -19,7 +19,7 @@ class Webhook
         Dictionary<string, string> strs = new()
         {
             { "content", text },
-            { "username", "FinalSuspect_Xtreme-Debugger" },
+            { "username", "FinalSuspect-Debugger" },
             { "avatar_url", "https://npm.elemecdn.com/hexo-static@1.0.1/img/avatar.webp" }
         };
         TaskAwaiter<HttpResponseMessage> awaiter = httpClient.PostAsync(

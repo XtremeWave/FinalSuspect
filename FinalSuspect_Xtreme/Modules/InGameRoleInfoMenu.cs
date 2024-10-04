@@ -4,7 +4,7 @@ using TMPro;
 
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme.Modules;
+namespace FinalSuspect.Modules;
 
 public static class InGameRoleInfoMenu
 {
@@ -27,7 +27,7 @@ public static class InGameRoleInfoMenu
     {
         var DOBScreen = AccountManager.Instance.transform.FindChild("DOBEnterScreen");
 
-        Fill = new("FinalSuspect_Xtreme Role Info Menu Fill") { layer = 5 };
+        Fill = new("FinalSuspect Role Info Menu Fill") { layer = 5 };
         Fill.transform.SetParent(HudManager.Instance.transform.parent, true);
         Fill.transform.localPosition = new(0f, 0f, -980f);
         Fill.transform.localScale = new(20f, 10f, 1f);
@@ -35,7 +35,7 @@ public static class InGameRoleInfoMenu
         FillSP.color = new(0f, 0f, 0f, 0.75f);
 
         Menu = Object.Instantiate(DOBScreen.FindChild("InfoPage").gameObject, HudManager.Instance.transform.parent);
-        Menu.name = "FinalSuspect_Xtreme Role Info Menu Page";
+        Menu.name = "FinalSuspect Role Info Menu Page";
         Menu.transform.SetLocalZ(-990f);
 
         Object.Destroy(Menu.transform.FindChild("Title Text").gameObject);

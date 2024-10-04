@@ -1,4 +1,4 @@
-﻿# FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 当前翻译文件语言的ID / Language ID of current file
 LangID: "1"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Desalojado."
 DeathReason.Disconnect: "Desconectar"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect Opciones"
+FinalSuspectOptions: "Final Suspect Opciones"
 Back: "Volver"
 Yes: "si"
 No: "la"
@@ -82,7 +82,7 @@ FastBoot: "Modo de inicio rápido"
 EnableRoleBackGround: "Activar la animación del rol del módulo"
 EnableMapBackGround: "Activar el color de fondo del mapa"
 DisableVanillaSound: "Desactivar la música del vestíbulo"
-FinalSuspect_XtremeFeatures: "Final Suspect Función"
+FinalSuspectFeatures: "Final Suspect Función"
 SoundOptions: "Mi música."
 AudioManagementOptions: "Gestión de la música"
 ChangeOutfit: "Cambiar de aspecto"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] ha salido del juego"
 PlayerKickByHost: "[{0}] ha sido expulsado por el anfitrión"
 PlayerBanByHost: "[{0}] ha sido baneado por el anfitrión"
 PlayerLeftCuzError: "[{0}] ha salido del juego debido a un error"
-PlayerLeftByAU-Anticheat: "[{0}] ha sido eliminado por los anti-cheats oficiales de AmongU (No relacionado con FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] ha sido eliminado por los anti-cheats oficiales de AmongU (No relacionado con FinalSuspect)"
 KickAndriodPlayer: "【{0}】 ha sido expulsado debido a la configuración de No Phones"
 KickBecauseLowLevel: "[{0}] ha sido expulsado porque su nivel era demasiado bajo"
 KickBecauseDiffrentVersionOrMod: "[{0}] ha sido expulsado porque tenía una versión diferente del mod"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] ha sido expulsado porque tenía una vers
 Warning: "¡Advertencia!"
 Warning.MismatchedVersion: "{0}\n tiene una versión diferente de {1}"
 Warning.AutoExitAtMismatchedVersion: "El anfitrión no tiene o tiene una versión diferente de {0}\nSerás expulsado en {1}"
-Warning.InvalidRpc: "Expulsado {0} porque se recibió un RPC no válido.\nAsegúrate de que no haya mods distintos a FinalSuspect_Xtreme instalados."
+Warning.InvalidRpc: "Expulsado {0} porque se recibió un RPC no válido.\nAsegúrate de que no haya mods distintos a FinalSuspect instalados."
 Warning.InvalidRpc_NotHost: "{0} es sospechoso de usar trampas. Recuerda al anfitrión que lo expulse <color=#ffff00>(RPC No Válido:{1})</color>"
 Warning.CantKickDev: "Lo siento, no puedes expulsar al desarrollador"
 Warning.RoomBroken: "Lo siento, esta sala ha sido destruida. Ve a otra sala para continuar con tu juego."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Ocultar la información del resume
 
 # 禁用公开
 DisabledByProgram: "Las operaciones de sala pública están deshabilitadas por el programa"
-PublicNotAvailableOnThisVersion: "Las salas públicas no están disponibles en esta versión de FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Las salas públicas no están disponibles en esta versión de FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "¡Te deseamos una <color={0}>experiencia de juego</color> agradable!"
-ConnectToFinalSuspect_XtremeServerFailed: "Conexión al servidor FinalSuspect_Xtreme fallida"
+FinalSuspectVisitorCount: "¡Te deseamos una <color={0}>experiencia de juego</color> agradable!"
+ConnectToFinalSuspectServerFailed: "Conexión al servidor FinalSuspect fallida"
 Website: "Sitio Web Oficial"
 MainMenuCredential: "{0} © 2024"
 

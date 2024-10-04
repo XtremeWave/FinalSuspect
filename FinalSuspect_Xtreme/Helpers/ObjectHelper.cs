@@ -2,7 +2,7 @@ using HarmonyLib;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class ObjectHelper
 {

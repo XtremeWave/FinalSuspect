@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using FinalSuspect_Xtreme.Modules.SoundInterface;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
-using static FinalSuspect_Xtreme.Translator;
+using FinalSuspect.Modules.SoundInterface;
+using static FinalSuspect.Modules.Managers.AudioManager;
+using static FinalSuspect.Translator;
 using UnityEngine;
 using HarmonyLib;
 using TMPro;
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 #nullable enable
 public static class AudioManager

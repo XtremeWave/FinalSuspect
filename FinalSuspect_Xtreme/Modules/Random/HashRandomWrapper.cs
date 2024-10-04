@@ -1,4 +1,4 @@
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public class HashRandomWrapper : IRandom
 {

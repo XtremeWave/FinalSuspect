@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public class ErrorText : MonoBehaviour
 {

@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
-using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Modules.Managers.AudioManager;
+using static FinalSuspect.Modules.Managers.FinalMusic;
+using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
-using static FinalSuspect_Xtreme.Modules.Managers.CustomSoundsManager;
-using FinalSuspect_Xtreme.Modules.Managers;
+using static FinalSuspect.Modules.Managers.CustomSoundsManager;
+using FinalSuspect.Modules.Managers;
 using UnityEngine.UIElements;
 
 
-namespace FinalSuspect_Xtreme.Modules.SoundInterface;
+namespace FinalSuspect.Modules.SoundInterface;
 
 public static class MyMusicPanel
 {

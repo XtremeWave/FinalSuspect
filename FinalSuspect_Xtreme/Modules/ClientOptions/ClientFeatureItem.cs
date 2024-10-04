@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect_Xtreme.Modules.ClientOptions;
+namespace FinalSuspect.Modules.ClientOptions;
 
 public class ClientFeatureItem
 {
@@ -68,8 +68,8 @@ public class ClientFeatureItem
                 ModOptionsButton = Object.Instantiate(mouseMoveToggle, generalTab);
                 var pos = leaveButton?.transform?.localPosition;
                 ModOptionsButton.transform.localPosition = pos != null ? pos.Value - new Vector3(1.3f, 0f, 0f) : new(-1.3f, -2.4f, 1f);
-                ModOptionsButton.name = "FinalSuspect_XtremeFeatures Options";
-                ModOptionsButton.Text.text = Translator.GetString("FinalSuspect_XtremeFeatures");
+                ModOptionsButton.name = "FinalSuspectFeatures Options";
+                ModOptionsButton.Text.text = Translator.GetString("FinalSuspectFeatures");
                 if (ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor))
                     ModOptionsButton.Background.color = modColor;
                 var modOptionsPassiveButton = ModOptionsButton.GetComponent<PassiveButton>();

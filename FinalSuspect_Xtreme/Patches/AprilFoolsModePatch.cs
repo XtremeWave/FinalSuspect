@@ -3,7 +3,7 @@ using Il2CppSystem;
 using InnerNet;
 using static CosmeticsLayer;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 // 参考：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
 // 来源：Town Of Host : Enhanced
@@ -138,7 +138,7 @@ public static class LongBoiPatches
     [HarmonyPrefix]
     public static bool LongBoyNeckSize_Patch(LongBoiPlayerBody __instance, ref float distance)
     {
-        //Remove the limit of neck size to prevent issues in FinalSuspect_XtremeE HnS
+        //Remove the limit of neck size to prevent issues in FinalSuspectE HnS
 
         __instance.targetHeight = distance / 10f + 0.5f;
         __instance.SetupNeckGrowth(true, true); //se quiser sim mano

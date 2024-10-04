@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch]
 public class MainMenuButtonHoverAnimation

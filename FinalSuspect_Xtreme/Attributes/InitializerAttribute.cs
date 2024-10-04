@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 
-namespace FinalSuspect_Xtreme.Attributes;
+namespace FinalSuspect.Attributes;
 
 [AttributeUsage(AttributeTargets.Method)]
 public abstract class InitializerAttribute<T> : Attribute
@@ -27,7 +27,6 @@ public abstract class InitializerAttribute<T> : Attribute
     {
         var initializers = new HashSet<InitializerAttribute<T>>(32);
 
-        // 在 TownOfNewEpic_Xtreme.dll 中
         var assembly = Assembly.GetExecutingAssembly();
         // 在所有类中
         var types = assembly.GetTypes();

@@ -5,9 +5,9 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(ChatController))]
 

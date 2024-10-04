@@ -1,11 +1,11 @@
 ﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 using UnityEngine;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 // 来源：https://github.com/tugaru1975/TownOfPlus/TOPmods/Zoom.cs 
 // 参考：https://github.com/Yumenopai/TownOfHost_Y

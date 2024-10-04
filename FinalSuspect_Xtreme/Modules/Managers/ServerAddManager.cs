@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.IO;
-using FinalSuspect_Xtreme.Attributes;
+using FinalSuspect.Attributes;
 using UnityEngine;
 using Il2CppSystem.IO;
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 public static class ServerAddManager
 {

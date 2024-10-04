@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
 class ShipStatusStartPatch

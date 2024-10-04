@@ -8,7 +8,7 @@ using UnityEngine;
 using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 #nullable enable
 public static class CustomPopup
@@ -126,12 +126,12 @@ public static class CustomPopup
                 FillTemp = Fill;
             }
             Fill.transform.SetLocalZ(-100f);
-            Fill.name = "FinalSuspect_Xtreme Info Popup Fill";
+            Fill.name = "FinalSuspect Info Popup Fill";
             Fill.SetActive(false);
 
             InfoScreen = Object.Instantiate(DOBScreen.FindChild("InfoPage").gameObject);
             InfoScreen.transform.SetLocalZ(-110f);
-            InfoScreen.name = "FinalSuspect_Xtreme Info Popup Page";
+            InfoScreen.name = "FinalSuspect Info Popup Page";
             InfoScreen.SetActive(false);
 
             TitleTMP = InfoScreen.transform.FindChild("Title Text").GetComponent<TextMeshPro>();

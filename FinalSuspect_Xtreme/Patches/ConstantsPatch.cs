@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 [HarmonyPatch(typeof(Constants), nameof(Constants.GetBroadcastVersion))]
 class ServerUpdatePatch

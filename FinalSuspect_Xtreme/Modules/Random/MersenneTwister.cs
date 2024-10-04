@@ -22,7 +22,7 @@
 
 using System;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public class MersenneTwister : IRandom
 {

@@ -7,10 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using FinalSuspect_Xtreme.Attributes;
+using FinalSuspect.Attributes;
 using YamlDotNet.RepresentationModel;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class Translator
 {
@@ -27,7 +27,7 @@ public static class Translator
     public static void LoadLangs()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        var fileNames = assembly.GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect_Xtreme.Resources.Languages."));
+        var fileNames = assembly.GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect.Resources.Languages."));
         foreach (var fileName in fileNames)
         {
             var yaml = new YamlStream();

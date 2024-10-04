@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class StringHelper
 {

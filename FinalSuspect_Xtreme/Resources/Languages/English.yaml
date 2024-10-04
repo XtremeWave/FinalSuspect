@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "0"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Exiled"
 DeathReason.Disconnect: "Disconnected"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect Options"
+FinalSuspectOptions: "Final Suspect Options"
 Back: "Back"
 Yes: "Yes"
 No: "No"
@@ -82,7 +82,7 @@ FastBoot: "Fast Boot"
 EnableRoleBackGround: "Enable Custom Intro Background"
 EnableMapBackGround: "Enable Custom Map Color"
 DisableVanillaSound: "Disable Among U's Musics"
-FinalSuspect_XtremeFeatures: "Final Suspect Features"
+FinalSuspectFeatures: "Final Suspect Features"
 SoundOptions: "My Musics"
 AudioManagementOptions: "Audio Management"
 ChangeOutfit: "Change Outfit"
@@ -128,7 +128,7 @@ downloadFailed: "Reason: Download timeout or interrupted\nPlease retry after cha
 onSetPublicNoLatest: "We have an important update. Please update this mod.\nOtherwise, you cannot join public rooms."
 CanNotJoinPublicRoomNoLatest: "We have an important update. Please update this mod.\nOtherwise, you cannot join public rooms."
 ModBrokenMessage: "Mod files are corrupted. Please restart the game or reinstall this mod."
-UnsupportedVersion: "Your Among Us version is incompatible with FinalSuspect_Xtreme.\nPlease update your game."
+UnsupportedVersion: "Your Among Us version is incompatible with FinalSuspect.\nPlease update your game."
 
 # Audio playback
 PlayMode0: "Play Once"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] left the game"
 PlayerKickByHost: "[{0}]  kicked by host"
 PlayerBanByHost: "[{0}] banned by host"
 PlayerLeftCuzError: "[{0}] left the game due to an error"
-PlayerLeftByAU-Anticheat: "[{0}] was kicked by AmongU's official anti-cheats (Not related to FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] was kicked by AmongU's official anti-cheats (Not related to FinalSuspect)"
 KickAndriodPlayer: "【{0}】 was kicked because of No Phones setting"
 KickBecauseLowLevel: "[{0}]  was kicked because their level was too low"
 KickBecauseDiffrentVersionOrMod: "[{0}] was kicked because they had a different version of the mod"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] was kicked because they had a different 
 Warning: "Warning!"
 Warning.MismatchedVersion: "{0}\nhave a different version of {1}"
 Warning.AutoExitAtMismatchedVersion: "The host has no or a different version of {0}\nYou will be kicked in {1}"
-Warning.InvalidRpc: "Kicked {0} because an invalid RPC was received.\nPlease check that no mods other than FinalSuspect_Xtreme installed."
+Warning.InvalidRpc: "Kicked {0} because an invalid RPC was received.\nPlease check that no mods other than FinalSuspect installed."
 Warning.InvalidRpc_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Invalid Rpc:{1})</color>"
 Warning.CantKickDev: "Sorry, you cannot kick the developer"
 Warning.RoomBroken: "Sorry, this room has been bombed. Please proceed to another room to continue your game."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Hide last result to view victory t
 
 # 禁用公开
 DisabledByProgram: "Public room operations have been disabled by the program"
-PublicNotAvailableOnThisVersion: "Public rooms are not available on this version of FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Public rooms are not available on this version of FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "Wishing you a pleasant <color={0}>gaming experience</color>!"
-ConnectToFinalSuspect_XtremeServerFailed: "Failed to connect to FinalSuspect_Xtreme server"
+FinalSuspectVisitorCount: "Wishing you a pleasant <color={0}>gaming experience</color>!"
+ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
 Website: "Official Website"
 MainMenuCredential: "{0} © 2024"
 

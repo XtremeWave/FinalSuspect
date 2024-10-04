@@ -13,22 +13,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
+using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Managers.ResourcesManager.VersionChecker;
 
-namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Managers.ResourcesManager;
 
 [HarmonyPatch]
 public class ModUpdater
 {
-    public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect_Xtreme.dll.temp";
+    public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
 
     public static string announcement_pre = "";
     public static string announcement_zh = "";
     public static string announcement_en = "";
-    public static readonly string downloadUrl_github = GithubUrl + "releases/latest/download/FinalSuspect_Xtreme.dll";
-    public static readonly string downloadUrl_gitee = GiteeUrl + $"releases/download/v{showVer}/FinalSuspect_Xtreme.dll";
-    public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "FinalSuspect_Xtreme.dll";
+    public static readonly string downloadUrl_github = GithubUrl + "releases/latest/download/FinalSuspect.dll";
+    public static readonly string downloadUrl_gitee = GiteeUrl + $"releases/download/v{showVer}/FinalSuspect.dll";
+    public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "FinalSuspect.dll";
 
 
     public static void SetUpdateButtonStatus()
@@ -78,7 +78,7 @@ public class ModUpdater
             foreach (var path in Directory.EnumerateFiles(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "*.*"))
             {
                 if (path.EndsWith(Path.GetFileName(Assembly.GetExecutingAssembly().Location))) continue;
-                if (path.EndsWith("FinalSuspect_Xtreme.dll") || path.EndsWith("Downloader.dll")) continue;
+                if (path.EndsWith("FinalSuspect.dll") || path.EndsWith("Downloader.dll")) continue;
 
                 Logger.Info($"{Path.GetFileName(path)} Deleted", "DeleteOldFiles");
                 File.Delete(path);

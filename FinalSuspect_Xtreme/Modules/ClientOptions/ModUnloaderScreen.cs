@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect_Xtreme.Modules.ClientOptions;
+namespace FinalSuspect.Modules.ClientOptions;
 
 public static class ModUnloaderScreen
 {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 internal class ExilePatch
 {

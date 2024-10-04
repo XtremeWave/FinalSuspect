@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class ColorHelper
 {

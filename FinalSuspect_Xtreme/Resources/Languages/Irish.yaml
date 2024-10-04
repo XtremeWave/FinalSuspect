@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 当前翻译文件语言的ID / Language ID of current file
 LangID: "15"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Éalaigh"
 DeathReason.Disconnect: "Ceangaltán Briste"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Roghanna Final Suspect"
+FinalSuspectOptions: "Roghanna Final Suspect"
 Back: "Ar ais"
 Yes: "Sea"
 No: "Níl"
@@ -82,7 +82,7 @@ FastBoot: "Boot Tapa"
 EnableRoleBackGround: "Cumas Intro Cúlra Saincheaptha"
 EnableMapBackGround: "Cumas Dath Map Saincheaptha"
 DisableVanillaSound: "Díghníomhachtú Ceol Among Us"
-FinalSuspect_XtremeFeatures: "Gnéithe Final Suspect"
+FinalSuspectFeatures: "Gnéithe Final Suspect"
 SoundOptions: "Mo Cheolta"
 AudioManagementOptions: "Bainistíocht Tionachta"
 ChangeOutfit: "Athraigh Gúna"
@@ -128,7 +128,7 @@ downloadFailed: "Cúis: Éirí as íoslódáil nó stopadh\nDéanaigh iarracht a
 onSetPublicNoLatest: "Tá nuashonrú tábhachtach againn. Le do thoil, nuashonraigh an mod seo.\nMura ndéanann tú, ní féidir leat seomraí poiblí a bheith i láthair."
 CanNotJoinPublicRoomNoLatest: "Tá nuashonrú tábhachtach againn. Le do thoil, nuashonraigh an mod seo.\nMura ndéanann tú, ní féidir leat seomraí poiblí a bheith i láthair."
 ModBrokenMessage: "Tá comhoiriúnachtaí mod briste. Le do thoil, atosigh an cluiche nó athshocraigh an mod seo."
-UnsupportedVersion: "Tá do leagan Among Us neamhchomhoiriúnach le FinalSuspect_Xtreme.\nLe do thoil, nuashonraigh do chluiche."
+UnsupportedVersion: "Tá do leagan Among Us neamhchomhoiriúnach le FinalSuspect.\nLe do thoil, nuashonraigh do chluiche."
 
 # Audio playback
 PlayMode0: "Seinn Uair amháin"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] d'fhág an cluiche"
 PlayerKickByHost: "[{0}] a cuireadh amach ag óst"
 PlayerBanByHost: "[{0}] a cuireadh ar liosta toirmeasc ag óst"
 PlayerLeftCuzError: "[{0}] d'fhág an cluiche mar gheall ar earráid"
-PlayerLeftByAU-Anticheat: "[{0}] a cuireadh amach ag cosaint anti-chlár (ní bhaineann le FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] a cuireadh amach ag cosaint anti-chlár (ní bhaineann le FinalSuspect)"
 KickAndriodPlayer: "【{0}】 a cuireadh amach mar gheall ar socruithe guthán"
 KickBecauseLowLevel: "[{0}] a cuireadh amach mar gheall ar leibhéal ró-íseal"
 KickBecauseDiffrentVersionOrMod: "[{0}] a cuireadh amach mar gheall ar leagan mod éagsúil"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] a cuireadh amach mar gheall ar leagan mo
 Warning: "Rabhadh!"
 Warning.MismatchedVersion: "{0}\nTéann leagan difriúil le {1}"
 Warning.AutoExitAtMismatchedVersion: "Níl leagan nó leagan difriúil ag óst {0}\nBeidh tú ar an eolas i {1}"
-Warning.InvalidRpc: "Cuireadh {0} amach mar gheall ar RPC neamhbhailí.\nLe do thoil, seiceáil go bhfuil aon mods eile seachas FinalSuspect_Xtreme suiteáilte."
+Warning.InvalidRpc: "Cuireadh {0} amach mar gheall ar RPC neamhbhailí.\nLe do thoil, seiceáil go bhfuil aon mods eile seachas FinalSuspect suiteáilte."
 Warning.InvalidRpc_NotHost: "{0} amhras ar úsáid cheats. Le do thoil, comhairle a thabhairt don óst chun iad a chur amach <color=#ffff00>(RPC Neamhbhailí: {1})</color>"
 Warning.CantKickDev: "Tá brón orm, ní féidir leat an forbróir a chur amach"
 Warning.RoomBroken: "Tá brón orm, tá an seomra briste. Le do thoil, téigh chuig seomra eile chun do chluiche a leanúint."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Folaigh eolas achoimre chun an té
 
 # 禁用公开 / Disable Public
 DisabledByProgram: "Tá gníomhachtaí seomraí poiblí as comhoiriúnacht ag an gclár"
-PublicNotAvailableOnThisVersion: "Ní bhíonn seomraí poiblí ar fáil ar leagan seo de FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Ní bhíonn seomraí poiblí ar fáil ar leagan seo de FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "Guímid go mbeidh <color={0}>taithí gaimhníochta sultmhar</color> agat!"
-ConnectToFinalSuspect_XtremeServerFailed: "Theip ar nasc leis an freastalaí FinalSuspect_Xtreme"
+FinalSuspectVisitorCount: "Guímid go mbeidh <color={0}>taithí gaimhníochta sultmhar</color> agat!"
+ConnectToFinalSuspectServerFailed: "Theip ar nasc leis an freastalaí FinalSuspect"
 Website: "Suíomh Oifigiúil"
 MainMenuCredential: "{0} © 2024"
 

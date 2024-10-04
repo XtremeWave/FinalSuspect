@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "6"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Verbannen"
 DeathReason.Disconnect: "Verbroken"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect Opties"
+FinalSuspectOptions: "Final Suspect Opties"
 Back: "Terug"
 Yes: "Ja"
 No: "Nee"
@@ -82,7 +82,7 @@ FastBoot: "Snelle Opstart"
 EnableRoleBackGround: "Activeer Aangepaste Intro Achtergrond"
 EnableMapBackGround: "Activeer Aangepaste Kaartkleur"
 DisableVanillaSound: "Deactiveer Among U's Muziek"
-FinalSuspect_XtremeFeatures: "Final Suspect Kenmerken"
+FinalSuspectFeatures: "Final Suspect Kenmerken"
 SoundOptions: "Mijn Muziek"
 AudioManagementOptions: "Audio Beheer"
 ChangeOutfit: "Verander Outfit"
@@ -128,7 +128,7 @@ downloadFailed: "Reden: Downloadtimeout of onderbroken\nProbeer opnieuw na het w
 onSetPublicNoLatest: "We hebben een belangrijke update. Werk deze mod bij.\nAnders kun je geen openbare kamers betreden."
 CanNotJoinPublicRoomNoLatest: "We hebben een belangrijke update. Werk deze mod bij.\nAnders kun je geen openbare kamers betreden."
 ModBrokenMessage: "Modbestanden zijn beschadigd. Herstart het spel of installeer deze mod opnieuw."
-UnsupportedVersion: "Jouw versie van Among Us is niet compatibel met FinalSuspect_Xtreme.\nWerk je spel bij."
+UnsupportedVersion: "Jouw versie van Among Us is niet compatibel met FinalSuspect.\nWerk je spel bij."
 
 # Audio playback
 PlayMode0: "Speel Eenmaal"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] heeft het spel verlaten"
 PlayerKickByHost: "[{0}] is eruit gegooid door de host"
 PlayerBanByHost: "[{0}] is verbannen door de host"
 PlayerLeftCuzError: "[{0}] heeft het spel verlaten vanwege een fout"
-PlayerLeftByAU-Anticheat: "[{0}] is verwijderd door de officiële anti-cheats van AmongU (Niet gerelateerd aan FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] is verwijderd door de officiële anti-cheats van AmongU (Niet gerelateerd aan FinalSuspect)"
 KickAndriodPlayer: "【{0}】 is verwijderd vanwege Geen Telefoons instelling"
 KickBecauseLowLevel: "[{0}] is verwijderd omdat hun niveau te laag was"
 KickBecauseDiffrentVersionOrMod: "[{0}] is verwijderd omdat ze een andere versie van de mod hadden"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] is verwijderd omdat ze een andere versie
 Warning: "Waarschuwing!"
 Warning.MismatchedVersion: "{0}\nheeft een andere versie van {1}"
 Warning.AutoExitAtMismatchedVersion: "De host heeft geen of een andere versie van {0}\nJe wordt eruit gegooid in {1}"
-Warning.InvalidRpc: "Verwijderd {0} omdat een ongeldige RPC is ontvangen.\nControleer of geen andere mods dan FinalSuspect_Xtreme zijn geïnstalleerd."
+Warning.InvalidRpc: "Verwijderd {0} omdat een ongeldige RPC is ontvangen.\nControleer of geen andere mods dan FinalSuspect zijn geïnstalleerd."
 Warning.InvalidRpc_NotHost: "{0} wordt verdacht van het gebruik van cheats. Herinner de host eraan om hen eruit te gooien <color=#ffff00>(Ongeldige Rpc:{1})</color>"
 Warning.CantKickDev: "Sorry, je kunt de ontwikkelaar niet verwijderen"
 Warning.RoomBroken: "Sorry, deze kamer is opgeblazen. Ga verder naar een andere kamer om je spel voort te zetten."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Verberg samenvattinginformatie om 
 
 # 禁用公开
 DisabledByProgram: "Openbare kameroperaties zijn uitgeschakeld door het programma"
-PublicNotAvailableOnThisVersion: "Openbare kamers zijn niet beschikbaar op deze versie van FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Openbare kamers zijn niet beschikbaar op deze versie van FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "Wensen je een aangename <color={0}>game-ervaring</color>!"
-ConnectToFinalSuspect_XtremeServerFailed: "Verbinding met FinalSuspect_Xtreme server mislukt"
+FinalSuspectVisitorCount: "Wensen je een aangename <color={0}>game-ervaring</color>!"
+ConnectToFinalSuspectServerFailed: "Verbinding met FinalSuspect server mislukt"
 Website: "Officiële Website"
 MainMenuCredential: "{0} © 2024"
 

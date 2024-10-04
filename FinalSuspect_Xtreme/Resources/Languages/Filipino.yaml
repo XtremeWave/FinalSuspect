@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "7"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Exiled"
 DeathReason.Disconnect: "Nakawala"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Mga Pagpipilian ng Final Suspect"
+FinalSuspectOptions: "Mga Pagpipilian ng Final Suspect"
 Back: "Bumalik"
 Yes: "Oo"
 No: "Hindi"
@@ -82,7 +82,7 @@ FastBoot: "Mabilis na Boot"
 EnableRoleBackGround: "I-enable ang Custom Intro Background"
 EnableMapBackGround: "I-enable ang Custom Map Color"
 DisableVanillaSound: "I-disable ang Musika ng Among Us"
-FinalSuspect_XtremeFeatures: "Mga Tampok ng Final Suspect"
+FinalSuspectFeatures: "Mga Tampok ng Final Suspect"
 SoundOptions: "Aking Musika"
 AudioManagementOptions: "Pamamahala ng Tunog"
 ChangeOutfit: "Palitan ang Kasuotan"
@@ -128,7 +128,7 @@ downloadFailed: "Dahilan: Pag-timeout o naputol ang pag-download\nMangyaring sub
 onSetPublicNoLatest: "May mahalagang pag-update tayo. Pakipagana ang mod na ito.\nKung hindi mo ito gagawin, hindi ka makakapasok sa mga pampublikong silid."
 CanNotJoinPublicRoomNoLatest: "May mahalagang pag-update tayo. Pakipagana ang mod na ito.\nKung hindi mo ito gagawin, hindi ka makakapasok sa mga pampublikong silid."
 ModBrokenMessage: "May nasirang pagkakatugma sa mod. Pakibalik ang laro o i-reset ang mod na ito."
-UnsupportedVersion: "Ang iyong bersyon ng Among Us ay hindi tugma sa FinalSuspect_Xtreme.\nPakipagana ang iyong laro."
+UnsupportedVersion: "Ang iyong bersyon ng Among Us ay hindi tugma sa FinalSuspect.\nPakipagana ang iyong laro."
 
 # Audio playback
 PlayMode0: "I-play ng Isang Beses"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] ay umalis sa laro"
 PlayerKickByHost: "[{0}] ay tinanggal ng host"
 PlayerBanByHost: "[{0}] ay idinagdag sa blacklist ng host"
 PlayerLeftCuzError: "[{0}] ay umalis sa laro dahil sa error"
-PlayerLeftByAU-Anticheat: "[{0}] ay tinanggal ng anti-cheat (hindi nauugnay sa FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] ay tinanggal ng anti-cheat (hindi nauugnay sa FinalSuspect)"
 KickAndriodPlayer: "【{0}】 ay tinanggal dahil sa mga setting ng telepono"
 KickBecauseLowLevel: "[{0}] ay tinanggal dahil sa masyadong mababang antas"
 KickBecauseDiffrentVersionOrMod: "[{0}] ay tinanggal dahil sa ibang bersyon ng mod"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] ay tinanggal dahil sa ibang bersyon ng m
 Warning: "Babala!"
 Warning.MismatchedVersion: "{0}\nAng bersyon ay iba sa {1}"
 Warning.AutoExitAtMismatchedVersion: "Walang bersyon o ibang bersyon ang host {0}\nMakakatanggap ka ng abiso sa {1}"
-Warning.InvalidRpc: "Tinanggal si {0} dahil sa hindi wastong RPC.\nPakisuri kung may ibang mods na naka-install bukod sa FinalSuspect_Xtreme."
+Warning.InvalidRpc: "Tinanggal si {0} dahil sa hindi wastong RPC.\nPakisuri kung may ibang mods na naka-install bukod sa FinalSuspect."
 Warning.InvalidRpc_NotHost: "{0} ay pinaghihinalaang gumagamit ng cheats. Pakisuri ang host upang alisin sila <color=#ffff00>(Invalid RPC: {1})</color>"
 Warning.CantKickDev: "Pasensya na, hindi mo maaaring tanggalin ang developer"
 Warning.RoomBroken: "Pasensya na, nasira ang silid. Pakipunta sa ibang silid upang ipagpatuloy ang iyong laro."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Itago ang impormasyon ng recap upa
 
 # 禁用公开 / Disable Public
 DisabledByProgram: "Ang mga operasyon sa pampublikong silid ay pinatay ng programa"
-PublicNotAvailableOnThisVersion: "Ang mga pampublikong silid ay hindi available sa bersyon na ito ng FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Ang mga pampublikong silid ay hindi available sa bersyon na ito ng FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "Nais naming magkaroon ka ng masaya <color={0}>karanasan sa paglalaro</color>!"
-ConnectToFinalSuspect_XtremeServerFailed: "Nabigong kumonekta sa server ng FinalSuspect_Xtreme"
+FinalSuspectVisitorCount: "Nais naming magkaroon ka ng masaya <color={0}>karanasan sa paglalaro</color>!"
+ConnectToFinalSuspectServerFailed: "Nabigong kumonekta sa server ng FinalSuspect"
 Website: "Opisyal na Website"
 MainMenuCredential: "{0} © 2024"
 

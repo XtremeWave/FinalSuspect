@@ -11,12 +11,12 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using static FinalSuspect_Xtreme.Translator;
-using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.VersionChecker;
+using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Managers.ResourcesManager.VersionChecker;
 using UnityEngine;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 
-namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Managers.ResourcesManager;
 
 public class ResourcesDownloader
 {

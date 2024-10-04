@@ -10,7 +10,7 @@ using Innersloth.DebugTool;
 using TMPro;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 [HarmonyPatch(typeof(LobbyInfoPane), nameof(LobbyInfoPane.Update))]
 class LobbyInfoPanePatch

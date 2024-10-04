@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using static Il2CppSystem.Net.Http.Headers.Parser;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(CreditsController))]
 public class CreditsControllerPatch

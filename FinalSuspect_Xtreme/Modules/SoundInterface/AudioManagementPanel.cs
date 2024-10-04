@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
-using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
-using FinalSuspect_Xtreme.Modules.Managers;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Modules.Managers.AudioManager;
+using static FinalSuspect.Modules.Managers.FinalMusic;
+using FinalSuspect.Modules.Managers;
+using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
-namespace FinalSuspect_Xtreme.Modules.SoundInterface;
+namespace FinalSuspect.Modules.SoundInterface;
 
 public static class AudioManagementPanel
 {

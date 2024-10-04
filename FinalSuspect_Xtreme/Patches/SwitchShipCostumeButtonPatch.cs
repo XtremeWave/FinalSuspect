@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch]
 public class SwitchShipCostumeButtonPatch

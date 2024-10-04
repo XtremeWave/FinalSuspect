@@ -1,7 +1,7 @@
 using HarmonyLib;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 
 [HarmonyPatch(typeof(DisconnectPopup), nameof(DisconnectPopup.DoShow))]

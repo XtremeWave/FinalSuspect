@@ -1,4 +1,4 @@
-#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "9"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Verbannt"
 DeathReason.Disconnect: "Getrennt"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect Optionen"
+FinalSuspectOptions: "Final Suspect Optionen"
 Back: "Zurück"
 Yes: "Ja"
 No: "Nein"
@@ -82,7 +82,7 @@ FastBoot: "Schneller Start"
 EnableRoleBackGround: "Benutzerdefinierter Hintergrund für Einführung aktivieren"
 EnableMapBackGround: "Benutzerdefinierte Kartenfarbe aktivieren"
 DisableVanillaSound: "Among Us Musik deaktivieren"
-FinalSuspect_XtremeFeatures: "Final Suspect Funktionen"
+FinalSuspectFeatures: "Final Suspect Funktionen"
 SoundOptions: "Meine Musik"
 AudioManagementOptions: "Audio-Verwaltung"
 ChangeOutfit: "Outfit ändern"
@@ -128,7 +128,7 @@ downloadFailed: "Grund: Download-Zeit überschritten oder unterbrochen\nBitte ve
 onSetPublicNoLatest: "Wir haben ein wichtiges Update. Bitte aktualisieren Sie dieses Mod.\nAndernfalls können Sie nicht in öffentlichen Räumen beitreten."
 CanNotJoinPublicRoomNoLatest: "Wir haben ein wichtiges Update. Bitte aktualisieren Sie dieses Mod.\nAndernfalls können Sie nicht in öffentlichen Räumen beitreten."
 ModBrokenMessage: "Die Mod-Dateien sind beschädigt. Bitte starten Sie das Spiel neu oder installieren Sie dieses Mod neu."
-UnsupportedVersion: "Ihre Version von Among Us ist mit FinalSuspect_Xtreme nicht kompatibel.\nBitte aktualisieren Sie Ihr Spiel."
+UnsupportedVersion: "Ihre Version von Among Us ist mit FinalSuspect nicht kompatibel.\nBitte aktualisieren Sie Ihr Spiel."
 
 # Audio playback
 PlayMode0: "Einmal abspielen"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] hat das Spiel verlassen"
 PlayerKickByHost: "[{0}] wurde vom Gastgeber entfernt"
 PlayerBanByHost: "[{0}] wurde vom Gastgeber gebannt"
 PlayerLeftCuzError: "[{0}] hat das Spiel aufgrund eines Fehlers verlassen"
-PlayerLeftByAU-Anticheat: "[{0}] wurde von den offiziellen Anti-Cheat-Maßnahmen von Among Us entfernt (nicht im Zusammenhang mit FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] wurde von den offiziellen Anti-Cheat-Maßnahmen von Among Us entfernt (nicht im Zusammenhang mit FinalSuspect)"
 KickAndriodPlayer: "[{0}] wurde entfernt, da keine Telefone erlaubt sind"
 KickBecauseLowLevel: "[{0}] wurde entfernt, da ihr Level zu niedrig war"
 KickBecauseDiffrentVersionOrMod: "[{0}] wurde entfernt, da sie eine andere Version des Mod haben"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] wurde entfernt, da sie eine andere Versi
 Warning: "Warnung!"
 Warning.MismatchedVersion: "{0}\nhat eine andere Version von {1}"
 Warning.AutoExitAtMismatchedVersion: "Der Gastgeber hat keine oder eine andere Version von {0}\nDu wirst in {1} entfernt"
-Warning.InvalidRpc: "Entfernt {0}, da ein ungültiges RPC empfangen wurde.\nBitte überprüfen, ob keine anderen Mods außer FinalSuspect_Xtreme installiert sind."
+Warning.InvalidRpc: "Entfernt {0}, da ein ungültiges RPC empfangen wurde.\nBitte überprüfen, ob keine anderen Mods außer FinalSuspect installiert sind."
 Warning.InvalidRpc_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte erinnere den Gastgeber daran, sie zu entfernen <color=#ffff00>(Ungültiges Rpc:{1})</color>"
 Warning.CantKickDev: "Entschuldigung, du kannst den Entwickler nicht entfernen"
 Warning.RoomBroken: "Entschuldigung, dieser Raum wurde bombardiert. Bitte gehe in einen anderen Raum, um dein Spiel fortzusetzen."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Verstecke Zusammenfassungsinformat
 
 # 禁用公开 / Disable Public
 DisabledByProgram: "Öffentliche Raumoperationen wurden vom Programm deaktiviert"
-PublicNotAvailableOnThisVersion: "Öffentliche Räume sind in dieser Version von FinalSuspect_Xtreme nicht verfügbar"
+PublicNotAvailableOnThisVersion: "Öffentliche Räume sind in dieser Version von FinalSuspect nicht verfügbar"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "Wir wünschen dir ein angenehmes <color={0}>Spielerlebnis</color>!"
-ConnectToFinalSuspect_XtremeServerFailed: "Verbindung zum FinalSuspect_Xtreme-Server fehlgeschlagen"
+FinalSuspectVisitorCount: "Wir wünschen dir ein angenehmes <color={0}>Spielerlebnis</color>!"
+ConnectToFinalSuspectServerFailed: "Verbindung zum FinalSuspect-Server fehlgeschlagen"
 Website: "Offizielle Website"
 MainMenuCredential: "{0} © 2024"
 

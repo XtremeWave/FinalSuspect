@@ -1,6 +1,6 @@
 ﻿using BepInEx.Unity.IL2CPP.Utils;
-using static FinalSuspect_Xtreme.Modules.Managers.ResourcesManager.ResourcesDownloader;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Modules.Managers.ResourcesManager.ResourcesDownloader;
+using static FinalSuspect.Translator;
 using System;
 using HarmonyLib;
 using System.Collections;
@@ -9,18 +9,18 @@ using ListStr = System.Collections.Generic.List<string>;
 using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
 using System.IO;
 using System.Collections.Generic;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 
 public class LoadPatch
 {
     //参考：TORCE
     static Sprite Team_Logo = Utils.LoadSprite("LobbyPaint.png", 120f);
-    static Sprite Glow = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png");
-    static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png", 150f);
-    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png", 150f);
+    static Sprite Glow = Utils.LoadSprite("FinalSuspect-Logo.png");
+    static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
+    static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
     static TMPro.TextMeshPro loadText = null!;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
@@ -156,7 +156,7 @@ public class LoadPatch
             "DleksBanner.png",
             "DleksBanner-Wordart.png",
             "DleksButton.png",
-            "FinalSuspect_Xtreme-BG.jpg",
+            "FinalSuspect-BG.jpg",
             "RightPanelCloseButton.png",
         };
             remoteResourcesUrl = IsChineseLanguageUser ? ImagedownloadUrl_gitee : ImagedownloadUrl_github;

@@ -6,15 +6,15 @@ using Hazel;
 using InnerNet;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 
 
 
-using static FinalSuspect_Xtreme.Translator;
-using FinalSuspect_Xtreme.Modules.Managers;
+using static FinalSuspect.Translator;
+using FinalSuspect.Modules.Managers;
 using System.Linq;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameJoined))]
 class OnGameJoinedPatch

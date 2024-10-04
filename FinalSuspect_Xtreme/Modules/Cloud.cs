@@ -5,9 +5,9 @@ using System.IO;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
-using FinalSuspect_Xtreme.Attributes;
+using FinalSuspect.Attributes;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 internal class Cloud
 {
@@ -23,7 +23,7 @@ internal class Cloud
     {
         try
         {
-            var content = GetResourcesTxt("FinalSuspect_Xtreme.Resources.Configs.Port.txt");
+            var content = GetResourcesTxt("FinalSuspect.Resources.Configs.Port.txt");
             string[] ar = content.Split('|');
             IP = ar[0];
             LOBBY_PORT = int.Parse(ar[1]);

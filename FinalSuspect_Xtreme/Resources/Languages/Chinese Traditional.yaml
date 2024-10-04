@@ -1,4 +1,4 @@
-# FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 当前翻译文件语言的ID / Language ID of current file
 LangID: "14"
@@ -56,7 +56,7 @@ DeathReason.Exile: "驅逐"
 DeathReason.Disconnect: "斷連"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect 選項"
+FinalSuspectOptions: "Final Suspect 選項"
 Back: "返回"
 Yes: "是"
 No: "否"
@@ -82,7 +82,7 @@ FastBoot: "快速啟動模式"
 EnableRoleBackGround: "啟用插件開場動畫"
 EnableMapBackGround: "啟用插件地圖背景顏色"
 DisableVanillaSound: "禁用原版遊戲音樂"
-FinalSuspect_XtremeFeatures: "Final Suspect 功能"
+FinalSuspectFeatures: "Final Suspect 功能"
 SoundOptions: "我的音樂"
 AudioManagementOptions: "音訊管理"
 ChangeOutfit: "切換形象"
@@ -128,7 +128,7 @@ downloadFailed: "原因：下載更新文件超時或中斷\n請更換網路後�
 onSetPublicNoLatest: "我們有一個重要的更新，請更新本模組\n否則您無法公開房間"
 CanNotJoinPublicRoomNoLatest: "我們有一個重要的更新，請更新本模組\n否則您無法加入公開房間"
 ModBrokenMessage: "模組文件損壞，請重啟遊戲或重裝本模組"
-UnsupportedVersion: "您的 AmongUs 版本與 FinalSuspect_Xtreme 不兼容\n請更新遊戲"
+UnsupportedVersion: "您的 AmongUs 版本與 FinalSuspect 不兼容\n請更新遊戲"
 
 # 音频播放
 PlayMode0: "單次播放"
@@ -192,7 +192,7 @@ PlayerLeft: "【{0}】離開了遊戲"
 PlayerKickByHost: "【{0}】被房主踢出遊戲"
 PlayerBanByHost: "【{0}】被房主封禁"
 PlayerLeftCuzError: "【{0}】因為發生錯誤離開了遊戲"
-PlayerLeftByAU-Anticheat: "【{0}】被 AmongUs 官方的反作弊踢出（和 FinalSuspect_Xtreme 無關）"
+PlayerLeftByAU-Anticheat: "【{0}】被 AmongUs 官方的反作弊踢出（和 FinalSuspect 無關）"
 KickAndriodPlayer: "【{0}】因該房禁止安卓被請離房間"
 KickBecauseLowLevel: "【{0}】因未達到房主規定的等級限制被請離房間"
 KickBecauseDiffrentVersionOrMod: "【{0}】因安裝了不同版本的模組被請離房間"
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>隱藏複盤信息查看勝利文�
 
 # 禁用公开
 DisabledByProgram: "公開房間的操作已被程序禁用"
-PublicNotAvailableOnThisVersion: "該版本的 FinalSuspect_Xtreme 暫不支援公開"
+PublicNotAvailableOnThisVersion: "該版本的 FinalSuspect 暫不支援公開"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "祝願您擁有一場愉快的<color={0}>遊戲體驗</color>！"
-ConnectToFinalSuspect_XtremeServerFailed: "無法連接至 FinalSuspect_Xtreme 伺服器"
+FinalSuspectVisitorCount: "祝願您擁有一場愉快的<color={0}>遊戲體驗</color>！"
+ConnectToFinalSuspectServerFailed: "無法連接至 FinalSuspect 伺服器"
 Website: "模組官網"
 MainMenuCredential: "{0} © 2024"
 

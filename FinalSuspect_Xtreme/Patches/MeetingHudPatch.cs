@@ -2,7 +2,7 @@ using HarmonyLib;
 using UnityEngine;
 using AmongUs.GameOptions;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch]
 public static class MeetingHudPatch

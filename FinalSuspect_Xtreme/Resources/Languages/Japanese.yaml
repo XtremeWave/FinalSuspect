@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "11"
@@ -56,7 +56,7 @@ DeathReason.Exile: "追放されました"
 DeathReason.Disconnect: "接続が切れました"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect オプション"
+FinalSuspectOptions: "Final Suspect オプション"
 Back: "戻る"
 Yes: "はい"
 No: "いいえ"
@@ -82,7 +82,7 @@ FastBoot: "速い起動"
 EnableRoleBackGround: "カスタムイントロ背景を有効化"
 EnableMapBackGround: "カスタムマップカラーを有効化"
 DisableVanillaSound: "Among Us の音楽を無効化"
-FinalSuspect_XtremeFeatures: "Final Suspect 機能"
+FinalSuspectFeatures: "Final Suspect 機能"
 SoundOptions: "私の音楽"
 AudioManagementOptions: "オーディオ管理"
 ChangeOutfit: "アウトフィットを変更"
@@ -128,7 +128,7 @@ downloadFailed: "理由: ダウンロードタイムアウトまたは中断\n�
 onSetPublicNoLatest: "重要な更新があります。このモッドを更新してください。\nさもなければ、公開ルームに参加できません。"
 CanNotJoinPublicRoomNoLatest: "重要な更新があります。このモッドを更新してください。\nさもなければ、公開ルームに参加できません。"
 ModBrokenMessage: "モッドファイルが破損しています。ゲームを再起動するか、このモッドを再インストールしてください。"
-UnsupportedVersion: "あなたの Among Us バージョンは FinalSuspect_Xtreme と互換性がありません。\nゲームを更新してください。"
+UnsupportedVersion: "あなたの Among Us バージョンは FinalSuspect と互換性がありません。\nゲームを更新してください。"
 
 # Audio playback
 PlayMode0: "一度再生"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] がゲームから退出しました"
 PlayerKickByHost: "[{0}] がホストによってキックされました"
 PlayerBanByHost: "[{0}] がホストによって禁止されました"
 PlayerLeftCuzError: "[{0}] はエラーのためゲームから退出しました"
-PlayerLeftByAU-Anticheat: "[{0}] がAmongUの公式アンチチートによってキックされました (FinalSuspect_Xtreme とは関係ありません)"
+PlayerLeftByAU-Anticheat: "[{0}] がAmongUの公式アンチチートによってキックされました (FinalSuspect とは関係ありません)"
 KickAndriodPlayer: "【{0}】は No Phones 設定のためキックされました"
 KickBecauseLowLevel: "[{0}] はレベルが低すぎるためキックされました"
 KickBecauseDiffrentVersionOrMod: "[{0}] は異なるバージョンのモッドを使用しているためキックされました"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] は異なるバージョンのモッド�
 Warning: "警告!"
 Warning.MismatchedVersion: "{0}\n{1} のバージョンが異なります"
 Warning.AutoExitAtMismatchedVersion: "ホストに異なるバージョンの {0} が存在します\n{1} 分後にキックされます"
-Warning.InvalidRpc: "{0} をキックしました。無効なRPCが受信されました。\nホストにFinalSuspect_Xtreme以外のモッドがインストールされていないことを確認してください。"
+Warning.InvalidRpc: "{0} をキックしました。無効なRPCが受信されました。\nホストにFinalSuspect以外のモッドがインストールされていないことを確認してください。"
 Warning.InvalidRpc_NotHost: "{0} がチートを使用している疑いがあります。ホストにキックするようにお知らせください <color=#ffff00>(無効なRpc: {1})</color>"
 Warning.CantKickDev: "申し訳ありませんが、開発者をキックすることはできません"
 Warning.RoomBroken: "申し訳ありませんが、この部屋は爆破されました。別の部屋に移動してゲームを続けてください。"
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>結果情報を非表示にして�
 
 # 禁用公开
 DisabledByProgram: "公開ルームの操作はプログラムによって無効にされています"
-PublicNotAvailableOnThisVersion: "このバージョンのFinalSuspect_Xtremeでは公開ルームは利用できません"
+PublicNotAvailableOnThisVersion: "このバージョンのFinalSuspectでは公開ルームは利用できません"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "快適な<color={0}>ゲーム体験</color>をお祈りします！"
-ConnectToFinalSuspect_XtremeServerFailed: "FinalSuspect_Xtremeサーバーへの接続に失敗しました"
+FinalSuspectVisitorCount: "快適な<color={0}>ゲーム体験</color>をお祈りします！"
+ConnectToFinalSuspectServerFailed: "FinalSuspectサーバーへの接続に失敗しました"
 Website: "公式ウェブサイト"
 MainMenuCredential: "{0} © 2024"
 

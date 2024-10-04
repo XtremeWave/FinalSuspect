@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using TMPro;
 using InnerNet;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(Vent), nameof(Vent.SetOutline))]
 class SetVentOutlinePatch

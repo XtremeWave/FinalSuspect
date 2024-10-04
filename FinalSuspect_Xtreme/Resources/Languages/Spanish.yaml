@@ -1,4 +1,4 @@
-﻿#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 当前翻译文件语言的ID / Language ID of current file
 LangID: "12"
@@ -56,7 +56,7 @@ DeathReason.Exile: "Exiliado"
 DeathReason.Disconnect: "Desconectado"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Opciones de Final Suspect"
+FinalSuspectOptions: "Opciones de Final Suspect"
 Back: "Atrás"
 Yes: "Sí"
 No: "No"
@@ -82,7 +82,7 @@ FastBoot: "Arranque rápido"
 EnableRoleBackGround: "Habilitar fondo de introducción personalizado"
 EnableMapBackGround: "Habilitar color de mapa personalizado"
 DisableVanillaSound: "Desactivar músicas de Among Us"
-FinalSuspect_XtremeFeatures: "Características de Final Suspect"
+FinalSuspectFeatures: "Características de Final Suspect"
 SoundOptions: "Mis Músicas"
 AudioManagementOptions: "Gestión de Audio"
 ChangeOutfit: "Cambiar Atuendo"
@@ -128,7 +128,7 @@ downloadFailed: "Razón: Tiempo de espera de descarga o interrumpida\nPor favor,
 onSetPublicNoLatest: "Tenemos una actualización importante. Por favor, actualiza este mod.\nDe lo contrario, no podrás unirte a salas públicas."
 CanNotJoinPublicRoomNoLatest: "Tenemos una actualización importante. Por favor, actualiza este mod.\nDe lo contrario, no podrás unirte a salas públicas."
 ModBrokenMessage: "Los archivos del mod están dañados. Por favor, reinicia el juego o reinstala este mod."
-UnsupportedVersion: "Tu versión de Among Us es incompatible con FinalSuspect_Xtreme.\nPor favor, actualiza tu juego."
+UnsupportedVersion: "Tu versión de Among Us es incompatible con FinalSuspect.\nPor favor, actualiza tu juego."
 
 # Audio playback
 PlayMode0: "Reproducir Una Vez"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] dejó el juego"
 PlayerKickByHost: "[{0}] expulsado por el anfitrión"
 PlayerBanByHost: "[{0}] baneado por el anfitrión"
 PlayerLeftCuzError: "[{0}] dejó el juego debido a un error"
-PlayerLeftByAU-Anticheat: "[{0}] fue expulsado por el anti-cheat oficial de AmongU (No relacionado con FinalSuspect_Xtreme)"
+PlayerLeftByAU-Anticheat: "[{0}] fue expulsado por el anti-cheat oficial de AmongU (No relacionado con FinalSuspect)"
 KickAndriodPlayer: "【{0}】 fue expulsado debido a la configuración de No Teléfonos"
 KickBecauseLowLevel: "[{0}] fue expulsado porque su nivel era demasiado bajo"
 KickBecauseDiffrentVersionOrMod: "[{0}] fue expulsado porque tenía una versión diferente del mod"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}] fue expulsado porque tenía una versión
 Warning: "¡Advertencia!"
 Warning.MismatchedVersion: "{0}\nhas una versión diferente de {1}"
 Warning.AutoExitAtMismatchedVersion: "El anfitrión no tiene o tiene una versión diferente de {0}\nSerás expulsado en {1}"
-Warning.InvalidRpc: "Expulsado {0} porque se recibió un RPC inválido.\nPor favor, verifica que no haya otros mods instalados además de FinalSuspect_Xtreme."
+Warning.InvalidRpc: "Expulsado {0} porque se recibió un RPC inválido.\nPor favor, verifica que no haya otros mods instalados además de FinalSuspect."
 Warning.InvalidRpc_NotHost: "{0} es sospechoso de usar trampas. Por favor, recuerda al anfitrión que lo expulse <color=#ffff00>(RPC Inválido:{1})</color>"
 Warning.CantKickDev: "Lo siento, no puedes expulsar al desarrollador"
 Warning.RoomBroken: "Lo siento, esta sala ha sido bombardeada. Por favor, procede a otra sala para continuar tu juego."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>Ocultar información de resumen pa
 
 # 禁用公开
 DisabledByProgram: "Las operaciones de sala pública han sido desactivadas por el programa"
-PublicNotAvailableOnThisVersion: "Las salas públicas no están disponibles en esta versión de FinalSuspect_Xtreme"
+PublicNotAvailableOnThisVersion: "Las salas públicas no están disponibles en esta versión de FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "¡Deseándote una agradable <color={0}>experiencia de juego</color>!"
-ConnectToFinalSuspect_XtremeServerFailed: "Error al conectar con el servidor de FinalSuspect_Xtreme"
+FinalSuspectVisitorCount: "¡Deseándote una agradable <color={0}>experiencia de juego</color>!"
+ConnectToFinalSuspectServerFailed: "Error al conectar con el servidor de FinalSuspect"
 Website: "Sitio Oficial"
 MainMenuCredential: "{0} © 2024"
 

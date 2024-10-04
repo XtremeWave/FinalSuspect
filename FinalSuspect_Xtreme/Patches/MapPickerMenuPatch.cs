@@ -3,7 +3,7 @@ using UnityEngine;
 using HarmonyLib;
 using System.Linq;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 // Thanks: https://github.com/SubmergedAmongUs/Submerged/blob/4a5a6b47cbed526670ae4b7eae76acd7c42e35de/Submerged/UI/Patches/MapSelectButtonPatches.cs#L49
 class CreateOptionsPickerPatch

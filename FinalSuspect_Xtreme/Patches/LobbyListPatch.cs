@@ -3,7 +3,7 @@ using System;
 using InnerNet;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(FindAGameManager), nameof(FindAGameManager.Update))]
 public static class FindAGameManagerUpdatePatch

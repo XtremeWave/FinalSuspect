@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 static class ExtendedPlayerControl
 {

@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.IO;
 using HarmonyLib;
 using System.Runtime.InteropServices;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
-using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Modules.Managers.AudioManager;
+using static FinalSuspect.Modules.Managers.FinalMusic;
+using static FinalSuspect.Translator;
 using System.Linq;
 using UnityEngine;
-using FinalSuspect_Xtreme.Modules.SoundInterface;
+using FinalSuspect.Modules.SoundInterface;
 using TMPro;
 using InnerNet;
 
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 public static class CustomSoundsManager
 {

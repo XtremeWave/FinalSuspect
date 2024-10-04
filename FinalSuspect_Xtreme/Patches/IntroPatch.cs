@@ -1,9 +1,9 @@
 using HarmonyLib;
 using System.Threading.Tasks;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(IntroCutscene))]
 class IntroCutscenePatch

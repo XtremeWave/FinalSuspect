@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FinalSuspect_Xtreme.Modules;
+namespace FinalSuspect.Modules;
 // 来源：Town Of Next
 public class HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath) : IDisposable
 {

@@ -4,21 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 # pragma warning disable CA1416
 public static class RegistryManager
 {
     public static RegistryKey SoftwareKeys => Registry.CurrentUser.OpenSubKey("Software", true);
-    public static RegistryKey Keys = SoftwareKeys.OpenSubKey("AU-FinalSuspect_Xtreme", true);
+    public static RegistryKey Keys = SoftwareKeys.OpenSubKey("AU-FinalSuspect", true);
     public static Version LastVersion;
 
     public static void Init()
     {
         if (Keys == null)
         {
-            Logger.Info("Create FinalSuspect_Xtreme Registry Key", "Registry Manager");
-            Keys = SoftwareKeys.CreateSubKey("AU-FinalSuspect_Xtreme", true);
+            Logger.Info("Create FinalSuspect Registry Key", "Registry Manager");
+            Keys = SoftwareKeys.CreateSubKey("AU-FinalSuspect", true);
         }
         if (Keys == null)
         {
@@ -40,7 +40,7 @@ public static class RegistryManager
                 @"./TONX_DATA",
             ];
 
-        Logger.Warn("上次启动的FinalSuspect_Xtreme版本：" + LastVersion, "Registry Manager");
+        Logger.Warn("上次启动的FinalSuspect版本：" + LastVersion, "Registry Manager");
 
         if (LastVersion < new Version(1, 0, 0))
         {

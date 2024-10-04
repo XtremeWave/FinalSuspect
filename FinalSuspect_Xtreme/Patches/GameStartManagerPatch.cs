@@ -6,15 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect_Xtreme.Patches;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using FinalSuspect.Patches;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
 public static class GameStartManagerUpdatePatch

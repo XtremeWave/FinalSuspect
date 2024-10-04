@@ -50,7 +50,7 @@
 制作: Slok
 - 调整工程师、变形者、幻象师职业颜色
 制作: Slok
-- 本项目不再作为Town Of New Epic_Xtreme及其父系分支，而是作为独立项目
+- 本项目不再作为Town Of New Epic及其父系分支，而是作为独立项目
 决定: Slok
 
 ## 新增

@@ -2,7 +2,7 @@ using BepInEx.Configuration;
 using System;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme.Modules.ClientOptions;
+namespace FinalSuspect.Modules.ClientOptions;
 
 public sealed class ClientOptionItem_Boolean : ClientActionItem
 {

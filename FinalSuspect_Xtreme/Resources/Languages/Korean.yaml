@@ -1,4 +1,4 @@
-#FinalSuspect_Xtreme 的语言文件 / Translation file of FinalSuspect_Xtreme
+#FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 #当前翻译文件语言的ID / Language ID of current file
 LangID: "4"
@@ -56,7 +56,7 @@ DeathReason.Exile: "추방"
 DeathReason.Disconnect: "연결 끊김"
 
 # 客户端选项 / Client Options
-FinalSuspect_XtremeOptions: "Final Suspect 옵션"
+FinalSuspectOptions: "Final Suspect 옵션"
 Back: "뒤로"
 Yes: "예"
 No: "아니오"
@@ -82,7 +82,7 @@ FastBoot: "빠른 부팅"
 EnableRoleBackGround: "커스텀 소개 배경 활성화"
 EnableMapBackGround: "커스텀 맵 색상 활성화"
 DisableVanillaSound: "Among U의 음악 비활성화"
-FinalSuspect_XtremeFeatures: "Final Suspect 기능"
+FinalSuspectFeatures: "Final Suspect 기능"
 SoundOptions: "내 음악"
 AudioManagementOptions: "오디오 관리"
 ChangeOutfit: "복장 변경"
@@ -128,7 +128,7 @@ downloadFailed: "이유: 다운로드 시간 초과 또는 중단\n네트워크�
 onSetPublicNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트 해주세요.\n그렇지 않으면 공개 방에 참여할 수 없습니다."
 CanNotJoinPublicRoomNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트 해주세요.\n그렇지 않으면 공개 방에 참여할 수 없습니다."
 ModBrokenMessage: "모드 파일이 손상되었습니다. 게임을 재시작하거나 이 모드를 다시 설치하세요."
-UnsupportedVersion: "당신의 Among Us 버전이 FinalSuspect_Xtreme와 호환되지 않습니다.\n게임을 업데이트 해주세요."
+UnsupportedVersion: "당신의 Among Us 버전이 FinalSuspect와 호환되지 않습니다.\n게임을 업데이트 해주세요."
 
 # Audio playback
 PlayMode0: "한 번 재생"
@@ -192,7 +192,7 @@ PlayerLeft: "[{0}] 게임을 떠났습니다"
 PlayerKickByHost: "[{0}] 호스트에 의해 추방되었습니다"
 PlayerBanByHost: "[{0}] 호스트에 의해 금지되었습니다"
 PlayerLeftCuzError: "[{0}] 오류로 인해 게임을 떠났습니다"
-PlayerLeftByAU-Anticheat: "[{0}] AmongU의 공식 안티치트에 의해 추방되었습니다 (FinalSuspect_Xtreme와 관련 없음)"
+PlayerLeftByAU-Anticheat: "[{0}] AmongU의 공식 안티치트에 의해 추방되었습니다 (FinalSuspect와 관련 없음)"
 KickAndriodPlayer: "【{0}】는 '전화기 없음' 설정으로 인해 추방되었습니다"
 KickBecauseLowLevel: "[{0}]의 레벨이 너무 낮아서 추방되었습니다"
 KickBecauseDiffrentVersionOrMod: "[{0}]의 모드 버전이 다르거나 모드가 다른 버전이어서 추방되었습니다"
@@ -201,7 +201,7 @@ KickBecauseDiffrentVersionOrMod: "[{0}]의 모드 버전이 다르거나 모드�
 Warning: "경고!"
 Warning.MismatchedVersion: "{0}\n의 {1} 버전이 다릅니다"
 Warning.AutoExitAtMismatchedVersion: "호스트의 {0} 버전이 없거나 다릅니다\n{1} 내에 추방됩니다"
-Warning.InvalidRpc: "{0}가 잘못된 RPC를 수신하여 추방되었습니다.\n호스트에게 FinalSuspect_Xtreme 외의 다른 모드가 설치되지 않았는지 확인하세요."
+Warning.InvalidRpc: "{0}가 잘못된 RPC를 수신하여 추방되었습니다.\n호스트에게 FinalSuspect 외의 다른 모드가 설치되지 않았는지 확인하세요."
 Warning.InvalidRpc_NotHost: "{0}는 치트를 사용하는 것으로 의심됩니다. 호스트에게 추방할 것을 알리세요 <color=#ffff00>(잘못된 Rpc:{1})</color>"
 Warning.CantKickDev: "죄송하지만 개발자는 추방할 수 없습니다"
 Warning.RoomBroken: "죄송하지만 이 방은 파괴되었습니다. 다른 방으로 이동해 게임을 계속하세요."
@@ -259,11 +259,11 @@ HideSummaryTextToShowWinText: "<color=#ffff00>승리 문구를 보려면 요약 
 
 # 禁用公开 / Disable Public
 DisabledByProgram: "프로그램에 의해 공개 방 작업이 비활성화되었습니다"
-PublicNotAvailableOnThisVersion: "이 FinalSuspect_Xtreme 버전에서는 공개 방이 사용 불가능합니다"
+PublicNotAvailableOnThisVersion: "이 FinalSuspect 버전에서는 공개 방이 사용 불가능합니다"
 
 # 主页 / Main UI
-FinalSuspect_XtremeVisitorCount: "즐거운 <color={0}>게임 경험</color>을 기원합니다!"
-ConnectToFinalSuspect_XtremeServerFailed: "FinalSuspect_Xtreme 서버에 연결하지 못했습니다"
+FinalSuspectVisitorCount: "즐거운 <color={0}>게임 경험</color>을 기원합니다!"
+ConnectToFinalSuspectServerFailed: "FinalSuspect 서버에 연결하지 못했습니다"
 Website: "공식 웹사이트"
 MainMenuCredential: "{0} © 2024"
 

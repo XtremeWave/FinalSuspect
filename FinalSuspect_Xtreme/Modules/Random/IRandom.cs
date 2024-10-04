@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public interface IRandom
 {

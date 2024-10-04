@@ -8,10 +8,10 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using FinalSuspect_Xtreme.Attributes;
-using static FinalSuspect_Xtreme.Translator;
+using FinalSuspect.Attributes;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 public static class BanManager
 {
@@ -37,11 +37,11 @@ public static class BanManager
             {
                 Logger.Warn("Create New DenyName.txt", "BanManager");
                 File.Create(DENY_NAME_LIST_PATH).Close();
-                File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("FinalSuspect_Xtreme.Resources.Configs.DenyName.txt"));
+                File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("FinalSuspect.Resources.Configs.DenyName.txt"));
             }
 
             //读取EAC名单
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect_Xtreme.Resources.Configs.EACList.txt");
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.EACList.txt");
             stream.Position = 0;
             using StreamReader sr = new(stream, Encoding.UTF8);
             string line;

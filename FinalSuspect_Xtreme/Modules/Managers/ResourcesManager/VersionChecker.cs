@@ -3,14 +3,14 @@ using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.IO;
-using FinalSuspect_Xtreme.Attributes;
+using FinalSuspect.Attributes;
 
-namespace FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Managers.ResourcesManager;
 
 public static class VersionChecker
 {
@@ -31,8 +31,8 @@ public static class VersionChecker
 #if DEBUG
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "fs_info.json")}",
 #else
-        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect_Xtreme/FinalSus/fs_info.json",
-        "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSus/fs_info.json",
+        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/fs_info.json",
+        "https://gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/fs_info.json",
 #endif
     };
     private static IReadOnlyList<string> GetInfoFileUrlList()
@@ -180,7 +180,7 @@ public static class VersionChecker
             else
             {
                 using HttpClient client = new();
-                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect_Xtreme Updater");
+                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect Updater");
                 client.DefaultRequestHeaders.Add("Referer", "www.xtreme.net.cn");
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode || response.Content == null)

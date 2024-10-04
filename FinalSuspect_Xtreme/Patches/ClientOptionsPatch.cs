@@ -1,10 +1,10 @@
 using HarmonyLib;
-using FinalSuspect_Xtreme.Modules.ClientOptions;
-using FinalSuspect_Xtreme.Modules.SoundInterface;
+using FinalSuspect.Modules.ClientOptions;
+using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch

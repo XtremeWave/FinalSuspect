@@ -3,10 +3,10 @@ using HarmonyLib;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
-using static FinalSuspect_Xtreme.Patches.NormalLobbyViewSettingsPanePatch;
+using static FinalSuspect.Patches.NormalLobbyViewSettingsPanePatch;
 using UnityEngine.ProBuilder;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 [HarmonyPatch(typeof(RoleOptionSetting), nameof(RoleOptionSetting.UpdateValuesAndText))]
 class RoleOptionSettingPatch
 {

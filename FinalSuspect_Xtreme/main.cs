@@ -8,26 +8,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FinalSuspect_Xtreme.Attributes;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Attributes;
+using FinalSuspect.Modules;
 using UnityEngine;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 
-[assembly: AssemblyFileVersion(FinalSuspect_Xtreme.Main.PluginVersion)]
-[assembly: AssemblyInformationalVersion(FinalSuspect_Xtreme.Main.PluginVersion)]
-[assembly: AssemblyVersion(FinalSuspect_Xtreme.Main.PluginVersion)]
-namespace FinalSuspect_Xtreme;
+[assembly: AssemblyFileVersion(FinalSuspect.Main.PluginVersion)]
+[assembly: AssemblyInformationalVersion(FinalSuspect.Main.PluginVersion)]
+[assembly: AssemblyVersion(FinalSuspect.Main.PluginVersion)]
+namespace FinalSuspect;
 
-[BepInPlugin(PluginGuid, "FinalSuspect_Xtreme", PluginVersion)]
+[BepInPlugin(PluginGuid, "FinalSuspect", PluginVersion)]
 [BepInIncompatibility("jp.ykundesu.supernewroles")]
 [BepInProcess("Among Us.exe")]
 public class Main : BasePlugin
 {
     // == 程序基本设定 / Program Config ==
-    public static readonly string ModName = "Final Suspect_Xtreme";
-    public const string ForkId = "FinalSuspect_Xtreme";
+    public static readonly string ModName = "Final Suspect";
+    public const string ForkId = "Final Suspect";
     public const string PluginVersion = "1.0.0";
-    public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
+    public const string PluginGuid = "cn.finalsuspect.xtremewave";
     public const int PluginCreation = 2;
 
     // == 认证设定 / Authentication Config ==
@@ -55,7 +55,7 @@ public class Main : BasePlugin
     public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://xtreme.net.cn" : "https://xtreme.net.cn/en/";
     public static readonly string QQInviteUrl = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=4ojpzbUU42giZZeQ-DTaal-tC5RIpL46&authKey=49OYQwsCza2x5eHGdXDHXD1M%2FvYvQcEhJBNL5h8Gq7AxOu5eMfTc6g2edtlsMuCm&noverify=0&group_code=733425569";
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
-    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect_Xtreme";
+    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
 
     // ==========
 
@@ -149,15 +149,15 @@ public class Main : BasePlugin
         VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
         GodMode = Config.Bind("Client Options", "GodMode", false);
 
-        Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect_Xtreme");
-        FinalSuspect_Xtreme.Logger.Enable();
-        FinalSuspect_Xtreme.Logger.Disable("SwitchSystem");
-        FinalSuspect_Xtreme.Logger.Disable("ModNews");
+        Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
+        FinalSuspect.Logger.Enable();
+        FinalSuspect.Logger.Disable("SwitchSystem");
+        FinalSuspect.Logger.Disable("ModNews");
         if (!DebugModeManager.AmDebugger)
         {
-            FinalSuspect_Xtreme.Logger.Disable("test");
+            FinalSuspect.Logger.Disable("test");
         }
-        //FinalSuspect_Xtreme.Logger.isDetail = true;
+        //FinalSuspect.Logger.isDetail = true;
 
         // 認証関連-初期化
         DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);
@@ -188,8 +188,8 @@ public class Main : BasePlugin
         }
         catch (ArgumentException ex)
         {
-            FinalSuspect_Xtreme.Logger.Error("错误：字典出现重复项", "LoadDictionary");
-            FinalSuspect_Xtreme.Logger.Exception(ex, "LoadDictionary");
+            FinalSuspect.Logger.Error("错误：字典出现重复项", "LoadDictionary");
+            FinalSuspect.Logger.Exception(ex, "LoadDictionary");
             hasArgumentException = true;
             ExceptionMessage = ex.Message;
             ExceptionMessageIsShown = false;
@@ -201,9 +201,9 @@ public class Main : BasePlugin
 
         IRandom.SetInstance(new NetRandomWrapper());
 
-        FinalSuspect_Xtreme.Logger.Info($"{Application.version}", "AmongUs Version");
+        FinalSuspect.Logger.Info($"{Application.version}", "AmongUs Version");
 
-        var handler = FinalSuspect_Xtreme.Logger.Handler("GitVersion");
+        var handler = FinalSuspect.Logger.Handler("GitVersion");
         handler.Info($"{nameof(ThisAssembly.Git.BaseTag)}: {ThisAssembly.Git.BaseTag}");
         handler.Info($"{nameof(ThisAssembly.Git.Commit)}: {ThisAssembly.Git.Commit}");
         handler.Info($"{nameof(ThisAssembly.Git.Commits)}: {ThisAssembly.Git.Commits}");
@@ -220,6 +220,6 @@ public class Main : BasePlugin
         if (!DebugModeManager.AmDebugger) ConsoleManager.DetachConsole();
         else ConsoleManager.CreateConsole();
 
-        FinalSuspect_Xtreme.Logger.Msg("========= FinalSuspect_Xtreme loaded! =========", "Plugin Load");
+        FinalSuspect.Logger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
     }
 }

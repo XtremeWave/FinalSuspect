@@ -2,14 +2,14 @@ using HarmonyLib;
 using System;
 using TMPro;
 using System.IO;
-using FinalSuspect_Xtreme.Templates;
+using FinalSuspect.Templates;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect_Xtreme.Modules.Managers;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Managers;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch]
 public class MainMenuManagerPatch
@@ -107,21 +107,21 @@ public class MainMenuManagerPatch
 
         if (InviteButton == null) InviteButton = CreatButton(extraLinkName, () => { Application.OpenURL(extraLinkUrl); });
         InviteButton.gameObject.SetActive(true);
-        InviteButton.name = "FinalSuspect_Xtreme Extra Link Button";
+        InviteButton.name = "FinalSuspect Extra Link Button";
 
         if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => Application.OpenURL(Main.WebsiteUrl));
         WebsiteButton.gameObject.SetActive(true);
-        WebsiteButton.name = "FinalSuspect_Xtreme Website Button";
+        WebsiteButton.name = "FinalSuspect Website Button";
 
         if (GithubButton == null) GithubButton = CreatButton("Github", () => Application.OpenURL(Main.GithubRepoUrl));
         GithubButton.gameObject.SetActive(true);
-        GithubButton.name = "FinalSuspect_Xtreme Github Button";
+        GithubButton.name = "FinalSuspect Github Button";
         PlayButton = __instance.playButton.gameObject;
 
         if (UpdateButton == null)
         {
             UpdateButton = Object.Instantiate(PlayButton, PlayButton.transform.parent);
-            UpdateButton.name = "FinalSuspect_Xtreme Update Button";
+            UpdateButton.name = "FinalSuspect Update Button";
             UpdateButton.transform.localPosition = PlayButton.transform.localPosition - new Vector3(0f, 0f, 3f);
             var passiveButton = UpdateButton.GetComponent<PassiveButton>();
             passiveButton.inactiveSprites.GetComponent<SpriteRenderer>().color = new Color(0.49f, 0.34f, 0.62f, 0.8f);

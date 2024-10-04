@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class EnumHelper
 {

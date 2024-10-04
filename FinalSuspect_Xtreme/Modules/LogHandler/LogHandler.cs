@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect_Xtreme.Modules;
+namespace FinalSuspect.Modules;
 
 class LogHandler : ILogHandler
 {

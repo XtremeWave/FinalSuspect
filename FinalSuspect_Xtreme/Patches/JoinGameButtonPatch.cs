@@ -2,7 +2,7 @@ using HarmonyLib;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(JoinGameButton), nameof(JoinGameButton.OnClick))]
 class JoinGameButtonPatch

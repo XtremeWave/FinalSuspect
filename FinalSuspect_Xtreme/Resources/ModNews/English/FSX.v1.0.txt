@@ -9,7 +9,7 @@ Mod! Vanilla? New optimizations!
 
 ## Base
 - Based on AmongUs v2024.8.13
-- Based on Town Of New Epic_Xtreme v1.3_20240726
+- Based on Town Of New Epic v1.3_20240726
 
 ## Summary of Updates
 - Fixes: 7

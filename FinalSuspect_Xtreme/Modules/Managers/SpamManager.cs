@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using FinalSuspect_Xtreme.Attributes;
-using static FinalSuspect_Xtreme.Translator;
+using FinalSuspect.Attributes;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme.Modules.Managers;
+namespace FinalSuspect.Modules.Managers;
 
 public static class SpamManager
 {

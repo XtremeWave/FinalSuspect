@@ -1,7 +1,7 @@
 using HarmonyLib;
 using System;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(HashRandom))]
 class HashRandomPatch

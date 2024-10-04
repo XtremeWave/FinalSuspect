@@ -1,14 +1,14 @@
 using HarmonyLib;
 using InnerNet;
 using System.Linq;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
-using FinalSuspect_Xtreme.Modules.Managers;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using static FinalSuspect.Translator;
+using FinalSuspect.Modules.Managers;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.MakePublic))]
 internal class MakePublicPatch

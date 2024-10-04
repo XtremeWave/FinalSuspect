@@ -9,7 +9,7 @@
 
 ## 对应官方版本
 - 基于 AmongUs v2024.8.13
-- 基于 Town Of New Epic_Xtreme v1.3_20240726
+- 基于 Town Of New Epic v1.3_20240726
 
 ## 更新内容
 - 修正: 7

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using HarmonyLib;
 
-namespace FinalSuspect_Xtreme.Patches;
+namespace FinalSuspect.Patches;
 
 // Thanks Galster (https://github.com/Galster-dev)
 // Source:TOHE

@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using static FinalSuspect_Xtreme.Translator;
-using FinalSuspect_Xtreme.Modules.SoundInterface;
+using static FinalSuspect.Translator;
+using FinalSuspect.Modules.SoundInterface;
 using Mono.Cecil.Mdb;
-using FinalSuspect_Xtreme.Modules.Managers;
+using FinalSuspect.Modules.Managers;
 using Il2CppSystem.CodeDom;
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public enum CustomRPC
 {

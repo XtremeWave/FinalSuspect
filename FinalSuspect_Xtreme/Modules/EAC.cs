@@ -4,10 +4,10 @@ using InnerNet;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using Il2CppSystem.Runtime.Remoting.Messaging;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 internal class EAC
 {
     public static int MeetingTimes = 0;

@@ -1,12 +1,12 @@
 using AmongUs.Data;
 using HarmonyLib;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 // ²Î¿¼£ºhttps://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/SNROnlySearch.cs
-public static class FinalSuspect_XtremeOnlySearch
+public static class FinalSuspectOnlySearch
 {
-    public const string FilterText = "FinalSuspect_Xtreme";
+    public const string FilterText = "FinalSuspect";
     [HarmonyPatch(typeof(FilterTagManager), nameof(FilterTagManager.RefreshTags))]
     public static class FilterTagManagerPatch
     {

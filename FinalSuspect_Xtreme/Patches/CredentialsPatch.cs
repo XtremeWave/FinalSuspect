@@ -2,14 +2,14 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
-using FinalSuspect_Xtreme.Templates;
+using FinalSuspect.Templates;
 using UnityEngine;
 
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using System.Linq;
-using FinalSuspect_Xtreme.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Managers.ResourcesManager;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
 internal class PingTrackerUpdatePatch
@@ -109,14 +109,14 @@ internal class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && VisitText == null)
         {
             VisitText = Object.Instantiate(__instance.text);
-            VisitText.name = "FinalSuspect_Xtreme VisitText";
+            VisitText.name = "FinalSuspect VisitText";
             VisitText.alignment = TextAlignmentOptions.Left;
             VisitText.text = VersionChecker.visit > 0
-                ? string.Format(GetString("FinalSuspect_XtremeVisitorCount"), ColorHelper.ModColor)
-                : GetString("ConnectToFinalSuspect_XtremeServerFailed");
+                ? string.Format(GetString("FinalSuspectVisitorCount"), ColorHelper.ModColor)
+                : GetString("ConnectToFinalSuspectServerFailed");
             VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);
-            VisitText.enabled = GameObject.Find("FinalSuspect_Xtreme Background") != null;
+            VisitText.enabled = GameObject.Find("FinalSuspect Background") != null;
 
             __instance.text.alignment = TextAlignmentOptions.Left;
             OVersionShower.transform.localPosition = new Vector3(-4.92f, -3.3f, 0f);
@@ -141,14 +141,14 @@ internal class VersionShowerStartPatch
 
 
             CreditTextCredential = Object.Instantiate(__instance.text);
-            CreditTextCredential.name = "FinalSuspect_Xtreme CreditTex";
+            CreditTextCredential.name = "FinalSuspect CreditTex";
             CreditTextCredential.alignment = TextAlignmentOptions.Right;
             CreditTextCredential.text = credentialsText;
             CreditTextCredential.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             CreditTextCredential.transform.localPosition = new Vector3(0.3f, -2.6f, 0f);
             // 查找并获取 "VisitText" 的 TMP 文本对象
 
-            CreditTextCredential.enabled = GameObject.Find("FinalSuspect_Xtreme Background") != null;
+            CreditTextCredential.enabled = GameObject.Find("FinalSuspect Background") != null;
 
             var ap1 = OVersionShower.GetComponent<AspectPosition>();
             if (ap1 != null) Object.Destroy(ap1);
@@ -163,7 +163,7 @@ internal class VersionShowerStartPatch
 internal class TitleLogoPatch
 {
     public static GameObject ModStamp;
-    public static GameObject FinalSuspect_Xtreme_Background;
+    public static GameObject FinalSuspect_Background;
     public static GameObject Ambience;
     public static GameObject Starfield;
     public static GameObject LeftPanel;
@@ -230,16 +230,16 @@ internal class TitleLogoPatch
         if (!(ModStamp = GameObject.Find("ModStamp"))) return;
         ModStamp.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-        FinalSuspect_Xtreme_Background = new GameObject("FinalSuspect_Xtreme Background");
-        FinalSuspect_Xtreme_Background.transform.position = new Vector3(0, 0, 520f);
-        var bgRenderer = FinalSuspect_Xtreme_Background.AddComponent<SpriteRenderer>();
-        bgRenderer.sprite = Utils.LoadSprite("FinalSuspect_Xtreme-BG.jpg", 179f);
+        FinalSuspect_Background = new GameObject("FinalSuspect Background");
+        FinalSuspect_Background.transform.position = new Vector3(0, 0, 520f);
+        var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
+        bgRenderer.sprite = Utils.LoadSprite("FinalSuspect-BG.jpg", 179f);
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
         StarGen starGen = Starfield.GetComponent<StarGen>();
         starGen.SetDirection(new Vector2(0, -2));
-        Starfield.transform.SetParent(FinalSuspect_Xtreme_Background.transform);
+        Starfield.transform.SetParent(FinalSuspect_Background.transform);
         Object.Destroy(Ambience);
 
         if (!(LeftPanel = GameObject.Find("LeftPanel"))) return;
@@ -295,7 +295,7 @@ internal class TitleLogoPatch
         AULogo.transform.localScale = new Vector3(0.66f, 0.67f, 1f);
         AULogo.transform.position += new Vector3(0f, 0.1f, 0f);
         var logoRenderer = AULogo.GetComponent<SpriteRenderer>();
-        logoRenderer.sprite = Utils.LoadSprite("FinalSuspect_Xtreme-Logo.png");
+        logoRenderer.sprite = Utils.LoadSprite("FinalSuspect-Logo.png");
 
         if (!(BottomButtonBounds = GameObject.Find("BottomButtonBounds"))) return;
         BottomButtonBounds.transform.localPosition -= new Vector3(0f, 0.1f, 0f);

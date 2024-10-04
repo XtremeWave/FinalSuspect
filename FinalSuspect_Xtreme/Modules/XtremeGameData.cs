@@ -1,13 +1,13 @@
 ﻿using AmongUs.GameOptions;
-using FinalSuspect_Xtreme.Attributes;
-using FinalSuspect_Xtreme.Patches;
+using FinalSuspect.Attributes;
+using FinalSuspect.Patches;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using static UnityEngine.GraphicsBuffer;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class XtremeGameData
 {

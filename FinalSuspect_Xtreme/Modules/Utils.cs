@@ -13,9 +13,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 public static class Utils
 {
@@ -82,17 +82,17 @@ public static class Utils
     }
     public static void DumpLog(bool popup = false)
     {
-        string f = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/FinalSuspect_Xtreme-logs/";
+        string f = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/FinalSuspect-logs/";
         string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string filename = $"{f}FinalSuspect_Xtreme-v{Main.DisplayedVersion}-{t}.log";
+        string filename = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         file.CopyTo(@filename);
         if (PlayerControl.LocalPlayer != null)
         {
-            if (popup) //PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.DisplayedVersion}-{t}.log"));
-                HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.DisplayedVersion}-{t}.log"));
-            else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect_Xtreme - v{Main.DisplayedVersion}-{t}.log"));
+            if (popup) //PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+                HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+            else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
         }
         ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe")
         { Arguments = "/e,/select," + @filename.Replace("/", "\\") };
@@ -193,7 +193,7 @@ public static class Utils
             Logger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
         }
         InDLL:
-        path = "FinalSuspect_Xtreme.Resources.Images." + file;
+        path = "FinalSuspect.Resources.Images." + file;
 
         try
         {

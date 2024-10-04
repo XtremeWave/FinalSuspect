@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace FinalSuspect_Xtreme.Templates;
+namespace FinalSuspect.Templates;
 
 public sealed class TMPTemplate
 {

@@ -2,17 +2,17 @@
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect_Xtreme.Modules.SoundInterface;
+using FinalSuspect.Modules.SoundInterface;
 using Newtonsoft.Json;
-using static FinalSuspect_Xtreme.Modules.Managers.AudioManager;
+using static FinalSuspect.Modules.Managers.AudioManager;
 using System.IO;
 using System.Linq;
-using static FinalSuspect_Xtreme.Modules.Managers.FinalMusic;
-using FinalSuspect_Xtreme.Modules.Managers;
+using static FinalSuspect.Modules.Managers.FinalMusic;
+using FinalSuspect.Modules.Managers;
 
-namespace FinalSuspect_Xtreme.Modules.SoundInterface;
+namespace FinalSuspect.Modules.SoundInterface;
 
 public static class AudioManagementNewWindow
 {

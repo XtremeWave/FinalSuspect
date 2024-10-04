@@ -1,12 +1,12 @@
 using HarmonyLib;
 using Hazel;
 using System.Linq;
-using FinalSuspect_Xtreme.Modules;
+using FinalSuspect.Modules;
 
 using UnityEngine;
-using static FinalSuspect_Xtreme.Translator;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
 internal class ControllerManagerUpdatePatch

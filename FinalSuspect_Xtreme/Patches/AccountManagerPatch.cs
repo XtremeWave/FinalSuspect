@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.Animations;
 using BepInEx.Unity.IL2CPP.Utils;
 
-namespace FinalSuspect_Xtreme;
+namespace FinalSuspect;
 
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect_Xtreme.Templates;
+namespace FinalSuspect.Templates;
 
 public class SimpleButton
 {
@@ -83,13 +83,13 @@ public class SimpleButton
         baseButton.gameObject.SetActive(false);
         // シーン切替時に破棄されないようにする
         Object.DontDestroyOnLoad(baseButton);
-        baseButton.name = "FinalSuspect_Xtreme_SimpleButtonBase";
+        baseButton.name = "FinalSuspect_SimpleButtonBase";
         // 不要なコンポーネントを無効化
         Object.Destroy(baseButton.GetComponent<AspectPosition>());
         label.DestroyTranslator();
         label.fontSize = label.fontSizeMax = label.fontSizeMin = 3.5f;
         label.enableWordWrapping = false;
-        label.text = "FinalSuspect_Xtreme SIMPLE BUTTON BASE";
+        label.text = "FinalSuspect SIMPLE BUTTON BASE";
         // 当たり判定がズレてるのを直す
         var buttonCollider = baseButton.GetComponent<BoxCollider2D>();
         buttonCollider.offset = new(0f, 0f);

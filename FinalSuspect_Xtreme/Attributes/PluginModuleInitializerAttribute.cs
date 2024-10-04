@@ -1,4 +1,4 @@
-﻿namespace FinalSuspect_Xtreme.Attributes;
+﻿namespace FinalSuspect.Attributes;
 
 /// <summary>
 /// 用于在 <see cref="Main.Load"/> 中启动时初始化的方法
