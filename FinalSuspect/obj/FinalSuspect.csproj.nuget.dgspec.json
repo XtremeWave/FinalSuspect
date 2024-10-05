@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect.csproj": {}
+    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect\\FinalSuspect.csproj": {}
   },
   "projects": {
-    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect.csproj": {
+    "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect\\FinalSuspect.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect.csproj",
+        "projectUniqueName": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect\\FinalSuspect.csproj",
         "projectName": "FinalSuspect",
-        "projectPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect.csproj",
+        "projectPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect\\FinalSuspect.csproj",
         "packagesPath": "C:\\Users\\Slok7\\.nuget\\packages\\",
-        "outputPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\obj\\",
+        "outputPath": "D:\\QQ\\OtherFiles\\FinalSuspect_Xtreme\\FinalSuspect_Xtreme\\FinalSuspect\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

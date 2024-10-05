@@ -28,3 +28,15 @@ D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect_Xtreme\obj
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect_Xtreme\obj\Debug\net6.0\refint\FinalSuspect.dll
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect_Xtreme\obj\Debug\net6.0\FinalSuspect.pdb
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect_Xtreme\obj\Debug\net6.0\ref\FinalSuspect.dll
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\GitInfo.cache
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.csproj.AssemblyReference.cache
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.GeneratedMSBuildEditorConfig.editorconfig
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.AssemblyInfoInputs.cache
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.AssemblyInfo.cs
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.csproj.CoreCompileInputs.cache
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.sourcelink.json
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.csproj.Fody.CopyLocal.cache
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.dll
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\refint\FinalSuspect.dll
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.pdb
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\ref\FinalSuspect.dll
