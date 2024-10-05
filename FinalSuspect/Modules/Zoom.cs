@@ -89,7 +89,7 @@ public static class Flag
     public static void NewFlag(string type)
     {
         if (!OneTimeList.Contains(type)) OneTimeList.Add(type);
-    }
+    }        
 
     public static void DeleteFlag(string type)
     {
