@@ -172,15 +172,15 @@ public class Main : BasePlugin
         {
             roleColors = new Dictionary<RoleTypes, string>()
             {
-                {RoleTypes.CrewmateGhost, "#8cffff"},
+                {RoleTypes.CrewmateGhost, "#8CFFFF"},
                 {RoleTypes.GuardianAngel, "#8CFFDB"},
-                {RoleTypes.Crewmate, "#8cffff"},
+                {RoleTypes.Crewmate, "#8CFFFF"},
                 {RoleTypes.Scientist, "#F8FF8C"},
                 {RoleTypes.Engineer, "#A5A8FF"},
                 {RoleTypes.Noisemaker, "#FFC08C"},
                 {RoleTypes.Tracker, "#93FF8C"},
-                {RoleTypes.ImpostorGhost, "#ff1919"},
-                {RoleTypes.Impostor, "#ff1919"},
+                {RoleTypes.ImpostorGhost, "#FF1919"},
+                {RoleTypes.Impostor, "#FF1919"},
                 {RoleTypes.Shapeshifter, "#FF819E"},
                 {RoleTypes.Phantom, "#CA8AFF"},
             };
@@ -216,8 +216,8 @@ public class Main : BasePlugin
 
         Harmony.PatchAll();
 
-        if (!DebugModeManager.AmDebugger) ConsoleManager.DetachConsole();
-        else ConsoleManager.CreateConsole();
+        if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
+        else ConsoleManager.DetachConsole();
 
         FinalSuspect.Logger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
     }

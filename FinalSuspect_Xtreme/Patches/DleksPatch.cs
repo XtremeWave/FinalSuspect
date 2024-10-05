@@ -68,24 +68,24 @@ class AllMapIconsPatch
         __instance.AllMapIcons.Add(DleksIncon);
     }
 }
-[HarmonyPatch(typeof(StringOption), nameof(StringOption.Start))]
-class AutoSelectDleksPatch
-{
-    private static void Postfix(StringOption __instance)
-    {
-        if (__instance.Title == StringNames.GameMapName)
-        {
-            __instance.Value = GameOptionsManager.Instance.CurrentGameOptions.MapId;
-        }
-    }
-}
+//[HarmonyPatch(typeof(StringOption), nameof(StringOption.Start))]
+//class AutoSelectDleksPatch
+//{
+//    private static void Postfix(StringOption __instance)
+//    {
+//        if (__instance.Title == StringNames.GameMapName)
+//        {
+//            __instance.Value = GameOptionsManager.Instance.CurrentGameOptions.MapId;
+//        }
+//    }
+//}
 [HarmonyPatch(typeof(Vent), nameof(Vent.SetButtons))]
 public static class VentSetButtonsPatch
 {
     public static bool ShowButtons = false;
     private static bool Prefix(Vent __instance, [HarmonyArgument(0)] ref bool enabled)
     {
-        if (XtremeGameData.GameStates.DleksIsActive && IntroCutsceneOnDestroyPatch.introDestroyed)
+        if (XtremeGameData.GameStates.MapIsActive(MapNames.Dleks) && IntroCutsceneOnDestroyPatch.introDestroyed)
         {
             enabled = false;
                 ShowButtons = !XtremeGameData.GameStates.IsMeeting;
@@ -94,7 +94,7 @@ public static class VentSetButtonsPatch
     }
     public static void Postfix(Vent __instance, [HarmonyArgument(0)] bool enabled)
     {
-        if (!XtremeGameData.GameStates.DleksIsActive) return;
+        if (!XtremeGameData.GameStates.MapIsActive(MapNames.Dleks)) return;
         if (enabled || !IntroCutsceneOnDestroyPatch.introDestroyed) return;
 
         var setActive = ShowButtons || !PlayerControl.LocalPlayer.inVent && !XtremeGameData.GameStates.IsMeeting;
@@ -129,7 +129,7 @@ class VentTryMoveToVentPatch
 {
     private static void Postfix(Vent __instance, [HarmonyArgument(0)] Vent otherVent)
     {
-        if (__instance == null || otherVent == null || !XtremeGameData.GameStates.DleksIsActive) return;
+        if (__instance == null || otherVent == null || !XtremeGameData.GameStates.MapIsActive(MapNames.Dleks)) return;
 
         VentSetButtonsPatch.ShowButtons = true;
         VentSetButtonsPatch.Postfix(otherVent, false);
@@ -141,6 +141,6 @@ class VentUpdateArrowsPatch
 {
     private static bool Prefix()
     {
-        return !XtremeGameData.GameStates.DleksIsActive;
+        return !XtremeGameData.GameStates.MapIsActive(MapNames.Dleks);
     }
 }

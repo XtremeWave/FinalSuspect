@@ -9,19 +9,18 @@ namespace FinalSuspect;
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch
 {
-    private static GameObject BarSprit;
-    private static GameObject CustomBarSprit;
     public static GameObject FriendsButton;
     public static void Prefix(AccountTab __instance)
     {
-        if (BarSprit = GameObject.Find("BarSprite"))
+        var BarSprit = GameObject.Find("BarSprite");
+        if (BarSprit)
         {
-            CustomBarSprit = new();
+            GameObject CustomBarSprit = new();
             CustomBarSprit.transform.SetParent(BarSprit.transform.parent);
             CustomBarSprit.transform.localScale = BarSprit.transform.localScale;
             CustomBarSprit.transform.localPosition = BarSprit.transform.localPosition;
 
-            static void ResetParent(GameObject obj)
+            void ResetParent(GameObject obj)
             {
                 obj.transform.SetParent(CustomBarSprit.transform);
             }
@@ -47,12 +46,12 @@ public static class AwakeAccountManager
     public static Sprite[] AllRoleCharacterIllustration = {
         Utils.LoadSprite("CI_Crewmate.png", 450f),
         Utils.LoadSprite("CI_HnSEngineer.png", 450f),
-        Utils.LoadSprite("CI_Scientist.png", 450f),
         Utils.LoadSprite("CI_Engineer.png", 450f),
+        Utils.LoadSprite("CI_GuardianAngel.png", 450f),
+        Utils.LoadSprite("CI_Scientist.png", 450f),
         Utils.LoadSprite("CI_Tracker.png", 450f),
         Utils.LoadSprite("CI_Noisemaker.png", 450f),
         Utils.LoadSprite("CI_CrewmateGhost.png", 450f),
-        Utils.LoadSprite("CI_GuardianAngel.png", 450f),
         Utils.LoadSprite("CI_Impostor.png", 450f),
         Utils.LoadSprite("CI_HnSImpostor.png", 450f),
         Utils.LoadSprite("CI_Shapeshifter.png", 450f),

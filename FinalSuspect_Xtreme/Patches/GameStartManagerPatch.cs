@@ -23,7 +23,7 @@ public static class GameStartManagerUpdatePatch
     {
         __instance.MinPlayers = 1;
 
-        if (CreateOptionsPickerPatch.SetDleks)
+        if (CreateOptionsPickerPatch.SetDleks && AmongUsClient.Instance.AmHost)
         {
             if (XtremeGameData.GameStates.IsNormalGame)
                 Main.NormalOptions.MapId = 3;
@@ -142,7 +142,7 @@ public class GameStartManagerPatch
                 HideName.enabled = false;
             }
 
-            if (Main.AutoStartGame.Value)
+            if (Main.AutoStartGame.Value && AmongUsClient.Instance.AmHost)
             {
                 updateTimer++;
                 if (updateTimer >= 50)

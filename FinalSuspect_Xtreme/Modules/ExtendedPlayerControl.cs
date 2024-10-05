@@ -40,7 +40,7 @@ static class ExtendedPlayerControl
     }
     public static bool IsImpostor(this PlayerControl pc)
     {
-        if (!XtremeGameData.GameStates.IsInGame) return false;
+        if (XtremeGameData.GameStates.IsLobby) return false;
         switch (pc.GetRoleType())
         {
             case RoleTypes.Impostor:

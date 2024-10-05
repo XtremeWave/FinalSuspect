@@ -59,8 +59,10 @@ public static class ChatBubblePatch
         if (XtremeGameData.GameStates.IsInGame)
         {
 
-            if (Utils.CanSeeOthersRole(player, out bool bothImp) || bothImp)
+            if (Utils.CanSeeOthersRole(player, out bool bothImp))
                 namecolor = Utils.GetPlayerById(__instance.playerInfo.PlayerId).GetRoleColor();
+            else if (bothImp)
+                namecolor = Utils.GetRoleColor(AmongUs.GameOptions.RoleTypes.Impostor);
             if (!Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive())
                 bgcolor = new Color32(255, 0, 0, 120);
             if (__instance.NameText.color == Color.green)

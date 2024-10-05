@@ -3,8 +3,8 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 
-		<Description>An AmongUs mod with learning and love</Description>
-		<Authors>tukasa0001(EmptyBottle), integral0131, KARPED1EM, XtremeWave</Authors>
+		<Description>Your best functional tool for Among Us.</Description>
+		<Authors>XtremeWave</Authors>
 		
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>

@@ -434,11 +434,9 @@ public static class Utils
         bothImp = PlayerControl.LocalPlayer.IsImpostor() && target.IsImpostor();
 
 
-        if (target.IsLocalPlayer() ||
-            BothDeathCanSee ||
-            bothImp && LocalDead)
-            return true;
-        return false;
+        return target.IsLocalPlayer() ||
+        BothDeathCanSee ||
+        bothImp && LocalDead;
     }
 
 }

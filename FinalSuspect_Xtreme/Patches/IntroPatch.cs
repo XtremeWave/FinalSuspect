@@ -32,6 +32,7 @@ class IntroCutscenePatch
     public static void CoBegin_Prefix()
     {
         XtremeGameData.GameStates.InGame = true;
+        Logger.Info("Game Start", "IntroCutscene");
     }
     [HarmonyPatch(nameof(IntroCutscene.BeginImpostor)), HarmonyPostfix]
     public static void BeginImpostor_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam)

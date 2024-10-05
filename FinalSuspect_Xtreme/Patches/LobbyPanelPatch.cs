@@ -20,7 +20,7 @@ class LobbyInfoPanePatch
     {
         var AspectSize = GameObject.Find("AspectSize");
         AspectSize.transform.FindChild("Background").gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
-        if (XtremeGameData.GameStates.DleksIsActive)
+        if (XtremeGameData.GameStates.MapIsActive(MapNames.Dleks))
             AspectSize.transform.FindChild("MapImage").gameObject.GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite($"DleksBanner-Wordart.png", 160f);
     }
 

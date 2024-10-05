@@ -60,7 +60,7 @@ public static class GetHnsBodyType_Patch
         }
         else if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
         {
-            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
+            if (player.IsImpostor())
             {
                 __result = PlayerBodyTypes.Normal;
                 return;
@@ -70,7 +70,7 @@ public static class GetHnsBodyType_Patch
         }
         else if (AprilFoolsMode.ShouldLongAround())
         {
-            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
+            if (player.IsImpostor())
             {
                 __result = PlayerBodyTypes.LongSeeker;
                 return;
@@ -80,7 +80,7 @@ public static class GetHnsBodyType_Patch
         }
         else
         {
-            if (player.IsImpostor() && XtremeGameData.GameStates.IsInGame)
+            if (player.IsImpostor())
             {
                 __result = PlayerBodyTypes.Seeker;
                 return;

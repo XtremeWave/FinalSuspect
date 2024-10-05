@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches;
 
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.Toggle))]
 class CancelBanMenuStuckPatch
