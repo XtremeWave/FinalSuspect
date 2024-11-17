@@ -43,48 +43,16 @@ internal class EAC
             var rpc = (RpcCalls)callId;
             switch (rpc)
             {
-                //case RpcCalls.SetName:
-                //    string name = sr.ReadString();
-                //    if (sr.BytesRemaining > 0 && sr.ReadBoolean()) return false;
-                //    if (
-                //        ((name.Contains("<size") || name.Contains("size>")) && name.Contains("?") && !name.Contains("color")) ||
-                //        name.Length > 160 ||
-                //        name.Count(f => f.Equals("\"\\n\"")) > 3 ||
-                //        name.Count(f => f.Equals("\n")) > 3 ||
-                //        name.Count(f => f.Equals("\r")) > 3 ||
-                //        name.Contains("░") ||
-                //        name.Contains("▄") ||
-                //        name.Contains("█") ||
-                //        name.Contains("▌") ||
-                //        name.Contains("▒") ||
-                //        name.Contains("习近平")
-                //        )
-                //    {
-                //        WarnHost();
-                //        Report(pc, "非法设置游戏名称");
-                //        Logger.Fatal($"非法修改玩家【{pc.GetClientId()}:{pc.GetRealName()}】的游戏名称，已驳回", "EAC");
-                //        return true;
-                //    }
-                //    break;
+                
+                case RpcCalls.SetName:
                 case RpcCalls.CheckName:
                     if (!XtremeGameData.GameStates.IsLobby)
                     {
                         WarnHost();
-                        Report(pc, "非法修改名字");
                         Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法修改名字，已驳回", "EAC");
                         return true;
                     }
                     break;
-                //case RpcCalls.SetRole:
-                //    var role = (RoleTypes)sr.ReadUInt16();
-                //    if (XtremeGameData.GameStates.IsLobby && (role is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost))
-                //    {
-                //        WarnHost();
-                //        Report(pc, "非法设置状态为幽灵");
-                //        Logger.Fatal($"非法设置玩家【{pc.GetClientId()}:{pc.GetRealName()}】的状态为幽灵，已驳回", "EAC");
-                //        return true;
-                //    }
-                //    break;
                 case RpcCalls.SendChatNote:
                     if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsInTask)
                     {
@@ -136,19 +104,19 @@ internal class EAC
                         return true;
                     }
                     break;
-                case RpcCalls.SetColor:
-                case RpcCalls.CheckColor:
-                    var color = sr.ReadByte();
-                    if (pc.Data.DefaultOutfit.ColorId != -1 &&
-                        (Main.AllPlayerControls.Where(x => x.Data.DefaultOutfit.ColorId == color).Count() >= 5
-                        || XtremeGameData.GameStates.IsInGame || color < 0 || color > 18))
-                    {
-                        WarnHost();
-                        Report(pc, "非法设置颜色");
-                        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法设置颜色，已驳回", "EAC");
-                        return true;
-                    }
-                    break;
+                //case RpcCalls.SetColor:
+                //case RpcCalls.CheckColor:
+                //    var color = sr.ReadByte();
+                //    if (pc.Data.DefaultOutfit.ColorId != -1 &&
+                //        (Main.AllPlayerControls.Where(x => x.Data.DefaultOutfit.ColorId == color).Count() >= 5
+                //        || XtremeGameData.GameStates.IsInGame || color < 0 || color > 18))
+                //    {
+                //        WarnHost();
+                //        Report(pc, "非法设置颜色");
+                //        Logger.Fatal($"玩家【{pc.GetClientId()}:{pc.GetRealName()}】非法设置颜色，已驳回", "EAC");
+                //        return true;
+                //    }
+                //    break;
                 case RpcCalls.MurderPlayer:
                     if (XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsMeeting)
                     {

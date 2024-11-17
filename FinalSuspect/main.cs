@@ -19,7 +19,6 @@ using FinalSuspect.Modules.Managers;
 namespace FinalSuspect;
 
 [BepInPlugin(PluginGuid, "FinalSuspect", PluginVersion)]
-[BepInIncompatibility("jp.ykundesu.supernewroles")]
 [BepInProcess("Among Us.exe")]
 public class Main : BasePlugin
 {
@@ -36,23 +35,23 @@ public class Main : BasePlugin
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     // == 版本相关设定 / Version Config ==
-    public const string LowestSupportedVersion = "2024.8.13";
+    public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241004";
+    public const string DisplayedVersion_Date = "20241117";
     /// <summary>
     /// 测试信息；
-    /// 支持的内容：Alpha, Beta, Canary, Dev, Preview
+    /// 支持的内容：Alpha, Beta, Canary, Dev, Pre-release
     /// </summary>
     public const string DisplayedVersion_TestText = "Dev";
-    public const int DisplayedVersion_TestCreation = 8;
+    public const int DisplayedVersion_TestCreation = 31;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
 
 
     // == 链接相关设定 / Link Config ==
-    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FSX/" : "https://www.xtreme.net.cn/en/project/FSX/";
+    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
     public static readonly string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
@@ -131,7 +130,7 @@ public class Main : BasePlugin
         Instance = this;
 
         //Client Options
-        HideName = Config.Bind("Client Options", "Hide Game Code Name", "FSX");
+        HideName = Config.Bind("Client Options", "Hide Game Code Name", "FS");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ColorHelper.ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
@@ -152,6 +151,7 @@ public class Main : BasePlugin
         FinalSuspect.Logger.Enable();
         FinalSuspect.Logger.Disable("SwitchSystem");
         FinalSuspect.Logger.Disable("ModNews");
+        FinalSuspect.Logger.Disable("CancelPet");
         if (!DebugModeManager.AmDebugger)
         {
             FinalSuspect.Logger.Disable("test");

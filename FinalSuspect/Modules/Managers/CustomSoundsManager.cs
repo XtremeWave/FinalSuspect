@@ -140,9 +140,9 @@ public class AudioManagementPlaySoundPatch
 {
     public static bool Prefix(SoundManager __instance, [HarmonyArgument(0)] AudioClip clip, [HarmonyArgument(1)] bool loop)
     {
-        var ip = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(ip || disableVanilla) || !loop;
+        return !(isPlaying || disableVanilla) || !loop;
     }
 
 }
@@ -152,9 +152,9 @@ public class AudioManagementPlayDynamicandNamedSoundPatch
 {
     public static bool Prefix([HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
     {
-        var ip = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(ip || disableVanilla) || !loop;
+        return !(isPlaying || disableVanilla) || !loop;
     }
 }
 
@@ -163,8 +163,8 @@ public class AudioManagementCrossFadeSoundPatch
 {
     public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip)
     {
-        var ip = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(ip || disableVanilla);
+        return !(isPlaying || disableVanilla);
     }
 }

@@ -131,7 +131,7 @@ internal class VersionShowerStartPatch
         {
             string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={ColorHelper.TeamColor}>XtremeWave</color>");
             credentialsText += "\n";
-            string versionText = $"<color={ColorHelper.ModColor}>FSX</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+            string versionText = $"<color={ColorHelper.ModColor}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
         versionText = $"<color={ColorHelper.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";

@@ -7,9 +7,9 @@ class ServerUpdatePatch
 {
     static void Postfix(ref int __result)
     {
-        if (XtremeGameData.GameStates.IsLocalPlayerGame)
+        if (XtremeGameData.GameStates.IsLocalGame)
         {
-            Logger.Info($"IsLocalPlayerGame: {__result}", "VersionServer");
+            Logger.Info($"IsLocalGame: {__result}", "VersionServer");
         }
         if (XtremeGameData.GameStates.IsOnlineGame)
         {

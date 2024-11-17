@@ -1,7 +1,7 @@
 ﻿#Number:100000
 #Title:终极嫌疑 v1.0
 #SubTitle:★★★★返璞归真★★★★
-#ShortTitle:★FSX v1.0
+#ShortTitle:★FS v1.0
 #Date:2024-08-14T19:00:00Z
 #-----------------------------
 # 简体中文

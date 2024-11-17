@@ -1,7 +1,7 @@
 ﻿#Number:100000
 #Title:Final Suspect v1.0
 #SubTitle:★★★★return to simplicity★★★★
-#ShortTitle:★FSX v1.0
+#ShortTitle:★FS v1.0
 #Date:2024-08-14T19:00:00Z
 #-----------------------------
 # English
@@ -76,7 +76,7 @@ Produced by: Niko, Slok
 Produced by: Slok
 - The last results now show the kill count, deathreason, task count and the murderer
 Produced by: Slok
-- Map: Dleks eht
+- Map: Dleks
 Source: Town Of Host : Enhanced
 
 ## Remake

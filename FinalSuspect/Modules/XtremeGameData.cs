@@ -153,7 +153,7 @@ x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
         public static bool IsInGame => InGame || IsFreePlay;
         public static bool IsNotJoined => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.NotJoined;
         public static bool IsOnlineGame => AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame;
-        public static bool IsLocalPlayerGame => AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame;
+        public static bool IsLocalGame => AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame;
         public static bool IsFreePlay => AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay;
         public static bool IsInTask => IsInGame && !MeetingHud.Instance;
         public static bool IsMeeting => IsInGame && MeetingHud.Instance;

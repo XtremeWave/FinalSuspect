@@ -15,8 +15,15 @@ public static class Zoom
     private static bool ResetButtons = false;
     public static void Postfix()
     {
-        if (!XtremeGameData.GameStates.IsLobby && !XtremeGameData.GameStates.IsDead) return;
-        if ((XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby) && !XtremeGameData.GameStates.IsMeeting && XtremeGameData.GameStates.IsCanMove && !InGameRoleInfoMenu.Showing)
+        if (
+            !XtremeGameData.GameStates.IsLobby && 
+            !XtremeGameData.GameStates.IsDead && 
+            !XtremeGameData.GameStates.IsFreePlay
+            ) return;
+
+        if (
+            (XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsFreePlay) 
+            && !XtremeGameData.GameStates.IsMeeting && XtremeGameData.GameStates.IsCanMove && !InGameRoleInfoMenu.Showing)
         {
             if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
             if (Input.mouseScrollDelta.y > 0)

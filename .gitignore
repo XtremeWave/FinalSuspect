@@ -60,3 +60,5 @@ FinalSuspect/FodyWeavers.xsd
 /FinalSuspect/obj/Debug/net6.0/FinalSuspect.sourcelink.json
 /FinalSuspect/obj/Debug/net6.0/FinalSuspect.AssemblyInfo.cs
 /FinalSuspect/obj/Debug/net6.0/FinalSuspect.AssemblyInfoInputs.cache
+/FinalSuspect/obj/Debug/net6.0/GitInfo.cache
+/FinalSuspect/obj/Release/net6.0/GitInfo.cache

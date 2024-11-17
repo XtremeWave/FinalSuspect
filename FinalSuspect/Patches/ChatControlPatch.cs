@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using FinalSuspect.Modules.Managers;
+using Il2CppMono.Net;
 
 namespace FinalSuspect;
 
@@ -73,9 +74,28 @@ internal class ChatCommands
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.AddChat))]
 internal class ChatAdd
 {
-    public static void Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer, [HarmonyArgument(1)] string chatText)
+    public static void Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer,  [HarmonyArgument(1)] ref string chatText)
     {
-
+        if (chatText.Contains("习近平") ||
+            chatText.Contains("習近平") ||
+            chatText.Contains("共产党") ||
+            chatText.Contains("共產黨") ||
+            chatText.Contains("国民党") ||
+            chatText.Contains("國民黨") ||
+            chatText.Contains("民国") ||
+            chatText.Contains("民國") ||
+            chatText.Contains("独立") ||
+            chatText.Contains("獨立")
+            )
+        {
+            int length = chatText.Length;
+            chatText = "<color=#ff1919>";
+            for (int i = 0; i < length; i++)
+            {
+                chatText += "█";
+            }
+            chatText += "</color>";
+        }
         //SpamManager.CheckSpam(sourcePlayer, ref chatText);
 
     }

@@ -23,14 +23,14 @@ public static class GameStartManagerUpdatePatch
     {
         __instance.MinPlayers = 1;
 
-        if (CreateOptionsPickerPatch.SetDleks && AmongUsClient.Instance.AmHost)
-        {
-            if (XtremeGameData.GameStates.IsNormalGame)
-                Main.NormalOptions.MapId = 3;
+        //if (CreateOptionsPickerPatch.SetDleks && AmongUsClient.Instance.AmHost)
+        //{
+        //    if (XtremeGameData.GameStates.IsNormalGame)
+        //        Main.NormalOptions.MapId = 3;
 
-            else if (XtremeGameData.GameStates.IsHideNSeek)
-                Main.HideNSeekOptions.MapId = 3;
-        }
+        //    else if (XtremeGameData.GameStates.IsHideNSeek)
+        //        Main.HideNSeekOptions.MapId = 3;
+        //}
     }
 }
 public class GameStartManagerPatch

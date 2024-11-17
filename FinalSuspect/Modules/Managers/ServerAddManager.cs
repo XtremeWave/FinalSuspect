@@ -16,9 +16,6 @@ public static class ServerAddManager
     [PluginModuleInitializer]
     public static void Init()
     {
-
-
-
         serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos = new();
         regionInfos.Add(CreateHttp("game.xtreme.net.cn", $"XtremeWave[HongKong]", 443, true));
@@ -28,7 +25,7 @@ public static class ServerAddManager
         if (Translator.IsChineseUser)
         {
             regionInfos.Add(CreateHttp("aucn.niko233.me", "Niko233[AS_CN]", 443, true));
-            regionInfos.Add(CreateHttp("aucn2.niko233.m", "Niko233[AS_CN2]", 443, true));
+            regionInfos.Add(CreateHttp("aucn2.niko233.me", "Niko233[AS_CN2]", 443, true));
 
             regionInfos.Add(CreateHttp("au-sh.pafyx.top", "梦服上海 (新)", 22000, false));
             regionInfos.Add(CreateHttp("124.222.148.195", "小猫私服", 22000, false));

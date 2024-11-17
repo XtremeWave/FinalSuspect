@@ -167,9 +167,32 @@ class PlayerControlCompleteTaskPatch
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckName))]
 class CmdCheckNameVersionCheckPatch
 {
-    public static void Postfix()
+    public static void Postfix(PlayerControl __instance, ref string name)
     {
-        if (AmongUsClient.Instance.AmHost)
-           RPC.RpcVersionCheck();
+
+        if (name.Contains("习维尼") || 
+            name.Contains("习近平") || 
+            name.Contains("習近平") ||
+            name.Contains("共产党") ||
+            name.Contains("共產黨") ||
+            name.Contains("国民党") ||
+            name.Contains("國民黨") ||
+            name.Contains("民国") ||
+            name.Contains("民國") || 
+            name.Contains("独立") ||
+            name.Contains("獨立")
+            )
+        {
+            int length = name.Length;
+            name = "<color=#ff1919>";
+            for (int i = 0; i < length; i++)
+            {
+                name += "█";
+            }
+            name += "</color>";
+        }
+        if (__instance.OwnerId == AmongUsClient.Instance.HostId)
+            Main.HostNickName = name;
+
     }
 }

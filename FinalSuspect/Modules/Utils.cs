@@ -176,7 +176,7 @@ public static class Utils
                 Logger.Warn($"文件不存在：{path}", "LoadTexture");
                 goto InDLL;
             }
-
+            
             byte[] fileData = File.ReadAllBytes(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             if (ImageConversion.LoadImage(texture, fileData))
@@ -268,7 +268,7 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null) player = XtremeGameData.XtremePlayerData.GetPlayerById(playerId);
+        if (player == null && playerId != 255) player = XtremeGameData.XtremePlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -388,7 +388,7 @@ public static class Utils
                 }
             case SystemTypes.Comms:
                 {
-                    if (mapId is 1 or 3 or 5)
+                    if (mapId is 1 or 5)
                     {
                         var HqHudSystemType = ShipStatus.Instance.Systems[type].Cast<HqHudSystemType>();
                         return HqHudSystemType != null && HqHudSystemType.IsActive;

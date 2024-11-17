@@ -91,7 +91,7 @@ public static class AudioManager
     }
 
 }
-public enum FSXAudios
+public enum FSAudios
 {
     UnOfficial,
     GongXiFaCai__Andy_Lau,
@@ -117,7 +117,7 @@ public class FinalMusic
     public string Author;
     public string Path;
 
-    public FSXAudios CurrectAudio;
+    public FSAudios CurrectAudio;
     public AudiosStates CurrectAudioStates;
     public AudiosStates LastAudioStates;
 
@@ -127,7 +127,7 @@ public class FinalMusic
 
     public static void InitializeAll()
     {
-        foreach (var file in EnumHelper.GetAllValues<FSXAudios>().ToList())
+        foreach (var file in EnumHelper.GetAllValues<FSAudios>().ToList())
         {
             new FinalMusic(music: file);
         }
@@ -160,9 +160,9 @@ public class FinalMusic
     }
     private static readonly object finalMusicsLock = new();
 
-    public FinalMusic(string name = "", FSXAudios music = FSXAudios.UnOfficial)
+    public FinalMusic(string name = "", FSAudios music = FSAudios.UnOfficial)
     {
-        if (music != FSXAudios.UnOfficial)
+        if (music != FSAudios.UnOfficial)
         {
             var Part = music.ToString().Split("__");
             FileName = Part[0];
@@ -174,7 +174,7 @@ public class FinalMusic
             FileName = Name = name;
             Author = "";
         }
-        UnOfficial = music == FSXAudios.UnOfficial;
+        UnOfficial = music == FSAudios.UnOfficial;
         CurrectAudio = music;
         Path = SOUNDS_PATH + "/" + FileName + ".wav";
         CurrectAudioStates = LastAudioStates = ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;

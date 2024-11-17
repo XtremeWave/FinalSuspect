@@ -11,7 +11,7 @@ namespace FinalSuspect.Modules.Managers;
 
 public static class SpamManager
 {
-    private static readonly string BANEDWORDS_FILE_PATH = "./TONEX_Data/BanWords.txt";
+    private static readonly string BANEDWORDS_FILE_PATH = "./FinalSuspect_Data/BanWords.txt";
     public static List<string> BanWords = new();
 
     [PluginModuleInitializer]
@@ -26,13 +26,13 @@ public static class SpamManager
         {
             try
             {
-                if (!Directory.Exists(@"TONEX_Data")) Directory.CreateDirectory(@"TONEX_Data");
+                if (!Directory.Exists(@"FinalSuspect_Data")) Directory.CreateDirectory(@"FinalSuspect_Data");
                 if (File.Exists(@"./BanWords.txt")) File.Move(@"./BanWords.txt", BANEDWORDS_FILE_PATH);
                 else
                 {
                     string fileName = GetUserLangByRegion().ToString();
                     Logger.Warn($"Create New BanWords: {fileName}", "SpamManager");
-                    File.WriteAllText(BANEDWORDS_FILE_PATH, GetResourcesTxt($"TONEX.Resources.Configs.BanWords.{fileName}.txt"));
+                    File.WriteAllText(BANEDWORDS_FILE_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt"));
                 }
             }
             catch (Exception ex)

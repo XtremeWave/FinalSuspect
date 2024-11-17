@@ -53,7 +53,7 @@ public static class HostInfoPanelUpdatePatch
             string hostName = Main.HostNickName;
             string youLabel = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.HostYouLabel);
 
-            HostText.text = $"<color=#{htmlStringRgb}>{hostName}</color>  <size=90%><b><font=\"Barlow-BoldItalic SDF\" material=\"Barlow-BoldItalic SDF Outline\">({youLabel})";
+            HostText.text = $"<color=#{htmlStringRgb}>{hostName}</color>  <size=90%><b><font=\"Barlow-BoldItalic SDF\" material=\"Barlow-BoldItalic SDF Outline\">{youLabel}";
         }
     }
 }
