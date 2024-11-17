@@ -290,6 +290,14 @@ internal class EAC
                 Report(pc, "SM");
                 HandleCheat(pc, GetString("EAC.CheatDetected.EAC"));
                 return true;
+            case 119: 
+                Report(pc, "KN");
+                HandleCheat(pc, GetString("EAC.CheatDetected.EAC"));
+                return true;
+            case unchecked((byte)250): 
+                Report(pc, "KN");
+                HandleCheat(pc, GetString("EAC.CheatDetected.EAC"));
+                return true;
         }
         return true;
     }
