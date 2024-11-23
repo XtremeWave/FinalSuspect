@@ -26,7 +26,7 @@ internal class RPCHandlerPatch
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
 
-        //if (EAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost)
+        //if (FAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost)
         //{
         //    Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
         //    return false;
@@ -94,7 +94,7 @@ internal class RPCHandlerPatch
             Logger.Warn($"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
             {
-                if (!EAC.ReceiveInvalidRpc(player, callId)) return true;
+                if (!FAC.ReceiveInvalidRpc(player, callId)) return true;
                 Utils.KickPlayer(player.GetClientId(), false, "InvalidRPC");
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                 RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));

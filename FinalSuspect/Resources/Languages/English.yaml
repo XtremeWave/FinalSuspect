@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] was kicked because its name matched [{1}]"
 Message.BanedByBanList: "[{0}] was banned because they were banned in the past."
-Message.BanedByEACList: "【{0}】 has been banned because he is in EAC list of Banned people."
+Message.BanedByFACList: "【{0}】 has been banned because he is in FAC list of Banned people."
 Message.DumpfileSaved: "The log file was successfully saved to the desktop, filename: {0}"
 Message.KickedByNoFriendCode: "[{0}] was kicked because their friend code does not exist."
 Message.AddedPlayerToBanList: "Added [{0}] to the ban list"
-Message.KickedByEAC: "[{0}]Kicked by EAC, reason: {1}"
-Message.BanedByEAC: "【{0}】Kicked by EAC, reason:{1}"
-Message.NoticeByEAC: "[{0}] Detected: {1}"
+Message.KickedByFAC: "[{0}]Kicked by FAC, reason: {1}"
+Message.BanedByFAC: "【{0}】Kicked by FAC, reason:{1}"
+Message.NoticeByFAC: "[{0}] Detected: {1}"
 Message.WarnWhoSayBanWord: "{0} said a banned word~"
 
 # 通知 / Notifications
@@ -213,10 +213,10 @@ ErrorLevel1: "Bugs may occur."
 ErrorLevel2: "This may be a bug."
 ErrorLevel3: "This version shouldn't have been released."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Warning: EAC detected High Level of cheats."
-EAC.CheatDetected.LowLevel: "Warning: EAC detected Low Level of cheats. One of the players is hacking."
-EAC.CheatDetected.EAC: "Using cheat programs (e.g., AUM, YuMenu, SM, etc.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Warning: FAC detected High Level of cheats."
+FAC.CheatDetected.LowLevel: "Warning: FAC detected Low Level of cheats. One of the players is hacking."
+FAC.CheatDetected.FAC: "Using cheat programs (e.g., AUM, YuMenu, SM, etc.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Contributors"
@@ -234,8 +234,8 @@ DCNotify.IncorrectVersion: "Your version of Among Us is different from this room
 DCNotify.Description: "You were kicked out of game.\nBecause: {0}"
 DCNotify.DenyName: "Your nickname contains irregular characters"
 DCNotify.BanList: "You have been banned by host"
-DCNotify.EACList: "You have been banned by EAC"
-DCNotify.CheatDetected: "You have been detected as suspected of cheating by EAC"
+DCNotify.FACList: "You have been banned by FAC"
+DCNotify.CheatDetected: "You have been detected as suspected of cheating by FAC"
 DCNotify.InvalidRPC: "You may have installed a different mod than host or your mod has been maliciously modified"
 DCNotify.ModVersionIncorrect: "Your mod version is different from the host"
 DCNotify.LowLevel: "Your lv. does not meet to the requirement of this room"

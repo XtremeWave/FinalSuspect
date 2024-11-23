@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Bituin na Bumagsak Kasama ng Pagbagsak ng Dome -
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] ay tinanggal dahil sa pangalan na pagkakatugma [{1}]"
 Message.BanedByBanList: "[{0}] ay idinagdag sa blacklist dahil sa paglalarawan sa blacklist."
-Message.BanedByEACList: "【{0}】 ay idinagdag sa EAC list dahil sa pagiging nasa blacklist."
+Message.BanedByFACList: "【{0}】 ay idinagdag sa FAC list dahil sa pagiging nasa blacklist."
 Message.DumpfileSaved: "Ang log ng pagkakatugma ay matagumpay na nai-save sa desktop, pangalan ng pagkakatugma: {0}"
 Message.KickedByNoFriendCode: "[{0}] ay tinanggal dahil sa kakulangan ng code ng kaibigan."
 Message.AddedPlayerToBanList: "Idinagdag ang [{0}] sa blacklist"
-Message.KickedByEAC: "[{0}] ay tinanggal ng EAC, dahilan: {1}"
-Message.BanedByEAC: "【{0}】 Tinanggal ng EAC, dahilan: {1}"
-Message.NoticeByEAC: "[{0}] Naitala: {1}"
+Message.KickedByFAC: "[{0}] ay tinanggal ng FAC, dahilan: {1}"
+Message.BanedByFAC: "【{0}】 Tinanggal ng FAC, dahilan: {1}"
+Message.NoticeByFAC: "[{0}] Naitala: {1}"
 Message.WarnWhoSayBanWord: "{0} ay nagsabi ng bawal na salita~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "Maaaring may mga kahinaan."
 ErrorLevel2: "Maaaring ito ay isang error."
 ErrorLevel3: "Hindi dapat i-release ang bersyon na ito."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Babala: Nakita ang mataas na antas ng cheat sa EAC."
-EAC.CheatDetected.LowLevel: "Babala: Nakita ang mababang antas ng cheat sa EAC. May isang hack sa mga manlalaro."
-EAC.CheatDetected.EAC: "Paggamit ng cheat program (e.g., AUM, YuMenu, SM, atbp.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Babala: Nakita ang mataas na antas ng cheat sa FAC."
+FAC.CheatDetected.LowLevel: "Babala: Nakita ang mababang antas ng cheat sa FAC. May isang hack sa mga manlalaro."
+FAC.CheatDetected.FAC: "Paggamit ng cheat program (e.g., AUM, YuMenu, SM, atbp.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Mga Nag-ambag"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Ang iyong bersyon ng Among Us ay naiiba mula sa sili
 DCNotify.Description: "Ikaw ay tinanggal mula sa laro.\nDahil sa: {0}"
 DCNotify.DenyName: "Ang iyong palayaw ay naglalaman ng hindi pangkaraniwang mga karakter"
 DCNotify.BanList: "Ikaw ay na-ban ng host"
-DCNotify.EACList: "Ikaw ay na-ban ng EAC"
-DCNotify.CheatDetected: "Ikaw ay na-detect na may posibleng pandaraya ng EAC"
+DCNotify.FACList: "Ikaw ay na-ban ng FAC"
+DCNotify.CheatDetected: "Ikaw ay na-detect na may posibleng pandaraya ng FAC"
 DCNotify.InvalidRPC: "Maaaring naka-install ka ng ibang mod kaysa sa host o ang iyong mod ay malisyosong nabago"
 DCNotify.ModVersionIncorrect: "Ang bersyon ng iyong mod ay naiiba mula sa host"
 DCNotify.LowLevel: "Ang iyong antas ay hindi tumutugma sa kinakailangan ng silid na ito"

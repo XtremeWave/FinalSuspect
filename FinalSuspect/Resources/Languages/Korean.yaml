@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] 닉네임이 [{1}]와 일치하여 추방되었습니다."
 Message.BanedByBanList: "[{0}] 과거에 금지된 플레이어로 인해 금지되었습니다."
-Message.BanedByEACList: "【{0}】는 EAC 금지 목록에 있어 금지되었습니다."
+Message.BanedByFACList: "【{0}】는 FAC 금지 목록에 있어 금지되었습니다."
 Message.DumpfileSaved: "로그 파일이 성공적으로 데스크탑에 저장되었습니다. 파일 이름: {0}"
 Message.KickedByNoFriendCode: "[{0}]의 친구 코드가 존재하지 않아 추방되었습니다."
 Message.AddedPlayerToBanList: "[{0}]를 금지 목록에 추가했습니다."
-Message.KickedByEAC: "[{0}] EAC에 의해 추방되었습니다. 이유: {1}"
-Message.BanedByEAC: "【{0}】 EAC에 의해 추방되었습니다. 이유: {1}"
-Message.NoticeByEAC: "[{0}] 감지됨: {1}"
+Message.KickedByFAC: "[{0}] FAC에 의해 추방되었습니다. 이유: {1}"
+Message.BanedByFAC: "【{0}】 FAC에 의해 추방되었습니다. 이유: {1}"
+Message.NoticeByFAC: "[{0}] 감지됨: {1}"
 Message.WarnWhoSayBanWord: "{0}가 금지된 말을 했습니다~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "버그가 발생할 수 있습니다."
 ErrorLevel2: "버그일 수 있습니다."
 ErrorLevel3: "이 버전은 출시되어서는 안됩니다."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "경고: EAC에서 고급 치트를 감지했습니다."
-EAC.CheatDetected.LowLevel: "경고: EAC에서 저급 치트를 감지했습니다. 플레이어 중 하나가 해킹하고 있습니다."
-EAC.CheatDetected.EAC: "치트 프로그램 사용 중 (예: AUM, YuMenu, SM 등)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "경고: FAC에서 고급 치트를 감지했습니다."
+FAC.CheatDetected.LowLevel: "경고: FAC에서 저급 치트를 감지했습니다. 플레이어 중 하나가 해킹하고 있습니다."
+FAC.CheatDetected.FAC: "치트 프로그램 사용 중 (예: AUM, YuMenu, SM 등)"
 
 # 模组信息 / Mod Infos
 Contributors: "기여자"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Among Us 버전이 이 방과 다릅니다."
 DCNotify.Description: "게임에서 추방되었습니다.\n사유: {0}"
 DCNotify.DenyName: "닉네임에 불규칙한 문자가 포함되어 있습니다"
 DCNotify.BanList: "호스트에 의해 금지되었습니다"
-DCNotify.EACList: "EAC에 의해 금지되었습니다"
-DCNotify.CheatDetected: "EAC에 의해 치트 사용이 감지되었습니다"
+DCNotify.FACList: "FAC에 의해 금지되었습니다"
+DCNotify.CheatDetected: "FAC에 의해 치트 사용이 감지되었습니다"
 DCNotify.InvalidRPC: "호스트와 다른 모드를 설치했거나 모드가 악의적으로 수정되었을 수 있습니다"
 DCNotify.ModVersionIncorrect: "모드 버전이 호스트와 다릅니다"
 DCNotify.LowLevel: "레벨이 이 방의 요구 사항을 충족하지 않습니다"

@@ -99,7 +99,7 @@ public class ErrorText : MonoBehaviour
         {
                 text += $"{GetString($"ErrorLevel{maxLevel}")}";
             if (CheatDetected)
-                text = SBDetected ? GetString("EAC.CheatDetected.HighLevel") : GetString("EAC.CheatDetected.LowLevel");
+                text = SBDetected ? GetString("FAC.CheatDetected.HighLevel") : GetString("FAC.CheatDetected.LowLevel");
             Text.enabled = true;
         }
         if (XtremeGameData.GameStates.IsInGame && maxLevel != 3 && !CheatDetected)

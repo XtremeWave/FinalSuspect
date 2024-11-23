@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] werd eruit gegooid omdat de naam overeenkwam met [{1}]"
 Message.BanedByBanList: "[{0}] werd verbannen omdat ze eerder zijn verbannen."
-Message.BanedByEACList: "【{0}】 is verbannen omdat hij op de EAC-lijst van Verbannen Personen staat."
+Message.BanedByFACList: "【{0}】 is verbannen omdat hij op de FAC-lijst van Verbannen Personen staat."
 Message.DumpfileSaved: "Het logbestand is succesvol opgeslagen op het bureaublad, bestandsnaam: {0}"
 Message.KickedByNoFriendCode: "[{0}] werd eruit gegooid omdat hun vriendcode niet bestaat."
 Message.AddedPlayerToBanList: "Toegevoegd [{0}] aan de banlijst"
-Message.KickedByEAC: "[{0}] Verwijderd door EAC, reden: {1}"
-Message.BanedByEAC: "【{0}】 Verwijderd door EAC, reden: {1}"
-Message.NoticeByEAC: "[{0}] Gedetecteerd: {1}"
+Message.KickedByFAC: "[{0}] Verwijderd door FAC, reden: {1}"
+Message.BanedByFAC: "【{0}】 Verwijderd door FAC, reden: {1}"
+Message.NoticeByFAC: "[{0}] Gedetecteerd: {1}"
 Message.WarnWhoSayBanWord: "{0} heeft een verboden woord gezegd~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "Fouten kunnen optreden."
 ErrorLevel2: "Dit kan een fout zijn."
 ErrorLevel3: "Deze versie zou niet moeten zijn uitgebracht."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Waarschuwing: EAC heeft een hoog niveau van cheats gedetecteerd."
-EAC.CheatDetected.LowLevel: "Waarschuwing: EAC heeft een laag niveau van cheats gedetecteerd. Een van de spelers is aan het hacken."
-EAC.CheatDetected.EAC: "Het gebruik van cheatprogramma's (bijv. AUM, YuMenu, SM, enz.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Waarschuwing: FAC heeft een hoog niveau van cheats gedetecteerd."
+FAC.CheatDetected.LowLevel: "Waarschuwing: FAC heeft een laag niveau van cheats gedetecteerd. Een van de spelers is aan het hacken."
+FAC.CheatDetected.FAC: "Het gebruik van cheatprogramma's (bijv. AUM, YuMenu, SM, enz.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Bijdragers"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Jouw versie van Among Us verschilt van deze kamer"
 DCNotify.Description: "Je bent uit het spel verwijderd.\nOmdat: {0}"
 DCNotify.DenyName: "Je bijnaam bevat onregelmatige tekens"
 DCNotify.BanList: "Je bent verbannen door de host"
-DCNotify.EACList: "Je bent verbannen door EAC"
-DCNotify.CheatDetected: "Je bent gedetecteerd als verdacht van cheats door EAC"
+DCNotify.FACList: "Je bent verbannen door FAC"
+DCNotify.CheatDetected: "Je bent gedetecteerd als verdacht van cheats door FAC"
 DCNotify.InvalidRPC: "Je hebt mogelijk een andere mod geïnstalleerd dan de host of je mod is kwaadwillig gewijzigd"
 DCNotify.ModVersionIncorrect: "Jouw modversie verschilt van de host"
 DCNotify.LowLevel: "Je niveau voldoet niet aan de vereisten van deze kamer"

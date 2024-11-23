@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Sterne fallen mit der Kuppel, die zerbricht - Sl
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] wurde entfernt, da sein Name mit [{1}] übereinstimmte."
 Message.BanedByBanList: "[{0}] wurde entfernt, da er zuvor auf der Bannliste stand."
-Message.BanedByEACList: "[{0}] wurde entfernt, da er auf der EAC-Bannliste steht."
+Message.BanedByFACList: "[{0}] wurde entfernt, da er auf der FAC-Bannliste steht."
 Message.DumpfileSaved: "Die Logdatei wurde erfolgreich auf dem Desktop gespeichert, Dateiname: {0}"
 Message.KickedByNoFriendCode: "[{0}] wurde entfernt, da sein Freundescode nicht existiert."
 Message.AddedPlayerToBanList: "Spieler [{0}] zur Bannliste hinzugefügt"
-Message.KickedByEAC: "[{0}] wurde von EAC entfernt, Grund: {1}"
-Message.BanedByEAC: "[{0}] wurde von EAC entfernt, Grund: {1}"
-Message.NoticeByEAC: "[{0}] Erkannt: {1}"
+Message.KickedByFAC: "[{0}] wurde von FAC entfernt, Grund: {1}"
+Message.BanedByFAC: "[{0}] wurde von FAC entfernt, Grund: {1}"
+Message.NoticeByFAC: "[{0}] Erkannt: {1}"
 Message.WarnWhoSayBanWord: "{0} hat ein verbotenes Wort gesagt~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "Fehler können auftreten."
 ErrorLevel2: "Das könnte ein Fehler sein."
 ErrorLevel3: "Diese Version hätte nicht veröffentlicht werden sollen."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Warnung: EAC hat ein hohes Niveau von Cheats erkannt."
-EAC.CheatDetected.LowLevel: "Warnung: EAC hat ein niedriges Niveau von Cheats erkannt. Einer der Spieler hackt."
-EAC.CheatDetected.EAC: "Verwendung von Cheat-Programmen (z.B. AUM, YuMenu, SM, etc.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Warnung: FAC hat ein hohes Niveau von Cheats erkannt."
+FAC.CheatDetected.LowLevel: "Warnung: FAC hat ein niedriges Niveau von Cheats erkannt. Einer der Spieler hackt."
+FAC.CheatDetected.FAC: "Verwendung von Cheat-Programmen (z.B. AUM, YuMenu, SM, etc.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Beitragsleistende"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Deine Version von Among Us unterscheidet sich von di
 DCNotify.Description: "Du wurdest aus dem Spiel entfernt.\nGrund: {0}"
 DCNotify.DenyName: "Dein Spitzname enthält unzulässige Zeichen"
 DCNotify.BanList: "Du wurdest vom Gastgeber gebannt"
-DCNotify.EACList: "Du wurdest von EAC gebannt"
-DCNotify.CheatDetected: "Du wurdest von EAC als verdächtig beim Cheaten erkannt"
+DCNotify.FACList: "Du wurdest von FAC gebannt"
+DCNotify.CheatDetected: "Du wurdest von FAC als verdächtig beim Cheaten erkannt"
 DCNotify.InvalidRPC: "Du hast möglicherweise einen anderen Mod als der Gastgeber installiert oder dein Mod wurde böswillig verändert"
 DCNotify.ModVersionIncorrect: "Deine Mod-Version stimmt nicht mit der des Gastgebers überein"
 DCNotify.LowLevel: "Dein Level entspricht nicht den Anforderungen dieses Raums"

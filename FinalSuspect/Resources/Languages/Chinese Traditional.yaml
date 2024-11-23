@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "星隕天墜 -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "【{0}】被踢出，因其暱稱包含違禁詞【{1}】"
 Message.BanedByBanList: "【{0}】因在封禁名單內被踢出"
-Message.BanedByEACList: "【{0}】因在EAC封禁名單內被踢出"
+Message.BanedByFACList: "【{0}】因在FAC封禁名單內被踢出"
 Message.DumpfileSaved: "日誌文件已成功保存到桌面上了，文件名為：{0}"
 Message.KickedByNoFriendCode: "【{0}】因該房禁止未登入玩家被請離"
 Message.AddedPlayerToBanList: "【{0}】被添加至黑名單"
-Message.KickedByEAC: "【{0}】被EAC踢出，理由：{1}"
-Message.BanedByEAC: "【{0}】被EAC封禁，理由：{1}"
-Message.NoticeByEAC: "檢測到【{0}】：{1}"
+Message.KickedByFAC: "【{0}】被FAC踢出，理由：{1}"
+Message.BanedByFAC: "【{0}】被FAC封禁，理由：{1}"
+Message.NoticeByFAC: "檢測到【{0}】：{1}"
 Message.WarnWhoSayBanWord: "{0}說了違禁詞~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "可能同時產生多個bug"
 ErrorLevel2: "可能出現bug"
 ErrorLevel3: "未發布版本"
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "警告：EAC正在抵禦炸房外挂"
-EAC.CheatDetected.LowLevel: "警告：EAC檢測到可能存在作弊玩家"
-EAC.CheatDetected.EAC: "使用作弊程序（例如AUM、YuMenu、SM等）"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "警告：FAC正在抵禦炸房外挂"
+FAC.CheatDetected.LowLevel: "警告：FAC檢測到可能存在作弊玩家"
+FAC.CheatDetected.FAC: "使用作弊程序（例如AUM、YuMenu、SM等）"
 
 # 模组信息 / Mod Infos
 Contributors: "貢獻者"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "您的 AmongUs 版本與該房間不同"
 DCNotify.Description: "您被踢出房間\n理由：{0}"
 DCNotify.DenyName: "您的暱稱含有違規字符"
 DCNotify.BanList: "您存在於該房間的黑名單"
-DCNotify.EACList: "您已被 EAC 封禁"
-DCNotify.CheatDetected: "您被 EAC 檢測到疑似作弊行為"
+DCNotify.FACList: "您已被 FAC 封禁"
+DCNotify.CheatDetected: "您被 FAC 檢測到疑似作弊行為"
 DCNotify.InvalidRPC: "您可能安裝了與房主不同的模組或您的模組被惡意修改"
 DCNotify.ModVersionIncorrect: "您模組的版本與房主不同"
 DCNotify.LowLevel: "您的等級未達到該房間的等級要求"

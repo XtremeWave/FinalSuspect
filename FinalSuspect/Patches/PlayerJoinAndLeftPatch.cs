@@ -32,7 +32,7 @@ class OnGameJoinedPatch
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();
 
-        EAC.Init();
+        FAC.Init();
         if (AmongUsClient.Instance.AmHost) 
         {
             GameStartManagerPatch.GameStartManagerUpdatePatch.exitTimer = -1;

@@ -17,7 +17,7 @@ public static class BanManager
 {
     private static readonly string DENY_NAME_LIST_PATH = @"FinalSuspect_Data/Ban/DenyName.txt";
     private static readonly string BAN_LIST_PATH = @"FinalSuspect_Data/Ban/BanList.txt";
-    private static List<string> EACList = new();
+    private static List<string> FACList = new();
 
     [PluginModuleInitializer]
     public static void Init()
@@ -40,8 +40,8 @@ public static class BanManager
                 File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("FinalSuspect.Resources.Configs.DenyName.txt"));
             }
 
-            //读取EAC名单
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.EACList.txt");
+            //读取FAC名单
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.FACList.txt");
             stream.Position = 0;
             using StreamReader sr = new(stream, Encoding.UTF8);
             string line;
@@ -49,7 +49,7 @@ public static class BanManager
             {
                 if (string.IsNullOrWhiteSpace(line) || line.StartsWith("#")) continue;
                 if (Main.AllPlayerControls.Any(p => p.IsDev() && line.Contains(p.FriendCode))) continue;
-                EACList.Add(line);
+                FACList.Add(line);
             }
         }
         catch (Exception ex)
@@ -124,11 +124,11 @@ public static class BanManager
             RPC.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
             Logger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
         }
-        else if (player.IsEACPlayer())
+        else if (player.IsFACPlayer())
         {
-            Utils.KickPlayer(player.Id, true, "EACList");
-            RPC.NotificationPop(string.Format(GetString("Message.BanedByEACList"), player.PlayerName));
-            Logger.Info($"{player.PlayerName}存在于EAC封禁名单", "BAN");
+            Utils.KickPlayer(player.Id, true, "FACList");
+            RPC.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
+            Logger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
         }
     }
 
@@ -158,12 +158,12 @@ public static class BanManager
         return false;
     }
 
-    public static bool IsEACPlayer(this PlayerControl player)
-        => player?.GetClient()?.IsEACPlayer() ?? false;
-    public static bool IsEACPlayer(this ClientData player)
-        => CheckEACStatus(player?.FriendCode, player?.GetHashedPuid());
-    public static bool CheckEACStatus(string friendCode, string hashedPuid)
-        => EACList.Any(line =>
+    public static bool IsFACPlayer(this PlayerControl player)
+        => player?.GetClient()?.IsFACPlayer() ?? false;
+    public static bool IsFACPlayer(this ClientData player)
+        => CheckFACStatus(player?.FriendCode, player?.GetHashedPuid());
+    public static bool CheckFACStatus(string friendCode, string hashedPuid)
+        => FACList.Any(line =>
         !string.IsNullOrWhiteSpace(friendCode) && line.Contains(friendCode) ||
         !string.IsNullOrWhiteSpace(hashedPuid) && line.Contains(hashedPuid));
 }

@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] fue expulsado porque el nombre coincidía con [{1}]"
 Message.BanedByBanList: "[{0}] fue baneado porque había sido baneado anteriormente."
-Message.BanedByEACList: "【{0}】 está baneado porque está en la lista de baneados de EAC."
+Message.BanedByFACList: "【{0}】 está baneado porque está en la lista de baneados de FAC."
 Message.DumpfileSaved: "El archivo de registro se guardó correctamente en el escritorio, nombre del archivo: {0}"
 Message.KickedByNoFriendCode: "[{0}] fue expulsado porque su código de amigo no existe."
 Message.AddedPlayerToBanList: "Añadido [{0}] a la lista de baneados"
-Message.KickedByEAC: "[{0}] Eliminado por EAC, razón: {1}"
-Message.BanedByEAC: "【{0}】 Eliminado por EAC, razón: {1}"
-Message.NoticeByEAC: "[{0}] Detectado: {1}"
+Message.KickedByFAC: "[{0}] Eliminado por FAC, razón: {1}"
+Message.BanedByFAC: "【{0}】 Eliminado por FAC, razón: {1}"
+Message.NoticeByFAC: "[{0}] Detectado: {1}"
 Message.WarnWhoSayBanWord: "{0} dijo una palabra prohibida~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "Pueden ocurrir errores."
 ErrorLevel2: "Esto podría ser un error."
 ErrorLevel3: "Esta versión no debería haber sido lanzada."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Advertencia: EAC ha detectado un alto nivel de trampas."
-EAC.CheatDetected.LowLevel: "Advertencia: EAC ha detectado un bajo nivel de trampas. Uno de los jugadores está hackeando."
-EAC.CheatDetected.EAC: "Uso de programas de trampas (por ejemplo, AUM, YuMenu, SM, etc.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Advertencia: FAC ha detectado un alto nivel de trampas."
+FAC.CheatDetected.LowLevel: "Advertencia: FAC ha detectado un bajo nivel de trampas. Uno de los jugadores está hackeando."
+FAC.CheatDetected.FAC: "Uso de programas de trampas (por ejemplo, AUM, YuMenu, SM, etc.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Contribuidores"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Tu versión de Among Us difiere de la de esta sala"
 DCNotify.Description: "Has sido expulsado del juego.\nRazón: {0}"
 DCNotify.DenyName: "Tu apodo contiene caracteres irregulares"
 DCNotify.BanList: "Has sido baneado por el anfitrión"
-DCNotify.EACList: "Has sido baneado por EAC"
-DCNotify.CheatDetected: "Has sido detectado como sospechoso de trampas por EAC"
+DCNotify.FACList: "Has sido baneado por FAC"
+DCNotify.CheatDetected: "Has sido detectado como sospechoso de trampas por FAC"
 DCNotify.InvalidRPC: "Puede que hayas instalado un mod diferente al del anfitrión o tu mod ha sido modificado de forma maliciosa"
 DCNotify.ModVersionIncorrect: "Tu versión del mod difiere de la del anfitrión"
 DCNotify.LowLevel: "Tu nivel no cumple con los requisitos de esta sala"

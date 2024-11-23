@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Réaltaí a thiteann leis an Dome -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] a cuireadh amach mar gheall ar ainm a comhoiriúnacht [{1}]"
 Message.BanedByBanList: "[{0}] a cuireadh ar liosta toirmeasc mar gheall ar cur síos ar an liosta toirmeasc."
-Message.BanedByEACList: "【{0}】 cuireadh ar liosta EAC mar gheall ar a bheith ar liosta toirmeasc."
+Message.BanedByFACList: "【{0}】 cuireadh ar liosta FAC mar gheall ar a bheith ar liosta toirmeasc."
 Message.DumpfileSaved: "Tá an comhoiriúnacht log comhoiriúnachta a shábháil go rathúil ar an deasc, ainm comhoiriúnacht: {0}"
 Message.KickedByNoFriendCode: "[{0}] a cuireadh amach mar gheall ar a gcód cairde nach bhfuil ann."
 Message.AddedPlayerToBanList: "Cuirtear [{0}] leis an liosta toirmeasc"
-Message.KickedByEAC: "[{0}] a cuireadh amach ag EAC, cúis: {1}"
-Message.BanedByEAC: "【{0}】 Cuireadh amach ag EAC, cúis:{1}"
-Message.NoticeByEAC: "[{0}] Déanadh: {1}"
+Message.KickedByFAC: "[{0}] a cuireadh amach ag FAC, cúis: {1}"
+Message.BanedByFAC: "【{0}】 Cuireadh amach ag FAC, cúis:{1}"
+Message.NoticeByFAC: "[{0}] Déanadh: {1}"
 Message.WarnWhoSayBanWord: "{0} dúirt focal toirmiscthe~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "D’fhéadfadh laigeanna a bheith ann."
 ErrorLevel2: "D’fhéadfadh seo a bheith mar bhotún."
 ErrorLevel3: "Níor cheart go gcuirfí an leagan seo amach."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Rabhadh: G detectíodh leibhéal ard cheat ag EAC."
-EAC.CheatDetected.LowLevel: "Rabhadh: G detectíodh leibhéal íseal cheat ag EAC. Tá hack amháin ag imreoirí."
-EAC.CheatDetected.EAC: "Ag úsáid clár cheat (e.g., AUM, YuMenu, SM, srl.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Rabhadh: G detectíodh leibhéal ard cheat ag FAC."
+FAC.CheatDetected.LowLevel: "Rabhadh: G detectíodh leibhéal íseal cheat ag FAC. Tá hack amháin ag imreoirí."
+FAC.CheatDetected.FAC: "Ag úsáid clár cheat (e.g., AUM, YuMenu, SM, srl.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Comhoibritheoirí"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Tá do leagan de Among Us difriúil ón seomra seo"
 DCNotify.Description: "Cuireadh tú amach ón gcluiche.\nMar gheall ar: {0}"
 DCNotify.DenyName: "Tá carachtair neamhghnácha i do leasainm"
 DCNotify.BanList: "Tá tú curtha ar liosta toirmeasc ag óst"
-DCNotify.EACList: "Tá tú curtha ar liosta EAC"
-DCNotify.CheatDetected: "Tá tú faoi amhras go bhfuil tú ag úsáid cheats ag EAC"
+DCNotify.FACList: "Tá tú curtha ar liosta FAC"
+DCNotify.CheatDetected: "Tá tú faoi amhras go bhfuil tú ag úsáid cheats ag FAC"
 DCNotify.InvalidRPC: "D’fhéadfadh go bhfuil mod difriúil suiteáilte ná an óst nó d’fhéadfadh go bhfuil do mod atá coireach le modh malicious"
 DCNotify.ModVersionIncorrect: "Tá do leagan mod difriúil ón óst"
 DCNotify.LowLevel: "Ní chomhoireann do leibhéal leis an riachtanas do seomra"

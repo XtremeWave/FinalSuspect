@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Звёзды падают, когда купол
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] был исключён, так как его имя совпало с [{1}]"
 Message.BanedByBanList: "[{0}] был забанен, так как он был забанен ранее."
-Message.BanedByEACList: "【{0}】 был забанен, так как он находится в списке EAC заблокированных пользователей."
+Message.BanedByFACList: "【{0}】 был забанен, так как он находится в списке FAC заблокированных пользователей."
 Message.DumpfileSaved: "Файл лога был успешно сохранён на рабочий стол, имя файла: {0}"
 Message.KickedByNoFriendCode: "[{0}] был исключён, так как его код друга не существует."
 Message.AddedPlayerToBanList: "Добавлен [{0}] в список заблокированных"
-Message.KickedByEAC: "[{0}] исключён EAC, причина: {1}"
-Message.BanedByEAC: "【{0}】 исключён EAC, причина:{1}"
-Message.NoticeByEAC: "[{0}] Обнаружено: {1}"
+Message.KickedByFAC: "[{0}] исключён FAC, причина: {1}"
+Message.BanedByFAC: "【{0}】 исключён FAC, причина:{1}"
+Message.NoticeByFAC: "[{0}] Обнаружено: {1}"
 Message.WarnWhoSayBanWord: "{0} сказал запрещенное слово~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "Могут возникнуть ошибки."
 ErrorLevel2: "Это может быть ошибка."
 ErrorLevel3: "Эта версия не должна была быть выпущена."
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "Предупреждение: EAC обнаружил высокий уровень читов."
-EAC.CheatDetected.LowLevel: "Предупреждение: EAC обнаружил низкий уровень читов. Один из игроков использует читы."
-EAC.CheatDetected.EAC: "Использование чит-программ (например, AUM, YuMenu, SM и др.)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Предупреждение: FAC обнаружил высокий уровень читов."
+FAC.CheatDetected.LowLevel: "Предупреждение: FAC обнаружил низкий уровень читов. Один из игроков использует читы."
+FAC.CheatDetected.FAC: "Использование чит-программ (например, AUM, YuMenu, SM и др.)"
 
 # 模组信息 / Mod Infos
 Contributors: "Авторы"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "Ваша версия Among Us отличается 
 DCNotify.Description: "Вы были исключены из игры.\nПричина: {0}"
 DCNotify.DenyName: "Ваш ник содержит неправильные символы"
 DCNotify.BanList: "Вы были заблокированы хостом"
-DCNotify.EACList: "Вы были заблокированы EAC"
-DCNotify.CheatDetected: "Вы были обнаружены как подозреваемый в читах EAC"
+DCNotify.FACList: "Вы были заблокированы FAC"
+DCNotify.CheatDetected: "Вы были обнаружены как подозреваемый в читах FAC"
 DCNotify.InvalidRPC: "Возможно, вы установили другой мод, чем хост, или ваш мод был злонамеренно изменён"
 DCNotify.ModVersionIncorrect: "Ваша версия мода отличается от хоста"
 DCNotify.LowLevel: "Ваш уровень не соответствует требованиям этой комнаты"

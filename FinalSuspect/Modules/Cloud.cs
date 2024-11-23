@@ -13,7 +13,7 @@ internal class Cloud
 {
     private static string IP;
     private static int LOBBY_PORT = 0;
-    private static int EAC_PORT = 0;
+    private static int FAC_PORT = 0;
     private static Socket ClientSocket;
     private static Socket EacClientSocket;
     private static long LastRepotTimeStamp = 0;
@@ -27,7 +27,7 @@ internal class Cloud
             string[] ar = content.Split('|');
             IP = ar[0];
             LOBBY_PORT = int.Parse(ar[1]);
-            EAC_PORT = int.Parse(ar[2]);
+            FAC_PORT = int.Parse(ar[2]);
         }
         catch (Exception e)
         {
@@ -85,19 +85,19 @@ internal class Cloud
             }
             try
             {
-                if (IP == null || EAC_PORT == 0) throw new("Has no ip or port");
+                if (IP == null || FAC_PORT == 0) throw new("Has no ip or port");
                 LastRepotTimeStamp = Utils.GetTimeStamp();
                 EacClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                EacClientSocket.Connect(IP, EAC_PORT);
-                Logger.Warn("已连接至FinalSuspect服务器", "EAC Cloud");
+                EacClientSocket.Connect(IP, FAC_PORT);
+                Logger.Warn("已连接至FinalSuspect服务器", "FAC Cloud");
             }
             catch (Exception ex)
             {
                 connecting = false;
-                Logger.Error($"Connect To EAC Failed:\n{ex.Message}", "EAC Cloud", false);
+                Logger.Error($"Connect To FAC Failed:\n{ex.Message}", "FAC Cloud", false);
             }
             connecting = false;
-        }, 3.5f, "EAC Cloud Connect");
+        }, 3.5f, "FAC Cloud Connect");
     }
     public static void StopConnect()
     {
@@ -109,13 +109,13 @@ internal class Cloud
         StartConnect();
         if (EacClientSocket == null || !EacClientSocket.Connected)
         {
-            Logger.Warn("未连接至FinalSuspect服务器，报告被取消", "EAC Cloud");
+            Logger.Warn("未连接至FinalSuspect服务器，报告被取消", "FAC Cloud");
             return;
         }
         EacClientSocket.Send(Encoding.Default.GetBytes(msg));
     }
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-    class EACConnectTimeOut
+    class FACConnectTimeOut
     {
         public static void Postfix()
         {
@@ -123,7 +123,7 @@ internal class Cloud
             {
                 LastRepotTimeStamp = 0;
                 StopConnect();
-                Logger.Warn("超时自动断开与FinalSuspect服务器的连接", "EAC Cloud");
+                Logger.Warn("超时自动断开与FinalSuspect服务器的连接", "FAC Cloud");
             }
         }
     }

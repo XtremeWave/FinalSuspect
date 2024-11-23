@@ -178,13 +178,13 @@ Mus.StarsFallWithDomeCrumbles: "Stars Fall With Dome Crumbles -Slok7565"
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] は [{1}] に一致するため、キックされました"
 Message.BanedByBanList: "[{0}] は過去に禁止されたため、禁止リストに追加されました。"
-Message.BanedByEACList: "【{0}】はEAC禁止リストに登録されているため、禁止されました。"
+Message.BanedByFACList: "【{0}】はFAC禁止リストに登録されているため、禁止されました。"
 Message.DumpfileSaved: "ログファイルがデスクトップに正常に保存されました。ファイル名: {0}"
 Message.KickedByNoFriendCode: "[{0}] は友達コードが存在しないため、キックされました。"
 Message.AddedPlayerToBanList: "[{0}] を禁止リストに追加しました"
-Message.KickedByEAC: "[{0}] はEACによりキックされました。理由: {1}"
-Message.BanedByEAC: "【{0}】はEACによりキックされました。理由: {1}"
-Message.NoticeByEAC: "[{0}] が検出されました: {1}"
+Message.KickedByFAC: "[{0}] はFACによりキックされました。理由: {1}"
+Message.BanedByFAC: "【{0}】はFACによりキックされました。理由: {1}"
+Message.NoticeByFAC: "[{0}] が検出されました: {1}"
 Message.WarnWhoSayBanWord: "{0}が禁止された言葉を言いました~"
 
 # 通知 / Notifications
@@ -211,10 +211,10 @@ ErrorLevel1: "バグが発生する可能性があります。"
 ErrorLevel2: "バグの可能性があります。"
 ErrorLevel3: "このバージョンはリリースされるべきではありませんでした。"
 
-# 反作弊 / EAC
-EAC.CheatDetected.HighLevel: "警告: EACが高レベルのチートを検出しました。"
-EAC.CheatDetected.LowLevel: "警告: EACが低レベルのチートを検出しました。プレイヤーの一部がハッキングしています。"
-EAC.CheatDetected.EAC: "チートプログラムの使用 (例: AUM, YuMenu, SM など)"
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "警告: FACが高レベルのチートを検出しました。"
+FAC.CheatDetected.LowLevel: "警告: FACが低レベルのチートを検出しました。プレイヤーの一部がハッキングしています。"
+FAC.CheatDetected.FAC: "チートプログラムの使用 (例: AUM, YuMenu, SM など)"
 
 # 模组信息 / Mod Infos
 Contributors: "貢献者"
@@ -232,8 +232,8 @@ DCNotify.IncorrectVersion: "あなたのAmong Us バージョンがこの部屋�
 DCNotify.Description: "ゲームからキックされました。\n理由: {0}"
 DCNotify.DenyName: "あなたのニックネームに不正な文字が含まれています"
 DCNotify.BanList: "ホストによって禁止されました"
-DCNotify.EACList: "EACによって禁止されました"
-DCNotify.CheatDetected: "EACによってチートの疑いが検出されました"
+DCNotify.FACList: "FACによって禁止されました"
+DCNotify.CheatDetected: "FACによってチートの疑いが検出されました"
 DCNotify.InvalidRPC: "ホストと異なるモッドがインストールされているか、モッドが悪意を持って改ざんされた可能性があります"
 DCNotify.ModVersionIncorrect: "あなたのモッドバージョンがホストと異なります"
 DCNotify.LowLevel: "あなたのレベルがこの部屋の要件を満たしていません"
