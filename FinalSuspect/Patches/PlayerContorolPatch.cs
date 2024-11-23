@@ -11,7 +11,6 @@ namespace FinalSuspect;
 [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.BootFromVent))]
 class BootFromVentPatch
 {
-
     public static bool Prefix()
     {
         if (XtremeGameData.GameStates.IsLobby)

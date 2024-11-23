@@ -17,11 +17,12 @@ namespace FinalSuspect.Patches;
 public class LoadPatch
 {
     //参考：TORCE
-    static Sprite Team_Logo = Utils.LoadSprite("LobbyPaint.png", 120f);
+    static Sprite Team_Logo = Utils.LoadSprite("TeamLogo.png", 120f);
     static Sprite Glow = Utils.LoadSprite("FinalSuspect-Logo.png");
     static Sprite Mod_Logo = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
     static Sprite Mod_Logo_Blurred = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
     static TMPro.TextMeshPro loadText = null!;
+    static TMPro.TextMeshPro loadText2 = null!;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
     {
@@ -85,9 +86,15 @@ public class LoadPatch
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
             loadText.fontStyle = TMPro.FontStyles.Bold;
-            #region LoadAmongUs
+            loadText2 = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
+            loadText2.transform.localPosition = new(0f, -0.7f, -10f);
+            loadText2.fontStyle = TMPro.FontStyles.Bold;
             loadText.color = Color.white.AlphaMultiplied(0.3f);
-            loadText.text = "Loading Translation...";
+            loadText.text = GetString("Loading");
+
+            #region LoadAmongUs
+            loadText2.color = Color.white.AlphaMultiplied(0.3f);
+            loadText2.text = "Loading Translation...";
 
             yield return DestroyableSingleton<ReferenceDataManager>.Instance.Initialize();
             try
@@ -129,10 +136,10 @@ public class LoadPatch
                 }
             }
 
-            loadText.text = GetString("LanguageFilesLoadingComplete");
+            loadText2.text = GetString("LanguageFilesLoadingComplete");
             yield return new WaitForSeconds(1f);
             #region Checking
-            loadText.text = GetString("CheckingForFiles");
+            loadText2.text = GetString("CheckingForFiles");
 
             while (!VersionChecker.isChecked)
             {
@@ -176,13 +183,14 @@ public class LoadPatch
             yield return new WaitForSeconds(0.5f);
             FileAttributes attributes = File.GetAttributes(ImagesSavePath);
             File.SetAttributes(ImagesSavePath, attributes | FileAttributes.Hidden);
-
+            int process = 0;
             foreach (var resources in needDownloadsPath)
             {
+                process++;
                 Color yellow = new Color32(252, 255, 152, 255);
-                loadText.color = yellow.AlphaMultiplied(0.3f);
+                loadText2.color = yellow.AlphaMultiplied(0.3f);
 
-                loadText.text = GetString("DownloadingResources");
+                loadText2.text = GetString("DownloadingResources") + $"({process}/{needDownloadsPath.Count})";
                 var task = StartDownload(resources.Key, resources.Value);
                 while (!task.IsCompleted)
                 {
@@ -195,10 +203,9 @@ public class LoadPatch
                 }
             }
             yield return new WaitForSeconds(0.5f);
+            GameObject.Destroy(loadText2.gameObject);
 
             #endregion
-            loadText.color = Color.white.AlphaMultiplied(0.3f);
-            loadText.text = GetString("Loading");
 
             yield return new WaitForSeconds(1f);
             Color green = new Color32(185, 255, 181, 255);

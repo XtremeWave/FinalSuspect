@@ -73,11 +73,13 @@ internal class PingTrackerUpdatePatch
     }
 }
 [HarmonyPatch(typeof(VersionShower), nameof(VersionShower.Start))]
-internal class VersionShowerStartPatch
+public class VersionShowerStartPatch
 {
     public static GameObject OVersionShower;
-    private static TextMeshPro VisitText;
-    private static TextMeshPro CreditTextCredential = null;
+    public static TextMeshPro VisitText;
+    public static TextMeshPro CreditTextCredential = null;
+    public static GameObject ModLogo;
+    public static GameObject TeamLogo;
 
 
     private static void Postfix(VersionShower __instance)
@@ -125,6 +127,8 @@ internal class VersionShowerStartPatch
             if (ap1 != null) Object.Destroy(ap1);
             var ap2 = VisitText.GetComponent<AspectPosition>();
             if (ap2 != null) Object.Destroy(ap2);
+
+
         };
 
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
@@ -141,22 +145,39 @@ internal class VersionShowerStartPatch
 
 
             CreditTextCredential = Object.Instantiate(__instance.text);
-            CreditTextCredential.name = "FinalSuspect CreditTex";
+            CreditTextCredential.name = "FinalSuspect CreditText";
             CreditTextCredential.alignment = TextAlignmentOptions.Right;
             CreditTextCredential.text = credentialsText;
             CreditTextCredential.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             CreditTextCredential.transform.localPosition = new Vector3(0.3f, -2.6f, 0f);
-            // 查找并获取 "VisitText" 的 TMP 文本对象
 
             CreditTextCredential.enabled = GameObject.Find("FinalSuspect Background") != null;
-
+            CreditTextCredential.SetOutlineColor(Utils.ShadeColor(ColorHelper.ModColor32, 0.75f));
+            CreditTextCredential.SetOutlineThickness(0.20f);
+            CreditTextCredential.fontStyle = FontStyles.Bold;
             var ap1 = OVersionShower.GetComponent<AspectPosition>();
             if (ap1 != null) Object.Destroy(ap1);
             var ap2 = CreditTextCredential.GetComponent<AspectPosition>();
             if (ap2 != null) Object.Destroy(ap2);
+
+
         }
 
-
+        TeamLogo = new();
+        TeamLogo.layer = 5;
+        TeamLogo.name = "Team Logo";
+        TeamLogo.AddComponent<SpriteRenderer>().sprite = Utils.LoadSprite("TeamLogo.png", 400f);
+        TeamLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+        TeamLogo.transform.SetParent(VisitText.transform.parent);
+        TeamLogo.transform.localPosition = new Vector3(-4.72f, -2.5f, 0f);
+        TeamLogo.SetActive(false);
+        ModLogo = new();
+        ModLogo.layer = 5;
+        ModLogo.name = "Mod Logo";
+        ModLogo.AddComponent<SpriteRenderer>().sprite = Utils.LoadSprite("FinalSuspect-Logo.png", 250f);
+        ModLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+        ModLogo.transform.localPosition = new Vector3(3.7f, -2.6f, 0f);
+        ModLogo.SetActive(false);
     }
 }
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.First)]

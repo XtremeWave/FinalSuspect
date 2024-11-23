@@ -9,9 +9,11 @@ namespace FinalSuspect;
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch
 {
+    internal static GameObject AccountTabInstance;
     public static GameObject FriendsButton;
     public static void Prefix(AccountTab __instance)
     {
+        AccountTabInstance = __instance.gameObject;
         var BarSprit = GameObject.Find("BarSprite");
         if (BarSprit)
         {
@@ -40,6 +42,7 @@ public static class AwakeFriendCodeUIPatch
 
     }
 }
+
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager
 {

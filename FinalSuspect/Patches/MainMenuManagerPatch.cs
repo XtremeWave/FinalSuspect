@@ -47,7 +47,7 @@ public class MainMenuManagerPatch
 
     private static bool isOnline = false;
     public static bool ShowedBak = false;
-    private static bool ShowingPanel = false;
+    public static bool ShowingPanel = false;
     [HarmonyPatch(typeof(SignInStatusComponent), nameof(SignInStatusComponent.SetOnline)), HarmonyPostfix]
     public static void SetOnline_Postfix() { _ = new LateTask(() => { isOnline = true; }, 0.1f, "Set Online Status"); }
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate)), HarmonyPostfix]
@@ -56,6 +56,7 @@ public class MainMenuManagerPatch
         CustomPopup.Update();
 
         if (GameObject.Find("MainUI") == null) ShowingPanel = false;
+        VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel && MainMenuButtonHoverAnimation.Active);
 
         if (TitleLogoPatch.RightPanel != null)
         {
@@ -74,6 +75,7 @@ public class MainMenuManagerPatch
         Vector3 lerp2 = Vector3.Lerp(pos2, new Vector3(pos2.x, 7.1f, pos2.z), Time.deltaTime * 1.4f);
         bak.transform.position = lerp2;
         if (pos2.y > 7f) ShowedBak = true;
+
     }
 
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPostfix]

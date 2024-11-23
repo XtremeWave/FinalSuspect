@@ -114,7 +114,7 @@ public class ModNewsHistory
 
         return true;
     }
-    static Sprite TeamLogoSprite = Utils.LoadSprite($"LobbyPaint.png", 1000f);
+    static Sprite TeamLogoSprite = Utils.LoadSprite($"TeamLogo.png", 1000f);
 
 
 

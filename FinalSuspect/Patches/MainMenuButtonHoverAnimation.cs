@@ -15,6 +15,7 @@ public class MainMenuButtonHoverAnimation
     private static void Start_Postfix(MainMenuManager __instance)
     {
         var mainButtons = GameObject.Find("Main Buttons");
+
         mainButtons.ForEachChild((Il2CppSystem.Action<GameObject>)Init);
         static void Init(GameObject obj)
         {
@@ -33,10 +34,23 @@ public class MainMenuButtonHoverAnimation
         AllButtons.TryAdd(obj, (obj.transform.position, active));
         AllButtons[obj] = (AllButtons[obj].Item1, active);
     }
-
+    public static bool Active = true;
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate)), HarmonyPostfix]
     private static void Update_Postfix(MainMenuManager __instance)
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            VersionShowerStartPatch.ModLogo.SetActive(Active);
+            VersionShowerStartPatch.TeamLogo.SetActive(Active);
+            Active = !Active;
+            __instance.mainMenuUI.SetActive(Active);
+            VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(Active);
+            VersionShowerStartPatch.VisitText.gameObject.SetActive(Active);
+            AwakeFriendCodeUIPatch.AccountTabInstance.SetActive(Active);
+            TitleLogoPatch.ModStamp.SetActive(Active);
+        }
+
+
         if (GameObject.Find("MainUI") == null) return;
 
         foreach (var kvp in AllButtons.Where(x => x.Key != null && x.Key.active))
