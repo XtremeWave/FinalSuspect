@@ -18,7 +18,6 @@ namespace FinalSuspect.Modules.SoundInterface;
 
 public static class MyMusicPanel
 {
-    static bool first;
     public static SpriteRenderer CustomBackground { get; private set; }
     public static List<GameObject> Items { get; private set; }
     public static OptionsMenuBehaviour OptionsMenuBehaviourNow { get; private set; }
@@ -38,7 +37,6 @@ public static class MyMusicPanel
     public static void Init(OptionsMenuBehaviour optionsMenuBehaviour)
     {
         var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
-        first = true;
             OptionsMenuBehaviourNow = optionsMenuBehaviour;
         if (CustomBackground == null)
         {
