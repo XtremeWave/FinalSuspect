@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Questo nome di musica esiste già"
 NotAllowedMusic: "Formato del nome della musica non consentito"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Puoi scaricare musica supportata da XtremeWave o aggiungere la tua musica in 'Gestione Audio'. Quando aggiungi la tua musica, assicurati di inserire il nome della musica in 'Gestione Audio' e di posizionare il file audio corrispondente nella cartella 'Among Us/FinalSuspect_Data/Resources/Audios' (formati supportati: .wav). La musica può essere riprodotta in 'Le mie musiche'."
+CustomAudioManagementHelp: "Puoi scaricare musica supportata da XtremeWave o aggiungere la tua musica in 'Gestione Audio'. Quando aggiungi la tua musica, assicurati di inserire il nome della musica in 'Gestione Audio' e di posizionare il file audio corrispondente nella cartella 'Among Us/Final Suspect_Data/Resources/Audios' (formati supportati: .wav). La musica può essere riprodotta in 'Le mie musiche'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Puoi scaricare musica supportata da XtremeWave o aggiungere la tua musica in 'Gestione Audio'. Se il percorso delle risorse musicali locali è mancante, verrà visualizzato '[File Mancante]'."
 

@@ -20,7 +20,7 @@ namespace FinalSuspect.Modules.Managers.ResourcesManager;
 
 public class ResourcesDownloader
 {
-    public static string ImagesSavePath = "FinalSuspect_Data/Resources/Images/";
+    public static string ImagesSavePath = "Final Suspect_Data/Resources/Images/";
     public static string DependsSavePath = "BepInEx/core/";
 
     public static readonly string ImagedownloadUrl_github = GithubUrl + "raw/FinalSus/Assets/";

@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Tá an t-ainm ceoil seo cheana féin"
 NotAllowedMusic: "Níl formáid ainm ceoil ceadaithe"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Nuair a chuirtear do cheol féin, tabhair faoi deara go gcuirfidh tú ainm an cheoil i 'Bainistíocht Tionachta' agus cuirfidh tú an comhoiriúnacht comhoiriúnach sa 'Among Us/FinalSuspect_Data/Resources/Audios' comhoiriúnacht (formáidí tacaíocht: .wav). Is féidir ceol a imirt i 'Mo Cheol'."
+CustomAudioManagementHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Nuair a chuirtear do cheol féin, tabhair faoi deara go gcuirfidh tú ainm an cheoil i 'Bainistíocht Tionachta' agus cuirfidh tú an comhoiriúnacht comhoiriúnach sa 'Among Us/Final Suspect_Data/Resources/Audios' comhoiriúnacht (formáidí tacaíocht: .wav). Is féidir ceol a imirt i 'Mo Cheol'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Is féidir leat ceol tacaíonn le XtremeWave a íoslódáil nó do cheol féin a chur le chéile i 'Bainistíocht Tionachta'. Má tá cosán comhoiriúnachta ceoil áitiúil atá ar iarraidh, beidh '[Comhábhar Duine]' le feiceáil."
 

@@ -1,0 +1,117 @@
+﻿#Number:100001  
+#Title:Final Suspect v1.0  
+#SubTitle:★★★★ Formele Release! ★★★★  
+#ShortTitle:★Versie Update v1.0  
+#Date: 2025-1-14T19:00:00Z  
+#-----------------------------
+# Engels
+Als de tijd voorbij gaat, komt de winter in de Noordelijke Hemisfeer tot een einde en waakt de lente overal weer.
+Bij het aanschouwen van het besneeuwde landschap van Mira, worden de herinneringen in jou bewoog? De warmte stromen nog steeds in je hart.
+Ofschoon de laatste verdachte wie het was, of wie de gebarsten waarheid heeft afgeleverd,
+in deze vernieuwde ervaring, gebruik je creativiteit en creeer nieuwe vrolijke herinneringen.
+Om spelletjes te spelen, het belangrijkste is om plezier te hebben!!!
+
+## Basis
+- Gebaseerd op AmongUs v2024.10.29
+
+## Update Inhoud
+- Fixes: 16
+- Optimalisaties: 4
+- Wijzigingen: 6
+- Toevoegingen: 16
+- Hernieuwingen: 1
+- Verwijderingen: 4
+
+## Deelnemers
+- Slok
+- 小黄117
+- KpCam
+- Yu
+- Nonalus
+- Qingfeng
+
+## Fixes
+- Het bug opgelost waarbij 'Auto Start bij Volle Lobby' alleen werkte als er 14 of meer spelers waren.
+- Het bug opgelost van een zwart scherm na een vergadering wanneer de client de gastheer is.
+- Het bug opgelost waarbij de oefenmodus niet kon worden ingegaan.
+- Het bug opgelost waarbij het aantal doden niet werd weergegeven in het spel.
+- Het bug opgelost van verkeerde verborgen imposter textures in Hide-n-Seek modus.
+- Het bug opgelost waarbij de gastheernaam niet boven de "Start Game" knop verscheen wanneer de speler de gastheer is.
+- Het bug opgelost waarbij plugin spelers alleen door de gastheer konden worden herkend.
+- Het bug opgelost waarbij de client foutmeldingen stuurde bij het roepen van een spoedvergadering.
+- Het bug opgelost van incorrecte weergavestijlen voor de mod versie & teaminfo op de startpagina.
+- Het bug opgelost waarbij de kamercode direct werd verborgen in streamer modus.
+- Het bug opgelost waarbij de controle op verboden woorden niet goed werkte.
+- Het bug opgelost met de officiële link blokkeer waarschuwingstekst niet correct weergegeven.
+- Het bug opgelost waarbij 'Auto-terug naar Lobby aan het einde' niet goed werkte in online spel.
+Fix: Slok
+- Het bug opgelost met de officiële website & QQ groep links verkeerd.
+Fix: Qingfeng
+(PR#5)
+
+## Optimalisaties
+- Code geoptimaliseerd voor betere prestaties.
+- Sommige resources verplaatst naar externe opslag om bestandsgrootte te reduceren.
+- Weergavestijl geoptimaliseerd voor mod versie & teaminfo op de startpagina.
+- Het systeem voor het herkennen van plugin spelers is herschreven met een nieuwe methode om misverstand te voorkomen met andere mods.
+Gemaakt door: Slok
+
+## Wijzigingen
+- De InnerSloth laadanimatie is veranderd in een Final Suspect personage illustratie carrousel laadanimatie.
+Gemaakt door: Slok, 小黄117, KpCam
+- De InnerSloth openingsgame animatie is veranderd in de Final Suspect openingsgame animatie.
+Gemaakt door: Slok
+Referentie: The Other Roles Community Edition, Nebula On The Ship
+- 'Audio Management' voorkomt nu het verwijderen van muziek die op dit moment wordt afgespeeld.
+- De kleuren voor Ingenieur, Shapeshifter en Phantom zijn aangepast.
+Gemaakt door: Slok
+- Dit project is nu geen tak meer van Town Of New Epic en zijn ouderlijk project, maar een onafhankelijk project.
+- EAC is hernoemd naar FAC.
+Beslissing: Slok
+
+## Toevoegingen
+- Door F1 in te drukken om je rolomschrijving te bekijken, wordt nu ook de personage illustratie weergegeven.
+Gemaakt door: Slok, 小黄117, KpCam
+- De mod aankondiging toont nu het XtremeWave logo aan de linkerkant.
+Gemaakt door: Slok
+Referentie: Yu Ez Tool
+- Spelers kunnen nog steeds vertalingen laden, zelfs als YamlDotNet.dll en YamlDotNet.xml niet zijn geïnstalleerd.
+Gemaakt door: Yu, Slok
+(PR#3)
+- Een prompt toegevoegd om de accelerator uit te schakelen wanneer de controle op updates in Vereenvoudigd Chinees mislukt.
+Gemaakt door: Yu
+(PR#3)
+- 7 nieuwe individuele tracks.
+- De kleur van het pictogram van de instellingenwijzigingsknop komt nu overeen met de rolkleur.
+- De kleur van het pictogram voor rol instellingenvoorbeeld komt nu overeen met de rolkleur.
+- De achtergrondkleur voor rol instellingenwijzigingen is aangepast.
+- De achtergrondkleur voor rol instellingenvoorbeelden is aangepast.
+- De achtergrondkleur voor spel instellingenwijzigingen is aangepast.
+- De achtergrondkleur voor spel instellingenvoorbeelden is aangepast.
+- Verboden naam blokkering.
+- Controle toegevoegd voor naamwijziging fraude.
+- In vrije spelen kunnen spelers nu Eagle Eye gebruiken.
+- Nieuwe startpagina sneltoets: druk op Tab om de UI te verbergen.
+- Aangepast aan Among Us versie: v2024.10.29.
+- Mod inhoudsintroductie in de aankondigingsbalk.
+Gemaakt door: Slok
+- Anti-Cheat: Controle toegevoegd voor KillNetwork fraude.
+Gemaakt door: Nonalus
+(PR#6)
+
+## Hernieuwingen
+- De 'Audio Management' & 'Mijn Muziek' systemen zijn herschreven.
+Gemaakt door: Slok
+
+## Verwijderingen
+- Tijdelijk verwijderd: April Fools’ Map - Dleks
+Reden: Gastheer vastgelopen in de injectieanimatie.
+- Tijdelijk verwijderd: Shape Shifting - April Fools' Trojan Modus
+(Gemarkeerd als gebroken)
+Reden: Client crasht wanneer chat herinnering pop-up verschijnt.
+- Tijdelijk verwijderd: FAC - Gastheer Controle
+(Uitgeschakelde code)
+Reden: Misverstand probleem.
+- Verwijderd: Final Suspect room-only search functie.
+Reden: Deze functie werd geacht onnodig te zijn.
+Beslissing: Slok

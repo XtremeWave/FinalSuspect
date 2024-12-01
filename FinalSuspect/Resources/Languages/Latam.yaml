@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Ya existe"
 NotAllowedMusic: "Formato de nombre incorrecto"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Al agregar tu propia música, asegúrate de añadir el nombre de la música en 'Audio Management' y colocar el archivo de audio correspondiente en la carpeta 'Among Us/FinalSuspect_Data/Resources/Audios' (formatos compatibles: .wav). La música se puede reproducir en 'Mi Música'."
+CustomAudioManagementHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Al agregar tu propia música, asegúrate de añadir el nombre de la música en 'Audio Management' y colocar el archivo de audio correspondiente en la carpeta 'Among Us/Final Suspect_Data/Resources/Audios' (formatos compatibles: .wav). La música se puede reproducir en 'Mi Música'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Puedes descargar música compatible con XtremeWave o agregar tu propia música en 「Audio Management」. Si falta la ruta de la fuente de música local, se mostrará '[Archivo Falta]'."
 

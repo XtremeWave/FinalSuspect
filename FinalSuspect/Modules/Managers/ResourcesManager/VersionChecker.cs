@@ -20,7 +20,7 @@ public static class VersionChecker
         public static void Postfix()
         {
             CustomPopup.Init();
-            if (!isChecked && firstStart) CheckForUpdate();
+            if (firstStart) CheckForUpdate();
             ModUpdater.SetUpdateButtonStatus();
             firstStart = false;
         }
@@ -103,7 +103,6 @@ public static class VersionChecker
         }
 
         Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
-        isBroken = !isChecked;
         if (isChecked)
         {
             Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
@@ -123,6 +122,7 @@ public static class VersionChecker
     }
     public static void CheckForUpdate()
     {
+        ResolutionManager.SetResolution(1920, 1080, true);
         isChecked = false;
         ModUpdater.DeleteOldFiles();
 

@@ -1,0 +1,117 @@
+﻿#Number:100001  
+#Title:Final Suspect v1.0  
+#SubTitle:★★★★ Lancement Officiel! ★★★★  
+#ShortTitle:★Mise à Jour de Version v1.0  
+#Date: 2025-1-14T19:00:00Z  
+#-----------------------------
+# Français
+Au fil du temps, l'hiver dans l'Hémisphère Nord prend fin et le printemps commence à se réveiller partout.
+En contemplant le paysage enneigé de Mira, tes souvenirs intérieurs sont-ils agités ? La chaleur continue de couler dans ton cœur.
+Peu importe qui a été le dernier suspect, peu importe qui a livré la vérité fracassée,
+dans cette expérience rafraîchie, brainstorm et crée de nouveaux souvenirs joyeux.
+Jouer aux jeux, la chose la plus importante est de s'amuser !!!
+
+## Base
+- Basé sur AmongUs v2024.10.29
+
+## Contenu de la mise à jour
+- Corrections : 16
+- Optimisations : 4
+- Changements : 6
+- Ajouts : 16
+- Remakes : 1
+- Suppressions : 4
+
+## Participants
+- Slok
+- 小黄117
+- KpCam
+- Yu
+- Nonalus
+- Qingfeng
+
+## Corrections
+- Correction d'un bug où « Auto Start at Full Lobby » ne fonctionnait que lorsque il y avait 14 joueurs ou plus.
+- Correction d'un bug de l'écran noir après une réunion lorsque le client est l'hôte.
+- Correction d'un bug où le mode d'entraînement ne pouvait pas être entré.
+- Correction d'un bug où le nombre de meurtres n'était pas affiché dans le jeu.
+- Correction d'un bug de textures d'imposteur cachées incorrectes en mode Hide-n-Seek.
+- Correction d'un bug où le nom de l'hôte n'apparaissait pas au-dessus du bouton "Start Game" lorsque le joueur est l'hôte.
+- Correction d'un bug où les joueurs avec plugins pouvaient être reconnus uniquement par l'hôte.
+- Correction d'un bug où le client envoyait des erreurs en appelant une réunion d'urgence.
+- Correction d'un bug d'affichage incorrect des styles pour la version du mod & les informations de l'équipe sur la page d'accueil.
+- Correction d'un bug où le code de la salle était caché directement en mode streamer.
+- Correction d'un bug où les vérifications des mots interdits ne fonctionnaient pas correctement.
+- Correction d'un bug avec le texte d'avertissement de blocage du lien officiel ne s'affichant pas correctement.
+- Correction d'un bug où « Auto-return to Lobby at End » ne fonctionnait pas correctement en jeu en ligne.
+Correction : Slok
+- Correction d'un bug avec les liens du site officiel & du groupe QQ incorrects.
+Correction : Qingfeng
+(PR#5)
+
+## Optimisations
+- Optimisation du code pour une meilleure performance.
+- Déplacement de certaines ressources vers un stockage distant pour réduire la taille du fichier.
+- Optimisation du style d'affichage de la version du mod & des informations de l'équipe sur la page d'accueil.
+- Réécriture du système de reconnaissance des joueurs avec plugins à l'aide d'une nouvelle méthode pour éviter d'être mal interprétés par d'autres mods.
+Réalisé par : Slok
+
+## Changements
+- La séquence de chargement InnerSloth a été modifiée pour une carrouselle d'illustrations de personnages Final Suspect.
+Réalisé par : Slok, 小黄117, KpCam
+- L'animation d'ouverture du jeu InnerSloth a été modifiée pour l'animation d'ouverture du jeu Final Suspect.
+Réalisé par : Slok
+Référence : The Other Roles Community Edition, Nebula On The Ship
+- « Audio Management » empêche désormais la suppression de la musique en cours de lecture.
+- Ajustement des couleurs pour l'Ingénieur, la Métamorphe et le Fantôme.
+Réalisé par : Slok
+- Ce projet n'est plus une branche de Town Of New Epic et son projet parent, mais un projet indépendant.
+- EAC a été renommé en FAC.
+Décision : Slok
+
+## Ajouts
+- En appuyant sur F1 pour voir la description de ton rôle, l'illustration du personnage s'affiche désormais également.
+Réalisé par : Slok, 小黄117, KpCam
+- L'annonce du mod affiche désormais le logo XtremeWave sur le côté gauche.
+Réalisé par : Slok
+Référence : Yu Ez Tool
+- Les joueurs peuvent toujours charger des traductions même si YamlDotNet.dll et YamlDotNet.xml ne sont pas installés.
+Réalisé par : Yu, Slok
+(PR#3)
+- Ajout d'un rappel pour désactiver l'accélérateur en cas d'échec de la vérification des mises à jour en chinois simplifié.
+Réalisé par : Yu
+(PR#3)
+- 7 nouvelles pistes musicales.
+- La couleur de l'icône du bouton de modification des paramètres correspond désormais à la couleur du rôle.
+- La couleur de l'icône d'aperçu des paramètres du rôle correspond désormais à la couleur du rôle.
+- Ajustement de la couleur d'arrière-plan pour les modifications des paramètres du rôle.
+- Ajustement de la couleur d'arrière-plan pour les aperçus des paramètres du rôle.
+- Ajustement de la couleur d'arrière-plan pour les modifications des paramètres du jeu.
+- Ajustement de la couleur d'arrière-plan pour les aperçus des paramètres du jeu.
+- Blocage des noms interdits.
+- Ajout d'une vérification pour le triche de modification de nom.
+- En mode libre, les joueurs peuvent désormais utiliser Eagle Eye.
+- Nouvelle touche d'accès rapide sur la page d'accueil : appuyez sur Tab pour masquer l'interface utilisateur.
+- Adapté à la version Among Us : v2024.10.29.
+- Introduction du contenu du mod dans la barre d'annonce.
+Réalisé par : Slok
+- Anti-Cheat : Ajout d'une vérification pour le triche KillNetwork.
+Réalisé par : Nonalus
+(PR#6)
+
+## Remakes
+- Réécriture des systèmes « Audio Management » et « My Music ».
+Réalisé par : Slok
+
+## Suppressions
+- Temporairement retiré : Carte de poisson d'avril - Dleks
+Raison : L'hôte est bloqué dans l'animation d'éjection.
+- Temporairement retiré : Métamorphose - Mode Trojan de poisson d'avril
+(Marqué comme cassé)
+Raison : Le client plante lorsque la rappel de chat apparaît.
+- Temporairement retiré : FAC - Vérification de l'hôte
+(Code désactivé)
+Raison : Problème de malentendu.
+- Supprimé : Fonctionnalité de recherche uniquement dans la salle de Final Suspect.
+Raison : Cette fonctionnalité a été considérée comme inutile.
+Décision : Slok

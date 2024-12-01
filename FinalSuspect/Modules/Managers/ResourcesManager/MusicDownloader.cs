@@ -19,7 +19,7 @@ namespace FinalSuspect.Modules.Managers.ResourcesManager;
 [HarmonyPatch]
 public class MusicDownloader
 {
-    public static string SavePath = "FinalSuspect_Data/Resources/Audios";
+    public static string SavePath = "Final Suspect_Data/Resources/Audios";
 
     public static readonly string downloadUrl_github = GithubUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";
     public static readonly string downloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";

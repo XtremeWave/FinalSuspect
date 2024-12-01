@@ -264,7 +264,7 @@ public static class AudioManagementPanel
     }
     static void DeleteSoundInFile(string sound)
     {
-        var path = @$"FinalSuspect_Data/Resources/Audios/{sound}.wav";
+        var path = @$"Final Suspect_Data/Resources/Audios/{sound}.wav";
         File.Delete(path);
     }
 }

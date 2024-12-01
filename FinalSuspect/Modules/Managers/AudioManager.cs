@@ -16,8 +16,8 @@ namespace FinalSuspect.Modules.Managers;
 #nullable enable
 public static class AudioManager
 {
-    public static readonly string SOUNDS_PATH = @"FinalSuspect_Data/Resources/Audios";
-    public static readonly string TAGS_PATH = @"FinalSuspect_Data/Resources/AudioNames.txt";
+    public static readonly string SOUNDS_PATH = @"Final Suspect_Data/Resources/Audios";
+    public static readonly string TAGS_PATH = @"Final Suspect_Data/Resources/AudioNames.txt";
 
     public static List<string> CustomAudios = new();
     public static void ReloadTag(bool official = true)
@@ -134,7 +134,6 @@ public class FinalMusic
         }
 
         var soundnum = 0;
-
         try
         {
             using StreamReader sr = new(TAGS_PATH);

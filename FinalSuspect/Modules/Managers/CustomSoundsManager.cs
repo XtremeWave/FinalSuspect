@@ -84,7 +84,7 @@ public static class CustomSoundsManager
     //        for (int i = 0; i < 10; i++)
     //        {
     //            var select = mus[rd.Next(0, mus.Count)];
-    //            var path = @$"FinalSuspect_Data/Resources/Audios/{select}.wav";
+    //            var path = @$"Final Suspect_Data/Resources/Audios/{select}.wav";
     //            if (ConvertExtension(ref path))
     //                StartPlayWait(path);
     //            else
@@ -101,7 +101,7 @@ public static class CustomSoundsManager
     //            if (index > mus.Count - 2)
     //                index = -1;
     //            var select = mus[index + 1];
-    //            var path = @$"FinalSuspect_Data/Resources/Audios/{select}.wav";
+    //            var path = @$"Final Suspect_Data/Resources/Audios/{select}.wav";
     //            if (ConvertExtension(ref path))
     //            {
     //                StartPlayWait(path);

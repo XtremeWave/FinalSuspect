@@ -167,15 +167,12 @@ public static class Utils
 
     public static Texture2D LoadTextureFromResources(string file)
     {
-        var path = @"FinalSuspect_Data/Resources/Images/" + file;
+        var path = @"Final Suspect_Data/Resources/Images/" + file;
 
         try
         {
             if (!File.Exists(path))
-            {
-                Logger.Warn($"文件不存在：{path}", "LoadTexture");
                 goto InDLL;
-            }
             
             byte[] fileData = File.ReadAllBytes(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
@@ -246,7 +243,6 @@ public static class Utils
     public static bool IsDev(this PlayerControl pc) => IsDev(pc.FriendCode);
     public static bool IsDev(string friendCode) => friendCode
         is "teamelder#5856" //Slok
-        or "canneddrum#2370" //喜
         ;
     public static void AddChatMessage(string text, string title = "")
     {

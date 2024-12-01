@@ -150,7 +150,7 @@ AudioManagementAlreadyExists: "Mayroon nang tunog na pangalan na ito"
 NotAllowedMusic: "Hindi pinapayagang format ng pangalan ng musika"
 
 # 界面提示 / Interface tips
-CustomAudioManagementHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/FinalSuspect_Data/Resources/Audios' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
+CustomAudioManagementHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kapag nagdagdag ka ng sariling musika, tiyaking ilagay ang pangalan ng musika sa 'Sound Management' at i-apply ang tamang compatibility sa 'Among Us/Final Suspect_Data/Resources/Audios' compatibility (mga suportadong format: .wav). Maaaring mag-play ng musika sa 'Aking Musika'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "Maaari kang mag-download ng musika na tugma sa XtremeWave o magdagdag ng iyong sariling musika sa 'Sound Management'. Kung nawawala ang lokal na landas ng musika, makikita ang '[Kakaibang Nilalaman]'."
 

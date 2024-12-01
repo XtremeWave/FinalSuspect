@@ -1,0 +1,117 @@
+﻿#Number:100001  
+#Title:Final Suspect v1.0  
+#SubTitle:★★★★ Lançamento Formal! ★★★★  
+#ShortTitle:★Atualização de Versão v1.0  
+#Date: 2025-1-14T19:00:00Z  
+#-----------------------------
+# Português do Brasil
+À medida que o tempo passa, o inverno no Hemisfério Norte chega ao fim e a primavera começa a despertar em todo lugar.
+Olhando para o cenário nevado de Mira, suas memórias se agitam por dentro? O calor ainda flui em seu coração.
+Não importa quem foi o suspeito final, não importa quem entregou a verdade quebrada,
+nesta experiência atualizada, use a criatividade e crie novos lembranças alegres.
+Brincando de jogos, a coisa mais importante é se divertir!!!
+
+## Base
+- Baseada no AmongUs v2024.10.29
+
+## Conteúdo da Atualização
+- Correções: 16
+- Otimizações: 4
+- Mudanças: 6
+- Adicionais: 16
+- Remakes: 1
+- Deletões: 4
+
+## Participantes
+- Slok
+- 小黄117
+- KpCam
+- Yu
+- Nonalus
+- Qingfeng
+
+## Correções
+- Corrigido o bug onde "Iniciar Automaticamente com Sala Cheia" funcionava apenas quando havia 14 ou mais jogadores.
+- Corrigido o bug de tela preta após uma reunião quando o cliente é o anfitrião.
+- Corrigido o bug onde o modo de prática não podia ser acessado.
+- Corrigido o bug onde as contagens de mortes não eram exibidas no jogo.
+- Corrigido o bug de texturas de impostores ocultas erradas no modo Hide-n-Seek.
+- Corrigido o bug onde o nome do anfitrião não aparecia acima do botão "Iniciar Jogo" quando o jogador é o anfitrião.
+- Corrigido o bug onde os jogadores de plugin podiam ser reconhecidos apenas pelo anfitrião.
+- Corrigido o bug onde o cliente enviava erros ao chamar uma reunião de emergência.
+- Corrigido o bug de estilos de exibição incorretos para a versão do mod & informações da equipe na página inicial.
+- Corrigido o bug onde o código da sala era oculto diretamente no modo de transmissão.
+- Corrigido o bug onde as verificações de palavras proibidas não funcionavam corretamente.
+- Corrigido o bug com o texto de aviso de bloqueio do link oficial não sendo exibido corretamente.
+- Corrigido o bug onde "Retornar Automaticamente à Sala ao Terminar" não funcionava corretamente em jogos online.
+Correção: Slok
+- Corrigido o bug com os links do site oficial & grupo QQ incorretos.
+Correção: Qingfeng
+(PR#5)
+
+## Otimizações
+- Otimizado o código para melhor desempenho.
+- Movido alguns recursos para armazenamento remoto para reduzir o tamanho do arquivo.
+- Otimizado o estilo de exibição para a versão do mod & informações da equipe na página inicial.
+- Reescrito o sistema de reconhecimento de jogadores de plugin usando um novo método para evitar ser mal interpretado por outros mods.
+Feito por: Slok
+
+## Mudanças
+- A animação de carregamento da InnerSloth foi alterada para uma carrossel de ilustrações de personagens de Final Suspect.
+Feito por: Slok, 小黄117, KpCam
+- A animação de abertura do jogo da InnerSloth foi alterada para a animação de abertura de Final Suspect.
+Feito por: Slok
+Referência: The Other Roles Community Edition, Nebula On The Ship
+- "Gerenciamento de Áudio" agora evita a exclusão da música que está tocando.
+- Ajustados as cores para Engenheiro, Transformador e Fantasma.
+Feito por: Slok
+- Este projeto não é mais um branch do Town Of New Epic e seu projeto pai, mas um projeto independente.
+- EAC foi renomeado para FAC.
+Decisão: Slok
+
+## Adicionais
+- Pressionar F1 para ver a descrição do seu papel agora também exibe a ilustração do personagem.
+Feito por: Slok, 小黄117, KpCam
+- O anúncio do mod agora exibe o logotipo XtremeWave no lado esquerdo.
+Feito por: Slok
+Referência: Yu Ez Tool
+- Os jogadores ainda podem carregar traduções mesmo que YamlDotNet.dll e YamlDotNet.xml não estejam instalados.
+Feito por: Yu, Slok
+(PR#3)
+- Adicionado um prompt para desativar o acelerador quando a verificação de atualização em chinês simplificado falhar.
+Feito por: Yu
+(PR#3)
+- 7 novas faixas individuais.
+- A cor do ícone do botão de modificação das configurações agora corresponde à cor do papel.
+- A cor do ícone de pré-visualização das configurações do papel agora corresponde à cor do papel.
+- Ajustada a cor de fundo para modificações das configurações do papel.
+- Ajustada a cor de fundo para pré-visualizações das configurações do papel.
+- Ajustada a cor de fundo para modificações das configurações do jogo.
+- Ajustada a cor de fundo para pré-visualizações das configurações do jogo.
+- Bloqueio de nome proibido.
+- Adicionada verificação de fraude de modificação de nome.
+- No Modo Livre, os jogadores agora podem usar Eagle Eye.
+- Nova tecla de atalho na página inicial: Pressione Tab para ocultar a UI.
+- Adaptado para a versão do Among Us: v2024.10.29.
+- Introdução ao conteúdo do mod na barra de anúncios.
+Feito por: Slok
+- Anti-Cheat: Adicionada verificação de fraude KillNetwork.
+Feito por: Nonalus
+(PR#6)
+
+## Remakes
+- Reescritos os sistemas "Gerenciamento de Áudio" e "Minha Música".
+Feito por: Slok
+
+## Deletões
+- Removido temporariamente: Mapa de Páscoa de Borrego - Dleks
+Motivo: Anfitrião preso na animação de ejeção.
+- Removido temporariamente: Transformação - Modo Trojan da Páscoa de Borrego
+(Marcada como quebrada)
+Motivo: O cliente trava quando o lembrete do chat aparece.
+- Removido temporariamente: FAC - Verificação do Anfitrião
+(Código desativado)
+Motivo: Problema de mal-entendido.
+- Removido: Recursos de busca apenas na sala do Final Suspect.
+Motivo: Este recurso foi considerado desnecessário.
+Decisão: Slok

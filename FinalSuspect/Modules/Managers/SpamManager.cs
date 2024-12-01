@@ -11,7 +11,7 @@ namespace FinalSuspect.Modules.Managers;
 
 public static class SpamManager
 {
-    private static readonly string BANEDWORDS_FILE_PATH = "./FinalSuspect_Data/BanWords.txt";
+    private static readonly string BANEDWORDS_FILE_PATH = "./Final Suspect_Data/BanWords.txt";
     public static List<string> BanWords = new();
 
     [PluginModuleInitializer]
@@ -26,7 +26,7 @@ public static class SpamManager
         {
             try
             {
-                if (!Directory.Exists(@"FinalSuspect_Data")) Directory.CreateDirectory(@"FinalSuspect_Data");
+                if (!Directory.Exists(@"Final Suspect_Data")) Directory.CreateDirectory(@"Final Suspect_Data");
                 if (File.Exists(@"./BanWords.txt")) File.Move(@"./BanWords.txt", BANEDWORDS_FILE_PATH);
                 else
                 {
@@ -71,13 +71,18 @@ public static class SpamManager
                 {
                     if (text.Contains(word))
                     {
-                        text = "<color=#ff1919>" + text.Replace(word, new string('*', word.Length)) + "</color>";
+                        text = text.Replace(word, new string('*', word.Length));
                     }
+                    Logger.Test(text);
+
                 }
+                Logger.Test(text);
+
+                text = "<color=#ff1919>" + text + "</color>";
+                Logger.Test(text);
 
             }
         }
         catch { }
     }
-
 }
