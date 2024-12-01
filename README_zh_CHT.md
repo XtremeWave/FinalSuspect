@@ -1,6 +1,6 @@
 <div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme，Among Us 的最佳原版插件。**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[FSX 官方網站](https://fsusx.top.cc) | [XtremeWave 官方網站](https://www.xtreme.net.cn)
+[FS 官方網站](https://fsusx.top.cc) | [XtremeWave 官方網站](https://www.xtreme.net.cn)
 
 </div>
 

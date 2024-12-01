@@ -1,6 +1,6 @@
 <div align="center">
 	
-![FSX-XtremeWave](Assets/LogoWithTeam.png)
+![FS-XtremeWave](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, Your best functional tool for Among Us**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[FSX Website](https://fsusx.top) | [XtremeWave Website](https://www.xtreme.net.cn)
+[FS Website](https://fsusx.top) | [XtremeWave Website](https://www.xtreme.net.cn)
 
 </div>
 

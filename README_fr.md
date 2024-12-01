@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, le meilleur plugin mod original pour Among Us.**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[Site Officiel de FSX](https://fsusx.top.cc) | [Site Officiel de XtremeWave](https://www.xtreme.net.cn)
+[Site Officiel de FS](https://fsusx.top.cc) | [Site Officiel de XtremeWave](https://www.xtreme.net.cn)
 
 </div>
 

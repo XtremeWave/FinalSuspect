@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, das beste originale Mod-Plugin für Among Us.**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[FSX Offizielle Website](https://fsusx.top.cc) | [XtremeWave Offizielle Website](https://www.xtreme.net.cn)
+[FS Offizielle Website](https://fsusx.top.cc) | [XtremeWave Offizielle Website](https://www.xtreme.net.cn)
 
 </div>
 

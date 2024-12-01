@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme、Among Us の最高のオリジナル Mod プラグインです。**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="フォーク数">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[FSX 公式サイト](https://fsusx.top.cc) | [XtremeWave 公式サイト](https://www.xtreme.net.cn)
+[FS 公式サイト](https://fsusx.top.cc) | [XtremeWave 公式サイト](https://www.xtreme.net.cn)
 
 </div>
 

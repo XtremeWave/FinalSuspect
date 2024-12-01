@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, an mod breiseán is fearr le haghaidh Among Us.**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[Láithreán Gréasáin Oifigiúil FSX](https://fsusx.top.cc) | [Láithreán Gréasáin Oifigiúil XtremeWave](https://www.xtreme.net.cn)
+[Láithreán Gréasáin Oifigiúil FS](https://fsusx.top.cc) | [Láithreán Gréasáin Oifigiúil XtremeWave](https://www.xtreme.net.cn)
 
 </div>
 

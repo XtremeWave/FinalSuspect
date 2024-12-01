@@ -1,6 +1,6 @@
 <div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, лучший оригинальный плагин для Among Us.**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Форки">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[Официальный сайт FSX](https://fsusx.top.cc) | [Официальный сайт XtremeWave](https://www.xtreme.net.cn)
+[Официальный сайт FS](https://fsusx.top.cc) | [Официальный сайт XtremeWave](https://www.xtreme.net.cn)
 
 </div>
 

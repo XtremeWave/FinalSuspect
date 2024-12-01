@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/LogoWithTeam.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
 **FinalSuspect_Xtreme, Among Us의 최고의 오리지널 모드 플러그인.**
 
@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="포크">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
 
-[FSX 공식 웹사이트](https://fsusx.top.cc) | [XtremeWave 공식 웹사이트](https://www.xtreme.net.cn)
+[FS 공식 웹사이트](https://fsusx.top.cc) | [XtremeWave 공식 웹사이트](https://www.xtreme.net.cn)
 
 </div>
 
