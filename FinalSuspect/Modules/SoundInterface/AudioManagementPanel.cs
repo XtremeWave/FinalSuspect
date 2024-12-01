@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.Managers.AudioManager;
@@ -85,7 +86,7 @@ public static class AudioManagementPanel
             }
         }
 
-        ReloadTag(null);
+        ReloadTag();
         RefreshTagList();
     }
     public static void RefreshTagList()
@@ -222,23 +223,44 @@ public static class AudioManagementPanel
     public static void Delete(FinalMusic audio)
     {
         var sound = audio.FileName;
-        DeleteSoundInName(sound);
+        if (audio.UnOfficial)
+            DeleteSoundInName(sound);
         DeleteSoundInFile(sound);
-        new FinalMusic(music: audio.CurrectAudio);
+        if (!audio.UnOfficial)
+            new FinalMusic(music: audio.CurrectAudio);
         RefreshTagList();
         MyMusicPanel.RefreshTagList();
     }
     static void DeleteSoundInName(string name)
     {
-        var lines = File.ReadAllLines(TAGS_PATH);
-        var updatedLines = lines.Where(line => !line.Trim().Equals(name, StringComparison.Ordinal)).ToArray();
-        var writer = new StreamWriter(TAGS_PATH);
-        foreach (var line in updatedLines)
+        using System.IO.StreamReader sr = new(TAGS_PATH);
+
+        string line;
+        List<string> update = new();
+        while ((line = sr.ReadLine()) != null)
         {
-            writer.WriteLine(line);
+            if (string.IsNullOrWhiteSpace(line)) continue;
+            if (line != null && line != name)
+            {
+                update.Add(line);
+            }
         }
-        
-        ReloadTag(name);
+        sr.Dispose();
+
+        System.IO.File.Delete(TAGS_PATH);
+        System.IO.File.Create(TAGS_PATH).Close();
+
+        System.IO.FileAttributes attributes = System.IO.File.GetAttributes(TAGS_PATH);
+        System.IO.File.SetAttributes(TAGS_PATH, attributes | System.IO.FileAttributes.Hidden);
+
+        using System.IO.StreamWriter sw = new(TAGS_PATH, true);
+
+        foreach (var updateline in update)
+        {
+            sw.WriteLine(line);
+        }
+        var item = finalMusics.Where(x => x.Name == name).FirstOrDefault();
+        finalMusics.Remove(item);
     }
     static void DeleteSoundInFile(string sound)
     {

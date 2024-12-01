@@ -98,7 +98,7 @@ public static class AudioManagementNewWindow
             {
                 Window.SetActive(false);
                 SaveToFile(code);
-                ReloadTag(code);
+                ReloadTag(false);
                 AudioManagementPanel.RefreshTagList();
                 MyMusicPanel.RefreshTagList();
                 return;

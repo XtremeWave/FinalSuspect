@@ -112,6 +112,8 @@ public sealed class ClientOptionItem_String : ClientActionItem
         if (ToggleButton == null) return;
 
         Color color = Config.Value == selections[0] ? Palette.Purple : Color.magenta;
+        if (Config.Value == "HorseMode")
+            color = Color.gray;
         ToggleButton.Background.color = color;
         ToggleButton.Rollover?.ChangeOutColor(color);
     }
@@ -120,5 +122,8 @@ public sealed class ClientOptionItem_String : ClientActionItem
         if (ToggleButton == null) return;
 
         ToggleButton.Text.text = Translator.GetString(name);
+        if (Config.Value == "HorseMode")
+            ToggleButton.Text.text += $"({Translator.GetString("Broken")})";
+
     }
 }

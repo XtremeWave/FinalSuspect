@@ -4,6 +4,7 @@ using UnityEngine;
 using static FinalSuspect.Translator;
 using AmongUs.GameOptions;
 using static UnityEngine.ParticleSystem.PlaybackState;
+using FinalSuspect.Modules.Managers;
 
 namespace FinalSuspect;
 
@@ -169,27 +170,7 @@ class CmdCheckNameVersionCheckPatch
     public static void Postfix(PlayerControl __instance, ref string name)
     {
 
-        if (name.Contains("习维尼") || 
-            name.Contains("习近平") || 
-            name.Contains("習近平") ||
-            name.Contains("共产党") ||
-            name.Contains("共產黨") ||
-            name.Contains("国民党") ||
-            name.Contains("國民黨") ||
-            name.Contains("民国") ||
-            name.Contains("民國") || 
-            name.Contains("独立") ||
-            name.Contains("獨立")
-            )
-        {
-            int length = name.Length;
-            name = "<color=#ff1919>";
-            for (int i = 0; i < length; i++)
-            {
-                name += "█";
-            }
-            name += "</color>";
-        }
+        SpamManager.CheckSpam(__instance, ref name);
         if (__instance.OwnerId == AmongUsClient.Instance.HostId)
             Main.HostNickName = name;
 

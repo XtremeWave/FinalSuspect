@@ -59,6 +59,11 @@ internal class ControllerManagerUpdatePatch
             Logger.Info("输出日志", "KeyCommand");
             Utils.DumpLog();
         }
+        if (GetKeysDown(KeyCode.F1, KeyCode.RightControl))
+        {
+            Logger.Info("输出日志", "KeyCommand");
+            Utils.DumpLog();
+        }
         //打开游戏目录
         if (GetKeysDown(KeyCode.F10))
         {
@@ -68,7 +73,7 @@ internal class ControllerManagerUpdatePatch
         //-- 下面是主机专用的命令--//
         if (!AmongUsClient.Instance.AmHost) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && XtremeGameData.GameStates.IsCountDown)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && XtremeGameData.GameStates.IsCountDown)
         {
             Logger.Info("倒计时修改为0", "KeyCommand");
             GameStartManager.Instance.countDownTimer = 0;
@@ -84,6 +89,11 @@ internal class ControllerManagerUpdatePatch
 
         //切换日志是否也在游戏中输出
         if (GetKeysDown(KeyCode.F2, KeyCode.LeftControl))
+        {
+            Logger.isAlsoInGame = !Logger.isAlsoInGame;
+            Logger.SendInGame($"游戏中输出日志：{Logger.isAlsoInGame}");
+        }
+        if (GetKeysDown(KeyCode.F2, KeyCode.RightControl))
         {
             Logger.isAlsoInGame = !Logger.isAlsoInGame;
             Logger.SendInGame($"游戏中输出日志：{Logger.isAlsoInGame}");

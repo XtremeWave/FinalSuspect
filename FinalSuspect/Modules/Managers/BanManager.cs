@@ -99,8 +99,7 @@ public static class BanManager
             {
                 if (line == "") continue;
                 if (Main.AllPlayerControls.Any(p => p.IsDev() && line.Contains(p.FriendCode))) continue;
-                if (Regex.IsMatch(player.PlayerName, line)
-                    || Regex.IsMatch(player.PlayerName.ToLower(), "ez hacked"))
+                if (Regex.IsMatch(player.PlayerName, line))
                 {
                     Utils.KickPlayer(player.Id, false, "DenyName");
                     RPC.NotificationPop(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));

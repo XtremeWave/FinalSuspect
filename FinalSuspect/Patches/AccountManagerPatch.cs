@@ -11,9 +11,10 @@ public static class AwakeFriendCodeUIPatch
 {
     internal static GameObject AccountTabInstance;
     public static GameObject FriendsButton;
-    public static void Prefix(AccountTab __instance)
+    public static void Prefix()
     {
-        AccountTabInstance = __instance.gameObject;
+        AccountTabInstance = GameObject.Find("AccountTab");
+
         var BarSprit = GameObject.Find("BarSprite");
         if (BarSprit)
         {
@@ -40,8 +41,8 @@ public static class AwakeFriendCodeUIPatch
 
         FriendsButton = GameObject.Find("FriendsButton");
 
-    }
 }
+    }
 
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager

@@ -12,7 +12,7 @@ public static class AprilFoolsModePatch
 {
     public static bool Prefix(ref bool __result)
     {
-        __result = Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[2];
+        __result = Main.ChangeOutfit.Value == Main.changeOutfit[2];
         return false;
     }
 }
@@ -24,11 +24,11 @@ public static class GetNormalBodyType_Patch
 {
     public static void Postfix(ref PlayerBodyTypes __result)
     {
-        if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
-        {
-            __result = PlayerBodyTypes.Horse;
-            return;
-        }
+        //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+        //{
+        //    __result = PlayerBodyTypes.Horse;
+        //    return;
+        //}
         if (AprilFoolsMode.ShouldLongAround())
         {
             __result = PlayerBodyTypes.Long;
@@ -45,11 +45,11 @@ public static class GetHnsBodyType_Patch
     {
         if (player == null || player.Data == null || player.Data.Role == null)
         {
-            if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
-            {
-                __result = PlayerBodyTypes.Horse;
-                return;
-            }
+            //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+            //{
+            //    __result = PlayerBodyTypes.Horse;
+            //    return;
+            //}
             if (AprilFoolsMode.ShouldLongAround())
             {
                 __result = PlayerBodyTypes.Long;
@@ -58,16 +58,16 @@ public static class GetHnsBodyType_Patch
             __result = PlayerBodyTypes.Normal;
             return;
         }
-        else if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
-        {
-            if (player.IsImpostor())
-            {
-                __result = PlayerBodyTypes.Normal;
-                return;
-            }
-            __result = PlayerBodyTypes.Horse;
-            return;
-        }
+        //else if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+        //{
+        //    if (player.IsImpostor())
+        //    {
+        //        __result = PlayerBodyTypes.Normal;
+        //        return;
+        //    }
+        //    __result = PlayerBodyTypes.Horse;
+        //    return;
+        //}
         else if (AprilFoolsMode.ShouldLongAround())
         {
             if (player.IsImpostor())
@@ -149,11 +149,11 @@ public static class LongBoiPatches
     [HarmonyPrefix]
     public static bool CheckLongMode_Patch(out bool __result, ref string cosmeticID)
     {
-        if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
-        {
-            __result = false;
-            return false;
-        }
+        //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+        //{
+        //    __result = false;
+        //    return false;
+        //}
 
         bool flag = AprilFoolsMode.ShouldLongAround();
 

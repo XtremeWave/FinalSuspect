@@ -90,7 +90,7 @@ public class LoadPatch
             loadText2.transform.localPosition = new(0f, -0.7f, -10f);
             loadText2.fontStyle = TMPro.FontStyles.Bold;
             loadText.color = Color.white.AlphaMultiplied(0.3f);
-            loadText.text = GetString("Loading");
+            loadText.text = "Loading...";
 
             #region LoadAmongUs
             loadText2.color = Color.white.AlphaMultiplied(0.3f);
@@ -103,7 +103,6 @@ public class LoadPatch
             }
             catch
             { }
-            yield return new WaitForSeconds(0.5f);
             #endregion
             ListStr remoteDependList = new()
         {
@@ -135,7 +134,7 @@ public class LoadPatch
                     }
                 }
             }
-
+            loadText.text = GetString("Loading");
             loadText2.text = GetString("LanguageFilesLoadingComplete");
             yield return new WaitForSeconds(1f);
             #region Checking

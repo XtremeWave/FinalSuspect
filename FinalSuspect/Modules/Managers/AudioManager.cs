@@ -20,11 +20,11 @@ public static class AudioManager
     public static readonly string TAGS_PATH = @"FinalSuspect_Data/Resources/AudioNames.txt";
 
     public static List<string> CustomAudios = new();
-    public static void ReloadTag(string? name)
+    public static void ReloadTag(bool official = true)
     {
         CustomAudios = new();
 #nullable disable
-        if (name == null)
+        if (official)
         {
             Init();
             return;
@@ -38,13 +38,8 @@ public static class AudioManager
             while ((line = sr.ReadLine()) != null)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
-                if (name != null)
-                {
-                    CustomAudios.Remove(name);
-                    CustomAudios.Add(name);
-                    new FinalMusic(name);
-                    Logger.Info($"Audio Loaded: {name}", "AudioManager");
-                }
+                new FinalMusic(line);
+                Logger.Info($"Audio Loaded: {line}", "AudioManager");
             }
 
         }
@@ -97,6 +92,11 @@ public enum FSAudios
     GongXiFaCai__Andy_Lau,
     NeverGonnaGiveYouUp__Rick_Astley,
     TidalSurge__Slok,
+    TrailOfTruth__Slok, 
+    Interlude__Slok, 
+    Fractured__Slok, 
+    ElegyOfFracturedVow__Slok, 
+    VestigiumSplendoris__Slok,
 }
 public enum AudiosStates
 {
@@ -171,6 +171,8 @@ public class FinalMusic
         }
         else
         {
+            CustomAudios.Remove(name);
+            CustomAudios.Add(name);
             FileName = Name = name;
             Author = "";
         }

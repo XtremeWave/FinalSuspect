@@ -60,23 +60,24 @@ public static class SpamManager
     }
     public static void CheckSpam(PlayerControl player, ref string text)
     {
-        if (player.AmOwner || !AmongUsClient.Instance.AmHost) return;
-
-        var mt = text;
-        bool banned = BanWords.Any(mt.Contains);
-
-        if (banned)
+        try
         {
-            foreach (string word in BanWords)
+            var mt = text;
+            bool banned = BanWords.Any(mt.Contains);
+
+            if (banned)
             {
-                if (text.Contains(word))
+                foreach (string word in BanWords)
                 {
-                    text = text.Replace(word, new string('*', word.Length));
+                    if (text.Contains(word))
+                    {
+                        text = "<color=#ff1919>" + text.Replace(word, new string('*', word.Length)) + "</color>";
+                    }
                 }
+
             }
-
         }
-
+        catch { }
     }
 
 }

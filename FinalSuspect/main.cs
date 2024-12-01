@@ -38,13 +38,13 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241123";
+    public const string DisplayedVersion_Date = "20241201";
     /// <summary>
     /// 测试信息；
     /// 支持的内容：Alpha, Beta, Canary, Dev, Pre-release
     /// </summary>
     public const string DisplayedVersion_TestText = "Dev";
-    public const int DisplayedVersion_TestCreation = 37;
+    public const int DisplayedVersion_TestCreation = 53;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
@@ -72,7 +72,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> ApplyDenyNameList { get; private set; }
     public static ConfigEntry<bool> ApplyBanList { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
-    public static ConfigEntry<string> AprilFoolsMode { get; private set; }
+    public static ConfigEntry<string> ChangeOutfit { get; private set; }
     public static ConfigEntry<bool> AutoStartGame { get; private set; }
     public static ConfigEntry<bool> AutoEndGame { get; private set; }
     public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
@@ -84,9 +84,9 @@ public class Main : BasePlugin
 
 
 
-    public static readonly string[] allAprilFoolsModes =
+    public static readonly string[] changeOutfit =
     {
-        "NoAprilFoolsMode", "HorseMode", "LongMode"
+        "BeanMode", "HorseMode", "LongMode"
     };
     //Other Configs
     public static ConfigEntry<string> HideName { get; private set; }
@@ -130,13 +130,13 @@ public class Main : BasePlugin
         Instance = this;
 
         //Client Options
-        HideName = Config.Bind("Client Options", "Hide Game Code Name", "FS");
+        HideName = Config.Bind("Client Options", "Hide Game Code Name", "Final Suspect");
         HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ColorHelper.ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
-        AprilFoolsMode = Config.Bind("Client Options", "AprilFoolsMode", allAprilFoolsModes[0]);
-        KickPlayerFriendCodeNotExist = Config.Bind("Client Options", "AutoStartGame", true);
+        ChangeOutfit = Config.Bind("Client Options", "AprilFoolsMode", changeOutfit[0]);
+        KickPlayerFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
         ApplyBanList = Config.Bind("Client Options", "ApplyBanList", true);
         ApplyDenyNameList = Config.Bind("Client Options", "ApplyDenyNameList", true);
         AutoStartGame = Config.Bind("Client Options", "AutoStartGame", false);

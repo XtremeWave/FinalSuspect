@@ -12,8 +12,17 @@ public static class ChatBubblePatch
     [HarmonyPatch(nameof(ChatBubble.SetText)), HarmonyPrefix]
     public static void SetText_Prefix(ChatBubble __instance, ref string chatText)
     {
-        bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
+        var bgcolor = ColorHelper.HalfModColor32;
         var sr = __instance.Background;
+        Color namecolor;
+
+        if (__instance?.playerInfo?.PlayerId == null)
+        {
+            bgcolor = ColorHelper.HalfYellow;
+            namecolor = Color.red;
+            goto EndOfChat;
+        }
+        bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
 
         if (modded)
         {
@@ -22,8 +31,6 @@ public static class ChatBubblePatch
             __instance.SetLeft();
             return;
         }
-
-        var bgcolor = ColorHelper.HalfModColor32;
         //var t = chatText;
 
         //BoxCollider2D instance_collider = sr.gameObject.AddComponent<BoxCollider2D>();
@@ -51,7 +58,6 @@ public static class ChatBubblePatch
         var player = Utils.GetPlayerById(__instance.playerInfo.PlayerId);
 
         var __ = "";
-        Color namecolor;
         player.GetLobbyText(ref __, out string color);
         namecolor = ColorHelper.HexToColor(color);
 
@@ -73,7 +79,7 @@ public static class ChatBubblePatch
 
         }
 
-
+        EndOfChat:
         __instance.NameText.color = namecolor;
         sr.color = bgcolor;
     }

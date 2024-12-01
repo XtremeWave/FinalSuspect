@@ -89,7 +89,7 @@ public static class MyMusicPanel
             AddChangePlayModeButton(optionsMenuBehaviour);
         }
 
-        ReloadTag(null);
+        ReloadTag();
         RefreshTagList();
     }
     static void AddPageNavigationButton(OptionsMenuBehaviour optionsMenuBehaviour)
@@ -178,7 +178,7 @@ public static class MyMusicPanel
             var path = audio.Path;
             var filename = audio.FileName;
             var author = audio.Author;
-            var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist || CustomAudios.Contains(filename);
+            var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist;
 
 
             float offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;

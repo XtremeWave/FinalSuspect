@@ -120,23 +120,13 @@ public class MusicDownloader
     private static Dictionary<string, string> md5ForFiles = new()
     {
         //“Ù¿÷
-        {"GongXiFaCaiLiuDeHua","DB200D93E613020D62645F4841DD55BD"},
+        {"ElegyOfFracturedVow","183001938142209dd99086326db0cb30"},
+        {"Fractured","8161a1939e042fe763796d4ef73f7a3b" },
+        {"GongXiFaCai","db200d93e613020d62645f4841dd55bd"},
+        {"Interlude","a5a1e5e78571107be7a71eae9c5228b5" },
         {"NeverGonnaGiveYouUp","354cab3103b7e033c6e31d12766eb59c" },
-        {"RejoiceThisSEASONRespectThisWORLD","7AB4778744242E4CFA0468568308EA9B"},
-        {"SpringRejoicesinParallelUniverses","D92528104A82DBBFADB4FF251929BA5E"},
-        {"AFamiliarPromise", "a3672341f586b4d81efba6d4278cfeae"},
-{"GuardianandDream", "cd8fb04bad5755937496eed60c4892f3"},
-{"HeartGuidedbyLight", "f1ded08a59936b8e1db95067a69b006e"},
-{"HopeStillExists", "8d5ba9ac283e156ab2c930f7b63a4a36"},
-{"Mendax", "1054c90edfa66e31655bc7a58f553231"},
-{"MendaxsTimeForExperiment", "1b82e1ea81aeb9a968a94bec7f4f62fd"},
-{"StarfallIntoDarkness", "46f09e0384eb8a087c3ba8cc22e4ac11"},
-{"StarsFallWithDomeCrumbles", "b5ccabeaf3324cedb107c83a2dc0ce1e"},
-{"TheDomeofTruth", "183804914e3310b9f92b47392f503a9f"},
-{"TheTruthFadesAway", "75fbed53db391ed73085074ad0709d82"},
-{"unavoidable", "da520f4613103826b4df7647e368d4b4"},
-
-
-
+        {"TidalSurge","679c55048802ea02ad7ede76addeaf21"},
+        {"TrailOfTruth","b3fc4e8313f76735ecfdea1e0221bc3b"},
+        {"VestigiumSplendoris","82de05a534a5876fc53bebd7919e58e6" },
     };
 }

@@ -40,7 +40,7 @@ public static class CustomSoundsManager
         }
         
         StopPlay();
-        ReloadTag(null);
+        ReloadTag();
         MyMusicPanel.RefreshTagList();
         AudioManagementPanel.RefreshTagList();
         StartPlayLoop(audio.Path);

@@ -72,7 +72,7 @@ ApplyDenyNameList: "Исключить игроков с неподобающи�
 ApplyBanList: "Исключить заблокированных игроков"
 VersionCheat: "Обойти проверку синхронизации версии мода"
 GodMode: "Режим Бога"
-NoAprilFoolsMode: "Классический режим Bean"
+BeanMode: "Классический режим Bean"
 LongMode: "Длинный режим April Fools"
 HorseMode: "Режим лошади April Fools"
 AutoStartGame: "Автостарт при полном лобби"
@@ -159,21 +159,14 @@ MusicNotYet: "Текущий музыкальный файл обнаружен 
 AudioNYPro: "Для улучшения игрового опыта скачайте нашу музыку в 「Домашняя страница - Настройки - Дополнительные функции - Управление звуком」"
 
 # 官方音乐
-Mus.SpringRejoicesinParallelUniverses: "Весна радуется в параллельных вселенных -Slok7565"
 Mus.GongXiFaCai: "恭喜发财"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.RejoiceThisSEASONRespectThisWORLD: "Радуйтесь этому СЕЗОНУ, уважайте этот МИР -Slok7565"
-Mus.TheDomeofTruth: "Купол истины -Slok7565"
-Mus.HopeStillExists: "Надежда всё ещё существует -Slok7565"
-Mus.HeartGuidedbyLight: "Сердце, ведомое светом -Slok7565"
-Mus.unavoidable: "Неизбежное -Slok7565"
-Mus.GuardianandDream: "Страж и мечта -Slok7565"
-Mus.AFamiliarPromise: "Знакомое обещание... -Slok7565"
-Mus.TheTruthFadesAway: "Истина исчезает -Slok7565"
-Mus.Mendax: "Mendax -Slok7565"
-Mus.MendaxsTimeForExperiment: "Время эксперимента Mendax! -Slok7565"
-Mus.StarfallIntoDarkness: "Падение звёзд в тьму -Slok7565"
-Mus.StarsFallWithDomeCrumbles: "Звёзды падают, когда купол рушится -Slok7565"
+Mus.TidalSurge: "Tidal Surge"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris"
 
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] был исключён, так как его имя совпало с [{1}]"
@@ -281,6 +274,7 @@ Local: "<color=#D1FA87>Локально</color>"
 HongKong: Гонконг
 FPSSetTo: "Ограничение частоты кадров установлено на: {0}"
 BrowsingMode: "Режим просмотра"
+Broken: "Сломанный"
 
 # 加载
 LanguageFilesLoadingComplete: "Загрузка текстов перевода завершена!"

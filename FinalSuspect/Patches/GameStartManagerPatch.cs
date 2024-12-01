@@ -53,7 +53,7 @@ public class GameStartManagerPatch
             __instance.GameRoomNameCode.text = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
             timer = 600f;
 
-            HideName = Object.Instantiate(__instance.GameRoomNameCode, __instance.GameRoomNameCode.transform);
+            HideName = Object.Instantiate(__instance.GameRoomNameCode, __instance.GameRoomNameCode.transform.parent);
             HideName.gameObject.SetActive(true);
             HideName.name = "HideName";
             HideName.color =
@@ -133,8 +133,8 @@ public class GameStartManagerPatch
             // Lobby code
             if (DataManager.Settings.Gameplay.StreamerMode)
             {
-                __instance.GameRoomNameCode.color = new(__instance.GameRoomNameCode.color.r, __instance.GameRoomNameCode.color.g, __instance.GameRoomNameCode.color.b, 0);
-                HideName.enabled = false;
+                __instance.GameRoomNameCode.color = new(__instance.GameRoomNameCode.color.r, __instance.GameRoomNameCode.color.g, __instance.GameRoomNameCode.color.b, 0); ;
+                HideName.enabled = !XtremeGameData.GameStates.IsLocalGame;
             }
             else
             {

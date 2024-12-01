@@ -10,7 +10,7 @@ namespace FinalSuspect;
 public static class OptionsMenuBehaviourStartPatch
 {
     private static ClientOptionItem_Boolean UnlockFPS;
-    private static ClientOptionItem_String AprilFoolsMode;
+    private static ClientOptionItem_String ChangeOutfit;
     private static ClientOptionItem_Boolean KickPlayerFriendCodeNotExist;
     private static ClientOptionItem_Boolean ApplyDenyNameList;
     private static ClientOptionItem_Boolean ApplyBanList;
@@ -52,37 +52,37 @@ public static class OptionsMenuBehaviourStartPatch
                 Logger.SendInGame(string.Format(Translator.GetString("FPSSetTo"), Application.targetFrameRate));
             }
         }
-        if (AprilFoolsMode == null || AprilFoolsMode.ToggleButton == null)
+        if (ChangeOutfit == null || ChangeOutfit.ToggleButton == null)
         {
-            AprilFoolsMode = ClientOptionItem_String.Create(
-                Main.AprilFoolsMode.Value ?? Main.allAprilFoolsModes[0] 
+            ChangeOutfit = ClientOptionItem_String.Create(
+                Main.ChangeOutfit.Value ?? Main.changeOutfit[0] 
                  
-                , Main.AprilFoolsMode, __instance, Main.allAprilFoolsModes, SwitchHorseMode);
+                , Main.ChangeOutfit, __instance, Main.changeOutfit, SwitchHorseMode);
             static void SwitchHorseMode()
             {
-                AprilFoolsMode.UpdateToggle(Main.allAprilFoolsModes);
-                if (Main.AprilFoolsMode.Value == Main.allAprilFoolsModes[1])
-                foreach (var pc in PlayerControl.AllPlayerControls)
-                {
-                    pc.MyPhysics.SetBodyType(pc.BodyType);
-                    if (pc.BodyType == PlayerBodyTypes.Normal)
-                    {
-                        pc.cosmetics.currentBodySprite.BodySprite.transform.localScale = new(0.5f, 0.5f, 1f);
-                    }
-                }
+                ChangeOutfit.UpdateToggle(Main.changeOutfit);
+                //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+                //foreach (var pc in PlayerControl.AllPlayerControls)
+                //{
+                //    pc.MyPhysics.SetBodyType(pc.BodyType);
+                //    if (pc.BodyType == PlayerBodyTypes.Normal)
+                //    {
+                //        pc.cosmetics.currentBodySprite.BodySprite.transform.localScale = new(0.5f, 0.5f, 1f);
+                //    }
+                //}
                 
             }
             if (!XtremeGameData.GameStates.IsNotJoined)
             {
-                AprilFoolsMode.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-                AprilFoolsMode.ToggleButton.Background.color = Palette.DisabledGrey;
-                AprilFoolsMode.ToggleButton.Text.text = Translator.GetString("ChangeOutfit") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
+                ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+                ChangeOutfit.ToggleButton.Background.color = Palette.DisabledGrey;
+                ChangeOutfit.ToggleButton.Text.text = Translator.GetString("ChangeOutfit") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
             }
             else
             {
-                AprilFoolsMode.UpdateToggle(Main.allAprilFoolsModes);
-                AprilFoolsMode.UpdateName(Main.AprilFoolsMode.Value);
-                AprilFoolsMode.ToggleButton.GetComponent<PassiveButton>().enabled =true;
+                ChangeOutfit.UpdateToggle(Main.changeOutfit);
+                ChangeOutfit.UpdateName(Main.ChangeOutfit.Value);
+                ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled =true;
             }
         }
         
