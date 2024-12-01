@@ -44,7 +44,7 @@ public class Main : BasePlugin
     /// 支持的内容：Alpha, Beta, Canary, Dev, Pre-release
     /// </summary>
     public const string DisplayedVersion_TestText = "Dev";
-    public const int DisplayedVersion_TestCreation = 55;
+    public const int DisplayedVersion_TestCreation = 57;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
