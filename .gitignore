@@ -6,7 +6,7 @@
 Export/
 FinalSuspect/obj
 FinalSuspect/obj/
-
+/FinalSuspect/obj/
 FinalSuspect/Properties/PublishProfiles/
 FinalSuspect/FodyWeavers.xsd
 
@@ -62,3 +62,4 @@ FinalSuspect/FodyWeavers.xsd
 /FinalSuspect/obj/Debug/net6.0/FinalSuspect.AssemblyInfoInputs.cache
 /FinalSuspect/obj/Debug/net6.0/GitInfo.cache
 /FinalSuspect/obj/Release/net6.0/GitInfo.cache
+/FinalSuspect/obj/Debug/net6.0/ref/FinalSuspect.dll
