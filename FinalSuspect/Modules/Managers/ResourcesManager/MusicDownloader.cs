@@ -125,6 +125,7 @@ public class MusicDownloader
         {"GongXiFaCai","db200d93e613020d62645f4841dd55bd"},
         {"Interlude","a5a1e5e78571107be7a71eae9c5228b5" },
         {"NeverGonnaGiveYouUp","354cab3103b7e033c6e31d12766eb59c" },
+        {"ReturnToSimplicity","82ac19d1d1daa788b7349e39811bedf9" },
         {"TidalSurge","679c55048802ea02ad7ede76addeaf21"},
         {"TrailOfTruth","b3fc4e8313f76735ecfdea1e0221bc3b"},
         {"VestigiumSplendoris","82de05a534a5876fc53bebd7919e58e6" },

@@ -167,6 +167,7 @@ Mus.Interlude: "插叙"
 Mus.Fractured: "破碎"
 Mus.ElegyOfFracturedVow: "誓碎终殇"
 Mus.VestigiumSplendoris: "余璨"
+Mus.ReturnToSimplicity: "返璞归真"
 
 # 信息 / Messages
 Message.KickedByDenyName: "【{0}】被踢出，因其昵称包含违禁词【{1}】"

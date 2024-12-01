@@ -167,6 +167,7 @@ Mus.Interlude: "Interlude"
 Mus.Fractured: "Fractured"
 Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
 Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "return to simplicity"
 
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] был исключён, так как его имя совпало с [{1}]"

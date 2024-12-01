@@ -60,10 +60,17 @@ public static class XtremeGameData
         public static PlayerControl GetPlayerById(byte id) => GetPlayerDataById(id).Player ?? Utils.GetPlayerById(id);
         public static string GetPlayerNameById(byte id) => GetPlayerDataById(id).PlayerName;
 
-        public static RoleTypes GetRoleById(byte id) =>
-            GetPlayerDataById(id).IsDead == true ?
-            GetPlayerDataById(id).RoleAfterDeath ?? GetPlayerById(id).Data.Role.Role :
-            GetPlayerDataById(id).RoleWhenAlive ?? GetPlayerById(id).Data.Role.Role;
+        public static RoleTypes GetRoleById(byte id)
+        {
+            var data = GetPlayerDataById(id);
+            var dead = data.IsDead;
+            RoleTypes role;
+            if (dead)
+                role = data.RoleAfterDeath ?? (data.IsImpostor ? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost);
+            else
+                role = data.RoleWhenAlive ?? GetPlayerById(id).Data.Role.Role;
+            return role;
+        }
         public static int GetLongestNameByteCount() => AllPlayerData.Values.Select(data => data.PlayerName.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
 
 

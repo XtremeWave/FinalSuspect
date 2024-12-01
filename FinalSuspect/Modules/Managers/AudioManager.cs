@@ -97,6 +97,7 @@ public enum FSAudios
     Fractured__Slok, 
     ElegyOfFracturedVow__Slok, 
     VestigiumSplendoris__Slok,
+    ReturnToSimplicity__Slok
 }
 public enum AudiosStates
 {

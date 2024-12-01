@@ -3,6 +3,7 @@
 db200d93e613020d62645f4841dd55bd  \GongXiFaCai.wav
 a5a1e5e78571107be7a71eae9c5228b5  \Interlude.wav
 354cab3103b7e033c6e31d12766eb59c  \NeverGonnaGiveYouUp.wav
+82ac19d1d1daa788b7349e39811bedf9  \ReturnToSimplicity.wav
 679c55048802ea02ad7ede76addeaf21  \TidalSurge.wav
 b3fc4e8313f76735ecfdea1e0221bc3b  \TrailOfTruth.wav
 82de05a534a5876fc53bebd7919e58e6  \VestigiumSplendoris.wav
