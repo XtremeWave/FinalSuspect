@@ -47,7 +47,7 @@ public static class AwakeFriendCodeUIPatch
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager
 {
-    public static Sprite[] AllRoleCharacterIllustration = {
+    public static Sprite[] AllRoleRoleIllustration = {
         Utils.LoadSprite("CI_Crewmate.png", 450f),
         Utils.LoadSprite("CI_HnSEngineer.png", 450f),
         Utils.LoadSprite("CI_Engineer.png", 450f),
@@ -84,19 +84,19 @@ public static class AwakeAccountManager
         var Sprite = ModLoading.AddComponent<SpriteRenderer>();
         Sprite.color = Color.white;
         Sprite.flipX = false;
-        __instance.StartCoroutine(SwitchCharacterIllustration(Sprite));
+        __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
         crewpet_walk0001.SetActive(false);
 
         
 
     }
-    public static IEnumerator SwitchCharacterIllustration(SpriteRenderer spriter)
+    public static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
     {
         while (true)
         {
-            if (AllRoleCharacterIllustration.Length == 0) yield break;
+            if (AllRoleRoleIllustration.Length == 0) yield break;
 
-            spriter.sprite = AllRoleCharacterIllustration[currentIndex];
+            spriter.sprite = AllRoleRoleIllustration[currentIndex];
             var p = 1f;
             while (p > 0f)
             {
@@ -105,7 +105,7 @@ public static class AwakeAccountManager
                 spriter.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
-            currentIndex = (currentIndex + 1) % AllRoleCharacterIllustration.Length;
+            currentIndex = (currentIndex + 1) % AllRoleRoleIllustration.Length;
 
 
             yield return new WaitForSeconds(1f);

@@ -86,7 +86,7 @@ public static class HudManagerPatch
                 Sprite.color = Color.white;
                 Sprite.flipX = false;
                 ModLoading.SetActive(false);
-                __instance.StartCoroutine(SwitchCharacterIllustration(Sprite));
+                __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
             }
             //if (WarningText == null)
             //{
@@ -142,13 +142,13 @@ public static class HudManagerPatch
         }
 
     }
-    public static IEnumerator SwitchCharacterIllustration(SpriteRenderer spriter)
+    public static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
     {
         while (true)
         {
-            if (AwakeAccountManager.AllRoleCharacterIllustration.Length == 0) yield break;
+            if (AwakeAccountManager.AllRoleRoleIllustration.Length == 0) yield break;
 
-            spriter.sprite = AwakeAccountManager.AllRoleCharacterIllustration[currentIndex];
+            spriter.sprite = AwakeAccountManager.AllRoleRoleIllustration[currentIndex];
             var p = 1f;
             while (p > 0f)
             {
@@ -157,7 +157,7 @@ public static class HudManagerPatch
                 spriter.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
-            currentIndex = (currentIndex + 1) % AwakeAccountManager.AllRoleCharacterIllustration.Length;
+            currentIndex = (currentIndex + 1) % AwakeAccountManager.AllRoleRoleIllustration.Length;
 
 
             yield return new WaitForSeconds(1f);

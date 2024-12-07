@@ -58,17 +58,12 @@ public static class MeetingHudPatch
 
         }
     }
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.UpdateButtons))]
     class UpdatePatch
     {
         public static void Postfix(MeetingHud __instance)
         {
             if (AmongUsClient.Instance.AmHost) return;
-            if (PlayerControl.LocalPlayer.Data.IsDead && !__instance.amDead)
-            {
-                __instance.SetForegroundForDead();
-            }
-
             for (int i = 0; i < __instance.playerStates.Length; i++)
             {
                 PlayerVoteArea playerVoteArea = __instance.playerStates[i];
@@ -83,10 +78,10 @@ public static class MeetingHudPatch
                     if (flag != playerVoteArea.AmDead)
                     {
                         playerVoteArea.SetDead(__instance.reporterId == playerById.PlayerId, flag, playerById.Role.Role == RoleTypes.GuardianAngel);
+                        __instance.SetDirtyBit(1U);
                     }
                 }
-            }                
-
+            }
 
         }
     }

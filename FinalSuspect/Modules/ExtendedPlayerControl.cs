@@ -53,7 +53,9 @@ static class ExtendedPlayerControl
     }
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)
     {
-        var ret = $"{player?.Data?.PlayerName}" + (XtremeGameData.GameStates.IsInGame? $"({Utils.GetRoleName(player.GetRoleType())})" : "");
+        var ret = $"{player?.Data?.PlayerName}" + 
+            (XtremeGameData.GameStates.IsInGame? 
+            $"({Utils.GetRoleName(player.GetRoleType())})" : "");
         return (forUser ? ret : ret.RemoveHtmlTags());
     }
     public static Color GetRoleColor(this PlayerControl player)

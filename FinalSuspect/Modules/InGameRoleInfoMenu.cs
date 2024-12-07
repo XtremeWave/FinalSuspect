@@ -16,8 +16,8 @@ public static class InGameRoleInfoMenu
     public static GameObject Menu;
 
     public static GameObject RoleInfo;
-    public static GameObject RoleCharacterIllustration;
-    public static SpriteRenderer RoleCharacterIllustrationSP => RoleCharacterIllustration.GetComponent<SpriteRenderer>();
+    public static GameObject RoleRoleIllustration;
+    public static SpriteRenderer RoleRoleIllustrationSP => RoleRoleIllustration.GetComponent<SpriteRenderer>();
 
 
 
@@ -50,10 +50,10 @@ public static class InGameRoleInfoMenu
         RoleInfoTMP.alignment = TextAlignmentOptions.Left;
         RoleInfoTMP.fontSize = 2f;
 
-        RoleCharacterIllustration = new GameObject("Character Illustration") { layer = 5 };
-        RoleCharacterIllustration.transform.SetParent(Menu.transform);
-        RoleCharacterIllustration.AddComponent<SpriteRenderer>();
-        RoleCharacterIllustration.transform.localPosition = new(2.3f, 0.8f, 4f);
+        RoleRoleIllustration = new GameObject("Character Illustration") { layer = 5 };
+        RoleRoleIllustration.transform.SetParent(Menu.transform);
+        RoleRoleIllustration.AddComponent<SpriteRenderer>();
+        RoleRoleIllustration.transform.localPosition = new(2.3f, 0.8f, 4f);
 
     }
 
@@ -74,7 +74,7 @@ public static class InGameRoleInfoMenu
         var HnSPrefix = "";
         if (!XtremeGameData.GameStates.IsNormalGame && player.IsAlive())
             HnSPrefix = "HnS";
-        RoleCharacterIllustrationSP.sprite = Utils.LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
+        RoleRoleIllustrationSP.sprite = Utils.LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
     }
 
     public static void Show()

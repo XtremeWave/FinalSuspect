@@ -68,10 +68,13 @@ class DisconnectInternalPatch
 public class OnPlayerJoinedPatch
 {
     public static Dictionary<byte, int> SetNameNum = new();
+    public static List<byte> Checked = new();
 
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
         Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
+        Checked.Remove(client.Character.PlayerId);
+        Checked.Add(client.Character.PlayerId);
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
@@ -90,12 +93,14 @@ public class OnPlayerJoinedPatch
 
     }
 }
+
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerLeft))]
 class OnPlayerLeftPatch
 {
     public static List<int> ClientsProcessed = new();
     public static void Add(int id)
     {
+        
         ClientsProcessed.Remove(id);
         ClientsProcessed.Add(id);
     }

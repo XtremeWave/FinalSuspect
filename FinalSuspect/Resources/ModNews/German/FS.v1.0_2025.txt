@@ -29,6 +29,7 @@ Beim Spielen von Spielen ist das Wichtigste, Spaß zu haben!!!
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Korrekturen
 - Fehler behoben, bei dem „Auto Start bei voller Lobby“ nur funktionierte, wenn es 14 oder mehr Spieler gab.

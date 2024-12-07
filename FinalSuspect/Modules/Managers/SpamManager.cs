@@ -19,6 +19,7 @@ public static class SpamManager
     {
         CreateIfNotExists();
         BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
+        CheckForUpdate();
     }
     public static void CreateIfNotExists()
     {
@@ -40,6 +41,29 @@ public static class SpamManager
                 Logger.Exception(ex, "SpamManager");
             }
         }
+
+    }
+    public static void CheckForUpdate()
+    {
+        string fileName = GetUserLangByRegion().ToString();
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
+        stream.Position = 0;
+        using StreamReader reader = new(stream, Encoding.UTF8);
+        List<string> waitforupdate = new(); 
+        while (!reader.EndOfStream)
+        {
+            string line = reader.ReadLine();
+            if (!BanWords.Contains(line))
+            {
+                waitforupdate.Add(line);
+                BanWords.Add(line);
+            }
+        }
+        reader.Dispose();
+
+        using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
+        foreach (var line in waitforupdate)
+            writer.WriteLine(line);
     }
     private static string GetResourcesTxt(string path)
     {
@@ -55,10 +79,10 @@ public static class SpamManager
         string text;
         List<string> sendList = new();
         while ((text = sr.ReadLine()) != null)
-            if (text.Length > 1 && text != "") sendList.Add(text.Replace("\\n", "\n").ToLower());
+            if (text.Length >= 1 && text != "") sendList.Add(text.Replace("\\n", "\n").ToLower());
         return sendList;
     }
-    public static void CheckSpam(PlayerControl player, ref string text)
+    public static bool CheckSpam(ref string text)
     {
         try
         {
@@ -73,16 +97,14 @@ public static class SpamManager
                     {
                         text = text.Replace(word, new string('*', word.Length));
                     }
-                    Logger.Test(text);
-
                 }
-                Logger.Test(text);
-
                 text = "<color=#ff1919>" + text + "</color>";
-                Logger.Test(text);
-
             }
+            return banned;
         }
-        catch { }
+        catch 
+        {
+            return false;
+        }
     }
 }

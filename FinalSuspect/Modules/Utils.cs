@@ -66,7 +66,7 @@ public static class Utils
         return GetString($"{text}{Info}");
     }
 
-    public static void KickPlayer(int playerId, bool ban, string reason)
+    public static void KickPlayer(int playerId, bool ban, string reason = "")
     {
         if (!AmongUsClient.Instance.AmHost) return;
         AmongUsClient.Instance.KickPlayer(playerId, ban);

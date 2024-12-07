@@ -202,8 +202,8 @@ public static class AudioManagementPanel
                                 new FinalMusic(music: audio.CurrectAudio);
                                 RefreshTagList();
                                 MyMusicPanel.RefreshTagList();
-                            }, 3f);
-                        },0.01f);
+                            }, 3f, "Refresh Tag List");
+                        },0.01f, "Download Notice");
                     });
                 }
             }));

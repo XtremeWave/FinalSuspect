@@ -48,7 +48,7 @@ internal class RPCHandlerPatch
         switch (rpcType)
         {
             case RpcCalls.CheckName://CheckNameRPC
-                Logger.Info("RPC Cjeck Name For Player: " + __instance.GetNameWithRole(), "CheckName");
+                Logger.Info("RPC Check Name For Player: " + __instance.GetNameWithRole(), "CheckName");
                 OnPlayerJoinedPatch.SetNameNum[__instance.PlayerId]++;
                 break;
             case RpcCalls.SetName: //SetNameRPC

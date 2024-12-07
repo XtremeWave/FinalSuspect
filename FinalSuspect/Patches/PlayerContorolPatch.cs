@@ -5,6 +5,7 @@ using static FinalSuspect.Translator;
 using AmongUs.GameOptions;
 using static UnityEngine.ParticleSystem.PlaybackState;
 using FinalSuspect.Modules.Managers;
+using InnerNet;
 
 namespace FinalSuspect;
 
@@ -98,6 +99,8 @@ class FixedUpdatePatch
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
+            if (SpamManager.CheckSpam(ref nametext))
+                color = "#ff0000";
             __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
         }
         catch
@@ -165,14 +168,27 @@ class PlayerControlCompleteTaskPatch
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckName))]
-class CmdCheckNameVersionCheckPatch
+class CmdCheckNamePatch
 {
     public static void Postfix(PlayerControl __instance, ref string name)
     {
-
-        SpamManager.CheckSpam(__instance, ref name);
+        SpamManager.CheckSpam(ref name);
         if (__instance.OwnerId == AmongUsClient.Instance.HostId)
             Main.HostNickName = name;
+    }
+}
+[HarmonyPatch(typeof(InnerNetObject), nameof(InnerNetObject.Despawn))]
+class DespawnPatch
+{
+    public static void Postfix(InnerNetObject __instance)
+    {
+        if (AmongUsClient.Instance.AmHost)
+        {
+            Utils.KickPlayer(__instance.OwnerId, false);
+            RPC.NotificationPop(string.Format(GetString("Warning.Despawn"), __instance.name));
+        }
+        else
+            RPC.NotificationPop(string.Format(GetString("Warning.Despawn_NotHost"), __instance.name));
 
     }
 }

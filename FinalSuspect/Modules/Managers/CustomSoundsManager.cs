@@ -59,7 +59,7 @@ public static class CustomSoundsManager
         {
             MyMusicPanel.RefreshTagList();
             AudioManagementPanel.RefreshTagList();
-        }, 0.01f);
+        }, 0.01f, "Refresh Tag List");
     }
     /*
     //public static void AutoPlay(string sound, string name)

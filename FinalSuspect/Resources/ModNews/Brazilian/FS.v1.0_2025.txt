@@ -29,6 +29,7 @@ Brincando de jogos, a coisa mais importante é se divertir!!!
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Correções
 - Corrigido o bug onde "Iniciar Automaticamente com Sala Cheia" funcionava apenas quando havia 14 ou mais jogadores.

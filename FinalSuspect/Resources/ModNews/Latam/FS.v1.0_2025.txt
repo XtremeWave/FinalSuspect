@@ -29,6 +29,7 @@ en esta experiencia renovada, usa tu creatividad y crea nuevos recuerdos alegres
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Correcciones
 - Arreglado el bug donde «Auto Start at Full Lobby» solo funcionaba cuando había 14 o más jugadores.

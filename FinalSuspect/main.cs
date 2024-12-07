@@ -38,13 +38,13 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241201";
+    public const string DisplayedVersion_Date = "20241202";
     /// <summary>
     /// 测试信息；
     /// 支持的内容：Alpha, Beta, Canary, Dev, Pre-release
     /// </summary>
     public const string DisplayedVersion_TestText = "Dev";
-    public const int DisplayedVersion_TestCreation = 59;
+    public const int DisplayedVersion_TestCreation = 65;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";

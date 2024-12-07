@@ -29,6 +29,7 @@ Sa paglalaro ng mga laro, ang pinakamahalaga ay magkasya!!!
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Fixes
 - Naayos ang bug kung saan ang 'Auto Start at Full Lobby' ay gumagana lamang kapag may 14 o higit pang mga manlalaro.

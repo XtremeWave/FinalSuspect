@@ -1,88 +1,88 @@
 ﻿#Number:100002
-#Title:v1.0 功能&优化介绍
-#SubTitle:★★★★我们奇奇妙妙的内容★★★★
-#ShortTitle:★内容介绍
+#Title:v1.0  Introduction of Functions & Optimizations
+#SubTitle:★★★★Our fantastic and wonderful content★★★★
+#ShortTitle:★Content Introduction
 #Date:2025-1-14T19:00:00Z
 #-----------------------------
-# 简体中文
+# English
 
-## 优化
-主界面:
-- 打开游戏程序动画:
-- 内容加载动画-character illustration carousel
-- 主页UI布局
-- 主页背景
-在线搜索:
-- 房间名称文本
-游戏中-全局:
-- 延迟显示处的帧数&服务器显示
-- 模组版本信息
-- 聊天气泡颜色
-- 断连原因
-游戏中-大厅:
-- 大厅信息版透明度
-- 设置编辑界面上色
-- 设置查看界面上色
-- 等候仓团队Logo
-游戏中-正式开始:
-- 开场动画
-- 根据职业与阵营为小地图背景上色
-- 不同职业分别上色
-- 会议中退出玩家显示
-游戏结算:
-- 结算文本
-- 结算背景颜色
+## Optimizations
+Main Menu:
+- Animation when starting the game
+- Animation for content loading - role illustrations
+- Optimized the main menu layout
+- Optimized the main menu background
+Online Search:
+- Optimized the room name
+In-game - Global:
+- Display FPS and server at the ping display
+- Display mod version information
+- Optimized chat bubble colors
+- Optimized disconnection causes
+In-game - Lobby:
+- Optimized lobby information board background
+- Colored the settings editing interface
+- Optimized the settings editing background
+- Colored the settings viewing interface
+- Added team logo in the lobby
+In-game -  Starting:
+- Roundstart animation
+- Colored the background of the mini-map according to teams and roles.
+- Colored different roles separately
+- Display players who exit during the meeting
+Game Results:
+- Optimized the results text
 
-## 功能
-全局:
-- 音乐播放(设置界面使用)
-- 音乐下载(主页-设置界面使用)
-主界面:
-- 自动下载远程模组资源
-在线搜索:
-- 房主客户端类型显示以及据此为房间名上色
-- 房间剩余时间百分比显示
-- 更多服务器选择
-游戏设置:
-- 解锁帧数限制(设置界面开关)
-- 切换形象(主页-设置界面切换)
-- 踢出没有登录的玩家(设置界面开关)
-- 踢出被封禁的玩家(设置界面开关)
-- 踢出使用违规昵称的玩家(设置界面开关)
-- 禁用原版游戏音乐(设置界面开关)
-- 人满自动开始游戏(设置界面开关)
-- 结束时自动返回大厅(设置界面开关)
-- 启用插件开场动画(设置界面开关)
-- 启用插件地图背景颜色(设置界面开关)
-- 切换地图样式(仅限The Skeld骷髅舰, 按钮位于安保室)
-游戏中:
-- Final Anti-Cheat反作弊
-- 违禁词检查
-- 场景&会议职业显示
-- 任务进度/击杀数显示
-- 滑动鼠标滚轮使用千里眼(使用条件: 练习模式&本地游戏全局、在线游戏大厅/死亡后)
-- 死后非守护天使可见他人职业、任务进度/击杀数
-- 死后可见他人死因&凶手
-- 幽幽鬼影追踪可见他人职业
-- 大厅中与其他本模组玩家互认
-游戏结算:
-- 复盘信息(职业、任务进度/击杀数、死因&凶手)
-快捷键-全局:
-- F11: 更改分辨率
-- Ctrl+F1: 日志传输
-- F10: 打开游戏根目录
-快捷键-首页:
-- Tab: 隐藏UI
-快捷键-聊天:
-- Ctrl+C: 复制当前聊天框文本
-- Ctrl+V: 粘贴文本到聊天框
-- Ctrl+X: 剪切当前聊天文本
-- ↑: 追溯上一条自己的聊天历史
-- ↓: 追溯下一条自己的聊天历史
-快捷键-游戏中:
-- F1: 显示职业介绍及立绘
-快捷键-全局-仅房主:
-- Ctrl+F2: 切换日志是否在游戏中输出
-快捷键-大厅-仅房主:
-- Shift: 跳过倒计时直接开始游戏
-- C: 重置倒计时
+## Functions
+Global:
+- Music playback (used in the settings interface)
+- Music download (used in the main menu - settings interface)
+Main Menu:
+- Automatic download remote mod resources
+Online Search:
+- Display the host client type and color the room name accordingly
+- Display the percentage of remaining room closing time
+- More server options
+Game Settings:
+- Unlock FPS(switch in the settings interface)
+- Change the outfit (switch in the main title - settings interface)
+- Kick players who are not logged in (switch in the settings interface)
+- Kick players who are banned (switch in the settings interface)
+- Kick players with deny names (switch in the settings interface)
+- Disable the Vanilla music (switch in the settings interface)
+- Automatically start game with lobby full (switch in the settings interface)
+- Automatically return to the lobby when the game ends (switch in the settings interface)
+- Enable custom Intro background(switch in the settings interface)
+- Enable custom map background color (switch in the settings interface)
+- Switch the map style (only for The Skeld, the button is located in the security room)
+In-game:
+- Final Anti-Cheat System
+- Ban words check & block
+- Display the scene & roles on meetings
+- Display of the task progress/kill count
+- Use the mouse wheel to use the clairvoyance (Usage conditions: Practice mode & local game, online game lobby/after death)
+- After death, non-guardian angels can see the roles, task progress/kill counts
+- After death, can see the death reasons & killer 
+- Ghost can see roles
+- Show other players with this mod in the lobby
+Game Results:
+- Information summary (roles, task progress/kill count, death reason & killer)
+Hotkeys - Global:
+- F11: Change the resolution
+- Ctrl+F1: Log output
+- F10: Open the game root directory
+Hotkeys - Main menu:
+- Tab: Hide the UI
+Hotkeys - Chat:
+- Ctrl+C: Copy the current chat box text
+- Ctrl+V: Paste the text into the chat box
+- Ctrl+X: Cut the current chat box text
+- ↑: Trace back to the previous chat history of yourself
+- ↓: Trace back to the next chat history of yourself
+Hotkeys - In-game:
+- F1: Display the role introduction and illustration
+Hotkeys - Global - Only for the Host:
+- Ctrl+F2: Switch if the log outputs in the game
+Hotkeys - Lobby - Only for the Host:
+- Shift: Skip the countdown and directly start the game
+- C: Reset the countdown

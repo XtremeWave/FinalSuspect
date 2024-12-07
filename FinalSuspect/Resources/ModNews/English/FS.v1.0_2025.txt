@@ -29,6 +29,7 @@ Playing games, the most important thing is to have fun!!!
 - Yu  
 - Nonalus  
 - Qingfeng  
+- 白糖咖啡
 
 ## Fixes  
 - Fixed the bug where 「Auto Start at Full Lobby」 only worked when there were 14 or more players.  
@@ -57,7 +58,7 @@ Fix: Qingfeng
 Made by: Slok  
 
 ## Changes  
-- Changed the InnerSloth loading animation to a Final Suspect character illustration carousel loading animation.  
+- Changed the InnerSloth loading animation to a Final Suspect role illustration carousel loading animation.  
 Made by: Slok, 小黄117, KpCam  
 - Changed the InnerSloth opening game animation to the Final Suspect opening game animation.  
 Made by: Slok  
@@ -70,7 +71,7 @@ Made by: Slok
 Decision: Slok  
 
 ## Additions  
-- Pressing F1 to view your role description now also displays the character illustration.  
+- Pressing F1 to view your role description now also displays the role illustration.  
 Made by: Slok, 小黄117, KpCam  
 - The mod announcement now displays the XtremeWave logo on the left side.  
 Made by: Slok  

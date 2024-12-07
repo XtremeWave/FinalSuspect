@@ -29,6 +29,7 @@ No jogo, a coisa mais importante é se divertir!!!
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Correções
 - Corrigido o bug onde "Auto Start at Full Lobby" funcionava apenas com 14 ou mais jogadores.

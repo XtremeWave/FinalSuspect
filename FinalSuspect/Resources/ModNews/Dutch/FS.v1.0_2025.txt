@@ -29,6 +29,7 @@ Om spelletjes te spelen, het belangrijkste is om plezier te hebben!!!
 - Yu
 - Nonalus
 - Qingfeng
+- 白糖咖啡
 
 ## Fixes
 - Het bug opgelost waarbij 'Auto Start bij Volle Lobby' alleen werkte als er 14 of meer spelers waren.
