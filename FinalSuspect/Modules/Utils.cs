@@ -310,7 +310,7 @@ public static class Utils
         return ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
     }
-    public static string GetVitalText(byte playerId,  bool summary = false)
+    public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
     {
         var data = XtremeGameData.XtremePlayerData.GetPlayerDataById(playerId);
         if (!data.IsDead) return "";
@@ -341,7 +341,8 @@ public static class Utils
 
         if (!summary) deathReason = "(" + deathReason + ")";
 
-        deathReason = ColorString(color, deathReason);
+        if (docolor)
+        deathReason =  ColorString(color, deathReason) ;
 
 
         return deathReason;

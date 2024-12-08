@@ -201,6 +201,7 @@ Warning.SetName: "Le joueur {0} a été expulsé pour avoir défini un nom incor
 Warning.SetName_NotHost: "Il est suspecté que {0} utilise des triches. Rappelez au serveur de l'expulser <color=#ffff00>(Définition du Nom Plusieurs Fois)</color>"
 Warning.Despawn: "{0} a été expulsé pour avoir disparu illégalement de son personnage."
 Warning.Despawn_NotHost: "Il est suspecté que {0} utilise des triches. Rappelez au serveur de l'expulser <color=#ffff00>(Disparition Illégale de Son Personnage)</color>."
+Warning.Cheater: "{0} est suspecté d'utiliser un programme de triche. Veuillez rappeler à l'hôte de l'expulser à temps <color=#ffff00>(Envoi illégal de Rpc officiel: {1})</color>"
 Warning.CantKickDev: "Désolé, vous ne pouvez pas expulser le développeur"
 Warning.RoomBroken: "Désolé, cette salle a été détruite. Veuillez vous rendre dans une autre salle pour continuer votre jeu."
 

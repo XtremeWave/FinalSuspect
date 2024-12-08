@@ -10,53 +10,12 @@ using InnerNet;
 namespace FinalSuspect;
 
 
-[HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.BootFromVent))]
-class BootFromVentPatch
-{
-    public static bool Prefix()
-    {
-        if (XtremeGameData.GameStates.IsLobby)
-        {
-            RPC.NotificationPop(GetString("Warning.RoomBroken"));
-            return false;
-        }
-        return true;
-    }
-}
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
 class MurderPlayerPatch
 {
-    public static bool Prefix()
-    {
-        if (XtremeGameData.GameStates.IsLobby)
-        {
-            RPC.NotificationPop(GetString("Warning.RoomBroken"));
-            return false;
-        }
-        return true;
-    }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
     {
-        if (XtremeGameData.GameStates.IsLobby)
-        {
-            RPC.NotificationPop(GetString("Warning.RoomBroken"));
-            return;
-        }
         target.SetRealKiller(__instance);
-    }
-}
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Die))]
-class DiePatch
-{
-
-    public static bool Prefix()
-    {
-        if (XtremeGameData.GameStates.IsLobby)
-        {
-            RPC.NotificationPop(GetString("Warning.RoomBroken"));
-            return false;
-        }
-        return true;
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CoSetRole))]
@@ -175,20 +134,5 @@ class CmdCheckNamePatch
         SpamManager.CheckSpam(ref name);
         if (__instance.OwnerId == AmongUsClient.Instance.HostId)
             Main.HostNickName = name;
-    }
-}
-[HarmonyPatch(typeof(InnerNetObject), nameof(InnerNetObject.Despawn))]
-class DespawnPatch
-{
-    public static void Postfix(InnerNetObject __instance)
-    {
-        if (AmongUsClient.Instance.AmHost)
-        {
-            Utils.KickPlayer(__instance.OwnerId, false);
-            RPC.NotificationPop(string.Format(GetString("Warning.Despawn"), __instance.name));
-        }
-        else
-            RPC.NotificationPop(string.Format(GetString("Warning.Despawn_NotHost"), __instance.name));
-
     }
 }

@@ -201,6 +201,7 @@ Warning.SetName: "Ba éigean {0} a bhaint de bharr ainm mícheart a shocrú."
 Warning.SetName_NotHost: "Cuirtear amhras ar {0} go bhfuil siad ag úsáid sleamhain. Cuimhnigh ar an óstach iad a bhaint <color=#ffff00>(Ainm Socraithe Iluair)</color>"
 Warning.Despawn: "Ba éigean {0} a bhaint de bharr a charachtar a dhíbirt go mídhleathach."
 Warning.Despawn_NotHost: "Cuirtear amhras ar {0} go bhfuil siad ag úsáid sleamhain. Cuimhnigh ar an óstach iad a bhaint <color=#ffff00>(Díbirt Mídhleathach a Charachtar)</color>."
+Warning.Cheater: "{0} á shamhlú go bhfuil siad ag úsáid bogearra cleasanna. Cuir in iúl don óstach iad a chaitheamh amach in am <color=#ffff00>(Ag seoladh Rpc oifigiúil go neamhdhleathach: {1})</color>"
 Warning.CantKickDev: "Tá brón orm, ní féidir leat an forbróir a chur amach"
 Warning.RoomBroken: "Tá brón orm, tá an seomra briste. Le do thoil, téigh chuig seomra eile chun do chluiche a leanúint."
 

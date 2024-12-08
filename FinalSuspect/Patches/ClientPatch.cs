@@ -147,3 +147,19 @@ internal class KickPlayerPatch
         return true;
     }
 }
+[HarmonyPatch(typeof(InnerNetObject), nameof(InnerNetObject.Despawn))]
+internal class DespawnPatch
+{
+    public static void Postfix(InnerNetObject __instance)
+    {
+        if (__instance.OwnerId == PlayerControl.LocalPlayer.GetClientId()) return;
+        if (AmongUsClient.Instance.AmHost)
+        {
+            Utils.KickPlayer(__instance.OwnerId, false);
+            RPC.NotificationPop(string.Format(GetString("Warning.Despawn"), __instance.name));
+        }
+        else
+            RPC.NotificationPop(string.Format(GetString("Warning.Despawn_NotHost"), __instance.name));
+
+    }
+}

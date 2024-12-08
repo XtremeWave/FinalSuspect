@@ -13,6 +13,7 @@ using FinalSuspect.Modules;
 using static FinalSuspect.Translator;
 using FinalSuspect.Modules.Managers;
 using System.Linq;
+using static Il2CppSystem.Globalization.CultureInfo;
 
 namespace FinalSuspect;
 
@@ -68,13 +69,10 @@ class DisconnectInternalPatch
 public class OnPlayerJoinedPatch
 {
     public static Dictionary<byte, int> SetNameNum = new();
-    public static List<byte> Checked = new();
 
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
         Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
-        Checked.Remove(client.Character.PlayerId);
-        Checked.Add(client.Character.PlayerId);
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
@@ -103,6 +101,26 @@ class OnPlayerLeftPatch
         
         ClientsProcessed.Remove(id);
         ClientsProcessed.Add(id);
+    }
+    public static void Prefix([HarmonyArgument(0)] ClientData data)
+    {
+        if (AmongUsClient.Instance.AmHost && data.Character != null)
+        {
+            // Remove messages sending to left player
+            // This latetask is to make sure that the player control is completely despawned for everyone so nobody gonna disconnect itself
+            var netid = data.Character.NetId;
+            _ = new LateTask(() =>
+            {
+                if (XtremeGameData.GameStates.IsOnlineGame && AmongUsClient.Instance.AmHost)
+                {
+                    MessageWriter messageWriter = AmongUsClient.Instance.Streams[1];
+                    messageWriter.StartMessage(5);
+                    messageWriter.WritePacked(netid);
+                    messageWriter.EndMessage();
+                }
+            }, 2.5f, "Repeat Despawn");
+        }
+
     }
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData data, [HarmonyArgument(1)] DisconnectReasons reason)
     {

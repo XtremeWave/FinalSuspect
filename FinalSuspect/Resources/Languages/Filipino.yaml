@@ -201,6 +201,7 @@ Warning.SetName: "Tinanggal si {0} dahil maling pangalan ang itinakda."
 Warning.SetName_NotHost: "Si {0} ay pinaghihinalaang gumagamit ng mga cheat. Pakiusap ay ipaalam sa host na patalsikin sila <color=#ffff00>(Ibinago ang Pangalan ng Maraming Beses)</color>"
 Warning.Despawn: "Tinanggal si {0} dahil sa ilegal na pag-despawn ng kanilang karakter."
 Warning.Despawn_NotHost: "Si {0} ay pinaghihinalaang gumagamit ng mga cheat. Pakiusap ay ipaalam sa host na patalsikin sila <color=#ffff00>(Ilegal na Pag-despawn ng Karakter)</color>."
+Warning.Cheater: "{0} ay pinaghihinalaang gumagamit ng cheating program. Pakipaalala sa host na itanggal siya agad <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
 Warning.CantKickDev: "Pasensya na, hindi mo maaaring tanggalin ang developer"
 Warning.RoomBroken: "Pasensya na, nasira ang silid. Pakipunta sa ibang silid upang ipagpatuloy ang iyong laro."
 

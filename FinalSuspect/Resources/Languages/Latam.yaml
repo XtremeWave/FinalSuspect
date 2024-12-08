@@ -201,6 +201,7 @@ Warning.SetName: "Se expulsó a {0} por configurar un nombre incorrectamente."
 Warning.SetName_NotHost: "Se sospecha que {0} está usando trampas. Recuerde al anfitrión que lo expulse <color=#ffff00>(Nombre Establecido Varias Veces)</color>"
 Warning.Despawn: "{0} ha sido expulsado por desaparecer ilegalmente su personaje."
 Warning.Despawn_NotHost: "Se sospecha que {0} está usando trampas. Recuerde al anfitrión que lo expulse <color=#ffff00>(Desaparición Ilegal de Su Personaje)</color>."
+Warning.Cheater: "{0} sospecha de estar usando un programa de trampa. Por favor, recuerde al anfitrión que lo expulse a tiempo <color=#ffff00>(Enviando Rpc oficial ilegalmente: {1})</color>"
 Warning.CantKickDev: "Lo siento, no puedes expulsar al desarrollador"
 Warning.RoomBroken: "Lo siento, esta sala ha sido destruida. Ve a otra sala para continuar con tu juego."
 

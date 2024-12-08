@@ -201,6 +201,7 @@ Warning.SetName: "Der Spieler {0} wurde gekickt, weil er den Namen falsch gesetz
 Warning.SetName_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte erinnere den Host daran, ihn rauszukicken <color=#ffff00>(Name Mehrmals Geändert)</color>"
 Warning.Despawn: "{0} wurde gekickt, weil er seinen Charakter illegal verschwinden ließ."
 Warning.Despawn_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte erinnere den Host daran, ihn rauszukicken <color=#ffff00>(Illegales Verschwinden des Charakters)</color>."
+Warning.Cheater: "{0} wordt verdächtigt, eine Betrugssoftware zu verwenden. Bitte erinnere den Gastgeber daran, ihn rechtzeitig auszuschließen <color=#ffff00>(Illegales Senden von offizieller Rpc: {1})</color>"
 Warning.CantKickDev: "Entschuldigung, du kannst den Entwickler nicht entfernen"
 Warning.RoomBroken: "Entschuldigung, dieser Raum wurde bombardiert. Bitte gehe in einen anderen Raum, um dein Spiel fortzusetzen."
 

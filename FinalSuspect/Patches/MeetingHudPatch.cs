@@ -36,7 +36,7 @@ public static class MeetingHudPatch
                 if (appendText)
                 {
                     if (!PlayerControl.LocalPlayer.IsAlive())
-                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId);
+                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId, docolor: PlayerControl.LocalPlayer.GetRoleType() != RoleTypes.GuardianAngel);
                 }
 
                 pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";

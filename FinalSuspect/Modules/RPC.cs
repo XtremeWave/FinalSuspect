@@ -25,25 +25,32 @@ internal class RPCHandlerPatch
 {
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
-
-        //if (FAC.ReceiveRpc(__instance, callId, reader) && AmongUsClient.Instance.AmHost)
-        //{
-        //    Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
-        //    return false;
-        //}
-
         Logger.Info($"{__instance?.Data?.PlayerId}" +
             $"({__instance?.Data?.PlayerName})" +
-            $"({(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : "")}" +
+            $"{(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : "")}" +
             $":{callId}({RPC.GetRpcName(callId)})",
             "ReceiveRPC");
 
-        var rpcType = (RpcCalls)callId;
-        MessageReader subReader = MessageReader.Get(reader);
         if (!OnPlayerJoinedPatch.SetNameNum.ContainsKey(__instance.PlayerId))
         {
             OnPlayerJoinedPatch.SetNameNum[__instance.PlayerId] = 0;
         }
+
+        if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify))
+        {
+            if (AmongUsClient.Instance.AmHost)
+            {
+                Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
+                FAC.WarnHost();
+            }
+            else
+                if (notify)
+                RPC.NotificationPop(string.Format(GetString("Warning.Cheater"), __instance.GetRealName(), (RpcCalls)callId));
+            return false;
+        }
+
+        var rpcType = (RpcCalls)callId;
+        MessageReader subReader = MessageReader.Get(reader);
 
         switch (rpcType)
         {
@@ -73,68 +80,7 @@ internal class RPCHandlerPatch
                 Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
                 break;
         }
-
-
-
-        if (CheckForInvalidRpc(__instance, callId))
-        {
-            return false;
-        }
-        if (CheckForSetName(__instance))
-            return false;
-
-
         return true;
-
-    }
-    static bool CheckForInvalidRpc(PlayerControl player, byte callId)
-    {
-        if (player.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !XtremeGameData.GameStates.OtherModHost)
-        {
-            Logger.Warn($"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
-            if (AmongUsClient.Instance.AmHost)
-            {
-                if (!FAC.ReceiveInvalidRpc(player, callId)) return true;
-                Utils.KickPlayer(player.GetClientId(), false, "InvalidRPC");
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));
-                return true;
-
-            }
-            else            
-            {
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
-                if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
-                    player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";
-                return true;
-            }
-        }
-        return false;
-    }
-    static bool CheckForSetName(PlayerControl player)
-    {
-        if (OnPlayerJoinedPatch.SetNameNum[player.PlayerId] > 3)
-        {
-            Logger.Warn($"{player?.Data?.PlayerName}多次设置名称", "CustomRPC");
-            if (AmongUsClient.Instance.AmHost)
-            {
-                Utils.KickPlayer(player.GetClientId(), true, "InvalidRPC");
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的多次设置名称，因此将其踢出。", "Kick");
-                RPC.NotificationPop(string.Format(GetString("Warning.SetName"), player?.Data?.PlayerName));
-                return true;
-
-            }
-            else if (!XtremeGameData.GameStates.OtherModHost)
-            {
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName}({player?.FriendCode}) 的多次设置名称", "Kick?");
-                RPC.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"), player?.Data?.PlayerName));
-                if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
-                    player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";
-                return true;
-            }
-        }
-        return false;
     }
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
@@ -177,6 +123,7 @@ internal class RPCHandlerPatch
                 break;
         }
     }
+
 }
 
 internal static class RPC

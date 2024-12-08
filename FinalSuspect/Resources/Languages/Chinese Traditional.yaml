@@ -201,6 +201,7 @@ Warning.SetName: "{0} 因為多次設定名稱被踢出"
 Warning.SetName_NotHost: "{0} 疑似使用了作弊程式，請提醒房主及時將其踢出<color=#ffff00>(多次設定名稱)</color>"
 Warning.Despawn: "{0} 因為非法卸載自身角色被踢出"
 Warning.Despawn_NotHost: "{0} 疑似使用了作弊程式，請提醒房主及時將其踢出<color=#ffff00>(非法卸載自身角色)</color>"
+Warning.Cheater: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出 <color=#ffff00>(非法發送官方Rpc: {1})</color>"
 Warning.CantKickDev: "很抱歉，您無法踢出開發者"
 Warning.RoomBroken: "很抱歉，該房間遭受炸房攻擊，請到其他房間進行遊戲"
 

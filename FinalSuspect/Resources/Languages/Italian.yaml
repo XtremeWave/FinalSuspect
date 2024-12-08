@@ -201,6 +201,7 @@ Warning.SetName: "{0} è stato espulso perché ha impostato il nome in modo erra
 Warning.SetName_NotHost: "Si sospetta che {0} stia usando cheat. Ricorda all'host di espellerlo <color=#ffff00>(Nome Impostato Più Volte)</color>"
 Warning.Despawn: "{0} è stato espulso per aver rimosso illegalmente il suo personaggio."
 Warning.Despawn_NotHost: "Si sospetta che {0} stia usando cheat. Ricorda all'host di espellerlo <color=#ffff00>(Rimozione Illegale del Personaggio)</color>."
+Warning.Cheater: "{0} è sospettato di usare un programma di cheating. Ricorda al padrone di casa di cacciarlo in tempo <color=#ffff00>(Invio illegale di Rpc ufficiale: {1})</color>"
 Warning.CantKickDev: "Spiacente, non puoi espellere il developer"
 Warning.RoomBroken: "Spiacente, questa stanza è stata bombardata. Per favore, vai in un'altra stanza per continuare il tuo gioco."
 

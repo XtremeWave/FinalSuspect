@@ -2,6 +2,7 @@
 using FinalSuspect.Attributes;
 using FinalSuspect.Patches;
 using HarmonyLib;
+using MS.Internal.Xml.XPath;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,9 +78,14 @@ public static class XtremeGameData
         public static int GetLongestNameByteCount() => AllPlayerData.Values.Select(data => data.PlayerName.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
 
 
-        public void SetDead() => IsDead = true;
+        public void SetDead()
+        {
+            IsDead = true;
+            Logger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
+        }
         public void SetDisconnected()
         {
+            Logger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
             SetDead();
             SetDeathReason(DataDeathReason.Disconnect);
         }
@@ -96,6 +102,8 @@ public static class XtremeGameData
         {
             if (IsDead && RealDeathReason == DataDeathReason.None || focus)
                 RealDeathReason = deathReason;
+            Logger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
+
         }
         public void SetRealKiller(XtremePlayerData killer)
         {
@@ -103,6 +111,7 @@ public static class XtremeGameData
             SetDeathReason(DataDeathReason.Kill);
             killer.KillCount++;
             RealKiller = killer;
+            Logger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
         }
         public void SetTaskTotalCount(int TaskTotalCount) => TotalTaskCount = TaskTotalCount;
         public void CompleteTask() => CompleteTaskCount++;

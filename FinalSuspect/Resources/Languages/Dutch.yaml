@@ -201,6 +201,7 @@ Warning.SetName: "{0} is gekickt omdat ze de naam onjuist hebben ingesteld."
 Warning.SetName_NotHost: "{0} wordt verdacht van het gebruik van cheats. Herinner de host eraan om ze eruit te trappen <color=#ffff00>(Naam Meerdere Malen Ingesteld)</color>"
 Warning.Despawn: "{0} is gekickt voor het illegaal despawnen van hun karakter."
 Warning.Despawn_NotHost: "{0} wordt verdacht van het gebruik van cheats. Herinner de host eraan om ze eruit te trappen <color=#ffff00>(Illegaal Despawnen van hun Karakter)</color>."
+Warning.Cheater: "{0} wordt verdacht van het gebruik van cheatsoftware. Herinner de host eraan om hem op tijd te kicke <color=#ffff00>(Illegaal verzenden van officiële Rpc: {1})</color>"
 Warning.CantKickDev: "Sorry, je kunt de ontwikkelaar niet verwijderen"
 Warning.RoomBroken: "Sorry, deze kamer is opgeblazen. Ga verder naar een andere kamer om je spel voort te zetten."
 

@@ -9,9 +9,12 @@ public class EndGameManagerPatch
     public static void ShowButtons_Postfix(EndGameManager __instance)
     {
         if (!Main.AutoEndGame.Value) return;
-        new LateTask(()=>
-        { 
-            if (__instance != null) __instance.Navigation.NextGame();
+
+            new LateTask(()=>
+        {
+           
+                __instance.Navigation.NextGame();
+            
         }, 2f, "Auto End Game");
     }
 }

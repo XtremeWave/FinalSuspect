@@ -201,6 +201,7 @@ Warning.SetName: "{0} は名前を不適切に設定したため、キックさ�
 Warning.SetName_NotHost: "{0} はチートを使用している疑いがあります。ホストに警告し、キックするように伝えてください <color=#ffff00>(名前を複数回設定)</color>"
 Warning.Despawn: "{0} はキャラクターを不正に消失させたため、キックされました。"
 Warning.Despawn_NotHost: "{0} はチートを使用している疑いがあります。ホストに警告し、キックするように伝えてください <color=#ffff00>(キャラクターの不正消失)</color>."
+Warning.Cheater: "{0} はチートプログラムを使用している疑いがあります。ホストにタイムリーに追放するように伝えてください <color=#ffff00>(公式Rpcを不正に送信: {1})</color>"
 Warning.CantKickDev: "申し訳ありませんが、開発者をキックすることはできません"
 Warning.RoomBroken: "申し訳ありませんが、この部屋は爆破されました。別の部屋に移動してゲームを続けてください。"
 

@@ -201,6 +201,7 @@ Warning.SetName: "{0}가 이름을 부적절하게 설정했기 때문에 강제
 Warning.SetName_NotHost: "{0}가 치트를 사용한 의혹이 있습니다. 호스트에게 그들을 퇴장시킬 것을 알려주세요 <color=#ffff00>(이름을 여러 번 설정)</color>"
 Warning.Despawn: "{0}가 캐릭터를 불법적으로 소멸시켰기 때문에 강제 퇴장시켰습니다."
 Warning.Despawn_NotHost: "{0}가 치트를 사용한 의혹이 있습니다. 호스트에게 그들을 퇴장시킬 것을 알려주세요 <color=#ffff00>(불법 캐릭터 소멸)</color>."
+Warning.Cheater: "{0}가 치트 프로그램을 사용하는 것으로 의심됩니다. 호스트에게 적시에 그를 추방하도록 알려주세요 <color=#ffff00>(공식 Rpc를 불법적으로 전송: {1})</color>"
 Warning.CantKickDev: "죄송하지만 개발자는 추방할 수 없습니다"
 Warning.RoomBroken: "죄송하지만 이 방은 파괴되었습니다. 다른 방으로 이동해 게임을 계속하세요."
 
