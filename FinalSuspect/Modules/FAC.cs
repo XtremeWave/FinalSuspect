@@ -54,16 +54,6 @@ internal class FAC
                     if (CheckForSetName(pc))
                         return true;
                     break;
-                case RpcCalls.SetColor:
-                case RpcCalls.CheckColor:
-                    var color = sr.ReadByte();
-                    if (pc.Data.DefaultOutfit.ColorId != -1 &&
-                        (color < 0 
-                        || color > 18))
-                    {
-                        return true;
-                    }
-                    break;
                 case RpcCalls.EnterVent:
                 case RpcCalls.ExitVent:
                 case RpcCalls.BootFromVent:
