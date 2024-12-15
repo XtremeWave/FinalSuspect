@@ -1,5 +1,3 @@
-using HarmonyLib;
-using InnerNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +7,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using FinalSuspect.Attributes;
+using HarmonyLib;
+using InnerNet;
 using static FinalSuspect.Translator;
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
 public static class BanManager
 {
@@ -102,7 +102,7 @@ public static class BanManager
                 if (Regex.IsMatch(player.PlayerName, line))
                 {
                     Utils.KickPlayer(player.Id, false, "DenyName");
-                    RPC.NotificationPop(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));
+                    NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));
                     Logger.Info($"{player.PlayerName}は名前が「{line}」に一致したためキックされました。", "Kick");
                     return;
                 }
@@ -120,13 +120,13 @@ public static class BanManager
         if (player.IsBannedPlayer())
         {
             Utils.KickPlayer(player.Id, true, "BanList");
-            RPC.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
             Logger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
         }
         else if (player.IsFACPlayer())
         {
             Utils.KickPlayer(player.Id, true, "FACList");
-            RPC.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
             Logger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
         }
     }

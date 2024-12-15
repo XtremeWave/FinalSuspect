@@ -15,10 +15,6 @@ internal class ControllerManagerUpdatePatch
     private static int resolutionIndex = 0;
     public static void Postfix(ControllerManager __instance)
     {
-
-
-        //切换自定义设置的页面
-
         //职业介绍
         if (XtremeGameData.GameStates.IsInGame && (XtremeGameData.GameStates.IsCanMove || XtremeGameData.GameStates.IsMeeting))
         {

@@ -19,31 +19,12 @@ public class CreditsControllerPatch
                 "   ",
                 //Others
                 $"<size=120%>{GetString("Contributors")}</size>",
-                $"- KARPED1EM",
-                $"- Niko233",
-                $"- Amongus(水木年华)",
-                $"- Yu(Night_瓜)",
-                $"- 天寸梦初",
+                "- KARPED1EM",
+                "- Niko233",
+                "- Amongus(水木年华)",
+                "- Yu(Night_瓜)",
+                "- 天寸梦初",
 
-            };
-        var acList = new List<string>()
-            {
-                //Mods
-                $"{GetString("TownOfHost")}",
-                $"{GetString("TownOfNext")}",
-                $"{GetString("TownOfHost_Y")}",
-                $"{GetString("TownOfHost-TheOtherRoles")}",
-                $"{GetString("SuperNewRoles")}",
-                $"{GetString("TownOfHostRe-Edited")}",
-                $"{GetString("TownOfHostEnhanced")}",
-                $"{GetString("TownOfHosEdited_PLUS")}",
-                $"{GetString("TownOfHosEdited_Niko")}",
-                $"{GetString("To_Hope")}",
-                $"{GetString("Project-Lotus")}",
-
-                // Sponsor
-
-                //Discord Server Booster
             };
 
         var credits = new List<CreditsController.CreditStruct>();

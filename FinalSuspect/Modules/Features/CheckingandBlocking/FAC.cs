@@ -1,13 +1,10 @@
-﻿using AmongUs.GameOptions;
-using Hazel;
-using InnerNet;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using AmongUs.GameOptions;
+using Hazel;
 using static FinalSuspect.Translator;
-using Il2CppSystem.Runtime.Remoting.Messaging;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 internal class FAC
 {
     public static int MeetingTimes = 0;
@@ -44,6 +41,7 @@ internal class FAC
 
             if (CheckForInvalidRpc(pc, callId))
             {
+                notify = false;
                 return true;
             }
 
@@ -75,7 +73,7 @@ internal class FAC
                     case RpcCalls.StartMeeting:
                     case RpcCalls.ReportDeadBody:
                         if (!AmongUsClient.Instance.AmHost) 
-                            RPC.NotificationPop(GetString("Warning.RoomBroken"));
+                            NotificationPopperPatch.NotificationPop(GetString("Warning.RoomBroken"));
                         notify = false;
                         return true;
                 }
@@ -126,14 +124,14 @@ internal class FAC
                 if (!ReceiveInvalidRpc(player, callId)) return true;
                 Utils.KickPlayer(player.GetClientId(), false, "InvalidRPC");
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));
                 return true;
 
             }
             else
             {
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
-                RPC.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
                 if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
                     player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";
                 return true;
@@ -143,14 +141,14 @@ internal class FAC
     }
     static bool CheckForSetName(PlayerControl player)
     {
-        if (OnPlayerJoinedPatch.SetNameNum[player.PlayerId] > 3)
+        if (SetNameNum[player.PlayerId] > 3)
         {
             Logger.Warn($"{player?.Data?.PlayerName}多次设置名称", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
             {
                 Utils.KickPlayer(player.GetClientId(), true, "SetName");
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的多次设置名称，因此将其踢出。", "Kick");
-                RPC.NotificationPop(string.Format(GetString("Warning.SetName"), player?.Data?.PlayerName));
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName"), player?.Data?.PlayerName));
                 WarnHost();
                 return true;
 
@@ -158,7 +156,7 @@ internal class FAC
             else if (!XtremeGameData.GameStates.OtherModHost)
             {
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName}({player?.FriendCode}) 的多次设置名称", "Kick?");
-                RPC.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"), player?.Data?.PlayerName));
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"), player?.Data?.PlayerName));
                 if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
                     player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";
                 return true;
@@ -206,7 +204,9 @@ internal class FAC
     public static void HandleCheat(PlayerControl pc, string text)
     {
         Utils.KickPlayer(pc.GetClientId(), true, "CheatDetected");
-        RPC.NotificationPop(pc.GetDataName() + text);
+        NotificationPopperPatch.NotificationPop(pc.GetDataName() + text);
 
     }
+
+    public static Dictionary<byte, int> SetNameNum = new();
 }

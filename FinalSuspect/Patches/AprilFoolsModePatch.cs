@@ -12,7 +12,7 @@ public static class AprilFoolsModePatch
 {
     public static bool Prefix(ref bool __result)
     {
-        __result = Main.ChangeOutfit.Value == Main.changeOutfit[2];
+        __result = Main.ChangeOutfit.Value == Main.OutfitType[2];
         return false;
     }
 }

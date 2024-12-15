@@ -19,4 +19,9 @@ public class NotificationPopperPatch
         if (DestroyableSingleton<HudManager>._instance) DestroyableSingleton<HudManager>.Instance.Notifier.AddDisconnectMessage(text);
         else WaitToSend.Remove(text);
     }
+
+    public static void NotificationPop(string text)
+    {
+        AddItem(text);
+    }
 }

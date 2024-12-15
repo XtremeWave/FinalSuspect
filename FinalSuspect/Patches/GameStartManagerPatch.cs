@@ -85,7 +85,6 @@ public class GameStartManagerPatch
             timerText.outlineColor = Color.black;
             timerText.outlineWidth = 0.40f;
             timerText.hideFlags = HideFlags.None;
-            //timerText.transform.localPosition += new Vector3(-0.5f, -2.6f, 0f);
             timerText.transform.localPosition += new Vector3(-0.55f,  -0.4f, 0f);
             timerText.transform.localScale = new(0.7f, 0.7f, 1f);
             timerText.gameObject.SetActive(AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame && XtremeGameData.GameStates.IsVanillaServer);
@@ -104,7 +103,6 @@ public class GameStartManagerPatch
                 cancelButtonInactiveShine.gameObject.SetActive(false);
             }
             cancelButton.activeTextColor = cancelButton.inactiveTextColor = Color.white;
-            //cancelButton.transform.localPosition = new(2f, 0.13f, 0f);
             GameStartTextlocalPosition = __instance.GameStartText.transform.localPosition;
             cancelButton.OnClick = new();
             cancelButton.OnClick.AddListener((Action)(() =>

@@ -1,6 +1,7 @@
 using HarmonyLib;
 using UnityEngine;
 using AmongUs.GameOptions;
+using FinalSuspect.Modules.Managers;
 
 namespace FinalSuspect;
 
@@ -19,7 +20,9 @@ public static class MeetingHudPatch
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
                 var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-                pva.NameText.text = pc.GetDataName();
+                var text = pc.GetDataName();
+                SpamManager.CheckSpam(ref text);
+                pva.NameText.text = text;
 
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";

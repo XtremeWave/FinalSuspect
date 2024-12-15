@@ -3,6 +3,9 @@ using HarmonyLib;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using AmongUs.GameOptions;
+using FinalSuspect.Attributes;
+using FinalSuspect.Templates;
 using UnityEngine;
 using static FinalSuspect.Translator;
 using TMPro;
@@ -131,6 +134,12 @@ public static class HudManagerPatch
             //    }
             //}
         }
+
+        public static void Postfix(HudManager __instance)
+        {
+            UpdateResult(__instance);
+            SetAbilityButtonColor(__instance);
+        }
     }
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.CoFadeFullScreen))]
     public static class CoFadeFullScreen
@@ -179,4 +188,132 @@ public static class HudManagerPatch
             ModLoading.SetActive(false);
         }
     }
+
+    private static TextMeshPro roleSummary;
+    public static SimpleButton showHideButton;
+    private static SpriteRenderer backgroundRenderer;
+
+    [GameModuleInitializer]
+    public static void Init()
+    {
+        try
+        {
+            Object.Destroy(showHideButton.Button.gameObject);
+            Object.Destroy(roleSummary.gameObject);
+            Object.Destroy(backgroundRenderer.gameObject); // 销毁背景
+        }
+        catch { }
+        showHideButton = null;
+        roleSummary = null;
+        backgroundRenderer = null;
+    }
+
+    public static string LastResultText;
+    
+    public static void SetAbilityButtonColor(HudManager __instance)
+    {
+        if (!XtremeGameData.GameStates.IsInGame || PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.Crewmate or RoleTypes.Impostor or RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost)   return;
+        var color = Utils.GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
+        __instance.AbilityButton.buttonLabelText.color = color;
+    }
+    public static void UpdateResult(HudManager __instance)
+    {
+        if (!XtremeGameData.GameStates.IsInGame && string.IsNullOrEmpty(LastResultText))
+            return;
+        var showInitially = Main.ShowResults.Value;
+       
+        if (showHideButton == null)
+        {
+            showHideButton =
+            new SimpleButton(
+               __instance.transform,
+               "ShowHideResultsButton",
+               XtremeGameData.GameStates.IsInGame? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -1f),  // 比 BackgroundLayer(z = -13) 更靠前
+               new(209, 190, 0, byte.MaxValue),
+               new(byte.MaxValue, byte.MaxValue, 0, byte.MaxValue),
+               () =>
+               {
+                   var setToActive = !roleSummary.gameObject.activeSelf;
+                   roleSummary.gameObject.SetActive(setToActive);
+                   Main.ShowResults.Value = setToActive;
+                   showHideButton.Label.text = GetString(setToActive ? "HideResults" : "ShowResults");
+               },
+               GetString(showInitially ? "HideResults" : "ShowResults"))
+            {
+                Scale = new(1.5f, 0.5f),
+                FontSize = 2f,
+            };
+        }
+
+        StringBuilder sb = new($"{GetString("RoleSummaryText")}");
+        if (XtremeGameData.GameStates.IsInGame)
+        {
+            sb.Append("\n");
+            foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData)
+            {
+                var id = kvp.Key;
+                var data = kvp.Value;
+                sb.Append($"\n　 ").Append(Utils.SummaryTexts(id));
+
+            }
+
+            LastResultText = sb.ToString();
+        }
+        
+        if (roleSummary == null)
+        {
+
+            roleSummary = TMPTemplate.Create(
+                "RoleSummaryText",
+                LastResultText,
+                Color.white,
+                1.25f,
+                TextAlignmentOptions.TopLeft,
+                setActive: showInitially,
+                parent: showHideButton.Button.transform);
+            roleSummary.transform.localPosition = new Vector3(1.7f, -0.4f, -1f);
+            roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            roleSummary.fontStyle = FontStyles.Bold;
+            roleSummary.SetOutlineColor(Color.black);
+            roleSummary.SetOutlineThickness(0.15f);
+ 
+            GameObject backgroundObject = new GameObject("RoleSummaryBackground");
+            backgroundObject.transform.SetParent(roleSummary.transform, false); 
+            backgroundRenderer = backgroundObject.AddComponent<SpriteRenderer>();
+            backgroundRenderer.sprite = Utils.LoadSprite("LastResult-BG.png",200f);
+            backgroundRenderer.color = new(0.5f,0.5f,0.5f,1f); 
+        }
+        
+        showHideButton.Button.transform.localPosition =
+            XtremeGameData.GameStates.IsInGame ? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -1f);
+        if (XtremeGameData.GameStates.IsInGame)
+            showHideButton.Button.gameObject.SetActive
+            (PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost &&
+             !XtremeGameData.GameStates.IsMeeting);
+        else
+            showHideButton.Button.gameObject.SetActive(true);
+
+        roleSummary.text = LastResultText;
+        AdjustBackgroundSize();
+    }
+
+    private static void AdjustBackgroundSize()
+    {
+        if (roleSummary != null && backgroundRenderer != null)
+        {
+            Bounds textBounds = roleSummary.textBounds;
+
+            Sprite backgroundSprite = backgroundRenderer.sprite;
+            if (backgroundSprite != null)
+            {
+                float scaleX = (textBounds.size.x + 0.4f) / backgroundSprite.bounds.size.x;
+                float scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
+                
+                backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+            }
+            
+            backgroundRenderer.transform.localPosition = new Vector3(0, -textBounds.size.y * 0.5f, 0);
+        }
+    }
+    
 }

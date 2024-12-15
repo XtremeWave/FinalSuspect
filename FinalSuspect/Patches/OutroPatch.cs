@@ -5,6 +5,8 @@ using System.Text;
 using TMPro;
 using FinalSuspect.Templates;
 using UnityEngine;
+using AmongUs.GameOptions;
+using FinalSuspect.Attributes;
 using static FinalSuspect.Translator;
 
 namespace FinalSuspect;
@@ -26,29 +28,29 @@ class SetEverythingUpPatch
     private static TextMeshPro roleSummary;
     private static SimpleButton showHideButton;
     static bool DidHumansWin;
+
     public static void Prefix()
     {
         DidHumansWin = GameManager.Instance.DidHumansWin(EndGameResult.CachedGameOverReason);
     }
+
     public static void Postfix(EndGameManager __instance)
     {
-
         var showInitially = Main.ShowResults.Value;
 
         //#######################################
         //          ==勝利陣営表示==
         //#######################################
         var WinnerTextObject = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
-        WinnerTextObject.transform.position = new(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
-        WinnerTextObject.transform.localScale = new(0.6f, 0.6f, 0.6f);
-        var WinnerText = WinnerTextObject.GetComponent<TMPro.TextMeshPro>(); //WinTextと同じ型のコンポーネントを取得
+        WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
+        WinnerTextObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        var WinnerText = WinnerTextObject.GetComponent<TMPro.TextMeshPro>(); // WinTextと同じ型のコンポーネントを取得
         WinnerText.fontSizeMin = 3f;
 
         string CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
         __instance.BackgroundBar.material.color = __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
         __instance.WinText.text = DidHumansWin ? GetString("CrewmatesWin") : GetString("ImpostorsWin");
         WinnerText.text = DidHumansWin ? GetString("CrewmatesWinBlurb") : GetString("ImpostorsWinBlurb");
-
 
         __instance.WinText.gameObject.SetActive(!showInitially);
         WinnerTextObject.SetActive(!showInitially);
@@ -80,7 +82,6 @@ class SetEverythingUpPatch
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
-
         foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
         {
             var id = kvp.Key;
@@ -92,20 +93,28 @@ class SetEverythingUpPatch
             var id = kvp.Key;
             var data = kvp.Value;
             sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
-
         }
 
-
+        HudManagerPatch.LastResultText = sb.ToString();
+        HudManagerPatch.Init();
         roleSummary = TMPTemplate.Create(
-                "RoleSummaryText",
-                sb.ToString(),
-                Color.white,
-                1.25f,
-                TextAlignmentOptions.TopLeft,
-                setActive: showInitially,
-                parent: showHideButton.Button.transform);
-        roleSummary.transform.localPosition = new(1.7f, -0.4f, -1f);
+            "RoleSummaryText",
+            sb.ToString(),
+            Color.white,
+            1.25f,
+            TextAlignmentOptions.TopLeft,
+            setActive: showInitially,
+            parent: showHideButton.Button.transform);
+        roleSummary.transform.localPosition = new Vector3(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+        roleSummary.fontStyle = FontStyles.Bold;
+        roleSummary.SetOutlineColor(Color.black);
+        roleSummary.SetOutlineThickness(0.15f);
+ 
+
         XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+
+
     }
+    
 }

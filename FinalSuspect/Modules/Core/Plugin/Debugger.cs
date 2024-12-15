@@ -46,7 +46,7 @@ class Logger
     public static void SendInGame(string text, bool isAlways = false)
     {
         if (!isEnable) return;
-        RPC.NotificationPop(text);
+        NotificationPopperPatch.NotificationPop(text);
     }
     private static void SendToFile(string text, LogLevel level = LogLevel.Info, string tag = "", bool escapeCRLF = true, int lineNumber = 0, string fileName = "")
     {

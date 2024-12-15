@@ -74,7 +74,7 @@ internal class ChatCommands
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.AddChat))]
 internal class ChatAdd
 {
-    public static void Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer,  [HarmonyArgument(1)] ref string chatText)
+    public static void Prefix([HarmonyArgument(0)] PlayerControl sourcePlayer,  [HarmonyArgument(1)] ref string chatText)
     {
         SpamManager.CheckSpam(ref chatText);
 

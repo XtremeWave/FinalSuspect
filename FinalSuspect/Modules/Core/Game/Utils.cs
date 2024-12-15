@@ -319,7 +319,6 @@ public static class Utils
 
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
-
         switch (data.RealDeathReason)
         {
             case DataDeathReason.Disconnect:
@@ -331,8 +330,8 @@ public static class Utils
 
                 if (summary)
                     deathReason += $"<=<size=80%>{ColorString(killercolor, data.RealKiller.PlayerName)}</size>";
-                else
-                    deathReason = ColorString(killercolor, deathReason);
+                else if (docolor)
+                    color = killercolor;
                 break;
             case DataDeathReason.Exile:
                 color = Palette.Purple;
@@ -340,8 +339,7 @@ public static class Utils
         }
 
         if (!summary) deathReason = "(" + deathReason + ")";
-
-        if (docolor)
+        
         deathReason =  ColorString(color, deathReason) ;
 
 

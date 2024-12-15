@@ -12,9 +12,7 @@ public class EndGameManagerPatch
 
             new LateTask(()=>
         {
-           
                 __instance.Navigation.NextGame();
-            
         }, 2f, "Auto End Game");
     }
 }

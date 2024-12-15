@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect.Modules.Features.CheckingandBlocking;
+using FinalSuspect.Modules.Managers;
+using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect;
@@ -11,11 +13,12 @@ public class SwitchShipCostumeButtonPatch
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Awake)), HarmonyPostfix]
     public static void ShipStatusFixedUpdate(ShipStatus __instance)
     {
-        var MapId = XtremeGameData.GameStates.IsNormalGame ? Main.NormalOptions.MapId : Main.HideNSeekOptions.MapId;
-        if (MapId != 0)
+        var mapId = GameOptionsManager.Instance.CurrentGameOptions.MapId;
+        if (mapId != 0)
         {
             if (SwitchShipCostumeButton != null)
                 Object.Destroy(SwitchShipCostumeButton);
+            SwitchShipCostumeButton = null;
             return;
         }
         if (SwitchShipCostumeButton == null)
@@ -44,7 +47,7 @@ public class SwitchShipCostumeButtonPatch
         if (Costume == 0) sounds = Sounds.KillSound; 
         if (Costume == 1) sounds = Sounds.ImpTransform;
         if (Costume == 2) sounds = Sounds.TaskUpdateSound;
-        RPC.PlaySoundRPC(PlayerControl.LocalPlayer.PlayerId, sounds);
+        AudioManager.PlaySound(PlayerControl.LocalPlayer.PlayerId, sounds);
         return false;
     }
 }

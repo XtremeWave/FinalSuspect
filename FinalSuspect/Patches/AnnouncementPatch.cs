@@ -18,7 +18,6 @@ public class ModNews
 {
     public int Number;
     public uint Lang;
-    public int BeforeNumber;
     public string Title;
     public string SubTitle;
     public string ShortTitle;
@@ -115,10 +114,7 @@ public class ModNewsHistory
         return true;
     }
     static Sprite TeamLogoSprite = Utils.LoadSprite($"TeamLogo.png", 1000f);
-
-
-
-    //public static bool first = true;
+    
     //YuEzTool
     [HarmonyPatch(typeof(AnnouncementPanel), nameof(AnnouncementPanel.SetUp)), HarmonyPostfix]
     public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)

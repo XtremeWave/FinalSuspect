@@ -58,8 +58,8 @@ class FixedUpdatePatch
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
-            if (SpamManager.CheckSpam(ref nametext))
-                color = "#ff0000";
+
+            SpamManager.CheckSpam(ref nametext);
             __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
         }
         catch

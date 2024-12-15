@@ -20,7 +20,7 @@ public static class ColorHelper
     }
     public static string ColorToHex(Color color)
     {
-        Color32 color32 = (Color32)color;
+        Color32 color32 = color;
         return $"{color32.r:X2}{color32.g:X2}{color32.b:X2}{color32.a:X2}";
     }
 
@@ -36,4 +36,6 @@ public static class ColorHelper
     public static readonly Color32 OutColor = new(180, 179, 231, 255);
     public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
     public static readonly Color32 HalfModColor32 = new(206, 205, 253, 160);
+    public static readonly Color32 FaultColor = new(229, 115, 115, 255);
+
 }

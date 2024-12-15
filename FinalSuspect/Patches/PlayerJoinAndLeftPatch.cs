@@ -13,6 +13,7 @@ using FinalSuspect.Modules;
 using static FinalSuspect.Translator;
 using FinalSuspect.Modules.Managers;
 using System.Linq;
+using FinalSuspect.Modules.Features.CheckingandBlocking;
 using static Il2CppSystem.Globalization.CultureInfo;
 
 namespace FinalSuspect;
@@ -22,7 +23,8 @@ class OnGameJoinedPatch
 {
     public static void Postfix(AmongUsClient __instance)
     {
-        OnPlayerJoinedPatch.SetNameNum = new();
+        HudManagerPatch.Init();
+        FAC.SetNameNum = new();
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
@@ -55,12 +57,14 @@ class DisconnectInternalPatch
             ShowDisconnectPopupPatch.StringReason = stringReason;
 
             Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
+            HudManagerPatch.Init();
             XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
             ErrorText.Instance.CheatDetected = false;
             ErrorText.Instance.SBDetected = false;
             ErrorText.Instance.Clear();
             Cloud.StopConnect();
+
         }
         catch { }
     }
@@ -68,15 +72,13 @@ class DisconnectInternalPatch
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
 public class OnPlayerJoinedPatch
 {
-    public static Dictionary<byte, int> SetNameNum = new();
-
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
         Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
-            RPC.NotificationPop(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
             Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
         if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost && Main.ApplyBanList.Value)
@@ -98,31 +100,25 @@ class OnPlayerLeftPatch
     public static List<int> ClientsProcessed = new();
     public static void Add(int id)
     {
-        
         ClientsProcessed.Remove(id);
         ClientsProcessed.Add(id);
     }
     public static void Prefix([HarmonyArgument(0)] ClientData data)
     {
-        if (AmongUsClient.Instance.AmHost && data.Character != null)
+        if (AmongUsClient.Instance.AmHost && XtremeGameData.GameStates.IsOnlineGame && data.Character != null)
         {
-            // Remove messages sending to left player
-            // This latetask is to make sure that the player control is completely despawned for everyone so nobody gonna disconnect itself
             var netid = data.Character.NetId;
             _ = new LateTask(() =>
             {
-                if (XtremeGameData.GameStates.IsOnlineGame && AmongUsClient.Instance.AmHost)
-                {
-                    MessageWriter messageWriter = AmongUsClient.Instance.Streams[1];
-                    messageWriter.StartMessage(5);
-                    messageWriter.WritePacked(netid);
-                    messageWriter.EndMessage();
-                }
+                MessageWriter messageWriter = AmongUsClient.Instance.Streams[1];
+                messageWriter.StartMessage(5);
+                messageWriter.WritePacked(netid);
+                messageWriter.EndMessage();
             }, 2.5f, "Repeat Despawn");
         }
 
     }
-    public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData data, [HarmonyArgument(1)] DisconnectReasons reason)
+    public static void Postfix([HarmonyArgument(0)] ClientData data, [HarmonyArgument(1)] DisconnectReasons reason)
     {
         try
         {
@@ -132,7 +128,6 @@ class OnPlayerLeftPatch
                 return;
             }
 
-
             if (XtremeGameData.GameStates.IsInGame)
             {
                 data?.Character?.SetDisconnected();
@@ -140,28 +135,26 @@ class OnPlayerLeftPatch
 
             Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
-
-
             // 附加描述掉线原因
             switch (reason)
             {
                 case DisconnectReasons.Hacking:
-                    RPC.NotificationPop(string.Format(GetString("PlayerLeftByAU-Anticheat"), data?.PlayerName));
+                    NotificationPopperPatch.NotificationPop(string.Format(GetString("PlayerLeftByAU-Anticheat"), data?.PlayerName));
                     break;
                 case DisconnectReasons.Error:
-                    RPC.NotificationPop(string.Format(GetString("PlayerLeftCuzError"), data?.PlayerName));
+                    NotificationPopperPatch.NotificationPop(string.Format(GetString("PlayerLeftCuzError"), data?.PlayerName));
                     break;
                 case DisconnectReasons.Kicked:
                 case DisconnectReasons.Banned:
                     break;
                 default:
                     if (!ClientsProcessed.Contains(data?.Id ?? 0))
-                        RPC.NotificationPop(string.Format(GetString("PlayerLeft"), data?.PlayerName));
+                        NotificationPopperPatch.NotificationPop(string.Format(GetString("PlayerLeft"), data?.PlayerName));
                     break;
             }
             XtremeGameData.PlayerVersion.playerVersion.Remove(data?.Character?.PlayerId ?? 255);
             ClientsProcessed.Remove(data?.Id ?? 0);
-            OnPlayerJoinedPatch.SetNameNum.Remove(data?.Character?.PlayerId ?? 255);
+            FAC.SetNameNum.Remove(data?.Character?.PlayerId ?? 255);
         }
         catch { }
     }

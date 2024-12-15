@@ -55,12 +55,12 @@ public static class OptionsMenuBehaviourStartPatch
         if (ChangeOutfit == null || ChangeOutfit.ToggleButton == null)
         {
             ChangeOutfit = ClientOptionItem_String.Create(
-                Main.ChangeOutfit.Value ?? Main.changeOutfit[0] 
+                Main.ChangeOutfit.Value ?? Main.OutfitType[0] 
                  
-                , Main.ChangeOutfit, __instance, Main.changeOutfit, SwitchHorseMode);
+                , Main.ChangeOutfit, __instance, Main.OutfitType, SwitchHorseMode);
             static void SwitchHorseMode()
             {
-                ChangeOutfit.UpdateToggle(Main.changeOutfit);
+                ChangeOutfit.UpdateToggle(Main.OutfitType);
                 //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
                 //foreach (var pc in PlayerControl.AllPlayerControls)
                 //{
@@ -80,7 +80,7 @@ public static class OptionsMenuBehaviourStartPatch
             }
             else
             {
-                ChangeOutfit.UpdateToggle(Main.changeOutfit);
+                ChangeOutfit.UpdateToggle(Main.OutfitType);
                 ChangeOutfit.UpdateName(Main.ChangeOutfit.Value);
                 ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled =true;
             }

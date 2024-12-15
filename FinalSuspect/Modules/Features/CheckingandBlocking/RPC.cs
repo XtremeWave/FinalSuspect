@@ -1,13 +1,13 @@
-using AmongUs.GameOptions;
-using HarmonyLib;
-using Hazel;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static FinalSuspect.Translator;
+using AmongUs.GameOptions;
 using FinalSuspect.Modules.Managers;
+using HarmonyLib;
+using Hazel;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
 public enum Sounds
 {
@@ -31,9 +31,9 @@ internal class RPCHandlerPatch
             $":{callId}({RPC.GetRpcName(callId)})",
             "ReceiveRPC");
 
-        if (!OnPlayerJoinedPatch.SetNameNum.ContainsKey(__instance.PlayerId))
+        if (!FAC.SetNameNum.ContainsKey(__instance.PlayerId))
         {
-            OnPlayerJoinedPatch.SetNameNum[__instance.PlayerId] = 0;
+            FAC.SetNameNum[__instance.PlayerId] = 0;
         }
 
         if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify))
@@ -43,9 +43,9 @@ internal class RPCHandlerPatch
                 Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
                 FAC.WarnHost();
             }
-            else
-                if (notify)
-                RPC.NotificationPop(string.Format(GetString("Warning.Cheater"), __instance.GetRealName(), (RpcCalls)callId));
+            else if (notify)
+                NotificationPopperPatch.NotificationPop
+                    (string.Format(GetString("Warning.Cheater"), __instance.GetRealName(), $"{callId}({RPC.GetRpcName(callId)})"));
             return false;
         }
 
@@ -55,12 +55,13 @@ internal class RPCHandlerPatch
         switch (rpcType)
         {
             case RpcCalls.CheckName://CheckNameRPC
-                Logger.Info("RPC Check Name For Player: " + __instance.GetNameWithRole(), "CheckName");
-                OnPlayerJoinedPatch.SetNameNum[__instance.PlayerId]++;
+                string name = subReader.ReadString();
+                Logger.Info("RPC Check Name For Player: " + name, "CheckName");
+                FAC.SetNameNum[__instance.PlayerId]++;
                 break;
             case RpcCalls.SetName: //SetNameRPC
                 subReader.ReadUInt32();
-                string name = subReader.ReadString();
+                name = subReader.ReadString();
                 Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
                 break;
             case RpcCalls.SetRole: //SetRoleRPC
@@ -96,7 +97,7 @@ internal class RPCHandlerPatch
 
                     XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
 
-                    if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
+                    RPC.RpcVersionCheck();
 
                     if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
                         XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = XtremeGameData.PlayerVersion.playerVersion[0];
@@ -111,12 +112,11 @@ internal class RPCHandlerPatch
                                 {
                                     var msg = string.Format(GetString("KickBecauseDiffrentVersionOrMod"), __instance?.Data?.PlayerName);
                                     Logger.Warn(msg, "Version Kick");
-                                    RPC.NotificationPop(msg);
+                                    NotificationPopperPatch.NotificationPop(msg);
                                     Utils.KickPlayer(__instance.GetClientId(), false, "ModVersionIncorrect");
                                 }
                             }, 5f, "Kick");
                     }
-                    // Kick Unmached Player End
                 }
                 catch
                 {                }
@@ -128,52 +128,21 @@ internal class RPCHandlerPatch
 
 internal static class RPC
 {
-    //来源：https://github.com/music-discussion/TownOfHost-TheOtherRoles/blob/main/Modules/RPC.cs
-    public static void PlaySoundRPC(byte PlayerID, Sounds sound)
-    {
-        if (AmongUsClient.Instance.AmHost)
-            PlaySound(PlayerID, sound);
-    }
     public static async void RpcVersionCheck()
     {
-
         while (PlayerControl.LocalPlayer == null) await Task.Delay(500);
         if (!Main.VersionCheat.Value)
         {
-            bool cheating = Main.VersionCheat.Value;
             MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.CancelPet, SendOption.Reliable);
-            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].version.ToString() : Main.PluginVersion);
-            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].tag : $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
-            writer.Write(cheating ? XtremeGameData.PlayerVersion.playerVersion[0].forkId : Main.ForkId);
+            writer.Write(Main.PluginVersion);
+            writer.Write($"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
+            writer.Write(Main.ForkId);
             writer.EndMessage();
         }
-        XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
+        XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = 
+            new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
 
 
-    }
-    public static void PlaySound(byte playerID, Sounds sound)
-    {
-        if (PlayerControl.LocalPlayer.PlayerId == playerID)
-        {
-            switch (sound)
-            {
-                case Sounds.KillSound:
-                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 1f);
-                    break;
-                case Sounds.TaskComplete:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound, false, 1f);
-                    break;
-                case Sounds.TaskUpdateSound:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound, false, 1f);
-                    break;
-                case Sounds.ImpTransform:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx, false, 0.8f);
-                    break;
-                case Sounds.Yeehawfrom:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
-                    break;
-            }
-        }
     }
 
 
@@ -197,10 +166,6 @@ internal static class RPC
         if ((rpcName = Enum.GetName(typeof(RpcCalls), callId)) == null)
             rpcName = callId.ToString() + "INVALID";
         return rpcName;
-    }
-    public static void NotificationPop(string text)
-    {
-        NotificationPopperPatch.AddItem(text);
     }
 }
 [HarmonyPatch(typeof(InnerNet.InnerNetClient), nameof(InnerNet.InnerNetClient.StartRpc))]

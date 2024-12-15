@@ -38,7 +38,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241208";
+    public const string DisplayedVersion_Date = "20241214";
 
     /// <summary>
     /// 测试信息；
@@ -52,7 +52,7 @@ public class Main : BasePlugin
     /// Scrapped: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 1;
+    public const int DisplayedVersion_TestCreation = 4;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
@@ -92,7 +92,7 @@ public class Main : BasePlugin
 
 
 
-    public static readonly string[] changeOutfit =
+    public static readonly string[] OutfitType =
     {
         "BeanMode", "HorseMode", "LongMode"
     };
@@ -143,7 +143,7 @@ public class Main : BasePlugin
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
-        ChangeOutfit = Config.Bind("Client Options", "AprilFoolsMode", changeOutfit[0]);
+        ChangeOutfit = Config.Bind("Client Options", "AprilFoolsMode", OutfitType[0]);
         KickPlayerFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
         ApplyBanList = Config.Bind("Client Options", "ApplyBanList", true);
         ApplyDenyNameList = Config.Bind("Client Options", "ApplyDenyNameList", true);
@@ -164,7 +164,7 @@ public class Main : BasePlugin
         {
             FinalSuspect.Logger.Disable("test");
         }
-        //FinalSuspect.Logger.isDetail = true;
+        FinalSuspect.Logger.isDetail = true;
 
         // 認証関連-初期化
         DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);

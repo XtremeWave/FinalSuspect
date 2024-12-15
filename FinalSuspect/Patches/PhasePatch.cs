@@ -1,3 +1,4 @@
+using FinalSuspect.Attributes;
 using HarmonyLib;
 
 namespace FinalSuspect;
@@ -36,13 +37,23 @@ class MeetingHudOnDestroyPatch
         Logger.Info("------------会议结束------------", "Phase");
     }
 }
+[HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
+internal class CoStartGamePatch
+{
+    public static void Postfix()
+    {
+        IntroCutsceneOnDestroyPatch.IntroDestroyed = false;
+        GameModuleInitializerAttribute.InitializeAll();
+    }
+
+}
 [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
 public static class IntroCutsceneOnDestroyPatch
 {
-    public static bool introDestroyed;
+    public static bool IntroDestroyed;
     public static void Postfix()
     {
-        introDestroyed = true;
+        IntroDestroyed = true;
         Logger.Info("OnDestroy", "IntroCutscene");
     }
 }

@@ -2,6 +2,7 @@ using HarmonyLib;
 using InnerNet;
 using System.Linq;
 using FinalSuspect.Modules;
+using FinalSuspect.Modules.Features.CheckingandBlocking;
 using UnityEngine;
 using static FinalSuspect.Translator;
 using FinalSuspect.Modules.Managers;
@@ -135,31 +136,15 @@ internal class KickPlayerPatch
                 if (ban)
                 {
                     BanManager.AddBanPlayer(AmongUsClient.Instance.GetRecentClient(clientId));
-                    RPC.NotificationPop(string.Format(GetString("PlayerBanByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
+                    NotificationPopperPatch.NotificationPop(string.Format(GetString("PlayerBanByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
                 }
                 else
                 {
-                    RPC.NotificationPop(string.Format(GetString("PlayerKickByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
+                    NotificationPopperPatch.NotificationPop(string.Format(GetString("PlayerKickByHost"), AmongUsClient.Instance.GetRecentClient(clientId).PlayerName));
                 }
             }
         }
         catch { }
         return true;
-    }
-}
-[HarmonyPatch(typeof(InnerNetObject), nameof(InnerNetObject.Despawn))]
-internal class DespawnPatch
-{
-    public static void Postfix(InnerNetObject __instance)
-    {
-        if (__instance.OwnerId == PlayerControl.LocalPlayer.GetClientId()) return;
-        if (AmongUsClient.Instance.AmHost)
-        {
-            Utils.KickPlayer(__instance.OwnerId, false);
-            RPC.NotificationPop(string.Format(GetString("Warning.Despawn"), __instance.name));
-        }
-        else
-            RPC.NotificationPop(string.Format(GetString("Warning.Despawn_NotHost"), __instance.name));
-
     }
 }

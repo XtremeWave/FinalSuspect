@@ -82,7 +82,7 @@ public static class SpamManager
             if (text.Length >= 1 && text != "") sendList.Add(text.Replace("\\n", "\n").ToLower());
         return sendList;
     }
-    public static bool CheckSpam(ref string text)
+    public static void CheckSpam(ref string text)
     {
         try
         {
@@ -95,16 +95,12 @@ public static class SpamManager
                 {
                     if (text.Contains(word))
                     {
-                        text = text.Replace(word, new string('*', word.Length));
+                        text = text.Replace(word, $"<color=#E57373>{new string('*', word.Length)}</color>");
                     }
                 }
-                text = "<color=#ff1919>" + text + "</color>";
             }
-            return banned;
         }
         catch 
-        {
-            return false;
-        }
+        { }
     }
 }
