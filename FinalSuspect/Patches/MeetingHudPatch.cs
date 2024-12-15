@@ -36,12 +36,11 @@ public static class MeetingHudPatch
 
                 pc.GetGameText(out string color, out bool appendText, out string roleText);
 
-                if (appendText)
-                {
-                    if (!PlayerControl.LocalPlayer.IsAlive())
-                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId, docolor: PlayerControl.LocalPlayer.GetRoleType() != RoleTypes.GuardianAngel);
-                }
 
+                if (pc.GetPlayerData().IsDisconnected)
+                {
+                    color = "#" + ColorHelper.ColorToHex(Color.gray);
+                }
                 pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";
 
                 if (roleText.Length > 0)
@@ -49,12 +48,12 @@ public static class MeetingHudPatch
                     roleTextMeeting.text = roleText;
                     roleTextMeeting.enabled = true;
                 }
-
-                if (pc.GetPlayerData().IsDisconnected)
+                if (appendText)
                 {
-                    color = "#" + ColorHelper.ColorToHex(Color.gray);
-                    pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";
+                    if (!PlayerControl.LocalPlayer.IsAlive())
+                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId, docolor: PlayerControl.LocalPlayer.GetRoleType() != RoleTypes.GuardianAngel);
                 }
+
 
             }
 
