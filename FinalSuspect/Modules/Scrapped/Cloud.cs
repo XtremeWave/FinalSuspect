@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
+using FinalSuspect.Player;
 
 namespace FinalSuspect;
 

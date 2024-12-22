@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FinalSuspect.Player;
 using UnityEngine;
 using static FinalSuspect.Translator;
 

@@ -87,13 +87,13 @@ public static class SpamManager
         try
         {
             var mt = text;
-            bool banned = BanWords.Any(mt.Contains);
+            bool banned = BanWords.Any(mt.ToLower().Contains);
 
             if (banned)
             {
                 foreach (string word in BanWords)
                 {
-                    if (text.Contains(word))
+                    if (text.ToLower().Contains(word.ToLower()))
                     {
                         text = text.Replace(word, $"<color=#E57373>{new string('*', word.Length)}</color>");
                     }

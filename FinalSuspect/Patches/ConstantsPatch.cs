@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect.Player;
+using HarmonyLib;
 
 namespace FinalSuspect.Patches;
 

@@ -1,4 +1,5 @@
 using AmongUs.GameOptions;
+using FinalSuspect.Player;
 using HarmonyLib;
 using UnityEngine;
 
@@ -16,11 +17,13 @@ public static class ChatBubblePatch
         var bgcolor = ColorHelper.HalfModColor32;
         var sr = __instance.Background;
         Color namecolor;
+        string name;
 
         if (__instance?.playerInfo?.PlayerId == null)
         {
             bgcolor = ColorHelper.HalfYellow;
             namecolor = ColorHelper.FaultColor;
+            name = default;
             goto EndOfChat;
         }
         bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
@@ -32,32 +35,23 @@ public static class ChatBubblePatch
             __instance.SetLeft();
             return;
         }
+        
         var player = Utils.GetPlayerById(__instance.playerInfo.PlayerId);
-
-        var __ = "";
-        player.GetLobbyText(ref __, out string color);
-        namecolor = ColorHelper.HexToColor(color);
-
-
-        if (XtremeGameData.GameStates.IsInGame)
+        name = player.CheckAndGetNameWithDetails(out namecolor, out string headdertext);
+        
+        if (!player.IsAlive())
+            bgcolor = new Color32(255, 0, 0, 120);
+        if (__instance.NameText.color == Color.green)
         {
-
-            if (Utils.CanSeeOthersRole(player, out bool bothImp))
-                namecolor = Utils.GetPlayerById(__instance.playerInfo.PlayerId).GetRoleColor();
-            else if (bothImp)
-                namecolor = Utils.GetRoleColor(RoleTypes.Impostor);
-            if (!Utils.GetPlayerById(__instance.playerInfo.PlayerId).IsAlive())
-                bgcolor = new Color32(255, 0, 0, 120);
-            if (__instance.NameText.color == Color.green)
-            {
-                bgcolor = ColorHelper.HalfYellow;
-                namecolor = ColorHelper.TeamColor32;
-            }
-
+            bgcolor = ColorHelper.HalfYellow;
+            namecolor = ColorHelper.TeamColor32;
         }
-
+        
         EndOfChat:
         __instance.NameText.color = namecolor;
+        __instance.NameText.text = name;
         sr.color = bgcolor;
+
+        
     }
 }

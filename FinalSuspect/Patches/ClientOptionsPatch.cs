@@ -3,6 +3,7 @@ using FinalSuspect.Modules.ClientOptions;
 using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Player;
 
 namespace FinalSuspect;
 

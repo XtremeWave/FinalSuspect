@@ -13,6 +13,7 @@ using Object = UnityEngine.Object;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
 using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Player;
 
 namespace FinalSuspect.Modules.SoundInterface;
 

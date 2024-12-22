@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
+using FinalSuspect.Player;
 using HarmonyLib;
 using Il2CppSystem.Runtime.Remoting.Messaging;
 using Innersloth.DebugTool;

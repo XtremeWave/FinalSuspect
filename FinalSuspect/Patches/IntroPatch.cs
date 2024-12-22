@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System.Threading.Tasks;
+using FinalSuspect.Player;
 using UnityEngine;
 using static FinalSuspect.Translator;
 
@@ -101,7 +102,7 @@ class IntroCutscenePatch
             Color LerpingColor = Color.Lerp(start, end, time);
             if (__instance == null || milliseconds > 500)
             {
-                Logger.Info("退出当前循环", "StartFadeIntro");
+                Logger.Info("break", "StartFadeIntro");
                 break;
             }
             __instance.BackgroundBar.material.color = LerpingColor;

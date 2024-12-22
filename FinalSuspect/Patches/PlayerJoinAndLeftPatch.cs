@@ -14,6 +14,7 @@ using static FinalSuspect.Translator;
 using FinalSuspect.Modules.Managers;
 using System.Linq;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
+using FinalSuspect.Player;
 using static Il2CppSystem.Globalization.CultureInfo;
 
 namespace FinalSuspect;
@@ -29,6 +30,7 @@ class OnGameJoinedPatch
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
+        XtremePlayerData.InitializeAll();
 
         if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
         XtremeGameData.GameStates.InGame = false;
@@ -58,7 +60,7 @@ class DisconnectInternalPatch
 
             Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
             HudManagerPatch.Init();
-            XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+            XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
             ErrorText.Instance.CheatDetected = false;
             ErrorText.Instance.SBDetected = false;
@@ -102,21 +104,6 @@ class OnPlayerLeftPatch
     {
         ClientsProcessed.Remove(id);
         ClientsProcessed.Add(id);
-    }
-    public static void Prefix([HarmonyArgument(0)] ClientData data)
-    {
-        if (AmongUsClient.Instance.AmHost && XtremeGameData.GameStates.IsOnlineGame && data.Character != null)
-        {
-            var netid = data.Character.NetId;
-            _ = new LateTask(() =>
-            {
-                MessageWriter messageWriter = AmongUsClient.Instance.Streams[1];
-                messageWriter.StartMessage(5);
-                messageWriter.WritePacked(netid);
-                messageWriter.EndMessage();
-            }, 2.5f, "Repeat Despawn");
-        }
-
     }
     public static void Postfix([HarmonyArgument(0)] ClientData data, [HarmonyArgument(1)] DisconnectReasons reason)
     {

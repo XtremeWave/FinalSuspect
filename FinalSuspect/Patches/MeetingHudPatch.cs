@@ -2,6 +2,8 @@ using HarmonyLib;
 using UnityEngine;
 using AmongUs.GameOptions;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Player;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 
 namespace FinalSuspect;
 
@@ -14,50 +16,7 @@ public static class MeetingHudPatch
     {
         public static void Postfix(MeetingHud __instance)
         {
-
-            foreach (var pva in __instance.playerStates)
-            {
-                pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
-
-                var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-                var text = pc.GetDataName();
-                SpamManager.CheckSpam(ref text);
-                pva.NameText.text = text;
-
-                var roleTextMeeting = Object.Instantiate(pva.NameText);
-                roleTextMeeting.text = "";
-                roleTextMeeting.enabled = false;
-                roleTextMeeting.transform.SetParent(pva.NameText.transform);
-                roleTextMeeting.transform.localPosition = new Vector3(0f, -0.18f, 0f);
-                roleTextMeeting.fontSize = 1.5f;
-                roleTextMeeting.gameObject.name = "RoleTextMeeting";
-                roleTextMeeting.enableWordWrapping = false;
-
-
-                pc.GetGameText(out string color, out bool appendText, out string roleText);
-
-
-                if (pc.GetPlayerData().IsDisconnected)
-                {
-                    color = "#" + ColorHelper.ColorToHex(Color.gray);
-                }
-                pva.NameText.text = $"<color={color}>{pva.NameText.text}</color>";
-
-                if (roleText.Length > 0)
-                {
-                    roleTextMeeting.text = roleText;
-                    roleTextMeeting.enabled = true;
-                }
-                if (appendText)
-                {
-                    if (!PlayerControl.LocalPlayer.IsAlive())
-                        pva.NameText.text += Utils.GetVitalText(pva.TargetPlayerId, docolor: PlayerControl.LocalPlayer.GetRoleType() != RoleTypes.GuardianAngel);
-                }
-
-
-            }
-
-
+            XtremeLocalHandling.OnMeetingStart(__instance);
         }
     }
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.UpdateButtons))]
@@ -85,6 +44,21 @@ public static class MeetingHudPatch
                 }
             }
 
+        }
+        
+    }
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.VotingComplete))]
+    [HarmonyPriority(Priority.First)]
+    class VotingCompletePatch
+    {
+        public static void Postfix(
+            [HarmonyArgument(1)]NetworkedPlayerInfo exiled, 
+            [HarmonyArgument(2)]bool tie )
+        {
+            if (tie || exiled == null) return;
+            var player = Utils.GetPlayerById(exiled.PlayerId);
+            player.SetDead();
+            player.SetDeathReason(DataDeathReason.Exile, true);
         }
     }
 }

@@ -12,6 +12,7 @@ using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect.Patches;
 using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Player;
 
 
 namespace FinalSuspect;
@@ -23,6 +24,7 @@ public static class GameStartManagerUpdatePatch
     {
         __instance.MinPlayers = 1;
 
+        //Scrapped
         //if (CreateOptionsPickerPatch.SetDleks && AmongUsClient.Instance.AmHost)
         //{
         //    if (XtremeGameData.GameStates.IsNormalGame)

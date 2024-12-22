@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AmongUs.GameOptions;
+using FinalSuspect.Player;
 using Hazel;
 using static FinalSuspect.Translator;
 
@@ -72,9 +73,11 @@ internal class FAC
                     case RpcCalls.SendChatNote:
                     case RpcCalls.StartMeeting:
                     case RpcCalls.ReportDeadBody:
-                        if (!AmongUsClient.Instance.AmHost) 
+                        if (!AmongUsClient.Instance.AmHost)
+                        {
                             NotificationPopperPatch.NotificationPop(GetString("Warning.RoomBroken"));
-                        notify = false;
+                            notify = false;
+                        }
                         return true;
                 }
             if (XtremeGameData.GameStates.IsInTask)

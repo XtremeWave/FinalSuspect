@@ -5,6 +5,7 @@ using static FinalSuspect.Translator;
 using AmongUs.GameOptions;
 using static UnityEngine.ParticleSystem.PlaybackState;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Player;
 using InnerNet;
 
 namespace FinalSuspect;
@@ -24,7 +25,6 @@ class CoSetRolePatch
     public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] RoleTypes roleTypes)
     {
         __instance.SetRole(roleTypes);
-        __instance.SetIsImp(Utils.IsImpostor(roleTypes));
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
@@ -32,60 +32,7 @@ class FixedUpdatePatch
 {
     public static void Postfix(PlayerControl __instance)
     {
-
-        if (__instance == null) return;
-
-        try
-        {
-            var nametext = __instance.GetRealName();
-            __instance.GetLobbyText(ref nametext, out string color);
-
-            var ingame = __instance.GetGameText(out string colorgame, out bool appendText, out string roleText);
-
-            if (ingame)
-            {
-                color = colorgame;
-                var RoleTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
-                var RoleText = RoleTextTransform.GetComponent<TMPro.TextMeshPro>();
-
-                RoleText.enabled = true;
-                RoleText.text = roleText;
-                RoleText.transform.SetLocalY(0.2f);
-
-                if (appendText && !PlayerControl.LocalPlayer.IsAlive())
-                    __instance.cosmetics.nameText.text += Utils.GetVitalText(__instance.PlayerId);
-
-                DisconnectSync(__instance);
-                DeathSync(__instance);
-            }
-
-            SpamManager.CheckSpam(ref nametext);
-            __instance.cosmetics.nameText.text = $"<color={color}>" + nametext + "</color>";
-        }
-        catch
-        {
-            XtremeGameData.XtremePlayerData.InitializeAll();
-        }
-
-    }
-    static void DisconnectSync(PlayerControl pc)
-    {
-        if (!XtremeGameData.GameStates.IsInTask) return;
-        var data = pc.GetPlayerData();
-        var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
-        var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
-        var Role_NotAssgin = data.RoleWhenAlive == null;
-
-        if (currectlyDisconnect || Task_NotAssgin || Role_NotAssgin)
-        {
-            pc.SetDisconnected();
-            pc.SetDeathReason(DataDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
-        }
-    }
-    static void DeathSync(PlayerControl pc)
-    {
-        if (!XtremeGameData.GameStates.IsInTask || pc.GetPlayerData().IsDead) return;
-        if (pc.Data.IsDead) pc.SetDead();
+        __instance.OnFixedUpdate();
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]

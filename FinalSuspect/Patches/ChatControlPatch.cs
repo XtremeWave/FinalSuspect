@@ -77,7 +77,6 @@ internal class ChatAdd
     public static void Prefix([HarmonyArgument(0)] PlayerControl sourcePlayer,  [HarmonyArgument(1)] ref string chatText)
     {
         SpamManager.CheckSpam(ref chatText);
-
     }
 }
 

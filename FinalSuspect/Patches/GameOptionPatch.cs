@@ -3,6 +3,7 @@ using HarmonyLib;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using FinalSuspect.Player;
 using static FinalSuspect.Patches.NormalLobbyViewSettingsPanePatch;
 using UnityEngine.ProBuilder;
 

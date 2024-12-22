@@ -7,6 +7,7 @@ using FinalSuspect.Templates;
 using UnityEngine;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
+using FinalSuspect.Player;
 using static FinalSuspect.Translator;
 
 namespace FinalSuspect;
@@ -18,7 +19,7 @@ class AmongUsClientEndGamePatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
     {
         SummaryText = new();
-        foreach (var id in XtremeGameData.XtremePlayerData.AllPlayerData.Keys)
+        foreach (var id in XtremePlayerData.AllPlayerData.Keys)
             SummaryText[id] = Utils.SummaryTexts(id);
     }
 }
@@ -82,13 +83,13 @@ class SetEverythingUpPatch
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
-        foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
+        foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
             sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
-        foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
+        foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
             var data = kvp.Value;
@@ -112,7 +113,7 @@ class SetEverythingUpPatch
         roleSummary.SetOutlineThickness(0.15f);
  
 
-        XtremeGameData.XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+        XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
 
     }

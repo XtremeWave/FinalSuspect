@@ -2,7 +2,7 @@ using HarmonyLib;
 using Hazel;
 using System.Linq;
 using FinalSuspect.Modules;
-
+using FinalSuspect.Player;
 using UnityEngine;
 using static FinalSuspect.Translator;
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
+using FinalSuspect.Player;
 using FinalSuspect.Templates;
 using UnityEngine;
 using static FinalSuspect.Translator;
@@ -249,7 +250,7 @@ public static class HudManagerPatch
         if (XtremeGameData.GameStates.IsInGame)
         {
             sb.Append("\n");
-            foreach (var kvp in XtremeGameData.XtremePlayerData.AllPlayerData)
+            foreach (var kvp in XtremePlayerData.AllPlayerData)
             {
                 var id = kvp.Key;
                 var data = kvp.Value;

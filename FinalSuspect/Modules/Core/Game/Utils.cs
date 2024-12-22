@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using FinalSuspect.Player;
 using UnityEngine;
 using static FinalSuspect.Translator;
 
@@ -69,6 +70,7 @@ public static class Utils
     public static void KickPlayer(int playerId, bool ban, string reason = "")
     {
         if (!AmongUsClient.Instance.AmHost) return;
+        Logger.Info($"try to kick {GetPlayerById(playerId).GetRealName()}", "Kick");
         AmongUsClient.Instance.KickPlayer(playerId, ban);
         OnPlayerLeftPatch.Add(playerId);
 
@@ -109,17 +111,17 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var thisdata = XtremeGameData.XtremePlayerData.GetPlayerDataById(id);
+        var thisdata = XtremePlayerData.GetPlayerDataById(id);
 
         var builder = new StringBuilder();
-        var longestNameByteCount = XtremeGameData.XtremePlayerData.GetLongestNameByteCount();
+        var longestNameByteCount = XtremePlayerData.GetLongestNameByteCount();
 
 
         var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
 
 
-        var colorId = thisdata.PlayerColor;
-        builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.PlayerName));
+        var colorId = thisdata.ColorId;
+        builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.Name));
 
         builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
         pos += 4.5f;
@@ -264,7 +266,7 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null && playerId != 255) player = XtremeGameData.XtremePlayerData.GetPlayerById(playerId);
+        if (player == null && playerId != 255) player = XtremePlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -287,7 +289,7 @@ public static class Utils
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var data = XtremeGameData.XtremePlayerData.GetPlayerDataById(playerId);
+        var data = XtremePlayerData.GetPlayerDataById(playerId);
         if (!XtremeGameData.GameStates.IsNormalGame)
         {
             if (data.IsImpostor)
@@ -312,11 +314,9 @@ public static class Utils
     }
     public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
     {
-        var data = XtremeGameData.XtremePlayerData.GetPlayerDataById(playerId);
+        var data = XtremePlayerData.GetPlayerDataById(playerId);
         if (!data.IsDead) return "";
-        if (data.IsDead && data.RealDeathReason == DataDeathReason.None)
-            data.SetDeathReason(DataDeathReason.Exile);//WarpUp未执行时的处理
-
+        
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
         switch (data.RealDeathReason)
@@ -326,10 +326,10 @@ public static class Utils
                 break;
             case DataDeathReason.Kill:
                 color = Palette.ImpostorRed;
-                var killercolor = Palette.PlayerColors[data.RealKiller.PlayerColor];
+                var killercolor = Palette.PlayerColors[data.RealKiller.ColorId];
 
                 if (summary)
-                    deathReason += $"<=<size=80%>{ColorString(killercolor, data.RealKiller.PlayerName)}</size>";
+                    deathReason += $"<=<size=80%>{ColorString(killercolor, data.RealKiller.Name)}</size>";
                 else if (docolor)
                     color = killercolor;
                 break;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Player;
 using HarmonyLib;
 using Hazel;
 using static FinalSuspect.Translator;

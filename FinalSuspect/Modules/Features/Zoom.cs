@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using FinalSuspect.Modules;
 using UnityEngine;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Player;
 
 namespace FinalSuspect;
 

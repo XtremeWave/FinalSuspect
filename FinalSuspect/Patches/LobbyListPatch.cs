@@ -26,7 +26,7 @@ public static class FindAGameManagerUpdatePatch
 [HarmonyPatch(typeof(MatchMakerGameButton), nameof(MatchMakerGameButton.SetGame))]
 public static class MatchMakerGameButtonSetGamePatch
 {
-    public static bool Prefix(MatchMakerGameButton __instance, [HarmonyArgument(0)] GameListing game)
+    public static bool Prefix([HarmonyArgument(0)] GameListing game)
     {
         var nameList = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese ? Main.TName_Snacks_CN : Main.TName_Snacks_EN;
 
@@ -92,7 +92,8 @@ public static class MatchMakerGameButtonSetGamePatch
 
         game.HostName = $"<size=80%>{RoomName}</size>" +
                 $"<size=40%><color=#ffff00>----</color>{platforms}</size>" +
-                $"<size=30%> ({Math.Max(0, 100 - game.Age / 100)}%)</size>";
+                $"<size=30%> ({Math.Max(0, 100 - game.Age / 100)}%)</size>" +
+                $"\n<size=30%><color={ColorHelper.ModColor}>{GameCode.IntToGameName(game.GameId)}</color></size>";
         return true;
     }
 }

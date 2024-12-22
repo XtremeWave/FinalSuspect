@@ -1,4 +1,5 @@
 using FinalSuspect.Attributes;
+using FinalSuspect.Player;
 using HarmonyLib;
 
 namespace FinalSuspect;
