@@ -19,10 +19,7 @@ class SetVentOutlinePatch
 {
     public static void Postfix(Vent __instance, [HarmonyArgument(1)] ref bool mainTarget)
     {
-        var player = PlayerControl.LocalPlayer;
-        Color color = PlayerControl.LocalPlayer.GetRoleColor();
-        __instance.myRend.material.SetColor("_OutlineColor", color);
-        __instance.myRend.material.SetColor("_AddColor", mainTarget ? color : Color.clear);
+        XtremeLocalHandling.SetVentOutlineColor(__instance, ref mainTarget);
     }
 }
 [HarmonyPatch(typeof(TaskPanelBehaviour), nameof(TaskPanelBehaviour.SetTaskText))]
@@ -92,6 +89,7 @@ public static class HudManagerPatch
                 ModLoading.SetActive(false);
                 __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
             }
+            //Scrapped
             //if (WarningText == null)
             //{
             //    WarningText = Object.Instantiate(__instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("FreeChatInputField").FindChild("TextArea").gameObject, __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("FreeChatInputField"));

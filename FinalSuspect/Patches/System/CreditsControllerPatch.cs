@@ -24,6 +24,7 @@ public class CreditsControllerPatch
                 "- Amongus(水木年华)",
                 "- Yu(Night_瓜)",
                 "- 天寸梦初",
+                "<color=#cdfffd>- QingFeng</color>"
 
             };
 

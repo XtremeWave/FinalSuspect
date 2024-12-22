@@ -90,10 +90,10 @@ public static class MatchMakerGameButtonSetGamePatch
         RoomName ??= $"<color={color}>{nameList[id]}</color>";
         var platforms = $"<color={color}>{name}</color>";
 
-        game.HostName = $"<size=80%>{RoomName}</size>" +
-                $"<size=40%><color=#ffff00>----</color>{platforms}</size>" +
+        game.HostName = $"<size=60%>{RoomName}</size>" +
                 $"<size=30%> ({Math.Max(0, 100 - game.Age / 100)}%)</size>" +
-                $"\n<size=30%><color={ColorHelper.ModColor}>{GameCode.IntToGameName(game.GameId)}</color></size>";
+                $"\n<size=40%><color={ColorHelper.ModColor}>{GameCode.IntToGameName(game.GameId)}</color></size>" +
+                $"<size=40%><color=#ffff00>----</color>{platforms}</size>";
         return true;
     }
 }

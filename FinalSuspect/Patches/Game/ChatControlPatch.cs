@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using FinalSuspect.Modules.Managers;
+using FinalSuspect.Patches;
 using Il2CppMono.Net;
 
 namespace FinalSuspect;
@@ -26,6 +27,10 @@ public static class ChatControllerUpdatePatch
     }
     public static void Postfix(ChatController __instance)
     {
+        if (ConstantsPatch.Version == 25)
+        {
+            __instance.timeSinceLastMessage = 0f;
+        }
         if (!__instance.freeChatField.textArea.hasFocus) return;
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.C))
             ClipboardHelper.PutClipboardString(__instance.freeChatField.textArea.text);

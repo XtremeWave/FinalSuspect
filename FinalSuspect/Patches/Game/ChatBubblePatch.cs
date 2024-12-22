@@ -16,16 +16,15 @@ public static class ChatBubblePatch
     {
         var bgcolor = ColorHelper.HalfModColor32;
         var sr = __instance.Background;
-        Color namecolor;
-        string name;
+        Color namecolor= ColorHelper.FaultColor;
+        string name = "???";
 
         if (__instance?.playerInfo?.PlayerId == null)
         {
             bgcolor = ColorHelper.HalfYellow;
-            namecolor = ColorHelper.FaultColor;
-            name = default;
             goto EndOfChat;
         }
+        
         bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
 
         if (modded)
@@ -35,18 +34,12 @@ public static class ChatBubblePatch
             __instance.SetLeft();
             return;
         }
-        
-        var player = Utils.GetPlayerById(__instance.playerInfo.PlayerId);
-        name = player.CheckAndGetNameWithDetails(out namecolor, out string headdertext);
-        
-        if (!player.IsAlive())
-            bgcolor = new Color32(255, 0, 0, 120);
-        if (__instance.NameText.color == Color.green)
-        {
-            bgcolor = ColorHelper.HalfYellow;
-            namecolor = ColorHelper.TeamColor32;
-        }
-        
+        XtremeLocalHandling.GetChatBubbleText(
+            __instance.playerInfo.PlayerId, __instance.NameText.color,
+            ref name,
+            ref bgcolor, 
+            ref namecolor
+            );
         EndOfChat:
         __instance.NameText.color = namecolor;
         __instance.NameText.text = name;

@@ -155,6 +155,16 @@ public static class XtremeLocalHandling
 
     #endregion
 
+    #region HUD
+
+    public static void SetVentOutlineColor(Vent __instance, ref bool mainTarget)
+    {
+        Color color = PlayerControl.LocalPlayer.GetRoleColor();
+        __instance.myRend.material.SetColor("_OutlineColor", color);
+        __instance.myRend.material.SetColor("_AddColor", mainTarget ? color : Color.clear);
+    }
+
+    #endregion
     public static void ShowMap(MapBehaviour map, bool normal)
     {
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
@@ -162,5 +172,36 @@ public static class XtremeLocalHandling
         if (Main.EnableMapBackGround.Value)
             map.ColorControl.SetColor(color);
     }
+
+    public static bool GetHauntFilterText(HauntMenuMinigame __instance)
+    {
+        if (__instance.HauntTarget != null)
+        {
+            var role = __instance.HauntTarget.GetRoleType();
+            var color = Utils.GetRoleColor(role);
+            __instance.NameText.color = __instance.FilterText.color = color;
+            __instance.FilterText.text = Utils.GetRoleName(role);
+            return false;
+        }
+        return true;
+    }
+
+    public static void GetChatBubbleText(byte playerId, Color NAMETEXTCOLOR, ref string name, ref Color32 bgcolor,
+        ref Color namecolor)
+    {
+
+
+        var player = Utils.GetPlayerById(playerId);
+        name = player.CheckAndGetNameWithDetails(out namecolor, out string headdertext);
+
+        if (!player.IsAlive())
+            bgcolor = new Color32(255, 0, 0, 120);
+        if (NAMETEXTCOLOR == Color.green)
+        {
+            bgcolor = ColorHelper.HalfYellow;
+            namecolor = ColorHelper.TeamColor32;
+        }
+    }
     
+
 }

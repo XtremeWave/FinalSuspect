@@ -115,10 +115,7 @@ class OnPlayerLeftPatch
                 return;
             }
 
-            if (XtremeGameData.GameStates.IsInGame)
-            {
-                data?.Character?.SetDisconnected();
-            }
+            data?.Character?.SetDisconnected();
 
             Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 

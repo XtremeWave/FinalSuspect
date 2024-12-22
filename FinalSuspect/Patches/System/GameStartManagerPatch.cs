@@ -43,7 +43,6 @@ public class GameStartManagerPatch
     private static PassiveButton cancelButton;
     private static TextMeshPro warningText;
     public static TextMeshPro HideName;
-    public static TextMeshPro GameCountdown;
 
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
     public class GameStartManagerStartPatch
@@ -257,8 +256,6 @@ class ResetStartStatePatch
         if (XtremeGameData.GameStates.IsCountDown)
         {
             SoundManager.Instance.StopSound(__instance.gameStartSound);
-
-
         }
     }
 }

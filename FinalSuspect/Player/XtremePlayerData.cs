@@ -112,6 +112,7 @@ public class XtremePlayerData : IDisposable
     }
     public void SetRealKiller(XtremePlayerData killer)
     {
+        SetDead();
         SetDeathReason(DataDeathReason.Kill);
         killer.KillCount++;
         RealKiller = killer;
