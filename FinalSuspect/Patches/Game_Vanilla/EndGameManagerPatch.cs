@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect.Modules.Managers;
+using HarmonyLib;
 
 namespace FinalSuspect;
 
@@ -14,5 +15,14 @@ public class EndGameManagerPatch
         {
                 __instance.Navigation.NextGame();
         }, 2f, "Auto End Game");
+    }
+}
+
+[HarmonyPatch(typeof(LogicGameFlowNormal), nameof(LogicGameFlowNormal.CheckEndCriteria))]
+class GameEndChecker
+{
+    public static bool Prefix()
+    {
+        return !(Main.NoGameEnd.Value && DebugModeManager.AmDebugger);
     }
 }

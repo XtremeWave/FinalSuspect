@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System;
 using InnerNet;
+using TMPro;
 using UnityEngine;
 
 namespace FinalSuspect;
@@ -28,6 +29,7 @@ public static class MatchMakerGameButtonSetGamePatch
 {
     public static bool Prefix([HarmonyArgument(0)] GameListing game)
     {
+
         var nameList = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese ? Main.TName_Snacks_CN : Main.TName_Snacks_EN;
 
         if (game.Language.ToString().Length > 9) return true;
@@ -90,10 +92,16 @@ public static class MatchMakerGameButtonSetGamePatch
         RoomName ??= $"<color={color}>{nameList[id]}</color>";
         var platforms = $"<color={color}>{name}</color>";
 
+        
         game.HostName = $"<size=60%>{RoomName}</size>" +
                 $"<size=30%> ({Math.Max(0, 100 - game.Age / 100)}%)</size>" +
                 $"\n<size=40%><color={ColorHelper.ModColor}>{GameCode.IntToGameName(game.GameId)}</color></size>" +
                 $"<size=40%><color=#ffff00>----</color>{platforms}</size>";
         return true;
+    }
+
+    public static void Postfix(MatchMakerGameButton __instance)
+    {
+        __instance.NameText.fontStyle = FontStyles.Bold;
     }
 }

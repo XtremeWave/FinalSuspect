@@ -132,12 +132,22 @@ public static class HudManagerPatch
             //        __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("FreeChatInputField").FindChild("TextArea").gameObject.SetActive(true);
             //    }
             //}
+
         }
 
         public static void Postfix(HudManager __instance)
         {
-            UpdateResult(__instance);
-            SetAbilityButtonColor(__instance);
+            try
+            {
+                UpdateResult(__instance);
+                SetChatBG(__instance);
+                //SetAbilityButtonColor(__instance);
+            }
+            catch 
+            {
+                //
+            }
+            
         }
     }
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.CoFadeFullScreen))]
@@ -208,7 +218,29 @@ public static class HudManagerPatch
     }
 
     public static string LastResultText;
-    
+
+    public static void SetChatBG(HudManager __instance)
+    {
+        Color color;
+        if (XtremeGameData.GameStates.IsInGame)
+        {
+            if (PlayerControl.LocalPlayer.IsImpostor())
+            {
+                color = Utils.GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
+            }
+            else
+            {
+                color = Utils.GetRoleColor(RoleTypes.Crewmate);
+            }
+        }
+        else
+        {
+            color = ColorHelper.TeamColor32;
+        }
+
+        __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("Background").gameObject
+            .GetComponent<SpriteRenderer>().color = color;
+    }
     public static void SetAbilityButtonColor(HudManager __instance)
     {
         if (!XtremeGameData.GameStates.IsInGame || PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.Crewmate or RoleTypes.Impostor or RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost)   return;
@@ -243,11 +275,12 @@ public static class HudManagerPatch
                 FontSize = 2f,
             };
         }
+        
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
+        sb.Append("\n"+ Utils.ColorString(ColorHelper.ModColor32, GameCode.IntToGameName(AmongUsClient.Instance.GameId)));
         if (XtremeGameData.GameStates.IsInGame)
         {
-            sb.Append("\n");
             foreach (var kvp in XtremePlayerData.AllPlayerData)
             {
                 var id = kvp.Key;

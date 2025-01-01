@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,213 +34,193 @@ class LobbyViewSettingsPanePatch
     {
         GameObject.Find("RulesPopOutWindow").transform.localPosition += Vector3.left * 0.4f;
     }
-}
+    private static readonly List<Color32> Normalbannercolors = new List<Color32>
+    {
+        Utils.GetRoleColor(RoleTypes.Impostor),
+        Utils.GetRoleColor(RoleTypes.Crewmate),
+        Color.yellow,
+        Color.green
+    };
+    private static readonly List<Color32> HnSbannercolors = new List<Color32>
+    {
+        Utils.GetRoleColor(RoleTypes.Crewmate),
+        Utils.GetRoleColor(RoleTypes.Impostor),
+        Palette.Purple,
+        Color.green
+    };
+    private static readonly List<Color32> rolecolors = new List<Color32>
+    {
+        Utils.GetRoleColor(RoleTypes.Engineer),
+        Utils.GetRoleColor(RoleTypes.GuardianAngel),
+        Utils.GetRoleColor(RoleTypes.Scientist),
+        Utils.GetRoleColor(RoleTypes.Tracker),
+        Utils.GetRoleColor(RoleTypes.Noisemaker),
+        Utils.GetRoleColor(RoleTypes.Shapeshifter),
+        Utils.GetRoleColor(RoleTypes.Phantom),
+    };
+    private static readonly List<Color32> rolecatcolors = new List<Color32>
+    {
+        Color.green,
+        Color.blue
+    };
 
-[HarmonyPatch(typeof(LobbyViewSettingsPane), nameof(LobbyViewSettingsPane.Update))]
-class NormalLobbyViewSettingsPanePatch
-{
-    private static readonly Dictionary<string, GameObject> CategoryCache = new();
-    private static readonly Dictionary<string, GameObject> SettingBannerCache = new();
-    private static readonly Dictionary<string, GameObject> RoleBannerCache = new();
-
-    [HarmonyPostfix]
+    [HarmonyPatch(typeof(LobbyViewSettingsPane), nameof(LobbyViewSettingsPane.Update)), HarmonyPostfix]
     static void Update()
     {
-        if (!XtremeGameData.GameStates.IsNormalGame) return;
-
-        var area = GameObject.Find("MainArea").transform.FindChild("Scaler").FindChild("Scroller").FindChild("SliderInner");
-        if (area == null) return;
-
-        CacheCategories(area);
-        CacheSettingBanners(area);
-        CacheRoleBanners(area);
-
-        ApplyColorsToCategories();
-        ApplyColorsToSettingBanners();
-        ApplyColorsToRoleBanners();
-    }
-
-    private static void CacheCategories(Transform area)
-    {
-        foreach (Transform banner in area)
+        var Area = GameObject.Find("MainArea").transform.FindChild("Scaler").FindChild("Scroller").FindChild("SliderInner");
+        Transform[] banners = Area.GetComponentsInChildren<Transform>(true);
+        
+        if (XtremeGameData.GameStates.IsNormalGame)
         {
-            if (banner.name == "CategoryHeaderMasked LongDivider(Clone)")
+            #region 游戏设置
+            if (Area.childCount == 21)
             {
-                CategoryCache[banner.name] = banner.gameObject;
-            }
-        }
-    }
+                int catindex = 0;
+                var bannerindex = 0;
+                foreach (var banner in banners)
+                {
+                    if (banner.name == "CategoryHeaderMasked LongDivider(Clone)")
+                    {
+                        SetColorForCat(banner.gameObject, Normalbannercolors[catindex]);
+                        catindex++;
+                    }
 
-    private static void CacheSettingBanners(Transform area)
-    {
-        foreach (Transform banner in area)
+                    if (banner.name == "ViewSettingsInfoPanel(Clone)")
+                    {
+                        Color color;
+                        if (bannerindex <= 3)
+                            color = Normalbannercolors[0];
+                        else if (bannerindex <= 5)
+                            color = Normalbannercolors[1];
+                        else if (bannerindex <= 11)
+                            color = Normalbannercolors[2];
+                        else
+                            color = Normalbannercolors[3];
+                        SetColorForSettingsBanner(banner.gameObject, color);
+                        bannerindex++;
+                    }
+                }
+            }
+
+            #endregion
+            #region 职业详细设定
+
+            else
+            {
+                var catindex = 0;
+                var bannerindex = 0;
+                var enableroleindex = new List<int>();
+                foreach (var banner in banners)
+                {
+                    if (banner.name == "CategoryHeaderMasked LongDivider(Clone)")
+                    {
+                        SetColorForCat(banner.gameObject, rolecatcolors[catindex]);
+                        catindex++;
+                    }
+
+                    if (banner.name == "ViewSettingsInfoPanel_Role Variant(Clone)")
+                    {
+                        Color roleColor = bannerindex <= 4
+                            ? Utils.GetRoleColor(RoleTypes.Crewmate)
+                            : Utils.GetRoleColor(RoleTypes.Impostor);
+                        SetColorForRolesBanner(banner.gameObject, rolecolors[bannerindex], roleColor);
+                        if (banner.gameObject.transform.FindChild("LabelBackground").gameObject
+                                .GetComponent<SpriteRenderer>().color != new Color(0.3f, 0.3f, 0.3f, 1))
+                        {
+                            enableroleindex.Add(bannerindex);
+                        }
+
+                        bannerindex++;
+                    }
+
+                }
+
+                foreach (var banner in banners)
+                {
+                    if (banner.name == "AdvancedRoleViewPanel(Clone)")
+                    {
+                        var iconindex = enableroleindex.First();
+                        Color roleColor = iconindex <= 4
+                            ? Utils.GetRoleColor(RoleTypes.Crewmate)
+                            : Utils.GetRoleColor(RoleTypes.Impostor);
+                        SetColorForIcon(banner.gameObject, rolecolors[iconindex], roleColor);
+                        enableroleindex.RemoveAt(0);
+                    }
+                }
+            }
+
+            #endregion
+        }
+        else
         {
-            if (banner.name == "ViewSettingsInfoPanel(Clone)")
+            #region 游戏设置
+            int catindex = 0;
+            var bannerindex = 0;
+            foreach (var banner in banners)
             {
-                SettingBannerCache[banner.name] = banner.gameObject;
+                if (banner.name == "CategoryHeaderMasked LongDivider(Clone)")
+                {
+                    SetColorForCat(banner.gameObject, HnSbannercolors[catindex]);
+                    catindex++;
+                }
+                if (banner.name == "ViewSettingsInfoPanel(Clone)")
+                {
+                    Color color;
+                    if (bannerindex <= 7)
+                        color = HnSbannercolors[0];
+                    else if (bannerindex <= 10)
+                        color = HnSbannercolors[1];
+                    else if (bannerindex <= 15)
+                        color = HnSbannercolors[2];
+                    else 
+                        color = HnSbannercolors[3];
+                    SetColorForSettingsBanner(banner.gameObject, color);
+                    bannerindex++;
+                }
             }
-        }
-    }
 
-    private static void CacheRoleBanners(Transform area)
-    {
-        foreach (Transform banner in area)
-        {
-            if (banner.name == "ViewSettingsInfoPanel_Role Variant(Clone)" || banner.name == "AdvancedRoleViewPanel(Clone)")
-            {
-                RoleBannerCache[banner.name] = banner.gameObject;
-            }
+            #endregion
         }
-    }
 
-    private static void ApplyColorsToCategories()
-    {
-        if (CategoryCache.TryGetValue("CategoryHeaderMasked LongDivider(Clone)", out var impostorCat))
-        {
-            SetColorForCat(impostorCat, Utils.GetRoleColor(RoleTypes.Impostor));
-        }
-        // Add other categories as needed
     }
-
-    private static void ApplyColorsToSettingBanners()
-    {
-        foreach (var banner in SettingBannerCache.Values)
-        {
-            if (banner.name.Contains("Impostor"))
-            {
-                SetColorForSettingsBanner(banner, Utils.GetRoleColor(RoleTypes.Impostor));
-            }
-            else if (banner.name.Contains("Crewmate"))
-            {
-                SetColorForSettingsBanner(banner, Utils.GetRoleColor(RoleTypes.Crewmate));
-            }
-            // Add other conditions as needed
-        }
-    }
-
-    private static void ApplyColorsToRoleBanners()
-    {
-        foreach (var banner in RoleBannerCache.Values)
-        {
-            if (banner.name.Contains("Engineer"))
-            {
-                SetColorForRolesBanner(banner, Utils.GetRoleColor(RoleTypes.Engineer), Utils.GetRoleColor(RoleTypes.Crewmate));
-            }
-            // Add other role colors as needed
-        }
-    }
-
-    public static void SetColorForCat(GameObject obj, Color color)
+    static void SetColorForRolesBanner(GameObject obj, Color iconcolor, Color bgcolor)
     {
         if (obj == null) return;
-        obj.transform.Find("LabelSprite").GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
-        obj.transform.Find("DividerImage").GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
+        if (obj.transform.FindChild("LabelBackground").gameObject.GetComponent<SpriteRenderer>().color == new Color(0.3f, 0.3f, 0.3f, 1)) return;
+        obj.transform.FindChild("LabelBackground").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
+        obj.transform.FindChild("RoleIcon").gameObject.GetComponent<SpriteRenderer>().color = iconcolor;
     }
 
-    public static void SetColorForSettingsBanner(GameObject obj, Color color)
+    static void SetColorForIcon(GameObject obj, Color iconcolor, Color bgcolor)
     {
         if (obj == null) return;
-        obj.transform.Find("LabelBackground").GetComponent<SpriteRenderer>().color = color.ShadeColor(0.38f);
-        obj.transform.Find("Value").Find("Sprite").GetComponent<SpriteRenderer>().color = color;
-    }
-
-    public static void SetColorForRolesBanner(GameObject obj, Color iconcolor, Color bgcolor)
-    {
-        if (obj == null) return;
-        obj.transform.Find("LabelBackground").GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
-        obj.transform.Find("RoleIcon").GetComponent<SpriteRenderer>().color = iconcolor;
-    }
-}
-
-[HarmonyPatch(typeof(LobbyViewSettingsPane), nameof(LobbyViewSettingsPane.Update))]
-class HnSLobbyViewSettingsPanePatch
-{
-    private static readonly Dictionary<string, GameObject> Cats = new();
-    private static readonly Dictionary<string, GameObject> SettingBanners = new();
-
-    [HarmonyPostfix]
-    static void Update()
-    {
-        if (XtremeGameData.GameStates.IsNormalGame) return;
-
-        var area = GameObject.Find("MainArea").transform.FindChild("Scaler").FindChild("Scroller").FindChild("SliderInner");
-        if (area == null) return;
-
-        CacheGameObjects(area);
-        ApplyColors();
-    }
-
-    private static void CacheGameObjects(Transform area)
-    {
-        CacheCats(area);
-        CacheSettingBanners(area);
-    }
-
-    private static void CacheCats(Transform area)
-    {
-        foreach (Transform child in area)
+        var cat = obj.transform.FindChild("CategoryHeaderRoleVariant");
+        cat.FindChild("LabelSprite").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
+        cat.FindChild("Divider").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
+        cat.FindChild("HeaderText").gameObject.GetComponent<TextMeshPro>().color = Color.white;
+        cat.FindChild("Icon").gameObject.GetComponent<SpriteRenderer>().color = iconcolor;
+        obj.ForEachChild((Il2CppSystem.Action<GameObject>)SetColor);
+        void SetColor(GameObject obj)
         {
-            if (child.name == "CategoryHeaderMasked LongDivider(Clone)")
+            if (obj.name == "ViewSettingsInfoPanel(Clone)")
             {
-                Cats[child.name] = child.gameObject;
+                obj.transform.FindChild("Value").FindChild("Sprite").gameObject.GetComponent<SpriteRenderer>().color = iconcolor;
+                obj.transform.FindChild("LabelBackground").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.38f);
+
             }
         }
+
     }
-
-    private static void CacheSettingBanners(Transform area)
-    {
-        foreach (Transform child in area)
-        {
-            if (child.name == "ViewSettingsInfoPanel(Clone)")
-            {
-                SettingBanners[child.name] = child.gameObject;
-            }
-        }
-    }
-
-    private static void ApplyColors()
-    {
-        SetColorForCat(Cats["CategoryHeaderMasked LongDivider(Clone)"], Utils.GetRoleColor(RoleTypes.Crewmate));
-        SetColorForCat(Cats["CategoryHeaderMasked LongDivider(Clone)"], Utils.GetRoleColor(RoleTypes.Impostor));
-        SetColorForCat(Cats["CategoryHeaderMasked LongDivider(Clone)"], Palette.Purple);
-        SetColorForCat(Cats["CategoryHeaderMasked LongDivider(Clone)"], Color.green);
-
-        for (int i = 0; i < 8; i++)
-        {
-            var bannerName = $"CrewmateSettingBanner{i + 1}";
-            SetColorForSettingsBanner(SettingBanners[$"ViewSettingsInfoPanel(Clone)"], Utils.GetRoleColor(RoleTypes.Crewmate));
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            var bannerName = $"ImpostorSettingBanner{i + 1}";
-            SetColorForSettingsBanner(SettingBanners[$"ViewSettingsInfoPanel(Clone)"], Utils.GetRoleColor(RoleTypes.Impostor));
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            var bannerName = $"LastHiddenSettingBanner{i + 1}";
-            SetColorForSettingsBanner(SettingBanners[$"ViewSettingsInfoPanel(Clone)"], Palette.Purple);
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            var bannerName = $"TaskSettingBanner{i + 1}";
-            SetColorForSettingsBanner(SettingBanners[$"ViewSettingsInfoPanel(Clone)"], Color.green);
-        }
-    }
-
-    public static void SetColorForCat(GameObject obj, Color color)
-    {
-        if (obj == null) return;
-        obj.transform.FindChild("LabelSprite").gameObject.GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
-        obj.transform.FindChild("DividerImage").gameObject.GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
-    }
-
-    public static void SetColorForSettingsBanner(GameObject obj, Color color)
+    static void SetColorForSettingsBanner(GameObject obj, Color color)
     {
         if (obj == null) return;
         obj.transform.FindChild("LabelBackground").gameObject.GetComponent<SpriteRenderer>().color = color.ShadeColor(0.38f);
         obj.transform.FindChild("Value").FindChild("Sprite").gameObject.GetComponent<SpriteRenderer>().color = color;
+    }
+    static void SetColorForCat(GameObject obj, Color color)
+    {
+        if (obj == null) return;
+        obj.transform.FindChild("LabelSprite").gameObject.GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
+        obj.transform.FindChild("DividerImage").gameObject.GetComponent<SpriteRenderer>().color = color.ShadeColor(0.18f);
     }
 }

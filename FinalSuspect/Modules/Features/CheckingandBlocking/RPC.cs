@@ -58,11 +58,15 @@ internal class RPCHandlerPatch
             case RpcCalls.CheckName://CheckNameRPC
                 string name = subReader.ReadString();
                 Logger.Info("RPC Check Name For Player: " + name, "CheckName");
+                if (__instance.OwnerId == AmongUsClient.Instance.HostId)
+                    Main.HostNickName = name;
+                XtremePlayerData.CreateDataFor(__instance, name);
                 FAC.SetNameNum[__instance.PlayerId]++;
                 break;
             case RpcCalls.SetName: //SetNameRPC
                 subReader.ReadUInt32();
                 name = subReader.ReadString();
+                FAC.SetNameNum[__instance.PlayerId]++;
                 Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
                 break;
             case RpcCalls.SetRole: //SetRoleRPC

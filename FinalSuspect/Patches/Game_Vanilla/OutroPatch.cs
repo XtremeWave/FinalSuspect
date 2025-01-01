@@ -8,6 +8,7 @@ using UnityEngine;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.Player;
+using InnerNet;
 using static FinalSuspect.Translator;
 
 namespace FinalSuspect;
@@ -81,6 +82,8 @@ class SetEverythingUpPatch
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
+        sb.Append("\n"+ Utils.ColorString(ColorHelper.ModColor32, GameCode.IntToGameName(AmongUsClient.Instance.GameId)));
+
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
         foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
@@ -92,7 +95,6 @@ class SetEverythingUpPatch
         foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
-            var data = kvp.Value;
             sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
 

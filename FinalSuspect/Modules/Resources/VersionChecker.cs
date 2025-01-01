@@ -1,16 +1,16 @@
-﻿using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using System;
-using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using static FinalSuspect.Translator;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using FinalSuspect.Attributes;
+using HarmonyLib;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+using static FinalSuspect.Translator;
 
-namespace FinalSuspect.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Resources;
 
 public static class VersionChecker
 {

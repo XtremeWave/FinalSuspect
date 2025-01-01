@@ -2,7 +2,7 @@
 	
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme，你最棒的Among Us原版辅助插件。**
+**Final Suspect 终极嫌疑，你最棒的Among Us原版辅助插件。**
 
 <img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licences">
 <img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="LatestTag">
@@ -11,8 +11,6 @@
 <img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Stars">
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
-
-[FS官方网站](https://fsusx.top.cc) | [XtremeWave官方网站](https://www.xtreme.net.cn)
 
 </div>
 
@@ -42,12 +40,13 @@
 ### 贡献者
  - [KARPED1EM](https://github.com/KARPED1EM) - **技术支持**
  - [Yu(原名：Night)](https://github.com/Night-GUA) - **技术支持**
- - [Amongus](https://github.com/XiezibanWrite) - **翻译与技术支持**-->
+ - [Amongus](https://github.com/XiezibanWrite) - **英语翻译、技术支持**
  - [NikoCat233](https://github.com/NikoCat233) - **技术支持**
- - [Farewell](https://github.com/ksduye) - **咨询支持**
+ - [QingFeng](https://github.com/QingFeng-awa) - **云储存支持**
  - [LezaiYa](https://github.com/LezaiYa1) - **咨询支持**
  - [Imp11](https://github.com/dabao40) - **咨询支持**
  - [FangKuai](https://github.com/FangKuaiYa) - **咨询支持**
+
 
 ## 星标历史
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)

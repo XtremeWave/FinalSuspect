@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
+using FinalSuspect.Modules.Managers;
 
 namespace FinalSuspect;
 
@@ -15,6 +16,7 @@ public class NotificationPopperPatch
     }
     public static void AddItem(string text)
     {
+        SpamManager.CheckSpam(ref text);
         WaitToSend.Add(text);
         if (DestroyableSingleton<HudManager>._instance) DestroyableSingleton<HudManager>.Instance.Notifier.AddDisconnectMessage(text);
         else WaitToSend.Remove(text);

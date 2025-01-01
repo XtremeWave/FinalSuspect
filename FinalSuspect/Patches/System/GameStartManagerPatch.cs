@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using FinalSuspect.Modules;
+using FinalSuspect.Modules.Resources;
 using UnityEngine;
 using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect.Patches;
-using FinalSuspect.Modules.Managers.ResourcesManager;
 using FinalSuspect.Player;
 
 

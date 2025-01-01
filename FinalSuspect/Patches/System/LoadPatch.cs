@@ -1,5 +1,5 @@
 ﻿using BepInEx.Unity.IL2CPP.Utils;
-using static FinalSuspect.Modules.Managers.ResourcesManager.ResourcesDownloader;
+using static FinalSuspect.Modules.Resources.ResourcesDownloader;
 using static FinalSuspect.Translator;
 using System;
 using HarmonyLib;
@@ -9,7 +9,7 @@ using ListStr = System.Collections.Generic.List<string>;
 using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
 using System.IO;
 using System.Collections.Generic;
-using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Resources;
 
 namespace FinalSuspect.Patches;
 

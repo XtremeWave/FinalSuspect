@@ -6,7 +6,7 @@ using FinalSuspect.Modules.Features.CheckingandBlocking;
 using UnityEngine;
 using static FinalSuspect.Translator;
 using FinalSuspect.Modules.Managers;
-using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Resources;
 
 
 namespace FinalSuspect;

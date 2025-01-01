@@ -7,7 +7,7 @@ using UnityEngine;
 using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
 using FinalSuspect.Modules.Managers;
-using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Resources;
 
 namespace FinalSuspect;
 

@@ -1,22 +1,17 @@
-using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using Sentry.Unity.NativeUtils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using HarmonyLib;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Translator;
-using static FinalSuspect.Modules.Managers.ResourcesManager.VersionChecker;
+using static FinalSuspect.Modules.Resources.VersionChecker;
 
-namespace FinalSuspect.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Resources;
 
 [HarmonyPatch]
 public class ModUpdater

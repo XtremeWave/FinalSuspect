@@ -10,15 +10,6 @@ namespace FinalSuspect;
 [HarmonyPatch]
 public static class MeetingHudPatch
 {
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
-    [HarmonyPriority(Priority.First)]
-    class StartPatch
-    {
-        public static void Postfix(MeetingHud __instance)
-        {
-            XtremeLocalHandling.OnMeetingStart(__instance);
-        }
-    }
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.UpdateButtons))]
     class UpdatePatch
     {

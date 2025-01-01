@@ -30,8 +30,27 @@ namespace FinalSuspect.Player
         public static class GameStates
         {
             public static bool InGame = false;
-            public static bool OtherModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x => 
-                x.OwnerId == AmongUsClient.Instance.HostId && x.OtherModClient());
+
+            public static bool OtherModHost
+            {
+                get
+                {
+                    try
+                    {
+                        return Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
+                            x.OwnerId == AmongUsClient.Instance.HostId
+                            && PlayerControl.LocalPlayer.OwnerId != AmongUsClient.Instance.HostId
+                            && x.OtherModClient() );
+                    }
+                    catch (Exception e)
+                    {
+                        return false;
+                    }
+                    
+
+                }
+            }
+
             public static bool ModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
                 x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
             public static bool IsLobby => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.Joined && !IsFreePlay;
@@ -84,7 +103,7 @@ namespace FinalSuspect.Player
         }
         public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetPlayerData().SetTaskTotalCount(TaskTotalCount);
         public static void OnCompleteTask(this PlayerControl pc) => pc.GetPlayerData().CompleteTask();
-        public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId);
+        public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId) || player.Data.OwnerId == -2;
         public static bool OtherModClient(byte id) => PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId != ver.forkId;
 
         public static bool ModClient(this PlayerControl player) => ModClient(player.PlayerId);

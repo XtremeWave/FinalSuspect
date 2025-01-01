@@ -1,41 +1,29 @@
-using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using Sentry.Unity.NativeUtils;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using HarmonyLib;
 using static FinalSuspect.Translator;
-using static FinalSuspect.Modules.Managers.ResourcesManager.VersionChecker;
+using static FinalSuspect.Modules.Resources.VersionChecker;
 
-namespace FinalSuspect.Modules.Managers.ResourcesManager;
+namespace FinalSuspect.Modules.Resources;
 
 [HarmonyPatch]
 public class MusicDownloader
 {
-    public static string SavePath = "Final Suspect_Data/Resources/Audios";
-
-    public static readonly string downloadUrl_github = GithubUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_objectstorage = ObjectStorageUrl + "Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_aumodsite = AUModSiteUrl + "Sounds/{{sound}}.wav";
-
     public static async Task<bool> StartDownload(string sound)
     {
-        if (!Directory.Exists(SavePath))
+        if (!Directory.Exists(PathManager.SavePath))
 
-            Directory.CreateDirectory(SavePath);
+            Directory.CreateDirectory(PathManager.SavePath);
 
-        var filePath = $"{SavePath}/{sound}.wav";
+        var filePath = $"{PathManager.SavePath}/{sound}.wav";
         string DownloadFileTempPath = filePath + ".xwr";
 
-        var url = IsChineseLanguageUser ? downloadUrl_objectstorage : downloadUrl_github;
+        var url = IsChineseLanguageUser ? PathManager.downloadUrl_objectstorage : PathManager.downloadUrl_github;
 
     retry:
         url = url.Replace("{{sound}}", $"{sound}");
@@ -66,14 +54,14 @@ public class MusicDownloader
             {
                 Logger.Error($"Md5 Wrong in {url}", "DownloadSound");
                 File.Delete(DownloadFileTempPath);
-                if (url == downloadUrl_objectstorage && IsChineseLanguageUser)
+                if (url == PathManager.downloadUrl_objectstorage && IsChineseLanguageUser)
                 {
-                    url = downloadUrl_gitee;
+                    url = PathManager.downloadUrl_gitee;
                     goto retry;
                 }
-                else if (url == downloadUrl_github && !IsChineseLanguageUser)
+                else if (url == PathManager.downloadUrl_github && !IsChineseLanguageUser)
                 {
-                    url = downloadUrl_objectstorage;
+                    url = PathManager.downloadUrl_objectstorage;
                     goto retry;
                 }
                 else
@@ -119,7 +107,7 @@ public class MusicDownloader
     }
     private static Dictionary<string, string> md5ForFiles = new()
     {
-        //ÒôÀÖ
+        //ï¿½ï¿½ï¿½ï¿½
         {"ElegyOfFracturedVow","183001938142209dd99086326db0cb30"},
         {"Fractured","8161a1939e042fe763796d4ef73f7a3b" },
         {"GongXiFaCai","db200d93e613020d62645f4841dd55bd"},

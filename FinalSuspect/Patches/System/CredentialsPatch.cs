@@ -7,7 +7,7 @@ using UnityEngine;
 
 using static FinalSuspect.Translator;
 using System.Linq;
-using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Resources;
 using FinalSuspect.Player;
 
 namespace FinalSuspect;

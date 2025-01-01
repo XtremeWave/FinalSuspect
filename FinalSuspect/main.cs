@@ -39,7 +39,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20241222";
+    public const string DisplayedVersion_Date = "20250101";
 
     /// <summary>
     /// 测试信息；
@@ -53,7 +53,7 @@ public class Main : BasePlugin
     /// Scrapped: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 5;
+    public const int DisplayedVersion_TestCreation = 7;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
@@ -77,9 +77,10 @@ public class Main : BasePlugin
     public static HideNSeekGameOptionsV08 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
     //Client Options
-    public static ConfigEntry<bool> KickPlayerFriendCodeNotExist { get; private set; }
-    public static ConfigEntry<bool> ApplyDenyNameList { get; private set; }
-    public static ConfigEntry<bool> ApplyBanList { get; private set; }
+    public static ConfigEntry<bool> KickPlayerWhoFriendCodeNotExist { get; private set; }
+    public static ConfigEntry<bool> KickPlayerWithDenyName { get; private set; }
+    public static ConfigEntry<bool> KickPlayerInBanList { get; private set; }
+    public static ConfigEntry<bool> SpamDenyWord { get; private set; }
     public static ConfigEntry<bool> UnlockFPS { get; private set; }
     public static ConfigEntry<string> ChangeOutfit { get; private set; }
     public static ConfigEntry<bool> AutoStartGame { get; private set; }
@@ -87,9 +88,11 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
     public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
-
+    public static ConfigEntry<bool> PrunkMode { get; private set; }
+    public static ConfigEntry<bool> DisableFAC { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
+    public static ConfigEntry<bool> NoGameEnd { get; private set; }
 
 
 
@@ -102,6 +105,7 @@ public class Main : BasePlugin
     public static ConfigEntry<string> HideColor { get; private set; }
     public static ConfigEntry<bool> ShowResults { get; private set; }
     public static ConfigEntry<string> WebhookURL { get; private set; }
+    public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
 
 
     public static Dictionary<RoleTypes, string> roleColors;
@@ -139,22 +143,30 @@ public class Main : BasePlugin
         Instance = this;
 
         //Client Options
-        HideName = Config.Bind("Client Options", "Hide Game Code Name", "Final Suspect");
-        HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ColorHelper.ModColor}");
+        HideName = Config.Bind("Xtreme System", "Hide Game Code Name", "Final Suspect");
+        HideColor = Config.Bind("Xtreme System", "Hide Game Code Color", $"{ColorHelper.ModColor}");
+        EnableFinalSuspect = Config.Bind("Xtreme System", "Enable Final Suspect", true);
+        ShowResults = Config.Bind("Xtreme System", "Show Results", true);
+        
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
-        ShowResults = Config.Bind("Result", "Show Results", true);
-        UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
-        ChangeOutfit = Config.Bind("Client Options", "AprilFoolsMode", OutfitType[0]);
-        KickPlayerFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
-        ApplyBanList = Config.Bind("Client Options", "ApplyBanList", true);
-        ApplyDenyNameList = Config.Bind("Client Options", "ApplyDenyNameList", true);
-        AutoStartGame = Config.Bind("Client Options", "AutoStartGame", false);
-        AutoEndGame = Config.Bind("Client Options", "AutoEndGame", false);
-        EnableMapBackGround = Config.Bind("Client Options", "EnableMapBackGround", true);
-        EnableRoleBackGround = Config.Bind("Client Options", "EnableRoleBackGround", true);
-        DisableVanillaSound = Config.Bind("Client Options", "DisableVanillaSound", false);
-        VersionCheat = Config.Bind("Client Options", "VersionCheat", false);
-        GodMode = Config.Bind("Client Options", "GodMode", false);
+        
+
+        UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
+        ChangeOutfit = Config.Bind("Client Options", "Change Outfit", OutfitType[0]);
+        KickPlayerWhoFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
+        KickPlayerInBanList = Config.Bind("Client Options", "Apply Ban List", true);
+        KickPlayerWithDenyName = Config.Bind("Client Options", "Apply Deny Name List", true);
+        SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
+        AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
+        AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);
+        EnableMapBackGround = Config.Bind("Client Options", "Enable Map BackGround", true);
+        EnableRoleBackGround = Config.Bind("Client Options", "Enable Role BackGround", true);
+        DisableVanillaSound = Config.Bind("Client Options", "Disable Vanilla Sound", false);
+        DisableFAC = Config.Bind("Client Options", "Disable FAC", false);
+        PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
+        VersionCheat = Config.Bind("Client Options", "Version Cheat", false);
+        GodMode = Config.Bind("Client Options", "God Mode", false);
+        NoGameEnd = Config.Bind("Client Options", "No Game End", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
         FinalSuspect.Logger.Enable();
@@ -173,7 +185,7 @@ public class Main : BasePlugin
         // 認証関連-認証
         DebugModeManager.Auth(DebugKeyAuth, DebugKeyInput.Value);
 
-        WebhookURL = Config.Bind("Other", "WebhookURL", "none");
+        WebhookURL = Config.Bind("hook", "WebhookURL", "none");
 
         hasArgumentException = false;
         ExceptionMessage = "";

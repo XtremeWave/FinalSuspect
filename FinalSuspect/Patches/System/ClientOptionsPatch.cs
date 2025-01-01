@@ -4,6 +4,7 @@ using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
 using FinalSuspect.Modules.Managers;
 using FinalSuspect.Player;
+using Sentry.Unity.NativeUtils;
 
 namespace FinalSuspect;
 
@@ -13,17 +14,21 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean UnlockFPS;
     private static ClientOptionItem_String ChangeOutfit;
     private static ClientOptionItem_Boolean KickPlayerFriendCodeNotExist;
-    private static ClientOptionItem_Boolean ApplyDenyNameList;
-    private static ClientOptionItem_Boolean ApplyBanList;
+    private static ClientOptionItem_Boolean KickPlayerWithDenyName;
+    private static ClientOptionItem_Boolean KickPlayerInBanList;
+    private static ClientOptionItem_Boolean SpamDenyWord;
     private static ClientOptionItem_Boolean AutoStartGame;
     private static ClientOptionItem_Boolean AutoEndGame;
     private static ClientOptionItem_Boolean EnableMapBackGround;
     private static ClientOptionItem_Boolean EnableRoleBackGround;
+    private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
+    private static ClientOptionItem_Boolean DisableFAC;
     private static ClientActionItem UnloadMod;
     private static ClientActionItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
     private static ClientOptionItem_Boolean GodMode;
+    private static ClientOptionItem_Boolean NoGameEnd;
 
     public static ClientFeatureItem SoundBtn;
     public static ClientFeatureItem AudioManagementBtn;
@@ -40,6 +45,7 @@ public static class OptionsMenuBehaviourStartPatch
             reseted = true;
             Main.VersionCheat.Value = false;
             Main.GodMode.Value = false;
+            Main.NoGameEnd.Value = false;
         }
 
       
@@ -89,23 +95,19 @@ public static class OptionsMenuBehaviourStartPatch
         
         if (KickPlayerFriendCodeNotExist== null || KickPlayerFriendCodeNotExist.ToggleButton == null)
         {
-            KickPlayerFriendCodeNotExist = ClientOptionItem_Boolean.Create("KickPlayerFriendCodeNotExist", Main.KickPlayerFriendCodeNotExist, __instance);
+            KickPlayerFriendCodeNotExist = ClientOptionItem_Boolean.Create("KickPlayerFriendCodeNotExist", Main.KickPlayerWhoFriendCodeNotExist, __instance);
         }
-        if (ApplyBanList == null || ApplyBanList.ToggleButton == null)
+        if (KickPlayerInBanList == null || KickPlayerInBanList.ToggleButton == null)
         {
-            ApplyBanList = ClientOptionItem_Boolean.Create("ApplyBanList", Main.ApplyBanList, __instance);
+            KickPlayerInBanList = ClientOptionItem_Boolean.Create("KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
         }
-        if (ApplyDenyNameList == null || ApplyDenyNameList.ToggleButton == null)
+        if (KickPlayerWithDenyName == null || KickPlayerWithDenyName.ToggleButton == null)
         {
-            ApplyDenyNameList = ClientOptionItem_Boolean.Create("ApplyDenyNameList", Main.ApplyDenyNameList, __instance);
+            KickPlayerWithDenyName = ClientOptionItem_Boolean.Create("KickPlayerWithDenyName", Main.KickPlayerWithDenyName, __instance);
         }
-
-        if (DisableVanillaSound == null || DisableVanillaSound.ToggleButton == null)
+        if (SpamDenyWord == null || SpamDenyWord.ToggleButton == null)
         {
-            DisableVanillaSound = ClientOptionItem_Boolean.Create("DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
-                if (Main.DisableVanillaSound.Value)
-                    CustomSoundsManager.StopPlay();
-            });
+            SpamDenyWord = ClientOptionItem_Boolean.Create("SpamDenyWord", Main.SpamDenyWord, __instance);
         }
 
         if (AutoStartGame == null || AutoStartGame.ToggleButton == null)
@@ -131,7 +133,21 @@ public static class OptionsMenuBehaviourStartPatch
         {
             EnableMapBackGround = ClientOptionItem_Boolean.Create("EnableMapBackGround", Main.EnableMapBackGround, __instance);
         }
-
+        //if (PrunkMode == null || PrunkMode.ToggleButton == null)
+        //{
+        //    PrunkMode = ClientOptionItem_Boolean.Create("PrunkMode", Main.PrunkMode, __instance);
+        //}
+        if (DisableVanillaSound == null || DisableVanillaSound.ToggleButton == null)
+        {
+            DisableVanillaSound = ClientOptionItem_Boolean.Create("DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
+                if (Main.DisableVanillaSound.Value)
+                    CustomSoundsManager.StopPlay();
+            });
+        }
+        if (DisableFAC == null || DisableFAC.ToggleButton == null)
+        {
+            DisableFAC = ClientOptionItem_Boolean.Create("DisableFAC", Main.DisableFAC, __instance);
+        }
         if (UnloadMod == null || UnloadMod.ToggleButton == null)
         {
             UnloadMod = ClientActionItem.Create("UnloadMod", ModUnloaderScreen.Show, __instance);
@@ -140,14 +156,20 @@ public static class OptionsMenuBehaviourStartPatch
         {
             DumpLog = ClientActionItem.Create("DumpLog", () => Utils.DumpLog(), __instance);
         }
+
         if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
         {
             VersionCheat = ClientOptionItem_Boolean.Create("VersionCheat", Main.VersionCheat, __instance);
         }
-        
+
         if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
         {
             GodMode = ClientOptionItem_Boolean.Create("GodMode", Main.GodMode, __instance);
+        }
+        
+        if ((NoGameEnd == null || NoGameEnd.ToggleButton == null) && DebugModeManager.AmDebugger)
+        {
+            NoGameEnd = ClientOptionItem_Boolean.Create("NoGameEnd", Main.NoGameEnd, __instance);
         }
         
         var mouseMoveToggle = __instance.DisableMouseMovement;

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
+using FinalSuspect.Modules.Resources;
 using FinalSuspect.Modules.SoundInterface;
 using static FinalSuspect.Modules.Managers.AudioManager;
 using static FinalSuspect.Translator;
@@ -17,7 +18,6 @@ namespace FinalSuspect.Modules.Managers;
 #nullable enable
 public static class AudioManager
 {
-    public static readonly string SOUNDS_PATH = @"Final Suspect_Data/Resources/Audios";
     public static readonly string TAGS_PATH = @"Final Suspect_Data/Resources/AudioNames.txt";
 
     public static List<string> CustomAudios = new();
@@ -52,7 +52,7 @@ public static class AudioManager
     public static void Init()
     {
         if (!File.Exists(TAGS_PATH)) File.Create(TAGS_PATH).Close();
-        if (!Directory.Exists(SOUNDS_PATH)) Directory.CreateDirectory(SOUNDS_PATH);
+        if (!Directory.Exists(PathManager.SOUNDS_PATH)) Directory.CreateDirectory(PathManager.SOUNDS_PATH);
 
         FileAttributes attributes = File.GetAttributes(TAGS_PATH);
         File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
@@ -203,7 +203,7 @@ public class FinalMusic
         }
         UnOfficial = music == FSAudios.UnOfficial;
         CurrectAudio = music;
-        Path = SOUNDS_PATH + "/" + FileName + ".wav";
+        Path = PathManager.SOUNDS_PATH + "/" + FileName + ".wav";
         CurrectAudioStates = LastAudioStates = ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;
 
         lock (finalMusicsLock)

@@ -70,7 +70,7 @@ public static class Utils
     public static void KickPlayer(int playerId, bool ban, string reason = "")
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        Logger.Info($"try to kick {GetPlayerById(playerId).GetRealName()}", "Kick");
+        Logger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
         AmongUsClient.Instance.KickPlayer(playerId, ban);
         OnPlayerLeftPatch.Add(playerId);
 
@@ -266,7 +266,6 @@ public static class Utils
             return cachedPlayer;
         }
         var player = Main.AllPlayerControls.Where(pc => pc.PlayerId == playerId).FirstOrDefault();
-        if (player == null && playerId != 255) player = XtremePlayerData.GetPlayerById(playerId);
         cachedPlayers[playerId] = player;
         return player;
     }
@@ -315,7 +314,7 @@ public static class Utils
     public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
     {
         var data = XtremePlayerData.GetPlayerDataById(playerId);
-        if (!data.IsDead) return "";
+        if (!data.IsDead || data.RealDeathReason is DataDeathReason.None) return "";
         
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
@@ -432,6 +431,18 @@ public static class Utils
         return target.IsLocalPlayer() ||
         BothDeathCanSee ||
         bothImp && LocalDead;
+    }
+    public delegate void FunctionToExecute();
+    public static void ExecuteWithTryCatch(FunctionToExecute func)
+    {
+        try
+        {
+            func();
+        }
+        catch (Exception ex)
+        {
+//
+        }
     }
 
 }

@@ -34,7 +34,7 @@ internal class FAC
     public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader, out bool notify)
     {
         notify = true;
-        if (pc == null || reader == null || pc.AmOwner) return false;
+        if (pc == null || reader == null || pc.AmOwner || Main.DisableFAC.Value) return false;
         try
         {
             MessageReader sr = MessageReader.Get(reader);
@@ -90,6 +90,9 @@ internal class FAC
                     case RpcCalls.SetName:
                     case RpcCalls.CheckName:
                         return true;
+                    case RpcCalls.SendChat:
+                        if (pc.IsAlive()) return true;
+                        break;
                 }
             if (XtremeGameData.GameStates.IsMeeting)
                 switch (rpc)
@@ -156,7 +159,7 @@ internal class FAC
                 return true;
 
             }
-            else if (!XtremeGameData.GameStates.OtherModHost)
+            if (!XtremeGameData.GameStates.OtherModHost)
             {
                 Logger.Warn($"收到来自 {player?.Data?.PlayerName}({player?.FriendCode}) 的多次设置名称", "Kick?");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"), player?.Data?.PlayerName));

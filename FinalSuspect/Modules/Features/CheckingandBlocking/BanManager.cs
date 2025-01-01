@@ -88,7 +88,7 @@ public static class BanManager
     }
     public static void CheckDenyNamePlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || !Main.ApplyDenyNameList.Value) return;
+        if (!AmongUsClient.Instance.AmHost || !Main.KickPlayerWithDenyName.Value) return;
         try
         {
             Directory.CreateDirectory("Final Suspect_Data");
@@ -116,7 +116,7 @@ public static class BanManager
 
     public static void CheckBanPlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || !Main.ApplyBanList.Value) return;
+        if (!AmongUsClient.Instance.AmHost || !Main.KickPlayerInBanList.Value) return;
         if (player.IsBannedPlayer())
         {
             Utils.KickPlayer(player.Id, true, "BanList");
@@ -175,5 +175,14 @@ class BanMenuSelectPatch
         if (recentClient == null) return;
         if (recentClient.IsBannedPlayer())
             __instance.BanButton.GetComponent<ButtonRolloverHandler>().SetEnabledColors();
+    }
+}
+[HarmonyPatch(typeof(BanMenu), nameof(BanMenu.Update))]
+class BanMenuUpdatePatch
+{
+    public static void Postfix(BanMenu __instance)
+    {
+        __instance.KickButton.gameObject.SetActive(true);
+        __instance.BanButton.gameObject.SetActive(true);
     }
 }

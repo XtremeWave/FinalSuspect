@@ -1,30 +1,35 @@
+using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Managers;
+using HarmonyLib;
 using Il2CppSystem.Reflection;
 using UnityEngine;
 
 namespace FinalSuspect.Player;
-
+[HarmonyPatch]
 public static class XtremeLocalHandling
 {
-    public static string CheckAndGetNameWithDetails(this PlayerControl player, out Color color, out string headdertext)
+    public static string CheckAndGetNameWithDetails(this PlayerControl player, out Color color, out string headertext)
     {
-        
-        var name = player.GetRealName();
+        var name = player.GetDataName() ?? player.GetRealName();
         color = Color.white;
-        headdertext = "";
-        player.GetLobbyText(ref color, ref headdertext);
-        player.GetGameText(ref color, ref headdertext);
+        headertext = "";
+        player.GetLobbyText(ref color, ref headertext);
+        player.GetGameText(ref color, ref headertext);
         SpamManager.CheckSpam(ref name);
+        if (FAC.SetNameNum[player.PlayerId] > 3)
+        {
+            color = ColorHelper.FaultColor;
+        }
         return name;
     }
-    public static void GetLobbyText(this PlayerControl player, ref Color color, ref string headdertext)
+    public static void GetLobbyText(this PlayerControl player, ref Color color, ref string headertext)
     {
         if (!XtremeGameData.GameStates.IsLobby) return;
         if (XtremeGameData.PlayerVersion.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
         {
             if (Main.ForkId != ver.forkId)
             {
-                headdertext = $"<size=1.5>{ver.forkId}</size>";
+                headertext = $"<size=1.5>{ver.forkId}</size>";
                 color = new Color32(191, 255, 185, 255);
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
@@ -35,12 +40,12 @@ public static class XtremeLocalHandling
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
             {
-                headdertext = $"<size=1.5>{ver.tag}</size>";
+                headertext = $"<size=1.5>{ver.tag}</size>";
                 color = Color.yellow;
             }
             else
             {
-                headdertext = $"<size=1.5>v{ver.version}</size>";
+                headertext = $"<size=1.5>v{ver.version}</size>";
                 color = ColorHelper.FaultColor;
             }
         }
@@ -52,52 +57,54 @@ public static class XtremeLocalHandling
     public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText)
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
-        if (XtremeGameData.GameStates.OtherModHost) return;
 
         var roleType = player.GetRoleType();
         
         if (Utils.CanSeeOthersRole(player, out bool bothImp))
         {
-            color = bothImp ? Palette.ImpostorRed : Utils.GetRoleColor(roleType);
+            color = Utils.GetRoleColor(roleType);
             roleText = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+        }
+        else if (bothImp)
+        {
+            color = Palette.ImpostorRed;
         }
         if (player.GetPlayerData().IsDisconnected)
             color = Color.gray;
     }
     #region FixedUpdate
-
-    public static void OnFixedUpdate(this PlayerControl player)
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate)), HarmonyPostfix]
+    public static void OnFixedUpdate(PlayerControl __instance)
     {
-
-        if (player == null) return;
+        Main.EnableFinalSuspect.Value = !XtremeGameData.GameStates.OtherModHost;
+        if (!Main.EnableFinalSuspect.Value) return;
+        if (__instance == null) return;
 
         try
         {
-            var name = player.CheckAndGetNameWithDetails(out Color color, out string headdertext);
-            DisconnectSync(player);
-            DeathSync(player);
+            var name = __instance.CheckAndGetNameWithDetails(out Color color, out string headertext);
+            DisconnectSync(__instance);
+            DeathSync(__instance);
             
-            var HeadderTextTransform = player.cosmetics.nameText.transform.Find("RoleText");
-            var HeadderText = HeadderTextTransform.GetComponent<TMPro.TextMeshPro>();
-            HeadderText.enabled = true;
-            HeadderText.text = headdertext;
-            HeadderText.color = color;
-            HeadderText.transform.SetLocalY(0.2f);
+            var HeaderTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
+            var HeaderText = HeaderTextTransform.GetComponent<TMPro.TextMeshPro>();
+            HeaderText.enabled = true;
+            HeaderText.text = headertext;
+            HeaderText.color = color;
+            HeaderText.transform.SetLocalY(0.2f);
 
-            player.cosmetics.nameText.text = name;
-            player.cosmetics.nameText.color = color;
+            __instance.cosmetics.nameText.text = name;
+            __instance.cosmetics.nameText.color = color;
         }
         catch
         {
-            XtremePlayerData.CreateDataFor(player);
+            if (__instance.GetRealName() != "Player(Clone)")
+                XtremePlayerData.CreateDataFor(__instance);
         }
-
-        
-
     }
     static void DisconnectSync(PlayerControl pc)
     {
-        if (!XtremeGameData.GameStates.IsInTask) return;
+        if (!XtremeGameData.GameStates.IsInTask || XtremeGameData.GameStates.IsFreePlay) return;
         var data = pc.GetPlayerData();
         var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
         var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
@@ -114,41 +121,52 @@ public static class XtremeLocalHandling
         if (!XtremeGameData.GameStates.IsInTask || pc.GetPlayerData().IsDead) return;
         if (pc.Data.IsDead) pc.SetDead();
     }
-
-
+    
     #endregion
     
     #region MeetingHud
 
-    public static void OnMeetingStart(MeetingHud hud)
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.First)]
+    public static void OnMeetingStart(MeetingHud __instance)
     {
-        foreach (var pva in hud.playerStates)
+        if (!Main.EnableFinalSuspect.Value) return;
+        foreach (var pva in __instance.playerStates)
         {
-            pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
+            try
+            {
+                pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
-            var pc = Utils.GetPlayerById(pva.TargetPlayerId);
-            var name = pc.CheckAndGetNameWithDetails(out Color color, out string headdertext);
+                var pc = Utils.GetPlayerById(pva.TargetPlayerId);
+                var name = pc.CheckAndGetNameWithDetails(out Color color, out string headertext);
             
-            var roleTextMeeting = Object.Instantiate(pva.NameText);
-            roleTextMeeting.text = "";
-            roleTextMeeting.enabled = false;
-            roleTextMeeting.transform.SetParent(pva.NameText.transform);
-            roleTextMeeting.transform.localPosition = new Vector3(0f, -0.18f, 0f);
-            roleTextMeeting.fontSize = 1.5f;
-            roleTextMeeting.gameObject.name = "RoleTextMeeting";
-            roleTextMeeting.enableWordWrapping = false;
+                var roleTextMeeting = Object.Instantiate(pva.NameText);
+                roleTextMeeting.text = "";
+                roleTextMeeting.enabled = false;
+                roleTextMeeting.transform.SetParent(pva.NameText.transform);
+                roleTextMeeting.transform.localPosition = new Vector3(0f, -0.18f, 0f);
+                roleTextMeeting.fontSize = 1.5f;
+                roleTextMeeting.gameObject.name = "RoleTextMeeting";
+                roleTextMeeting.enableWordWrapping = false;
 
 
                 
-            pva.NameText.text = name;
-            pva.NameText.color = color;
+                pva.NameText.text = name;
+                pva.NameText.color = color;
 
-            if (headdertext.Length > 0)
-            {
-                roleTextMeeting.text = headdertext;
-                roleTextMeeting.color = color;
-                roleTextMeeting.enabled = true;
+                if (headertext.Length > 0)
+                {
+                    roleTextMeeting.text = headertext;
+                    roleTextMeeting.color = color;
+                    roleTextMeeting.enabled = true;
+                }
             }
+            catch 
+            {
+                
+            }
+            
         }
     }
 
@@ -159,6 +177,7 @@ public static class XtremeLocalHandling
 
     public static void SetVentOutlineColor(Vent __instance, ref bool mainTarget)
     {
+        if (!Main.EnableFinalSuspect.Value) return;
         Color color = PlayerControl.LocalPlayer.GetRoleColor();
         __instance.myRend.material.SetColor("_OutlineColor", color);
         __instance.myRend.material.SetColor("_AddColor", mainTarget ? color : Color.clear);
@@ -167,6 +186,7 @@ public static class XtremeLocalHandling
     #endregion
     public static void ShowMap(MapBehaviour map, bool normal)
     {
+        if (!Main.EnableFinalSuspect.Value) return;
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
         var color = normal? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
         if (Main.EnableMapBackGround.Value)
@@ -175,6 +195,7 @@ public static class XtremeLocalHandling
 
     public static bool GetHauntFilterText(HauntMenuMinigame __instance)
     {
+        if (!Main.EnableFinalSuspect.Value) return false;
         if (__instance.HauntTarget != null)
         {
             var role = __instance.HauntTarget.GetRoleType();
@@ -186,21 +207,15 @@ public static class XtremeLocalHandling
         return true;
     }
 
-    public static void GetChatBubbleText(byte playerId, Color NAMETEXTCOLOR, ref string name, ref Color32 bgcolor,
+    public static void GetChatBubbleText(byte playerId, ref string name, ref Color32 bgcolor,
         ref Color namecolor)
     {
-
-
+        if (!Main.EnableFinalSuspect.Value) return;
         var player = Utils.GetPlayerById(playerId);
-        name = player.CheckAndGetNameWithDetails(out namecolor, out string headdertext);
+        name = player.CheckAndGetNameWithDetails(out namecolor, out string headertext);
 
         if (!player.IsAlive())
             bgcolor = new Color32(255, 0, 0, 120);
-        if (NAMETEXTCOLOR == Color.green)
-        {
-            bgcolor = ColorHelper.HalfYellow;
-            namecolor = ColorHelper.TeamColor32;
-        }
     }
     
 

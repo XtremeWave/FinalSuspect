@@ -84,6 +84,7 @@ public static class SpamManager
     }
     public static void CheckSpam(ref string text)
     {
+        if (!Main.SpamDenyWord.Value) return;
         try
         {
             var mt = text;

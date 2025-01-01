@@ -12,7 +12,7 @@ using static FinalSuspect.Translator;
 using Object = UnityEngine.Object;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
-using FinalSuspect.Modules.Managers.ResourcesManager;
+using FinalSuspect.Modules.Resources;
 using FinalSuspect.Player;
 
 namespace FinalSuspect.Modules.SoundInterface;

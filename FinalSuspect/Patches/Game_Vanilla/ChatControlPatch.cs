@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using FinalSuspect.Modules.Managers;
 using FinalSuspect.Patches;
+using FinalSuspect.Player;
 using Il2CppMono.Net;
 
 namespace FinalSuspect;
@@ -27,9 +28,9 @@ public static class ChatControllerUpdatePatch
     }
     public static void Postfix(ChatController __instance)
     {
-        if (ConstantsPatch.Version == 25)
+        if (XtremeGameData.GameStates.OtherModHost || XtremeGameData.GameStates.IsFreePlay || XtremeGameData.GameStates.IsLocalGame)
         {
-            __instance.timeSinceLastMessage = 0f;
+            __instance.timeSinceLastMessage = 3f;
         }
         if (!__instance.freeChatField.textArea.hasFocus) return;
         if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.C))

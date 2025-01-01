@@ -65,7 +65,7 @@ static class ExtendedPlayerControl
     }
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
-        return isMeeting ? player?.Data?.PlayerName : player?.name;
+        return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? player?.GetDataName();
     }
     public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;
 

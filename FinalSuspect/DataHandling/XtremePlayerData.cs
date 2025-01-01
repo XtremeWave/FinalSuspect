@@ -51,8 +51,19 @@ public class XtremePlayerData : IDisposable
 
     #endregion
     ///////////////FUNCTIONS\\\\\\\\\\\\\\\
-    public static XtremePlayerData GetPlayerDataById(byte id) => AllPlayerData[id] ?? null;
-    public static PlayerControl GetPlayerById(byte id) => GetPlayerDataById(id).Player ?? Utils.GetPlayerById(id);
+    
+    public static XtremePlayerData GetPlayerDataById(byte id)
+    {
+        try
+        {
+            return AllPlayerData[id] ?? null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+    public static PlayerControl GetPlayerById(byte id) => GetPlayerDataById(id).Player ?? null;
     public static string GetPlayerNameById(byte id) => GetPlayerDataById(id).Name;
 
     public static RoleTypes GetRoleById(byte id)
@@ -76,7 +87,7 @@ public class XtremePlayerData : IDisposable
     }
     public static int GetLongestNameByteCount() => AllPlayerData.Values.Select(data => data.Name.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
 
-
+public void SetName(string name) => Name = name;
     public void SetDead()
     {
         IsDead = true;
@@ -129,17 +140,15 @@ public class XtremePlayerData : IDisposable
         AllPlayerData = new();
         foreach (var pc in PlayerControl.AllPlayerControls)
         {
-            var colorId = pc.Data.DefaultOutfit.ColorId;
-            var id = pc.PlayerId;
-            AllPlayerData[id] = new XtremePlayerData(pc, pc.GetRealName(), colorId);
+            CreateDataFor(pc);
         }
     }
 
-    public static void CreateDataFor(PlayerControl player)
+    public static void CreateDataFor(PlayerControl player, string playername = null)
     {
         var colorId = player.Data.DefaultOutfit.ColorId;
         var id = player.PlayerId;
-        AllPlayerData[id] = new XtremePlayerData(player, player.GetRealName(), colorId);
+        AllPlayerData[id] = new XtremePlayerData(player, playername ?? player.GetRealName(), colorId);
     }
 #pragma warning disable CA1816
         public void Dispose()

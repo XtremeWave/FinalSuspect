@@ -26,6 +26,10 @@ class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         FAC.SetNameNum = new();
+        foreach (var player in Main.AllPlayerControls)
+        {
+            FAC.SetNameNum[player.PlayerId] = 0;
+        }
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
@@ -77,13 +81,13 @@ public class OnPlayerJoinedPatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
         Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
-        if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerFriendCodeNotExist.Value)
+        if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerWhoFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
             NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
             Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
-        if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost && Main.ApplyBanList.Value)
+        if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost && Main.KickPlayerInBanList.Value)
         {
             Utils.KickPlayer(client.Id, true, "BanList");
             Logger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");

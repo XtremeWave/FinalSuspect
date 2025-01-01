@@ -9,6 +9,7 @@ using static FinalSuspect.Modules.Managers.AudioManager;
 using static FinalSuspect.Modules.Managers.FinalMusic;
 using static FinalSuspect.Translator;
 using System.Linq;
+using FinalSuspect.Modules.Resources;
 using UnityEngine;
 using FinalSuspect.Modules.SoundInterface;
 using TMPro;
@@ -25,9 +26,9 @@ public static class CustomSoundsManager
 
         if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
         if (!Constants.ShouldPlaySfx()) return;
-        if (!Directory.Exists(SOUNDS_PATH))
+        if (!Directory.Exists(PathManager.SOUNDS_PATH))
         {
-            Directory.CreateDirectory(SOUNDS_PATH);
+            Directory.CreateDirectory(PathManager.SOUNDS_PATH);
             return;
         }
 

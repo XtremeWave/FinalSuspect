@@ -27,14 +27,7 @@ class CoSetRolePatch
         __instance.SetRole(roleTypes);
     }
 }
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
-class FixedUpdatePatch
-{
-    public static void Postfix(PlayerControl __instance)
-    {
-        __instance.OnFixedUpdate();
-    }
-}
+
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]
 class PlayerStartPatch
 {
@@ -71,15 +64,5 @@ class PlayerControlCompleteTaskPatch
 
         GameData.Instance.RecomputeTaskCounts();
         Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");
-    }
-}
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckName))]
-class CmdCheckNamePatch
-{
-    public static void Postfix(PlayerControl __instance, ref string name)
-    {
-        SpamManager.CheckSpam(ref name);
-        if (__instance.OwnerId == AmongUsClient.Instance.HostId)
-            Main.HostNickName = name;
     }
 }
