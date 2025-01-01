@@ -26,9 +26,9 @@ class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         FAC.SetNameNum = new();
-        foreach (var player in Main.AllPlayerControls)
+        for (byte i = 0; i < 14; i++)
         {
-            FAC.SetNameNum[player.PlayerId] = 0;
+            FAC.SetNameNum[i] = 0;
         }
         Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();

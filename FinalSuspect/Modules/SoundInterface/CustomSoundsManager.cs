@@ -26,11 +26,6 @@ public static class CustomSoundsManager
 
         if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
         if (!Constants.ShouldPlaySfx()) return;
-        if (!Directory.Exists(PathManager.SOUNDS_PATH))
-        {
-            Directory.CreateDirectory(PathManager.SOUNDS_PATH);
-            return;
-        }
 
         foreach (var file in finalMusics)
         {

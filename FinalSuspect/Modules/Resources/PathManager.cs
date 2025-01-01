@@ -1,25 +1,21 @@
 using System;
+using System.IO;
+using FinalSuspect.Attributes;
 
 namespace FinalSuspect.Modules.Resources;
 
 public static class PathManager
 {
-    public static readonly string SOUNDS_PATH = @"Final Suspect_Data/Resources/Audios";
-    public static string SavePath = "Final Suspect_Data/Resources/Audios";
-    public static readonly string downloadUrl_github = VersionChecker.GithubUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_gitee = VersionChecker.GiteeUrl + "raw/FinalSus/Assets/Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_objectstorage = VersionChecker.ObjectStorageUrl + "Sounds/{{sound}}.wav";
-    public static readonly string downloadUrl_aumodsite = VersionChecker.AUModSiteUrl + "Sounds/{{sound}}.wav";
-
     public const string LocalPath_Data = "Final Suspect_Data/";
-    public const string LocalPath_Ban = LocalPath_Data + "Ban/";
-    public const string LocalPath_Resource = LocalPath_Data + "Resources/";
-    public const string LocalPath_Audio = LocalPath_Resource + "Audios/";
-    public const string LocalPath_Image = LocalPath_Resource + "Images/";
-
+    public static string DependsSavePath = "BepInEx/core/";
+    
+    public static string GetFile(FileType fileType, RemoteType remoteType, string file)
+    {
+        return GetRemoteUrl(fileType, remoteType) + file;
+    }
     public static string GetRemoteUrl(FileType fileType, RemoteType remoteType)
     {
-        return "https://" + GetRemoteBase(remoteType) + fileType.ToString() + "/" + remoteType.ToString();
+        return "https://" + GetRemoteBase(remoteType) + fileType + "/";
     }
 
     public static string GetRemoteBase(RemoteType remoteType)
@@ -28,23 +24,53 @@ public static class PathManager
         switch (remoteType)
         {
             case RemoteType.Github:
-                remoteBase = "github.com/XtremeWave/FinalSuspect/";
+                remoteBase = "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets";
                 break;
             case RemoteType.Gitee:
-                remoteBase = "github.com/XtremeWave/FinalSuspect/";
+                remoteBase = "gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets";
                 break;
             case RemoteType.XtremeApi:
-                remoteBase = "github.com/XtremeWave/FinalSuspect/";
+                remoteBase = "api.xtreme.net.cn/download/FinalSuspect/";
                 break;
         }
 
         return remoteBase;
     }
+    public static string GetLocalPath(LocalType localType)
+    {
+        if (localType == LocalType.BepInEx)
+            return DependsSavePath;
+        return  LocalPath_Data + localType + "/";
+    }
+    public static string GetResourcesPath(FileType fileType, string file)
+    {
+        return GetLocalPath(LocalType.Resources) + fileType + "/" + file;
+    }
+
+    [PluginModuleInitializer]
+    public static void Init()
+    {
+        CheckAndCreate(GetLocalPath(LocalType.Resources));
+        CheckAndCreate(GetLocalPath(LocalType.Resources) + "Sounds");
+        CheckAndCreate(GetLocalPath(LocalType.Resources) + "Images");
+        CheckAndCreate(GetLocalPath(LocalType.Ban));
+    }
+
+    public static void CheckAndCreate(string path, bool hidden = true)
+    {
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+        if (!hidden) return;
+        FileAttributes attributes= File.GetAttributes(path);
+        File.SetAttributes(path, attributes | FileAttributes.Hidden);
+    }
 }
 
 public enum FileType
 {
-    
+    Images,
+    Sounds,
+    Depends
 }
 
 public enum RemoteType
@@ -52,4 +78,10 @@ public enum RemoteType
     Github,
     Gitee,
     XtremeApi
+}
+public enum LocalType
+{
+    Ban,
+    Resources,
+    BepInEx
 }

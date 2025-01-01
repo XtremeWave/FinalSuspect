@@ -18,7 +18,7 @@ namespace FinalSuspect.Modules.Managers;
 #nullable enable
 public static class AudioManager
 {
-    public static readonly string TAGS_PATH = @"Final Suspect_Data/Resources/AudioNames.txt";
+    public static readonly string TAGS_PATH = PathManager.GetResourcesPath(FileType.Sounds, "SoundsName.txt");
 
     public static List<string> CustomAudios = new();
     public static void ReloadTag(bool official = true)
@@ -52,8 +52,6 @@ public static class AudioManager
     public static void Init()
     {
         if (!File.Exists(TAGS_PATH)) File.Create(TAGS_PATH).Close();
-        if (!Directory.Exists(PathManager.SOUNDS_PATH)) Directory.CreateDirectory(PathManager.SOUNDS_PATH);
-
         FileAttributes attributes = File.GetAttributes(TAGS_PATH);
         File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
 
@@ -203,7 +201,7 @@ public class FinalMusic
         }
         UnOfficial = music == FSAudios.UnOfficial;
         CurrectAudio = music;
-        Path = PathManager.SOUNDS_PATH + "/" + FileName + ".wav";
+        Path = PathManager.GetResourcesPath(FileType.Sounds, FileName + ".wav");
         CurrectAudioStates = LastAudioStates = ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;
 
         lock (finalMusicsLock)

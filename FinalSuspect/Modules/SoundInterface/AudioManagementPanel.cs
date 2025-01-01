@@ -190,7 +190,7 @@ public static class AudioManagementPanel
                 {
                     audio.CurrectAudioStates = audio.LastAudioStates = AudiosStates.IsDownLoading;
                     RefreshTagList();
-                    var task = MusicDownloader.StartDownload(filename);
+                    var task = ResourcesDownloader.StartDownload(FileType.Sounds, filename + ".wav");
                     task.ContinueWith(t => 
                     {
                         new LateTask(() =>

@@ -10,59 +10,79 @@ namespace FinalSuspect.Modules.Resources;
 
 public class ResourcesDownloader
 {
-    public static string ImagesSavePath = "Final Suspect_Data/Resources/Images/";
-    public static string DependsSavePath = "BepInEx/core/";
-
-    public static readonly string ImagedownloadUrl_github = GithubUrl + "raw/FinalSus/Assets/";
-    public static readonly string ImagedownloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/";
-    public static readonly string ImagedownloadUrl_objectstorage = ObjectStorageUrl;
-    public static readonly string ImagedownloadUrl_aumodsite = AUModSiteUrl;
-
-    public static readonly string DependsdownloadUrl_github = GithubUrl + "raw/FinalSus/Assets/";
-    public static readonly string DependsdownloadUrl_gitee = GiteeUrl + "raw/FinalSus/Assets/";
-    public static readonly string DependsdownloadUrl_objectstorage = ObjectStorageUrl;
-    public static readonly string DependsedownloadUrl_aumodsite = AUModSiteUrl;
-
-    public static System.Collections.IEnumerable CheckForFiles()
+    
+    public static async Task<bool> StartDownload(FileType fileType, string file)
     {
-
-        yield break;
-    }
-
-    public static async Task<bool> StartDownload(string resourcepath, string localpath)
-    {
-
-
-
-        string DownloadImageFileTempPath = localpath + ".xwr";
-
-        if (!IsValidUrl(resourcepath))
+        if (!Directory.Exists(PathManager.GetLocalPath(LocalType.Resources)))
+            Directory.CreateDirectory(PathManager.GetLocalPath(LocalType.Resources));
+        if (!Directory.Exists(PathManager.GetLocalPath(LocalType.Resources) + fileType))
+            Directory.CreateDirectory(PathManager.GetLocalPath(LocalType.Resources) + fileType);
+        string filePath = "";
+        switch (fileType)
         {
-            Logger.Error($"Invalid URL: {resourcepath}", "Download Resources", false);
+            case FileType.Images:
+            case FileType.Sounds:
+                filePath = PathManager.GetResourcesPath(fileType, file);
+                break;
+            case FileType.Depends:
+                filePath = PathManager.GetLocalPath(LocalType.BepInEx) +file;
+                break;
+            default:
+                return false;
+        }
+        string DownloadFileTempPath = filePath + ".xwr";
+
+        var retrytimes = 0;
+        RemoteType remoteType = RemoteType.Github;
+        
+    retry:
+        if (Translator.IsChineseLanguageUser)
+            switch (retrytimes)
+            {
+                case 0:
+                    remoteType = RemoteType.Gitee;
+                    break;
+                case 1:
+                    remoteType = RemoteType.XtremeApi;
+                    break;
+
+            }
+
+        var url = PathManager.GetFile(fileType, remoteType, file);
+
+
+        if (!IsValidUrl(url))
+        {
+            Logger.Error($"Invalid URL: {url}", "Download Resources", false);
             return false;
         }
 
-        File.Create(DownloadImageFileTempPath).Close();
-        Logger.Msg("Start Downloading from: " + resourcepath, "Download Resources");
-        Logger.Msg("Saving file to: " + localpath, "Download Resources");
+        File.Create(DownloadFileTempPath).Close();
+        
+        Logger.Msg("Start Downloading from: " + url, "Download Resources");
+        Logger.Msg("Saving file to: " + filePath, "Download Resources");
 
         try
         {
-            using var client = new HttpClientDownloadWithProgress(resourcepath, DownloadImageFileTempPath);
+            using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
             await client.StartDownload();
             Thread.Sleep(100);
-            Logger.Info($"Succeed in {resourcepath}", "Download Resources");
-            File.Move(DownloadImageFileTempPath, localpath);
+            Logger.Info($"Succeed in {url}", "DownloadSound");
+            File.Move(DownloadFileTempPath, filePath);
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to download\n{ex.Message}", "Download Resources", false);
-            File.Delete(DownloadImageFileTempPath);
+            Logger.Error($"Failed to download\n{ex.Message}", "DownloadSound", false);
+            File.Delete(DownloadFileTempPath);
+            retrytimes++;
+            if (retrytimes < 2) 
+                goto retry;
             return false;
         }
 
     }
+
     private static bool IsValidUrl(string url)
     {
         string pattern = @"^(https?|ftp)://[^\s/$.?#].[^\s]*$";
