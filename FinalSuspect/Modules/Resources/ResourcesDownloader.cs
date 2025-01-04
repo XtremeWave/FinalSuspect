@@ -22,7 +22,7 @@ public class ResourcesDownloader
         {
             case FileType.Images:
             case FileType.Sounds:
-                filePath = PathManager.GetResourcesPath(fileType, file);
+                filePath = PathManager.GetResourceFilesPath(fileType, file);
                 break;
             case FileType.Depends:
                 filePath = PathManager.GetLocalPath(LocalType.BepInEx) +file;
@@ -67,13 +67,13 @@ public class ResourcesDownloader
             using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
             await client.StartDownload();
             Thread.Sleep(100);
-            Logger.Info($"Succeed in {url}", "DownloadSound");
+            Logger.Info($"Succeed in {url}", "Download Resources");
             File.Move(DownloadFileTempPath, filePath);
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to download\n{ex.Message}", "DownloadSound", false);
+            Logger.Error($"Failed to download\n{ex.Message}", "Download Resources", false);
             File.Delete(DownloadFileTempPath);
             retrytimes++;
             if (retrytimes < 2) 

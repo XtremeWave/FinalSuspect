@@ -66,12 +66,6 @@ internal class PingTrackerUpdatePatch
             + $"<color=#00a4ff>{GetString("FrameRate")}:{fps} <size=60%>FPS</size></color>" +
             $"{"    <color=#FFDCB1>◈</color>" + (XtremeGameData.GameStates.IsOnlineGame ? ServerName : GetString("Local"))}";
 
-        //__instance.text.transform.localPosition = 
-        //    new Vector3(
-        //        __instance.text.transform.localPosition.x, 
-        //    XtremeGameData.GameStates.IsInGame? __instance.text.transform.localPosition.y + 0.2f: __instance.text.transform.localPosition.y  - 0.2f, 
-        //    __instance.text.transform.localPosition.z);
-
 
     }
 }
@@ -92,7 +86,7 @@ public class VersionShowerStartPatch
         Main.CredentialsText = $"\r\n<size=120%>" +
             $"<color={ColorHelper.TeamColor}>==</color> <color={ColorHelper.ModColor}>{Main.ModName}</color> <color={ColorHelper.TeamColor}>==</color>"
             + "</size>";
-        Main.CredentialsText += $"\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
+        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
         Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG

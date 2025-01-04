@@ -32,9 +32,9 @@ public class LoadPatch
         }
         private static IEnumerator InitializeRefdata(SplashManager __instance)
         {
-            
+            #region Resources and variables
             float p;
-            ListStr PreResources = new()
+            ListStr PreReady_remoteImageList = new()
             {
                 "FinalSuspect-Logo.png",
                 "FinalSuspect-Logo-Blurred.png",
@@ -67,30 +67,31 @@ public class LoadPatch
                 "YamlDotNet.dll",
                 "YamlDotNet.xml",
             };
-
+            #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
-            
+
+            #region First Start Final Suspect
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
-            loadText.fontStyle = TMPro.FontStyles.Bold;
-            loadText.text = "";
-            for (int i = PreResources.Count - 1; i >= 0; i--)
+            loadText.fontStyle = FontStyles.Bold;
+            loadText.text = null;
+            for (int i = PreReady_remoteImageList.Count - 1; i >= 0; i--)
             {
-                var resource = PreResources[i];
-                string localFilePath = PathManager.GetResourcesPath(FileType.Images, resource);
+                var resource = PreReady_remoteImageList[i];
+                string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
                 if (File.Exists(localFilePath))
                 {
-                    PreResources.Remove(resource);
+                    PreReady_remoteImageList.Remove(resource);
                 }
                 else
                 {
                     Logger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
-            foreach (var resource in PreResources)
+            foreach (var resource in PreReady_remoteImageList)
             {
-                loadText.text = "Welcome to FinalSuspect.";
+                loadText.text = $"Welcome to <color={ColorHelper.ModColor}>FinalSuspect</color>.";
                 var task = StartDownload(FileType.Images, resource);
                 while (!task.IsCompleted)
                 {
@@ -103,7 +104,7 @@ public class LoadPatch
                 }
             }
 
-            if (loadText.text != "")
+            if (!string.IsNullOrEmpty(loadText.text))
             {
                 p = 1f;
                 while (p > 0f)
@@ -112,11 +113,13 @@ public class LoadPatch
                     loadText.color = Color.white.AlphaMultiplied(p);
                     yield return null;
                 }
-
                 yield return new WaitForSeconds(2f);
             }
+            
 
-            #region Anima
+            #endregion
+
+            #region Team Logo Anima
             var teamlogo = ObjectHelper.CreateObject<SpriteRenderer>("Team_Logo", null, new Vector3(0, 0f, -5f));
             teamlogo.sprite = Utils.LoadSprite("TeamLogo.png", 120f);
             
@@ -128,7 +131,9 @@ public class LoadPatch
                 teamlogo.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
+            
             yield return new WaitForSeconds(1.5f);
+            
             p = 1f;
             while (p > 0f)
             {
@@ -138,7 +143,9 @@ public class LoadPatch
             }
             
             yield return new WaitForSeconds(2f);
-            #region Create Mod Sprites
+            #endregion
+            
+            #region Create Mod Logo
             var modlogo = ObjectHelper.CreateObject<SpriteRenderer>("Mod_Logo", null, new Vector3(0, 0.3f, -5f));
             var modlogo_Blurred = ObjectHelper.CreateObject<SpriteRenderer>("Mod_Logo_Blurred", null, new Vector3(0, 0.3f, -5f));
             modlogo.sprite = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
@@ -146,6 +153,7 @@ public class LoadPatch
 
             #endregion
 
+            #region Start Load
             p = 1f;
             while (p > 0f)
             {
@@ -161,7 +169,6 @@ public class LoadPatch
             modlogo.color = Color.white;
             modlogo_Blurred.gameObject.SetActive(false);
             modlogo.transform.localScale = Vector3.one;
-            #endregion
             yield return new WaitForSeconds(0.75f);
             
             var glow = ObjectHelper.CreateObject<SpriteRenderer>("glow", null, new Vector3(0, 0.3f, -5f));
@@ -180,10 +187,9 @@ public class LoadPatch
                     loadText.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
+            #endregion
             
-
-            #region LoadAmongUs
-
+            #region Initialize Among Us Translation
             yield return DestroyableSingleton<ReferenceDataManager>.Instance.Initialize();
             try
             {
@@ -193,7 +199,7 @@ public class LoadPatch
             { }
             #endregion
 
-
+            #region Download Depends
             for (int i = remoteDependList.Count - 1; i >= 0; i--)
             {
                 var resource = remoteDependList[i];
@@ -220,6 +226,13 @@ public class LoadPatch
                     Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
+            #endregion
+
+            #region After Download Depends
+
+            
+
+                
             p = 1f;
             while (p > 0)
             {
@@ -241,8 +254,9 @@ public class LoadPatch
             }
 
             yield return new WaitForSeconds(1f);
-            #region Check for files
-
+            #endregion
+            
+            #region Check for resources
             processText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             processText.transform.localPosition = new(0f, -0.7f, -10f);
             processText.fontStyle = TMPro.FontStyles.Bold;
@@ -261,10 +275,11 @@ public class LoadPatch
             {
                 yield return null;
             }
+            
             for (int i = remoteImageList.Count - 1; i >= 0; i--)
             {
                 var resource = remoteImageList[i];
-                string localFilePath = PathManager.GetResourcesPath(FileType.Images, resource);
+                string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
                 if (File.Exists(localFilePath))
                 {
                     remoteImageList.Remove(resource);
@@ -276,6 +291,7 @@ public class LoadPatch
             }
             
             #endregion
+            
             #region Download Resources
             yield return new WaitForSeconds(0.5f);
 
@@ -361,9 +377,10 @@ public class LoadPatch
             GameObject.Destroy(processText.gameObject);
             #endregion
 
+            #region Load Complete
             yield return new WaitForSeconds(1f);
             Color green = new Color32(185, 255, 181, 255);
-            loadText.color = green.AlphaMultiplied(0.3f);
+            loadText.color = green.AlphaMultiplied(0.5f);
 
             loadText.text = GetString("LoadingComplete");
             for (int i = 0; i < 3; i++)
@@ -375,25 +392,24 @@ public class LoadPatch
             }
             yield return new WaitForSeconds(0.5f);
 
-            GameObject.Destroy(loadText.gameObject);
-
             p = 1f;
             while (p > 0f)
             {                
                 p -= Time.deltaTime * 1.2f;
                 glow.color = Color.white.AlphaMultiplied(p);
                 modlogo.color = Color.white.AlphaMultiplied(p);
-                loadText.color = Color.white.AlphaMultiplied(p);
+                if (p >= 0.5f) 
+                    loadText.color = green.AlphaMultiplied(p - 0.5f);
                 yield return null;
             }
+            GameObject.Destroy(loadText.gameObject);
             modlogo.color = Color.clear;
-
+            #endregion
             __instance.loadingObject.SetActive(false);
             __instance.sceneChanger.BeginLoadingScene();
             __instance.doneLoadingRefdata = true;
-            yield break;
+            
         }
-
     }
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Update))]
     class Update

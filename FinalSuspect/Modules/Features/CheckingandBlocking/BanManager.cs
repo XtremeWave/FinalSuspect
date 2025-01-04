@@ -7,6 +7,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using FinalSuspect.Attributes;
+using FinalSuspect.Modules.Managers;
+using FinalSuspect.Modules.Resources;
 using HarmonyLib;
 using InnerNet;
 using static FinalSuspect.Translator;
@@ -15,8 +17,8 @@ namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
 public static class BanManager
 {
-    private static readonly string DENY_NAME_LIST_PATH = @"Final Suspect_Data/Ban/DenyName.txt";
-    private static readonly string BAN_LIST_PATH = @"Final Suspect_Data/Ban/BanList.txt";
+    
+    private static readonly string BAN_LIST_PATH = PathManager.GetBanFilesPath("BanList.txt");
     private static List<string> FACList = new();
 
     [PluginModuleInitializer]
@@ -24,20 +26,10 @@ public static class BanManager
     {
         try
         {
-            Directory.CreateDirectory("Final Suspect_Data");
-            Directory.CreateDirectory("Final Suspect_Data/Ban");
-
-
             if (!File.Exists(BAN_LIST_PATH))
             {
                 Logger.Warn("Create New BanList.txt", "BanManager");
                 File.Create(BAN_LIST_PATH).Close();
-            }
-            if (!File.Exists(DENY_NAME_LIST_PATH))
-            {
-                Logger.Warn("Create New DenyName.txt", "BanManager");
-                File.Create(DENY_NAME_LIST_PATH).Close();
-                File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("FinalSuspect.Resources.Configs.DenyName.txt"));
             }
 
             //读取FAC名单
@@ -91,9 +83,7 @@ public static class BanManager
         if (!AmongUsClient.Instance.AmHost || !Main.KickPlayerWithDenyName.Value) return;
         try
         {
-            Directory.CreateDirectory("Final Suspect_Data");
-            if (!File.Exists(DENY_NAME_LIST_PATH)) File.Create(DENY_NAME_LIST_PATH).Close();
-            using StreamReader sr = new(DENY_NAME_LIST_PATH);
+            using StreamReader sr = new(SpamManager.DENY_NAME_LIST_PATH);
             string line;
             while ((line = sr.ReadLine()) != null)
             {

@@ -5,13 +5,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
+using FinalSuspect.Modules.Resources;
 using static FinalSuspect.Translator;
 
 namespace FinalSuspect.Modules.Managers;
 
 public static class SpamManager
 {
-    private static readonly string BANEDWORDS_FILE_PATH = "./Final Suspect_Data/BanWords.txt";
+    private static readonly string BANEDWORDS_FILE_PATH = PathManager.LocalPath_Data + "BanWords.txt";
+    public static readonly string DENY_NAME_LIST_PATH = PathManager.GetBanFilesPath("DenyName.txt");
     public static List<string> BanWords = new();
 
     [PluginModuleInitializer]
@@ -19,7 +21,8 @@ public static class SpamManager
     {
         CreateIfNotExists();
         BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
-        CheckForUpdate();
+        CheckForUpdateBanWords();
+        CheckForUpdateDenyNames();
     }
     public static void CreateIfNotExists()
     {
@@ -41,9 +44,25 @@ public static class SpamManager
                 Logger.Exception(ex, "SpamManager");
             }
         }
+        if (!File.Exists(DENY_NAME_LIST_PATH))
+        {
+            try
+            {
+                if (!Directory.Exists(@"Final Suspect_Data")) Directory.CreateDirectory(@"Final Suspect_Data");
+                if (File.Exists(@"./DenyName.txt")) File.Move(@"./DenyName.txt", BANEDWORDS_FILE_PATH);
+                else
+                {
+                    File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.DenyName.txt"));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "SpamManager");
+            }
+        }
 
     }
-    public static void CheckForUpdate()
+    public static void CheckForUpdateBanWords()
     {
         string fileName = GetUserLangByRegion().ToString();
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
@@ -62,6 +81,27 @@ public static class SpamManager
         reader.Dispose();
 
         using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
+        foreach (var line in waitforupdate)
+            writer.WriteLine(line);
+    }
+    public static void CheckForUpdateDenyNames()
+    {
+        string fileName = GetUserLangByRegion().ToString();
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.DenyName.txt");
+        stream.Position = 0;
+        using StreamReader reader1 = new(stream, Encoding.UTF8);
+        using StreamReader reader2 = new(DENY_NAME_LIST_PATH,  Encoding.UTF8);
+        List<string> waitforupdate = new(); 
+        while (!reader1.EndOfStream)
+        {
+            string line = reader1.ReadLine();
+            if (!reader2.ReadToEnd().Contains(line))
+                waitforupdate.Add(line);
+        }
+        reader1.Dispose();
+        reader2.Dispose();
+
+        using StreamWriter writer = new(DENY_NAME_LIST_PATH, true);
         foreach (var line in waitforupdate)
             writer.WriteLine(line);
     }

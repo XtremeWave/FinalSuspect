@@ -67,7 +67,7 @@
 ## 更改
 - 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
 制作: Slok, 小黄117, KpCam
-- 将InnerSloth打开游戏动画改为FinalSuspect打开游戏动画
+- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
 制作: Slok
 参考: The Other Roles Community Edition, Nebula On The Ship
 - 「音频管理」中不可删除播放中的音乐
@@ -103,6 +103,7 @@
 - 调整职业设置预览底板颜色
 - 调整游戏设置修改底板颜色
 - 调整游戏设置预览底板颜色
+- 调整聊天背景颜色
 - 违禁词全面屏蔽
 - 对修改名称作弊的检查
 - 自由模式下可以使用千里眼

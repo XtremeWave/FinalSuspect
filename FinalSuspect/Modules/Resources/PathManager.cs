@@ -42,12 +42,16 @@ public static class PathManager
             return DependsSavePath;
         return  LocalPath_Data + localType + "/";
     }
-    public static string GetResourcesPath(FileType fileType, string file)
+    public static string GetResourceFilesPath(FileType fileType, string file)
     {
         return GetLocalPath(LocalType.Resources) + fileType + "/" + file;
     }
+    public static string GetBanFilesPath(string file)
+    {
+        return GetLocalPath(LocalType.Ban) + file;
+    }
 
-    [PluginModuleInitializer]
+    [PluginModuleInitializer(InitializePriority.High)]
     public static void Init()
     {
         CheckAndCreate(GetLocalPath(LocalType.Resources));
@@ -70,7 +74,8 @@ public enum FileType
 {
     Images,
     Sounds,
-    Depends
+    Depends,
+    ModNews
 }
 
 public enum RemoteType
