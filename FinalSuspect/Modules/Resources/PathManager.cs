@@ -63,6 +63,7 @@ public static class PathManager
         {
             CheckAndCreate(GetLocalPath(LocalType.Resources) + $"ModNews/{lang}");
         }
+        CheckAndCreate(GetLocalPath(LocalType.Resources) + "Languages");
         CheckAndCreate(GetLocalPath(LocalType.Ban));
     }
 
@@ -81,7 +82,8 @@ public enum FileType
     Images,
     Sounds,
     Depends,
-    ModNews
+    ModNews,
+    Languages
 }
 
 public enum RemoteType

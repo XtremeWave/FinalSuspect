@@ -50,12 +50,10 @@ public class ModNewsHistory
     public static ModNews GetContentFromRes(string path)
     {
         ModNews mn = new();
-        var stream = path;
         
-        using StreamReader reader = new(stream, Encoding.UTF8);
+        using StreamReader reader = new(path, Encoding.UTF8);
         string text = "";
         uint langId = (uint)DataManager.Settings.Language.CurrentLanguage;
-        //uint langId = (uint)SupportedLangs.SChinese;
         while (!reader.EndOfStream)
         {
             string line = reader.ReadLine();
@@ -91,7 +89,7 @@ public class ModNewsHistory
         {
             var lang = DataManager.Settings.Language.CurrentLanguage.ToString(); ;
 
-            var fileNames = Directory.GetFiles(PathManager.GetResourceFilesPath(FileType.ModNews, lang + "/"));//Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect.Resources.ModNews.{lang}."));
+            var fileNames = Directory.GetFiles(PathManager.GetResourceFilesPath(FileType.ModNews, lang + "/"));
             foreach (var file in fileNames)
                 AllModNews.Add(GetContentFromRes(file));
 

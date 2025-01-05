@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Resources;
 using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using YamlDotNet.RepresentationModel;
@@ -16,9 +17,8 @@ namespace FinalSuspect.Modules.Core.Plugin;
 public static class Translator
 {
     public static Dictionary<int, Dictionary<string, string>> TranslateMaps = new();
-    public const string LANGUAGE_FOLDER_NAME = "Language";
-
-    [PluginModuleInitializer(InitializePriority.High)]
+    public const string LANGUAGE_FOLDER_NAME = PathManager.LocalPath_Data + "Language";
+    
     public static void Init()
     {
         Logger.Info("加载语言文件...", "Translator");
@@ -27,13 +27,12 @@ public static class Translator
     }
     public static void LoadLangs()
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        var fileNames = assembly.GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect.Resources.Languages."));
-        foreach (var fileName in fileNames)
+        var fileNames = Directory.GetFiles(PathManager.GetLocalPath(LocalType.Resources) + "Languages");
+        foreach (var file in fileNames)
         {
+            var fileName = Path.GetFileName(file);
             var yaml = new YamlStream();
-            var stream = assembly.GetManifestResourceStream(fileName);
-            yaml.Load(new StringReader(new StreamReader(stream).ReadToEnd()));
+            yaml.Load(new StringReader(new StreamReader(file).ReadToEnd()));
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
 
             int langId = -1;

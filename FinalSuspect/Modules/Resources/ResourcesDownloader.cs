@@ -14,16 +14,13 @@ public class ResourcesDownloader
     
     public static async Task<bool> StartDownload(FileType fileType, string file)
     {
-        if (!Directory.Exists(PathManager.GetLocalPath(LocalType.Resources)))
-            Directory.CreateDirectory(PathManager.GetLocalPath(LocalType.Resources));
-        if (!Directory.Exists(PathManager.GetLocalPath(LocalType.Resources) + fileType))
-            Directory.CreateDirectory(PathManager.GetLocalPath(LocalType.Resources) + fileType);
-        string filePath = "";
+        string filePath;
         switch (fileType)
         {
             case FileType.Images:
             case FileType.Sounds:
             case FileType.ModNews:
+            case FileType.Languages:
                 filePath = PathManager.GetResourceFilesPath(fileType, file);
                 break;
             case FileType.Depends:

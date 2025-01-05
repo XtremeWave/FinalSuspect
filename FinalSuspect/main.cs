@@ -108,6 +108,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> ShowResults { get; private set; }
     public static ConfigEntry<string> WebhookURL { get; private set; }
     public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
+    public static ConfigEntry<string> LastStartVersion { get; private set; }
 
 
     public static Dictionary<RoleTypes, string> roleColors;
@@ -149,6 +150,7 @@ public class Main : BasePlugin
         HideColor = Config.Bind("Xtreme System", "Hide Game Code Color", $"{ColorHelper.ModColor}");
         EnableFinalSuspect = Config.Bind("Xtreme System", "Enable Final Suspect", true);
         ShowResults = Config.Bind("Xtreme System", "Show Results", true);
+        LastStartVersion = Config.Bind("Xtreme System", "Last Start Version", "0.0.0");
         
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         

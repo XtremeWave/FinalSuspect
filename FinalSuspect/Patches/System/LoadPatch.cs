@@ -3,6 +3,7 @@ using System.IO;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Resources;
 using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
@@ -20,6 +21,7 @@ public class LoadPatch
     
     static TextMeshPro loadText = null!;
     static TextMeshPro processText = null!;
+    public static bool ReloadLanguage = false;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
     {
@@ -70,7 +72,26 @@ public class LoadPatch
             ListStr remoteModNewsList = new()
             {
                 "FS.v1.0_2025.txt",
-                "FeaturesIntroduction#1.0.txt"
+                "FeaturesIntroduction#v1.0.txt"
+            };
+            ListStr remoteLanguageList = new()
+            {
+                "Brazilian.yaml",
+                "Chinese Simplified.yaml",
+                "Chinese Traditional.yaml",
+                "Dutch.yaml",
+                "English.yaml",
+                "Filipino.yaml",
+                "Franch.yaml",
+                "German.yaml",
+                "Irish.yaml",
+                "Italian.yaml",
+                "Japanese.yaml",
+                "Korean.yaml",
+                "Latam.yaml",
+                "Portuguese.yaml",
+                "Russian.yaml",
+                "Spanish.yaml",
             };
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
@@ -231,13 +252,48 @@ public class LoadPatch
                     Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
+            var thisversion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
+            if (thisversion != Main.LastStartVersion.Value)
+            {
+                ReloadLanguage = true;
+            }
+            Main.LastStartVersion.Value = thisversion;
+
+            if (!ReloadLanguage)
+            {
+                for (int i = remoteLanguageList.Count - 1; i >= 0; i--)
+                {
+                    var resource = remoteLanguageList[i];
+                    remoteLanguageList.Remove(resource);
+                    string localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
+                    if (File.Exists(localFilePath))
+                    {
+                        remoteLanguageList.Remove(resource);
+                    }
+                    else
+                    {
+                        Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    }
+
+                }
+            }
+            foreach (var resource in remoteLanguageList)
+            {
+                var task = StartDownload(FileType.Languages, resource);
+                while (!task.IsCompleted)
+                {
+                    yield return null; 
+                }
+
+                if (task.IsFaulted || !task.Result)
+                {
+                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                }
+            }
             #endregion
 
             #region After Download Depends
-
-            
-
-                
+            Translator.Init();
             p = 1f;
             while (p > 0)
             {
@@ -258,6 +314,7 @@ public class LoadPatch
                 yield return null;
             }
 
+       
             yield return new WaitForSeconds(1f);
             #endregion
             
@@ -276,6 +333,7 @@ public class LoadPatch
                     processText.color = Color.blue.AlphaMultiplied(alpha);
                 yield return null;
             }
+            
             while (!VersionChecker.isChecked)
             {
                 yield return null;
@@ -311,6 +369,7 @@ public class LoadPatch
                 }
             }
             
+
             #endregion
             
             #region Download Resources

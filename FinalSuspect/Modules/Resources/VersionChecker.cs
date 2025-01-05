@@ -53,6 +53,7 @@ public static class VersionChecker
     public static bool DebugUnused = false;
     public static string versionInfoRaw = "";
 
+    
     public static Version latestVersion = null;
     public static string showVer = "";
     public static Version DebugVer = null;
@@ -90,6 +91,7 @@ public static class VersionChecker
         CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("PleaseWait"), null);
         _ = new LateTask(CheckForUpdate, 0.3f, "Retry Check Update");
     }
+
     [PluginModuleInitializer]
     public static void CheckForInit()
     {
@@ -104,7 +106,8 @@ public static class VersionChecker
             }
         }
 
-        Core.Plugin.Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
+        
+    Core.Plugin.Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
         if (isChecked)
         {
             Core.Plugin.Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
