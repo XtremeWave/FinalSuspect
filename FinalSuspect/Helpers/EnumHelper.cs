@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Helpers;
 
 public static class EnumHelper
 {

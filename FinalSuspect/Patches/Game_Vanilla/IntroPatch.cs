@@ -1,10 +1,13 @@
-using HarmonyLib;
 using System.Threading.Tasks;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
+using HarmonyLib;
 using UnityEngine;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(IntroCutscene))]
 class IntroCutscenePatch
@@ -33,7 +36,7 @@ class IntroCutscenePatch
     public static void CoBegin_Prefix()
     {
         XtremeGameData.GameStates.InGame = true;
-        Logger.Info("Game Start", "IntroCutscene");
+        Modules.Core.Plugin.Logger.Info("Game Start", "IntroCutscene");
     }
     [HarmonyPatch(nameof(IntroCutscene.BeginImpostor)), HarmonyPostfix]
     public static void BeginImpostor_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam)
@@ -102,7 +105,7 @@ class IntroCutscenePatch
             Color LerpingColor = Color.Lerp(start, end, time);
             if (__instance == null || milliseconds > 500)
             {
-                Logger.Info("break", "StartFadeIntro");
+                Modules.Core.Plugin.Logger.Info("break", "StartFadeIntro");
                 break;
             }
             __instance.BackgroundBar.material.color = LerpingColor;

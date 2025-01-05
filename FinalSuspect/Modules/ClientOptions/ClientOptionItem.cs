@@ -1,5 +1,7 @@
 using BepInEx.Configuration;
 using System;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.ClientOptions;
@@ -93,7 +95,7 @@ public sealed class ClientOptionItem_String : ClientActionItem
             
             if (currentIndex == -1)
             {
-                Logger.Error("wrong index", "ClientOptionItem_String");
+                Core.Plugin.Logger.Error("wrong index", "ClientOptionItem_String");
                 return;
             }
             

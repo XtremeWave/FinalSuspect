@@ -1,12 +1,13 @@
-using HarmonyLib;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.ClientOptions;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.SoundInterface;
+using HarmonyLib;
 using UnityEngine;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
-using Sentry.Unity.NativeUtils;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch
@@ -56,7 +57,7 @@ public static class OptionsMenuBehaviourStartPatch
             static void UnlockFPSButtonToggle()
             {
                 Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-                Logger.SendInGame(string.Format(Translator.GetString("FPSSetTo"), Application.targetFrameRate));
+                Modules.Core.Plugin.Logger.SendInGame(string.Format(Translator.GetString("FPSSetTo"), Application.targetFrameRate));
             }
         }
         if (ChangeOutfit == null || ChangeOutfit.ToggleButton == null)

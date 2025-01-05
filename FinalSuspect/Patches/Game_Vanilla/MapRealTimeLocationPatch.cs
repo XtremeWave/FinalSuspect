@@ -1,7 +1,7 @@
-﻿using FinalSuspect.Player;
+﻿using FinalSuspect.DataHandling;
 using HarmonyLib;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch]
 public class MapRealTimeLocationPatch

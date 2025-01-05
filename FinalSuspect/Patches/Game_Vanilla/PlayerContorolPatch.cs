@@ -1,14 +1,10 @@
-using HarmonyLib;
-using System.Text;
-using UnityEngine;
-using static FinalSuspect.Translator;
 using AmongUs.GameOptions;
-using static UnityEngine.ParticleSystem.PlaybackState;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
-using InnerNet;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using HarmonyLib;
+using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
@@ -59,10 +55,10 @@ class PlayerControlCompleteTaskPatch
     public static void Postfix(PlayerControl __instance)
     {
         var pc = __instance;
-        Logger.Info($"TaskComplete:{pc.GetNameWithRole()}", "CompleteTask");
+        Modules.Core.Plugin.Logger.Info($"TaskComplete:{pc.GetNameWithRole()}", "CompleteTask");
         pc.OnCompleteTask();
 
         GameData.Instance.RecomputeTaskCounts();
-        Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");
+        Modules.Core.Plugin.Logger.Info($"TotalTaskCounts = {GameData.Instance.CompletedTasks}/{GameData.Instance.TotalTasks}", "TaskState.Update");
     }
 }

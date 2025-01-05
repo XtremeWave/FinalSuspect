@@ -1,23 +1,17 @@
-using AmongUs.Data;
-using AmongUs.GameOptions;
-using BepInEx.Unity.IL2CPP.Utils;
-using HarmonyLib;
-using Hazel;
-using InnerNet;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using FinalSuspect.Modules;
-
-
-
-using static FinalSuspect.Translator;
-using FinalSuspect.Modules.Managers;
 using System.Linq;
+using AmongUs.Data;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using FinalSuspect.Player;
-using static Il2CppSystem.Globalization.CultureInfo;
+using FinalSuspect.Modules.Scrapped;
+using FinalSuspect.Patches.Game_Vanilla;
+using HarmonyLib;
+using InnerNet;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameJoined))]
 class OnGameJoinedPatch
@@ -30,7 +24,7 @@ class OnGameJoinedPatch
         {
             FAC.SetNameNum[i] = 0;
         }
-        Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
+        Modules.Core.Plugin.Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
@@ -62,7 +56,7 @@ class DisconnectInternalPatch
             ShowDisconnectPopupPatch.Reason = reason;
             ShowDisconnectPopupPatch.StringReason = stringReason;
 
-            Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
+            Modules.Core.Plugin.Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
             HudManagerPatch.Init();
             XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
@@ -80,17 +74,17 @@ public class OnPlayerJoinedPatch
 {
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
-        Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
+        Modules.Core.Plugin.Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerWhoFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
             NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
-            Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
+            Modules.Core.Plugin.Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
         if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost && Main.KickPlayerInBanList.Value)
         {
             Utils.KickPlayer(client.Id, true, "BanList");
-            Logger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");
+            Modules.Core.Plugin.Logger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");
         }
         BanManager.CheckBanPlayer(client);
         BanManager.CheckDenyNamePlayer(client);
@@ -115,13 +109,13 @@ class OnPlayerLeftPatch
         {
             if (data == null)
             {
-                Logger.Error("错误的客户端数据：数据为空", "Session");
+                Modules.Core.Plugin.Logger.Error("错误的客户端数据：数据为空", "Session");
                 return;
             }
 
             data?.Character?.SetDisconnected();
 
-            Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
+            Modules.Core.Plugin.Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
             // 附加描述掉线原因
             switch (reason)

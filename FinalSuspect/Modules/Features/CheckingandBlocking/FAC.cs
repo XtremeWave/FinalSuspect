@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AmongUs.GameOptions;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Patches.Game_Vanilla;
 using Hazel;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 internal class FAC
@@ -31,9 +34,11 @@ internal class FAC
                 ErrorText.Instance.Clear();
         }
     }
-    public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader, out bool notify)
+    public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader, out bool notify, out string reason, out bool ban)
     {
         notify = true;
+        reason = "Hacking";
+        ban = false;
         if (pc == null || reader == null || pc.AmOwner || Main.DisableFAC.Value) return false;
         try
         {
@@ -59,6 +64,11 @@ internal class FAC
                     if (pc.IsImpostor() || pc.GetRoleType() == RoleTypes.Engineer)
                         break;
                     return true;
+                case RpcCalls.SendChat:
+                    var text = sr.ReadString();
+                    if (text.Length > 100) 
+                        return true;
+                    break;
 
             }
             if (XtremeGameData.GameStates.IsLobby)
@@ -108,7 +118,7 @@ internal class FAC
         }
         catch (Exception e)
         {
-            Logger.Exception(e, "FAC");
+            Core.Plugin.Logger.Exception(e, "FAC");
             throw;
         }
         WarnHost(-1);
@@ -124,19 +134,18 @@ internal class FAC
     {
         if (player.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) && !XtremeGameData.GameStates.OtherModHost)
         {
-            Logger.Warn($"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
+            Core.Plugin.Logger.Warn($"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
             {
-                if (!ReceiveInvalidRpc(player, callId)) return true;
-                Utils.KickPlayer(player.GetClientId(), false, "InvalidRPC");
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
+                if (!ReceiveInvalidRpc(player, callId)) return true; ;
+                Core.Plugin.Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc"), player?.Data?.PlayerName));
                 return true;
 
             }
             else
             {
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
+                Core.Plugin.Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC", "Kick?");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc_NotHost"), player?.Data?.PlayerName, callId));
                 if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
                     player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";
@@ -149,11 +158,11 @@ internal class FAC
     {
         if (SetNameNum[player.PlayerId] > 3)
         {
-            Logger.Warn($"{player?.Data?.PlayerName}多次设置名称", "CustomRPC");
+            Core.Plugin.Logger.Warn($"{player?.Data?.PlayerName}多次设置名称", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
             {
                 Utils.KickPlayer(player.GetClientId(), true, "SetName");
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的多次设置名称，因此将其踢出。", "Kick");
+                Core.Plugin.Logger.Warn($"收到来自 {player?.Data?.PlayerName} 的多次设置名称，因此将其踢出。", "Kick");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName"), player?.Data?.PlayerName));
                 WarnHost();
                 return true;
@@ -161,7 +170,7 @@ internal class FAC
             }
             if (!XtremeGameData.GameStates.OtherModHost)
             {
-                Logger.Warn($"收到来自 {player?.Data?.PlayerName}({player?.FriendCode}) 的多次设置名称", "Kick?");
+                Core.Plugin.Logger.Warn($"收到来自 {player?.Data?.PlayerName}({player?.FriendCode}) 的多次设置名称", "Kick?");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"), player?.Data?.PlayerName));
                 if (!player.cosmetics.nameText.text.Contains("<color=#ff0000>"))
                     player.cosmetics.nameText.text = "<color=#ff0000>" + player.cosmetics.nameText.text + "</color>";

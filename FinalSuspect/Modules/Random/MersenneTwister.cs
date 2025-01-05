@@ -22,7 +22,7 @@
 
 using System;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Random;
 
 public class MersenneTwister : IRandom
 {

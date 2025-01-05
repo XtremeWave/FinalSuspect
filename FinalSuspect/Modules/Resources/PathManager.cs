@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -24,10 +25,10 @@ public static class PathManager
         switch (remoteType)
         {
             case RemoteType.Github:
-                remoteBase = "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets";
+                remoteBase = "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets/";
                 break;
             case RemoteType.Gitee:
-                remoteBase = "gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets";
+                remoteBase = "gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets/";
                 break;
             case RemoteType.XtremeApi:
                 remoteBase = "api.xtreme.net.cn/download/FinalSuspect/";
@@ -57,6 +58,11 @@ public static class PathManager
         CheckAndCreate(GetLocalPath(LocalType.Resources));
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Sounds");
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Images");
+        CheckAndCreate(GetLocalPath(LocalType.Resources) + "ModNews");
+        foreach (var lang in EnumHelper.GetAllNames<SupportedLangs>())
+        {
+            CheckAndCreate(GetLocalPath(LocalType.Resources) + $"ModNews/{lang}");
+        }
         CheckAndCreate(GetLocalPath(LocalType.Ban));
     }
 

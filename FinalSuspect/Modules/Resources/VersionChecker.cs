@@ -5,10 +5,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FinalSuspect.Attributes;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Features;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -102,20 +104,20 @@ public static class VersionChecker
             }
         }
 
-        Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
+        Core.Plugin.Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
         if (isChecked)
         {
-            Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
-            Logger.Info("Latest Version: " + latestVersion.ToString(), "CheckRelease");
-            Logger.Info("Minimum Version: " + minimumVersion.ToString(), "CheckRelease");
-            Logger.Info("Creation: " + creation.ToString(), "CheckRelease");
-            Logger.Info("Force Update: " + forceUpdate, "CheckRelease");
-            Logger.Info("File MD5: " + md5, "CheckRelease");
-            Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
-            Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
-            Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
-            Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
-            Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
+            Core.Plugin.Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
+            Core.Plugin.Logger.Info("Latest Version: " + latestVersion.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Minimum Version: " + minimumVersion.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Creation: " + creation.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Force Update: " + forceUpdate, "CheckRelease");
+            Core.Plugin.Logger.Info("File MD5: " + md5, "CheckRelease");
+            Core.Plugin.Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
+            Core.Plugin.Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
+            Core.Plugin.Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
+            Core.Plugin.Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
+            Core.Plugin.Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
 
         }
 
@@ -135,21 +137,21 @@ public static class VersionChecker
             }
         }
 
-        Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
+        Core.Plugin.Logger.Msg("Check For Update: " + isChecked, "CheckRelease");
         isBroken = !isChecked;
         if (isChecked)
         {
-            Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
-            Logger.Info("Latest Version: " + latestVersion.ToString(), "CheckRelease");
-            Logger.Info("Minimum Version: " + minimumVersion.ToString(), "CheckRelease");
-            Logger.Info("Creation: " + creation.ToString(), "CheckRelease");
-            Logger.Info("Force Update: " + forceUpdate, "CheckRelease");
-            Logger.Info("File MD5: " + md5, "CheckRelease");
-            Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
-            Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
-            Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
-            Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
-            Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
+            Core.Plugin.Logger.Info("Has Update: " + hasUpdate, "CheckRelease");
+            Core.Plugin.Logger.Info("Latest Version: " + latestVersion.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Minimum Version: " + minimumVersion.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Creation: " + creation.ToString(), "CheckRelease");
+            Core.Plugin.Logger.Info("Force Update: " + forceUpdate, "CheckRelease");
+            Core.Plugin.Logger.Info("File MD5: " + md5, "CheckRelease");
+            Core.Plugin.Logger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
+            Core.Plugin.Logger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
+            Core.Plugin.Logger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
+            Core.Plugin.Logger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
+            Core.Plugin.Logger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
 
             if (firstLaunch || isBroken)
             {
@@ -169,7 +171,7 @@ public static class VersionChecker
     }
     public static async Task<bool> GetVersionInfo(string url)
     {
-        Logger.Msg(url, "CheckRelease");
+        Core.Plugin.Logger.Msg(url, "CheckRelease");
         try
         {
             string result;
@@ -185,7 +187,7 @@ public static class VersionChecker
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode || response.Content == null)
                 {
-                    Logger.Error($"Failed: {response.StatusCode}", "CheckRelease");
+                    Core.Plugin.Logger.Error($"Failed: {response.StatusCode}", "CheckRelease");
                     return false;
                 }
                 result = await response.Content.ReadAsStringAsync();

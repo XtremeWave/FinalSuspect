@@ -1,5 +1,3 @@
-using HarmonyLib;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,9 +6,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
+using HarmonyLib;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using YamlDotNet.RepresentationModel;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 public static class Translator
 {

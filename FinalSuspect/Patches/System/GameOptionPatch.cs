@@ -1,13 +1,13 @@
-using System;
+using System.Collections.Generic;
 using AmongUs.GameOptions;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
-using FinalSuspect.Player;
-using UnityEngine.ProBuilder;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(RoleOptionSetting), nameof(RoleOptionSetting.UpdateValuesAndText))]
 class RoleOptionSettingPatch
 {

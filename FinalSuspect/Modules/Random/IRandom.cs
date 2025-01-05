@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Random;
 
 public interface IRandom
 {
@@ -38,6 +38,6 @@ public interface IRandom
                 Instance = Activator.CreateInstance(type) as IRandom ?? Instance;
             }
         }
-        else Logger.Warn($"無効なID: {id}", "IRandom.SetInstanceById");
+        else Core.Plugin.Logger.Warn($"無効なID: {id}", "IRandom.SetInstanceById");
     }
 }

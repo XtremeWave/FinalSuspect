@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
 using UnityEngine;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 public class ErrorText : MonoBehaviour
 {

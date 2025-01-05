@@ -1,7 +1,8 @@
-using HarmonyLib;
 using System;
+using FinalSuspect.Modules.Random;
+using HarmonyLib;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(HashRandom))]
 class HashRandomPatch

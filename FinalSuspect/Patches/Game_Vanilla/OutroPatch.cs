@@ -1,17 +1,19 @@
-using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
+using AmongUs.Data;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
-using UnityEngine;
-using AmongUs.GameOptions;
-using FinalSuspect.Attributes;
-using FinalSuspect.Player;
+using HarmonyLib;
 using InnerNet;
-using static FinalSuspect.Translator;
+using TMPro;
+using UnityEngine;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
 class AmongUsClientEndGamePatch
@@ -82,8 +84,10 @@ class SetEverythingUpPatch
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
-        sb.Append("\n"+ Utils.ColorString(ColorHelper.ModColor32, GameCode.IntToGameName(AmongUsClient.Instance.GameId)));
-
+        var gamecode =  Utils.ColorString(
+            ColorHelper.ModColor32, 
+            DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
+        sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
         foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
@@ -98,7 +102,7 @@ class SetEverythingUpPatch
             sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
 
-        HudManagerPatch.LastResultText = sb.ToString();
+        HudManagerPatch.LastResultText = sb.ToString().Replace("\n" + GetString("HideSummaryTextToShowWinText"), "");
         HudManagerPatch.Init();
         roleSummary = TMPTemplate.Create(
             "RoleSummaryText",

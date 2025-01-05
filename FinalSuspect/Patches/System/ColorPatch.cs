@@ -1,7 +1,8 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect.Helpers;
+using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ButtonRolloverHandler))]
 class ButtonRolloverHandlerPatch

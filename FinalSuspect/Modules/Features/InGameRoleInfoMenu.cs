@@ -1,11 +1,12 @@
 ﻿using System.Text;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using TMPro;
-
-
 using UnityEngine;
 
-namespace FinalSuspect.Modules;
+namespace FinalSuspect.Modules.Features;
 
 public static class InGameRoleInfoMenu
 {

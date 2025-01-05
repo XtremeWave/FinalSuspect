@@ -1,7 +1,8 @@
+using FinalSuspect.Modules.Core.Plugin;
 using HarmonyLib;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 
 [HarmonyPatch(typeof(DisconnectPopup), nameof(DisconnectPopup.DoShow))]

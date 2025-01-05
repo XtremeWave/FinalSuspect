@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using FinalSuspect.Modules.Core.Plugin;
 using static FinalSuspect.Modules.Resources.VersionChecker;
 
 namespace FinalSuspect.Modules.Resources;
@@ -22,6 +23,7 @@ public class ResourcesDownloader
         {
             case FileType.Images:
             case FileType.Sounds:
+            case FileType.ModNews:
                 filePath = PathManager.GetResourceFilesPath(fileType, file);
                 break;
             case FileType.Depends:
@@ -53,27 +55,27 @@ public class ResourcesDownloader
 
         if (!IsValidUrl(url))
         {
-            Logger.Error($"Invalid URL: {url}", "Download Resources", false);
+            Core.Plugin.Logger.Error($"Invalid URL: {url}", "Download Resources", false);
             return false;
         }
 
         File.Create(DownloadFileTempPath).Close();
         
-        Logger.Msg("Start Downloading from: " + url, "Download Resources");
-        Logger.Msg("Saving file to: " + filePath, "Download Resources");
+        Core.Plugin.Logger.Msg("Start Downloading from: " + url, "Download Resources");
+        Core.Plugin.Logger.Msg("Saving file to: " + filePath, "Download Resources");
 
         try
         {
             using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
             await client.StartDownload();
             Thread.Sleep(100);
-            Logger.Info($"Succeed in {url}", "Download Resources");
+            Core.Plugin.Logger.Info($"Succeed in {url}", "Download Resources");
             File.Move(DownloadFileTempPath, filePath);
             return true;
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to download\n{ex.Message}", "Download Resources", false);
+            Core.Plugin.Logger.Error($"Failed to download\n{ex.Message}", "Download Resources", false);
             File.Delete(DownloadFileTempPath);
             retrytimes++;
             if (retrytimes < 2) 
@@ -91,7 +93,7 @@ public class ResourcesDownloader
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
         string msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Logger.Info(msg, "Download Resources");
+        Core.Plugin.Logger.Info(msg, "Download Resources");
     }
     public static string GetMD5HashFromFile(string fileName)
     {
@@ -104,7 +106,7 @@ public class ResourcesDownloader
         }
         catch (Exception ex)
         {
-            Logger.Exception(ex, "GetMD5HashFromFile");
+            Core.Plugin.Logger.Exception(ex, "GetMD5HashFromFile");
             return "";
         }
     }

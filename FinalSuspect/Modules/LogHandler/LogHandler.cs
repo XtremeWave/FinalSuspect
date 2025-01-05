@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect.Modules;
+namespace FinalSuspect.Modules.LogHandler;
 
 class LogHandler : ILogHandler
 {
@@ -11,15 +11,15 @@ class LogHandler : ILogHandler
     }
 
     public void Info(string text)
-        => Logger.Info(text, Tag, true);
+        => Core.Plugin.Logger.Info(text, Tag, true);
     public void Warn(string text)
-        => Logger.Warn(text, Tag, true);
+        => Core.Plugin.Logger.Warn(text, Tag, true);
     public void Error(string text)
-        => Logger.Error(text, Tag, true);
+        => Core.Plugin.Logger.Error(text, Tag, true);
     public void Fatal(string text)
-        => Logger.Fatal(text, Tag, true);
+        => Core.Plugin.Logger.Fatal(text, Tag, true);
     public void Msg(string text)
-        => Logger.Msg(text, Tag, true);
+        => Core.Plugin.Logger.Msg(text, Tag, true);
     public void Exception(Exception ex)
-        => Logger.Exception(ex, Tag);
+        => Core.Plugin.Logger.Exception(ex, Tag);
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 
-namespace FinalSuspect.Player;
+namespace FinalSuspect.DataHandling;
 public class XtremePlayerData : IDisposable
 {
     #region PLAYER_INFO
@@ -91,11 +93,11 @@ public void SetName(string name) => Name = name;
     public void SetDead()
     {
         IsDead = true;
-        Logger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
+        Modules.Core.Plugin.Logger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
     }
     public void SetDisconnected()
     {
-        Logger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
+        Modules.Core.Plugin.Logger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
         SetDead();
         SetDeathReason(DataDeathReason.Disconnect);
     }
@@ -118,7 +120,7 @@ public void SetName(string name) => Name = name;
     {
         if (IsDead && RealDeathReason == DataDeathReason.None || focus)
             RealDeathReason = deathReason;
-        Logger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
+        Modules.Core.Plugin.Logger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
 
     }
     public void SetRealKiller(XtremePlayerData killer)
@@ -127,7 +129,7 @@ public void SetName(string name) => Name = name;
         SetDeathReason(DataDeathReason.Kill);
         killer.KillCount++;
         RealKiller = killer;
-        Logger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
+        Modules.Core.Plugin.Logger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
     }
     public void SetTaskTotalCount(int count) => TotalTaskCount = count;
     public void CompleteTask() => CompleteTaskCount++;

@@ -1,10 +1,10 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using static Il2CppSystem.Net.Http.Headers.Parser;
-using static FinalSuspect.Translator;
+using FinalSuspect.Helpers;
+using HarmonyLib;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(CreditsController))]
 public class CreditsControllerPatch

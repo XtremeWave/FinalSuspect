@@ -1,11 +1,10 @@
-using AmongUs.GameOptions;
-using InnerNet;
 using System.Linq;
-using FinalSuspect.Player;
+using AmongUs.GameOptions;
+using FinalSuspect.DataHandling;
+using InnerNet;
 using UnityEngine;
 
-
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Game;
 
 static class ExtendedPlayerControl
 {

@@ -1,18 +1,24 @@
-using BepInEx.Unity.IL2CPP.Utils;
-using HarmonyLib;
+using System;
+using System.Collections;
 using System.Linq;
 using System.Text;
-using System.Collections;
+using AmongUs.Data;
 using AmongUs.GameOptions;
+using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
-using UnityEngine;
-using static FinalSuspect.Translator;
-using TMPro;
+using HarmonyLib;
 using InnerNet;
+using TMPro;
+using UnityEngine;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
+using Object = UnityEngine.Object;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(Vent), nameof(Vent.SetOutline))]
 class SetVentOutlinePatch
@@ -247,9 +253,16 @@ public static class HudManagerPatch
         var color = Utils.GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
         __instance.AbilityButton.buttonLabelText.color = color;
     }
+    public static int GetLineCount(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return 0;
+        var lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+        return lines.Length;
+    }
     public static void UpdateResult(HudManager __instance)
     {
-        if (!XtremeGameData.GameStates.IsInGame && string.IsNullOrEmpty(LastResultText))
+        if (!XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6)
             return;
         var showInitially = Main.ShowResults.Value;
        
@@ -278,7 +291,10 @@ public static class HudManagerPatch
         
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
-        sb.Append("\n"+ Utils.ColorString(ColorHelper.ModColor32, GameCode.IntToGameName(AmongUsClient.Instance.GameId)));
+        var gamecode =  Utils.ColorString(
+            ColorHelper.ModColor32, 
+            DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
+        sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
         if (XtremeGameData.GameStates.IsInGame)
         {
             foreach (var kvp in XtremePlayerData.AllPlayerData)

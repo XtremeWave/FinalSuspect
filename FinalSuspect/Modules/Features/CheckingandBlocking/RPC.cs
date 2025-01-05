@@ -2,11 +2,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Patches.Game_Vanilla;
 using HarmonyLib;
 using Hazel;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
@@ -26,10 +28,10 @@ internal class RPCHandlerPatch
 {
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
-        Logger.Info($"{__instance?.Data?.PlayerId}" +
-            $"({__instance?.Data?.PlayerName})" +
-            $"{(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : "")}" +
-            $":{callId}({RPC.GetRpcName(callId)})",
+        Core.Plugin.Logger.Info($"{__instance?.Data?.PlayerId}" +
+                                $"({__instance?.Data?.PlayerName})" +
+                                $"{(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : "")}" +
+                                $":{callId}({RPC.GetRpcName(callId)})",
             "ReceiveRPC");
 
         if (!FAC.SetNameNum.ContainsKey(__instance.PlayerId))
@@ -37,11 +39,11 @@ internal class RPCHandlerPatch
             FAC.SetNameNum[__instance.PlayerId] = 0;
         }
 
-        if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify))
+        if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify, out string reason, out bool ban))
         {
             if (AmongUsClient.Instance.AmHost)
             {
-                Utils.KickPlayer(__instance.PlayerId, false, "Hacking");
+                Utils.KickPlayer(__instance.PlayerId, ban, reason);
                 FAC.WarnHost();
             }
             else if (notify)
@@ -57,7 +59,7 @@ internal class RPCHandlerPatch
         {
             case RpcCalls.CheckName://CheckNameRPC
                 string name = subReader.ReadString();
-                Logger.Info("RPC Check Name For Player: " + name, "CheckName");
+                Core.Plugin.Logger.Info("RPC Check Name For Player: " + name, "CheckName");
                 if (__instance.OwnerId == AmongUsClient.Instance.HostId)
                     Main.HostNickName = name;
                 XtremePlayerData.CreateDataFor(__instance, name);
@@ -67,23 +69,23 @@ internal class RPCHandlerPatch
                 subReader.ReadUInt32();
                 name = subReader.ReadString();
                 FAC.SetNameNum[__instance.PlayerId]++;
-                Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
+                Core.Plugin.Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
                 break;
             case RpcCalls.SetRole: //SetRoleRPC
                 var role = (RoleTypes)subReader.ReadUInt16();
                 var canOverriddenRole = subReader.ReadBoolean();
-                Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
+                Core.Plugin.Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
                 break;
             case RpcCalls.SendChat: // Free chat
                 var text = subReader.ReadString();
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
+                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
                 break;
             case RpcCalls.SendQuickChat:
-                Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
+                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
                 break;
             case RpcCalls.StartMeeting:
                 var p = Utils.GetPlayerById(subReader.ReadByte());
-                Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
+                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
                 break;
         }
         return true;
@@ -116,7 +118,7 @@ internal class RPCHandlerPatch
                                 if (__instance?.Data?.Disconnected is not null and not true)
                                 {
                                     var msg = string.Format(GetString("KickBecauseDiffrentVersionOrMod"), __instance?.Data?.PlayerName);
-                                    Logger.Warn(msg, "Version Kick");
+                                    Core.Plugin.Logger.Warn(msg, "Version Kick");
                                     NotificationPopperPatch.NotificationPop(msg);
                                     Utils.KickPlayer(__instance.GetClientId(), false, "ModVersionIncorrect");
                                 }
@@ -163,7 +165,7 @@ internal static class RPC
             from = Main.AllPlayerControls.Where(c => c.NetId == targetNetId).FirstOrDefault()?.Data?.PlayerName;
         }
         catch { }
-        Logger.Info($"FromNetID:{targetNetId}({from}) TargetClientID:{targetClientId}({target}) CallID:{callId}({rpcName})", "SendRPC");
+        Core.Plugin.Logger.Info($"FromNetID:{targetNetId}({from}) TargetClientID:{targetClientId}({target}) CallID:{callId}({rpcName})", "SendRPC");
     }
     public static string GetRpcName(byte callId)
     {

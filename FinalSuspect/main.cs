@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FinalSuspect.Attributes;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Random;
 using UnityEngine;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
 
 [assembly: AssemblyFileVersion(FinalSuspect.Main.PluginVersion)]
 [assembly: AssemblyInformationalVersion(FinalSuspect.Main.PluginVersion)]
@@ -39,7 +41,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20250101";
+    public const string DisplayedVersion_Date = "20250105";
 
     /// <summary>
     /// 测试信息；
@@ -53,7 +55,7 @@ public class Main : BasePlugin
     /// Scrapped: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 8;
+    public const int DisplayedVersion_TestCreation = 9;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
@@ -169,15 +171,15 @@ public class Main : BasePlugin
         NoGameEnd = Config.Bind("Client Options", "No Game End", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
-        FinalSuspect.Logger.Enable();
-        FinalSuspect.Logger.Disable("SwitchSystem");
-        FinalSuspect.Logger.Disable("ModNews");
-        FinalSuspect.Logger.Disable("CancelPet");
+        Modules.Core.Plugin.Logger.Enable();
+        Modules.Core.Plugin.Logger.Disable("SwitchSystem");
+        Modules.Core.Plugin.Logger.Disable("ModNews");
+        Modules.Core.Plugin.Logger.Disable("CancelPet");
         if (!DebugModeManager.AmDebugger)
         {
-            FinalSuspect.Logger.Disable("test");
+            Modules.Core.Plugin.Logger.Disable("test");
         }
-        FinalSuspect.Logger.isDetail = true;
+        Modules.Core.Plugin.Logger.isDetail = true;
 
         // 認証関連-初期化
         DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);
@@ -208,8 +210,8 @@ public class Main : BasePlugin
         }
         catch (ArgumentException ex)
         {
-            FinalSuspect.Logger.Error("错误：字典出现重复项", "LoadDictionary");
-            FinalSuspect.Logger.Exception(ex, "LoadDictionary");
+            Modules.Core.Plugin.Logger.Error("错误：字典出现重复项", "LoadDictionary");
+            Modules.Core.Plugin.Logger.Exception(ex, "LoadDictionary");
             hasArgumentException = true;
             ExceptionMessage = ex.Message;
             ExceptionMessageIsShown = false;
@@ -221,9 +223,9 @@ public class Main : BasePlugin
 
         IRandom.SetInstance(new NetRandomWrapper());
 
-        FinalSuspect.Logger.Info($"{Application.version}", "AmongUs Version");
+        Modules.Core.Plugin.Logger.Info($"{Application.version}", "AmongUs Version");
 
-        var handler = FinalSuspect.Logger.Handler("GitVersion");
+        var handler = Modules.Core.Plugin.Logger.Handler("GitVersion");
         handler.Info($"{nameof(ThisAssembly.Git.BaseTag)}: {ThisAssembly.Git.BaseTag}");
         handler.Info($"{nameof(ThisAssembly.Git.Commit)}: {ThisAssembly.Git.Commit}");
         handler.Info($"{nameof(ThisAssembly.Git.Commits)}: {ThisAssembly.Git.Commits}");
@@ -240,6 +242,6 @@ public class Main : BasePlugin
         if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();
 
-        FinalSuspect.Logger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
+        Modules.Core.Plugin.Logger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
     }
 }

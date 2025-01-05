@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 public class HashAuth
 {

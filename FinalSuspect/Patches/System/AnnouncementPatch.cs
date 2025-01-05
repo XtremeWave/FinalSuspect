@@ -1,17 +1,19 @@
-﻿using AmongUs.Data;
-using AmongUs.Data.Player;
-using Assets.InnerNet;
-using HarmonyLib;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using AmongUs.Data;
+using AmongUs.Data.Player;
+using Assets.InnerNet;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Resources;
+using HarmonyLib;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 // 参考：https://github.com/Yumenopai/TownOfHost_Y
 public class ModNews
@@ -48,8 +50,8 @@ public class ModNewsHistory
     public static ModNews GetContentFromRes(string path)
     {
         ModNews mn = new();
-        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
-        stream.Position = 0;
+        var stream = path;
+        
         using StreamReader reader = new(stream, Encoding.UTF8);
         string text = "";
         uint langId = (uint)DataManager.Settings.Language.CurrentLanguage;
@@ -74,11 +76,11 @@ public class ModNewsHistory
         }
         mn.Lang = langId;
         mn.Text = text;
-        Logger.Info($"Number:{mn.Number}", "ModNews");
-        Logger.Info($"Title:{mn.Title}", "ModNews");
-        Logger.Info($"SubTitle:{mn.SubTitle}", "ModNews");
-        Logger.Info($"ShortTitle:{mn.ShortTitle}", "ModNews");
-        Logger.Info($"Date:{mn.Date}", "ModNews");
+        Modules.Core.Plugin.Logger.Info($"Number:{mn.Number}", "ModNews");
+        Modules.Core.Plugin.Logger.Info($"Title:{mn.Title}", "ModNews");
+        Modules.Core.Plugin.Logger.Info($"SubTitle:{mn.SubTitle}", "ModNews");
+        Modules.Core.Plugin.Logger.Info($"ShortTitle:{mn.ShortTitle}", "ModNews");
+        Modules.Core.Plugin.Logger.Info($"Date:{mn.Date}", "ModNews");
         return mn;
     }
 
@@ -87,11 +89,9 @@ public class ModNewsHistory
     {
         if (AllModNews.Count < 1)
         {
-            var lang = DataManager.Settings.Language.CurrentLanguage.ToString();
-            if (!Assembly.GetExecutingAssembly().GetManifestResourceNames().Any(x => x.StartsWith($"FinalSuspect.Resources.ModNews.{lang}.")))
-                lang = SupportedLangs.English.ToString();
+            var lang = DataManager.Settings.Language.CurrentLanguage.ToString(); ;
 
-            var fileNames = Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect.Resources.ModNews.{lang}."));
+            var fileNames = Directory.GetFiles(PathManager.GetResourceFilesPath(FileType.ModNews, lang + "/"));//Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(x => x.StartsWith($"FinalSuspect.Resources.ModNews.{lang}."));
             foreach (var file in fileNames)
                 AllModNews.Add(GetContentFromRes(file));
 

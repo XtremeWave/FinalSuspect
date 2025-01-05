@@ -1,8 +1,9 @@
-using HarmonyLib;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-namespace FinalSuspect;
+using HarmonyLib;
+using UnityEngine;
+
+namespace FinalSuspect.Helpers;
 
 public static class ObjectHelper
 {

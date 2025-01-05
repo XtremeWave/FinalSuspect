@@ -1,8 +1,8 @@
-﻿using FinalSuspect.Modules.Managers;
+﻿using FinalSuspect.Modules.Core.Game;
 using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(RegionMenu))]
 public static class RegionMenuPatch

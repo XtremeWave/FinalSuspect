@@ -1,6 +1,8 @@
 using HarmonyLib;
 using InnerNet;
 using System;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Patches.System;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -53,7 +55,7 @@ public static class ModUnloaderScreen
 
             _ = new LateTask(() =>
             {
-                Logger.Info("模组将要禁用", nameof(ModUnloaderScreen));
+                Core.Plugin.Logger.Info("模组将要禁用", nameof(ModUnloaderScreen));
                 Harmony.UnpatchAll();
                 Main.Instance.Unload();
             }, 1f);

@@ -1,11 +1,9 @@
-using HarmonyLib;
-using UnityEngine;
 using AmongUs.GameOptions;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using HarmonyLib;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch]
 public static class MeetingHudPatch

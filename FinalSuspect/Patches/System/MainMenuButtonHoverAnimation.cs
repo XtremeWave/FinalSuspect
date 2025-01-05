@@ -1,10 +1,10 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch]
 public class MainMenuButtonHoverAnimation

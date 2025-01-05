@@ -1,12 +1,12 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using FinalSuspect.Modules;
+using FinalSuspect.Attributes;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Plugin;
+using HarmonyLib;
 using UnityEngine;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Player;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Features;
 
 // 来源：https://github.com/tugaru1975/TownOfPlus/TOPmods/Zoom.cs 
 // 参考：https://github.com/Yumenopai/TownOfHost_Y
@@ -14,42 +14,39 @@ namespace FinalSuspect;
 public static class Zoom
 {
     private static bool ResetButtons = false;
+
     public static void Postfix()
     {
-        if (
-            !XtremeGameData.GameStates.IsLobby && 
-            !XtremeGameData.GameStates.IsDead && 
-            !XtremeGameData.GameStates.IsFreePlay
-            ) return;
+        bool canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
+                       XtremeGameData.GameStates.IsFreePlay;
 
-        if (
-            (XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby || XtremeGameData.GameStates.IsFreePlay) 
-            && !XtremeGameData.GameStates.IsMeeting && XtremeGameData.GameStates.IsCanMove && !InGameRoleInfoMenu.Showing)
+        if (!canZoom || XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsMeeting ||
+            !XtremeGameData.GameStates.IsCanMove || InGameRoleInfoMenu.Showing)
         {
-            if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
-            if (Input.mouseScrollDelta.y > 0)
+            Flag.Run(() => { SetZoomSize(reset: true); }, "Zoom");
+            return;
+        }
+
+
+        if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            if (Camera.main.orthographicSize > 3.0f) SetZoomSize(times: false);
+        }
+
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            if (XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsFreePlay ||
+                DebugModeManager.AmDebugger || XtremeGameData.GameStates.IsLobby || Main.GodMode.Value)
             {
-                if (Camera.main.orthographicSize > 3.0f) SetZoomSize(times: false);
-            }
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                if (XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsFreePlay || DebugModeManager.AmDebugger || XtremeGameData.GameStates.IsLobby || Main.GodMode.Value)
+                if (Camera.main.orthographicSize < 18.0f)
                 {
-                    if (Camera.main.orthographicSize < 18.0f)
-                    {
-                        SetZoomSize(times: true);
-                    }
+                    SetZoomSize(times: true);
                 }
             }
-            Flag.NewFlag("Zoom");
         }
-        else //if (!DestroyableSingleton<ChatController>.Instance.IsOpenOrOpening)
-        {
-            Flag.Run(() =>
-            {
-                SetZoomSize(reset: true);
-            }, "Zoom");
-        }
+
+        Flag.NewFlag("Zoom");
     }
 
     public static void SetZoomSize(bool times = false, bool reset = false)
@@ -76,6 +73,11 @@ public static class Zoom
         }
     }
 
+    [GameModuleInitializer]
+    public static void Init()
+    {
+        SetZoomSize(reset: true);
+    }
     public static void OnFixedUpdate()
         => DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
 }

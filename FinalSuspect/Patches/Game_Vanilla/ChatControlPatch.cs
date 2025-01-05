@@ -1,16 +1,11 @@
-using AmongUs.Data;
-using HarmonyLib;
-using System;
-using System.Linq;
-using TMPro;
-using UnityEngine;
 using System.Collections.Generic;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Patches;
-using FinalSuspect.Player;
-using Il2CppMono.Net;
+using AmongUs.Data;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Features.CheckingandBlocking;
+using HarmonyLib;
+using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(ChatController))]
 
@@ -80,9 +75,16 @@ internal class ChatCommands
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.AddChat))]
 internal class ChatAdd
 {
-    public static void Prefix([HarmonyArgument(0)] PlayerControl sourcePlayer,  [HarmonyArgument(1)] ref string chatText)
+    public static void Prefix([HarmonyArgument(1)] ref string chatText)
     {
         SpamManager.CheckSpam(ref chatText);
+    }
+
+    public static void Postfix(ChatController __instance)
+    {
+        var name = __instance.chatNotification.playerNameText.text;
+        SpamManager.CheckSpam(ref name);
+        __instance.chatNotification.playerNameText.text = name;
     }
 }
 

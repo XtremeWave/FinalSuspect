@@ -1,8 +1,8 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
-using FinalSuspect.Modules.Managers;
+﻿using System.Collections.Generic;
+using FinalSuspect.Modules.Features.CheckingandBlocking;
+using HarmonyLib;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(NotificationPopper), nameof(NotificationPopper.AddDisconnectMessage))]
 public class NotificationPopperPatch

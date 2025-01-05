@@ -1,22 +1,13 @@
-﻿using AmongUs.HTTP;
-using Hazel;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using HarmonyLib;
+﻿using System.Linq;
 using System.Runtime.InteropServices;
-using static FinalSuspect.Modules.Managers.AudioManager;
-using static FinalSuspect.Modules.Managers.FinalMusic;
-using static FinalSuspect.Translator;
-using System.Linq;
-using FinalSuspect.Modules.Resources;
+using FinalSuspect.Modules.Core.Plugin;
+using HarmonyLib;
 using UnityEngine;
-using FinalSuspect.Modules.SoundInterface;
-using TMPro;
-using InnerNet;
+using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.SoundInterface;
 
 public static class CustomSoundsManager
 {
@@ -40,7 +31,7 @@ public static class CustomSoundsManager
         MyMusicPanel.RefreshTagList();
         AudioManagementPanel.RefreshTagList();
         StartPlayLoop(audio.Path);
-        Logger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+        Core.Plugin.Logger.Msg($"播放声音：{audio.Name}", "CustomSounds");
     }
 
     [DllImport("winmm.dll")]

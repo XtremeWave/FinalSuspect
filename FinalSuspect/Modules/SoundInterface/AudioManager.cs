@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Resources;
-using FinalSuspect.Modules.SoundInterface;
-using static FinalSuspect.Modules.Managers.AudioManager;
-using static FinalSuspect.Translator;
-using UnityEngine;
-using HarmonyLib;
-using TMPro;
+using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.SoundInterface;
 
 #nullable enable
 public static class AudioManager
@@ -40,13 +35,13 @@ public static class AudioManager
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
                 new FinalMusic(line);
-                Logger.Info($"Audio Loaded: {line}", "AudioManager");
+                Core.Plugin.Logger.Info($"Audio Loaded: {line}", "AudioManager");
             }
 
         }
         catch (Exception ex)
         {
-            Logger.Error($"Load Audios Failed\n" + ex.ToString(), "AudioManager", false);
+            Core.Plugin.Logger.Error($"Load Audios Failed\n" + ex.ToString(), "AudioManager", false);
         }
     }
     public static void Init()
@@ -167,7 +162,7 @@ public class FinalMusic
                 if (line != null)
                 {
                     new FinalMusic(line);
-                    Logger.Info($"Sound Loaded: {line}", "AudioManager");
+                    Core.Plugin.Logger.Info($"Sound Loaded: {line}", "AudioManager");
                 }
                 soundnum++;
             }
@@ -175,11 +170,11 @@ public class FinalMusic
         }
         catch (Exception ex)
         {
-            Logger.Error($"Load Audio Failed\n" + ex.ToString(), "AudioManager", false);
+            Core.Plugin.Logger.Error($"Load Audio Failed\n" + ex.ToString(), "AudioManager", false);
         }
 
 
-        Logger.Msg($"{soundnum} Sounds Loaded", "AudioManager");
+        Core.Plugin.Logger.Msg($"{soundnum} Sounds Loaded", "AudioManager");
     }
     private static readonly object finalMusicsLock = new();
 
@@ -209,7 +204,7 @@ public class FinalMusic
             var file = finalMusics.Find(x => x.FileName == FileName);
             if (file != null)
             {
-                Logger.Info($"Replace {file.FileName}", "FinalMusic");
+                Core.Plugin.Logger.Info($"Replace {file.FileName}", "FinalMusic");
                 var index = finalMusics.IndexOf(file);
                 if (file.CurrectAudioStates == AudiosStates.IsPlaying) CurrectAudioStates = AudiosStates.IsPlaying;
                 finalMusics.RemoveAt(index);

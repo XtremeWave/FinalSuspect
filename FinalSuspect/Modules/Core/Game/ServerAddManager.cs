@@ -1,13 +1,14 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.IO;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Scrapped;
+using FinalSuspect.Patches.System;
+using HarmonyLib;
 using UnityEngine;
-using Il2CppSystem.IO;
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.Core.Game;
 
 public static class ServerAddManager
 {

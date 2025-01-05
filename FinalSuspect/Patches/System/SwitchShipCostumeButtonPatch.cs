@@ -1,9 +1,9 @@
 ﻿using FinalSuspect.Modules.Features.CheckingandBlocking;
-using FinalSuspect.Modules.Managers;
+using FinalSuspect.Modules.SoundInterface;
 using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch]
 public class SwitchShipCostumeButtonPatch

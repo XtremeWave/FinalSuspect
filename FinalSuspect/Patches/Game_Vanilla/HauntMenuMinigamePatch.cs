@@ -1,7 +1,7 @@
-﻿using FinalSuspect.Player;
+﻿using FinalSuspect.DataHandling;
 using HarmonyLib;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(HauntMenuMinigame), nameof(HauntMenuMinigame.SetFilterText))]
 public static class HauntMenuMinigameSetFilterTextPatch

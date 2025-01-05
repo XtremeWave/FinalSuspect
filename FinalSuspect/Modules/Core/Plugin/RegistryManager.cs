@@ -1,10 +1,10 @@
-﻿using HarmonyLib;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using HarmonyLib;
+using Microsoft.Win32;
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 # pragma warning disable CA1416
 public static class RegistryManager

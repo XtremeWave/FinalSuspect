@@ -1,17 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AmongUs.GameOptions;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
 using HarmonyLib;
-using Il2CppSystem.Runtime.Remoting.Messaging;
-using Innersloth.DebugTool;
 using TMPro;
 using UnityEngine;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(LobbyInfoPane), nameof(LobbyInfoPane.Update))]
 class LobbyInfoPanePatch

@@ -1,10 +1,10 @@
-﻿using HarmonyLib;
-using UnityEngine;
-using System.Collections;
-using UnityEngine.Animations;
+﻿using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
+using FinalSuspect.Modules.Core.Game;
+using HarmonyLib;
+using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch

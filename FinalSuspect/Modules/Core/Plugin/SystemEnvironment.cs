@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FinalSuspect.Modules;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 public static class SystemEnvironment
 {

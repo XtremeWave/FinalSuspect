@@ -1,10 +1,12 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin;
+using HarmonyLib;
 using InnerNet;
 using TMPro;
 using UnityEngine;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(FindAGameManager), nameof(FindAGameManager.Update))]
 public static class FindAGameManagerUpdatePatch

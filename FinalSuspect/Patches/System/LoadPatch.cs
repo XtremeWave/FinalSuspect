@@ -1,18 +1,18 @@
-﻿using BepInEx.Unity.IL2CPP.Utils;
-using static FinalSuspect.Modules.Resources.ResourcesDownloader;
-using static FinalSuspect.Translator;
-using System;
-using HarmonyLib;
-using System.Collections;
-using UnityEngine;
-using ListStr = System.Collections.Generic.List<string>;
-using DictionaryStr = System.Collections.Generic.Dictionary<string, string>;
+﻿using System.Collections;
 using System.IO;
-using System.Collections.Generic;
+using BepInEx.Unity.IL2CPP.Utils;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Resources;
+using HarmonyLib;
+using Il2CppSystem.Collections.Generic;
 using TMPro;
+using UnityEngine;
+using static FinalSuspect.Modules.Resources.ResourcesDownloader;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
+using ListStr = System.Collections.Generic.List<string>;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.System;
 
 
 public class LoadPatch
@@ -67,6 +67,11 @@ public class LoadPatch
                 "YamlDotNet.dll",
                 "YamlDotNet.xml",
             };
+            ListStr remoteModNewsList = new()
+            {
+                "FS.v1.0_2025.txt",
+                "FeaturesIntroduction#1.0.txt"
+            };
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
@@ -86,7 +91,7 @@ public class LoadPatch
                 }
                 else
                 {
-                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
             foreach (var resource in PreReady_remoteImageList)
@@ -100,7 +105,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
 
@@ -210,7 +215,7 @@ public class LoadPatch
                 }
                 else
                 {
-                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
             foreach (var resource in remoteDependList)
@@ -223,7 +228,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
             #endregion
@@ -286,7 +291,23 @@ public class LoadPatch
                 }
                 else
                 {
-                    Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                }
+            }
+            
+            for (int i = remoteModNewsList.Count - 1; i >= 0; i--)
+            {
+                var resource = remoteModNewsList[i];
+                remoteModNewsList.Remove(resource);
+                foreach (var lang in EnumHelper.GetAllNames<SupportedLangs>())
+                {
+                    var file = $"{lang}/{resource}";
+                    string localFilePath = PathManager.GetResourceFilesPath(FileType.ModNews, file);
+                    if (!File.Exists(localFilePath))
+                    {
+                        remoteModNewsList.Add(file);
+                        Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    }
                 }
             }
             
@@ -296,7 +317,7 @@ public class LoadPatch
             yield return new WaitForSeconds(0.5f);
 
             int process = 0;
-            if (remoteImageList.Count > 0)
+            if (remoteImageList.Count > 0 || remoteModNewsList.Count > 0)
             {
                 p = 1f;
                 while (p > 0)
@@ -308,7 +329,7 @@ public class LoadPatch
                     yield return null;
                 }
                 Color yellow = new Color32(252, 255, 152, 255);
-                processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count})";
+                processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count + remoteModNewsList.Count})";
                 p = 1f;
                 while (p > 0)
                 {
@@ -325,7 +346,7 @@ public class LoadPatch
             foreach (var resource in remoteImageList)
             {
                 process++;
-                processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count})";
+                processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count + remoteModNewsList.Count})";
                 var task = StartDownload(FileType.Images, resource);
                 while (!task.IsCompleted)
                 {
@@ -334,7 +355,22 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                }
+            }
+            foreach (var resource in remoteModNewsList)
+            {
+                process++;
+                processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count + remoteModNewsList.Count})";
+                var task = StartDownload(FileType.ModNews, resource);
+                while (!task.IsCompleted)
+                {
+                    yield return null; 
+                }
+
+                if (task.IsFaulted)
+                {
+                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
 

@@ -1,15 +1,16 @@
-using HarmonyLib;
 using System;
-using TMPro;
-using System.IO;
-using FinalSuspect.Templates;
-using UnityEngine;
-using static FinalSuspect.Translator;
-using Object = UnityEngine.Object;
-using FinalSuspect.Modules.Managers;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;
+using FinalSuspect.Templates;
+using HarmonyLib;
+using TMPro;
+using UnityEngine;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
+using Object = UnityEngine.Object;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch]
 public class MainMenuManagerPatch

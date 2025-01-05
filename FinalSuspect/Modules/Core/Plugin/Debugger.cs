@@ -4,11 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
-using FinalSuspect.Modules;
-using FinalSuspect.Modules.Managers;
+using FinalSuspect.Patches.Game_Vanilla;
 using LogLevel = BepInEx.Logging.LogLevel;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 class Webhook
 {
@@ -110,6 +109,6 @@ class Logger
         Logger.Msg($"\"{stack.GetMethod().ReflectedType.Name}.{stack.GetMethod().Name}\" Called in \"{Path.GetFileName(fileName)}({lineNumber})\"", "Method");
     }
 
-    public static LogHandler Handler(string tag)
+    public static LogHandler.LogHandler Handler(string tag)
         => new(tag);
 }

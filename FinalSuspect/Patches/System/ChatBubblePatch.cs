@@ -1,9 +1,10 @@
-using AmongUs.GameOptions;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 using HarmonyLib;
 using UnityEngine;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(ChatBubble))]
 public static class ChatBubblePatch
@@ -37,7 +38,6 @@ public static class ChatBubblePatch
         }
         else
         {
-            name = "???";
             XtremeLocalHandling.GetChatBubbleText(
                 __instance.playerInfo.PlayerId,
                 ref name,

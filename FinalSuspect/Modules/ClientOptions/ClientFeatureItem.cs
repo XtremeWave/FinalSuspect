@@ -1,4 +1,6 @@
 using System;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -135,7 +137,7 @@ public class ClientFeatureItem
         }
         catch (Exception ex)
         {
-            Logger.Exception(ex, "MoreActions");
+            Core.Plugin.Logger.Exception(ex, "MoreActions");
         }
 
     }

@@ -1,22 +1,22 @@
-using AmongUs.GameOptions;
-using Il2CppInterop.Runtime.InteropTypes;
-using InnerNet;
 //using SixLabors.ImageSharp.PixelFormats;
+//using System.Drawing.Imaging;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
-//using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using FinalSuspect.Player;
+using AmongUs.GameOptions;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Patches.System;
+using Il2CppInterop.Runtime.InteropTypes;
+using InnerNet;
 using UnityEngine;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Game;
 
 public static class Utils
 {
@@ -70,7 +70,7 @@ public static class Utils
     public static void KickPlayer(int playerId, bool ban, string reason = "")
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        Logger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
+        Plugin.Logger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
         AmongUsClient.Instance.KickPlayer(playerId, ban);
         OnPlayerLeftPatch.Add(playerId);
 
@@ -162,7 +162,7 @@ public static class Utils
         }
         catch
         {
-            Logger.Error($"读入Texture失败：{file}", "LoadImage");
+            Plugin.Logger.Error($"读入Texture失败：{file}", "LoadImage");
         }
         return null;
     }
@@ -184,12 +184,12 @@ public static class Utils
             }
             else
             {
-                Logger.Warn($"无法读取图片：{path}", "LoadTexture");
+                Plugin.Logger.Warn($"无法读取图片：{path}", "LoadTexture");
             }
         }
         catch (Exception ex)
         {
-            Logger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
+            Plugin.Logger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
         }
         InDLL:
         path = "FinalSuspect.Resources.Images." + file;
@@ -205,7 +205,7 @@ public static class Utils
         }
         catch
         {
-            Logger.Error($"读入Texture失败：{path}", "LoadImage");
+            Plugin.Logger.Error($"读入Texture失败：{path}", "LoadImage");
         }
         return null;
     }
@@ -275,7 +275,7 @@ public static class Utils
     {
         pc ??= PlayerControl.LocalPlayer;
 
-        var enable = CanSeeOthersRole(pc, out var bothImp) || bothImp;
+        var enable = CanSeeTargetRole(pc, out var bothImp) || bothImp;
 
 
         var comms = IsActive(SystemTypes.Comms);
@@ -420,7 +420,7 @@ public static class Utils
                 return false;
         }
     }
-    public static bool CanSeeOthersRole(PlayerControl target, out bool bothImp)
+    public static bool CanSeeTargetRole(PlayerControl target, out bool bothImp)
     {
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
@@ -432,6 +432,15 @@ public static class Utils
         BothDeathCanSee ||
         bothImp && LocalDead;
     }
+    public static bool CanSeeOthersRole()
+    {
+        if (XtremeGameData.GameStates.IsLobby) return true;
+        var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
+        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
+        
+        return !IsAngel && LocalDead;
+    }
+    
     public delegate void FunctionToExecute();
     public static void ExecuteWithTryCatch(FunctionToExecute func)
     {

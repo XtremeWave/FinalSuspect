@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect.Modules;
+namespace FinalSuspect.Modules.LogHandler;
 
 public interface ILogHandler
 {

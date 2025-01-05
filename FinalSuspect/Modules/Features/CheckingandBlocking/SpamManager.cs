@@ -6,9 +6,9 @@ using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
 using FinalSuspect.Modules.Resources;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
 public static class SpamManager
 {
@@ -35,13 +35,13 @@ public static class SpamManager
                 else
                 {
                     string fileName = GetUserLangByRegion().ToString();
-                    Logger.Warn($"Create New BanWords: {fileName}", "SpamManager");
+                    Core.Plugin.Logger.Warn($"Create New BanWords: {fileName}", "SpamManager");
                     File.WriteAllText(BANEDWORDS_FILE_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt"));
                 }
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "SpamManager");
+                Core.Plugin.Logger.Exception(ex, "SpamManager");
             }
         }
         if (!File.Exists(DENY_NAME_LIST_PATH))
@@ -57,7 +57,7 @@ public static class SpamManager
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "SpamManager");
+                Core.Plugin.Logger.Exception(ex, "SpamManager");
             }
         }
 

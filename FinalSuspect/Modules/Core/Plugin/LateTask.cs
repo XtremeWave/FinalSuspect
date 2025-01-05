@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 class LateTask
 {

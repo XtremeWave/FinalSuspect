@@ -1,12 +1,12 @@
-using HarmonyLib;
-using Hazel;
 using System.Linq;
-using FinalSuspect.Modules;
-using FinalSuspect.Player;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Features;
+using HarmonyLib;
 using UnityEngine;
-using static FinalSuspect.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
 internal class ControllerManagerUpdatePatch
@@ -38,31 +38,31 @@ internal class ControllerManagerUpdatePatch
         //重新加载自定义翻译
         if (GetKeysDown(KeyCode.F5, KeyCode.T))
         {
-            Logger.Info("加载自定义翻译文件", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("加载自定义翻译文件", "KeyCommand");
             Translator.LoadLangs();
-            Logger.SendInGame("Reloaded Custom Translation File");
+            Modules.Core.Plugin.Logger.SendInGame("Reloaded Custom Translation File");
         }
         if (GetKeysDown(KeyCode.F5, KeyCode.X))
         {
-            Logger.Info("导出自定义翻译文件", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("导出自定义翻译文件", "KeyCommand");
             Translator.ExportCustomTranslation();
-            Logger.SendInGame("Exported Custom Translation File");
+            Modules.Core.Plugin.Logger.SendInGame("Exported Custom Translation File");
         }
         //日志文件转储
         if (GetKeysDown(KeyCode.F1, KeyCode.LeftControl))
         {
-            Logger.Info("输出日志", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("输出日志", "KeyCommand");
             Utils.DumpLog();
         }
         if (GetKeysDown(KeyCode.F1, KeyCode.RightControl))
         {
-            Logger.Info("输出日志", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("输出日志", "KeyCommand");
             Utils.DumpLog();
         }
         //打开游戏目录
         if (GetKeysDown(KeyCode.F10))
         {
-            Utils.OpenDirectory(System.Environment.CurrentDirectory);
+            Utils.OpenDirectory(global::System.Environment.CurrentDirectory);
         }
 
         //-- 下面是主机专用的命令--//
@@ -70,7 +70,7 @@ internal class ControllerManagerUpdatePatch
 
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && XtremeGameData.GameStates.IsCountDown)
         {
-            Logger.Info("倒计时修改为0", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("倒计时修改为0", "KeyCommand");
             GameStartManager.Instance.countDownTimer = 0;
         }
 
@@ -78,20 +78,20 @@ internal class ControllerManagerUpdatePatch
         //倒计时取消
         if (Input.GetKeyDown(KeyCode.C) && XtremeGameData.GameStates.IsCountDown)
         {
-            Logger.Info("重置倒计时", "KeyCommand");
+            Modules.Core.Plugin.Logger.Info("重置倒计时", "KeyCommand");
             GameStartManager.Instance.ResetStartState();
         }
 
         //切换日志是否也在游戏中输出
         if (GetKeysDown(KeyCode.F2, KeyCode.LeftControl))
         {
-            Logger.isAlsoInGame = !Logger.isAlsoInGame;
-            Logger.SendInGame($"游戏中输出日志：{Logger.isAlsoInGame}");
+            Modules.Core.Plugin.Logger.isAlsoInGame = !Modules.Core.Plugin.Logger.isAlsoInGame;
+            Modules.Core.Plugin.Logger.SendInGame($"游戏中输出日志：{Modules.Core.Plugin.Logger.isAlsoInGame}");
         }
         if (GetKeysDown(KeyCode.F2, KeyCode.RightControl))
         {
-            Logger.isAlsoInGame = !Logger.isAlsoInGame;
-            Logger.SendInGame($"游戏中输出日志：{Logger.isAlsoInGame}");
+            Modules.Core.Plugin.Logger.isAlsoInGame = !Modules.Core.Plugin.Logger.isAlsoInGame;
+            Modules.Core.Plugin.Logger.SendInGame($"游戏中输出日志：{Modules.Core.Plugin.Logger.isAlsoInGame}");
         }
 
     }
@@ -100,7 +100,7 @@ internal class ControllerManagerUpdatePatch
     {
         if (keys.Any(Input.GetKeyDown) && keys.All(Input.GetKey))
         {
-            Logger.Info($"快捷键：{keys.Where(Input.GetKeyDown).First()} in [{string.Join(",", keys)}]", "GetKeysDown");
+            Modules.Core.Plugin.Logger.Info($"快捷键：{keys.Where(Input.GetKeyDown).First()} in [{string.Join(",", keys)}]", "GetKeysDown");
             return true;
         }
         return false;

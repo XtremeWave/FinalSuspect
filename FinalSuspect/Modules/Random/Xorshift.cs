@@ -1,6 +1,6 @@
 using System;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Random;
 
 public class Xorshift : IRandom
 {

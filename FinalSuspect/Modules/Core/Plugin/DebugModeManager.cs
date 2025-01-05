@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace FinalSuspect.Modules.Managers;
+namespace FinalSuspect.Modules.Core.Plugin;
 
 public static class DebugModeManager
 {

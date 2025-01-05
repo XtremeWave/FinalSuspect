@@ -1,16 +1,18 @@
-using HarmonyLib;
 using System.Collections.Generic;
 using System.Text;
-using TMPro;
-using FinalSuspect.Templates;
-using UnityEngine;
-
-using static FinalSuspect.Translator;
-using System.Linq;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Resources;
-using FinalSuspect.Player;
+using FinalSuspect.Patches.Game_Vanilla;
+using FinalSuspect.Templates;
+using HarmonyLib;
+using TMPro;
+using UnityEngine;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
 internal class PingTrackerUpdatePatch
@@ -285,11 +287,11 @@ internal class TitleLogoPatch
         closeRightSpriteRenderer.color = new(1f, 0.78f, 0.9f, 1f);
         var closeRightPassiveButton = CloseRightButton.AddComponent<PassiveButton>();
         closeRightPassiveButton.OnClick = new();
-        closeRightPassiveButton.OnClick.AddListener((System.Action)MainMenuManagerPatch.HideRightPanel);
+        closeRightPassiveButton.OnClick.AddListener((global::System.Action)MainMenuManagerPatch.HideRightPanel);
         closeRightPassiveButton.OnMouseOut = new();
-        closeRightPassiveButton.OnMouseOut.AddListener((System.Action)(() => closeRightSpriteRenderer.color = new(1f, 0.78f, 0.9f, 1f)));
+        closeRightPassiveButton.OnMouseOut.AddListener((global::System.Action)(() => closeRightSpriteRenderer.color = new(1f, 0.78f, 0.9f, 1f)));
         closeRightPassiveButton.OnMouseOver = new();
-        closeRightPassiveButton.OnMouseOver.AddListener((System.Action)(() => closeRightSpriteRenderer.color = new(1f, 0.68f, 0.99f, 1f)));
+        closeRightPassiveButton.OnMouseOver.AddListener((global::System.Action)(() => closeRightSpriteRenderer.color = new(1f, 0.68f, 0.99f, 1f)));
 
         Tint = __instance.screenTint.gameObject;
         var ttap = Tint.GetComponent<AspectPosition>();

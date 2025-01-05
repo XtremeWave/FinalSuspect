@@ -1,20 +1,25 @@
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using FinalSuspect.Modules.Managers;
 using HarmonyLib;
-using Il2CppSystem.Reflection;
 using UnityEngine;
 
-namespace FinalSuspect.Player;
+namespace FinalSuspect.DataHandling;
 [HarmonyPatch]
 public static class XtremeLocalHandling
 {
-    public static string CheckAndGetNameWithDetails(this PlayerControl player, out Color color, out string headertext)
+    public static string CheckAndGetNameWithDetails(
+        this PlayerControl player, 
+        out Color color, 
+        out string headertext,
+        bool headderswap = false)
     {
         var name = player.GetDataName() ?? player.GetRealName();
         color = Color.white;
         headertext = "";
         player.GetLobbyText(ref color, ref headertext);
-        player.GetGameText(ref color, ref headertext);
+        player.GetGameText(ref color, ref headertext, headderswap);
         SpamManager.CheckSpam(ref name);
         if (FAC.SetNameNum[player.PlayerId] > 3)
         {
@@ -54,16 +59,19 @@ public static class XtremeLocalHandling
             color = player.IsLocalPlayer() ? new Color32(177, 255, 231, 255): new Color32(225, 224, 179, 255);
         }
     }
-    public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText)
+    public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText ,bool headderswap)
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
-
+        if (!Main.EnableFinalSuspect.Value) return;
         var roleType = player.GetRoleType();
         
-        if (Utils.CanSeeOthersRole(player, out bool bothImp))
+        if (Utils.CanSeeTargetRole(player, out bool bothImp))
         {
             color = Utils.GetRoleColor(roleType);
-            roleText = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+            if (!headderswap)
+                roleText = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+            else
+                roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
         }
         else if (bothImp)
         {
@@ -77,14 +85,18 @@ public static class XtremeLocalHandling
     public static void OnFixedUpdate(PlayerControl __instance)
     {
         Main.EnableFinalSuspect.Value = !XtremeGameData.GameStates.OtherModHost;
-        if (!Main.EnableFinalSuspect.Value) return;
+
         if (__instance == null) return;
 
         try
         {
             var name = __instance.CheckAndGetNameWithDetails(out Color color, out string headertext);
-            DisconnectSync(__instance);
-            DeathSync(__instance);
+            if (Main.EnableFinalSuspect.Value)
+            { 
+                DisconnectSync(__instance);
+                DeathSync(__instance);
+            }
+            
             
             var HeaderTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
             var HeaderText = HeaderTextTransform.GetComponent<TMPro.TextMeshPro>();
@@ -137,8 +149,8 @@ public static class XtremeLocalHandling
             try
             {
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
-
                 var pc = Utils.GetPlayerById(pva.TargetPlayerId);
+
                 var name = pc.CheckAndGetNameWithDetails(out Color color, out string headertext);
             
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
@@ -149,8 +161,6 @@ public static class XtremeLocalHandling
                 roleTextMeeting.fontSize = 1.5f;
                 roleTextMeeting.gameObject.name = "RoleTextMeeting";
                 roleTextMeeting.enableWordWrapping = false;
-
-
                 
                 pva.NameText.text = name;
                 pva.NameText.color = color;
@@ -210,10 +220,18 @@ public static class XtremeLocalHandling
     public static void GetChatBubbleText(byte playerId, ref string name, ref Color32 bgcolor,
         ref Color namecolor)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!Main.EnableFinalSuspect.Value)
+        {
+            namecolor = Color.white;
+            return;
+        }
         var player = Utils.GetPlayerById(playerId);
-        name = player.CheckAndGetNameWithDetails(out namecolor, out string headertext);
-
+        name = player.CheckAndGetNameWithDetails(out namecolor, out string headertext, player.IsLocalPlayer());
+        if (player.IsLocalPlayer())
+            name = $"<size=60%>{headertext}</size>  " + name;
+        else
+            name += $"  <size=60%>{headertext}</size>";
+        
         if (!player.IsAlive())
             bgcolor = new Color32(255, 0, 0, 120);
     }

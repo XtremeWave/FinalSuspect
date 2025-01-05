@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Managers.AudioManager;
-using static FinalSuspect.Modules.Managers.FinalMusic;
-using FinalSuspect.Modules.Managers;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
 using Il2CppSystem.IO;
 using AmongUs.HTTP;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;
-using FinalSuspect.Player;
 
 namespace FinalSuspect.Modules.SoundInterface;
 

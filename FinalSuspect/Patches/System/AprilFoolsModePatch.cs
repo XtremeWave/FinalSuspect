@@ -1,9 +1,9 @@
-﻿using HarmonyLib;
+﻿using FinalSuspect.Modules.Core.Game;
+using HarmonyLib;
 using Il2CppSystem;
-using InnerNet;
 using static CosmeticsLayer;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 // 参考：https://github.com/ykundesu/SuperNewRoles/blob/master/SuperNewRoles/Patches/HorseModePatch.cs
 // 来源：Town Of Host : Enhanced

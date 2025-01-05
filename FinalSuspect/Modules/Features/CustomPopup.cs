@@ -1,14 +1,13 @@
-﻿using Epic.OnlineServices.Presence;
-using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FinalSuspect.Helpers;
+using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Features;
 
 #nullable enable
 public static class CustomPopup

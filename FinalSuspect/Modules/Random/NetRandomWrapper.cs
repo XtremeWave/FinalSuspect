@@ -1,16 +1,14 @@
-using System;
-
-namespace FinalSuspect;
+namespace FinalSuspect.Modules.Random;
 
 public class NetRandomWrapper : IRandom
 {
-    public Random wrapping;
+    public System.Random wrapping;
 
-    public NetRandomWrapper() : this(new Random())
+    public NetRandomWrapper() : this(new System.Random())
     { }
-    public NetRandomWrapper(int seed) : this(new Random(seed))
+    public NetRandomWrapper(int seed) : this(new System.Random(seed))
     { }
-    public NetRandomWrapper(Random instance)
+    public NetRandomWrapper(System.Random instance)
     {
         wrapping = instance;
     }

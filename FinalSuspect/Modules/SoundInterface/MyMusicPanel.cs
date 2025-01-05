@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FinalSuspect.Helpers;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Managers.AudioManager;
-using static FinalSuspect.Modules.Managers.FinalMusic;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
-using static FinalSuspect.Modules.Managers.CustomSoundsManager;
-using FinalSuspect.Modules.Managers;
+using static FinalSuspect.Modules.SoundInterface.CustomSoundsManager;
 using UnityEngine.UIElements;
 
 
@@ -146,7 +146,7 @@ public static class MyMusicPanel
         Items = new();
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        Logger.Info($"currentPage:{currentPage}", "MyMusicPanel");
+        Core.Plugin.Logger.Info($"currentPage:{currentPage}", "MyMusicPanel");
 
         
         int startIndex = (currentPage - 1) * itemsPerPage;
@@ -228,7 +228,7 @@ public static class MyMusicPanel
             passiveButton.OnClick.AddListener(new Action(OnClick));
             void OnClick()
             {
-                Logger.Info($"Try To Play {filename}:{path}", "MyMusicPanel");
+                Core.Plugin.Logger.Info($"Try To Play {filename}:{path}", "MyMusicPanel");
                 Play(audio);
             }
 

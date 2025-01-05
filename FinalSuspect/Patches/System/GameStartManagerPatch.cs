@@ -1,21 +1,19 @@
-using AmongUs.Data;
-using AmongUs.GameOptions;
-using HarmonyLib;
-using InnerNet;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using FinalSuspect.Modules;
+using AmongUs.Data;
+using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Resources;
+using HarmonyLib;
+using InnerNet;
+using TMPro;
 using UnityEngine;
-using static FinalSuspect.Translator;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect.Patches;
-using FinalSuspect.Player;
 
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
 public static class GameStartManagerUpdatePatch
@@ -61,13 +59,13 @@ public class GameStartManagerPatch
                 ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
                 ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor) ? modColor : HideName.color;
             HideName.text = Main.HideName.Value;
-            Logger.Info("HideName instantiated and configured", "test");
+            Modules.Core.Plugin.Logger.Info("HideName instantiated and configured", "test");
 
             warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
             warningText.name = "WarningText";
             warningText.transform.localPosition = new(0f, 0f - __instance.transform.localPosition.y, -1f);
             warningText.gameObject.SetActive(false);
-            Logger.Info("WarningText instantiated and configured", "test");
+            Modules.Core.Plugin.Logger.Info("WarningText instantiated and configured", "test");
 
             if (AmongUsClient.Instance.AmHost)
             {

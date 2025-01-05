@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FinalSuspect.Modules;
+using FinalSuspect.Modules.LogHandler;
 
 namespace FinalSuspect.Attributes;
 
@@ -11,7 +12,7 @@ public abstract class InitializerAttribute<T> : Attribute
 {
     /// <summary>所有初始化方法</summary>
     private static MethodInfo[] allInitializers = null;
-    private static LogHandler logger = Logger.Handler(nameof(InitializerAttribute<T>));
+    private static LogHandler logger = Modules.Core.Plugin.Logger.Handler(nameof(InitializerAttribute<T>));
 
     public InitializerAttribute() : this(InitializePriority.Normal) { }
     public InitializerAttribute(InitializePriority priority)

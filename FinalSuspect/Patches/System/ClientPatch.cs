@@ -1,15 +1,17 @@
+using System.Linq;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Plugin;
+using FinalSuspect.Modules.Features.CheckingandBlocking;
+using FinalSuspect.Modules.Resources;
+using FinalSuspect.Patches.Game_Vanilla;
 using HarmonyLib;
 using InnerNet;
-using System.Linq;
-using FinalSuspect.Modules;
-using FinalSuspect.Modules.Features.CheckingandBlocking;
 using UnityEngine;
-using static FinalSuspect.Translator;
-using FinalSuspect.Modules.Managers;
-using FinalSuspect.Modules.Resources;
+using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 
-namespace FinalSuspect;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.MakePublic))]
 internal class MakePublicPatch
@@ -23,8 +25,8 @@ internal class MakePublicPatch
             message = GetString("PublicNotAvailableOnThisVersion");
             if (VersionChecker.isBroken) message = GetString("ModBrokenMessage");
             if (VersionChecker.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
-            Logger.Info(message, "MakePublicPatch");
-            Logger.SendInGame(message);
+            Modules.Core.Plugin.Logger.Info(message, "MakePublicPatch");
+            Modules.Core.Plugin.Logger.SendInGame(message);
             return false;
 
         }
@@ -126,7 +128,7 @@ internal class KickPlayerPatch
         {
             if (Main.AllPlayerControls.Where(p => p.IsDev()).Any(p => AmongUsClient.Instance.GetRecentClient(clientId).FriendCode == p.FriendCode))
             {
-                Logger.SendInGame(GetString("Warning.CantKickDev"));
+                Modules.Core.Plugin.Logger.SendInGame(GetString("Warning.CantKickDev"));
                 return false;
             }
 
