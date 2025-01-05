@@ -72,7 +72,7 @@ public class LoadPatch
             ListStr remoteModNewsList = new()
             {
                 "FS.v1.0_2025.txt",
-                "FeaturesIntroduction#v1.0.txt"
+                "FeaturesIntroduction.v1.0.txt"
             };
             ListStr remoteLanguageList = new()
             {
@@ -264,7 +264,6 @@ public class LoadPatch
                 for (int i = remoteLanguageList.Count - 1; i >= 0; i--)
                 {
                     var resource = remoteLanguageList[i];
-                    remoteLanguageList.Remove(resource);
                     string localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
                     if (File.Exists(localFilePath))
                     {
@@ -279,13 +278,14 @@ public class LoadPatch
             }
             foreach (var resource in remoteLanguageList)
             {
+                Modules.Core.Plugin.Logger.Warn($"dl: {resource}", "Check");
                 var task = StartDownload(FileType.Languages, resource);
                 while (!task.IsCompleted)
                 {
                     yield return null; 
                 }
 
-                if (task.IsFaulted || !task.Result)
+                if (task.IsFaulted)
                 {
                     Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
