@@ -77,8 +77,8 @@ public class LoadPatch
             ListStr remoteLanguageList = new()
             {
                 "Brazilian.yaml",
-                "Chinese Simplified.yaml",
-                "Chinese Traditional.yaml",
+                "SChinese.yaml",
+                "TChinese.yaml",
                 "Dutch.yaml",
                 "English.yaml",
                 "Filipino.yaml",
