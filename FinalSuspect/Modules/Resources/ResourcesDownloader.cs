@@ -37,10 +37,10 @@ public class ResourcesDownloader
             switch (retrytimes)
             {
                 case 0:
-                    remoteType = RemoteType.Gitee;
+                    remoteType = RemoteType.XtremeApi;
                     break;
                 case 1:
-                    remoteType = RemoteType.XtremeApi;
+                    remoteType = RemoteType.Gitee;
                     break;
 
             }
