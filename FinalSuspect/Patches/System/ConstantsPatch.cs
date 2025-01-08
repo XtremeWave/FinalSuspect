@@ -1,7 +1,4 @@
-﻿using FinalSuspect.DataHandling;
-using HarmonyLib;
-
-namespace FinalSuspect.Patches.System;
+﻿namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(Constants), nameof(Constants.GetBroadcastVersion))]
 public class ConstantsPatch
@@ -10,11 +7,11 @@ public class ConstantsPatch
     {
         if (XtremeGameData.GameStates.IsLocalGame)
         {
-            Modules.Core.Plugin.Logger.Info($"IsLocalGame: {__result}", "VersionServer");
+            XtremeLogger.Info($"IsLocalGame: {__result}", "VersionServer");
         }
         if (XtremeGameData.GameStates.IsOnlineGame)
         {
-            Modules.Core.Plugin.Logger.Info($"IsOnlineGame: {__result}", "VersionServer");
+            XtremeLogger.Info($"IsOnlineGame: {__result}", "VersionServer");
         }
     }
 }

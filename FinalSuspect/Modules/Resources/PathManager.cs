@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;

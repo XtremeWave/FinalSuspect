@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using HarmonyLib;
 using Microsoft.Win32;
 
 namespace FinalSuspect.Modules.Core.Plugin;
@@ -17,12 +16,12 @@ public static class RegistryManager
     {
         if (Keys == null)
         {
-            Logger.Info("Create FinalSuspect Registry Key", "Registry Manager");
+            XtremeLogger.Info("Create FinalSuspect Registry Key", "Registry Manager");
             Keys = SoftwareKeys.CreateSubKey("AU-FinalSuspect", true);
         }
         if (Keys == null)
         {
-            Logger.Error("Create Registry Failed", "Registry Manager");
+            XtremeLogger.Error("Create Registry Failed", "Registry Manager");
             return;
         }
 
@@ -40,22 +39,22 @@ public static class RegistryManager
                 @"./TONX_DATA",
             ];
 
-        Logger.Warn("上次启动的FinalSuspect版本：" + LastVersion, "Registry Manager");
+        XtremeLogger.Warn("上次启动的FinalSuspect版本：" + LastVersion, "Registry Manager");
 
         if (LastVersion < new Version(1, 0, 0))
         {
-            Logger.Warn("v1.0 New Version Operation Needed", "Registry Manager");
+            XtremeLogger.Warn("v1.0 New Version Operation Needed", "Registry Manager");
             FoldersNFileToDel.Add(@"./BepInEx/config");
         }
 
         FoldersNFileToDel.DoIf(Directory.Exists, p =>
         {
-            Logger.Warn("Delete Useless Directory:" + p, "Registry Manager");
+            XtremeLogger.Warn("Delete Useless Directory:" + p, "Registry Manager");
             Directory.Delete(p, true);
         });
         FoldersNFileToDel.DoIf(File.Exists, p =>
         {
-            Logger.Warn("Delete Useless File:" + p, "Registry Manager");
+            XtremeLogger.Warn("Delete Useless File:" + p, "Registry Manager");
             File.Delete(p);
         });
 

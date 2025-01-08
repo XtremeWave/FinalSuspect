@@ -1,13 +1,10 @@
 using System;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Templates;
-using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
@@ -46,9 +43,9 @@ public class MainMenuManagerPatch
         Instance.OpenGameModeMenu();
     }
 
-    private static bool isOnline = false;
-    public static bool ShowedBak = false;
-    public static bool ShowingPanel = false;
+    private static bool isOnline;
+    public static bool ShowedBak;
+    public static bool ShowingPanel;
     [HarmonyPatch(typeof(SignInStatusComponent), nameof(SignInStatusComponent.SetOnline)), HarmonyPostfix]
     public static void SetOnline_Postfix() { _ = new LateTask(() => { isOnline = true; }, 0.1f, "Set Online Status"); }
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate)), HarmonyPostfix]

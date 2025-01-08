@@ -1,15 +1,12 @@
 using System.Linq;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
-using HarmonyLib;
 using InnerNet;
+using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
-
 
 namespace FinalSuspect.Patches.System;
 
@@ -25,8 +22,8 @@ internal class MakePublicPatch
             message = GetString("PublicNotAvailableOnThisVersion");
             if (VersionChecker.isBroken) message = GetString("ModBrokenMessage");
             if (VersionChecker.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
-            Modules.Core.Plugin.Logger.Info(message, "MakePublicPatch");
-            Modules.Core.Plugin.Logger.SendInGame(message);
+            XtremeLogger.Info(message, "MakePublicPatch");
+            XtremeLogger.SendInGame(message);
             return false;
 
         }
@@ -44,7 +41,7 @@ class MMOnlineManagerStartPatch
         {
             obj?.SetActive(false);
             var parentObj = obj.transform.parent.gameObject;
-            var textObj = Object.Instantiate(obj.transform.FindChild("Text_TMP").GetComponent<TMPro.TextMeshPro>());
+            var textObj = Object.Instantiate(obj.transform.FindChild("Text_TMP").GetComponent<TextMeshPro>());
             textObj.transform.position = new Vector3(0.5f, -0.4f, 0f);
             textObj.name = "CanNotJoinPublic";
             textObj.DestroyTranslator();
@@ -61,7 +58,7 @@ class MMOnlineManagerStartPatch
             {
                 message = GetString("UnsupportedVersion");
             }
-            textObj.text = $"<size=2>{Utils.ColorString(Color.red, message)}</size>";
+            textObj.text = $"<size=2>{StringHelper.ColorString(Color.red, message)}</size>";
         }
     }
 
@@ -128,7 +125,7 @@ internal class KickPlayerPatch
         {
             if (Main.AllPlayerControls.Where(p => p.IsDev()).Any(p => AmongUsClient.Instance.GetRecentClient(clientId).FriendCode == p.FriendCode))
             {
-                Modules.Core.Plugin.Logger.SendInGame(GetString("Warning.CantKickDev"));
+                XtremeLogger.SendInGame(GetString("Warning.CantKickDev"));
                 return false;
             }
 

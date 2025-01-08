@@ -6,16 +6,13 @@ using AmongUs.Data;
 using AmongUs.GameOptions;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
-using HarmonyLib;
 using InnerNet;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -44,7 +41,7 @@ class TaskPanelBehaviourPatch
         var RoleWithInfo = $"{Utils.GetRoleName(role)}:\r\n";
         RoleWithInfo += role.GetRoleInfoForVanilla();
 
-        var AllText = Utils.ColorString(player.GetRoleColor(), RoleWithInfo);
+        var AllText = StringHelper.ColorString(player.GetRoleColor(), RoleWithInfo);
 
 
         var lines = taskText.Split("\r\n</color>\n")[0].Split("\r\n\n")[0].Split("\r\n");
@@ -59,7 +56,7 @@ class TaskPanelBehaviourPatch
         {
             var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
             if (player.IsImpostor() && sb.ToString().Count(s => (s == '\n')) >= 2)
-                text = $"{Utils.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
+                text = $"{StringHelper.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
             AllText += $"\r\n\r\n<size=85%>{text}</size>";
         }
 
@@ -72,10 +69,10 @@ class TaskPanelBehaviourPatch
 
 public static class HudManagerPatch
 {
-    static GameObject ModLoading = null;
+    static GameObject ModLoading;
 
 
-    private static int currentIndex = 0;
+    private static int currentIndex;
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class Update
     {
@@ -262,7 +259,7 @@ public static class HudManagerPatch
     }
     public static void UpdateResult(HudManager __instance)
     {
-        if (!XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6)
+        if (!XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6 || XtremeGameData.GameStates.IsFreePlay)
             return;
         var showInitially = Main.ShowResults.Value;
        
@@ -291,7 +288,7 @@ public static class HudManagerPatch
         
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
-        var gamecode =  Utils.ColorString(
+        var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
             DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
         sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
@@ -301,7 +298,7 @@ public static class HudManagerPatch
             {
                 var id = kvp.Key;
                 var data = kvp.Value;
-                sb.Append($"\n　 ").Append(Utils.SummaryTexts(id));
+                sb.Append("\n\u3000 ").Append(Utils.SummaryTexts(id));
 
             }
 

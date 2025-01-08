@@ -6,7 +6,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Resources;
 using static FinalSuspect.Modules.SoundInterface.AudioManager;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
@@ -35,13 +34,13 @@ public static class AudioManager
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
                 new FinalMusic(line);
-                Core.Plugin.Logger.Info($"Audio Loaded: {line}", "AudioManager");
+                XtremeLogger.Info($"Audio Loaded: {line}", "AudioManager");
             }
 
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Error($"Load Audios Failed\n" + ex.ToString(), "AudioManager", false);
+            XtremeLogger.Error("Load Audios Failed\n" + ex, "AudioManager", false);
         }
     }
     public static void Init()
@@ -86,13 +85,13 @@ public static class AudioManager
             switch (sound)
             {
                 case Sounds.KillSound:
-                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false, 1f);
+                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false);
                     break;
                 case Sounds.TaskComplete:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound, false, 1f);
+                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound, false);
                     break;
                 case Sounds.TaskUpdateSound:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound, false, 1f);
+                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound, false);
                     break;
                 case Sounds.ImpTransform:
                     SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx, false, 0.8f);
@@ -162,7 +161,7 @@ public class FinalMusic
                 if (line != null)
                 {
                     new FinalMusic(line);
-                    Core.Plugin.Logger.Info($"Sound Loaded: {line}", "AudioManager");
+                    XtremeLogger.Info($"Sound Loaded: {line}", "AudioManager");
                 }
                 soundnum++;
             }
@@ -170,11 +169,11 @@ public class FinalMusic
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Error($"Load Audio Failed\n" + ex.ToString(), "AudioManager", false);
+            XtremeLogger.Error("Load Audio Failed\n" + ex, "AudioManager", false);
         }
 
 
-        Core.Plugin.Logger.Msg($"{soundnum} Sounds Loaded", "AudioManager");
+        XtremeLogger.Msg($"{soundnum} Sounds Loaded", "AudioManager");
     }
     private static readonly object finalMusicsLock = new();
 
@@ -204,7 +203,7 @@ public class FinalMusic
             var file = finalMusics.Find(x => x.FileName == FileName);
             if (file != null)
             {
-                Core.Plugin.Logger.Info($"Replace {file.FileName}", "FinalMusic");
+                XtremeLogger.Info($"Replace {file.FileName}", "FinalMusic");
                 var index = finalMusics.IndexOf(file);
                 if (file.CurrectAudioStates == AudiosStates.IsPlaying) CurrectAudioStates = AudiosStates.IsPlaying;
                 finalMusics.RemoveAt(index);

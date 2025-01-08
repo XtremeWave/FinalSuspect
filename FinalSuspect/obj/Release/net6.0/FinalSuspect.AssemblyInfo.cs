@@ -8,14 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("XtremeWave")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("Your best functional tool for Among Us.")]
-[assembly: System.Reflection.AssemblyProductAttribute("FinalSuspect")]
-[assembly: System.Reflection.AssemblyTitleAttribute("FinalSuspect")]
+[assembly: AssemblyCompany("XtremeWave")]
+[assembly: AssemblyConfiguration("Release")]
+[assembly: AssemblyDescription("Your best functional tool for Among Us.")]
+[assembly: AssemblyProduct("FinalSuspect")]
+[assembly: AssemblyTitle("FinalSuspect")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

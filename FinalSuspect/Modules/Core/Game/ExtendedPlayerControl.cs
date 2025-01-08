@@ -1,6 +1,6 @@
 using System.Linq;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using InnerNet;
 using UnityEngine;
 
@@ -64,9 +64,10 @@ static class ExtendedPlayerControl
     }
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
-        return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? player?.GetDataName();
+        var nullname = player.GetPlayerData() != null ? player?.GetDataName() : null;
+        return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? nullname;
     }
     public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;
-
+    public static bool IsHost(this PlayerControl player) => AmongUsClient.Instance.HostId == player?.Data?.OwnerId;
         
 }

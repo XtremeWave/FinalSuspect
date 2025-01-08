@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
+using Il2CppSystem;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ class LobbyInfoPanePatch
         var AspectSize = GameObject.Find("AspectSize");
         AspectSize.transform.FindChild("Background").gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);
         if (XtremeGameData.GameStates.MapIsActive(MapNames.Dleks))
-            AspectSize.transform.FindChild("MapImage").gameObject.GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite($"DleksBanner-Wordart.png", 160f);
+            AspectSize.transform.FindChild("MapImage").gameObject.GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("DleksBanner-Wordart.png", 160f);
     }
 
 }
@@ -195,7 +195,7 @@ class LobbyViewSettingsPanePatch
         cat.FindChild("Divider").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
         cat.FindChild("HeaderText").gameObject.GetComponent<TextMeshPro>().color = Color.white;
         cat.FindChild("Icon").gameObject.GetComponent<SpriteRenderer>().color = iconcolor;
-        obj.ForEachChild((Il2CppSystem.Action<GameObject>)SetColor);
+        obj.ForEachChild((Action<GameObject>)SetColor);
         void SetColor(GameObject obj)
         {
             if (obj.name == "ViewSettingsInfoPanel(Clone)")

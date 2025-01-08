@@ -1,7 +1,6 @@
-using BepInEx.Configuration;
 using System;
+using BepInEx.Configuration;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Plugin;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.ClientOptions;
@@ -95,7 +94,7 @@ public sealed class ClientOptionItem_String : ClientActionItem
             
             if (currentIndex == -1)
             {
-                Core.Plugin.Logger.Error("wrong index", "ClientOptionItem_String");
+                XtremeLogger.Error("wrong index", "ClientOptionItem_String");
                 return;
             }
             
@@ -123,9 +122,9 @@ public sealed class ClientOptionItem_String : ClientActionItem
     {
         if (ToggleButton == null) return;
 
-        ToggleButton.Text.text = Translator.GetString(name);
+        ToggleButton.Text.text = GetString(name);
         if (Config.Value == "HorseMode")
-            ToggleButton.Text.text += $"({Translator.GetString("Broken")})";
+            ToggleButton.Text.text += $"({GetString("Broken")})";
 
     }
 }

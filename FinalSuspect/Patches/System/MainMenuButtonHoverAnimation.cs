@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
+using Il2CppSystem;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
@@ -16,15 +15,15 @@ public class MainMenuButtonHoverAnimation
     {
         var mainButtons = GameObject.Find("Main Buttons");
 
-        mainButtons.ForEachChild((Il2CppSystem.Action<GameObject>)Init);
+        mainButtons.ForEachChild((Action<GameObject>)Init);
         static void Init(GameObject obj)
         {
             if (obj.name is "BottomButtonBounds" or "Divider") return;
             if (AllButtons.ContainsKey(obj)) return;
             SetButtonStatus(obj, false);
             var pb = obj.GetComponent<PassiveButton>();
-            pb.OnMouseOver.AddListener((Action)(() => SetButtonStatus(obj, true)));
-            pb.OnMouseOut.AddListener((Action)(() => SetButtonStatus(obj, false)));
+            pb.OnMouseOver.AddListener((global::System.Action)(() => SetButtonStatus(obj, true)));
+            pb.OnMouseOut.AddListener((global::System.Action)(() => SetButtonStatus(obj, false)));
         }
     }
 

@@ -1,15 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
-using FinalSuspect.Modules.SoundInterface;
-using Newtonsoft.Json;
 using static FinalSuspect.Modules.SoundInterface.AudioManager;
-using System.IO;
-using System.Linq;
-using FinalSuspect.Modules.Core.Plugin;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 
 namespace FinalSuspect.Modules.SoundInterface;

@@ -1,6 +1,5 @@
 using System;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Plugin;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -13,7 +12,7 @@ public class ClientActionItem
 
     public static SpriteRenderer CustomBackground { get; private set; }
     public static ToggleButtonBehaviour ModOptionsButton { get; private set; }
-    private static int numItems = 0;
+    private static int numItems;
 
     protected ClientActionItem(
         string name,
@@ -36,7 +35,7 @@ public class ClientActionItem
                 var closeButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
                 closeButton.transform.localPosition = new(1.3f, -2.3f, -6f);
                 closeButton.name = "Close";
-                closeButton.Text.text = Translator.GetString("Close");
+                closeButton.Text.text = GetString("Close");
                 closeButton.Background.color = Palette.DisabledGrey;
                 var closePassiveButton = closeButton.GetComponent<PassiveButton>();
                 closePassiveButton.OnClick = new();
@@ -71,7 +70,7 @@ public class ClientActionItem
                 var pos = leaveButton?.transform?.localPosition;
                 ModOptionsButton.transform.localPosition = pos != null ? pos.Value + new Vector3(1.24f, 0f, 0f) : new(1.24f, -2.4f, 1f);
                 ModOptionsButton.name = "FinalSuspect Options";
-                ModOptionsButton.Text.text = Translator.GetString("FinalSuspectOptions");
+                ModOptionsButton.Text.text = GetString("FinalSuspectOptions");
                 if (ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor))
                     ModOptionsButton.Background.color = modColor;
                 var modOptionsPassiveButton = ModOptionsButton.GetComponent<PassiveButton>();
@@ -92,7 +91,7 @@ public class ClientActionItem
                 2.2f - (0.5f * (numItems / 2)),
                 -6f);
             ToggleButton.name = name;
-            ToggleButton.Text.text = Translator.GetString(name);
+            ToggleButton.Text.text = GetString(name);
             ToggleButton.Background.color = Color.white;
             var passiveButton = ToggleButton.GetComponent<PassiveButton>();
             passiveButton.OnClick = new();

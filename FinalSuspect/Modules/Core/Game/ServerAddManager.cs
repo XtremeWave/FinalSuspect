@@ -2,10 +2,8 @@
 using System.Linq;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Scrapped;
 using FinalSuspect.Patches.System;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game;
@@ -19,11 +17,11 @@ public static class ServerAddManager
     {
         serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos = new();
-        regionInfos.Add(CreateHttp("game.xtreme.net.cn", $"XtremeWave[HongKong]", 443, true));
+        regionInfos.Add(CreateHttp("game.xtreme.net.cn", "XtremeWave[HongKong]", 443, true));
         regionInfos.Add(CreateHttp("au-us.niko233.me", "Niko233[NA_US]", 443, true));
         regionInfos.Add(CreateHttp("au-us2.niko233.me", "Niko233[NA_US2]", 443, true));
 
-        if (Translator.IsChineseUser)
+        if (IsChineseUser)
         {
             regionInfos.Add(CreateHttp("aucn.niko233.me", "Niko233[AS_CN]", 443, true));
             regionInfos.Add(CreateHttp("aucn2.niko233.me", "Niko233[AS_CN2]", 443, true));
@@ -106,14 +104,14 @@ public static class ServerAddManager
             _ => new(255, 255, 255, 255),
         };
         Cloud.ServerName = name;
-        PingTrackerUpdatePatch.ServerName = Utils.ColorString(color, name);
+        PingTrackerUpdatePatch.ServerName = StringHelper.ColorString(color, name);
     }
 
     public static IRegionInfo CreateHttp(string ip, string name, ushort port, bool ishttps)
     {
         string serverIp = (ishttps ? "https://" : "http://") + ip;
         ServerInfo serverInfo = new ServerInfo(name, serverIp, port, false);
-        ServerInfo[] ServerInfo = new ServerInfo[] { serverInfo };
+        ServerInfo[] ServerInfo = new[] { serverInfo };
         return new StaticHttpRegionInfo(name, (StringNames)1003, ip, ServerInfo).Cast<IRegionInfo>();
     }
 }

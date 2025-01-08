@@ -1,7 +1,8 @@
-﻿using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
+﻿using System;
+using FinalSuspect.Modules.Core.Game;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -25,7 +26,7 @@ public class LobbyBehaviourPatch
     [HarmonyPatch(nameof(LobbyBehaviour.Update)), HarmonyPostfix]
     public static void Update_Postfix(LobbyBehaviour __instance)
     {
-        global::System.Func<ISoundPlayer, bool> lobbybgm = x => x.Name.Equals("MapTheme");
+        Func<ISoundPlayer, bool> lobbybgm = x => x.Name.Equals("MapTheme");
         ISoundPlayer MapThemeSound = SoundManager.Instance.soundPlayers.Find(lobbybgm);
         if (Main.DisableVanillaSound.Value)
         {

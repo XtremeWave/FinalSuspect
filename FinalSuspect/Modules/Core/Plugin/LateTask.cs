@@ -22,11 +22,11 @@ class LateTask
     public LateTask(Action action, float time, string name = "No Name Task")
     {
         this.action = action;
-        this.timer = time;
+        timer = time;
         this.name = name;
         Tasks.Add(this);
         if (name != "")
-            Logger.Info("\"" + name + "\" is created", "LateTask");
+            XtremeLogger.Info("\"" + name + "\" is created", "LateTask");
     }
     public static void Update(float deltaTime)
     {
@@ -39,13 +39,13 @@ class LateTask
                 if (task.Run(deltaTime))
                 {
                     if (task.name != "")
-                        Logger.Info($"\"{task.name}\" is finished", "LateTask");
+                        XtremeLogger.Info($"\"{task.name}\" is finished", "LateTask");
                     TasksToRemove.Add(task);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error($"{ex.GetType()}: {ex.Message}  in \"{task.name}\"\n{ex.StackTrace}", "LateTask.Error", false);
+                XtremeLogger.Error($"{ex.GetType()}: {ex.Message}  in \"{task.name}\"\n{ex.StackTrace}", "LateTask.Error", false);
                 TasksToRemove.Add(task);
             }
         }

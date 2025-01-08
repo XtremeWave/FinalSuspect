@@ -1,7 +1,4 @@
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -28,7 +25,7 @@ public static class ChatBubblePatch
         {
             bgcolor = Color.black;
             namecolor = ColorHelper.TeamColor32;
-            chatText = Utils.ColorString(Color.white, chatText.TrimEnd('\0'));
+            chatText = StringHelper.ColorString(Color.white, chatText.TrimEnd('\0'));
             __instance.SetLeft();
         }
         else if (__instance.NameText.color == Color.green)

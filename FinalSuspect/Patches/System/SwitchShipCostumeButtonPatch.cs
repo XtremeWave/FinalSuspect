@@ -1,6 +1,5 @@
 ﻿using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.SoundInterface;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
@@ -8,7 +7,7 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch]
 public class SwitchShipCostumeButtonPatch
 {
-    public static int Costume = 0;
+    public static int Costume;
     public static GameObject SwitchShipCostumeButton;
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Awake)), HarmonyPostfix]
     public static void ShipStatusFixedUpdate(ShipStatus __instance)

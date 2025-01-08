@@ -2,16 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AmongUs.Data;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
-using HarmonyLib;
 using InnerNet;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -45,10 +42,10 @@ class SetEverythingUpPatch
         //#######################################
         //          ==勝利陣営表示==
         //#######################################
-        var WinnerTextObject = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
+        var WinnerTextObject = Object.Instantiate(__instance.WinText.gameObject);
         WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
         WinnerTextObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-        var WinnerText = WinnerTextObject.GetComponent<TMPro.TextMeshPro>(); // WinTextと同じ型のコンポーネントを取得
+        var WinnerText = WinnerTextObject.GetComponent<TextMeshPro>(); // WinTextと同じ型のコンポーネントを取得
         WinnerText.fontSizeMin = 3f;
 
         string CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
@@ -84,7 +81,7 @@ class SetEverythingUpPatch
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
-        var gamecode =  Utils.ColorString(
+        var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
             DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
         sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
@@ -99,7 +96,7 @@ class SetEverythingUpPatch
         foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
         {
             var id = kvp.Key;
-            sb.Append($"\n　 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
+            sb.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
         }
 
         HudManagerPatch.LastResultText = sb.ToString().Replace("\n" + GetString("HideSummaryTextToShowWinText"), "");

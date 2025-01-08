@@ -1,6 +1,4 @@
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling;
-using HarmonyLib;
 
 namespace FinalSuspect.Patches.System;
 
@@ -9,7 +7,7 @@ class ShipStatusStartPatch
 {
     public static void Postfix()
     {
-        Modules.Core.Plugin.Logger.Info("-----------游戏开始-----------", "Phase");
+        XtremeLogger.Info("-----------游戏开始-----------", "Phase");
     }
 }
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
@@ -18,7 +16,7 @@ class AmongUsClientOnGameEndPatch
     public static void Postfix()
     {
         XtremeGameData.GameStates.InGame = false;
-        Modules.Core.Plugin.Logger.Info("-----------游戏结束-----------", "Phase");
+        XtremeLogger.Info("-----------游戏结束-----------", "Phase");
     }
 }
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
@@ -27,7 +25,7 @@ class MeetingHudStartPatch
 {
     public static void Prefix()
     {
-        Modules.Core.Plugin.Logger.Info("------------会议开始------------", "Phase");
+        XtremeLogger.Info("------------会议开始------------", "Phase");
     }
 }
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.OnDestroy))]
@@ -35,7 +33,7 @@ class MeetingHudOnDestroyPatch
 {
     public static void Postfix()
     {
-        Modules.Core.Plugin.Logger.Info("------------会议结束------------", "Phase");
+        XtremeLogger.Info("------------会议结束------------", "Phase");
     }
 }
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
@@ -55,6 +53,6 @@ public static class IntroCutsceneOnDestroyPatch
     public static void Postfix()
     {
         IntroDestroyed = true;
-        Modules.Core.Plugin.Logger.Info("OnDestroy", "IntroCutscene");
+        XtremeLogger.Info("OnDestroy", "IntroCutscene");
     }
 }

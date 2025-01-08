@@ -37,5 +37,21 @@ public static class ColorHelper
     public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
     public static readonly Color32 HalfModColor32 = new(206, 205, 253, 160);
     public static readonly Color32 FaultColor = new(229, 115, 115, 255);
-
+    public static readonly Color32 UnmatchedColor = new(191, 255, 185, 255);
+    public static readonly Color32 HostNameColor = new(177, 255, 231, 255);
+    public static readonly Color32 ClientlessColor = new(225, 224, 179, 255);
+    
+    /// <summary>
+    /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。
+    /// </summary>
+    public static Color ShadeColor(this Color color, float Darkness = 0)
+    {
+        bool IsDarker = Darkness >= 0; //黒と混ぜる
+        if (!IsDarker) Darkness = -Darkness;
+        float Weight = IsDarker ? 0 : Darkness; //黒/白の比率
+        float R = (color.r + Weight) / (Darkness + 1);
+        float G = (color.g + Weight) / (Darkness + 1);
+        float B = (color.b + Weight) / (Darkness + 1);
+        return new Color(R, G, B, color.a);
+    }
 }

@@ -1,8 +1,6 @@
-using HarmonyLib;
-using InnerNet;
 using System;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Patches.System;
+using InnerNet;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -33,7 +31,7 @@ public static class ModUnloaderScreen
         CancelButton = Object.Instantiate(optionsMenuBehaviour.DisableMouseMovement, Popup.transform);
         CancelButton.name = "Cancel";
         CancelButton.transform.localPosition = new(-1.2f, -1f, -2f);
-        CancelButton.Text.text = Translator.GetString("Cancel");
+        CancelButton.Text.text = GetString("Cancel");
         var cancelPassiveButton = CancelButton.GetComponent<PassiveButton>();
         cancelPassiveButton.OnClick = new();
         cancelPassiveButton.OnClick.AddListener((Action)Hide);
@@ -43,7 +41,7 @@ public static class ModUnloaderScreen
         UnloadButton.name = "Unload";
         UnloadButton.transform.localPosition = new(1.2f, -1f, -2f);
         UnloadButton.Background.color = UnloadButton.Text.color = Color.red;
-        UnloadButton.Text.text = Translator.GetString("Unload");
+        UnloadButton.Text.text = GetString("Unload");
         var unloadPassiveButton = UnloadButton.GetComponent<PassiveButton>();
         unloadPassiveButton.OnClick = new();
         unloadPassiveButton.OnClick.AddListener(new Action(() =>
@@ -55,7 +53,7 @@ public static class ModUnloaderScreen
 
             _ = new LateTask(() =>
             {
-                Core.Plugin.Logger.Info("模组将要禁用", nameof(ModUnloaderScreen));
+                XtremeLogger.Info("模组将要禁用", nameof(ModUnloaderScreen));
                 Harmony.UnpatchAll();
                 Main.Instance.Unload();
             }, 1f);
@@ -71,12 +69,12 @@ public static class ModUnloaderScreen
 
             if (AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Started)
             {
-                WarnText.text = Translator.GetString("CannotUnloadDuringGame");
+                WarnText.text = GetString("CannotUnloadDuringGame");
                 UnloadButton.gameObject.SetActive(false);
             }
             else
             {
-                WarnText.text = Translator.GetString("UnloadWarning");
+                WarnText.text = GetString("UnloadWarning");
                 UnloadButton.gameObject.SetActive(true);
             }
         }

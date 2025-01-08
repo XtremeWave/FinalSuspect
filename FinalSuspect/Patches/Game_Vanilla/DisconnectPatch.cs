@@ -1,7 +1,3 @@
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
-
 namespace FinalSuspect.Patches.Game_Vanilla;
 
 

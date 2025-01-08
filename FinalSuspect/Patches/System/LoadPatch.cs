@@ -3,14 +3,10 @@ using System.IO;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Resources;
-using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.Resources.ResourcesDownloader;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using ListStr = System.Collections.Generic.List<string>;
 
 namespace FinalSuspect.Patches.System;
@@ -21,7 +17,7 @@ public class LoadPatch
     
     static TextMeshPro loadText = null!;
     static TextMeshPro processText = null!;
-    public static bool ReloadLanguage = false;
+    public static bool ReloadLanguage;
     [HarmonyPatch(typeof(SplashManager), nameof(SplashManager.Start))]
     class Start
     {
@@ -112,7 +108,7 @@ public class LoadPatch
                 }
                 else
                 {
-                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
             foreach (var resource in PreReady_remoteImageList)
@@ -126,7 +122,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
 
@@ -236,7 +232,7 @@ public class LoadPatch
                 }
                 else
                 {
-                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
             foreach (var resource in remoteDependList)
@@ -249,7 +245,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
             var thisversion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
@@ -271,14 +267,14 @@ public class LoadPatch
                     }
                     else
                     {
-                        Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                        XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                     }
 
                 }
             }
             foreach (var resource in remoteLanguageList)
             {
-                Modules.Core.Plugin.Logger.Warn($"dl: {resource}", "Check");
+                XtremeLogger.Warn($"dl: {resource}", "Check");
                 var task = StartDownload(FileType.Languages, resource);
                 while (!task.IsCompleted)
                 {
@@ -287,13 +283,13 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
             #endregion
 
             #region After Download Depends
-            Translator.Init();
+            Init();
             p = 1f;
             while (p > 0)
             {
@@ -321,7 +317,7 @@ public class LoadPatch
             #region Check for resources
             processText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             processText.transform.localPosition = new(0f, -0.7f, -10f);
-            processText.fontStyle = TMPro.FontStyles.Bold;
+            processText.fontStyle = FontStyles.Bold;
             processText.text = GetString("CheckingForFiles");
             processText.color = Color.blue.AlphaMultiplied(0.5f);
             p = 1f;
@@ -349,7 +345,7 @@ public class LoadPatch
                 }
                 else
                 {
-                    Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                    XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                 }
             }
             
@@ -364,7 +360,7 @@ public class LoadPatch
                     if (!File.Exists(localFilePath))
                     {
                         remoteModNewsList.Add(file);
-                        Modules.Core.Plugin.Logger.Warn($"File do not exists: {localFilePath}", "Check");
+                        XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                     }
                 }
             }
@@ -414,7 +410,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
             foreach (var resource in remoteModNewsList)
@@ -429,7 +425,7 @@ public class LoadPatch
 
                 if (task.IsFaulted)
                 {
-                    Modules.Core.Plugin.Logger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
             }
 

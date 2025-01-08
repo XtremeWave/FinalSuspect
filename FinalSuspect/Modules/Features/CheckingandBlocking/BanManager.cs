@@ -10,9 +10,7 @@ using FinalSuspect.Attributes;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
-using HarmonyLib;
 using InnerNet;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
@@ -29,7 +27,7 @@ public static class BanManager
         {
             if (!File.Exists(BAN_LIST_PATH))
             {
-                Core.Plugin.Logger.Warn("Create New BanList.txt", "BanManager");
+                XtremeLogger.Warn("Create New BanList.txt", "BanManager");
                 File.Create(BAN_LIST_PATH).Close();
             }
 
@@ -47,7 +45,7 @@ public static class BanManager
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Exception(ex, "BanManager");
+            XtremeLogger.Exception(ex, "BanManager");
         }
     }
     private static string GetResourcesTxt(string path)
@@ -76,7 +74,7 @@ public static class BanManager
         if (player.IsBannedPlayer())
         {
             File.AppendAllText(BAN_LIST_PATH, $"{player.FriendCode},{player.GetHashedPuid()},{player.PlayerName}\n");
-            Core.Plugin.Logger.SendInGame(string.Format(GetString("Message.AddedPlayerToBanList"), player.PlayerName));
+            XtremeLogger.SendInGame(string.Format(GetString("Message.AddedPlayerToBanList"), player.PlayerName));
         }
     }
     public static void CheckDenyNamePlayer(ClientData player)
@@ -94,14 +92,14 @@ public static class BanManager
                 {
                     Utils.KickPlayer(player.Id, false, "DenyName");
                     NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByDenyName"), player.PlayerName, line));
-                    Core.Plugin.Logger.Info($"{player.PlayerName}は名前が「{line}」に一致したためキックされました。", "Kick");
+                    XtremeLogger.Info($"{player.PlayerName}は名前が「{line}」に一致したためキックされました。", "Kick");
                     return;
                 }
             }
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Exception(ex, "CheckDenyNamePlayer");
+            XtremeLogger.Exception(ex, "CheckDenyNamePlayer");
         }
     }
 
@@ -112,13 +110,13 @@ public static class BanManager
         {
             Utils.KickPlayer(player.Id, true, "BanList");
             NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
-            Core.Plugin.Logger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
+            XtremeLogger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
         }
         else if (player.IsFACPlayer())
         {
             Utils.KickPlayer(player.Id, true, "FACList");
             NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
-            Core.Plugin.Logger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
+            XtremeLogger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
         }
     }
 
@@ -143,7 +141,7 @@ public static class BanManager
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Exception(ex, "CheckBanList");
+            XtremeLogger.Exception(ex, "CheckBanList");
         }
         return false;
     }

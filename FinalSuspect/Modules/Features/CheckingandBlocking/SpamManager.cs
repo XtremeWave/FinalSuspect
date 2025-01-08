@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Text;
 using FinalSuspect.Attributes;
 using FinalSuspect.Modules.Resources;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
@@ -35,13 +34,13 @@ public static class SpamManager
                 else
                 {
                     string fileName = GetUserLangByRegion().ToString();
-                    Core.Plugin.Logger.Warn($"Create New BanWords: {fileName}", "SpamManager");
+                    XtremeLogger.Warn($"Create New BanWords: {fileName}", "SpamManager");
                     File.WriteAllText(BANEDWORDS_FILE_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt"));
                 }
             }
             catch (Exception ex)
             {
-                Core.Plugin.Logger.Exception(ex, "SpamManager");
+                XtremeLogger.Exception(ex, "SpamManager");
             }
         }
         if (!File.Exists(DENY_NAME_LIST_PATH))
@@ -52,12 +51,12 @@ public static class SpamManager
                 if (File.Exists(@"./DenyName.txt")) File.Move(@"./DenyName.txt", BANEDWORDS_FILE_PATH);
                 else
                 {
-                    File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.DenyName.txt"));
+                    File.WriteAllText(DENY_NAME_LIST_PATH, GetResourcesTxt("FinalSuspect.Resources.Configs.DenyName.txt"));
                 }
             }
             catch (Exception ex)
             {
-                Core.Plugin.Logger.Exception(ex, "SpamManager");
+                XtremeLogger.Exception(ex, "SpamManager");
             }
         }
 
@@ -87,7 +86,7 @@ public static class SpamManager
     public static void CheckForUpdateDenyNames()
     {
         string fileName = GetUserLangByRegion().ToString();
-        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.DenyName.txt");
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.DenyName.txt");
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
         using StreamReader reader2 = new(DENY_NAME_LIST_PATH,  Encoding.UTF8);

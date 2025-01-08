@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using FinalSuspect.Helpers;
@@ -8,10 +6,8 @@ using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.AudioManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
 using static FinalSuspect.Modules.SoundInterface.CustomSoundsManager;
-using UnityEngine.UIElements;
 
 
 namespace FinalSuspect.Modules.SoundInterface;
@@ -26,8 +22,8 @@ public static class MyMusicPanel
     public static int itemsPerPage => 7;
     public static int totalPageCount => (finalMusics.Count + itemsPerPage - 1) / itemsPerPage;
 
-    private static int numItems = 0;
-    public static int PlayMode = 0;
+    private static int numItems;
+    public static int PlayMode;
     public static ToggleButtonBehaviour ChangePlayMode { get; private set; }
     public static void Hide()
     {
@@ -146,7 +142,7 @@ public static class MyMusicPanel
         Items = new();
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        Core.Plugin.Logger.Info($"currentPage:{currentPage}", "MyMusicPanel");
+        XtremeLogger.Info($"currentPage:{currentPage}", "MyMusicPanel");
 
         
         int startIndex = (currentPage - 1) * itemsPerPage;
@@ -228,7 +224,7 @@ public static class MyMusicPanel
             passiveButton.OnClick.AddListener(new Action(OnClick));
             void OnClick()
             {
-                Core.Plugin.Logger.Info($"Try To Play {filename}:{path}", "MyMusicPanel");
+                XtremeLogger.Info($"Try To Play {filename}:{path}", "MyMusicPanel");
                 Play(audio);
             }
 

@@ -1,8 +1,7 @@
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using HarmonyLib;
+using TMPro;
 using UnityEngine;
 
 namespace FinalSuspect.DataHandling;
@@ -35,12 +34,12 @@ public static class XtremeLocalHandling
             if (Main.ForkId != ver.forkId)
             {
                 headertext = $"<size=1.5>{ver.forkId}</size>";
-                color = new Color32(191, 255, 185, 255);
+                color = ColorHelper.UnmatchedColor;
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
             {
-                color = new Color32(177, 255, 231, 255);
+                color = ColorHelper.ModColor32;
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
@@ -56,7 +55,9 @@ public static class XtremeLocalHandling
         }
         else
         {
-            color = player.IsLocalPlayer() ? new Color32(177, 255, 231, 255): new Color32(225, 224, 179, 255);
+            if (player.IsLocalPlayer()) color = ColorHelper.ModColor32;
+            else if (player.IsHost()) color = ColorHelper.HostNameColor;
+            else color = ColorHelper.ClientlessColor;
         }
     }
     public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText ,bool headderswap)
@@ -69,9 +70,9 @@ public static class XtremeLocalHandling
         {
             color = Utils.GetRoleColor(roleType);
             if (!headderswap)
-                roleText = $"<size=80%>{Translator.GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+                roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
             else
-                roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{Translator.GetRoleString(roleType.ToString())}</size>";
+                roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
         else if (bothImp)
         {
@@ -99,7 +100,7 @@ public static class XtremeLocalHandling
             
             
             var HeaderTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
-            var HeaderText = HeaderTextTransform.GetComponent<TMPro.TextMeshPro>();
+            var HeaderText = HeaderTextTransform.GetComponent<TextMeshPro>();
             HeaderText.enabled = true;
             HeaderText.text = headertext;
             HeaderText.color = color;
@@ -110,7 +111,9 @@ public static class XtremeLocalHandling
         }
         catch
         {
-            if (__instance.GetRealName() != "Player(Clone)")
+            var create = __instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
+                         __instance.GetRealName() != "Player(Clone)";
+            if (create)
                 XtremePlayerData.CreateDataFor(__instance);
         }
     }

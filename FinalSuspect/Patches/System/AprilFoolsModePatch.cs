@@ -1,5 +1,4 @@
 ﻿using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
 using Il2CppSystem;
 using static CosmeticsLayer;
 
@@ -68,7 +67,8 @@ public static class GetHnsBodyType_Patch
         //    __result = PlayerBodyTypes.Horse;
         //    return;
         //}
-        else if (AprilFoolsMode.ShouldLongAround())
+
+        if (AprilFoolsMode.ShouldLongAround())
         {
             if (player.IsImpostor())
             {
@@ -78,16 +78,14 @@ public static class GetHnsBodyType_Patch
             __result = PlayerBodyTypes.Long;
             return;
         }
-        else
+
+        if (player.IsImpostor())
         {
-            if (player.IsImpostor())
-            {
-                __result = PlayerBodyTypes.Seeker;
-                return;
-            }
-            __result = PlayerBodyTypes.Normal;
+            __result = PlayerBodyTypes.Seeker;
             return;
         }
+        __result = PlayerBodyTypes.Normal;
+        return;
     }
 }
 #endregion
@@ -118,7 +116,7 @@ public static class LongBoiPatches
         {
             __instance.cosmeticLayer.SetHatVisorVisible(false);
         }
-        __instance.SetupNeckGrowth(false, true);
+        __instance.SetupNeckGrowth();
         if (__instance.isExiledPlayer)
         {
             ShipStatus instance = ShipStatus.Instance;
@@ -141,7 +139,7 @@ public static class LongBoiPatches
         //Remove the limit of neck size to prevent issues in FinalSuspectE HnS
 
         __instance.targetHeight = distance / 10f + 0.5f;
-        __instance.SetupNeckGrowth(true, true); //se quiser sim mano
+        __instance.SetupNeckGrowth(true); //se quiser sim mano
         return false;
     }
 

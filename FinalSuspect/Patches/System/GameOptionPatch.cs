@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +12,7 @@ class RoleOptionSettingPatch
     public static void Postfix(RoleOptionSetting __instance)
     {
         var rolecolor = Utils.GetRoleColor(__instance.Role.Role);
-        __instance.labelSprite.color = Utils.ShadeColor(rolecolor, 0.2f);
+        __instance.labelSprite.color = rolecolor.ShadeColor(0.2f);
         __instance.titleText.color = Color.white;
     }
 }
@@ -227,9 +225,9 @@ internal class GameOptionsMenuPatch
 class GameSettingMenuPatch
 {
     
-    static GameObject GamePresetButton = null;
-    static GameObject GameSettingsButton = null;
-    static GameObject RoleSettingsButton = null;
+    static GameObject GamePresetButton;
+    static GameObject GameSettingsButton;
+    static GameObject RoleSettingsButton;
     public static void Postfix()
     {
         try

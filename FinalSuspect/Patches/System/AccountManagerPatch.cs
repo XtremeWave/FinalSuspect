@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Modules.Core.Game;
-using HarmonyLib;
+using Il2CppSystem;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
@@ -27,7 +27,7 @@ public static class AwakeFriendCodeUIPatch
             {
                 obj.transform.SetParent(CustomBarSprit.transform);
             }
-            BarSprit.ForEachChild((Il2CppSystem.Action<GameObject>)ResetParent);
+            BarSprit.ForEachChild((Action<GameObject>)ResetParent);
             BarSprit.SetActive(false);
 
         }
@@ -64,7 +64,7 @@ public static class AwakeAccountManager
 
 
     }; 
-    private static int currentIndex = 0;
+    private static int currentIndex;
 
     static GameObject crewpet_walk0001;
     static GameObject ModLoading;

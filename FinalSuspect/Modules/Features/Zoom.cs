@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling;
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Features;
@@ -13,7 +10,7 @@ namespace FinalSuspect.Modules.Features;
 [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
 public static class Zoom
 {
-    private static bool ResetButtons = false;
+    private static bool ResetButtons;
 
     public static void Postfix()
     {

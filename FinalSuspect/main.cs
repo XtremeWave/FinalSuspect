@@ -1,24 +1,22 @@
-using AmongUs.GameOptions;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.Unity.IL2CPP;
-using HarmonyLib;
-using Il2CppInterop.Runtime.Injection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AmongUs.GameOptions;
+using BepInEx;
+using BepInEx.Configuration;
+using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
+using FinalSuspect;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Random;
+using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
 
-[assembly: AssemblyFileVersion(FinalSuspect.Main.PluginVersion)]
-[assembly: AssemblyInformationalVersion(FinalSuspect.Main.PluginVersion)]
-[assembly: AssemblyVersion(FinalSuspect.Main.PluginVersion)]
+[assembly: AssemblyFileVersion(Main.PluginVersion)]
+[assembly: AssemblyInformationalVersion(Main.PluginVersion)]
+[assembly: AssemblyVersion(Main.PluginVersion)]
 namespace FinalSuspect;
 
 [BepInPlugin(PluginGuid, "FinalSuspect", PluginVersion)]
@@ -62,7 +60,7 @@ public class Main : BasePlugin
 
 
     // == 链接相关设定 / Link Config ==
-    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
+    public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
     public static readonly string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
@@ -70,10 +68,10 @@ public class Main : BasePlugin
     // ==========
     public Harmony Harmony { get; } = new Harmony(PluginGuid);
     public static Version version = Version.Parse(PluginVersion);
-    public static BepInEx.Logging.ManualLogSource Logger;
-    public static bool hasArgumentException = false;
+    public static ManualLogSource Logger;
+    public static bool hasArgumentException;
     public static string ExceptionMessage;
-    public static bool ExceptionMessageIsShown = false;
+    public static bool ExceptionMessageIsShown;
     public static string CredentialsText;
     public static NormalGameOptionsV08 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
     public static HideNSeekGameOptionsV08 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
@@ -173,15 +171,15 @@ public class Main : BasePlugin
         NoGameEnd = Config.Bind("Client Options", "No Game End", false);
 
         Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
-        Modules.Core.Plugin.Logger.Enable();
-        Modules.Core.Plugin.Logger.Disable("SwitchSystem");
-        Modules.Core.Plugin.Logger.Disable("ModNews");
-        Modules.Core.Plugin.Logger.Disable("CancelPet");
+        XtremeLogger.Enable();
+        XtremeLogger.Disable("SwitchSystem");
+        XtremeLogger.Disable("ModNews");
+        XtremeLogger.Disable("CancelPet");
         if (!DebugModeManager.AmDebugger)
         {
-            Modules.Core.Plugin.Logger.Disable("test");
+            XtremeLogger.Disable("test");
         }
-        Modules.Core.Plugin.Logger.isDetail = true;
+        XtremeLogger.isDetail = true;
 
         // 認証関連-初期化
         DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);
@@ -195,7 +193,7 @@ public class Main : BasePlugin
         ExceptionMessage = "";
         try
         {
-            roleColors = new Dictionary<RoleTypes, string>()
+            roleColors = new Dictionary<RoleTypes, string>
             {
                 {RoleTypes.CrewmateGhost, "#8CFFFF"},
                 {RoleTypes.GuardianAngel, "#8CFFDB"},
@@ -212,8 +210,8 @@ public class Main : BasePlugin
         }
         catch (ArgumentException ex)
         {
-            Modules.Core.Plugin.Logger.Error("错误：字典出现重复项", "LoadDictionary");
-            Modules.Core.Plugin.Logger.Exception(ex, "LoadDictionary");
+            XtremeLogger.Error("错误：字典出现重复项", "LoadDictionary");
+            XtremeLogger.Exception(ex, "LoadDictionary");
             hasArgumentException = true;
             ExceptionMessage = ex.Message;
             ExceptionMessageIsShown = false;
@@ -225,9 +223,9 @@ public class Main : BasePlugin
 
         IRandom.SetInstance(new NetRandomWrapper());
 
-        Modules.Core.Plugin.Logger.Info($"{Application.version}", "AmongUs Version");
+        XtremeLogger.Info($"{Application.version}", "AmongUs Version");
 
-        var handler = Modules.Core.Plugin.Logger.Handler("GitVersion");
+        var handler = XtremeLogger.Handler("GitVersion");
         handler.Info($"{nameof(ThisAssembly.Git.BaseTag)}: {ThisAssembly.Git.BaseTag}");
         handler.Info($"{nameof(ThisAssembly.Git.Commit)}: {ThisAssembly.Git.Commit}");
         handler.Info($"{nameof(ThisAssembly.Git.Commits)}: {ThisAssembly.Git.Commits}");
@@ -244,6 +242,6 @@ public class Main : BasePlugin
         if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();
 
-        Modules.Core.Plugin.Logger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
+        XtremeLogger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
     }
 }

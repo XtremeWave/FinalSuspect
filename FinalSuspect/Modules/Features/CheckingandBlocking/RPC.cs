@@ -2,13 +2,11 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Patches.Game_Vanilla;
-using HarmonyLib;
 using Hazel;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
+using InnerNet;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
@@ -28,9 +26,9 @@ internal class RPCHandlerPatch
 {
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
-        Core.Plugin.Logger.Info($"{__instance?.Data?.PlayerId}" +
+        XtremeLogger.Info($"{__instance?.Data?.PlayerId}" +
                                 $"({__instance?.Data?.PlayerName})" +
-                                $"{(__instance?.Data?.OwnerId == AmongUsClient.Instance.HostId ? "Host" : "")}" +
+                                $"{(__instance.IsHost() ? "Host" : "")}" +
                                 $":{callId}({RPC.GetRpcName(callId)})",
             "ReceiveRPC");
 
@@ -59,7 +57,7 @@ internal class RPCHandlerPatch
         {
             case RpcCalls.CheckName://CheckNameRPC
                 string name = subReader.ReadString();
-                Core.Plugin.Logger.Info("RPC Check Name For Player: " + name, "CheckName");
+                XtremeLogger.Info("RPC Check Name For Player: " + name, "CheckName");
                 if (__instance.OwnerId == AmongUsClient.Instance.HostId)
                     Main.HostNickName = name;
                 XtremePlayerData.CreateDataFor(__instance, name);
@@ -69,23 +67,23 @@ internal class RPCHandlerPatch
                 subReader.ReadUInt32();
                 name = subReader.ReadString();
                 FAC.SetNameNum[__instance.PlayerId]++;
-                Core.Plugin.Logger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
+                XtremeLogger.Info("RPC Set Name For Player: " + __instance.GetNameWithRole() + " => " + name, "SetName");
                 break;
             case RpcCalls.SetRole: //SetRoleRPC
                 var role = (RoleTypes)subReader.ReadUInt16();
                 var canOverriddenRole = subReader.ReadBoolean();
-                Core.Plugin.Logger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
+                XtremeLogger.Info("RPC Set Role For Player: " + __instance.GetRealName() + " => " + role + " CanOverrideRole: " + canOverriddenRole, "SetRole");
                 break;
             case RpcCalls.SendChat: // Free chat
                 var text = subReader.ReadString();
-                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
+                XtremeLogger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:{text.RemoveHtmlTags()}", "ReceiveChat");
                 break;
             case RpcCalls.SendQuickChat:
-                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
+                XtremeLogger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
                 break;
             case RpcCalls.StartMeeting:
                 var p = Utils.GetPlayerById(subReader.ReadByte());
-                Core.Plugin.Logger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
+                XtremeLogger.Info($"{__instance.GetNameWithRole()} => {p?.GetNameWithRole() ?? "null"}", "StartMeeting");
                 break;
         }
         return true;
@@ -118,7 +116,7 @@ internal class RPCHandlerPatch
                                 if (__instance?.Data?.Disconnected is not null and not true)
                                 {
                                     var msg = string.Format(GetString("KickBecauseDiffrentVersionOrMod"), __instance?.Data?.PlayerName);
-                                    Core.Plugin.Logger.Warn(msg, "Version Kick");
+                                    XtremeLogger.Warn(msg, "Version Kick");
                                     NotificationPopperPatch.NotificationPop(msg);
                                     Utils.KickPlayer(__instance.GetClientId(), false, "ModVersionIncorrect");
                                 }
@@ -140,7 +138,7 @@ internal static class RPC
         while (PlayerControl.LocalPlayer == null) await Task.Delay(500);
         if (!Main.VersionCheat.Value)
         {
-            MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.CancelPet, SendOption.Reliable);
+            MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.CancelPet);
             writer.Write(Main.PluginVersion);
             writer.Write($"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
             writer.Write(Main.ForkId);
@@ -165,28 +163,28 @@ internal static class RPC
             from = Main.AllPlayerControls.Where(c => c.NetId == targetNetId).FirstOrDefault()?.Data?.PlayerName;
         }
         catch { }
-        Core.Plugin.Logger.Info($"FromNetID:{targetNetId}({from}) TargetClientID:{targetClientId}({target}) CallID:{callId}({rpcName})", "SendRPC");
+        XtremeLogger.Info($"FromNetID:{targetNetId}({from}) TargetClientID:{targetClientId}({target}) CallID:{callId}({rpcName})", "SendRPC");
     }
     public static string GetRpcName(byte callId)
     {
         string rpcName;
         if ((rpcName = Enum.GetName(typeof(RpcCalls), callId)) == null)
-            rpcName = callId.ToString() + "INVALID";
+            rpcName = callId + "INVALID";
         return rpcName;
     }
 }
-[HarmonyPatch(typeof(InnerNet.InnerNetClient), nameof(InnerNet.InnerNetClient.StartRpc))]
+[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.StartRpc))]
 internal class StartRpcPatch
 {
-    public static void Prefix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] uint targetNetId, [HarmonyArgument(1)] byte callId)
+    public static void Prefix(InnerNetClient __instance, [HarmonyArgument(0)] uint targetNetId, [HarmonyArgument(1)] byte callId)
     {
             RPC.SendRpcLogger(targetNetId, callId);
     }
 }
-[HarmonyPatch(typeof(InnerNet.InnerNetClient), nameof(InnerNet.InnerNetClient.StartRpcImmediately))]
+[HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.StartRpcImmediately))]
 internal class StartRpcImmediatelyPatch
 {
-    public static void Prefix(InnerNet.InnerNetClient __instance, [HarmonyArgument(0)] uint targetNetId, [HarmonyArgument(1)] byte callId, [HarmonyArgument(3)] int targetClientId = -1)
+    public static void Prefix(InnerNetClient __instance, [HarmonyArgument(0)] uint targetNetId, [HarmonyArgument(1)] byte callId, [HarmonyArgument(3)] int targetClientId = -1)
     {
             RPC.SendRpcLogger(targetNetId, callId, targetClientId);
     }

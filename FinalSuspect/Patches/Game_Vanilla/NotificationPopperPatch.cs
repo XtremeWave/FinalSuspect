@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using HarmonyLib;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 

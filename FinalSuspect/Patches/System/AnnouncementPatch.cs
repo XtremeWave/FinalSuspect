@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using AmongUs.Data;
 using AmongUs.Data.Player;
 using Assets.InnerNet;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Resources;
-using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using UnityEngine;
 
@@ -48,39 +47,50 @@ public class ModNewsHistory
 {
     public static List<ModNews> AllModNews = new();
     public static ModNews GetContentFromRes(string path)
+{
+    ModNews mn = new();
+
+    using StreamReader reader = new(path, Encoding.UTF8);
+    string text = "";
+    uint langId = (uint)DataManager.Settings.Language.CurrentLanguage;
+    while (!reader.EndOfStream)
     {
-        ModNews mn = new();
-        
-        using StreamReader reader = new(path, Encoding.UTF8);
-        string text = "";
-        uint langId = (uint)DataManager.Settings.Language.CurrentLanguage;
-        while (!reader.EndOfStream)
+        string line = reader.ReadLine();
+        if (line.StartsWith("#Number:")) mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
+        else if (line.StartsWith("#LangId:")) langId = uint.Parse(line.Replace("#LangId:", string.Empty));
+        else if (line.StartsWith("#Title:")) mn.Title = line.Replace("#Title:", string.Empty);
+        else if (line.StartsWith("#SubTitle:")) mn.SubTitle = line.Replace("#SubTitle:", string.Empty);
+        else if (line.StartsWith("#ShortTitle:")) mn.ShortTitle = line.Replace("#ShortTitle:", string.Empty);
+        else if (line.StartsWith("#Date:")) mn.Date = line.Replace("#Date:", string.Empty);
+        else if (line.StartsWith("#---")) continue;
+        else if (line.StartsWith("# ")) continue;
+        else
         {
-            string line = reader.ReadLine();
-            if (line.StartsWith("#Number:")) mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
-            else if (line.StartsWith("#LangId:")) langId = uint.Parse(line.Replace("#LangId:", string.Empty));
-            else if (line.StartsWith("#Title:")) mn.Title = line.Replace("#Title:", string.Empty);
-            else if (line.StartsWith("#SubTitle:")) mn.SubTitle = line.Replace("#SubTitle:", string.Empty);
-            else if (line.StartsWith("#ShortTitle:")) mn.ShortTitle = line.Replace("#ShortTitle:", string.Empty);
-            else if (line.StartsWith("#Date:")) mn.Date = line.Replace("#Date:", string.Empty);
-            else if (line.StartsWith("#---")) continue;
-            else if (line.StartsWith("# ")) continue;
-            else
+            string pattern = @"\[(.*?)\]\((.*?)\)";
+            Regex regex = new Regex(pattern);
+            line = regex.Replace(line, match =>
             {
-                if (line.StartsWith("## ")) line = line.Replace("## ", "<b>") + "</b>";
-                else if (line.StartsWith("- ") && !line.StartsWith(" - ")) line = line.Replace("- ", "・");
-                text += $"\n{line}";
-            }
+                string content1 = match.Groups[1].Value;
+                string content2 = match.Groups[2].Value;
+                return $"<color=#cdfffd><nobr><link={content2}>{content1}</nobr></link></color> ";
+            });
+            
+            if (line.StartsWith("## ")) line = line.Replace("## ", "<b>") + "</b>";
+            else if (line.StartsWith("- ") && !line.StartsWith(" - ")) line = line.Replace("- ", "・");
+            
+            text += $"{line}\n";
         }
-        mn.Lang = langId;
-        mn.Text = text;
-        Modules.Core.Plugin.Logger.Info($"Number:{mn.Number}", "ModNews");
-        Modules.Core.Plugin.Logger.Info($"Title:{mn.Title}", "ModNews");
-        Modules.Core.Plugin.Logger.Info($"SubTitle:{mn.SubTitle}", "ModNews");
-        Modules.Core.Plugin.Logger.Info($"ShortTitle:{mn.ShortTitle}", "ModNews");
-        Modules.Core.Plugin.Logger.Info($"Date:{mn.Date}", "ModNews");
-        return mn;
     }
+    mn.Lang = langId;
+    mn.Text = text;
+    XtremeLogger.Info($"Number:{mn.Number}", "ModNews");
+    XtremeLogger.Info($"Title:{mn.Title}", "ModNews");
+    XtremeLogger.Info($"SubTitle:{mn.SubTitle}", "ModNews");
+    XtremeLogger.Info($"ShortTitle:{mn.ShortTitle}", "ModNews");
+    XtremeLogger.Info($"Date:{mn.Date}", "ModNews");
+    return mn;
+}
+
 
     [HarmonyPatch(typeof(PlayerAnnouncementData), nameof(PlayerAnnouncementData.SetAnnouncements)), HarmonyPrefix]
     public static bool SetModAnnouncements(PlayerAnnouncementData __instance, [HarmonyArgument(0)] ref Il2CppReferenceArray<Announcement> aRange)
@@ -111,7 +121,7 @@ public class ModNewsHistory
 
         return true;
     }
-    static Sprite TeamLogoSprite = Utils.LoadSprite($"TeamLogo.png", 1000f);
+    static Sprite TeamLogoSprite = Utils.LoadSprite("TeamLogo.png", 1000f);
     
     //YuEzTool
     [HarmonyPatch(typeof(AnnouncementPanel), nameof(AnnouncementPanel.SetUp)), HarmonyPostfix]

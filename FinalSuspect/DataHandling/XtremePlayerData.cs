@@ -93,11 +93,11 @@ public void SetName(string name) => Name = name;
     public void SetDead()
     {
         IsDead = true;
-        Modules.Core.Plugin.Logger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
+        XtremeLogger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
     }
     public void SetDisconnected()
     {
-        Modules.Core.Plugin.Logger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
+        XtremeLogger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
         SetDead();
         SetDeathReason(DataDeathReason.Disconnect);
     }
@@ -120,7 +120,7 @@ public void SetName(string name) => Name = name;
     {
         if (IsDead && RealDeathReason == DataDeathReason.None || focus)
             RealDeathReason = deathReason;
-        Modules.Core.Plugin.Logger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
+        XtremeLogger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
 
     }
     public void SetRealKiller(XtremePlayerData killer)
@@ -129,7 +129,7 @@ public void SetName(string name) => Name = name;
         SetDeathReason(DataDeathReason.Kill);
         killer.KillCount++;
         RealKiller = killer;
-        Modules.Core.Plugin.Logger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
+        XtremeLogger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
     }
     public void SetTaskTotalCount(int count) => TotalTaskCount = count;
     public void CompleteTask() => CompleteTaskCount++;
@@ -155,7 +155,7 @@ public void SetName(string name) => Name = name;
 #pragma warning disable CA1816
         public void Dispose()
         {
-            if (XtremeGameData.GameStates.IsLobby) return;
+            XtremeLogger.Info($"Disposing XtremePlayerData For {Name}", "Data");
             AllPlayerData.Remove(Player.PlayerId);
             Player = null;
             Name = null ;

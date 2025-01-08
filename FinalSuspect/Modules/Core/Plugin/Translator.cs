@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
-using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using YamlDotNet.RepresentationModel;
+using Object = Il2CppSystem.Object;
 
 namespace FinalSuspect.Modules.Core.Plugin;
 
@@ -21,9 +19,9 @@ public static class Translator
     
     public static void Init()
     {
-        Logger.Info("加载语言文件...", "Translator");
+        XtremeLogger.Info("加载语言文件...", "Translator");
         LoadLangs();
-        Logger.Info("加载语言文件成功", "Translator");
+        XtremeLogger.Info("加载语言文件成功", "Translator");
     }
     public static void LoadLangs()
     {
@@ -49,7 +47,7 @@ public static class Translator
                 }
 
                 if (!dic.TryAdd(key, value))
-                    Logger.Warn($"翻译文件 [{fileName}] 出现重复字符串 => {key} / {value}", "Translator");
+                    XtremeLogger.Warn($"翻译文件 [{fileName}] 出现重复字符串 => {key} / {value}", "Translator");
             }
 
             if (langId != -1)
@@ -58,7 +56,7 @@ public static class Translator
                 TranslateMaps.Add(langId, dic);
             }
             else
-                Logger.Error($"翻译文件 [{fileName}] 没有提供语言ID", "Translator");
+                XtremeLogger.Error($"翻译文件 [{fileName}] 没有提供语言ID", "Translator");
         }
 
         // カスタム翻訳ファイルの読み込み
@@ -73,6 +71,7 @@ public static class Translator
         }
     }
 
+    // ReSharper restore Unity.ExpensiveCode
     public static string GetString(string s, Dictionary<string, string> replacementDic = null, bool console = false)
     {
         var langId = TranslationController.Instance?.currentLanguage?.languageID ?? GetUserLangByRegion();
@@ -112,13 +111,13 @@ public static class Translator
         }
         catch (Exception Ex)
         {
-            Logger.Fatal($"Error oucured at [{str}] in yaml", "Translator");
-            Logger.Error("Error:\n" + Ex.ToString(), "Translator");
+            XtremeLogger.Fatal($"Error oucured at [{str}] in yaml", "Translator");
+            XtremeLogger.Error("Error:\n" + Ex, "Translator");
         }
         return res;
     }
     public static string GetString(StringNames stringName)
-        => DestroyableSingleton<TranslationController>.Instance.GetString(stringName, new Il2CppReferenceArray<Il2CppSystem.Object>(0));
+        => DestroyableSingleton<TranslationController>.Instance.GetString(stringName, new Il2CppReferenceArray<Object>(0));
     public static string GetRoleString(string str, bool forUser = true)
     {
         var CurrentLanguage = TranslationController.Instance?.currentLanguage?.languageID ?? SupportedLangs.English;
@@ -152,7 +151,7 @@ public static class Translator
         string path = @$"./{LANGUAGE_FOLDER_NAME}/{filename}";
         if (File.Exists(path))
         {
-            Logger.Info($"加载自定义翻译文件：{filename}", "LoadCustomTranslation");
+            XtremeLogger.Info($"加载自定义翻译文件：{filename}", "LoadCustomTranslation");
             using StreamReader sr = new(path, Encoding.GetEncoding("UTF-8"));
             string text;
             string[] tmp = Array.Empty<string>();
@@ -167,14 +166,14 @@ public static class Translator
                     }
                     catch (KeyNotFoundException)
                     {
-                        Logger.Warn($"无效密钥：{tmp[0]}", "LoadCustomTranslation");
+                        XtremeLogger.Warn($"无效密钥：{tmp[0]}", "LoadCustomTranslation");
                     }
                 }
             }
         }
         else
         {
-            Logger.Error($"找不到自定义翻译文件：{filename}", "LoadCustomTranslation");
+            XtremeLogger.Error($"找不到自定义翻译文件：{filename}", "LoadCustomTranslation");
         }
     }
 

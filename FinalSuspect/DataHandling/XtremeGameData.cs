@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using AmongUs.GameOptions;
+using FinalSuspect.Modules.Core.Game;
+using InnerNet;
 
 namespace FinalSuspect.DataHandling;
 
@@ -33,8 +35,7 @@ public static class XtremeGameData
             {
                 try
                 {
-                    return Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
-                        x.OwnerId == AmongUsClient.Instance.HostId
+                    return Main.AllPlayerControls.ToArray().FirstOrDefault(x =>x.IsHost()
                         && PlayerControl.LocalPlayer.OwnerId != AmongUsClient.Instance.HostId
                         && x.OtherModClient() );
                 }
@@ -49,9 +50,9 @@ public static class XtremeGameData
 
         public static bool ModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
             x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
-        public static bool IsLobby => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.Joined && !IsFreePlay;
+        public static bool IsLobby => AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Joined && !IsFreePlay;
         public static bool IsInGame => InGame || IsFreePlay;
-        public static bool IsNotJoined => AmongUsClient.Instance.GameState == AmongUsClient.GameStates.NotJoined;
+        public static bool IsNotJoined => AmongUsClient.Instance.GameState == InnerNetClient.GameStates.NotJoined;
         public static bool IsOnlineGame => AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame;
         public static bool IsLocalGame => AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame;
         public static bool IsFreePlay => AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay;

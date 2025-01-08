@@ -11,15 +11,15 @@ class LogHandler : ILogHandler
     }
 
     public void Info(string text)
-        => Core.Plugin.Logger.Info(text, Tag, true);
+        => XtremeLogger.Info(text, Tag);
     public void Warn(string text)
-        => Core.Plugin.Logger.Warn(text, Tag, true);
+        => XtremeLogger.Warn(text, Tag);
     public void Error(string text)
-        => Core.Plugin.Logger.Error(text, Tag, true);
+        => XtremeLogger.Error(text, Tag);
     public void Fatal(string text)
-        => Core.Plugin.Logger.Fatal(text, Tag, true);
+        => XtremeLogger.Fatal(text, Tag);
     public void Msg(string text)
-        => Core.Plugin.Logger.Msg(text, Tag, true);
+        => XtremeLogger.Msg(text, Tag);
     public void Exception(Exception ex)
-        => Core.Plugin.Logger.Exception(ex, Tag);
+        => XtremeLogger.Exception(ex, Tag);
 }

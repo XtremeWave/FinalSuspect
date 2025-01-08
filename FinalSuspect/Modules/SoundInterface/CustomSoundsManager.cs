@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Runtime.InteropServices;
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.AudioManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
@@ -31,7 +29,7 @@ public static class CustomSoundsManager
         MyMusicPanel.RefreshTagList();
         AudioManagementPanel.RefreshTagList();
         StartPlayLoop(audio.Path);
-        Core.Plugin.Logger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+        XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
     }
 
     [DllImport("winmm.dll")]

@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using System.Text;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
 using FinalSuspect.Templates;
-using HarmonyLib;
+using Il2CppSystem;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
+using ColorHelper = FinalSuspect.Helpers.ColorHelper;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
 
@@ -19,8 +18,8 @@ internal class PingTrackerUpdatePatch
 {
     private static float deltaTime;
     public static string ServerName = "";
-    private static TextMeshPro CreditTextCredential = null;
-    private static AspectPosition CreditTextCredentialAspectPos = null;
+    private static TextMeshPro CreditTextCredential;
+    private static AspectPosition CreditTextCredentialAspectPos;
     private static void Postfix(PingTracker __instance)
     {
         if (CreditTextCredential == null)
@@ -76,7 +75,7 @@ public class VersionShowerStartPatch
 {
     public static GameObject OVersionShower;
     public static TextMeshPro VisitText;
-    public static TextMeshPro CreditTextCredential = null;
+    public static TextMeshPro CreditTextCredential;
     public static GameObject ModLogo;
     public static GameObject TeamLogo;
 
@@ -151,7 +150,7 @@ public class VersionShowerStartPatch
             CreditTextCredential.transform.localPosition = new Vector3(0.3f, -2.6f, 0f);
 
             CreditTextCredential.enabled = GameObject.Find("FinalSuspect Background") != null;
-            CreditTextCredential.SetOutlineColor(Utils.ShadeColor(ColorHelper.ModColor32, 0.75f));
+            CreditTextCredential.SetOutlineColor(ColorHelper.ShadeColor(ColorHelper.ModColor32, 0.75f));
             CreditTextCredential.SetOutlineThickness(0.20f);
             CreditTextCredential.fontStyle = FontStyles.Bold;
             var ap1 = OVersionShower.GetComponent<AspectPosition>();
@@ -207,13 +206,13 @@ internal class TitleLogoPatch
         var friendsButton = AwakeFriendCodeUIPatch.FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
         {
-            {new List<PassiveButton>() {__instance.playButton, __instance.inventoryButton, __instance.shopButton},
+            {new List<PassiveButton> {__instance.playButton, __instance.inventoryButton, __instance.shopButton},
                 (standardActiveSprite, new(0.5216f, 1f, 0.9490f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton>() {__instance.newsButton, __instance.myAccountButton, __instance.settingsButton},
+            {new List<PassiveButton> {__instance.newsButton, __instance.myAccountButton, __instance.settingsButton},
                 (minorActiveSprite, new( 0.5216f, 0.7765f, 1f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton>() {__instance.creditsButton, __instance.quitButton},
+            {new List<PassiveButton> {__instance.creditsButton, __instance.quitButton},
                 (minorActiveSprite, new(0.7294f, 0.6353f, 1.0f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton>() {friendsButton },
+            {new List<PassiveButton> {friendsButton },
                 (minorActiveSprite, new(0.0235f, 0f, 0.8f, 0.8f), shade, Color.white, Color.white) },
         };
 
@@ -265,7 +264,7 @@ internal class TitleLogoPatch
         if (!(LeftPanel = GameObject.Find("LeftPanel"))) return;
         LeftPanel.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         static void ResetParent(GameObject obj) => obj.transform.SetParent(LeftPanel.transform.parent);
-        LeftPanel.ForEachChild((Il2CppSystem.Action<GameObject>)ResetParent);
+        LeftPanel.ForEachChild((Action<GameObject>)ResetParent);
         LeftPanel.SetActive(false);
 
         GameObject.Find("Divider")?.SetActive(false);

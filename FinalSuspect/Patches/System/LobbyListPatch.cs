@@ -1,7 +1,5 @@
 ﻿using System;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
 using InnerNet;
 using TMPro;
 using UnityEngine;
@@ -67,11 +65,11 @@ public static class MatchMakerGameButtonSetGamePatch
                 break;
             case Platforms.IPhone:
                 color = "#e3e3e3";
-                name = Translator.GetString("IPhone");
+                name = GetString("IPhone");
                 break;
             case Platforms.Android:
                 color = "#1EA21A";
-                name = Translator.GetString("Android");
+                name = GetString("Android");
                 break;
             case Platforms.Switch:
                 string totalname = nameList[id];
@@ -80,7 +78,7 @@ public static class MatchMakerGameButtonSetGamePatch
                 string secondHalf = totalname.AsSpan(halfLength).ToString();
 
                 RoomName = $"<color=#00B2FF>{firstHalf}</color><color=#ff0000>{secondHalf}</color>";
-                name = $"<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
+                name = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
                 break;
             case Platforms.Xbox:
                 color = "#07ff00";

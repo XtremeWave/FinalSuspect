@@ -5,21 +5,18 @@ using System.Reflection;
 using System.Text;
 using AmongUs.Data;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
 
 namespace FinalSuspect.Modules.Scrapped;
 
 internal class Cloud
 {
     private static string IP;
-    private static int LOBBY_PORT = 0;
-    private static int FAC_PORT = 0;
+    private static int LOBBY_PORT;
+    private static int FAC_PORT;
     private static Socket ClientSocket;
     private static Socket EacClientSocket;
-    private static long LastRepotTimeStamp = 0;
+    private static long LastRepotTimeStamp;
 
     [PluginModuleInitializer]
     public static void Init()
@@ -34,7 +31,7 @@ internal class Cloud
         }
         catch (Exception e)
         {
-            Core.Plugin.Logger.Exception(e, "Cloud Init");
+            XtremeLogger.Exception(e, "Cloud Init");
         }
     }
     private static string GetResourcesTxt(string path)
@@ -68,13 +65,13 @@ internal class Cloud
         }
         catch (Exception e)
         {
-            Core.Plugin.Logger.Exception(e, "SentLobbyToQQ");
+            XtremeLogger.Exception(e, "SentLobbyToQQ");
             throw;
         }
         return true;
     }
 
-    private static bool connecting = false;
+    private static bool connecting;
     public static void StartConnect()
     {
         if (connecting || EacClientSocket != null && EacClientSocket.Connected) return;
@@ -92,12 +89,12 @@ internal class Cloud
                 LastRepotTimeStamp = Utils.GetTimeStamp();
                 EacClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 EacClientSocket.Connect(IP, FAC_PORT);
-                Core.Plugin.Logger.Warn("已连接至FinalSuspect服务器", "FAC Cloud");
+                XtremeLogger.Warn("已连接至FinalSuspect服务器", "FAC Cloud");
             }
             catch (Exception ex)
             {
                 connecting = false;
-                Core.Plugin.Logger.Error($"Connect To FAC Failed:\n{ex.Message}", "FAC Cloud", false);
+                XtremeLogger.Error($"Connect To FAC Failed:\n{ex.Message}", "FAC Cloud", false);
             }
             connecting = false;
         }, 3.5f, "FAC Cloud Connect");
@@ -112,7 +109,7 @@ internal class Cloud
         StartConnect();
         if (EacClientSocket == null || !EacClientSocket.Connected)
         {
-            Core.Plugin.Logger.Warn("未连接至FinalSuspect服务器，报告被取消", "FAC Cloud");
+            XtremeLogger.Warn("未连接至FinalSuspect服务器，报告被取消", "FAC Cloud");
             return;
         }
         EacClientSocket.Send(Encoding.Default.GetBytes(msg));
@@ -126,7 +123,7 @@ internal class Cloud
             {
                 LastRepotTimeStamp = 0;
                 StopConnect();
-                Core.Plugin.Logger.Warn("超时自动断开与FinalSuspect服务器的连接", "FAC Cloud");
+                XtremeLogger.Warn("超时自动断开与FinalSuspect服务器的连接", "FAC Cloud");
             }
         }
     }

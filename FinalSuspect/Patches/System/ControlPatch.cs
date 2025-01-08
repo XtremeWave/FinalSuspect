@@ -1,9 +1,7 @@
+using System;
 using System.Linq;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
@@ -12,7 +10,7 @@ namespace FinalSuspect.Patches.System;
 internal class ControllerManagerUpdatePatch
 {
     private static readonly (int, int)[] resolutions = { (480, 270), (640, 360), (800, 450), (1280, 720), (1600, 900), (1920, 1080) };
-    private static int resolutionIndex = 0;
+    private static int resolutionIndex;
     public static void Postfix(ControllerManager __instance)
     {
         //职业介绍
@@ -38,31 +36,31 @@ internal class ControllerManagerUpdatePatch
         //重新加载自定义翻译
         if (GetKeysDown(KeyCode.F5, KeyCode.T))
         {
-            Modules.Core.Plugin.Logger.Info("加载自定义翻译文件", "KeyCommand");
-            Translator.LoadLangs();
-            Modules.Core.Plugin.Logger.SendInGame("Reloaded Custom Translation File");
+            XtremeLogger.Info("加载自定义翻译文件", "KeyCommand");
+            LoadLangs();
+            XtremeLogger.SendInGame("Reloaded Custom Translation File");
         }
         if (GetKeysDown(KeyCode.F5, KeyCode.X))
         {
-            Modules.Core.Plugin.Logger.Info("导出自定义翻译文件", "KeyCommand");
-            Translator.ExportCustomTranslation();
-            Modules.Core.Plugin.Logger.SendInGame("Exported Custom Translation File");
+            XtremeLogger.Info("导出自定义翻译文件", "KeyCommand");
+            ExportCustomTranslation();
+            XtremeLogger.SendInGame("Exported Custom Translation File");
         }
         //日志文件转储
         if (GetKeysDown(KeyCode.F1, KeyCode.LeftControl))
         {
-            Modules.Core.Plugin.Logger.Info("输出日志", "KeyCommand");
+            XtremeLogger.Info("输出日志", "KeyCommand");
             Utils.DumpLog();
         }
         if (GetKeysDown(KeyCode.F1, KeyCode.RightControl))
         {
-            Modules.Core.Plugin.Logger.Info("输出日志", "KeyCommand");
+            XtremeLogger.Info("输出日志", "KeyCommand");
             Utils.DumpLog();
         }
         //打开游戏目录
         if (GetKeysDown(KeyCode.F10))
         {
-            Utils.OpenDirectory(global::System.Environment.CurrentDirectory);
+            Utils.OpenDirectory(Environment.CurrentDirectory);
         }
 
         //-- 下面是主机专用的命令--//
@@ -70,7 +68,7 @@ internal class ControllerManagerUpdatePatch
 
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && XtremeGameData.GameStates.IsCountDown)
         {
-            Modules.Core.Plugin.Logger.Info("倒计时修改为0", "KeyCommand");
+            XtremeLogger.Info("倒计时修改为0", "KeyCommand");
             GameStartManager.Instance.countDownTimer = 0;
         }
 
@@ -78,20 +76,20 @@ internal class ControllerManagerUpdatePatch
         //倒计时取消
         if (Input.GetKeyDown(KeyCode.C) && XtremeGameData.GameStates.IsCountDown)
         {
-            Modules.Core.Plugin.Logger.Info("重置倒计时", "KeyCommand");
+            XtremeLogger.Info("重置倒计时", "KeyCommand");
             GameStartManager.Instance.ResetStartState();
         }
 
         //切换日志是否也在游戏中输出
         if (GetKeysDown(KeyCode.F2, KeyCode.LeftControl))
         {
-            Modules.Core.Plugin.Logger.isAlsoInGame = !Modules.Core.Plugin.Logger.isAlsoInGame;
-            Modules.Core.Plugin.Logger.SendInGame($"游戏中输出日志：{Modules.Core.Plugin.Logger.isAlsoInGame}");
+            XtremeLogger.isAlsoInGame = !XtremeLogger.isAlsoInGame;
+            XtremeLogger.SendInGame($"游戏中输出日志：{XtremeLogger.isAlsoInGame}");
         }
         if (GetKeysDown(KeyCode.F2, KeyCode.RightControl))
         {
-            Modules.Core.Plugin.Logger.isAlsoInGame = !Modules.Core.Plugin.Logger.isAlsoInGame;
-            Modules.Core.Plugin.Logger.SendInGame($"游戏中输出日志：{Modules.Core.Plugin.Logger.isAlsoInGame}");
+            XtremeLogger.isAlsoInGame = !XtremeLogger.isAlsoInGame;
+            XtremeLogger.SendInGame($"游戏中输出日志：{XtremeLogger.isAlsoInGame}");
         }
 
     }
@@ -100,7 +98,7 @@ internal class ControllerManagerUpdatePatch
     {
         if (keys.Any(Input.GetKeyDown) && keys.All(Input.GetKey))
         {
-            Modules.Core.Plugin.Logger.Info($"快捷键：{keys.Where(Input.GetKeyDown).First()} in [{string.Join(",", keys)}]", "GetKeysDown");
+            XtremeLogger.Info($"快捷键：{keys.Where(Input.GetKeyDown).First()} in [{string.Join(",", keys)}]", "GetKeysDown");
             return true;
         }
         return false;

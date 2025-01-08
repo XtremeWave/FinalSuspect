@@ -38,6 +38,6 @@ public interface IRandom
                 Instance = Activator.CreateInstance(type) as IRandom ?? Instance;
             }
         }
-        else Core.Plugin.Logger.Warn($"無効なID: {id}", "IRandom.SetInstanceById");
+        else XtremeLogger.Warn($"無効なID: {id}", "IRandom.SetInstanceById");
     }
 }

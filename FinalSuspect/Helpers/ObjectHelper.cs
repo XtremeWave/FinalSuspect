@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
+using Il2CppSystem;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Helpers;
 
@@ -18,7 +19,7 @@ public static class ObjectHelper
     public static void DestroyTranslator(this GameObject obj)
     {
         if (obj == null) return;
-        obj.ForEachChild((Il2CppSystem.Action<GameObject>)(x =>DestroyTranslator(x)));
+        obj.ForEachChild((Action<GameObject>)(x =>DestroyTranslator(x)));
         TextTranslatorTMP[] translator = obj.GetComponentsInChildren<TextTranslatorTMP>(true);
         translator?.Do(Object.Destroy);
     }

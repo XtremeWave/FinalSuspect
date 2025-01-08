@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FinalSuspect.Helpers;
-using HarmonyLib;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Patches.System;
 
@@ -11,8 +9,8 @@ public class CreditsControllerPatch
 {
     private static List<CreditsController.CreditStruct> GetModCredits()
     {
-        var devList = new List<string>()
-            {
+        var devList = new List<string>
+        {
                 $"<size=120%><color={ColorHelper.ModColor}>{Main.ModName}</color></size>",
                 $"<color=#fffcbe>By</color> <color={ColorHelper.TeamColor}>XtremeWave</color>",
                 " ",

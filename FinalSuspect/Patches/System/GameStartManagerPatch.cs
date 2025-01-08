@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using AmongUs.Data;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Resources;
-using HarmonyLib;
 using InnerNet;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
 
 
@@ -59,13 +55,13 @@ public class GameStartManagerPatch
                 ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
                 ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor) ? modColor : HideName.color;
             HideName.text = Main.HideName.Value;
-            Modules.Core.Plugin.Logger.Info("HideName instantiated and configured", "test");
+            XtremeLogger.Info("HideName instantiated and configured", "test");
 
             warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
             warningText.name = "WarningText";
             warningText.transform.localPosition = new(0f, 0f - __instance.transform.localPosition.y, -1f);
             warningText.gameObject.SetActive(false);
-            Modules.Core.Plugin.Logger.Info("WarningText instantiated and configured", "test");
+            XtremeLogger.Info("WarningText instantiated and configured", "test");
 
             if (AmongUsClient.Instance.AmHost)
             {
@@ -123,7 +119,7 @@ public class GameStartManagerPatch
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
     public class GameStartManagerUpdatePatch
     {
-        private static int updateTimer = 0;
+        private static int updateTimer;
         public static float exitTimer = -1f;
         public static void Prefix(GameStartManager __instance)
         {
@@ -172,13 +168,13 @@ public class GameStartManagerPatch
                     if (!MatchVersions(client.Character.PlayerId, true))
                     {
                         canStartGame = false;
-                        mismatchedPlayerNameList.Add(Utils.ColorString(Palette.PlayerColors[client.ColorId], client.Character.Data.PlayerName));
+                        mismatchedPlayerNameList.Add(StringHelper.ColorString(Palette.PlayerColors[client.ColorId], client.Character.Data.PlayerName));
                     }
                 }
                 if (!canStartGame)
                 {
                     __instance.StartButton.gameObject.SetActive(false);
-                    warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
+                    warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
                 }
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!cancelButton.gameObject.active);
@@ -197,7 +193,7 @@ public class GameStartManagerPatch
                         SceneChanger.ChangeScene("MainMenu");
                     }
                     if (exitTimer != 0)
-                        warningMessage = Utils.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
+                        warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
                 }
             }
             if (warningMessage == "")
@@ -225,7 +221,7 @@ public class GameStartManagerPatch
             int minutes = (int)timer / 60;
             int seconds = (int)timer % 60;
             string countDown = $"{minutes:00}:{seconds:00}";
-            if (timer <= 60) countDown = Utils.ColorString(Color.red, countDown);
+            if (timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
             timerText.text = countDown;
         }
         private static bool MatchVersions(byte playerId, bool acceptVanilla = false)

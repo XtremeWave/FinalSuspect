@@ -1,5 +1,3 @@
-using HarmonyLib;
-
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.Toggle))]

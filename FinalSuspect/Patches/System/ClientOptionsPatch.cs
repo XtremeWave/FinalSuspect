@@ -1,10 +1,7 @@
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.ClientOptions;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.SoundInterface;
-using HarmonyLib;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
@@ -34,7 +31,7 @@ public static class OptionsMenuBehaviourStartPatch
     public static ClientFeatureItem SoundBtn;
     public static ClientFeatureItem AudioManagementBtn;
 
-    private static bool reseted = false;
+    private static bool reseted;
     public static void Postfix(OptionsMenuBehaviour __instance)
     {
         if (__instance.DisableMouseMovement == null) return;
@@ -57,7 +54,7 @@ public static class OptionsMenuBehaviourStartPatch
             static void UnlockFPSButtonToggle()
             {
                 Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-                Modules.Core.Plugin.Logger.SendInGame(string.Format(Translator.GetString("FPSSetTo"), Application.targetFrameRate));
+                XtremeLogger.SendInGame(string.Format(GetString("FPSSetTo"), Application.targetFrameRate));
             }
         }
         if (ChangeOutfit == null || ChangeOutfit.ToggleButton == null)
@@ -84,7 +81,7 @@ public static class OptionsMenuBehaviourStartPatch
             {
                 ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled = false;
                 ChangeOutfit.ToggleButton.Background.color = Palette.DisabledGrey;
-                ChangeOutfit.ToggleButton.Text.text = Translator.GetString("ChangeOutfit") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
+                ChangeOutfit.ToggleButton.Text.text = GetString("ChangeOutfit") + "|" + GetString("OnlyAvailableInMainMenu");
             }
             else
             {
@@ -190,15 +187,15 @@ public static class OptionsMenuBehaviourStartPatch
             }, __instance);
         }
 
-        SoundBtn.ToggleButton.Text.text = Translator.GetString("SoundOptions");
+        SoundBtn.ToggleButton.Text.text = GetString("SoundOptions");
         SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
         SoundBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
-        AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions");
+        AudioManagementBtn.ToggleButton.Text.text = GetString("AudioManagementOptions");
         AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
         AudioManagementBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
         if (!XtremeGameData.GameStates.IsNotJoined)
         {
-            AudioManagementBtn.ToggleButton.Text.text = Translator.GetString("AudioManagementOptions") + "|" + Translator.GetString("OnlyAvailableInMainMenu");
+            AudioManagementBtn.ToggleButton.Text.text = GetString("AudioManagementOptions") + "|" + GetString("OnlyAvailableInMainMenu");
             AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
             AudioManagementBtn.ToggleButton.Background.color = Palette.DisabledGrey;
         }

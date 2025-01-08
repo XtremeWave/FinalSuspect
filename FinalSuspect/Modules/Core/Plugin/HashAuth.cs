@@ -22,7 +22,7 @@ public class HashAuth
         return HashValue == hash;
     }
     public string CalculateHash(string source)
-        => HashAuth.CalculateHash(source, salt, algorithm);
+        => CalculateHash(source, salt, algorithm);
 
     public static string CalculateHash(string source, string salt = null, HashAlgorithm algorithm = null)
     {
@@ -57,8 +57,8 @@ public class HashAuth
         // 2.ハッシュ値のログ出力
         //  salt有: ハッシュ値算出結果:<value> => <hashValue> (salt: <saltValue>)
         //  salt無: ハッシュ値算出結果:<value> => <hashValue>
-        Logger.Info($"ハッシュ値算出結果: {value} => {hashValue} {(salt == null ? "" : $"(salt: {salt})")}", "HashAuth");
-        Logger.Warn("以上の値をソースコード上にペーストしてください。", "HashAuth");
+        XtremeLogger.Info($"ハッシュ値算出結果: {value} => {hashValue} {(salt == null ? "" : $"(salt: {salt})")}", "HashAuth");
+        XtremeLogger.Warn("以上の値をソースコード上にペーストしてください。", "HashAuth");
 
         // 3.HashAuthインスタンスの生成・リターン
         return new HashAuth(hashValue, salt, algorithm);

@@ -1,15 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using AmongUs.Data;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Scrapped;
 using FinalSuspect.Patches.Game_Vanilla;
-using HarmonyLib;
 using InnerNet;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Patches.System;
 
@@ -24,7 +20,7 @@ class OnGameJoinedPatch
         {
             FAC.SetNameNum[i] = 0;
         }
-        Modules.Core.Plugin.Logger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
+        XtremeLogger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
 
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
@@ -56,7 +52,7 @@ class DisconnectInternalPatch
             ShowDisconnectPopupPatch.Reason = reason;
             ShowDisconnectPopupPatch.StringReason = stringReason;
 
-            Modules.Core.Plugin.Logger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
+            XtremeLogger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
             HudManagerPatch.Init();
             XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
 
@@ -74,17 +70,17 @@ public class OnPlayerJoinedPatch
 {
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData client)
     {
-        Modules.Core.Plugin.Logger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
+        XtremeLogger.Info($"{client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) 加入房间", "Session");
         if (AmongUsClient.Instance.AmHost && client.FriendCode == "" && Main.KickPlayerWhoFriendCodeNotExist.Value)
         {
             Utils.KickPlayer(client.Id, false, "NotLogin");
             NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.KickedByNoFriendCode"), client.PlayerName));
-            Modules.Core.Plugin.Logger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
+            XtremeLogger.Info($"フレンドコードがないプレイヤーを{client?.PlayerName}をキックしました。", "Kick");
         }
         if (DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(client.FriendCode) && AmongUsClient.Instance.AmHost && Main.KickPlayerInBanList.Value)
         {
             Utils.KickPlayer(client.Id, true, "BanList");
-            Modules.Core.Plugin.Logger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");
+            XtremeLogger.Info($"ブロック済みのプレイヤー{client?.PlayerName}({client.FriendCode})をBANしました。", "BAN");
         }
         BanManager.CheckBanPlayer(client);
         BanManager.CheckDenyNamePlayer(client);
@@ -109,13 +105,13 @@ class OnPlayerLeftPatch
         {
             if (data == null)
             {
-                Modules.Core.Plugin.Logger.Error("错误的客户端数据：数据为空", "Session");
+                XtremeLogger.Error("错误的客户端数据：数据为空", "Session");
                 return;
             }
 
             data?.Character?.SetDisconnected();
 
-            Modules.Core.Plugin.Logger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
+            XtremeLogger.Info($"{data?.PlayerName}(ClientID:{data?.Id}/FriendCode:{data?.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})", "Session");
 
             // 附加描述掉线原因
             switch (reason)

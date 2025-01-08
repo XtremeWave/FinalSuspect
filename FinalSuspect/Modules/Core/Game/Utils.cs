@@ -1,5 +1,6 @@
 //using SixLabors.ImageSharp.PixelFormats;
 //using System.Drawing.Imaging;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,14 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling;
+using FinalSuspect.Helpers;
 using FinalSuspect.Patches.System;
 using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Modules.Core.Game;
 
@@ -70,7 +69,7 @@ public static class Utils
     public static void KickPlayer(int playerId, bool ban, string reason = "")
     {
         if (!AmongUsClient.Instance.AmHost) return;
-        Plugin.Logger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
+        XtremeLogger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
         AmongUsClient.Instance.KickPlayer(playerId, ban);
         OnPlayerLeftPatch.Add(playerId);
 
@@ -89,7 +88,7 @@ public static class Utils
         string filename = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
-        file.CopyTo(@filename);
+        file.CopyTo(filename);
         if (PlayerControl.LocalPlayer != null)
         {
             if (popup) //PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
@@ -97,7 +96,7 @@ public static class Utils
             else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
         }
         ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe")
-        { Arguments = "/e,/select," + @filename.Replace("/", "\\") };
+        { Arguments = "/e,/select," + filename.Replace("/", "\\") };
         Process.Start(psi);
     }
     public static void OpenDirectory(string path)
@@ -121,7 +120,7 @@ public static class Utils
 
 
         var colorId = thisdata.ColorId;
-        builder.Append(ColorString(Palette.PlayerColors[colorId], thisdata.Name));
+        builder.Append(StringHelper.ColorString(Palette.PlayerColors[colorId], thisdata.Name));
 
         builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
         pos += 4.5f;
@@ -133,21 +132,17 @@ public static class Utils
 
         var oldrole = thisdata.RoleWhenAlive ?? RoleTypes.Crewmate;
         var newrole = thisdata.RoleAfterDeath ?? (thisdata.IsImpostor? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost);
-        builder.Append(ColorString(GetRoleColor(oldrole), GetString($"{oldrole}")));
+        builder.Append(StringHelper.ColorString(GetRoleColor(oldrole), GetString($"{oldrole}")));
 
         if (thisdata.IsDead  && newrole != oldrole)
         {
-            builder.Append($"=> {ColorString(GetRoleColor(newrole), GetRoleString($"{newrole}"))}");
+            builder.Append($"=> {StringHelper.ColorString(GetRoleColor(newrole), GetRoleString($"{newrole}"))}");
         }
         builder.Append("</pos>");
 
         return builder.ToString();
     }
 
-    public static string RemoveHtmlTags(this string str) => Regex.Replace(str, "<[^>]*?>", string.Empty);
-    public static string RemoveHtmlTagsExcept(this string str, string exceptionLabel) => Regex.Replace(str, "<(?!/*" + exceptionLabel + ")[^>]*?>", string.Empty);
-    public static string RemoveColorTags(this string str) => Regex.Replace(str, "</?color(=#[0-9a-fA-F]*)?>", "");
-    
     public static Dictionary<string, Sprite> CachedSprites = new();
 
     public static Sprite LoadSprite(string file, float pixelsPerUnit = 1f)
@@ -162,7 +157,7 @@ public static class Utils
         }
         catch
         {
-            Plugin.Logger.Error($"读入Texture失败：{file}", "LoadImage");
+            XtremeLogger.Error($"读入Texture失败：{file}", "LoadImage");
         }
         return null;
     }
@@ -178,21 +173,19 @@ public static class Utils
             
             byte[] fileData = File.ReadAllBytes(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-            if (ImageConversion.LoadImage(texture, fileData))
+            if (texture.LoadImage(fileData))
             {
                 return texture;
             }
-            else
-            {
-                Plugin.Logger.Warn($"无法读取图片：{path}", "LoadTexture");
-            }
+
+            XtremeLogger.Warn($"无法读取图片：{path}", "LoadTexture");
         }
         catch (Exception ex)
         {
-            Plugin.Logger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
+            XtremeLogger.Warn($"读入Texture失败：{path} - {ex.Message}", "LoadTexture");
         }
         InDLL:
-        path = "FinalSuspect.Resources.Images." + file;
+        /*path = "FinalSuspect.Resources.Images." + file;
 
         try
         {
@@ -200,29 +193,14 @@ public static class Utils
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             using MemoryStream ms = new();
             stream.CopyTo(ms);
-            ImageConversion.LoadImage(texture, ms.ToArray(), false);
+            texture.LoadImage(ms.ToArray(), false);
             return texture;
         }
         catch
         {
-            Plugin.Logger.Error($"读入Texture失败：{path}", "LoadImage");
-        }
+            XtremeLogger.Error($"读入Texture失败：{path}", "LoadImage");
+        }*/
         return null;
-    }
-
-    public static string ColorString(Color32 color, string str) => $"<color=#{color.r:x2}{color.g:x2}{color.b:x2}{color.a:x2}>{str}</color>";
-    /// <summary>
-    /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。
-    /// </summary>
-    public static Color ShadeColor(this Color color, float Darkness = 0)
-    {
-        bool IsDarker = Darkness >= 0; //黒と混ぜる
-        if (!IsDarker) Darkness = -Darkness;
-        float Weight = IsDarker ? 0 : Darkness; //黒/白の比率
-        float R = (color.r + Weight) / (Darkness + 1);
-        float G = (color.g + Weight) / (Darkness + 1);
-        float B = (color.b + Weight) / (Darkness + 1);
-        return new Color(R, G, B, color.a);
     }
 
     /// <summary>
@@ -294,7 +272,7 @@ public static class Utils
             if (data.IsImpostor)
             {
                 var KillColor = Palette.ImpostorRed;
-                return ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
+                return StringHelper.ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
             }
             return "";
         }
@@ -303,12 +281,12 @@ public static class Utils
         if (data.IsImpostor)
         {
             var KillColor = data.IsDisconnected ? Color.gray : Palette.ImpostorRed;
-            return ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
+            return StringHelper.ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
         }
         var NormalColor = data.TaskCompleted ? Color.green : Color.yellow;
         Color TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
         string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
-        return ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
+        return StringHelper.ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
     }
     public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
@@ -328,7 +306,7 @@ public static class Utils
                 var killercolor = Palette.PlayerColors[data.RealKiller.ColorId];
 
                 if (summary)
-                    deathReason += $"<=<size=80%>{ColorString(killercolor, data.RealKiller.Name)}</size>";
+                    deathReason += $"<=<size=80%>{StringHelper.ColorString(killercolor, data.RealKiller.Name)}</size>";
                 else if (docolor)
                     color = killercolor;
                 break;
@@ -339,7 +317,7 @@ public static class Utils
 
         if (!summary) deathReason = "(" + deathReason + ")";
         
-        deathReason =  ColorString(color, deathReason) ;
+        deathReason = StringHelper.ColorString(color, deathReason) ;
 
 
         return deathReason;
@@ -360,14 +338,11 @@ public static class Utils
                     return SwitchSystem != null && SwitchSystem.IsActive;
                 }
             case SystemTypes.Reactor:
-                {
-                    if (mapId == 2) return false;
-                    else
-                    {
-                        var ReactorSystemType = ShipStatus.Instance.Systems[type].Cast<ReactorSystemType>();
-                        return ReactorSystemType != null && ReactorSystemType.IsActive;
-                    }
-                }
+            {
+                if (mapId == 2) return false;
+                var ReactorSystemType = ShipStatus.Instance.Systems[type].Cast<ReactorSystemType>();
+                return ReactorSystemType != null && ReactorSystemType.IsActive;
+            }
             case SystemTypes.Laboratory:
                 {
                     if (mapId != 2) return false;
@@ -381,18 +356,16 @@ public static class Utils
                     return LifeSuppSystemType != null && LifeSuppSystemType.IsActive;
                 }
             case SystemTypes.Comms:
-                {
-                    if (mapId is 1 or 5)
+            {
+                if (mapId is 1 or 5)
                     {
                         var HqHudSystemType = ShipStatus.Instance.Systems[type].Cast<HqHudSystemType>();
                         return HqHudSystemType != null && HqHudSystemType.IsActive;
                     }
-                    else
-                    {
-                        var HudOverrideSystemType = ShipStatus.Instance.Systems[type].Cast<HudOverrideSystemType>();
-                        return HudOverrideSystemType != null && HudOverrideSystemType.IsActive;
-                    }
-                }
+
+                var HudOverrideSystemType = ShipStatus.Instance.Systems[type].Cast<HudOverrideSystemType>();
+                return HudOverrideSystemType != null && HudOverrideSystemType.IsActive;
+            }
             case SystemTypes.HeliSabotage:
                 {
                     var HeliSabotageSystem = ShipStatus.Instance.Systems[type].Cast<HeliSabotageSystem>();

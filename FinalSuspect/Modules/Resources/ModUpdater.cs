@@ -7,10 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Patches.System;
-using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using static FinalSuspect.Modules.Resources.VersionChecker;
 
 namespace FinalSuspect.Modules.Resources;
@@ -33,7 +31,7 @@ public class ModUpdater
         MainMenuManagerPatch.UpdateButton.SetActive(isChecked && hasUpdate && (firstStart || forceUpdate));
         MainMenuManagerPatch.PlayButton.SetActive(!MainMenuManagerPatch.UpdateButton.activeSelf);
         var buttonText = MainMenuManagerPatch.UpdateButton.transform.FindChild("FontPlacer").GetChild(0).GetComponent<TextMeshPro>();
-        buttonText.text = $"{(CanUpdate ? GetString("updateButton") : GetString("updateNotice"))}\nv{showVer?.ToString() ?? " ???"}";
+        buttonText.text = $"{(CanUpdate ? GetString("updateButton") : GetString("updateNotice"))}\nv{showVer ?? " ???"}";
     }
     public static void StartUpdate(string url = "waitToSelect")
     {
@@ -77,13 +75,13 @@ public class ModUpdater
                 if (path.EndsWith(Path.GetFileName(Assembly.GetExecutingAssembly().Location))) continue;
                 if (path.EndsWith("FinalSuspect.dll") || path.EndsWith("Downloader.dll")) continue;
 
-                Core.Plugin.Logger.Info($"{Path.GetFileName(path)} Deleted", "DeleteOldFiles");
+                XtremeLogger.Info($"{Path.GetFileName(path)} Deleted", "DeleteOldFiles");
                 File.Delete(path);
             }
         }
         catch (Exception e)
         {
-            Core.Plugin.Logger.Error($"清除更新残留失败\n{e}", "DeleteOldFiles");
+            XtremeLogger.Error($"清除更新残留失败\n{e}", "DeleteOldFiles");
         }
     }
     public static async Task<(bool, string)> DownloadDLL(string url)
@@ -91,8 +89,8 @@ public class ModUpdater
         File.Delete(DownloadFileTempPath);
         File.Create(DownloadFileTempPath).Close();
 
-        Core.Plugin.Logger.Msg("Start Downlaod From: " + url, "DownloadDLL");
-        Core.Plugin.Logger.Msg("Save To: " + DownloadFileTempPath, "DownloadDLL");
+        XtremeLogger.Msg("Start Downlaod From: " + url, "DownloadDLL");
+        XtremeLogger.Msg("Save To: " + DownloadFileTempPath, "DownloadDLL");
         try
         {
             using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
@@ -112,14 +110,14 @@ public class ModUpdater
         catch (Exception ex)
         {
             File.Delete(DownloadFileTempPath);
-            Core.Plugin.Logger.Error($"更新失败\n{ex.Message}", "DownloadDLL", false);
+            XtremeLogger.Error($"更新失败\n{ex.Message}", "DownloadDLL", false);
             return (false, GetString("downloadFailed"));
         }
     }
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
         string msg = $"{GetString("updateInProgress")}\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Core.Plugin.Logger.Info(msg, "DownloadDLL");
+        XtremeLogger.Info(msg, "DownloadDLL");
         CustomPopup.UpdateTextLater(msg);
     }
     public static string GetMD5HashFromFile(string fileName)
@@ -133,7 +131,7 @@ public class ModUpdater
         }
         catch (Exception ex)
         {
-            Core.Plugin.Logger.Exception(ex, "GetMD5HashFromFile");
+            XtremeLogger.Exception(ex, "GetMD5HashFromFile");
             return "";
         }
     }

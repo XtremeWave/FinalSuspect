@@ -1,20 +1,14 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using FinalSuspect.Modules.Features;
+using FinalSuspect.Modules.Resources;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.AudioManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 using Object = UnityEngine.Object;
-using Il2CppSystem.IO;
-using AmongUs.HTTP;
-using FinalSuspect.DataHandling;
-using FinalSuspect.Modules.Core.Plugin;
-using FinalSuspect.Modules.Features;
-using FinalSuspect.Modules.Resources;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
@@ -24,7 +18,7 @@ public static class AudioManagementPanel
     public static GameObject Slider { get; private set; }
     public static Dictionary<string, GameObject> Items { get; private set; }
 
-    static int numItems = 0;
+    static int numItems;
     public static void Hide()
     {
         if (CustomBackground != null)
@@ -235,7 +229,7 @@ public static class AudioManagementPanel
     }
     static void DeleteSoundInName(string name)
     {
-        using System.IO.StreamReader sr = new(TAGS_PATH);
+        using StreamReader sr = new(TAGS_PATH);
 
         string line;
         List<string> update = new();
@@ -249,13 +243,13 @@ public static class AudioManagementPanel
         }
         sr.Dispose();
 
-        System.IO.File.Delete(TAGS_PATH);
-        System.IO.File.Create(TAGS_PATH).Close();
+        File.Delete(TAGS_PATH);
+        File.Create(TAGS_PATH).Close();
 
-        System.IO.FileAttributes attributes = System.IO.File.GetAttributes(TAGS_PATH);
-        System.IO.File.SetAttributes(TAGS_PATH, attributes | System.IO.FileAttributes.Hidden);
+        FileAttributes attributes = File.GetAttributes(TAGS_PATH);
+        File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
 
-        using System.IO.StreamWriter sw = new(TAGS_PATH, true);
+        using StreamWriter sw = new(TAGS_PATH, true);
 
         foreach (var updateline in update)
         {
@@ -267,6 +261,6 @@ public static class AudioManagementPanel
     static void DeleteSoundInFile(string sound)
     {
         var path = @$"Final Suspect_Data/Resources/Audios/{sound}.wav";
-        File.Delete(path);
+        Il2CppSystem.IO.File.Delete(path);
     }
 }

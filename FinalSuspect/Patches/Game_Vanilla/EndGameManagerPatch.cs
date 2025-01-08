@@ -1,7 +1,4 @@
-﻿using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
-
-namespace FinalSuspect.Patches.Game_Vanilla;
+﻿namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch]
 public class EndGameManagerPatch

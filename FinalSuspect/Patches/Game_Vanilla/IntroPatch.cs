@@ -1,11 +1,9 @@
 using System.Threading.Tasks;
-using FinalSuspect.DataHandling;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Core.Plugin;
-using HarmonyLib;
+using Il2CppSystem.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.Translator;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -24,8 +22,8 @@ class IntroCutscenePatch
             var cr = roleType;
             __instance.YouAreText.color = __instance.RoleText.color = __instance.RoleBlurbText.color = Utils.GetRoleColor(cr);
             __instance.RoleText.text = Utils.GetRoleName(cr);
-            __instance.RoleText.fontWeight = TMPro.FontWeight.Thin;
-            __instance.RoleText.SetOutlineColor(Utils.ShadeColor(Utils.GetRoleColor(cr), 0.1f).SetAlpha(0.38f));
+            __instance.RoleText.fontWeight = FontWeight.Thin;
+            __instance.RoleText.SetOutlineColor(Utils.GetRoleColor(cr).ShadeColor(0.1f).SetAlpha(0.38f));
             __instance.RoleText.SetOutlineThickness(0.17f);
             __instance.RoleBlurbText.text = cr.GetRoleInfoForVanilla();
 
@@ -36,10 +34,10 @@ class IntroCutscenePatch
     public static void CoBegin_Prefix()
     {
         XtremeGameData.GameStates.InGame = true;
-        Modules.Core.Plugin.Logger.Info("Game Start", "IntroCutscene");
+        XtremeLogger.Info("Game Start", "IntroCutscene");
     }
     [HarmonyPatch(nameof(IntroCutscene.BeginImpostor)), HarmonyPostfix]
-    public static void BeginImpostor_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam)
+    public static void BeginImpostor_Postfix(IntroCutscene __instance, ref List<PlayerControl> yourTeam)
     {
         if (!Main.EnableRoleBackGround.Value) return;
         if (XtremeGameData.GameStates.OtherModHost) return;
@@ -69,7 +67,7 @@ class IntroCutscenePatch
     }
 
     [HarmonyPatch(nameof(IntroCutscene.BeginCrewmate)), HarmonyPostfix]
-    public static void BeginCrewmate_Postfix(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> teamToDisplay)
+    public static void BeginCrewmate_Postfix(IntroCutscene __instance, ref List<PlayerControl> teamToDisplay)
     {
         if (!Main.EnableRoleBackGround.Value) return;
         if (XtremeGameData.GameStates.OtherModHost) return;
@@ -105,7 +103,7 @@ class IntroCutscenePatch
             Color LerpingColor = Color.Lerp(start, end, time);
             if (__instance == null || milliseconds > 500)
             {
-                Modules.Core.Plugin.Logger.Info("break", "StartFadeIntro");
+                XtremeLogger.Info("break", "StartFadeIntro");
                 break;
             }
             __instance.BackgroundBar.material.color = LerpingColor;
