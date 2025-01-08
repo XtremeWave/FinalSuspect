@@ -56,7 +56,11 @@ public static class XtremeLocalHandling
         else
         {
             if (player.IsLocalPlayer()) color = ColorHelper.ModColor32;
-            else if (player.IsHost()) color = ColorHelper.HostNameColor;
+            else if (player.IsHost())
+            {
+                headertext = GetString("Host");
+                color = ColorHelper.HostNameColor;
+            }
             else color = ColorHelper.ClientlessColor;
         }
     }

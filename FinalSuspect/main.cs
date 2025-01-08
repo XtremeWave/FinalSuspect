@@ -39,7 +39,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20250105";
+    public const string DisplayedVersion_Date = "20250108";
 
     /// <summary>
     /// 测试信息；

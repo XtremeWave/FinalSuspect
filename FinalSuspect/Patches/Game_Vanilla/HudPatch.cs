@@ -290,7 +290,7 @@ public static class HudManagerPatch
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
-            DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
+            !DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
         sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
         if (XtremeGameData.GameStates.IsInGame)
         {
