@@ -16,7 +16,7 @@ public class MainMenuManagerPatch
 
     public static GameObject InviteButton;
     public static GameObject GithubButton;
-    public static GameObject WebsiteButton;
+    //public static GameObject WebsiteButton;
     public static GameObject UpdateButton;
     public static GameObject PlayButton;
 
@@ -109,9 +109,9 @@ public class MainMenuManagerPatch
         InviteButton.gameObject.SetActive(true);
         InviteButton.name = "FinalSuspect Extra Link Button";
 
-        if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => Application.OpenURL(Main.WebsiteUrl));
-        WebsiteButton.gameObject.SetActive(true);
-        WebsiteButton.name = "FinalSuspect Website Button";
+        //if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => Application.OpenURL(Main.WebsiteUrl));
+        //WebsiteButton.gameObject.SetActive(true);
+        //WebsiteButton.name = "FinalSuspect Website Button";
 
         if (GithubButton == null) GithubButton = CreatButton("Github", () => Application.OpenURL(Main.GithubRepoUrl));
         GithubButton.gameObject.SetActive(true);

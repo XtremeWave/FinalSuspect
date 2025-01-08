@@ -61,7 +61,7 @@ public class Main : BasePlugin
 
 
     // == 链接相关设定 / Link Config ==
-    public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
+    //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
     public static readonly string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
