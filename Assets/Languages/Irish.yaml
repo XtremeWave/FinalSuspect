@@ -261,7 +261,7 @@ DisabledByProgram: "Tá gníomhachtaí seomraí poiblí as comhoiriúnacht ag an
 PublicNotAvailableOnThisVersion: "Ní bhíonn seomraí poiblí ar fáil ar leagan seo de FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Guímid go mbeidh <color={0}>taithí gaimhníochta sultmhar</color> agat!"
+FinalSuspectWelcomeText: "Guímid go mbeidh <color={0}>taithí gaimhníochta sultmhar</color> agat!"
 ConnectToFinalSuspectServerFailed: "Theip ar nasc leis an freastalaí FinalSuspect"
 Website: "Suíomh Oifigiúil"
 MainMenuCredential: "{0} © 2025"

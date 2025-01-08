@@ -261,7 +261,7 @@ DisabledByProgram: "프로그램에 의해 공개 방 작업이 비활성화되�
 PublicNotAvailableOnThisVersion: "이 FinalSuspect 버전에서는 공개 방이 사용 불가능합니다"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "즐거운 <color={0}>게임 경험</color>을 기원합니다!"
+FinalSuspectWelcomeText: "즐거운 <color={0}>게임 경험</color>을 기원합니다!"
 ConnectToFinalSuspectServerFailed: "FinalSuspect 서버에 연결하지 못했습니다"
 Website: "공식 웹사이트"
 MainMenuCredential: "{0} © 2025"

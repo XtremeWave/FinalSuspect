@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 
 
@@ -27,7 +27,7 @@ public static class CustomSoundsManager
         StopPlay();
         ReloadTag();
         MyMusicPanel.RefreshTagList();
-        AudioManagementPanel.RefreshTagList();
+        SoundManagementPanel.RefreshTagList();
         StartPlayLoop(audio.Path);
         XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
     }
@@ -39,11 +39,11 @@ public static class CustomSoundsManager
     {
         PlaySound(null, 0, 0);
         finalMusics.Do(x => x.CurrectAudioStates = x.LastAudioStates);
-        SoundManager.Instance.StopAllSound();
+        global::SoundManager.Instance.StopAllSound();
         new LateTask(() =>
         {
             MyMusicPanel.RefreshTagList();
-            AudioManagementPanel.RefreshTagList();
+            SoundManagementPanel.RefreshTagList();
         }, 0.01f, "Refresh Tag List");
     }
     /*
@@ -119,11 +119,11 @@ public static class CustomSoundsManager
     //}
     */
 }
-[HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlaySoundImmediate))]
-[HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlaySound))]
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlaySoundImmediate))]
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlaySound))]
 public class AudioManagementPlaySoundPatch
 {
-    public static bool Prefix(SoundManager __instance, [HarmonyArgument(0)] AudioClip clip, [HarmonyArgument(1)] bool loop)
+    public static bool Prefix(global::SoundManager __instance, [HarmonyArgument(0)] AudioClip clip, [HarmonyArgument(1)] bool loop)
     {
         var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         var disableVanilla = Main.DisableVanillaSound.Value;
@@ -131,8 +131,8 @@ public class AudioManagementPlaySoundPatch
     }
 
 }
-[HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlayDynamicSound))]
-[HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlayNamedSound))]
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayDynamicSound))]
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayNamedSound))]
 public class AudioManagementPlayDynamicandNamedSoundPatch
 {
     public static bool Prefix([HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
@@ -143,7 +143,7 @@ public class AudioManagementPlayDynamicandNamedSoundPatch
     }
 }
 
-[HarmonyPatch(typeof(SoundManager), nameof(SoundManager.CrossFadeSound))]
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.CrossFadeSound))]
 public class AudioManagementCrossFadeSoundPatch
 {
     public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip)

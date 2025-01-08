@@ -261,7 +261,7 @@ DisabledByProgram: "Le operazioni della stanza pubblica sono state disabilitate 
 PublicNotAvailableOnThisVersion: "Le stanze pubbliche non sono disponibili in questa versione di FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Ti auguriamo una piacevole <color={0}>esperienza di gioco</color>!"
+FinalSuspectWelcomeText: "Ti auguriamo una piacevole <color={0}>esperienza di gioco</color>!"
 ConnectToFinalSuspectServerFailed: "Connessione al server FinalSuspect non riuscita"
 Website: "Sito Ufficiale"
 MainMenuCredential: "{0} © 2025"

@@ -4,7 +4,7 @@ using System.Linq;
 using FinalSuspect.Helpers;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 using Object = UnityEngine.Object;
 using static FinalSuspect.Modules.SoundInterface.CustomSoundsManager;

@@ -111,8 +111,8 @@ public class VersionShowerStartPatch
             VisitText = Object.Instantiate(__instance.text);
             VisitText.name = "FinalSuspect VisitText";
             VisitText.alignment = TextAlignmentOptions.Left;
-            VisitText.text = VersionChecker.visit > 0
-                ? string.Format(GetString("FinalSuspectVisitorCount"), ColorHelper.ModColor)
+            VisitText.text = VersionChecker.isChecked
+                ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.ModColor)
                 : GetString("ConnectToFinalSuspectServerFailed");
             VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);

@@ -5,12 +5,12 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
-public static class AudioManagementNewWindow
+public static class SoundManagementNewWindow
 {
     public static GameObject Window { get; private set; }
     public static GameObject Info { get; private set; }
@@ -25,7 +25,7 @@ public static class AudioManagementNewWindow
     }
     public static void Init()
     {
-        Window = Object.Instantiate(AccountManager.Instance.transform.FindChild("InfoTextBox").gameObject, AudioManagementPanel.CustomBackground.transform.parent);
+        Window = Object.Instantiate(AccountManager.Instance.transform.FindChild("InfoTextBox").gameObject, SoundManagementPanel.CustomBackground.transform.parent);
         Window.name = "New Music Window";
         Window.transform.FindChild("Background").localScale *= 0.7f;
         Window.transform.localPosition += Vector3.back * 21;
@@ -95,7 +95,7 @@ public static class AudioManagementNewWindow
                 Window.SetActive(false);
                 SaveToFile(code);
                 ReloadTag(false);
-                AudioManagementPanel.RefreshTagList();
+                SoundManagementPanel.RefreshTagList();
                 MyMusicPanel.RefreshTagList();
                 return;
             }

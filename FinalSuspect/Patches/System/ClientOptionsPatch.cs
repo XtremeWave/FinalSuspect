@@ -183,7 +183,7 @@ public static class OptionsMenuBehaviourStartPatch
         {
             AudioManagementBtn = ClientFeatureItem.Create("SoundManager", () =>
             {
-                AudioManagementPanel.CustomBackground?.gameObject?.SetActive(true);
+                SoundManagementPanel.CustomBackground?.gameObject?.SetActive(true);
             }, __instance);
         }
 
@@ -202,7 +202,7 @@ public static class OptionsMenuBehaviourStartPatch
 
 
         MyMusicPanel.Init(__instance);
-        AudioManagementPanel.Init(__instance);
+        SoundManagementPanel.Init(__instance);
 
         if (ModUnloaderScreen.Popup == null)
             ModUnloaderScreen.Init(__instance);
@@ -219,6 +219,6 @@ public static class OptionsMenuBehaviourClosePatch
         ClientFeatureItem.CustomBackground?.gameObject?.SetActive(false);
         ModUnloaderScreen.Hide();
         MyMusicPanel.Hide();
-        AudioManagementPanel.Hide();
+        SoundManagementPanel.Hide();
     }
 }

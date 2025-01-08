@@ -7,19 +7,12 @@
   "minVer": "latest",
   "creation": "2",
   "allowStart": "true",
-  "CanUpdate": "true",
+  "CanUpdate": "false",
   "DebugVer": "0.0.0",
 
   "md5": "2e41727d5e868073b2b434e6549dac8d",
   "announcement": {
-    "SChinese": "返璞归真",
+    "SChinese": "当前无公告",
     "English": "return to simplicity"
-  },
-
-  "url": {
-    "githubUrl": "https://github.com/XtremeWave/FinalSuspect/",
-    "giteeUrl": "https://gitee.com/XtremeWave/FinalSuspect/",
-    "objectstorageUrl": "https://api.xtreme.net.cn/download/FinalSuspect/",
-    "aumodsiteUrl": "https://xw.aumod.site/"
   }
 }

@@ -261,7 +261,7 @@ DisabledByProgram: "公開ルームの操作はプログラムによって無効
 PublicNotAvailableOnThisVersion: "このバージョンのFinalSuspectでは公開ルームは利用できません"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "快適な<color={0}>ゲーム体験</color>をお祈りします！"
+FinalSuspectWelcomeText: "快適な<color={0}>ゲーム体験</color>をお祈りします！"
 ConnectToFinalSuspectServerFailed: "FinalSuspectサーバーへの接続に失敗しました"
 Website: "公式ウェブサイト"
 MainMenuCredential: "{0} © 2025"

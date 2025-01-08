@@ -261,7 +261,7 @@ DisabledByProgram: "Openbare kameroperaties zijn uitgeschakeld door het programm
 PublicNotAvailableOnThisVersion: "Openbare kamers zijn niet beschikbaar op deze versie van FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Wensen je een aangename <color={0}>game-ervaring</color>!"
+FinalSuspectWelcomeText: "Wensen je een aangename <color={0}>game-ervaring</color>!"
 ConnectToFinalSuspectServerFailed: "Verbinding met FinalSuspect server mislukt"
 Website: "Officiële Website"
 MainMenuCredential: "{0} © 2025"

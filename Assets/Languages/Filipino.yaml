@@ -261,7 +261,7 @@ DisabledByProgram: "Ang mga operasyon sa pampublikong silid ay pinatay ng progra
 PublicNotAvailableOnThisVersion: "Ang mga pampublikong silid ay hindi available sa bersyon na ito ng FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Nais naming magkaroon ka ng masaya <color={0}>karanasan sa paglalaro</color>!"
+FinalSuspectWelcomeText: "Nais naming magkaroon ka ng masaya <color={0}>karanasan sa paglalaro</color>!"
 ConnectToFinalSuspectServerFailed: "Nabigong kumonekta sa server ng FinalSuspect"
 Website: "Opisyal na Website"
 MainMenuCredential: "{0} © 2025"

@@ -265,7 +265,7 @@ DisabledByProgram: "公开房间的操作已被程序禁用"
 PublicNotAvailableOnThisVersion: "该版本的 FinalSuspect 暂不支持公开"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "祝愿您拥有一场愉快的<color={0}>游戏体验</color>！"
+FinalSuspectWelcomeText: "祝愿您拥有一场愉快的<color={0}>游戏体验</color>！"
 ConnectToFinalSuspectServerFailed: "无法连接至FinalSuspect服务器"
 Website: "模组官网"
 MainMenuCredential: "{0} © 2025"

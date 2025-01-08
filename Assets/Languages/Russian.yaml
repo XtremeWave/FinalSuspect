@@ -261,7 +261,7 @@ DisabledByProgram: "Операции с публичными комнатами 
 PublicNotAvailableOnThisVersion: "Публичные комнаты недоступны в этой версии FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Желаем вам приятной <color={0}>игровой</color> сессии!"
+FinalSuspectWelcomeText: "Желаем вам приятной <color={0}>игровой</color> сессии!"
 ConnectToFinalSuspectServerFailed: "Не удалось подключиться к серверу FinalSuspect"
 Website: "Официальный сайт"
 MainMenuCredential: "{0} © 2025"

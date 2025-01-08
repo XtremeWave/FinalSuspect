@@ -66,11 +66,6 @@ public static class VersionChecker
     private static int retried;
     private static bool firstLaunch = true;
 
-    public static string GithubUrl;
-    public static string GiteeUrl;
-    public static string ObjectStorageUrl;
-    public static string AUModSiteUrl;
-
     public static void Check()
     {
         var amongUsVersion = Version.Parse(Application.version);
@@ -103,8 +98,7 @@ public static class VersionChecker
             }
         }
 
-        
-    XtremeLogger.Msg("Check For Update: " + isChecked, "CheckRelease");
+        XtremeLogger.Msg("Check For Update: " + isChecked, "CheckRelease");
         if (isChecked)
         {
             XtremeLogger.Info("Has Update: " + hasUpdate, "CheckRelease");
@@ -219,13 +213,6 @@ public static class VersionChecker
             JObject announcement = data["announcement"].Cast<JObject>();
             ModUpdater.announcement_en = announcement["English"]?.ToString();
             ModUpdater.announcement_zh = announcement["SChinese"]?.ToString();
-
-            JObject downloadUrl = data["url"].Cast<JObject>();
-
-            GithubUrl = downloadUrl["githubUrl"]?.ToString();
-            GiteeUrl = downloadUrl["giteeUrl"]?.ToString();
-            ObjectStorageUrl = downloadUrl["objectstorageUrl"]?.ToString();
-            AUModSiteUrl = downloadUrl["aumodsiteUrl"]?.ToString();
 
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;

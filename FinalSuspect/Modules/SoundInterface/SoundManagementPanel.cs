@@ -6,13 +6,13 @@ using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
-public static class AudioManagementPanel
+public static class SoundManagementPanel
 {
     public static SpriteRenderer CustomBackground { get; private set; }
     public static GameObject Slider { get; private set; }
@@ -57,7 +57,7 @@ public static class AudioManagementPanel
             newButton.Background.color = Palette.White;
             var newPassiveButton = newButton.GetComponent<PassiveButton>();
             newPassiveButton.OnClick = new();
-            newPassiveButton.OnClick.AddListener(new Action(AudioManagementNewWindow.Open));
+            newPassiveButton.OnClick.AddListener(new Action(SoundManagementNewWindow.Open));
 
             var helpText = Object.Instantiate(CustomPopup.InfoTMP.gameObject, CustomBackground.transform);
             helpText.name = "Help Text";

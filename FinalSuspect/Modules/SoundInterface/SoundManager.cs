@@ -5,12 +5,12 @@ using System.Linq;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Resources;
-using static FinalSuspect.Modules.SoundInterface.AudioManager;
+using static FinalSuspect.Modules.SoundInterface.SoundManager;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
 #nullable enable
-public static class AudioManager
+public static class SoundManager
 {
     public static readonly string TAGS_PATH = PathManager.GetResourceFilesPath(FileType.Sounds, "SoundsName.txt");
 
@@ -85,19 +85,19 @@ public static class AudioManager
             switch (sound)
             {
                 case Sounds.KillSound:
-                    SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false);
+                    global::SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false);
                     break;
                 case Sounds.TaskComplete:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound, false);
+                    global::SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound, false);
                     break;
                 case Sounds.TaskUpdateSound:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound, false);
+                    global::SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound, false);
                     break;
                 case Sounds.ImpTransform:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx, false, 0.8f);
+                    global::SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx, false, 0.8f);
                     break;
                 case Sounds.Yeehawfrom:
-                    SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
+                    global::SoundManager.Instance.PlaySound(DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
                     break;
             }
         }

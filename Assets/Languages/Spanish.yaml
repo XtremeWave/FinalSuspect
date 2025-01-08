@@ -261,7 +261,7 @@ DisabledByProgram: "Las operaciones de sala pública han sido desactivadas por e
 PublicNotAvailableOnThisVersion: "Las salas públicas no están disponibles en esta versión de FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "¡Deseándote una agradable <color={0}>experiencia de juego</color>!"
+FinalSuspectWelcomeText: "¡Deseándote una agradable <color={0}>experiencia de juego</color>!"
 ConnectToFinalSuspectServerFailed: "Error al conectar con el servidor de FinalSuspect"
 Website: "Sitio Oficial"
 MainMenuCredential: "{0} © 2025"

@@ -261,7 +261,7 @@ DisabledByProgram: "Öffentliche Raumoperationen wurden vom Programm deaktiviert
 PublicNotAvailableOnThisVersion: "Öffentliche Räume sind in dieser Version von FinalSuspect nicht verfügbar"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Wir wünschen dir ein angenehmes <color={0}>Spielerlebnis</color>!"
+FinalSuspectWelcomeText: "Wir wünschen dir ein angenehmes <color={0}>Spielerlebnis</color>!"
 ConnectToFinalSuspectServerFailed: "Verbindung zum FinalSuspect-Server fehlgeschlagen"
 Website: "Offizielle Website"
 MainMenuCredential: "{0} © 2025"

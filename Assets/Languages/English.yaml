@@ -260,7 +260,7 @@ DisabledByProgram: "Public room operations have been disabled by the program"
 PublicNotAvailableOnThisVersion: "Public rooms are not available on this version of FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectVisitorCount: "Wishing you a pleasant <color={0}>gaming experience</color>!"
+FinalSuspectWelcomeText: "Wishing you a pleasant <color={0}>gaming experience</color>!"
 ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
 Website: "Official Website"
 MainMenuCredential: "{0} © 2025"

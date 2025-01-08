@@ -46,7 +46,7 @@ public class SwitchShipCostumeButtonPatch
         if (Costume == 0) sounds = Sounds.KillSound; 
         if (Costume == 1) sounds = Sounds.ImpTransform;
         if (Costume == 2) sounds = Sounds.TaskUpdateSound;
-        AudioManager.PlaySound(PlayerControl.LocalPlayer.PlayerId, sounds);
+        Modules.SoundInterface.SoundManager.PlaySound(PlayerControl.LocalPlayer.PlayerId, sounds);
         return false;
     }
 }
