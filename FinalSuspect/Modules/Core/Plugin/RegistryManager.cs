@@ -35,8 +35,6 @@ public static class RegistryManager
         List<string> FoldersNFileToDel =
             [
                 @"./TOH_DATA",
-                @"./TOHEX_DATA",
-                @"./TONX_DATA",
             ];
 
         XtremeLogger.Warn("上次启动的FinalSuspect版本：" + LastVersion, "Registry Manager");

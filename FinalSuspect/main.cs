@@ -10,6 +10,7 @@ using BepInEx.Unity.IL2CPP;
 using FinalSuspect;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Random;
 using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
@@ -238,7 +239,8 @@ public class Main : BasePlugin
         SystemEnvironment.SetEnvironmentVariables();
 
         Harmony.PatchAll();
-
+        Application.quitting += new Action(Utils.SaveNowLog);
+        
         if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();
 

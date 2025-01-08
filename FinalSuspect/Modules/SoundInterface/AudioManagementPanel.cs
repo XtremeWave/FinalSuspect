@@ -260,7 +260,7 @@ public static class AudioManagementPanel
     }
     static void DeleteSoundInFile(string sound)
     {
-        var path = @$"Final Suspect_Data/Resources/Audios/{sound}.wav";
-        Il2CppSystem.IO.File.Delete(path);
+        var path = PathManager.GetResourceFilesPath(FileType.Sounds, sound);
+        File.Delete(path);
     }
 }

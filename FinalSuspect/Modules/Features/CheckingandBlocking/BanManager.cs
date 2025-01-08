@@ -128,7 +128,6 @@ public static class BanManager
     {
         try
         {
-            Directory.CreateDirectory("Final Suspect_Data");
             if (!File.Exists(BAN_LIST_PATH)) File.Create(BAN_LIST_PATH).Close();
             using StreamReader sr = new(BAN_LIST_PATH);
             string line;

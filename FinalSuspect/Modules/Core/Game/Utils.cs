@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.System;
 using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
@@ -22,9 +23,6 @@ public static class Utils
     private static readonly DateTime timeStampStartTime = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     public static long TimeStamp => (long)(DateTime.Now.ToUniversalTime() - timeStampStartTime).TotalSeconds;
     public static long GetTimeStamp(DateTime? dateTime = null) => (long)((dateTime ?? DateTime.Now).ToUniversalTime() - timeStampStartTime).TotalSeconds;
-
-    public static Vector2 LocalPlayerLastTp;
-    public static bool LocationLocked = false;
     public static ClientData GetClientById(int id)
     {
         try
@@ -81,31 +79,47 @@ public static class Utils
         foreach (char c in t) bc += Encoding.GetEncoding("UTF-8").GetByteCount(c.ToString()) == 1 ? 1 : 2;
         return t?.PadRight(Mathf.Max(num - (bc - t.Length), 0));
     }
+    public static DirectoryInfo GetLogFolder(bool auto = false)
+    {
+        var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/TownOfHost/Logs");
+        if (auto)
+        {
+            folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
+        }
+        return folder;
+    }
     public static void DumpLog(bool popup = false)
     {
-        string f = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/FinalSuspect-logs/";
-        string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string filename = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
-        if (!Directory.Exists(f)) Directory.CreateDirectory(f);
-        FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
-        file.CopyTo(filename);
+        var logs = GetLogFolder();
+        var filename = CopyLog(logs.FullName);
+        OpenDirectory(filename);
         if (PlayerControl.LocalPlayer != null)
         {
-            if (popup) //PlayerControl.LocalPlayer.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+            string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+            if (popup) 
                 HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
             else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
         }
-        ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe")
-        { Arguments = "/e,/select," + filename.Replace("/", "\\") };
-        Process.Start(psi);
+    }
+    public static void SaveNowLog()
+    {
+        var logs = GetLogFolder(true);
+        logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f => f.Delete());
+        CopyLog(logs.FullName);
+    }
+    public static string CopyLog(string path)
+    {
+        string f = $"{path}/Final Suspect-logs/";
+        string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+        string fileName = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
+        if (!Directory.Exists(f)) Directory.CreateDirectory(f);
+        FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
+        var logFile = file.CopyTo(fileName);
+        return logFile.FullName;
     }
     public static void OpenDirectory(string path)
     {
-        var startInfo = new ProcessStartInfo(path)
-        {
-            UseShellExecute = true,
-        };
-        Process.Start(startInfo);
+        Process.Start("Explorer.exe", $"/select,{path}");
     }
     public static string SummaryTexts(byte id)
     {
@@ -164,7 +178,7 @@ public static class Utils
 
     public static Texture2D LoadTextureFromResources(string file)
     {
-        var path = @"Final Suspect_Data/Resources/Images/" + file;
+        var path = PathManager.GetResourceFilesPath(FileType.Images, file);
 
         try
         {
@@ -358,10 +372,10 @@ public static class Utils
             case SystemTypes.Comms:
             {
                 if (mapId is 1 or 5)
-                    {
-                        var HqHudSystemType = ShipStatus.Instance.Systems[type].Cast<HqHudSystemType>();
-                        return HqHudSystemType != null && HqHudSystemType.IsActive;
-                    }
+                {
+                    var HqHudSystemType = ShipStatus.Instance.Systems[type].Cast<HqHudSystemType>();
+                    return HqHudSystemType != null && HqHudSystemType.IsActive;
+                }
 
                 var HudOverrideSystemType = ShipStatus.Instance.Systems[type].Cast<HudOverrideSystemType>();
                 return HudOverrideSystemType != null && HudOverrideSystemType.IsActive;
