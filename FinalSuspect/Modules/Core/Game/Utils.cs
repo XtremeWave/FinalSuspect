@@ -121,7 +121,7 @@ public static class Utils
 
         var colorId = thisdata.ColorId;
         builder.Append(StringHelper.ColorString(Palette.PlayerColors[colorId], thisdata.Name));
-
+        pos += 1.5f;
         builder.AppendFormat("<pos={0}em>", pos).Append(GetProgressText(id)).Append("</pos>");
         pos += 4.5f;
         
