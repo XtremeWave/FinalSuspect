@@ -36,10 +36,10 @@ public static class XtremeGameData
                 try
                 {
                     return Main.AllPlayerControls.ToArray().FirstOrDefault(x =>x.IsHost()
-                        && PlayerControl.LocalPlayer.OwnerId != AmongUsClient.Instance.HostId
+                        && !PlayerControl.LocalPlayer.IsHost()
                         && x.OtherModClient() );
                 }
-                catch (Exception e)
+                catch 
                 {
                     return false;
                 }
@@ -49,7 +49,7 @@ public static class XtremeGameData
         }
 
         public static bool ModHost => Main.AllPlayerControls.ToArray().FirstOrDefault(x =>
-            x.OwnerId == AmongUsClient.Instance.HostId && x.ModClient());
+            x.IsHost() && x.ModClient());
         public static bool IsLobby => AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Joined && !IsFreePlay;
         public static bool IsInGame => InGame || IsFreePlay;
         public static bool IsNotJoined => AmongUsClient.Instance.GameState == InnerNetClient.GameStates.NotJoined;

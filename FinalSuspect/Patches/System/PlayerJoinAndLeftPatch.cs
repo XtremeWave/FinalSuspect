@@ -16,6 +16,7 @@ class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         FAC.SetNameNum = new();
+        FAC.SuspectCheater = new();
         for (byte i = 0; i < 14; i++)
         {
             FAC.SetNameNum[i] = 0;
@@ -133,6 +134,7 @@ class OnPlayerLeftPatch
             XtremeGameData.PlayerVersion.playerVersion.Remove(data?.Character?.PlayerId ?? 255);
             ClientsProcessed.Remove(data?.Id ?? 0);
             FAC.SetNameNum.Remove(data?.Character?.PlayerId ?? 255);
+            FAC.SuspectCheater.Remove(data?.Character?.PlayerId ?? 255);
         }
         catch { }
     }

@@ -39,6 +39,10 @@ internal class RPCHandlerPatch
 
         if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify, out string reason, out bool ban))
         {
+            if (!__instance.IsLocalPlayer())
+            {
+                FAC.SuspectCheater.Add(__instance.PlayerId);
+            }
             if (AmongUsClient.Instance.AmHost)
             {
                 Utils.KickPlayer(__instance.PlayerId, ban, reason);
@@ -58,7 +62,7 @@ internal class RPCHandlerPatch
             case RpcCalls.CheckName://CheckNameRPC
                 string name = subReader.ReadString();
                 XtremeLogger.Info("RPC Check Name For Player: " + name, "CheckName");
-                if (__instance.OwnerId == AmongUsClient.Instance.HostId)
+                if (__instance.IsHost())
                     Main.HostNickName = name;
                 XtremePlayerData.CreateDataFor(__instance, name);
                 FAC.SetNameNum[__instance.PlayerId]++;

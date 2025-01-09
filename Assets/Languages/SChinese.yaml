@@ -285,6 +285,7 @@ HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"
 BrowsingMode: "浏览模式"
 Broken: "损坏"
+Host: "房主"
 
 # 加载
 LanguageFilesLoadingComplete: "翻译文本加载完成！"

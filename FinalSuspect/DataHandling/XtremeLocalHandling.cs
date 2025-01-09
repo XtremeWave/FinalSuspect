@@ -20,7 +20,7 @@ public static class XtremeLocalHandling
         player.GetLobbyText(ref color, ref headertext);
         player.GetGameText(ref color, ref headertext, headderswap);
         SpamManager.CheckSpam(ref name);
-        if (FAC.SetNameNum[player.PlayerId] > 3)
+        if (FAC.SuspectCheater.Contains(player.PlayerId))
         {
             color = ColorHelper.FaultColor;
         }
@@ -96,7 +96,7 @@ public static class XtremeLocalHandling
         try
         {
             var name = __instance.CheckAndGetNameWithDetails(out Color color, out string headertext);
-            if (Main.EnableFinalSuspect.Value)
+            if (Main.EnableFinalSuspect.Value && XtremeGameData.GameStates.IsInGame)
             { 
                 DisconnectSync(__instance);
                 DeathSync(__instance);

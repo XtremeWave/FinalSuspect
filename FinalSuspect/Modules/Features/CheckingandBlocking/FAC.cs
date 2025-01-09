@@ -53,7 +53,11 @@ internal class FAC
                 case RpcCalls.SetName:
                 case RpcCalls.CheckName:
                     if (CheckForSetName(pc))
+                    {
+                        ban = true;
+                        notify = false;
                         return true;
+                    }
                     break;
                 case RpcCalls.EnterVent:
                 case RpcCalls.ExitVent:
@@ -156,7 +160,6 @@ internal class FAC
             XtremeLogger.Warn($"{player?.Data?.PlayerName}多次设置名称", "CustomRPC");
             if (AmongUsClient.Instance.AmHost)
             {
-                Utils.KickPlayer(player.GetClientId(), true, "SetName");
                 XtremeLogger.Warn($"收到来自 {player?.Data?.PlayerName} 的多次设置名称，因此将其踢出。", "Kick");
                 NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName"), player?.Data?.PlayerName));
                 WarnHost();
@@ -219,4 +222,5 @@ internal class FAC
     }
 
     public static Dictionary<byte, int> SetNameNum = new();
+    public static List<byte> SuspectCheater = new();
 }

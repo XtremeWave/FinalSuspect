@@ -97,6 +97,10 @@ public void SetName(string name) => Name = name;
     }
     public void SetDisconnected()
     {
+        if (XtremeGameData.GameStates.IsLobby)
+        {
+            return;
+        }
         XtremeLogger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
         SetDead();
         SetDeathReason(DataDeathReason.Disconnect);
