@@ -29,6 +29,8 @@ public static class XtremeLocalHandling
     public static void GetLobbyText(this PlayerControl player, ref Color color, ref string headertext)
     {
         if (!XtremeGameData.GameStates.IsLobby) return;
+        if (player.IsHost())
+            headertext = GetString("Host");
         if (XtremeGameData.PlayerVersion.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
         {
             if (Main.ForkId != ver.forkId)
@@ -39,6 +41,7 @@ public static class XtremeLocalHandling
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
             {
+
                 color = ColorHelper.ModColor32;
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
@@ -56,11 +59,7 @@ public static class XtremeLocalHandling
         else
         {
             if (player.IsLocalPlayer()) color = ColorHelper.ModColor32;
-            else if (player.IsHost())
-            {
-                headertext = GetString("Host");
-                color = ColorHelper.HostNameColor;
-            }
+            else if (player.IsHost()) color = ColorHelper.HostNameColor;
             else color = ColorHelper.ClientlessColor;
         }
     }

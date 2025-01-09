@@ -54,7 +54,7 @@ public class Main : BasePlugin
     /// Scrapped: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 9;
+    public const int DisplayedVersion_TestCreation = 10;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
