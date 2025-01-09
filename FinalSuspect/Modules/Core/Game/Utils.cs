@@ -81,7 +81,7 @@ public static class Utils
     }
     public static DirectoryInfo GetLogFolder(bool auto = false)
     {
-        var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/TownOfHost/Logs");
+        var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/FinalSuspect/Logs");
         if (auto)
         {
             folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
@@ -427,18 +427,4 @@ public static class Utils
         
         return !IsAngel && LocalDead;
     }
-    
-    public delegate void FunctionToExecute();
-    public static void ExecuteWithTryCatch(FunctionToExecute func)
-    {
-        try
-        {
-            func();
-        }
-        catch (Exception ex)
-        {
-//
-        }
-    }
-
 }

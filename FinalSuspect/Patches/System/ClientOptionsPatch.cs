@@ -19,7 +19,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean AutoEndGame;
     private static ClientOptionItem_Boolean EnableMapBackGround;
     private static ClientOptionItem_Boolean EnableRoleBackGround;
-    private static ClientOptionItem_Boolean PrunkMode;
+    //private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
     private static ClientActionItem UnloadMod;

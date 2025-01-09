@@ -10,14 +10,3 @@ FinalSuspect/FodyWeavers.xsd
 
 /FinalSuspect.sln
 *.zip
-
-/FinalSuspect/obj/Release/net6.0/ref/FinalSuspect.dll
-/FinalSuspect/obj/Release/net6.0/refint/FinalSuspect.dll
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.assets.cache
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.csproj.AssemblyReference.cache
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.csproj.CoreCompileInputs.cache
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.csproj.FileListAbsolute.txt
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.dll
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.pdb
-/FinalSuspect/obj/Release/net6.0/FinalSuspect.sourcelink.json
-/FinalSuspect/obj/Release/net6.0/GitIsDirty.cache
