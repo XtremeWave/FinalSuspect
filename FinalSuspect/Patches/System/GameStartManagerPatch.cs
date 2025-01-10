@@ -55,13 +55,11 @@ public class GameStartManagerPatch
                 ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
                 ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor) ? modColor : HideName.color;
             HideName.text = Main.HideName.Value;
-            XtremeLogger.Info("HideName instantiated and configured", "test");
 
             warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
             warningText.name = "WarningText";
             warningText.transform.localPosition = new(0f, 0f - __instance.transform.localPosition.y, -1f);
             warningText.gameObject.SetActive(false);
-            XtremeLogger.Info("WarningText instantiated and configured", "test");
 
             if (AmongUsClient.Instance.AmHost)
             {

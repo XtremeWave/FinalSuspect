@@ -182,7 +182,6 @@ public class Main : BasePlugin
         XtremeLogger.Disable("CancelPet");
         if (!DebugModeManager.AmDebugger)
         {
-            XtremeLogger.Disable("test");
         }
         XtremeLogger.isDetail = true;
 
