@@ -419,7 +419,7 @@ public static class Utils
     }
     public static bool CanSeeOthersRole()
     {
-        if (XtremeGameData.GameStates.IsLobby) return true;
+        if (!XtremeGameData.GameStates.IsInGame) return true;
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
         

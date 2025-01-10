@@ -48,7 +48,7 @@ public static class MatchMakerGameButtonSetGamePatch
                 name = "Itch";
                 break;
             case Platforms.StandaloneSteamPC:
-                color = "#3A78A8";
+                color = "#4391CD";
                 name = "Steam";
                 break;
             case Platforms.StandaloneMac:
@@ -60,7 +60,7 @@ public static class MatchMakerGameButtonSetGamePatch
                 name = "Win-10";
                 break;
             case Platforms.StandaloneItch:
-                color = "#737373";
+                color = "#E35F5F";
                 name = "Itch";
                 break;
             case Platforms.IPhone:
@@ -85,7 +85,7 @@ public static class MatchMakerGameButtonSetGamePatch
                 name = "Xbox";
                 break;
             case Platforms.Playstation:
-                color = "#001090";
+                color = "#0014b4";
                 name = "PlayStation";
                 break;
         }

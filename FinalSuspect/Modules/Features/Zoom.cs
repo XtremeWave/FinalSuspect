@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FinalSuspect.Attributes;
+using FinalSuspect.Modules.Core.Game;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Features;
@@ -17,7 +18,7 @@ public static class Zoom
         bool canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
                        XtremeGameData.GameStates.IsFreePlay;
 
-        if (!canZoom || XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsMeeting ||
+        if (!canZoom || Utils.CanSeeOthersRole() || XtremeGameData.GameStates.IsMeeting ||
             !XtremeGameData.GameStates.IsCanMove || InGameRoleInfoMenu.Showing)
         {
             Flag.Run(() => { SetZoomSize(reset: true); }, "Zoom");

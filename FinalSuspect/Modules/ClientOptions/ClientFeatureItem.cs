@@ -10,8 +10,8 @@ public class ClientFeatureItem
     public ToggleButtonBehaviour ToggleButton { get; set; }
     public Action OnClickAction { get; protected set; }
 
-    public static SpriteRenderer CustomBackground { get; private set; }
-    public static ToggleButtonBehaviour ModOptionsButton { get; private set; }
+    public static SpriteRenderer CustomBackground { get; set; }
+    public static ToggleButtonBehaviour ModOptionsButton { get; set; }
     private static int numItems;
 
     protected ClientFeatureItem(

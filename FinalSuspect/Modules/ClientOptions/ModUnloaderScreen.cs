@@ -9,14 +9,14 @@ namespace FinalSuspect.Modules.ClientOptions;
 
 public static class ModUnloaderScreen
 {
-    public static SpriteRenderer Popup { get; private set; }
+    public static SpriteRenderer Popup { get; set; }
     public static TextMeshPro WarnText { get; private set; }
     public static ToggleButtonBehaviour CancelButton { get; private set; }
     public static ToggleButtonBehaviour UnloadButton { get; private set; }
 
     public static void Init(OptionsMenuBehaviour optionsMenuBehaviour)
     {
-        Popup = Object.Instantiate(optionsMenuBehaviour.Background, ClientActionItem.CustomBackground.transform);
+        Popup = Object.Instantiate(optionsMenuBehaviour.Background, ClientFeatureItem.CustomBackground.transform);
         Popup.name = "UnloadModPopup";
         Popup.transform.localPosition = new(0f, 0f, -8f);
         Popup.transform.localScale = new(0.8f, 0.8f, 1f);
@@ -48,8 +48,17 @@ public static class ModUnloaderScreen
         {
             ClientActionItem.CustomBackground.gameObject.SetActive(false);
             ClientActionItem.ModOptionsButton.gameObject.SetActive(false);
+            ClientFeatureItem.CustomBackground.gameObject.SetActive(false);
+            ClientFeatureItem.ModOptionsButton.gameObject.SetActive(false);
 
-            MainMenuManagerPatch.ShowRightPanelImmediately();
+            try
+            {
+                MainMenuManagerPatch.ShowRightPanelImmediately();
+            }
+            catch
+            {
+            }
+            
 
             _ = new LateTask(() =>
             {

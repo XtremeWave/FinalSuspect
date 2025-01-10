@@ -27,7 +27,7 @@ public static class XtremeGameData
     }
     public static class GameStates
     {
-        public static bool InGame = false;
+        public static bool InGame { private get; set; } = false;
 
         public static bool OtherModHost
         {
@@ -61,7 +61,7 @@ public static class XtremeGameData
         public static bool IsCountDown => GameStartManager.InstanceExists && GameStartManager.Instance.startState == GameStartManager.StartingStates.Countdown;
         public static bool IsShip => ShipStatus.Instance != null;
         public static bool IsCanMove => PlayerControl.LocalPlayer?.CanMove is true;
-        public static bool IsDead => PlayerControl.LocalPlayer?.Data?.IsDead is true;
+        public static bool IsDead => PlayerControl.LocalPlayer?.Data?.IsDead is true && !IsLobby;
         public static bool IsNormalGame => GameOptionsManager.Instance.CurrentGameOptions.GameMode is GameModes.Normal or GameModes.NormalFools;
         public static bool IsHideNSeek => GameOptionsManager.Instance.CurrentGameOptions.GameMode is GameModes.HideNSeek or GameModes.SeekFools;        
         public static bool MapIsActive(MapNames name)
@@ -87,7 +87,20 @@ public static class XtremeGameData
 
     public static XtremePlayerData GetPlayerData(this PlayerControl pc) => XtremePlayerData.GetPlayerDataById(pc.PlayerId) ?? null;
     public static bool IsAlive(this PlayerControl pc) => GameStates.IsLobby || pc?.GetPlayerData()?.IsDead == false;
-    public static string GetDataName(this PlayerControl pc) => XtremePlayerData.GetPlayerNameById(pc.PlayerId);
+
+    public static string GetDataName(this PlayerControl pc)
+    {
+        try
+        {
+            return XtremePlayerData.GetPlayerNameById(pc.PlayerId);
+        }
+        catch
+        {
+            return null;
+        }
+        
+    }
+
     public static void SetDead(this PlayerControl pc) => pc.GetPlayerData().SetDead();
     public static void SetDisconnected(this PlayerControl pc) => pc.GetPlayerData().SetDisconnected();
     public static void SetRole(this PlayerControl pc, RoleTypes role) => pc.GetPlayerData().SetRole(role);

@@ -153,11 +153,10 @@ public class GameStartManagerPatch
         }
         public static void Postfix(GameStartManager __instance)
         {
-            if (!AmongUsClient.Instance) return;
-            string warningMessage = "";
+            if (!AmongUsClient.Instance) return; 
             if (AmongUsClient.Instance.AmHost)
             {
-                bool canStartGame = true;
+                /*bool canStartGame = true;
                 List<string> mismatchedPlayerNameList = new();
                 foreach (var client in AmongUsClient.Instance.allClients.ToArray())
                 {
@@ -175,12 +174,13 @@ public class GameStartManagerPatch
                 {
                     __instance.StartButton.gameObject.SetActive(false);
                     warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
-                }
+                }*/
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!cancelButton.gameObject.active);
             }
             else
             {
+                /*
                 if (MatchVersions(0, true) || Main.VersionCheat.Value)
                     exitTimer = 0;
                 else
@@ -195,7 +195,10 @@ public class GameStartManagerPatch
                     if (exitTimer != 0)
                         warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
                 }
+                */
             }
+
+            string warningMessage = "";
             if (warningMessage == "")
             {
                 warningText.gameObject.SetActive(false);
@@ -223,6 +226,7 @@ public class GameStartManagerPatch
             string countDown = $"{minutes:00}:{seconds:00}";
             if (timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
             timerText.text = countDown;
+
         }
         private static bool MatchVersions(byte playerId, bool acceptVanilla = false)
         {

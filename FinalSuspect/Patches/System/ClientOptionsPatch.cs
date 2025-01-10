@@ -1,3 +1,5 @@
+using System;
+using BepInEx.Configuration;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.ClientOptions;
 using FinalSuspect.Modules.Core.Game;
@@ -22,21 +24,22 @@ public static class OptionsMenuBehaviourStartPatch
     //private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
-    private static ClientActionItem UnloadMod;
-    private static ClientActionItem DumpLog;
+    private static ClientFeatureItem UnloadMod;
+    private static ClientFeatureItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
     private static ClientOptionItem_Boolean GodMode;
     private static ClientOptionItem_Boolean NoGameEnd;
 
     public static ClientFeatureItem SoundBtn;
     public static ClientFeatureItem AudioManagementBtn;
-
+    public static OptionsMenuBehaviour Instance { get; private set; }
     private static bool reseted;
+    public static bool recreate = false;
+
     public static void Postfix(OptionsMenuBehaviour __instance)
     {
         if (__instance.DisableMouseMovement == null) return;
-
-        
+        Instance = __instance;
 
         if (!reseted || !DebugModeManager.AmDebugger)
         {
@@ -46,170 +49,175 @@ public static class OptionsMenuBehaviourStartPatch
             Main.NoGameEnd.Value = false;
         }
 
-      
-        
-        if (UnlockFPS == null || UnlockFPS.ToggleButton == null)
+        if (recreate)
         {
-            UnlockFPS = ClientOptionItem_Boolean.Create("UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
-            static void UnlockFPSButtonToggle()
-            {
-                Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
-                XtremeLogger.SendInGame(string.Format(GetString("FPSSetTo"), Application.targetFrameRate));
-            }
+            ClientActionItem.ModOptionsButton.gameObject.SetActive(false);
+            GameObject.Destroy(ClientActionItem.ModOptionsButton);
+            GameObject.Destroy(ClientActionItem.CustomBackground);
+            ClientFeatureItem.ModOptionsButton.gameObject.SetActive(false);
+            GameObject.Destroy(ClientFeatureItem.ModOptionsButton);
+            GameObject.Destroy(ClientFeatureItem.CustomBackground);
+
+            GameObject.Destroy(ModUnloaderScreen.Popup);
+            GameObject.Destroy(MyMusicPanel.CustomBackground);
+            GameObject.Destroy(SoundManagementPanel.CustomBackground);
+            ClientActionItem.ModOptionsButton = null;
+            ClientActionItem.CustomBackground = null;
+
+            ClientFeatureItem.ModOptionsButton = null;
+            ClientFeatureItem.CustomBackground = null;
+
+            ModUnloaderScreen.Popup = null;
+            MyMusicPanel.CustomBackground = null;
+            SoundManagementPanel.CustomBackground = null;
         }
-        if (ChangeOutfit == null || ChangeOutfit.ToggleButton == null)
+        CreateOptionItem(ref UnlockFPS, "UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
+        CreateOptionItem(ref ChangeOutfit, "ChangeOutfit", Main.ChangeOutfit, __instance, Main.OutfitType, SwitchHorseMode);
+        CreateOptionItem(ref KickPlayerFriendCodeNotExist, "KickPlayerFriendCodeNotExist", Main.KickPlayerWhoFriendCodeNotExist, __instance);
+        CreateOptionItem(ref KickPlayerInBanList, "KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
+        CreateOptionItem(ref KickPlayerWithDenyName, "KickPlayerWithDenyName", Main.KickPlayerWithDenyName, __instance);
+        CreateOptionItem(ref SpamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
+        CreateOptionItem(ref AutoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
+        CreateOptionItem(ref AutoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
+        CreateOptionItem(ref EnableRoleBackGround, "EnableRoleBackGround", Main.EnableRoleBackGround, __instance);
+        CreateOptionItem(ref EnableMapBackGround, "EnableMapBackGround", Main.EnableMapBackGround, __instance);
+        //CreateOptionItem(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
+        CreateOptionItem(ref DisableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
+            if (Main.DisableVanillaSound.Value)
+                CustomSoundsManager.StopPlay();
+        });
+        CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
+        if (DebugModeManager.AmDebugger)
         {
-            ChangeOutfit = ClientOptionItem_String.Create(
-                Main.ChangeOutfit.Value ?? Main.OutfitType[0] 
-                 
-                , Main.ChangeOutfit, __instance, Main.OutfitType, SwitchHorseMode);
-            static void SwitchHorseMode()
-            {
-                ChangeOutfit.UpdateToggle(Main.OutfitType);
-                //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
-                //foreach (var pc in PlayerControl.AllPlayerControls)
-                //{
-                //    pc.MyPhysics.SetBodyType(pc.BodyType);
-                //    if (pc.BodyType == PlayerBodyTypes.Normal)
-                //    {
-                //        pc.cosmetics.currentBodySprite.BodySprite.transform.localScale = new(0.5f, 0.5f, 1f);
-                //    }
-                //}
-                
-            }
-            if (!XtremeGameData.GameStates.IsNotJoined)
-            {
-                ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-                ChangeOutfit.ToggleButton.Background.color = Palette.DisabledGrey;
-                ChangeOutfit.ToggleButton.Text.text = GetString("ChangeOutfit") + "|" + GetString("OnlyAvailableInMainMenu");
-            }
-            else
-            {
-                ChangeOutfit.UpdateToggle(Main.OutfitType);
-                ChangeOutfit.UpdateName(Main.ChangeOutfit.Value);
-                ChangeOutfit.ToggleButton.GetComponent<PassiveButton>().enabled =true;
-            }
-        }
-        
-        if (KickPlayerFriendCodeNotExist== null || KickPlayerFriendCodeNotExist.ToggleButton == null)
-        {
-            KickPlayerFriendCodeNotExist = ClientOptionItem_Boolean.Create("KickPlayerFriendCodeNotExist", Main.KickPlayerWhoFriendCodeNotExist, __instance);
-        }
-        if (KickPlayerInBanList == null || KickPlayerInBanList.ToggleButton == null)
-        {
-            KickPlayerInBanList = ClientOptionItem_Boolean.Create("KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
-        }
-        if (KickPlayerWithDenyName == null || KickPlayerWithDenyName.ToggleButton == null)
-        {
-            KickPlayerWithDenyName = ClientOptionItem_Boolean.Create("KickPlayerWithDenyName", Main.KickPlayerWithDenyName, __instance);
-        }
-        if (SpamDenyWord == null || SpamDenyWord.ToggleButton == null)
-        {
-            SpamDenyWord = ClientOptionItem_Boolean.Create("SpamDenyWord", Main.SpamDenyWord, __instance);
+            CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
+            CreateOptionItem(ref GodMode, "GodMode", Main.GodMode, __instance);
+            CreateOptionItem(ref NoGameEnd, "NoGameEnd", Main.NoGameEnd, __instance);
         }
 
-        if (AutoStartGame == null || AutoStartGame.ToggleButton == null)
+        CreateFeatureItem(ref UnloadMod, "UnloadMod", ModUnloaderScreen.Show, __instance);
+        CreateFeatureItem(ref DumpLog, "DumpLog", () => Utils.DumpLog(), __instance);
+        CreateFeatureItem(ref SoundBtn, "SoundOption", () =>
         {
-            AutoStartGame = ClientOptionItem_Boolean.Create("AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
-            static void AutoStartButtonToggle()
-            {
-                if (Main.AutoStartGame.Value == false && XtremeGameData.GameStates.IsCountDown)
-                {
-                    GameStartManager.Instance.ResetStartState();
-                }
-            }
-        }
-        if (AutoEndGame == null || AutoEndGame.ToggleButton == null)
+            MyMusicPanel.CustomBackground?.gameObject?.SetActive(true);
+        }, __instance);
+        CreateFeatureItem(ref AudioManagementBtn, "SoundManager", () =>
         {
-            AutoEndGame = ClientOptionItem_Boolean.Create("AutoEndGame", Main.AutoEndGame, __instance);
-        }
-        if (EnableRoleBackGround == null || EnableRoleBackGround.ToggleButton == null)
-        {
-            EnableRoleBackGround = ClientOptionItem_Boolean.Create("EnableRoleBackGround", Main.EnableRoleBackGround, __instance);
-        }
-        if (EnableMapBackGround == null || EnableMapBackGround.ToggleButton == null)
-        {
-            EnableMapBackGround = ClientOptionItem_Boolean.Create("EnableMapBackGround", Main.EnableMapBackGround, __instance);
-        }
-        //if (PrunkMode == null || PrunkMode.ToggleButton == null)
-        //{
-        //    PrunkMode = ClientOptionItem_Boolean.Create("PrunkMode", Main.PrunkMode, __instance);
-        //}
-        if (DisableVanillaSound == null || DisableVanillaSound.ToggleButton == null)
-        {
-            DisableVanillaSound = ClientOptionItem_Boolean.Create("DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
-                if (Main.DisableVanillaSound.Value)
-                    CustomSoundsManager.StopPlay();
-            });
-        }
-        if (DisableFAC == null || DisableFAC.ToggleButton == null)
-        {
-            DisableFAC = ClientOptionItem_Boolean.Create("DisableFAC", Main.DisableFAC, __instance);
-        }
-        if (UnloadMod == null || UnloadMod.ToggleButton == null)
-        {
-            UnloadMod = ClientActionItem.Create("UnloadMod", ModUnloaderScreen.Show, __instance);
-        }
-        if (DumpLog == null || DumpLog.ToggleButton == null)
-        {
-            DumpLog = ClientActionItem.Create("DumpLog", () => Utils.DumpLog(), __instance);
-        }
+            SoundManagementPanel.CustomBackground?.gameObject?.SetActive(true);
+        }, __instance);
 
-        if ((VersionCheat == null || VersionCheat.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            VersionCheat = ClientOptionItem_Boolean.Create("VersionCheat", Main.VersionCheat, __instance);
-        }
+        SetFeatureItemTextAndColor(SoundBtn, "SoundOptions");
+        SetFeatureItemTextAndColor(AudioManagementBtn, "AudioManagementOptions");
 
-        if ((GodMode == null || GodMode.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            GodMode = ClientOptionItem_Boolean.Create("GodMode", Main.GodMode, __instance);
-        }
-        
-        if ((NoGameEnd == null || NoGameEnd.ToggleButton == null) && DebugModeManager.AmDebugger)
-        {
-            NoGameEnd = ClientOptionItem_Boolean.Create("NoGameEnd", Main.NoGameEnd, __instance);
-        }
-        
-        var mouseMoveToggle = __instance.DisableMouseMovement;
-        if ((SoundBtn == null || SoundBtn.ToggleButton == null))
-        {
-            SoundBtn = ClientFeatureItem.Create("SoundOption", () =>
-            {
-                MyMusicPanel.CustomBackground?.gameObject?.SetActive(true);
-            }, __instance);
-        }
-
-        if ((AudioManagementBtn == null || AudioManagementBtn.ToggleButton == null))
-        {
-            AudioManagementBtn = ClientFeatureItem.Create("SoundManager", () =>
-            {
-                SoundManagementPanel.CustomBackground?.gameObject?.SetActive(true);
-            }, __instance);
-        }
-
-        SoundBtn.ToggleButton.Text.text = GetString("SoundOptions");
-        SoundBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        SoundBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
-        AudioManagementBtn.ToggleButton.Text.text = GetString("AudioManagementOptions");
-        AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        AudioManagementBtn.ToggleButton.Background.color = ColorHelper.ModColor32;
         if (!XtremeGameData.GameStates.IsNotJoined)
         {
-            AudioManagementBtn.ToggleButton.Text.text = GetString("AudioManagementOptions") + "|" + GetString("OnlyAvailableInMainMenu");
-            AudioManagementBtn.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-            AudioManagementBtn.ToggleButton.Background.color = Palette.DisabledGrey;
+            SetFeatureItemDisabled(AudioManagementBtn, true);
         }
-
 
         MyMusicPanel.Init(__instance);
         SoundManagementPanel.Init(__instance);
 
+        
         if (ModUnloaderScreen.Popup == null)
             ModUnloaderScreen.Init(__instance);
+        recreate = false;
+    }
 
+    private static void CreateOptionItem(ref ClientOptionItem_Boolean item, string name, ConfigEntry<bool> value, OptionsMenuBehaviour instance, Action toggleAction = null)
+    {
+        if (recreate)
+        {
+            GameObject.Destroy(item.ToggleButton.gameObject);
+            item = null;
+        }
+        if (item == null || item.ToggleButton == null)
+        {
+            item = ClientOptionItem_Boolean.Create(name, value, instance, toggleAction);
+        }
+
+        
+    }
+
+    private static void CreateOptionItem(ref ClientOptionItem_String item, string name, ConfigEntry<string> value, OptionsMenuBehaviour instance, string[] options, Action toggleAction = null)
+    {
+        if (recreate)
+        {
+            GameObject.Destroy(item.ToggleButton.gameObject);
+            item = null;
+        }
+        if (item == null || item.ToggleButton == null)
+        {
+            item = ClientOptionItem_String.Create(value.Value ?? options[0], value, instance, options, toggleAction);
+        }
+    }
+
+    private static void CreateActionItem(ref ClientActionItem item, string name, Action action, OptionsMenuBehaviour instance)
+    {
+        if (recreate)
+        {
+            GameObject.Destroy(item.ToggleButton.gameObject);
+            item = null;
+        }
+        if (item == null || item.ToggleButton == null)
+        {
+            item = ClientActionItem.Create(name, action, instance);
+        }
+    }
+
+    private static void CreateFeatureItem(ref ClientFeatureItem item, string name, Action action, OptionsMenuBehaviour instance)
+    {
+        if (recreate)
+        {
+            GameObject.Destroy(item.ToggleButton.gameObject);
+            item = null;
+        }
+        if (item == null || item.ToggleButton == null)
+        {
+            item = ClientFeatureItem.Create(name, action, instance);
+        }
+    }
+
+    private static void SetFeatureItemTextAndColor(ClientFeatureItem item, string text)
+    {
+        item.ToggleButton.Text.text = GetString(text);
+        item.ToggleButton.GetComponent<PassiveButton>().enabled = true;
+        item.ToggleButton.Background.color = ColorHelper.ModColor32;
+    }
+
+    private static void SetFeatureItemDisabled(ClientFeatureItem item, bool isDisabled)
+    {
+        item.ToggleButton.Text.text += "|" + GetString("OnlyAvailableInMainMenu");
+        item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+        item.ToggleButton.Background.color = Palette.DisabledGrey;
+    }
+
+    private static void UnlockFPSButtonToggle()
+    {
+        Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
+        XtremeLogger.SendInGame(string.Format(GetString("FPSSetTo"), Application.targetFrameRate));
+    }
+
+    private static void SwitchHorseMode()
+    {
+        ChangeOutfit.UpdateToggle(Main.OutfitType);
+        //if (Main.ChangeOutfit.Value == Main.changeOutfit[1])
+        //foreach (var pc in PlayerControl.AllPlayerControls)
+        //{
+        //    pc.MyPhysics.SetBodyType(pc.BodyType);
+        //    if (pc.BodyType == PlayerBodyTypes.Normal)
+        //    {
+        //        pc.cosmetics.currentBodySprite.BodySprite.transform.localScale = new(0.5f, 0.5f, 1f);
+        //    }
+        //}
+    }
+
+    private static void AutoStartButtonToggle()
+    {
+        if (Main.AutoStartGame.Value == false && XtremeGameData.GameStates.IsCountDown)
+        {
+            GameStartManager.Instance.ResetStartState();
+        }
     }
 }
-
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Close))]
 public static class OptionsMenuBehaviourClosePatch
 {
@@ -220,5 +228,15 @@ public static class OptionsMenuBehaviourClosePatch
         ModUnloaderScreen.Hide();
         MyMusicPanel.Hide();
         SoundManagementPanel.Hide();
+    }
+}
+
+[HarmonyPatch(typeof(LanguageSetter), nameof(LanguageSetter.SetLanguage))]
+public static class LanguageSetterSetLanguagePatch
+{
+    public static void Postfix()
+    {
+        OptionsMenuBehaviourStartPatch.recreate = true;
+        OptionsMenuBehaviourStartPatch.Postfix(OptionsMenuBehaviourStartPatch.Instance);
     }
 }

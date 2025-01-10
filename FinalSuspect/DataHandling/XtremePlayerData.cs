@@ -58,7 +58,7 @@ public class XtremePlayerData : IDisposable
     {
         try
         {
-            return AllPlayerData[id] ?? null;
+            return AllPlayerData[id];
         }
         catch
         {

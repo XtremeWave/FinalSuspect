@@ -35,14 +35,22 @@ class PlayerStartPatch
 {
     public static void Postfix(PlayerControl __instance)
     {
-        var roleText = Object.Instantiate(__instance.cosmetics.nameText);
-        roleText.transform.SetParent(__instance.cosmetics.nameText.transform);
-        roleText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
-        roleText.transform.localScale = new(1f, 1f, 1f);
-        roleText.fontSize = Main.RoleTextSize;
-        roleText.text = "RoleText";
-        roleText.gameObject.name = "RoleText";
-        roleText.enabled = false;
+        var topText = Object.Instantiate(__instance.cosmetics.nameText);
+        topText.transform.SetParent(__instance.cosmetics.nameText.transform);
+        topText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+        topText.transform.localScale = new(1f, 1f, 1f);
+        topText.fontSize = Main.RoleTextSize;
+        topText.text = "TopText";
+        topText.gameObject.name = "TopText";
+        topText.enabled = false;
+        var bottomText = Object.Instantiate(__instance.cosmetics.nameText);
+        bottomText.transform.SetParent(__instance.cosmetics.nameText.transform);
+        bottomText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+        bottomText.transform.localScale = new(1f, 1f, 1f);
+        bottomText.fontSize = Main.RoleTextSize;
+        bottomText.text = "BottomText";
+        bottomText.gameObject.name = "BottomText";
+        bottomText.enabled = false;
     }
 }
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.SetTasks))]

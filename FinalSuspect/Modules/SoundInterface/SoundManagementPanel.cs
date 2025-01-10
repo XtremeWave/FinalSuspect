@@ -14,7 +14,7 @@ namespace FinalSuspect.Modules.SoundInterface;
 
 public static class SoundManagementPanel
 {
-    public static SpriteRenderer CustomBackground { get; private set; }
+    public static SpriteRenderer CustomBackground { get; set; }
     public static GameObject Slider { get; private set; }
     public static Dictionary<string, GameObject> Items { get; private set; }
 

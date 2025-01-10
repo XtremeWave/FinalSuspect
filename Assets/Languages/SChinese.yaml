@@ -260,7 +260,7 @@ ImpostorsWin: "伪装者胜利"
 ImpostorsWinBlurb: "黑暗笼罩世界"
 HideSummaryTextToShowWinText: "<color=#ffff00>隐藏复盘信息查看胜利文本</color>"
 
-# 禁用公开
+# 禁用公开 / Disable Public
 DisabledByProgram: "公开房间的操作已被程序禁用"
 PublicNotAvailableOnThisVersion: "该版本的 FinalSuspect 暂不支持公开"
 
@@ -270,7 +270,7 @@ ConnectToFinalSuspectServerFailed: "无法连接至FinalSuspect服务器"
 Website: "模组官网"
 MainMenuCredential: "{0} © 2025"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "苹果"
 Android: "安卓"
 
@@ -280,17 +280,19 @@ FrameRate: "帧率"
 Server: "服务器"
 Local: "<color=#D1FA87>本地</color>"
 
-# 其他
+# 其他 / Other
 HongKong: "香港"
 FPSSetTo: "帧数上限设置为: {0}"
 BrowsingMode: "浏览模式"
 Broken: "损坏"
-Host: "房主"
 
-# 加载
+# 加载 / Loading
 LanguageFilesLoadingComplete: "翻译文本加载完成！"
 CheckingForFiles: "校验资源文件完整性..."
 DownloadingResources: "下载资源文件..."
 Loading: "加载中..."
 LoadingComplete: "加载完成！"
 
+# 身份 / Identity
+Host: "房主"
+Cheater: "作弊者"

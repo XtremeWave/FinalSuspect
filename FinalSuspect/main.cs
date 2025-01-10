@@ -90,6 +90,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
     public static ConfigEntry<bool> PrunkMode { get; private set; }
+    public static ConfigEntry<bool> ShowPlayerInfo { get; private set; }
     public static ConfigEntry<bool> DisableFAC { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }

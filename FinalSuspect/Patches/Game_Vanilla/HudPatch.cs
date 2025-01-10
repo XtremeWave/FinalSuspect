@@ -221,7 +221,8 @@ public static class HudManagerPatch
     }
 
     public static string LastResultText;
-
+    public static string LastGameData;
+    public static string LastRoomCode;
     public static void SetChatBG(HudManager __instance)
     {
         Color color;
@@ -288,23 +289,28 @@ public static class HudManagerPatch
         
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
+        if (XtremeGameData.GameStates.IsInGame)
+            LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
         var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
-            !DataManager.Settings.Gameplay.StreamerMode? GameCode.IntToGameName(AmongUsClient.Instance.GameId) : new string('*', GameCode.IntToGameName(AmongUsClient.Instance.GameId).Length));
+            DataManager.Settings.Gameplay.StreamerMode?  new string('*', LastRoomCode.Length): LastRoomCode);
         sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
         if (XtremeGameData.GameStates.IsInGame)
         {
+            StringBuilder sb2 = new();
             foreach (var kvp in XtremePlayerData.AllPlayerData)
             {
                 var id = kvp.Key;
                 var data = kvp.Value;
-                sb.Append("\n\u3000 ").Append(Utils.SummaryTexts(id));
+                sb2.Append("\n\u3000 ").Append(Utils.SummaryTexts(id));
 
             }
 
-            LastResultText = sb.ToString();
+            LastGameData = sb2.ToString();
         }
-        
+
+        sb.Append(LastGameData);
+        LastResultText = sb.ToString();
         if (roleSummary == null)
         {
 

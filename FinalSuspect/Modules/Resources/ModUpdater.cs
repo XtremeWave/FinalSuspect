@@ -20,9 +20,9 @@ public class ModUpdater
     
     public static string announcement_zh = "";
     public static string announcement_en = "";
-    public static readonly string downloadUrl_github = "https://github.com/releases/latest/download/FinalSuspect.dll";
-    public static readonly string downloadUrl_gitee = "https://gitee.com/releases/download/v{showVer}/FinalSuspect.dll";
-    public static readonly string downloadUrl_objectstorage = "https://api.xtreme.net.cn/FinalSuspect/FinalSuspect.dll";
+    public static string downloadUrl_github = "https://github.com/releases/latest/download/FinalSuspect.dll";
+    public static string downloadUrl_gitee = "https://gitee.com/releases/download/v{showVer}/FinalSuspect.dll";
+    public static string downloadUrl_objectstorage = "https://api.xtreme.net.cn/FinalSuspect/FinalSuspect.dll";
 
     public static void SetUpdateButtonStatus()
     {

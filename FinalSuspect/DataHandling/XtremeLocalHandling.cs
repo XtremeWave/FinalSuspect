@@ -1,8 +1,11 @@
+using System;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
+using Sentry.Unity.NativeUtils;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.DataHandling;
 [HarmonyPatch]
@@ -10,69 +13,129 @@ public static class XtremeLocalHandling
 {
     public static string CheckAndGetNameWithDetails(
         this PlayerControl player, 
-        out Color color, 
-        out string headertext,
-        bool headderswap = false)
+        out Color topcolor, 
+        out Color bottomcolor, 
+        out string toptext,
+        out string bottomtext,
+        bool topswap = false)
     {
         var name = player.GetDataName() ?? player.GetRealName();
-        color = Color.white;
-        headertext = "";
-        player.GetLobbyText(ref color, ref headertext);
-        player.GetGameText(ref color, ref headertext, headderswap);
+        topcolor = Color.white;
+        bottomcolor = Color.white;
+        toptext = "";
+        bottomtext = "";
+        player.GetLobbyText(ref topcolor, ref bottomcolor, ref toptext, ref bottomtext);
+        player.GetGameText(ref topcolor, ref toptext, topswap);
         SpamManager.CheckSpam(ref name);
         if (FAC.SuspectCheater.Contains(player.PlayerId))
         {
-            color = ColorHelper.FaultColor;
+            topcolor = ColorHelper.FaultColor;
+            toptext.CheckAndAppendText(GetString("Cheater"));
         }
         return name;
     }
-    public static void GetLobbyText(this PlayerControl player, ref Color color, ref string headertext)
+    public static void GetLobbyText(this PlayerControl player, ref Color topcolor, ref Color bottomcolor, ref string toptext, ref string bottomtext)
     {
         if (!XtremeGameData.GameStates.IsLobby) return;
         if (player.IsHost())
-            headertext = GetString("Host");
+            toptext = toptext.CheckAndAppendText(GetString("Host"));
         if (XtremeGameData.PlayerVersion.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
         {
             if (Main.ForkId != ver.forkId)
             {
-                headertext = $"<size=1.5>{ver.forkId}</size>";
-                color = ColorHelper.UnmatchedColor;
+                toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.forkId}</size>");
+                topcolor = ColorHelper.UnmatchedColor;
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag == $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
             {
 
-                color = ColorHelper.ModColor32;
+                topcolor = ColorHelper.ModColor32;
             }
             else if (Main.version.CompareTo(ver.version) == 0 &&
                      ver.tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
             {
-                headertext = $"<size=1.5>{ver.tag}</size>";
-                color = Color.yellow;
+                toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.tag}</size>");
+                topcolor = Color.yellow;
             }
             else
             {
-                headertext = $"<size=1.5>v{ver.version}</size>";
-                color = ColorHelper.FaultColor;
+                toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.version}</size>");
+                topcolor = ColorHelper.FaultColor;
             }
         }
         else
         {
-            if (player.IsLocalPlayer()) color = ColorHelper.ModColor32;
-            else if (player.IsHost()) color = ColorHelper.HostNameColor;
-            else color = ColorHelper.ClientlessColor;
+            if (player.IsLocalPlayer()) topcolor = ColorHelper.ModColor32;
+            else if (player.IsHost()) topcolor = ColorHelper.HostNameColor;
+            else topcolor = ColorHelper.ClientlessColor;
         }
+        bottomtext = bottomtext.CheckAndAppendText(player.GetPlatform());
     }
-    public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText ,bool headderswap)
+
+    public static string GetPlatform(this PlayerControl player)
+    {
+        var color = "";
+        var name = "";
+        string text;
+        switch (player.GetClient().PlatformData.Platform)
+        {
+            case Platforms.StandaloneEpicPC:
+                color = "#905CDA";
+                name = "Itch";
+                break;
+            case Platforms.StandaloneSteamPC:
+                color = "#4391CD";
+                name = "Steam";
+                break;
+            case Platforms.StandaloneMac:
+                color = "#e3e3e3";
+                name = "Mac.";
+                break;
+            case Platforms.StandaloneWin10:
+                color = "#FFF88D";
+                name = "Win-10";
+                break;
+            case Platforms.StandaloneItch:
+                color = "#E35F5F";
+                name = "Itch";
+                break;
+            case Platforms.IPhone:
+                color = "#e3e3e3";
+                name = GetString("IPhone");
+                break;
+            case Platforms.Android:
+                color = "#1EA21A";
+                name = GetString("Android");
+                break;
+            case Platforms.Switch:
+                name = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
+                break;
+            case Platforms.Xbox:
+                color = "#07ff00";
+                name = "Xbox";
+                break;
+            case Platforms.Playstation:
+                color = "#0014b4";
+                name = "PlayStation";
+                break;
+        }
+
+        if (color != "" && name != "")
+            text = $"<color={color}>{name}</color>";
+        else
+            text = name;
+        return text;
+    }
+    public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText ,bool topswap)
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
         if (!Main.EnableFinalSuspect.Value) return;
         var roleType = player.GetRoleType();
-        
         if (Utils.CanSeeTargetRole(player, out bool bothImp))
         {
             color = Utils.GetRoleColor(roleType);
-            if (!headderswap)
+            if (!topswap)
                 roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
             else
                 roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
@@ -84,6 +147,14 @@ public static class XtremeLocalHandling
         if (player.GetPlayerData().IsDisconnected)
             color = Color.gray;
     }
+
+    public static string CheckAndAppendText(this string toptext, string extratext)
+    {
+        if (toptext != "")
+            toptext += " ";
+        toptext += extratext;
+        return toptext;
+    }
     #region FixedUpdate
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate)), HarmonyPostfix]
     public static void OnFixedUpdate(PlayerControl __instance)
@@ -94,7 +165,7 @@ public static class XtremeLocalHandling
 
         try
         {
-            var name = __instance.CheckAndGetNameWithDetails(out Color color, out string headertext);
+            var name = __instance.CheckAndGetNameWithDetails(out Color topcolor, out Color bottomcolor, out string toptext, out string bottomtext);
             if (Main.EnableFinalSuspect.Value && XtremeGameData.GameStates.IsInGame)
             { 
                 DisconnectSync(__instance);
@@ -102,15 +173,22 @@ public static class XtremeLocalHandling
             }
             
             
-            var HeaderTextTransform = __instance.cosmetics.nameText.transform.Find("RoleText");
-            var HeaderText = HeaderTextTransform.GetComponent<TextMeshPro>();
-            HeaderText.enabled = true;
-            HeaderText.text = headertext;
-            HeaderText.color = color;
-            HeaderText.transform.SetLocalY(0.2f);
+            var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
+            var TopText = TopTextTransform.GetComponent<TextMeshPro>();
+            TopText.enabled = true;
+            TopText.text = toptext;
+            TopText.color = topcolor;
+            TopText.transform.SetLocalY(0.2f);
+            
+            var BottomTextTransform = __instance.cosmetics.nameText.transform.Find("BottomText");
+            var BottomText = BottomTextTransform.GetComponent<TextMeshPro>();
+            BottomText.enabled = true;
+            BottomText.text = bottomtext;
+            BottomText.color = bottomcolor;
+            BottomText.transform.SetLocalY(0.2f);
 
             __instance.cosmetics.nameText.text = name;
-            __instance.cosmetics.nameText.color = color;
+            __instance.cosmetics.nameText.color = topcolor;
         }
         catch
         {
@@ -157,8 +235,8 @@ public static class XtremeLocalHandling
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
                 var pc = Utils.GetPlayerById(pva.TargetPlayerId);
 
-                var name = pc.CheckAndGetNameWithDetails(out Color color, out string headertext);
-            
+                var name = pc.CheckAndGetNameWithDetails(out Color color, out _, out string toptext, out _);
+
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";
                 roleTextMeeting.enabled = false;
@@ -167,22 +245,22 @@ public static class XtremeLocalHandling
                 roleTextMeeting.fontSize = 1.5f;
                 roleTextMeeting.gameObject.name = "RoleTextMeeting";
                 roleTextMeeting.enableWordWrapping = false;
-                
+
                 pva.NameText.text = name;
                 pva.NameText.color = color;
 
-                if (headertext.Length > 0)
+                if (toptext.Length > 0)
                 {
-                    roleTextMeeting.text = headertext;
+                    roleTextMeeting.text = toptext;
                     roleTextMeeting.color = color;
                     roleTextMeeting.enabled = true;
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                
+                XtremeLogger.Test(e);
             }
-            
+
         }
     }
 
@@ -232,11 +310,12 @@ public static class XtremeLocalHandling
             return;
         }
         var player = Utils.GetPlayerById(playerId);
-        name = player.CheckAndGetNameWithDetails(out namecolor, out string headertext, player.IsLocalPlayer());
+        name = player.CheckAndGetNameWithDetails(out namecolor, out _,  out string toptext, out _, player.IsLocalPlayer());
+        toptext = toptext.Replace("\n", " ");
         if (player.IsLocalPlayer())
-            name = $"<size=60%>{headertext}</size>  " + name;
+            name = $"<size=60%>{toptext}</size>  " + name;
         else
-            name += $"  <size=60%>{headertext}</size>";
+            name += $"  <size=60%>{toptext}</size>";
         
         if (!player.IsAlive())
             bgcolor = new Color32(255, 0, 0, 120);
