@@ -89,9 +89,10 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
     public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
+    public static ConfigEntry<bool> DisableFAC { get; private set; }
     public static ConfigEntry<bool> PrunkMode { get; private set; }
     public static ConfigEntry<bool> ShowPlayerInfo { get; private set; }
-    public static ConfigEntry<bool> DisableFAC { get; private set; }
+    public static ConfigEntry<bool> UseModMouseSprite { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
     public static ConfigEntry<bool> NoGameEnd { get; private set; }
@@ -169,6 +170,7 @@ public class Main : BasePlugin
         DisableFAC = Config.Bind("Client Options", "Disable FAC", false);
         PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
         ShowPlayerInfo = Config.Bind("Client Options", "Show Player Info", true);
+        UseModMouseSprite = Config.Bind("Client Options", "Use Mod Mouse Sprite", true);
         VersionCheat = Config.Bind("Client Options", "Version Cheat", false);
         GodMode = Config.Bind("Client Options", "God Mode", false);
         NoGameEnd = Config.Bind("Client Options", "No Game End", false);
