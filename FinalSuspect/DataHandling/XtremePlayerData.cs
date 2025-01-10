@@ -10,11 +10,12 @@ namespace FinalSuspect.DataHandling;
 public class XtremePlayerData : IDisposable
 {
     #region PLAYER_INFO
-    public static Dictionary<byte, XtremePlayerData> AllPlayerData; 
+    public static List<XtremePlayerData> AllPlayerData; 
     public PlayerControl Player { get; private set; }
  
         public string Name { get; private set; }
         public int ColorId { get; private set; }
+        public byte PlayerId { get; private set; }
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
@@ -45,6 +46,7 @@ public class XtremePlayerData : IDisposable
             Player = player;
             Name = playername;
             ColorId = colorid;
+            PlayerId = player.PlayerId;
             IsImpostor = IsDead = RoleAssgined = false;
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
             RealDeathReason = DataDeathReason.None;
@@ -54,24 +56,24 @@ public class XtremePlayerData : IDisposable
     #endregion
     ///////////////FUNCTIONS\\\\\\\\\\\\\\\
     
-    public static XtremePlayerData GetPlayerDataById(byte id)
+    public static XtremePlayerData GetXtremeDataById(byte id)
     {
         try
         {
-            return AllPlayerData[id];
+            return AllPlayerData.Where(data => data.PlayerId == id).FirstOrDefault();
         }
         catch
         {
             return null;
         }
     }
-    public static PlayerControl GetPlayerById(byte id) => GetPlayerDataById(id).Player ?? null;
-    public static string GetPlayerNameById(byte id) => GetPlayerDataById(id).Name;
+    public static PlayerControl GetPlayerById(byte id) => GetXtremeDataById(id).Player ?? null;
+    public static string GetPlayerNameById(byte id) => GetXtremeDataById(id).Name;
 
     public static RoleTypes GetRoleById(byte id)
     {
-        var data = GetPlayerDataById(id);
-        var dead = data.IsDead;
+        var data = GetXtremeDataById(id);
+        var dead = data?.IsDead ?? false;
         RoleTypes role;
         RoleTypes nullrole;
 
@@ -87,7 +89,12 @@ public class XtremePlayerData : IDisposable
         role = (dead ? data.RoleAfterDeath : data.RoleWhenAlive) ?? nullrole;            
         return role;
     }
-    public static int GetLongestNameByteCount() => AllPlayerData.Values.Select(data => data.Name.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
+
+    public void AdjustPlayerId()
+    {
+        PlayerId = Player.PlayerId;
+    }
+    public static int GetLongestNameByteCount() => AllPlayerData.Select(data => data.Name.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
 
 public void SetName(string name) => Name = name;
     public void SetDead()
@@ -99,6 +106,8 @@ public void SetName(string name) => Name = name;
     {
         if (XtremeGameData.GameStates.IsLobby)
         {
+            Dispose();
+            AllPlayerData.Remove(this);
             return;
         }
         XtremeLogger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
@@ -153,21 +162,25 @@ public void SetName(string name) => Name = name;
     public static void CreateDataFor(PlayerControl player, string playername = null)
     {
         var colorId = player.Data.DefaultOutfit.ColorId;
-        var id = player.PlayerId;
-        AllPlayerData[id] = new XtremePlayerData(player, playername ?? player.GetRealName(), colorId);
+        AllPlayerData.Add(new XtremePlayerData(player, playername ?? player.GetRealName(), colorId));
     }
 #pragma warning disable CA1816
-        public void Dispose()
-        {
-            XtremeLogger.Info($"Disposing XtremePlayerData For {Name}", "Data");
-            AllPlayerData.Remove(Player.PlayerId);
-            Player = null;
-            Name = null ;
-            ColorId = -1 ;
-            IsImpostor = IsDead = RoleAssgined = false;
-            CompleteTaskCount = KillCount = TotalTaskCount = 0;
-            RealDeathReason = DataDeathReason.None;
-            RealKiller = null;
-        }
+    public void Dispose()
+    {
+        XtremeLogger.Info($"Disposing XtremePlayerData For {Name}", "Data");
+        Player = null;
+        Name = null;
+        ColorId = -1;
+        IsImpostor = IsDead = RoleAssgined = false;
+        CompleteTaskCount = KillCount = TotalTaskCount = 0;
+        RealDeathReason = DataDeathReason.None;
+        RealKiller = null;
+    }
+
+    public static void DisposeAll()
+    {
+        AllPlayerData.Do(data => data.Dispose());
+        AllPlayerData.Clear();
+    }
 #pragma warning restore CA1816
 }

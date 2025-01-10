@@ -55,7 +55,7 @@ class DisconnectInternalPatch
 
             XtremeLogger.Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
             HudManagerPatch.Init();
-            XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+            XtremePlayerData.DisposeAll();
 
             ErrorText.Instance.CheatDetected = false;
             ErrorText.Instance.SBDetected = false;
@@ -135,6 +135,7 @@ class OnPlayerLeftPatch
             ClientsProcessed.Remove(data?.Id ?? 0);
             FAC.SetNameNum.Remove(data?.Character?.PlayerId ?? 255);
             FAC.SuspectCheater.Remove(data?.Character?.PlayerId ?? 255);
+            XtremePlayerData.AllPlayerData.Do(data => data.AdjustPlayerId());
         }
         catch { }
     }

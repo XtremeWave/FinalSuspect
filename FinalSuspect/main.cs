@@ -168,6 +168,7 @@ public class Main : BasePlugin
         DisableVanillaSound = Config.Bind("Client Options", "Disable Vanilla Sound", false);
         DisableFAC = Config.Bind("Client Options", "Disable FAC", false);
         PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
+        ShowPlayerInfo = Config.Bind("Client Options", "Show Player Info", true);
         VersionCheat = Config.Bind("Client Options", "Version Cheat", false);
         GodMode = Config.Bind("Client Options", "God Mode", false);
         NoGameEnd = Config.Bind("Client Options", "No Game End", false);

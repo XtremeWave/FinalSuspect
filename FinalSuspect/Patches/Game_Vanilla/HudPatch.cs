@@ -298,12 +298,9 @@ public static class HudManagerPatch
         if (XtremeGameData.GameStates.IsInGame)
         {
             StringBuilder sb2 = new();
-            foreach (var kvp in XtremePlayerData.AllPlayerData)
+            foreach (var data in XtremePlayerData.AllPlayerData)
             {
-                var id = kvp.Key;
-                var data = kvp.Value;
-                sb2.Append("\n\u3000 ").Append(Utils.SummaryTexts(id));
-
+                sb2.Append("\n\u3000 ").Append(Utils.SummaryTexts(data.PlayerId));
             }
 
             LastGameData = sb2.ToString();

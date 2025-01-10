@@ -19,8 +19,8 @@ class AmongUsClientEndGamePatch
     public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
     {
         SummaryText = new();
-        foreach (var id in XtremePlayerData.AllPlayerData.Keys)
-            SummaryText[id] = Utils.SummaryTexts(id);
+        foreach (var data in XtremePlayerData.AllPlayerData)
+            SummaryText[data.PlayerId] = Utils.SummaryTexts(data.PlayerId);
     }
 }
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
@@ -87,16 +87,13 @@ class SetEverythingUpPatch
         sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
-        foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor != DidHumansWin))
+        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
         {
-            var id = kvp.Key;
-            var data = kvp.Value;
-            sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
+            sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
         }
-        foreach (var kvp in XtremePlayerData.AllPlayerData.Where(x => x.Value.IsImpostor == DidHumansWin))
+        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
         {
-            var id = kvp.Key;
-            sb.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[id]);
+            sb.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
         }
 
         HudManagerPatch.LastResultText = sb.ToString().Replace("\n" + GetString("HideSummaryTextToShowWinText"), "");
@@ -116,7 +113,7 @@ class SetEverythingUpPatch
         roleSummary.SetOutlineThickness(0.15f);
  
 
-        XtremePlayerData.AllPlayerData.Values.ToArray().Do(data => data.Dispose());
+        XtremePlayerData.DisposeAll();
 
 
     }

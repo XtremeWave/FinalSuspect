@@ -122,7 +122,7 @@ public static class Utils
     public static string SummaryTexts(byte id)
     {
 
-        var thisdata = XtremePlayerData.GetPlayerDataById(id);
+        var thisdata = XtremePlayerData.GetXtremeDataById(id);
 
         var builder = new StringBuilder();
         var longestNameByteCount = XtremePlayerData.GetLongestNameByteCount();
@@ -278,7 +278,7 @@ public static class Utils
     }
     public static string GetTaskProgressText(byte playerId, bool comms = false)
     {
-        var data = XtremePlayerData.GetPlayerDataById(playerId);
+        var data = XtremePlayerData.GetXtremeDataById(playerId);
         if (!XtremeGameData.GameStates.IsNormalGame)
         {
             if (data.IsImpostor)
@@ -303,7 +303,7 @@ public static class Utils
     }
     public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
     {
-        var data = XtremePlayerData.GetPlayerDataById(playerId);
+        var data = XtremePlayerData.GetXtremeDataById(playerId);
         if (!data.IsDead || data.RealDeathReason is DataDeathReason.None) return "";
         
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
@@ -420,6 +420,7 @@ public static class Utils
     public static bool CanSeeOthersRole()
     {
         if (!XtremeGameData.GameStates.IsInGame) return true;
+        if (XtremeGameData.GameStates.IsFreePlay) return true;
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
         

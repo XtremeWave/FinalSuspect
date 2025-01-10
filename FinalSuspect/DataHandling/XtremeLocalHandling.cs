@@ -70,7 +70,13 @@ public static class XtremeLocalHandling
             else if (player.IsHost()) topcolor = ColorHelper.HostNameColor;
             else topcolor = ColorHelper.ClientlessColor;
         }
-        bottomtext = bottomtext.CheckAndAppendText(player.GetPlatform());
+
+        if (Main.ShowPlayerInfo.Value)
+        {
+            bottomtext = bottomtext.CheckAndAppendText($"{player.GetPlatform()} {player.GetClient().FriendCode}");
+            bottomcolor = ColorHelper.DownloadYellow;
+        }
+       
     }
 
     public static string GetPlatform(this PlayerControl player)
@@ -144,7 +150,7 @@ public static class XtremeLocalHandling
         {
             color = Palette.ImpostorRed;
         }
-        if (player.GetPlayerData().IsDisconnected)
+        if (player.GetXtremeData().IsDisconnected)
             color = Color.gray;
     }
 
@@ -166,7 +172,7 @@ public static class XtremeLocalHandling
         try
         {
             var name = __instance.CheckAndGetNameWithDetails(out Color topcolor, out Color bottomcolor, out string toptext, out string bottomtext);
-            if (Main.EnableFinalSuspect.Value && XtremeGameData.GameStates.IsInGame)
+            if (Main.EnableFinalSuspect.Value)
             { 
                 DisconnectSync(__instance);
                 DeathSync(__instance);
@@ -185,7 +191,8 @@ public static class XtremeLocalHandling
             BottomText.enabled = true;
             BottomText.text = bottomtext;
             BottomText.color = bottomcolor;
-            BottomText.transform.SetLocalY(0.2f);
+            BottomText.transform.SetLocalY(-1.6f);
+            BottomText.fontSize = 1.6f;
 
             __instance.cosmetics.nameText.text = name;
             __instance.cosmetics.nameText.color = topcolor;
@@ -201,7 +208,7 @@ public static class XtremeLocalHandling
     static void DisconnectSync(PlayerControl pc)
     {
         if (!XtremeGameData.GameStates.IsInTask || XtremeGameData.GameStates.IsFreePlay) return;
-        var data = pc.GetPlayerData();
+        var data = pc.GetXtremeData();
         var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
         var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
         var Role_NotAssgin = data.RoleWhenAlive == null;
@@ -214,7 +221,7 @@ public static class XtremeLocalHandling
     }
     static void DeathSync(PlayerControl pc)
     {
-        if (!XtremeGameData.GameStates.IsInTask || pc.GetPlayerData().IsDead) return;
+        if (!XtremeGameData.GameStates.IsInTask || pc.GetXtremeData().IsDead) return;
         if (pc.Data.IsDead) pc.SetDead();
     }
     

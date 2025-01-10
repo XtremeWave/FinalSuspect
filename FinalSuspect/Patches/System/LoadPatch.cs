@@ -383,7 +383,7 @@ public class LoadPatch
                         processText.color = Color.blue.AlphaMultiplied(alpha);
                     yield return null;
                 }
-                Color yellow = new Color32(252, 255, 152, 255);
+                Color yellow = ColorHelper.DownloadYellow;
                 processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count + remoteModNewsList.Count})";
                 p = 1f;
                 while (p > 0)
@@ -431,7 +431,7 @@ public class LoadPatch
 
             if (process > 0)
             {
-                Color yellow = new Color32(252, 255, 152, 255);
+                Color yellow = ColorHelper.DownloadYellow;
                 p = 1f;
                 while (p > 0)
                 {
@@ -470,7 +470,7 @@ public class LoadPatch
 
             #region Load Complete
             yield return new WaitForSeconds(1f);
-            Color green = new Color32(185, 255, 181, 255);
+            Color green = ColorHelper.LoadCompleteGreen;
             loadText.color = green.AlphaMultiplied(0.5f);
 
             loadText.text = GetString("LoadingComplete");

@@ -40,6 +40,8 @@ public static class ColorHelper
     public static readonly Color32 UnmatchedColor = new(191, 255, 185, 255);
     public static readonly Color32 HostNameColor = new(177, 255, 231, 255);
     public static readonly Color32 ClientlessColor = new(225, 224, 179, 255);
+    public static readonly Color32 DownloadYellow = new(252, 255, 152, 255);
+    public static readonly Color32 LoadCompleteGreen = new(185, 255, 181, 255);
     
     /// <summary>
     /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。

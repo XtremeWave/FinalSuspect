@@ -28,7 +28,7 @@ static class ExtendedPlayerControl
     }
     public static RoleTypes GetRoleType(this PlayerControl player)
     {
-        if (player != null)
+        if (player != null && player.GetXtremeData() != null)
         {
             return GetRoleType(player.PlayerId);
         }
@@ -64,7 +64,7 @@ static class ExtendedPlayerControl
     }
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
-        var nullname = player.GetPlayerData() != null ? player?.GetDataName() : null;
+        var nullname = player.GetXtremeData() != null ? player?.GetDataName() : null;
         return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? nullname;
     }
     public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;

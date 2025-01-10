@@ -24,6 +24,7 @@ public static class OptionsMenuBehaviourStartPatch
     //private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
+    private static ClientOptionItem_Boolean ShowPlayerInfo;
     private static ClientFeatureItem UnloadMod;
     private static ClientFeatureItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
@@ -87,6 +88,7 @@ public static class OptionsMenuBehaviourStartPatch
                 CustomSoundsManager.StopPlay();
         });
         CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
+        CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
         if (DebugModeManager.AmDebugger)
         {
             CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
