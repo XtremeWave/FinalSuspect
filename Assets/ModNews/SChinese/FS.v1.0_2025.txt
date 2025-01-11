@@ -16,10 +16,10 @@
 - 基于 BepInEx 框架 v6.0.0-be.729
 
 ## 更新内容
-- 修正: 20
-- 优化: 8
+- 修正: 18
+- 优化: 7
 - 更改: 12
-- 新增: 26
+- 新增: 31
 - 重制: 1
 - 删除: 5
 
@@ -71,11 +71,6 @@
 制作: Slok
 
 ## 更改
-- 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
-制作: Slok, 小黄117, KpCam
-- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
-制作: Slok
-参考: The Other Roles Community Edition, Nebula On The Ship
 - 「音频管理」中不可删除播放中的音乐
 - 调整工程师、变形者、幻象师职业颜色
 - 允许在大厅和游戏中使用复盘信息
@@ -83,8 +78,9 @@
 - 更改死因为驱逐的判定以防止死因为驱逐时可能不显示死因的问题
 - 优化死亡判定
 - 为防止对模组的误报，加入+25服务器下的房间时FAC不生效
-- 将「切换原版」归类于「Final Suspect 功能」
-- 将「输出日志」归类于「Final Suspect 功能」
+- 将「切换原版」归类于客户端功能
+- 将「输出日志」归类于客户端功能
+- 调整部分客户端按钮颜色
 制作: Slok
 - 本项目不再作为Town Of New Epic及其父系的分支，而是作为独立项目
 - EAC更名为FAC
@@ -102,9 +98,12 @@
 - 新增简体中文更新检查失败时关闭加速器的提示 
 制作: Yu
 (PR#3)
+- 客户端选项: 展示玩家平台与客户端信息
+制作: Slok
+想法: 1, KpCam
 - 7首单曲
-- 客户端设置: 屏蔽违禁词
-- 客户端设置: 禁用反作弊
+- 客户端选项: 屏蔽违禁词
+- 客户端选项: 禁用反作弊
 - 设置修改按钮图标颜色与职业匹配
 - 职业设置预览图标颜色与职业匹配
 - 调整职业设置修改底板颜色
@@ -127,12 +126,16 @@
 - 在搜索房间的名称中显示房间号
 制作: Slok
 想法来源: Sicko Menu
-- 大厅显示客户端平台信息
-制作: Slok
-想法: 1, KpCam
 - 反作弊: 对KillNetwork作弊的检查
 制作: Nonalus
 (PR#6)
+- 客户端选项: 使用模组鼠标光标
+制作: Slok, KpCam
+- 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
+制作: Slok, 小黄117, KpCam
+- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
+制作: Slok
+参考: The Other Roles Community Edition, Nebula On The Ship
 
 ## 重制
 - 代码全面重构

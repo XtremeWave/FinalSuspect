@@ -25,6 +25,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
     private static ClientOptionItem_Boolean ShowPlayerInfo;
+    private static ClientOptionItem_Boolean UseModCursor;
     private static ClientFeatureItem UnloadMod;
     private static ClientFeatureItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
@@ -89,6 +90,7 @@ public static class OptionsMenuBehaviourStartPatch
         });
         CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
         CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
+        CreateOptionItem(ref UseModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
         if (DebugModeManager.AmDebugger)
         {
             CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
@@ -218,6 +220,18 @@ public static class OptionsMenuBehaviourStartPatch
         {
             GameStartManager.Instance.ResetStartState();
         }
+    }
+    public static void SetCursor()
+    {
+        try
+        {
+            Sprite sprite = Utils.LoadSprite("Cursor.png");
+            Cursor.SetCursor(Main.UseModCursor.Value ? sprite.texture: null, Vector2.zero, CursorMode.Auto);
+        }
+        catch 
+        {
+        }
+       
     }
 }
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Close))]

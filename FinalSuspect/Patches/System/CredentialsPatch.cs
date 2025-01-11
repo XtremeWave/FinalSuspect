@@ -252,7 +252,7 @@ internal class TitleLogoPatch
         FinalSuspect_Background = new GameObject("FinalSuspect Background");
         FinalSuspect_Background.transform.position = new Vector3(0, 0, 520f);
         var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
-        bgRenderer.sprite = Utils.LoadSprite("FinalSuspect-BG.jpg", 179f);
+        bgRenderer.sprite = Utils.LoadSprite("FinalSuspect-BG-MiraHQ.jpg", 179f);
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
@@ -320,18 +320,22 @@ internal class TitleLogoPatch
         BottomButtonBounds.transform.localPosition -= new Vector3(0f, 0.1f, 0f);
 
     }
-
-
 }
 [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
 internal class ModManagerLateUpdatePatch
 {
+    static  bool firstRun = false;
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
-
+        if (!firstRun)
+        {
+            OptionsMenuBehaviourStartPatch.SetCursor();
+            firstRun = true;
+        }
         LateTask.Update(Time.deltaTime);
     }
+
     public static void Postfix(ModManager __instance)
     {
         var offset_y = HudManager.InstanceExists ? 1.6f : 0.9f;

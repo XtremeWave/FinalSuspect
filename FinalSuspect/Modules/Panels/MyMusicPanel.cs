@@ -49,7 +49,7 @@ public static class MyMusicPanel
             closeButton.transform.localPosition = new(1.3f, -2.43f, -16f);
             closeButton.name = "Close";
             closeButton.Text.text = GetString("Close");
-            closeButton.Background.color = Palette.DisabledGrey;
+            closeButton.Background.color = Color.red;
             var closePassiveButton = closeButton.GetComponent<PassiveButton>();
             closePassiveButton.OnClick = new();
             closePassiveButton.OnClick.AddListener(new Action(() =>
@@ -64,7 +64,7 @@ public static class MyMusicPanel
             stopButton.transform.localScale = stopButtonScale;
             stopButton.name = "stopButton";
             stopButton.Text.text = GetString("Stop");
-            stopButton.Background.color = Palette.DisabledGrey;
+            stopButton.Background.color = Color.white;
 
             var stopPassiveButton = stopButton.GetComponent<PassiveButton>();
             stopPassiveButton.OnClick = new();
@@ -95,7 +95,7 @@ public static class MyMusicPanel
         nextPageButton.transform.localScale = nextPageButtonScale;
         nextPageButton.name = "NextPageButton";
         nextPageButton.Text.text = GetString("NextPage");
-        nextPageButton.Background.color = Palette.DisabledGrey;
+        nextPageButton.Background.color = Color.white;
 
         var nextPagePassiveButton = nextPageButton.GetComponent<PassiveButton>();
         nextPagePassiveButton.OnClick = new();

@@ -42,7 +42,7 @@ public static class SoundManagementPanel
             closeButton.transform.localPosition = new(1.3f, -2.43f, -16f);
             closeButton.name = "Close";
             closeButton.Text.text = GetString("Close");
-            closeButton.Background.color = Palette.DisabledGrey;
+            closeButton.Background.color = Color.red;
             var closePassiveButton = closeButton.GetComponent<PassiveButton>();
             closePassiveButton.OnClick = new();
             closePassiveButton.OnClick.AddListener(new Action(() =>

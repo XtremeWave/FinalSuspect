@@ -57,7 +57,7 @@ public class LoadPatch
                 "DleksBanner.png",
                 "DleksBanner-Wordart.png",
                 "DleksButton.png",
-                "FinalSuspect-BG.jpg",
+                "FinalSuspect-BG-MiraHQ.jpg",
                 "RightPanelCloseButton.png",
             };
             ListStr remoteDependList = new()
