@@ -8,6 +8,7 @@ public static class DebugModeManager
 #if DEBUG
 true;
 #else
+        false;
 #endif
     public static bool IsDebugMode => AmDebugger;
 

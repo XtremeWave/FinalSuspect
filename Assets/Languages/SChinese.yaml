@@ -233,7 +233,7 @@ DCNotify.DCFromServer: "您与服务器的连接已中断\n这可能是因为您
 DCNotify.GameNotFound: "未找到指定房间，可能是房间已解散\n或检查您是否选择了与房间不同的服务器"
 DCNotify.GameStarted: "该房间正在游戏中，请等待游戏结束后加入"
 DCNotify.GameFull: "该房间已满人，请稍后重试"
-DCNotify.IncorrectVersion: "您的AmongUs版本与该房间不同"
+DCNotify.IncorrectVersion: "您的Among Us版本与该房间不同"
 DCNotify.Description: "您被踢出房间\n理由：{0}"
 DCNotify.DenyName: "您的昵称含有违规字符"
 DCNotify.BanList: "您存在于该房间的黑名单"
