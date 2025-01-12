@@ -44,14 +44,14 @@ public class Main : BasePlugin
 
     /// <summary>
     /// 测试信息；
-    /// 支持的内容：Alpha, Beta, Canary, Dev, RC, Preview, Scrapped
+    /// 支持的内容：Alpha, Beta, Canary, Dev, RC, Preview, Scrapter
     /// Alpha: 早期内测版
     /// Beta: 内测版
     /// Canary: 测试版(不稳定)
     /// Dev: 开发版
     /// RC: 发行候选版Release Candidate
     /// Preview: 预览/预发行版
-    /// Scrapped: 废弃版
+    /// Scrapter: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
     public const int DisplayedVersion_TestCreation = 10;
@@ -67,7 +67,7 @@ public class Main : BasePlugin
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
 
     // ==========
-    public Harmony Harmony { get; } = new Harmony(PluginGuid);
+    public Harmony Harmony { get; } = new (PluginGuid);
     public static Version version = Version.Parse(PluginVersion);
     public static ManualLogSource Logger;
     public static bool hasArgumentException;

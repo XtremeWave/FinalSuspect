@@ -33,10 +33,6 @@
 		<PackageReference Include="YamlDotNet" Version="16.2.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Patches\Prank\" />
-	</ItemGroup>
-
 	<Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
 		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
 	</Target>

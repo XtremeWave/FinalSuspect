@@ -45,9 +45,11 @@ internal class PingTrackerUpdatePatch
         sb.Append(Main.CredentialsText);
 
         CreditTextCredential.text = sb.ToString();
-        if ((GameSettingMenu.Instance?.gameObject?.active ?? false) 
+        if (
+            (GameSettingMenu.Instance?.gameObject.active ?? false) 
             || XtremeGameData.GameStates.IsMeeting 
-            || (HudManagerPatch.showHideButton?.Button?.gameObject?.active ?? false) && Main.ShowResults.Value)
+            || (FriendsListUI.Instance?.gameObject.active ?? false)
+            || (HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value)
             CreditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;

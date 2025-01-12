@@ -32,15 +32,15 @@ public class LoadPatch
         {
             #region Resources and variables
             float p;
-            ListStr PreReady_remoteImageList = new()
-            {
+            ListStr PreReady_remoteImageList =
+            [
                 "FinalSuspect-Logo.png",
                 "FinalSuspect-Logo-Blurred.png",
                 "LastResult-BG.png",
                 "TeamLogo.png"
-            };
-            ListStr remoteImageList = new()
-            {
+            ];
+            ListStr remoteImageList =
+            [
                 "CI_Crewmate.png",
                 "CI_CrewmateGhost.png",
                 "CI_Engineer.png",
@@ -54,24 +54,26 @@ public class LoadPatch
                 "CI_Scientist.png",
                 "CI_Shapeshifter.png",
                 "CI_Tracker.png",
+                "Cursor.png",
                 "DleksBanner.png",
                 "DleksBanner-Wordart.png",
                 "DleksButton.png",
                 "FinalSuspect-BG-MiraHQ.jpg",
-                "RightPanelCloseButton.png",
-            };
-            ListStr remoteDependList = new()
-            {
+                "FinalSuspect-BG-NewYear.png",
+                "RightPanelCloseButton.png"
+            ];
+            ListStr remoteDependList =
+            [
                 "YamlDotNet.dll",
-                "YamlDotNet.xml",
-            };
-            ListStr remoteModNewsList = new()
-            {
+                "YamlDotNet.xml"
+            ];
+            ListStr remoteModNewsList =
+            [
                 "FS.v1.0_2025.txt",
                 "FeaturesIntroduction.v1.0.txt"
-            };
-            ListStr remoteLanguageList = new()
-            {
+            ];
+            ListStr remoteLanguageList =
+            [
                 "Brazilian.yaml",
                 "SChinese.yaml",
                 "TChinese.yaml",
@@ -87,8 +89,8 @@ public class LoadPatch
                 "Latam.yaml",
                 "Portuguese.yaml",
                 "Russian.yaml",
-                "Spanish.yaml",
-            };
+                "Spanish.yaml"
+            ];
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
