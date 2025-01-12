@@ -114,6 +114,9 @@ public static class Translator
             XtremeLogger.Fatal($"Error oucured at [{str}] in yaml", "Translator");
             XtremeLogger.Error("Error:\n" + Ex, "Translator");
         }
+
+        if (langId is SupportedLangs.SChinese)
+            res = res.Replace("死", "寄");
         return res;
     }
     public static string GetString(StringNames stringName)

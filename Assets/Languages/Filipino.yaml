@@ -116,7 +116,7 @@ updatePopupTitleDone: "Tapos na ang Update"
 updateChoseSource: "Pumili ng pinagkukunan ng update\nKung hindi ka sigurado, piliin ang alinman sa [Gitee (inirerekomenda para sa China)] o [Opisyal na Website (maaaring mas mabuti kaysa sa Gitee)]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.Website: "Opisyal na Website"
+Updatesource.XtremeApi: "Opisyal na Website"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "I-restart ang laro upang maipahayag ang mga pagbabago :)"

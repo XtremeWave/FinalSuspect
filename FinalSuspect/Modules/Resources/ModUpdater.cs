@@ -37,7 +37,7 @@ public class ModUpdater
         {
             CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"), new()
             {
-                (GetString("updateSource.Website"), () => StartUpdate(downloadUrl_objectstorage)),
+                (GetString("updateSource.XtremeApi"), () => StartUpdate(downloadUrl_objectstorage)),
                 (GetString("updateSource.Github"), () => StartUpdate(downloadUrl_github)),
                 (GetString("updateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
                 (GetString(StringNames.Cancel), SetUpdateButtonStatus)

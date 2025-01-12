@@ -223,6 +223,7 @@ public static class HudManagerPatch
     public static string LastResultText;
     public static string LastGameData;
     public static string LastRoomCode;
+    public static string LastServer;
     public static void SetChatBG(HudManager __instance)
     {
         Color color;
@@ -260,7 +261,7 @@ public static class HudManagerPatch
     }
     public static void UpdateResult(HudManager __instance)
     {
-        if (!XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6 || XtremeGameData.GameStates.IsFreePlay)
+        if (XtremeGameData.GameStates.IsFreePlay || !XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6 )
             return;
         var showInitially = Main.ShowResults.Value;
        
@@ -290,11 +291,17 @@ public static class HudManagerPatch
 
         StringBuilder sb = new($"{GetString("RoleSummaryText")}");
         if (XtremeGameData.GameStates.IsInGame)
+        {
             LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
+            LastServer = XtremeGameData.GameStates.IsOnlineGame
+                ? PingTrackerUpdatePatch.ServerName
+                : GetString("Local");
+        }
+            
         var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
             DataManager.Settings.Gameplay.StreamerMode?  new string('*', LastRoomCode.Length): LastRoomCode);
-        sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
+        sb.Append("\n"+ LastServer +"  "+gamecode);
         if (XtremeGameData.GameStates.IsInGame)
         {
             StringBuilder sb2 = new();

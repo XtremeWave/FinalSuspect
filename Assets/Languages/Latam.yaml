@@ -116,7 +116,7 @@ updatePopupTitleDone: "Actualización completada"
 updateChoseSource: "Por favor, elija el canal de actualización \nSi no sabe qué elegir, elija [ Gitee (preferido en China) ] o [ canal oficial (puede ser mejor que Gitee) ]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee (preferido en China)"
-updateSource.Website: "canal oficial"
+updateSource.XtremeApi: "canal oficial"
 
 # 更新结束提示 / up
 updateRestart: "Por favor, reinicie el juego."

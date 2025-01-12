@@ -116,7 +116,7 @@ updatePopupTitleDone: "Update Voltooid"
 updateChoseSource: "Kies updatebron\nAls je het niet zeker weet, kies dan [Gitee (aanbevolen voor China)] of [Officiële Website (mogelijk beter dan Gitee)]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.Website: "Officiële Website"
+updateSource.XtremeApi: "Officiële Website"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "Herstart het spel om wijzigingen toe te passen :)"

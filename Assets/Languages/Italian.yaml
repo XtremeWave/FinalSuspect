@@ -116,7 +116,7 @@ updatePopupTitleDone: "Aggiornamento Completato"
 updateChoseSource: "Per favore scegli la fonte di aggiornamento\nSe non sei sicuro, seleziona [Gitee (consigliato per la Cina)] o [Sito Ufficiale (potrebbe essere migliore di Gitee)]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.Website: "Sito Ufficiale"
+updateSource.XtremeApi: "Sito Ufficiale"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "Riavvia il gioco per applicare le modifiche :)"

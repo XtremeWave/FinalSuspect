@@ -213,7 +213,7 @@ public static class VersionChecker
             JObject announcement = data["announcement"].Cast<JObject>();
             ModUpdater.announcement_en = announcement["English"]?.ToString();
             ModUpdater.announcement_zh = announcement["SChinese"]?.ToString();
-            ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showver}", showVer);
+            ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
 #if DEBUG

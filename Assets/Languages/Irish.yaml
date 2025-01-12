@@ -116,7 +116,7 @@ updatePopupTitleDone: "Nuashonrú Comhlíonta"
 updateChoseSource: "Roghnaigh foinsí nuashonraithe\nMá tá tú neamhchinnte, roghnaigh cibé [Gitee (moltar do China)] nó [Láithreán Oifigiúil (is féidir go mbeidh sé níos fearr ná Gitee)]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.Website: "Láithreán Oifigiúil"
+updateSource.XtremeApi: "Láithreán Oifigiúil"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "Aththosaigh an cluiche chun athruithe a chur i bhfeidhm :)"

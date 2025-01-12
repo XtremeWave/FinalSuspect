@@ -116,7 +116,7 @@ updatePopupTitleDone: "更新完成"
 updateChoseSource: "請選擇更新渠道\n如果您不知道選擇什麼，請選擇【Gitee（境內首選）】或者【官網】"
 updateSource.Github: "Github（境外首選）"
 updateSource.Gitee: "Gitee（境內首選）"
-updateSource.Website: "官網"
+Updatesource.XtremeApi: "官網"
 
 # 更新结束提示 / up
 updateRestart: "重啟遊戲後生效 :)"

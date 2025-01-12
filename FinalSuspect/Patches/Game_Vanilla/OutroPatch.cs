@@ -84,7 +84,7 @@ class SetEverythingUpPatch
         var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
             DataManager.Settings.Gameplay.StreamerMode?  new string('*', HudManagerPatch.LastRoomCode.Length): HudManagerPatch.LastRoomCode);
-        sb.Append("\n"+ (XtremeGameData.GameStates.IsOnlineGame ? PingTrackerUpdatePatch.ServerName : GetString("Local")) +"  "+gamecode);
+        sb.Append("\n"+ HudManagerPatch.LastServer +"  "+gamecode);
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
         foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))

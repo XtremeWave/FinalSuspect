@@ -112,7 +112,7 @@ internal class RPCHandlerPatch
                         XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = XtremeGameData.PlayerVersion.playerVersion[0];
 
                     // Kick Unmached Player Start
-                    if (AmongUsClient.Instance.AmHost && tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
+                    /*if (AmongUsClient.Instance.AmHost && tag != $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})")
                     {
                         if (forkId != Main.ForkId)
                             _ = new LateTask(() =>
@@ -125,7 +125,7 @@ internal class RPCHandlerPatch
                                     Utils.KickPlayer(__instance.GetClientId(), false, "ModVersionIncorrect");
                                 }
                             }, 5f, "Kick");
-                    }
+                    }*/
                 }
                 catch
                 {                }
@@ -150,8 +150,6 @@ internal static class RPC
         }
         XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = 
             new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
-
-
     }
 
 
