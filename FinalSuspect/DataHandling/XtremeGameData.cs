@@ -138,7 +138,7 @@ public static string GetDataName(this PlayerControl pc)
     public static void SetDead(this PlayerControl pc) => pc.GetXtremeData().SetDead();
     public static void SetDisconnected(this PlayerControl pc) => pc.GetXtremeData().SetDisconnected();
     public static void SetRole(this PlayerControl pc, RoleTypes role) => pc.GetXtremeData().SetRole(role);
-    public static void SetDeathReason(this PlayerControl pc, DataDeathReason deathReason, bool focus = false)
+    public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
         => pc.GetXtremeData().SetDeathReason(deathReason, focus);
     public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
     {
@@ -155,7 +155,7 @@ public static string GetDataName(this PlayerControl pc)
 
 }
 
-public enum DataDeathReason
+public enum VanillaDeathReason
 {
     None,
     Exile,

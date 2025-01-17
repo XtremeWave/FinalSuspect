@@ -73,6 +73,6 @@ static class ExtendedPlayerControl
         return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? nullname;
     }
     public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;
-    public static bool IsHost(this PlayerControl player) => GameData.Instance.GetHost() == player?.Data;
+    public static bool IsHost(this PlayerControl player) => GameData.Instance.GetHost().PlayerId == player?.Data?.PlayerId;
         
 }

@@ -303,16 +303,16 @@ public static class Utils
     public static string GetVitalText(byte playerId, bool summary = false, bool docolor = true)
     {
         var data = XtremePlayerData.GetXtremeDataById(playerId);
-        if (!data.IsDead || data.RealDeathReason is DataDeathReason.None) return "";
+        if (!data.IsDead || data.RealDeathReason is VanillaDeathReason.None) return "";
         
         string deathReason = GetString("DeathReason." + data.RealDeathReason);
         Color color = Palette.CrewmateBlue;
         switch (data.RealDeathReason)
         {
-            case DataDeathReason.Disconnect:
+            case VanillaDeathReason.Disconnect:
                 color = Color.gray;
                 break;
-            case DataDeathReason.Kill:
+            case VanillaDeathReason.Kill:
                 color = Palette.ImpostorRed;
                 var killercolor = Palette.PlayerColors[data.RealKiller.ColorId];
 
@@ -321,7 +321,7 @@ public static class Utils
                 else if (docolor)
                     color = killercolor;
                 break;
-            case DataDeathReason.Exile:
+            case VanillaDeathReason.Exile:
                 color = Palette.Purple;
                 break;
         }

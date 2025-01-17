@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AmongUs.GameOptions;
+using AmongUs.QuickChat;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Patches.Game_Vanilla;
@@ -26,16 +27,14 @@ internal class RPCHandlerPatch
 {
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] ref byte callId, [HarmonyArgument(1)] MessageReader reader)
     {
-        XtremeLogger.Info($"{__instance?.Data?.PlayerId}" +
-                                $"({__instance?.Data?.PlayerName})" +
-                                $"{(__instance.IsHost() ? "Host" : "")}" +
-                                $":{callId}({RPC.GetRpcName(callId)})",
-            "ReceiveRPC");
+        if (callId != 50)
+            XtremeLogger.Info($"{__instance?.Data?.PlayerId}" +
+                              $"({__instance?.Data?.PlayerName})" +
+                              $"{(__instance.IsHost() ? "Host" : "")}" +
+                              $":{callId}({RPC.GetRpcName(callId)})",
+                "ReceiveRPC");
 
-        if (!FAC.SetNameNum.ContainsKey(__instance.PlayerId))
-        {
-            FAC.SetNameNum[__instance.PlayerId] = 0;
-        }
+        FAC.SetNameNum.TryAdd(__instance.PlayerId, 0);
 
         if (FAC.ReceiveRpc(__instance, callId, reader, out bool notify, out string reason, out bool ban))
         {
@@ -55,7 +54,7 @@ internal class RPCHandlerPatch
         }
 
         var rpcType = (RpcCalls)callId;
-        MessageReader subReader = MessageReader.Get(reader);
+        var subReader = MessageReader.Get(reader);
 
         switch (rpcType)
         {
@@ -85,6 +84,19 @@ internal class RPCHandlerPatch
                 break;
             case RpcCalls.SendQuickChat:
                 XtremeLogger.Info($"{__instance.GetNameWithRole().RemoveHtmlTags()}:Some message from quick chat", "ReceiveChat");
+                try
+                {
+                    QuickChatPhraseBuilderResult quickChatPhraseBuilderResult = QuickChatNetData.Deserialize(reader);
+                    if (DestroyableSingleton<HudManager>.Instance)
+                    {
+                        DestroyableSingleton<HudManager>.Instance.Chat.AddChat(__instance, quickChatPhraseBuilderResult.ToChatText(), false);
+                        return false;
+                    }
+                }
+                catch 
+                {
+                    FAC.SuspectCheater.Add(__instance.PlayerId);
+                }
                 break;
             case RpcCalls.StartMeeting:
                 var p = Utils.GetPlayerById(subReader.ReadByte());
@@ -107,7 +119,8 @@ internal class RPCHandlerPatch
 
                     XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = new XtremeGameData.PlayerVersion(version, tag, forkId);
 
-                    RPC.RpcVersionCheck();
+                    if (!XtremeGameData.PlayerVersion.playerVersion.ContainsKey(__instance.PlayerId))
+                        RPC.RpcVersionCheck();
 
                     if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
                         XtremeGameData.PlayerVersion.playerVersion[__instance.PlayerId] = XtremeGameData.PlayerVersion.playerVersion[0];
@@ -140,17 +153,23 @@ internal static class RPC
 {
     public static async void RpcVersionCheck()
     {
-        while (PlayerControl.LocalPlayer == null) await Task.Delay(500);
-        if (!Main.VersionCheat.Value)
+        try
         {
-            MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.CancelPet);
-            writer.Write(Main.PluginVersion);
-            writer.Write($"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
-            writer.Write(Main.ForkId);
-            writer.EndMessage();
+            while (PlayerControl.LocalPlayer == null) await Task.Delay(500);
+            if (!Main.VersionCheat.Value)
+            {
+                MessageWriter writer = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte)RpcCalls.CancelPet);
+                writer.Write(Main.PluginVersion);
+                writer.Write($"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})");
+                writer.Write(Main.ForkId);
+                writer.EndMessage();
+            }
+            XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = 
+                new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
         }
-        XtremeGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.PlayerId] = 
-            new XtremeGameData.PlayerVersion(Main.PluginVersion, $"{ThisAssembly.Git.Commit}({ThisAssembly.Git.Branch})", Main.ForkId);
+        catch 
+        {
+        }
     }
 
 

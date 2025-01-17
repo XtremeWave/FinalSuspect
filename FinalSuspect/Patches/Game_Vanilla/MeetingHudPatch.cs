@@ -45,7 +45,7 @@ public static class MeetingHudPatch
             if (tie || exiled == null) return;
             var player = Utils.GetPlayerById(exiled.PlayerId);
             player.SetDead();
-            player.SetDeathReason(DataDeathReason.Exile, true);
+            player.SetDeathReason(VanillaDeathReason.Exile, true);
         }
     }
 }

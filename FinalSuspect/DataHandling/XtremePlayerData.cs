@@ -19,14 +19,14 @@ public class XtremePlayerData : IDisposable
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
-        public bool IsDisconnected => RealDeathReason == DataDeathReason.Disconnect;
+        public bool IsDisconnected => RealDeathReason == VanillaDeathReason.Disconnect;
 
 
         public RoleTypes? RoleWhenAlive { get; private set; }
         public RoleTypes? RoleAfterDeath { get; private set; }
         public bool RoleAssgined { get; private set; }
 
-        public DataDeathReason RealDeathReason { get; private set; }
+        public VanillaDeathReason RealDeathReason { get; private set; }
         public XtremePlayerData RealKiller { get; private set; }
 
         
@@ -49,7 +49,7 @@ public class XtremePlayerData : IDisposable
             PlayerId = player.PlayerId;
             IsImpostor = IsDead = RoleAssgined = false;
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
-            RealDeathReason = DataDeathReason.None;
+            RealDeathReason = VanillaDeathReason.None;
             RealKiller = null;
         }
 
@@ -112,7 +112,7 @@ public void SetName(string name) => Name = name;
         }
         XtremeLogger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
         SetDead();
-        SetDeathReason(DataDeathReason.Disconnect);
+        SetDeathReason(VanillaDeathReason.Disconnect);
     }
     public void SetIsImp(bool isimp) => IsImpostor = isimp;
     public void SetRole(RoleTypes role)
@@ -129,9 +129,9 @@ public void SetName(string name) => Name = name;
         }
         RoleAssgined = !XtremeGameData.GameStates.IsFreePlay;
     }
-    public void SetDeathReason(DataDeathReason deathReason, bool focus = false)
+    public void SetDeathReason(VanillaDeathReason deathReason, bool focus = false)
     {
-        if (IsDead && RealDeathReason == DataDeathReason.None || focus)
+        if (IsDead && RealDeathReason == VanillaDeathReason.None || focus)
             RealDeathReason = deathReason;
         XtremeLogger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
 
@@ -139,7 +139,7 @@ public void SetName(string name) => Name = name;
     public void SetRealKiller(XtremePlayerData killer)
     {
         SetDead();
-        SetDeathReason(DataDeathReason.Kill);
+        SetDeathReason(VanillaDeathReason.Kill);
         killer.KillCount++;
         RealKiller = killer;
         XtremeLogger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
@@ -162,7 +162,10 @@ public void SetName(string name) => Name = name;
     public static void CreateDataFor(PlayerControl player, string playername = null)
     {
         var colorId = player.Data.DefaultOutfit.ColorId;
-        AllPlayerData.Add(new XtremePlayerData(player, playername ?? player.GetRealName(), colorId));
+        playername ??= player.GetRealName();
+        XtremeLogger.Info($"Creating XtremePlayerData For {playername}", "Data");
+        AllPlayerData.Add(new XtremePlayerData(player, playername, colorId));
+
     }
 #pragma warning disable CA1816
     public void Dispose()
@@ -173,7 +176,7 @@ public void SetName(string name) => Name = name;
         ColorId = -1;
         IsImpostor = IsDead = RoleAssgined = false;
         CompleteTaskCount = KillCount = TotalTaskCount = 0;
-        RealDeathReason = DataDeathReason.None;
+        RealDeathReason = VanillaDeathReason.None;
         RealKiller = null;
     }
 
