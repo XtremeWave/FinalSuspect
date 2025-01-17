@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
@@ -311,7 +310,7 @@ public static class Utils
         switch (data.RealDeathReason)
         {
             case DataDeathReason.Disconnect:
-                color = Palette.DisabledGrey;
+                color = Color.gray;
                 break;
             case DataDeathReason.Kill:
                 color = Palette.ImpostorRed;
@@ -425,5 +424,17 @@ public static class Utils
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
         
         return !IsAngel && LocalDead;
+    }
+    public static void ExecuteWithTryCatch(this Action action, bool Log = false)
+    {
+        try
+        {
+            action();
+        }
+        catch (Exception ex)
+        {
+            if (Log)
+            XtremeLogger.Error(ex.ToString(), "Execute With Try Catch");
+        }
     }
 }

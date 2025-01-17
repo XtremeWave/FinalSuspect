@@ -1,8 +1,8 @@
 ﻿#Number:100001
 #Title:终极嫌疑 v1.0
-#SubTitle:★★★★正式发布！★★★★
-#ShortTitle:★版本更新v1.0
-#Date:2025-1-14T19:00:00Z
+#SubTitle:★★★★时隔六个月，这款模组终于正式发行啦！★★★★
+#ShortTitle:★正式发行v1.0
+#Date:2025-2-14T19:00:00Z
 #-----------------------------
 # 简体中文
 随着时间的推移，北半球的冬天迎来尾声，春意正在各处复苏。
@@ -16,10 +16,10 @@
 - 基于 BepInEx 框架 v6.0.0-be.729
 
 ## 更新内容
-- 修正: 19
+- 修正: 20
 - 优化: 8
 - 更改: 13
-- 新增: 31
+- 新增: 32
 - 重制: 1
 - 删除: 5
 
@@ -56,6 +56,7 @@
 - 修复了公告开头冗余空行的问题
 - 修复了客户端选项在更改语言后文本错误的问题
 - 修复了打开好友列表时模组信息仍旧显示的问题
+- 修复了启动游戏时程序可能未响应的问题
 修复: Slok
 - 修复了QQ群链接错误的问题
 修复: Qingfeng
@@ -91,7 +92,10 @@
 
 ## 新增
 - 按下F1显示职业详情时同时会显示职业立绘
+- 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
+- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
 制作: Slok, 小黄117, KpCam
+参考: The Other Roles Community Edition, Nebula On The Ship
 - 模组公告左侧会显示XtremeWave标识
 制作: Slok
 参考: Yu Ez Tool
@@ -107,6 +111,7 @@
 - 7首单曲
 - 客户端选项: 屏蔽违禁词
 - 客户端选项: 禁用反作弊
+- 客户端选项: 使用模组鼠标光标
 - 设置修改按钮图标颜色与职业匹配
 - 职业设置预览图标颜色与职业匹配
 - 调整职业设置修改底板颜色
@@ -132,13 +137,9 @@
 - 反作弊: 对KillNetwork作弊的检查
 制作: Nonalus
 (PR#6)
-- 客户端选项: 使用模组鼠标光标
+- 模组专属右上角MOD图标
 制作: Slok, KpCam
-- 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
-制作: Slok, 小黄117, KpCam
-- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
-制作: Slok
-参考: The Other Roles Community Edition, Nebula On The Ship
+想法来源: Better Among Us
 
 ## 重制
 - 代码全面重构

@@ -48,7 +48,7 @@ public static class CustomPopup
         InfoTMP.text = info;
 
         ActionButtons?.Do(b => Object.Destroy(b.gameObject));
-        ActionButtons = new();
+        ActionButtons = [];
 
         if (buttons != null)
         {

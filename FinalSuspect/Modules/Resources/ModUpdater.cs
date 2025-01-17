@@ -35,20 +35,20 @@ public class ModUpdater
     {
         if (url == "waitToSelect")
         {
-            CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"), new()
-            {
+            CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"), [
                 (GetString("updateSource.XtremeApi"), () => StartUpdate(downloadUrl_objectstorage)),
                 (GetString("updateSource.Github"), () => StartUpdate(downloadUrl_github)),
                 (GetString("updateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
                 (GetString(StringNames.Cancel), SetUpdateButtonStatus)
-            });
+            ]);
             return;
         }
 
         var r = new Regex(@"^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&%\$\-]+)*@)?((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.[a-zA-Z]{2,4})(\:[0-9]+)?(/[^/][a-zA-Z0-9\.\,\?\'\\/\+&%\$#\=~_\-@]*)*$");
         if (!r.IsMatch(url))
         {
-            CustomPopup.ShowLater(GetString("updatePopupTitleFialed"), string.Format(GetString("updatePingFialed"), "404 Not Found"), new() { (GetString(StringNames.Okay), SetUpdateButtonStatus) });
+            CustomPopup.ShowLater(GetString("updatePopupTitleFialed"), string.Format(GetString("updatePingFialed"), "404 Not Found"),
+                [(GetString(StringNames.Okay), SetUpdateButtonStatus)]);
             return;
         }
 
@@ -60,7 +60,8 @@ public class ModUpdater
             var (done, reason) = t.Result;
             string title = done ? GetString("updatePopupTitleDone") : GetString("updatePopupTitleFialed");
             string desc = done ? GetString("updateRestart") : reason;
-            CustomPopup.ShowLater(title, desc, new() { (GetString(done ? StringNames.ExitGame : StringNames.Okay), done ? Application.Quit : null) });
+            CustomPopup.ShowLater(title, desc,
+                [(GetString(done ? StringNames.ExitGame : StringNames.Okay), done ? Application.Quit : null)]);
             SetUpdateButtonStatus();
         });
     }

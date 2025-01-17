@@ -30,6 +30,7 @@ public class LoadPatch
         }
         private static IEnumerator InitializeRefdata(SplashManager __instance)
         {
+            
             #region Resources and variables
             float p;
             ListStr PreReady_remoteImageList =
@@ -60,6 +61,7 @@ public class LoadPatch
                 "DleksButton.png",
                 "FinalSuspect-BG-MiraHQ.jpg",
                 "FinalSuspect-BG-NewYear.png",
+                "ModStamp.png",
                 "RightPanelCloseButton.png"
             ];
             ListStr remoteDependList =
@@ -91,10 +93,20 @@ public class LoadPatch
                 "Russian.yaml",
                 "Spanish.yaml"
             ];
+            var thisversion =
+                $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
+            
+            if (thisversion != Main.LastStartVersion.Value)
+            {
+                ReloadLanguage = true;
+            }
+            
+            Main.LastStartVersion.Value = thisversion;
+            
+            var fastboot = Main.FastBoot.Value && !ReloadLanguage;
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
-
             #region First Start Final Suspect
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
@@ -102,6 +114,7 @@ public class LoadPatch
             loadText.text = null;
             for (int i = PreReady_remoteImageList.Count - 1; i >= 0; i--)
             {
+                fastboot = false;
                 var resource = PreReady_remoteImageList[i];
                 string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
                 if (File.Exists(localFilePath))
@@ -126,6 +139,7 @@ public class LoadPatch
                 {
                     XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
                 }
+
             }
 
             if (!string.IsNullOrEmpty(loadText.text))
@@ -143,38 +157,43 @@ public class LoadPatch
 
             #endregion
 
-            #region Team Logo Anima
-            var teamlogo = ObjectHelper.CreateObject<SpriteRenderer>("Team_Logo", null, new Vector3(0, 0f, -5f));
-            teamlogo.sprite = Utils.LoadSprite("TeamLogo.png", 120f);
-            
-            p = 1f;
-            while (p > 0f)
+            if (!fastboot)
             {
-                p -= Time.deltaTime * 2.8f;
-                float alpha = 1 - p;
-                teamlogo.color = Color.white.AlphaMultiplied(alpha);
-                yield return null;
+                #region Team Logo Anima
+                var teamlogo = ObjectHelper.CreateObject<SpriteRenderer>("Team_Logo", null, new Vector3(0, 0f, -5f));
+                teamlogo.sprite = Utils.LoadSprite("TeamLogo.png", 120f);
+            
+                p = 1f;
+                while (p > 0f)
+                {
+                    p -= Time.deltaTime * 2.8f;
+                    float alpha = 1 - p;
+                    teamlogo.color = Color.white.AlphaMultiplied(alpha);
+                    yield return null;
+                }
+            
+                yield return new WaitForSeconds(1.5f);
+            
+                p = 1f;
+                while (p > 0f)
+                {
+                    p -= Time.deltaTime * 2.8f;
+                    teamlogo.color = Color.white.AlphaMultiplied(p);
+                    yield return null;
+                }
+            
+                yield return new WaitForSeconds(2f);
+#endregion
             }
-            
-            yield return new WaitForSeconds(1.5f);
-            
-            p = 1f;
-            while (p > 0f)
-            {
-                p -= Time.deltaTime * 2.8f;
-                teamlogo.color = Color.white.AlphaMultiplied(p);
-                yield return null;
-            }
-            
-            yield return new WaitForSeconds(2f);
-            #endregion
             
             #region Create Mod Logo
             var modlogo = ObjectHelper.CreateObject<SpriteRenderer>("Mod_Logo", null, new Vector3(0, 0.3f, -5f));
             var modlogo_Blurred = ObjectHelper.CreateObject<SpriteRenderer>("Mod_Logo_Blurred", null, new Vector3(0, 0.3f, -5f));
             modlogo.sprite = Utils.LoadSprite("FinalSuspect-Logo.png", 150f);
             modlogo_Blurred.sprite = Utils.LoadSprite("FinalSuspect-Logo-Blurred.png", 150f);
-
+            var glow = ObjectHelper.CreateObject<SpriteRenderer>("glow", null, new Vector3(0, 0.3f, -5f));
+            glow.sprite = Utils.LoadSprite("FinalSuspect-Logo.png");
+            glow.color = Color.white.AlphaMultiplied(0f);
             #endregion
 
             #region Start Load
@@ -183,6 +202,8 @@ public class LoadPatch
             {
                 p -= Time.deltaTime * 2.8f;
                 float alpha = 1 - p;
+                if (fastboot)
+                    glow.color = Color.white.AlphaMultiplied(alpha);
                 modlogo.color = Color.white.AlphaMultiplied(alpha);
                 modlogo_Blurred.color = Color.white.AlphaMultiplied(Mathf.Min(1f, alpha * (p * 2)));
                 modlogo.transform.localScale = Vector3.one * (p * p * 0.012f + 1f);
@@ -193,23 +214,24 @@ public class LoadPatch
             modlogo.color = Color.white;
             modlogo_Blurred.gameObject.SetActive(false);
             modlogo.transform.localScale = Vector3.one;
-            yield return new WaitForSeconds(0.75f);
+            if (!fastboot)
+                yield return new WaitForSeconds(0.75f);
             
-            var glow = ObjectHelper.CreateObject<SpriteRenderer>("glow", null, new Vector3(0, 0.3f, -5f));
-            glow.sprite = Utils.LoadSprite("FinalSuspect-Logo.png");
-
-            
-            loadText.color = Color.white.AlphaMultiplied(0.5f);
-            loadText.text = "Loading...";
-            p = 1f;
-            while (p > 0)
+            if (!fastboot)
             {
-                p -= Time.deltaTime * 2.8f;
-                float alpha = 1-p;
-                glow.color = Color.white.AlphaMultiplied(alpha);
-                if (alpha < 0.5f)
-                    loadText.color = Color.white.AlphaMultiplied(alpha);
-                yield return null;
+                
+                loadText.color = Color.white.AlphaMultiplied(0.5f);
+                loadText.text = "Loading...";
+                p = 1f;
+                while (p > 0)
+                {
+                    p -= Time.deltaTime * 2.8f;
+                    float alpha = 1 - p;
+                    glow.color = Color.white.AlphaMultiplied(alpha);
+                    if (alpha < 0.5f)
+                        loadText.color = Color.white.AlphaMultiplied(alpha);
+                    yield return null;
+                }
             }
             #endregion
             
@@ -224,68 +246,67 @@ public class LoadPatch
             #endregion
 
             #region Download Depends
-            for (int i = remoteDependList.Count - 1; i >= 0; i--)
+            if (!fastboot)
             {
-                var resource = remoteDependList[i];
-                string localFilePath = PathManager.GetLocalPath(LocalType.BepInEx) + resource;
-                if (File.Exists(localFilePath))
+                for (int i = remoteDependList.Count - 1; i >= 0; i--)
                 {
-                    remoteDependList.Remove(resource);
-                }
-                else
-                {
-                    XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
-                }
-            }
-            foreach (var resource in remoteDependList)
-            {
-                var task = StartDownload(FileType.Depends, resource);
-                while (!task.IsCompleted)
-                {
-                    yield return null; 
-                }
-
-                if (task.IsFaulted)
-                {
-                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
-                }
-            }
-            var thisversion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
-            if (thisversion != Main.LastStartVersion.Value)
-            {
-                ReloadLanguage = true;
-            }
-            Main.LastStartVersion.Value = thisversion;
-
-            if (!ReloadLanguage)
-            {
-                for (int i = remoteLanguageList.Count - 1; i >= 0; i--)
-                {
-                    var resource = remoteLanguageList[i];
-                    string localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
+                    var resource = remoteDependList[i];
+                    string localFilePath = PathManager.GetLocalPath(LocalType.BepInEx) + resource;
                     if (File.Exists(localFilePath))
                     {
-                        remoteLanguageList.Remove(resource);
+                        remoteDependList.Remove(resource);
                     }
                     else
                     {
                         XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
                     }
-
-                }
-            }
-            foreach (var resource in remoteLanguageList)
-            {
-                XtremeLogger.Warn($"dl: {resource}", "Check");
-                var task = StartDownload(FileType.Languages, resource);
-                while (!task.IsCompleted)
-                {
-                    yield return null; 
                 }
 
-                if (task.IsFaulted)
+                foreach (var resource in remoteDependList)
                 {
-                    XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    var task = StartDownload(FileType.Depends, resource);
+                    while (!task.IsCompleted)
+                    {
+                        yield return null;
+                    }
+
+                    if (task.IsFaulted)
+                    {
+                        XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    }
+                }
+                
+
+                if (!ReloadLanguage)
+                {
+                    for (int i = remoteLanguageList.Count - 1; i >= 0; i--)
+                    {
+                        var resource = remoteLanguageList[i];
+                        string localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
+                        if (File.Exists(localFilePath))
+                        {
+                            remoteLanguageList.Remove(resource);
+                        }
+                        else
+                        {
+                            XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
+                        }
+
+                    }
+                }
+
+                foreach (var resource in remoteLanguageList)
+                {
+                    var task = StartDownload(FileType.Languages, resource);
+                    while (!task.IsCompleted)
+                    {
+                        yield return null;
+                    }
+
+                    if (task.IsFaulted)
+                    {
+                        XtremeLogger.Error($"Download of {resource} failed: {task.Exception}", "Download Resource");
+                    }
                 }
             }
             #endregion
@@ -341,7 +362,12 @@ public class LoadPatch
             {
                 var resource = remoteImageList[i];
                 string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
-                if (File.Exists(localFilePath))
+                var task = IsUrl404Async(FileType.Images, resource);
+                while (!task.IsCompleted)
+                {
+                    yield return null; 
+                }
+                if (File.Exists(localFilePath) || task.Result)
                 {
                     remoteImageList.Remove(resource);
                 }
@@ -355,11 +381,17 @@ public class LoadPatch
             {
                 var resource = remoteModNewsList[i];
                 remoteModNewsList.Remove(resource);
+                
                 foreach (var lang in EnumHelper.GetAllNames<SupportedLangs>())
                 {
                     var file = $"{lang}/{resource}";
+                    var task = IsUrl404Async(FileType.Images, file);
+                    while (!task.IsCompleted)
+                    {
+                        yield return null; 
+                    }
                     string localFilePath = PathManager.GetResourceFilesPath(FileType.ModNews, file);
-                    if (!File.Exists(localFilePath))
+                    if (!File.Exists(localFilePath) && !task.Result)
                     {
                         remoteModNewsList.Add(file);
                         XtremeLogger.Warn($"File do not exists: {localFilePath}", "Check");
@@ -420,6 +452,7 @@ public class LoadPatch
                 process++;
                 processText.text = GetString("DownloadingResources") + $"({process}/{remoteImageList.Count + remoteModNewsList.Count})";
                 var task = StartDownload(FileType.ModNews, resource);
+
                 while (!task.IsCompleted)
                 {
                     yield return null; 
@@ -489,6 +522,7 @@ public class LoadPatch
             while (p > 0f)
             {                
                 p -= Time.deltaTime * 1.2f;
+                
                 glow.color = Color.white.AlphaMultiplied(p);
                 modlogo.color = Color.white.AlphaMultiplied(p);
                 if (p >= 0.5f) 

@@ -46,7 +46,7 @@ public class ErrorText : MonoBehaviour
 
     public TextMeshPro Text;
     public Camera Camera;
-    public List<ErrorData> AllErrors = new();
+    public List<ErrorData> AllErrors = [];
     public Vector3 TextOffset = new(0, 0.3f, -1000f);
     public void Update()
     {

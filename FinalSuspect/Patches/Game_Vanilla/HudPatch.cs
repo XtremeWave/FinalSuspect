@@ -256,7 +256,7 @@ public static class HudManagerPatch
     {
         if (string.IsNullOrEmpty(text))
             return 0;
-        var lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+        var lines = text.Split(["\r\n", "\n"], StringSplitOptions.None);
         return lines.Length;
     }
     public static void UpdateResult(HudManager __instance)
@@ -271,7 +271,7 @@ public static class HudManagerPatch
             new SimpleButton(
                __instance.transform,
                "ShowHideResultsButton",
-               XtremeGameData.GameStates.IsInGame? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -1f),  // 比 BackgroundLayer(z = -13) 更靠前
+               XtremeGameData.GameStates.IsInGame? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -14f),  // 比 BackgroundLayer(z = -13) 更靠前
                new(209, 190, 0, byte.MaxValue),
                new(byte.MaxValue, byte.MaxValue, 0, byte.MaxValue),
                () =>
@@ -333,7 +333,7 @@ public static class HudManagerPatch
             roleSummary.SetOutlineThickness(0.15f);
  
             GameObject backgroundObject = new GameObject("RoleSummaryBackground");
-            backgroundObject.transform.SetParent(roleSummary.transform, false); 
+            backgroundObject.transform.SetParent(roleSummary.transform); 
             backgroundRenderer = backgroundObject.AddComponent<SpriteRenderer>();
             backgroundRenderer.sprite = Utils.LoadSprite("LastResult-BG.png",200f);
             backgroundRenderer.color = new(0.5f,0.5f,0.5f,1f); 

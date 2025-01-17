@@ -64,7 +64,8 @@ internal class RPCHandlerPatch
                 XtremeLogger.Info("RPC Check Name For Player: " + name, "CheckName");
                 if (__instance.IsHost())
                     Main.HostNickName = name;
-                XtremePlayerData.CreateDataFor(__instance, name);
+                if (XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId))
+                    XtremePlayerData.CreateDataFor(__instance, name);
                 FAC.SetNameNum[__instance.PlayerId]++;
                 break;
             case RpcCalls.SetName: //SetNameRPC

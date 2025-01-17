@@ -1,5 +1,4 @@
 ﻿using FinalSuspect.Modules.Features.CheckingandBlocking;
-using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;

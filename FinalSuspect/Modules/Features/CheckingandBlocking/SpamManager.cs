@@ -13,7 +13,7 @@ public static class SpamManager
 {
     private static readonly string BANEDWORDS_FILE_PATH = PathManager.LocalPath_Data + "BanWords.txt";
     public static readonly string DENY_NAME_LIST_PATH = PathManager.GetBanFilesPath("DenyName.txt");
-    public static List<string> BanWords = new();
+    public static List<string> BanWords = [];
 
     [PluginModuleInitializer]
     public static void Init()
@@ -66,7 +66,7 @@ public static class SpamManager
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
         stream.Position = 0;
         using StreamReader reader = new(stream, Encoding.UTF8);
-        List<string> waitforupdate = new(); 
+        List<string> waitforupdate = []; 
         while (!reader.EndOfStream)
         {
             string line = reader.ReadLine();
@@ -89,7 +89,7 @@ public static class SpamManager
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
         using StreamReader reader2 = new(DENY_NAME_LIST_PATH,  Encoding.UTF8);
-        List<string> waitforupdate = new(); 
+        List<string> waitforupdate = []; 
         while (!reader1.EndOfStream)
         {
             string line = reader1.ReadLine();
@@ -112,10 +112,10 @@ public static class SpamManager
     }
     public static List<string> ReturnAllNewLinesInFile(string filename)
     {
-        if (!File.Exists(filename)) return new List<string>();
+        if (!File.Exists(filename)) return [];
         using StreamReader sr = new(filename, Encoding.GetEncoding("UTF-8"));
         string text;
-        List<string> sendList = new();
+        List<string> sendList = [];
         while ((text = sr.ReadLine()) != null)
             if (text.Length >= 1 && text != "") sendList.Add(text.Replace("\\n", "\n").ToLower());
         return sendList;

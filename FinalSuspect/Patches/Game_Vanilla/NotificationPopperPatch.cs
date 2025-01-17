@@ -6,7 +6,7 @@ namespace FinalSuspect.Patches.Game_Vanilla;
 [HarmonyPatch(typeof(NotificationPopper), nameof(NotificationPopper.AddDisconnectMessage))]
 public class NotificationPopperPatch
 {
-    private static List<string> WaitToSend = new();
+    private static List<string> WaitToSend = [];
     private static bool Prefix(NotificationPopper __instance, string item)
     {
         if (!WaitToSend.Contains(item)) return false;

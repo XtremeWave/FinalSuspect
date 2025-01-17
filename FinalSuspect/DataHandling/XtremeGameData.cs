@@ -100,8 +100,25 @@ public static class XtremeGameData
         }
     }
 
-    public static XtremePlayerData GetXtremeData(this PlayerControl pc) =>
-        XtremePlayerData.GetXtremeDataById(pc.PlayerId) ?? null;
+    public static XtremePlayerData GetXtremeData(this PlayerControl pc)
+    {
+        try
+        {
+            return XtremePlayerData.GetXtremeDataById(pc.PlayerId);
+        }
+        catch
+        {
+            try
+            {
+                return XtremePlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+       
+    }
 
     public static bool IsAlive(this PlayerControl pc) => pc?.GetXtremeData()?.IsDead == false || !GameStates.IsInGame;
 

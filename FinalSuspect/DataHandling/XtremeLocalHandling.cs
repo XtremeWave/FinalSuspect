@@ -1,8 +1,8 @@
 using System;
+using System.Linq;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using Sentry.Unity.NativeUtils;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -19,24 +19,39 @@ public static class XtremeLocalHandling
         out string bottomtext,
         bool topswap = false)
     {
-        var name = player.GetDataName() ?? player.GetRealName();
+       
+        return CheckAndGetNameWithDetails(player.PlayerId, out topcolor, out bottomcolor, out toptext, out bottomtext, topswap);
+    }
+    public static string CheckAndGetNameWithDetails(
+        byte id, 
+        out Color topcolor, 
+        out Color bottomcolor, 
+        out string toptext,
+        out string bottomtext,
+        bool topswap = false)
+    {
+        var data = XtremePlayerData.GetXtremeDataById(id);
+        var player = data.Player;
+        var name = data.Name ?? player.GetRealName();
         topcolor = Color.white;
         bottomcolor = Color.white;
         toptext = "";
         bottomtext = "";
-        player.GetLobbyText(ref topcolor, ref bottomcolor, ref toptext, ref bottomtext);
-        player.GetGameText(ref topcolor, ref toptext, topswap);
+        data.GetLobbyText(ref topcolor, ref bottomcolor, ref toptext, ref bottomtext);
+        data.GetGameText(ref topcolor, ref toptext, topswap);
         SpamManager.CheckSpam(ref name);
-        if (FAC.SuspectCheater.Contains(player.PlayerId))
+        if (FAC.SuspectCheater.Contains(id))
         {
             topcolor = ColorHelper.FaultColor;
             toptext.CheckAndAppendText(GetString("Cheater"));
         }
         return name;
     }
-    public static void GetLobbyText(this PlayerControl player, ref Color topcolor, ref Color bottomcolor, ref string toptext, ref string bottomtext)
+
+    public static void GetLobbyText(this XtremePlayerData data, ref Color topcolor, ref Color bottomcolor, ref string toptext, ref string bottomtext)
     {
         if (!XtremeGameData.GameStates.IsLobby) return;
+        var player = data.Player;
         if (player.IsHost())
             toptext = toptext.CheckAndAppendText(GetString("Host"));
         if (XtremeGameData.PlayerVersion.playerVersion.TryGetValue(player.PlayerId, out var ver) && ver != null)
@@ -81,63 +96,72 @@ public static class XtremeLocalHandling
 
     public static string GetPlatform(this PlayerControl player)
     {
-        var color = "";
-        var name = "";
-        string text;
-        switch (player.GetClient().PlatformData.Platform)
+        try
         {
-            case Platforms.StandaloneEpicPC:
-                color = "#905CDA";
-                name = "Itch";
-                break;
-            case Platforms.StandaloneSteamPC:
-                color = "#4391CD";
-                name = "Steam";
-                break;
-            case Platforms.StandaloneMac:
-                color = "#e3e3e3";
-                name = "Mac.";
-                break;
-            case Platforms.StandaloneWin10:
-                color = "#FFF88D";
-                name = "Win-10";
-                break;
-            case Platforms.StandaloneItch:
-                color = "#E35F5F";
-                name = "Itch";
-                break;
-            case Platforms.IPhone:
-                color = "#e3e3e3";
-                name = GetString("IPhone");
-                break;
-            case Platforms.Android:
-                color = "#1EA21A";
-                name = GetString("Android");
-                break;
-            case Platforms.Switch:
-                name = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
-                break;
-            case Platforms.Xbox:
-                color = "#07ff00";
-                name = "Xbox";
-                break;
-            case Platforms.Playstation:
-                color = "#0014b4";
-                name = "PlayStation";
-                break;
-        }
+            var color = "";
+            var name = "";
+            string text;
+            switch (player.GetClient().PlatformData.Platform)
+            {
+                case Platforms.StandaloneEpicPC:
+                    color = "#905CDA";
+                    name = "Itch";
+                    break;
+                case Platforms.StandaloneSteamPC:
+                    color = "#4391CD";
+                    name = "Steam";
+                    break;
+                case Platforms.StandaloneMac:
+                    color = "#e3e3e3";
+                    name = "Mac.";
+                    break;
+                case Platforms.StandaloneWin10:
+                    color = "#FFF88D";
+                    name = "Win-10";
+                    break;
+                case Platforms.StandaloneItch:
+                    color = "#E35F5F";
+                    name = "Itch";
+                    break;
+                case Platforms.IPhone:
+                    color = "#e3e3e3";
+                    name = GetString("IPhone");
+                    break;
+                case Platforms.Android:
+                    color = "#1EA21A";
+                    name = GetString("Android");
+                    break;
+                case Platforms.Switch:
+                    name = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
+                    break;
+                case Platforms.Xbox:
+                    color = "#07ff00";
+                    name = "Xbox";
+                    break;
+                case Platforms.Playstation:
+                    color = "#0014b4";
+                    name = "PlayStation";
+                    break;
+            }
 
-        if (color != "" && name != "")
-            text = $"<color={color}>{name}</color>";
-        else
-            text = name;
-        return text;
+            if (color != "" && name != "")
+                text = $"<color={color}>{name}</color>";
+            else
+                text = name;
+            return text;
+        }
+        catch
+        {
+            return "";
+        }
+        
     }
-    public static void GetGameText(this PlayerControl player, ref Color color, ref string roleText ,bool topswap)
+    public static void GetGameText(this XtremePlayerData data, ref Color color, ref string roleText ,bool topswap)
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
         if (!Main.EnableFinalSuspect.Value) return;
-        var roleType = player.GetRoleType();
+        var roleType = XtremePlayerData.GetRoleById(data.PlayerId);
+        var player = data.Player;
         if (Utils.CanSeeTargetRole(player, out bool bothImp))
         {
             color = Utils.GetRoleColor(roleType);
@@ -199,8 +223,8 @@ public static class XtremeLocalHandling
         }
         catch
         {
-            var create = __instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
-                         __instance.GetRealName() != "Player(Clone)";
+            var create = (__instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
+                         __instance.GetRealName() != "Player(Clone)") && XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId);
             if (create)
                 XtremePlayerData.CreateDataFor(__instance);
         }
@@ -240,9 +264,8 @@ public static class XtremeLocalHandling
             try
             {
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
-                var pc = Utils.GetPlayerById(pva.TargetPlayerId);
 
-                var name = pc.CheckAndGetNameWithDetails(out Color color, out _, out string toptext, out _);
+                var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out Color color, out _, out string toptext, out _);
 
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";
@@ -263,10 +286,8 @@ public static class XtremeLocalHandling
                     roleTextMeeting.enabled = true;
                 }
             }
-            catch (Exception e)
-            {
-                XtremeLogger.Test(e);
-            }
+            catch 
+            { }
 
         }
     }

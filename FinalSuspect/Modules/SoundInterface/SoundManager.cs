@@ -14,10 +14,10 @@ public static class SoundManager
 {
     public static readonly string TAGS_PATH = PathManager.GetResourceFilesPath(FileType.Sounds, "SoundsName.txt");
 
-    public static List<string> CustomAudios = new();
+    public static List<string> CustomAudios = [];
     public static void ReloadTag(bool official = true)
     {
-        CustomAudios = new();
+        CustomAudios = [];
 #nullable disable
         if (official)
         {
@@ -55,7 +55,7 @@ public static class SoundManager
     public static bool ConvertExtension(ref string path)
     {
         if (path == null) return false;
-        List<string> extensions = new() { ".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a" };
+        List<string> extensions = [".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a"];
 
 
         while (!File.Exists(path))
@@ -128,7 +128,7 @@ public enum AudiosStates
 
 public class FinalMusic
 {
-    public static List<FinalMusic> finalMusics = new();
+    public static List<FinalMusic> finalMusics = [];
 
     public string Name;
     public string FileName;

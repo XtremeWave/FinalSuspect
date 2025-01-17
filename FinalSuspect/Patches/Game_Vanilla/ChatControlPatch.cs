@@ -53,7 +53,7 @@ public static class ChatControllerUpdatePatch
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.SendChat))]
 internal class ChatCommands
 {
-    public static List<string> SentHistory = new();
+    public static List<string> SentHistory = [];
     public static bool Prefix(ChatController __instance)
     {
         if (__instance.quickChatField.Visible)

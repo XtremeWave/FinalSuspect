@@ -19,16 +19,16 @@ class RoleOptionSettingPatch
 [HarmonyPatch(typeof(RolesSettingsMenu), nameof(RolesSettingsMenu.Update))]
 class RolesSettingsMenuPatch
 {
-    private static readonly List<Color32> rolecolors = new List<Color32>
-    {
+    private static readonly List<Color32> rolecolors =
+    [
         Utils.GetRoleColor(RoleTypes.Engineer),
         Utils.GetRoleColor(RoleTypes.GuardianAngel),
         Utils.GetRoleColor(RoleTypes.Scientist),
         Utils.GetRoleColor(RoleTypes.Tracker),
         Utils.GetRoleColor(RoleTypes.Noisemaker),
         Utils.GetRoleColor(RoleTypes.Shapeshifter),
-        Utils.GetRoleColor(RoleTypes.Phantom),
-    };
+        Utils.GetRoleColor(RoleTypes.Phantom)
+    ];
 
     public static void Postfix()
     {
@@ -102,20 +102,20 @@ class RolesSettingsMenuPatch
 [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
 internal class GameOptionsMenuPatch
 {
-    private static readonly List<Color32> Normalbannercolors = new()
-    {
+    private static readonly List<Color32> Normalbannercolors =
+    [
         Utils.GetRoleColor(RoleTypes.Impostor),
         Utils.GetRoleColor(RoleTypes.Crewmate),
         Color.yellow,
         Color.green
-    };
-    private static readonly List<Color32> HnSbannercolors = new()
-    {
+    ];
+    private static readonly List<Color32> HnSbannercolors =
+    [
         Utils.GetRoleColor(RoleTypes.Crewmate),
         Utils.GetRoleColor(RoleTypes.Impostor),
         Palette.Purple,
         Color.green
-    };
+    ];
     public static void Postfix()
     {
 

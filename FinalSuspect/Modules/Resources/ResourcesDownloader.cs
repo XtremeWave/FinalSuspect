@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -105,5 +107,34 @@ public class ResourcesDownloader
             XtremeLogger.Exception(ex, "GetMD5HashFromFile");
             return "";
         }
+    }
+    public static async Task<bool> IsUrl404Async(FileType fileType, string file)
+    {
+        return false;
+            /*
+            using var client = new HttpClient();
+            try
+
+            {
+                if (!IsChineseLanguageUser)
+                {
+                    var urlGithub = PathManager.GetFile(fileType, RemoteType.Github, file);
+
+                    var response = await client.GetAsync(urlGithub);
+                    return response.StatusCode == HttpStatusCode.NotFound;
+                }
+
+                var urlGitee = PathManager.GetFile(fileType, RemoteType.Gitee, file);
+                var urlApi = PathManager.GetFile(fileType, RemoteType.XtremeApi, file);
+                var response1 = await client.GetAsync(urlGitee);
+                var response2 = await client.GetAsync(urlApi);
+                return response1.StatusCode == HttpStatusCode.NotFound && response2.StatusCode == HttpStatusCode.NotFound;
+            }
+
+        catch
+        {
+            return false;
+        }
+*/
     }
 }

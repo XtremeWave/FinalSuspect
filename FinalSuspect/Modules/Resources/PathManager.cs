@@ -54,8 +54,8 @@ public static class PathManager
     [PluginModuleInitializer(InitializePriority.High)]
     public static void Init()
     {
-        CheckAndCreate(GetLocalPath(LocalType.Resources));
-        CheckAndCreate(GetLocalPath(LocalType.Resources) + "Sounds");
+        CheckAndCreate(GetLocalPath(LocalType.Resources), false);
+        CheckAndCreate(GetLocalPath(LocalType.Resources) + "Sounds", false);
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Images");
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "ModNews");
         foreach (var lang in EnumHelper.GetAllNames<SupportedLangs>())
@@ -69,10 +69,13 @@ public static class PathManager
     public static void CheckAndCreate(string path, bool hidden = true)
     {
         if (!Directory.Exists(path))
+        {
             Directory.CreateDirectory(path);
-        if (!hidden) return;
-        FileAttributes attributes= File.GetAttributes(path);
-        File.SetAttributes(path, attributes | FileAttributes.Hidden);
+        }
+        var attributes = File.GetAttributes(path);
+        File.SetAttributes(path, hidden
+            ? attributes | FileAttributes.Hidden 
+            : attributes & ~FileAttributes.Hidden);
     }
 }
 

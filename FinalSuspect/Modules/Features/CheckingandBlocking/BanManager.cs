@@ -18,7 +18,7 @@ public static class BanManager
 {
     
     private static readonly string BAN_LIST_PATH = PathManager.GetBanFilesPath("BanList.txt");
-    private static List<string> FACList = new();
+    private static List<string> FACList = [];
 
     [PluginModuleInitializer]
     public static void Init()

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using AmongUs.Data;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
@@ -16,7 +15,7 @@ class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         FAC.SetNameNum = new();
-        FAC.SuspectCheater = new();
+        FAC.SuspectCheater = [];
         for (byte i = 0; i < 14; i++)
         {
             FAC.SetNameNum[i] = 0;
@@ -94,7 +93,7 @@ public class OnPlayerJoinedPatch
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerLeft))]
 class OnPlayerLeftPatch
 {
-    public static List<int> ClientsProcessed = new();
+    public static List<int> ClientsProcessed = [];
     public static void Add(int id)
     {
         ClientsProcessed.Remove(id);

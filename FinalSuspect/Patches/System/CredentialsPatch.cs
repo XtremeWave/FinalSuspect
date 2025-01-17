@@ -208,13 +208,17 @@ internal class TitleLogoPatch
         var friendsButton = AwakeFriendCodeUIPatch.FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
         {
-            {new List<PassiveButton> {__instance.playButton, __instance.inventoryButton, __instance.shopButton},
+            {
+                [__instance.playButton, __instance.inventoryButton, __instance.shopButton],
                 (standardActiveSprite, new(0.5216f, 1f, 0.9490f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton> {__instance.newsButton, __instance.myAccountButton, __instance.settingsButton},
+            {
+                [__instance.newsButton, __instance.myAccountButton, __instance.settingsButton],
                 (minorActiveSprite, new( 0.5216f, 0.7765f, 1f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton> {__instance.creditsButton, __instance.quitButton},
+            {
+                [__instance.creditsButton, __instance.quitButton],
                 (minorActiveSprite, new(0.7294f, 0.6353f, 1.0f, 0.8f), shade, Color.white, Color.white) },
-            {new List<PassiveButton> {friendsButton },
+            {
+                [friendsButton],
                 (minorActiveSprite, new(0.0235f, 0f, 0.8f, 0.8f), shade, Color.white, Color.white) },
         };
 
@@ -250,6 +254,7 @@ internal class TitleLogoPatch
 
         if (!(ModStamp = GameObject.Find("ModStamp"))) return;
         ModStamp.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        ModStamp.GetComponent<SpriteRenderer>().sprite = Utils.LoadSprite("ModStamp.png", 100f);
 
         FinalSuspect_Background = new GameObject("FinalSuspect Background");
         FinalSuspect_Background.transform.position = new Vector3(0, 0, 520f);
@@ -326,13 +331,14 @@ internal class TitleLogoPatch
 [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
 internal class ModManagerLateUpdatePatch
 {
-    static  bool firstRun = false;
+    static  bool firstRun;
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
         if (!firstRun)
         {
             OptionsMenuBehaviourStartPatch.SetCursor();
+            __instance.ModStamp.sprite = Utils.LoadSprite("ModStamp.png", 100f);
             firstRun = true;
         }
         LateTask.Update(Time.deltaTime);

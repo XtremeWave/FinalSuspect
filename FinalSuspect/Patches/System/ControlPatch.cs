@@ -9,7 +9,8 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
 internal class ControllerManagerUpdatePatch
 {
-    private static readonly (int, int)[] resolutions = { (480, 270), (640, 360), (800, 450), (1280, 720), (1600, 900), (1920, 1080) };
+    private static readonly (int, int)[] resolutions = [(480, 270), (640, 360), (800, 450), (1280, 720), (1600, 900), (1920, 1080)
+    ];
     private static int resolutionIndex;
     public static void Postfix(ControllerManager __instance)
     {

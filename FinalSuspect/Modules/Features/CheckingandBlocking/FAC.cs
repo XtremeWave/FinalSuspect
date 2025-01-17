@@ -222,5 +222,5 @@ internal class FAC
     }
 
     public static Dictionary<byte, int> SetNameNum = new();
-    public static List<byte> SuspectCheater = new();
+    public static List<byte> SuspectCheater = [];
 }

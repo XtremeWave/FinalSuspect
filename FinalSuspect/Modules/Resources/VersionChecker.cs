@@ -151,14 +151,18 @@ public static class VersionChecker
             {
                 firstLaunch = false;
                 var annos = IsChineseUser ? ModUpdater.announcement_zh : ModUpdater.announcement_en;
-                if (isBroken) CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos, new() { (GetString(StringNames.ExitGame), Application.Quit) });
-                else CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos, new() { (GetString(StringNames.Okay), null) });
+                if (isBroken) CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
+                    [(GetString(StringNames.ExitGame), Application.Quit)]);
+                else CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
+                    [(GetString(StringNames.Okay), null)]);
             }
         }
         else
         {
-            if (retried >= 2) CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedExit"), new() { (GetString(StringNames.Okay), null) });
-            else CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedRetry"), new() { (GetString("Retry"), Retry) });
+            if (retried >= 2) CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedExit"),
+                [(GetString(StringNames.Okay), null)]);
+            else CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedRetry"),
+                [(GetString("Retry"), Retry)]);
         }
 
         ModUpdater.SetUpdateButtonStatus();

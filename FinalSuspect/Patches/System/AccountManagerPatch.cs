@@ -47,7 +47,8 @@ public static class AwakeFriendCodeUIPatch
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager
 {
-    public static Sprite[] AllRoleRoleIllustration = {
+    public static Sprite[] AllRoleRoleIllustration =
+    [
         Utils.LoadSprite("CI_Crewmate.png", 450f),
         Utils.LoadSprite("CI_HnSEngineer.png", 450f),
         Utils.LoadSprite("CI_Engineer.png", 450f),
@@ -60,10 +61,10 @@ public static class AwakeAccountManager
         Utils.LoadSprite("CI_HnSImpostor.png", 450f),
         Utils.LoadSprite("CI_Shapeshifter.png", 450f),
         Utils.LoadSprite("CI_Phantom.png", 450f),
-        Utils.LoadSprite("CI_ImpostorGhost.png", 450f),
+        Utils.LoadSprite("CI_ImpostorGhost.png", 450f)
 
 
-    }; 
+    ]; 
     private static int currentIndex;
 
     static GameObject crewpet_walk0001;

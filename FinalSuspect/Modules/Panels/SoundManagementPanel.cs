@@ -232,7 +232,7 @@ public static class SoundManagementPanel
         using StreamReader sr = new(TAGS_PATH);
 
         string line;
-        List<string> update = new();
+        List<string> update = [];
         while ((line = sr.ReadLine()) != null)
         {
             if (string.IsNullOrWhiteSpace(line)) continue;

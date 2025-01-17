@@ -36,7 +36,7 @@ public static class OptionsMenuBehaviourStartPatch
     public static ClientFeatureItem AudioManagementBtn;
     public static OptionsMenuBehaviour Instance { get; private set; }
     private static bool reseted;
-    public static bool recreate = false;
+    public static bool recreate;
 
     public static void Postfix(OptionsMenuBehaviour __instance)
     {

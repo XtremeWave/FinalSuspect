@@ -29,8 +29,8 @@ class Webhook
 class XtremeLogger
 {
     public static bool isEnable;
-    public static List<string> disableList = new();
-    public static List<string> sendToGameList = new();
+    public static List<string> disableList = [];
+    public static List<string> sendToGameList = [];
     public static bool isDetail = false;
     public static bool isAlsoInGame = false;
     public static void Enable() => isEnable = true;

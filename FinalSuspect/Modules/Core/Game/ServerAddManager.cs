@@ -16,10 +16,12 @@ public static class ServerAddManager
     public static void Init()
     {
         serverManager.AvailableRegions = ServerManager.DefaultRegions;
-        List<IRegionInfo> regionInfos = new();
-        regionInfos.Add(CreateHttp("game.xtreme.net.cn", "XtremeWave[HongKong]", 443, true));
-        regionInfos.Add(CreateHttp("au-us.niko233.me", "Niko233[NA_US]", 443, true));
-        regionInfos.Add(CreateHttp("au-us2.niko233.me", "Niko233[NA_US2]", 443, true));
+        List<IRegionInfo> regionInfos =
+        [
+            CreateHttp("game.xtreme.net.cn", "XtremeWave[HongKong]", 443, true),
+            CreateHttp("au-us.niko233.me", "Niko233[NA_US]", 443, true),
+            CreateHttp("au-us2.niko233.me", "Niko233[NA_US2]", 443, true)
+        ];
 
         if (IsChineseUser)
         {
@@ -111,7 +113,7 @@ public static class ServerAddManager
     {
         string serverIp = (ishttps ? "https://" : "http://") + ip;
         ServerInfo serverInfo = new ServerInfo(name, serverIp, port, false);
-        ServerInfo[] ServerInfo = new[] { serverInfo };
+        ServerInfo[] ServerInfo = [serverInfo];
         return new StaticHttpRegionInfo(name, (StringNames)1003, ip, ServerInfo).Cast<IRegionInfo>();
     }
 }

@@ -4,9 +4,7 @@ using System.Text;
 using AmongUs.Data;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
-using InnerNet;
 using TMPro;
 using UnityEngine;
 

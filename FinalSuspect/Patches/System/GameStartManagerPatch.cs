@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using AmongUs.Data;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
@@ -176,9 +175,8 @@ public class GameStartManagerPatch
                 cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!cancelButton.gameObject.active);
             }
-            else
-            {
-                /*
+
+            /*
                 if (MatchVersions(0, true) || Main.VersionCheat.Value)
                     exitTimer = 0;
                 else
@@ -194,8 +192,6 @@ public class GameStartManagerPatch
                         warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
                 }
                 */
-            }
-
             string warningMessage = "";
             if (warningMessage == "")
             {
@@ -253,5 +249,13 @@ class ResetStartStatePatch
         {
             SoundManager.Instance.StopSound(__instance.gameStartSound);
         }
+    }
+}
+[HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.FinallyBegin))]
+class FinallyBeginPatch
+{
+    public static void Prefix(GameStartManager __instance)
+    {
+        SoundManager.Instance.StopSound(__instance.gameStartSound);
     }
 }

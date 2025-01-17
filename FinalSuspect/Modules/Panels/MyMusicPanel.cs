@@ -139,7 +139,7 @@ public static class MyMusicPanel
     public static void RefreshTagList()
     {
         Items?.Do(Object.Destroy);
-        Items = new();
+        Items = [];
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
         XtremeLogger.Info($"currentPage:{currentPage}", "MyMusicPanel");

@@ -157,7 +157,7 @@ public static class Translator
             XtremeLogger.Info($"加载自定义翻译文件：{filename}", "LoadCustomTranslation");
             using StreamReader sr = new(path, Encoding.GetEncoding("UTF-8"));
             string text;
-            string[] tmp = Array.Empty<string>();
+            string[] tmp = [];
             while ((text = sr.ReadLine()) != null)
             {
                 tmp = text.Split(":");

@@ -36,7 +36,7 @@ public class LobbyBehaviourPatch
         else
         {
             if (MapThemeSound != null) return;
-            SoundManager.Instance.CrossFadeSound("MapTheme", __instance.MapTheme, 0.5f);
+            SoundManager.Instance.CrossFadeSound("MapTheme", __instance.MapTheme, 0.07f);
         }
     }
 }

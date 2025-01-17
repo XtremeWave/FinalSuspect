@@ -152,7 +152,7 @@ public void SetName(string name) => Name = name;
     [GameModuleInitializer]
     public static void InitializeAll()
     {
-        AllPlayerData = new();
+        AllPlayerData = [];
         foreach (var pc in PlayerControl.AllPlayerControls)
         {
             CreateDataFor(pc);

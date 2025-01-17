@@ -28,11 +28,7 @@ static class ExtendedPlayerControl
     }
     public static RoleTypes GetRoleType(this PlayerControl player)
     {
-        if (player != null && player.GetXtremeData() != null)
-        {
-            return GetRoleType(player.PlayerId);
-        }
-        return RoleTypes.Crewmate;
+        return GetRoleType(player.PlayerId);
     }
     public static RoleTypes GetRoleType(byte id)
     {
@@ -64,7 +60,16 @@ static class ExtendedPlayerControl
     }
     public static string GetRealName(this PlayerControl player, bool isMeeting = false)
     {
-        var nullname = player.GetXtremeData() != null ? player?.GetDataName() : null;
+        string trynull = null;
+        try
+        {
+             trynull = player.GetXtremeData() != null ? player?.GetDataName() : null;
+        }
+        catch 
+        {
+        }
+
+        var nullname = trynull;
         return (isMeeting ? player?.Data?.PlayerName : player?.name) ?? nullname;
     }
     public static bool IsLocalPlayer(this PlayerControl player) => PlayerControl.LocalPlayer == player;
