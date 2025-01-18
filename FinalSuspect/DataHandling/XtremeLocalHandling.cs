@@ -43,7 +43,7 @@ public static class XtremeLocalHandling
         SpamManager.CheckSpam(ref name);
         if (!FAC.SuspectCheater.Contains(id) || Main.DisableFAC.Value) return name;
         topcolor = ColorHelper.FaultColor;
-        toptext.CheckAndAppendText(GetString("Cheater"));
+        toptext = toptext.CheckAndAppendText(GetString("Cheater"));
         return name;
     }
 
