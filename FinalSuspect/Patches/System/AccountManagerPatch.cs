@@ -71,25 +71,28 @@ public static class AwakeAccountManager
     static GameObject ModLoading;
     public static void Prefix(AccountManager __instance)
     {
-        var loading = GameObject.Find("Loading");
-        loading.SetActive(false);
+        try
+        {
+            var loading = GameObject.Find("Loading");
+            loading.SetActive(false);
 
-        var bgf = GameObject.Find("BackgroundFill");
-        crewpet_walk0001 = bgf.transform.FindChild("crewpet_walk0001").gameObject;
-        var r = crewpet_walk0001.GetComponent<WaitingRotate>();
-        r.speed = 0f;
-        ModLoading = new GameObject("ModLoading");
-        ModLoading.transform.SetParent(crewpet_walk0001.transform.parent);
-        ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
-        ModLoading.transform.localPosition = new Vector3(4.5f, - 2.4f, - 1f);
-        var Sprite = ModLoading.AddComponent<SpriteRenderer>();
-        Sprite.color = Color.white;
-        Sprite.flipX = false;
-        __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
-        crewpet_walk0001.SetActive(false);
-
-        
-
+            var bgf = GameObject.Find("BackgroundFill");
+            crewpet_walk0001 = bgf.transform.FindChild("crewpet_walk0001").gameObject;
+            var r = crewpet_walk0001.GetComponent<WaitingRotate>();
+            r.speed = 0f;
+            ModLoading = new GameObject("ModLoading");
+            ModLoading.transform.SetParent(crewpet_walk0001.transform.parent);
+            ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
+            ModLoading.transform.localPosition = new Vector3(4.5f, - 2.4f, - 1f);
+            var Sprite = ModLoading.AddComponent<SpriteRenderer>();
+            Sprite.color = Color.white;
+            Sprite.flipX = false;
+            __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
+            crewpet_walk0001.SetActive(false);
+        }
+        catch 
+        {
+        }
     }
     public static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
     {

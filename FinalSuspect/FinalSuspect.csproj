@@ -14,6 +14,12 @@
 		<BaseOutputPath>..\Export</BaseOutputPath>
 		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
 	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+	  <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include=".\Resources\**" />
@@ -35,5 +41,9 @@
 
 	<Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
 		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
+	</Target>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="set &quot;sourcePath=..\Export\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)" />
 	</Target>
 </Project>

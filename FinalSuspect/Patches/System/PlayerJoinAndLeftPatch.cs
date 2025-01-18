@@ -14,19 +14,12 @@ class OnGameJoinedPatch
     public static void Postfix(AmongUsClient __instance)
     {
         HudManagerPatch.Init();
-        FAC.SetNameNum = new();
-        FAC.SuspectCheater = [];
-        for (byte i = 0; i < 14; i++)
-        {
-            FAC.SetNameNum[i] = 0;
-        }
+
         XtremeLogger.Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         XtremeGameData.PlayerVersion.playerVersion = new Dictionary<byte, XtremeGameData.PlayerVersion>();
-
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
         XtremePlayerData.InitializeAll();
-
-        if (!Main.VersionCheat.Value) RPC.RpcVersionCheck();
+        RPC.RpcVersionCheck();
         XtremeGameData.GameStates.InGame = false;
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
@@ -16,6 +17,7 @@ public class XtremePlayerData : IDisposable
         public string Name { get; private set; }
         public int ColorId { get; private set; }
         public byte PlayerId { get; private set; }
+        public string FriendCode { get; private set; }
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
@@ -46,6 +48,7 @@ public class XtremePlayerData : IDisposable
             Player = player;
             Name = playername;
             ColorId = colorid;
+            FriendCode = player.GetClient().FriendCode;
             PlayerId = player.PlayerId;
             IsImpostor = IsDead = RoleAssgined = false;
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
@@ -152,6 +155,7 @@ public void SetName(string name) => Name = name;
     [GameModuleInitializer]
     public static void InitializeAll()
     {
+        DisposeAll();
         AllPlayerData = [];
         foreach (var pc in PlayerControl.AllPlayerControls)
         {
@@ -161,10 +165,18 @@ public void SetName(string name) => Name = name;
 
     public static void CreateDataFor(PlayerControl player, string playername = null)
     {
-        var colorId = player.Data.DefaultOutfit.ColorId;
-        playername ??= player.GetRealName();
-        XtremeLogger.Info($"Creating XtremePlayerData For {playername}", "Data");
-        AllPlayerData.Add(new XtremePlayerData(player, playername, colorId));
+        try
+        {
+            XtremeLogger.Info($"Creating XtremePlayerData For {playername}({player.GetClient().FriendCode})", "Data");
+            var colorId = player.Data.DefaultOutfit.ColorId;
+            playername ??= player.GetRealName();
+           
+            AllPlayerData.Add(new XtremePlayerData(player, playername, colorId));
+        }
+        catch 
+        {
+        }
+       
 
     }
 #pragma warning disable CA1816
@@ -172,6 +184,7 @@ public void SetName(string name) => Name = name;
     {
         XtremeLogger.Info($"Disposing XtremePlayerData For {Name}", "Data");
         Player = null;
+        FriendCode = null;
         Name = null;
         ColorId = -1;
         IsImpostor = IsDead = RoleAssgined = false;
@@ -182,8 +195,16 @@ public void SetName(string name) => Name = name;
 
     public static void DisposeAll()
     {
-        AllPlayerData.Do(data => data.Dispose());
-        AllPlayerData.Clear();
+        try
+        {
+            AllPlayerData.Do(data => data.Dispose());
+            AllPlayerData.Clear();
+        }
+        catch
+        {
+
+        }
+        
     }
 #pragma warning restore CA1816
 }

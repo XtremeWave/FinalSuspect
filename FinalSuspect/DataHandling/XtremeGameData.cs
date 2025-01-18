@@ -147,11 +147,16 @@ public static string GetDataName(this PlayerControl pc)
     }
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetXtremeData().SetTaskTotalCount(TaskTotalCount);
     public static void OnCompleteTask(this PlayerControl pc) => pc.GetXtremeData().CompleteTask();
-    public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId) || player.Data.OwnerId == -2;
+    public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId) || player.Data.OwnerId == -2 && !IsFinalSuspect(player.PlayerId);
     public static bool OtherModClient(byte id) => PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId != ver.forkId;
 
     public static bool ModClient(this PlayerControl player) => ModClient(player.PlayerId);
     public static bool ModClient(byte id) => PlayerVersion.playerVersion.ContainsKey(id);
+    
+    public static bool IsFinalSuspect(this PlayerControl pc)  => IsFinalSuspect(pc.PlayerId);
+
+    public static bool IsFinalSuspect(byte id) =>
+        PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId == ver.forkId;
 
 }
 

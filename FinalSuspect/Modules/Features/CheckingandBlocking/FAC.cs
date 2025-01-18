@@ -15,6 +15,12 @@ internal class FAC
     {
         DeNum = new();
         LobbyDeadBodies = [];
+        SetNameNum = new();
+        SuspectCheater = [];
+        for (byte i = 0; i < 14; i++)
+        {
+            SetNameNum[i] = 0;
+        }
     }
     public static void WarnHost(int denum = 1)
     {
@@ -48,6 +54,7 @@ internal class FAC
                 return true;
             }
 
+            
             switch (rpc)
             {
                 case RpcCalls.SetName:
@@ -100,16 +107,26 @@ internal class FAC
                     case RpcCalls.CheckColor:
                     case RpcCalls.SetName:
                     case RpcCalls.CheckName:
+                    case RpcCalls.SetLevel:
+                    case RpcCalls.SetHat:
                         return true;
                     case RpcCalls.SendChat:
                         if (pc.IsAlive()) return true;
                         break;
+                    case RpcCalls.CheckMurder:
+                    case RpcCalls.MurderPlayer:
+                        if (pc.IsImpostor())
+                            break;
+                        return true;
                 }
             if (XtremeGameData.GameStates.IsMeeting)
                 switch (rpc)
                 {
                     case RpcCalls.CheckMurder:
                     case RpcCalls.MurderPlayer:
+                        if (pc.IsImpostor())
+                            break;
+                        return true;
                     case RpcCalls.SetColor:
                     case RpcCalls.CheckColor:
                     case RpcCalls.SetName:
@@ -218,7 +235,6 @@ internal class FAC
     {
         Utils.KickPlayer(pc.GetClientId(), true, "CheatDetected");
         NotificationPopperPatch.NotificationPop(pc.GetDataName() + text);
-
     }
 
     public static Dictionary<byte, int> SetNameNum = new();

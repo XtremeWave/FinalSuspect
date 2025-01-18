@@ -33,7 +33,6 @@ public static class MatchMakerGameButtonSetGamePatch
         var nameList = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese ? Main.TName_Snacks_CN : Main.TName_Snacks_EN;
 
         if (game.Language.ToString().Length > 9) return true;
-
         string str = Math.Abs(game.GameId).ToString();
         int id = Math.Min(Math.Max(int.Parse(str.Substring(str.Length - 2, 2)), 1) * nameList.Count / 100, nameList.Count);
 

@@ -105,18 +105,21 @@ public static class BanManager
 
     public static void CheckBanPlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || !Main.KickPlayerInBanList.Value) return;
-        if (player.IsBannedPlayer())
+        if (AmongUsClient.Instance.AmHost)
         {
-            Utils.KickPlayer(player.Id, true, "BanList");
-            NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
-            XtremeLogger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
-        }
-        else if (player.IsFACPlayer())
-        {
-            Utils.KickPlayer(player.Id, true, "FACList");
-            NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
-            XtremeLogger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
+            if (!Main.KickPlayerInBanList.Value) return;
+            if (player.IsBannedPlayer())
+            {
+                Utils.KickPlayer(player.Id, true, "BanList");
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByBanList"), player.PlayerName));
+                XtremeLogger.Info($"{player.PlayerName}は過去にBAN済みのためBANされました。", "BAN");
+            }
+            else if (player.IsFACPlayer())
+            {
+                Utils.KickPlayer(player.Id, true, "FACList");
+                NotificationPopperPatch.NotificationPop(string.Format(GetString("Message.BanedByFACList"), player.PlayerName));
+                XtremeLogger.Info($"{player.PlayerName}存在于FAC封禁名单", "BAN");
+            }
         }
     }
 

@@ -41,11 +41,9 @@ public static class XtremeLocalHandling
         data.GetLobbyText(ref topcolor, ref bottomcolor, ref toptext, ref bottomtext);
         data.GetGameText(ref topcolor, ref toptext, topswap);
         SpamManager.CheckSpam(ref name);
-        if (FAC.SuspectCheater.Contains(id))
-        {
-            topcolor = ColorHelper.FaultColor;
-            toptext.CheckAndAppendText(GetString("Cheater"));
-        }
+        if (!FAC.SuspectCheater.Contains(id) || Main.DisableFAC.Value) return name;
+        topcolor = ColorHelper.FaultColor;
+        toptext.CheckAndAppendText(GetString("Cheater"));
         return name;
     }
 
@@ -78,7 +76,7 @@ public static class XtremeLocalHandling
             else
             {
                 toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.version}</size>");
-                topcolor = ColorHelper.FaultColor;
+                topcolor = Color.red;
             }
         }
         else
@@ -206,7 +204,11 @@ public static class XtremeLocalHandling
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
-            
+            if (!FAC.SuspectCheater.Contains(__instance.PlayerId) &&
+                (__instance.GetClient().IsFACPlayer() || __instance.GetClient().IsBannedPlayer()))
+            {
+                FAC.SuspectCheater.Add(__instance.PlayerId);
+            }
             
             var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
             var TopText = TopTextTransform.GetComponent<TextMeshPro>();
@@ -357,10 +359,8 @@ public static class XtremeLocalHandling
             if (!player.IsAlive())
                 bgcolor = new Color32(255, 0, 0, 120);
         }
-        catch (Exception e)
+        catch 
         {
-            System.Console.WriteLine(e);
-            throw;
         }
        
     }
