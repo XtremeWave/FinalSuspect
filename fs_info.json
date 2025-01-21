@@ -7,23 +7,12 @@
   "minVer": "latest",
   "creation": "1",
   "allowStart": "true",
-  "CanUpdate": "true",
+  "CanUpdate": "false",
   "DebugVer": "0.0.0",
 
   "md5": "2e41727d5e868073b2b434e6549dac8d",
   "announcement": {
-    "SChinese": "返璞归真",
-    "English": "return to simplicity"
-  },
-
-  "url": {
-    "github": "https://github.com/XtremeWave/FinalSuspect_Xtreme/releases/latest/download/FinalSuspect_Xtreme.dll",
-    "gitee": "https://gitee.com/FinalSuspect_Xtreme/FinalSuspect_Xtreme/releases/download/{{showVer}}/FinalSuspect_Xtreme.dll",
-    "website": "https://cn-sy1.rains3.com/xtremewave/FinalSuspect_Xtreme.dll",
-    "website2": "https://tohex.club/Resource/Download/FinalSuspect_Xtreme.dll",
-    "githubmus": "https://github.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav",
-    "giteemus": "https://gitee.com/XtremeWave/FinalSuspect_Xtreme/raw/FinalSuspect_Xtreme/Assets/Sounds/{{sound}}.wav",
-    "websitemus": "https://cn-sy1.rains3.com/xtremewave/Sounds/{{sound}}.wav",
-    "website2mus": "https://sounds.tonex.cc/Sounds/{{sound}}.wav"
+    "SChinese": "新版本发布在即，敬请期待！",
+    "English": "The new version is about to be released. Stay tuned!"
   }
 }

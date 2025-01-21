@@ -4,42 +4,9 @@
 .vs/
 
 Export/
-FinalSuspect_Xtreme/obj
+FinalSuspect/obj/
+FinalSuspect/Properties/PublishProfiles/
+FinalSuspect/FodyWeavers.xsd
 
-FinalSuspect_Xtreme/Properties/PublishProfiles/
-FinalSuspect_Xtreme/FodyWeavers.xsd
-
-*Sponsor.xlsx
-/Assets/~$Roles ID.xlsx
-/FinalSuspect_Xtreme.sln
-/FinalSuspect_Xtreme/obj/Debug/net6.0/ref/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Debug/net6.0/refint/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.csproj.CoreCompileInputs.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.pdb
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.sourcelink.json
-/FinalSuspect_Xtreme/obj/Release/net6.0/FinalSuspect_Xtreme.assets.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/GitHead.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.assets.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.csproj.AssemblyReference.cache
-/FinalSuspect_Xtreme/obj/project.assets.json
-/FinalSuspect_Xtreme/obj/project.nuget.cache
-/FinalSuspect_Xtreme/obj/FinalSuspect_Xtreme.csproj.nuget.dgspec.json
-/FinalSuspect_Xtreme/obj/FinalSuspect_Xtreme.csproj.nuget.g.props
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitHead.cache
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitInfo.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.csproj.FileListAbsolute.txt
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitHead.cache
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitIsDirty.cache
+/FinalSuspect.sln
 *.zip
-/FinalSuspect_Xtreme/obj/FinalSuspect_Xtreme.csproj.nuget.g.targets
-/FinalSuspect_Xtreme/obj/Debug/net6.0/ref/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitInfo.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.csproj.CoreCompileInputs.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.pdb
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.sourcelink.json
-/FinalSuspect_Xtreme/obj/Debug/net6.0/GitInfo.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/refint/FinalSuspect_Xtreme.dll
-/FinalSuspect_Xtreme/obj/Release/net6.0/GitIsDirty.cache
-/FinalSuspect_Xtreme/obj/Debug/net6.0/FinalSuspect_Xtreme.assets.cache

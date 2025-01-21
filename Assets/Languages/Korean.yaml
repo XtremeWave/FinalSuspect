@@ -1,0 +1,299 @@
+# FinalSuspect 的语言文件 / Translation file of FinalSuspect
+
+# 当前翻译文件语言的ID / Language ID of current file
+LangID: "4"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "임포스터"
+TypeCrewmate: "크루원"
+
+# 阵营 / Teams
+TeamImpostor: "임포스터 팀"
+TeamImpostorOnly: "임포스터"
+TeamCrewmate: "크루원 팀"
+
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>우리 팀에는 {0} 명의 임포스터가 있습니다</color>"
+ImpostorNumImpOnly: "<color=#ff1919>우리 팀에는 임포스터가 1명뿐입니다</color>"
+ImpostorNumCrew: "<color=#8cffff>우리 팀에는 </color><color=#ff1919>{0}</color><color=#8cffff> 명의 임포스터가 있습니다</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>악이 세상을 뒤덮이게 하라!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>나 혼자일지라도 나는 무한한 힘을 가지고 있다!</color>"
+CrewmateIntroText: "<color=#8cffff>당신의 임무를 완료하고, 이 어려운 상황들을 해결하기 위해 단결하십시오!</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "크루원"
+Engineer: "엔지니어"
+Scientist: "과학자"
+Tracker: "추적자"
+Noisemaker: "소음기"
+GuardianAngel: "수호천사"
+Impostor: "임포스터"
+Shapeshifter: "변신자"
+Phantom: "유령"
+CrewmateGhost: "크루원 유령"
+ImpostorGhost: "임포스터 유령"
+CrewmateGhostBlurb: "임무를 완료하라"
+ImpostorGhostBlurb: "시설을 계속 방해하라"
+CrewmateGhostBlurbLong: "임무를 완료하고, 뒤처지지 마라!"
+ImpostorGhostBlurbLong: "시설을 방해하고, 생존한 임포스터가 승리에 도움을 주자."
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "끝까지 생존하라!"
+HnSEngineerBlurbLong: "시간이 끝날 때까지 생존하고, 임무를 완료하여 시간을 연장하라.\n환기구와 위험지표를 사용하여 숨어라!\n타이머가 시작되면 임포스터가 당신을 사냥하기 시작할 것이다!"
+HnSImpostorBlurb: "모두를 제거하라!"
+HnSImpostorBlurbLong: "시간 제한 내에 모든 크루원을 살해하라!\n빠르게 움직여야 한다! 환기구는 사용할 수 없다.\n마지막 순간에는 속도 부스트와 추적 힌트가 제공될 것이다!"
+HnSCrewmateGhostBlurb: "동료들을 응원하라"
+HnSCrewmateGhostBlurbLong: "가! 응원해! 동료들을 위해!"
+
+# 死因 / Death Reason
+DeathReason.Kill: "살해됨"
+DeathReason.Exile: "추방됨"
+DeathReason.Disconnect: "연결 끊김"
+
+# 客户端选项 / Client Options
+FinalSuspectOptions: "Final Suspect 옵션"
+Back: "뒤로"
+Yes: "예"
+No: "아니오"
+UnlockFPS: "FPS 제한 해제"
+ChangeOutfit: "의상 변경"
+BeanMode: "클래식 빈 모드"
+HorseMode: "에이프릴 풀 말 모드"
+LongMode: "에이프릴 풀 롱 모드"
+KickPlayerFriendCodeNotExist: "로그인하지 않은 플레이어 추방"
+KickPlayerWithDenyName: "부적절한 닉네임 사용 플레이어 추방"
+KickPlayerInBanList: "밴 목록에 있는 플레이어 추방"
+SpamDenyWord: "부적절한 단어 차단"
+AutoStartGame: "로비가 가득 차면 자동 시작"
+AutoEndGame: "게임 종료 후 자동으로 로비로 돌아가기"
+SwitchVanilla: "원래 버전으로 전환"
+EnableRoleBackGround: "커스텀 인트로 배경 활성화"
+EnableMapBackGround: "커스텀 맵 색상 활성화"
+DisableVanillaSound: "Among Us 음악 비활성화"
+DisableFAC: "방해 검사 기능 비활성화"
+ShowPlayerInfo: "플레이어의 플랫폼과 클라이언트 정보 표시"
+UseModCursor: "커스텀 커서 사용"
+PrunkMode: "장난 모드"
+VersionCheat: "MOD 버전의 동기화 검사를 건너뛰기"
+GodMode: "신 모드"
+NoGameEnd: "게임 종료 비활성화"
+EnableFinalSuspect: "「Final Suspect」 활성화"
+
+# 客户端功能 / Client Features
+FinalSuspectFeatures: "Final Suspect 기능"
+UnloadMod: "원래 버전으로 전환"
+UnloadWarning: "<color=#ffff00><size=200%>경고</size></color>\nMOD를 다시 활성화하려면 게임을 다시 시작해야 합니다.\n그래도 계속하시겠습니까?"
+CannotUnloadDuringGame: "게임 중에는 원래 버전으로 전환할 수 없습니다"
+Cancel: "취소"
+Unload: "アン로ード"
+DumpLog: "로그 출력"
+SoundOptions: "내 음악"
+AudioManagementOptions: "오디오 관리"
+OnlyAvailableInMainMenu: "메인 메뉴에서만 사용 가능"
+
+# 提示 / Tips
+updatePleaseWait: "잠시만 기다려 주세요..."
+updateInProgress: "업데이트 중..."
+downloadInProgress: "다운로드 중..."
+Playing: "게임 중..."
+DownLoadSucceedNotice: "다운로드가 성공했습니다!"
+DownLoadFailureNotice: "다운로드에 실패했습니다 =("
+PleaseWait: "잠시만 기다려 주세요..."
+
+# 업데이트 확인 / Update Checker
+Retry: "재시도"
+updateCheckPopupTitle: "업데이트 확인"
+updateCheckFailedRetry: "업데이트 확인에 실패했습니다 :(\n다시 시도하시겠습니까?"
+updateCheckFailedExit: "업데이트 확인에 실패했습니다 :(\n인터넷 연결을 확인하고 다시 시도해 주세요."
+
+# 업데이트 알림 / Update Reminder
+UpdateBySelfTitle: "업데이트 알림"
+updateNotice: "업데이트 알림"
+UpdateBySelfText: "이 버전은 한 클릭 업데이트를 지원하지 않습니다. 수동으로 업데이트하십시오."
+updateButton: "지금 업데이트"
+updatePopupTitle: "지금 업데이트"
+updatePopupTitleFialed: "업데이트 실패"
+updatePopupTitleDone: "업데이트 완료"
+
+# 업데이트 소스 선택 / Update Chose Source
+updateChoseSource: "업데이트할 소스를 선택해 주세요\n선택에 어려움이 있다면 [Github]를 선택하세요\n업데이트가 실패하면 [Api]를 선택하세요"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.XtremeApi: "Api"
+
+# 업데이트 완료 안내 / Update completion prompts
+updateRestart: "변경 사항을 적용하려면 게임을 다시 시작하십시오 :)"
+updatePingFialed: "이유: {0}\n선택한 채널이 일시적으로 사용할 수 없습니다. 다른 다운로드 채널로 변경해 보세요."
+updateFileMd5Incorrect: "이유: 파일 체크섬 오류\n이 채널의 파일 버전이 최신이 아닙니다. 다른 다운로드 채널로 변경해 보세요."
+downloadFailed: "이유: 다운로드 시간 초과 또는 중단됨\n네트워크를 변경하거나 수동으로 업데이트해 보세요."
+
+# 공개 게임에 참가할 수 없는 이유 / Unable to join public game reasons
+onSetPublicNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트하세요.\n그렇지 않으면 공개 룸에 입장할 수 없습니다."
+CanNotJoinPublicRoomNoLatest: "중요한 업데이트가 있습니다. 이 모드를 업데이트하세요.\n그렇지 않으면 공개 룸에 입장할 수 없습니다."
+ModBrokenMessage: "모드 파일이 손상되었습니다. 게임을 다시 시작하거나 이 모드를 다시 설치하세요."
+UnsupportedVersion: "당신의 Among Us 버전이 FinalSuspect와 호환되지 않습니다.\n게임을 업데이트하세요."
+
+# 오디오 재생 / Audio Playback
+PlayMode0: "한 번 재생"
+PlayMode1: "한 곡 반복"
+PlayMode2: "랜덤"
+PlayMode3: "순차적"
+Stop: "정지"
+CanPlay: "재생하려면 클릭"
+NoFound: "[파일이 없습니다]"
+NextPage: "다음 페이지"
+PreviousPage: "이전 페이지"
+
+# 오디오 추가 / Audio Addition
+download: "다운로드"
+delete: "삭제"
+NewSound: "새로운 음악 추가"
+PleaseEnterMusic: "음악 이름을 입력하세요"
+AudioManagementAlreadyExists: "이 음악 이름은 이미 존재합니다"
+NotAllowedMusic: "음악 이름 형식이 허용되지 않습니다"
+
+# 인터페이스 팁 / Interface Tips
+CustomAudioManagementHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 자신의 음악을 추가할 수 있습니다. 자신의 음악을 추가할 때는 '오디오 관리'에 음악 이름을 추가하고 해당 오디오 파일을 'Among Us/Final Suspect_Data/Resources/Sounds' 폴더에 배치해야 합니다 (지원 형식: .wav). 음악은 '내 음악'에서 재생할 수 있습니다."
+# , .flac, .aiff, .mp3, .aac, .ogg, .m4a
+CustomSoundHelp: "XtremeWave에서 지원하는 음악을 다운로드하거나 '오디오 관리'에서 자신의 음악을 추가할 수 있습니다. 로컬 음악 리소스 경로가 누락된 경우 '[파일이 없습니다]'로 표시됩니다."
+
+# 메인 메뉴 음악 안내 / Main Menu Music Reminder
+MusicNotYet: "현재 음악 파일이 불완전하게 감지되었습니다"
+AudioNYPro: "더 나은 게임 경험을 위해 '홈-설정-추가 기능-오디오 관리'에서 음악을 다운로드하세요."
+
+# 공식 음악 / Official Musics
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
+Mus.TidalSurge: "Tidal Surge"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "Return To Simplicity"
+
+# 메시지 / Messages
+Message.KickedByDenyName: "[{0}]은(는) 이름이 [{1}]과 일치하여 추방되었습니다."
+Message.BanedByBanList: "[{0}]은(는) 이전에 금지되었기 때문에 금지되었습니다."
+Message.BanedByFACList: "[{0}]은(는) FAC 금지 목록에 있었기 때문에 금지되었습니다."
+Message.DumpfileSaved: "로그 파일이 데스크톱에 성공적으로 저장되었습니다. 파일명: {0}"
+Message.KickedByNoFriendCode: "[{0}]은(는) 친구 코드가 존재하지 않아 추방되었습니다."
+Message.AddedPlayerToBanList: "[{0}]을(를) 금지 목록에 추가했습니다."
+Message.KickedByFAC: "[{0}]은(는) FAC에 의해 추방되었습니다. 이유: {1}"
+Message.BanedByFAC: "[{0}]은(는) FAC에 의해 추방되었습니다. 이유: {1}"
+
+# 알림 / Notifications
+PlayerLeft: "[{0}]이(가) 게임을 떠났습니다."
+PlayerLeftCuzTimeout: "[{0}]은(는) <color=#CA8A8A>연결 타임아웃</color>으로 게임을 떠났습니다."
+PlayerKickByHost: "[{0}]은(는) 호스트에 의해 추방되었습니다."
+PlayerBanByHost: "[{0}]은(는) 호스트에 의해 금지되었습니다."
+PlayerLeftCuzError: "[{0}]은(는) <color=#E57373>에러</color>로 게임을 떠났습니다."
+PlayerLeftByAU-Anticheat: "[{0}]은(는) AmongU의 공식 반부정행위 시스템에 의해 추방되었습니다(이것은 <color=#cecdfd>FinalSuspect</color>와는 관련이 없습니다)."
+KickBecauseDiffrentVersionOrMod: "[{0}]은(는) 다른 버전의 모드를 사용하고 있었기 때문에 추방되었습니다."
+
+# 경고 / Warnings
+Warning: "경고!"
+Warning.MismatchedVersion: "{0}\n{1}의 다른 버전을 사용하고 있습니다."
+Warning.AutoExitAtMismatchedVersion: "호스트는 {0}을 사용하지 않거나 다른 버전을 사용하고 있습니다.\n{1}초 후에 자동으로 추방됩니다."
+Warning.InvalidRpc: "{0}은(는) 무효한 RPC를 수신하여 추방되었습니다."
+Warning.InvalidRpc_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(무효한 RPC: {1})</color>"
+Warning.SetName: "{0}은(는) 이름을 여러 번 설정하여 추방되었습니다."
+Warning.SetName_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(이름을 여러 번 설정)</color>"
+Warning.SendQuickChat: "{0}은(는) 3초 이내에 여러 빠른 메시지를 보냈기 때문에 추방되었습니다."
+Warning.SendQuickChat_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(3초 이내에 여러 빠른 메시지를 보내기)</color>"
+Warning.Cheater: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(공식 RPC를 부정하게 보내기: {1})</color>"
+Warning.CantKickDev: "죄송합니다, 개발자를 추방할 수 없습니다."
+Warning.RoomBroken: "죄송합니다, 이 방은 파괴되었습니다. 다른 방으로 이동하여 게임을 계속하십시오."
+
+## 오류 레벨 / Error Levels
+ErrorLevel1: "버그가 발생할 수 있습니다."
+ErrorLevel2: "이것은 버그일 수 있습니다."
+ErrorLevel3: "이 버전은 출시되어서는 안되었습니다."
+
+# 부정행위 검사 / FAC
+FAC.CheatDetected.HighLevel: "경고: FAC가 높은 수준의 부정행위를 감지했습니다."
+FAC.CheatDetected.LowLevel: "경고: FAC가 낮은 수준의 부정행위를 감지했습니다. 어떤 플레이어가 부정행위를 하고 있습니다."
+FAC.CheatDetected.FAC: "부정행위 프로그램 사용(예: AUM, YuMenu, SM 등)"
+
+# 모듈 정보 / Mod Infos
+Contributors: "기여자"
+Acknowledgement: "감사의 인사"
+
+# 연결 끊김 이유 / Disconect Reasons
+DCNotify.Hacking: "당신은 부정행위 시스템에 의해 추방되었습니다.\n(모드 사용이 부정행위로 오해될 수 있습니다)"
+DCNotify.Banned: "당신은 이 방에 들어갈 수 없습니다"
+DCNotify.Kicked: "당신은 방에서 추방되었습니다"
+DCNotify.DCFromServer: "당신은 서버로부터 연결이 끊겼습니다.\n이것은 당신의 네트워크가 불안정할 수 있습니다.\n또는 서버가 불안정할 수 있습니다."
+DCNotify.GameNotFound: "할당된 방을 찾을 수 없습니다. 방이 해산되었을 수 있습니다.\n또는 방과 다른 서버를 선택했는지 확인하세요."
+DCNotify.GameStarted: "게임이 이미 시작되었습니다. 끝날 때까지 기다려 주세요"
+DCNotify.GameFull: "방이 가득 찼습니다. 나중에 다시 시도해 주세요"
+DCNotify.IncorrectVersion: "당신의 Among Us 버전이 이 방과 다릅니다"
+DCNotify.Description: "당신은 게임에서 추방되었습니다.\n이유: {0}"
+DCNotify.DenyName: "당신의 닉네임에 불규칙한 문자가 있습니다"
+DCNotify.BanList: "당신은 호스트에 의해 금지되었습니다"
+DCNotify.FACList: "당신은 FAC에 의해 금지되었습니다"
+DCNotify.CheatDetected: "당신은 FAC에 의해 부정행위로 의심되었습니다"
+DCNotify.InvalidRPC: "당신은 호스트와 다른 모드를 설치했거나, 모드가 악의적으로 수정되었습니다"
+DCNotify.ModVersionIncorrect: "당신의 모드 버전이 호스트와 다릅니다"
+DCNotify.LowLevel: "당신의 레벨이 이 방의 요구사항을 충족하지 않습니다"
+DCNotify.NotLogin: "로그인하지 않은 플레이어는 이 방에 허용되지 않습니다"
+
+# 태스크 패널 / Task Panel
+PressF1ShowRoleDescription: "F1을 눌러 당신의 역할 설명을 확인하세요"
+FakeTask: "가짜 태스크:"
+KillCount: "킬 수"
+
+# 마지막 결과 / Last Results
+RoleSummaryText: "마지막 결과:"
+ShowResults: "마지막 결과 표시"
+HideResults: "마지막 결과 숨기기"
+NoInfoExists: "마지막 결과가 없습니다"
+CrewsWin: "<color=#8cffff>크루원 팀 승리</color>"
+CrewmatesWin: "크루원 승리"
+CrewmatesWinBlurb: "진실의 빛이 희망을 비추다!"
+ImpsWin: "<color=#ff1919>임포스터 팀 승리</color>"
+ImpostorsWin: "임포스터 승리"
+ImpostorsWinBlurb: "악이 진실을 재로 바꾼다"
+HideSummaryTextToShowWinText: "<color=#ffff00>마지막 결과를 숨겨서 승리 텍스트를 표시하세요</color>"
+
+# 공개 룸 비활성화
+DisabledByProgram: "프로그램에 의해 공개 룸 운영이 비활성화되었습니다"
+PublicNotAvailableOnThis Version: "이 버전의 FinalSuspect에서는 공개 룸이 사용할 수 없습니다"
+
+# 홈페이지 / Main UI
+FinalSuspectWelcomeText: "쾌적한 <color={0}>게임 경험</color>을 기원합니다!"
+ConnectToFinalSuspectServerFailed: "FinalSuspect 서버에 연결할 수 없습니다"
+Website: "공식 웹사이트"
+MainMenuCredential: "{0} © 2025"
+
+# 룸 리스트 표시 / Lobby List
+IPhone: "IPhone"
+Android: "Android"
+
+# 지연 표시 / Ping Tracker
+Ping: "핑"
+FrameRate: "프레임율"
+Server: "서버"
+Local: "<color=#D1FA87>로컬</color>"
+
+# 기타 / Other
+HongKong: "홍콩"
+FPSSetTo: "프레임율 제한이 설정되었습니다: {0}"
+BrowsingMode: "브라우징 모드"
+Broken: "고장"
+
+# 로딩 / Loading
+LanguageFilesLoadingComplete: "번역 로딩 완료!"
+CheckingForFiles: "리소스 파일의 무결성을 확인하고 있습니다..."
+DownloadingResources: "리소스 파일을 다운로드하고 있습니다..."
+Loading: "로딩 중..."
+LoadingComplete: "로딩 완료!"
+
+# 신원 / Identity
+Host: "호스트"
+Cheater: "부정행위자"

@@ -1,0 +1,118 @@
+﻿#Number:100001  
+#Title:Final Suspect v1.0  
+#SubTitle:★★★★ Opisyal na Paglabas! ★★★★  
+#ShortTitle:★Bersyon Update v1.0  
+#Date: 2025-1-14T19:00:00Z  
+#-----------------------------
+# Filipino
+Kapag lumipas ang panahon, ang taglamig sa Hilagang Kagalakasan ay natapos at ang tag-init ay umabot sa lahat ng dako.
+Hinarap ang nabarroong yelo sa Mira, ang mga alaala sa loob mo ay gumulong? Ang init ay patuloy na umiikot sa iyong puso.
+Hindi mahalaga kung sino ang huling suspek, hindi mahalaga kung sino ang nagbigay ng nasiraang katotohanan,
+sa itong bagong karanasan, mag-isip at lumikha ng bagong masaya na mga alaala.
+Sa paglalaro ng mga laro, ang pinakamahalaga ay magkasya!!!
+
+## Base
+- Batay sa AmongUs v2024.10.29
+
+## Update Content
+- Fixes: 16
+- Optimizations: 4
+- Changes: 6
+- Additions: 16
+- Remakes: 1
+- Deletions: 4
+
+## Participants
+- Slok
+- 小黄117
+- KpCam
+- Yu
+- Nonalus
+- Qingfeng
+- 白糖咖啡
+
+## Fixes
+- Naayos ang bug kung saan ang 'Auto Start at Full Lobby' ay gumagana lamang kapag may 14 o higit pang mga manlalaro.
+- Naayos ang bug ng itim na screen pagkatapos ng isang pulong kung ang client ay ang host.
+- Naayos ang bug kung saan ang practice mode ay hindi mabuo.
+- Naayos ang bug kung saan ang mga bilang ng pagpatay ay hindi ipinapakita sa laro.
+- Naayos ang bug ng maling mga tago ng imposter sa texture sa Hide-n-Seek mode.
+- Naayos ang bug kung saan ang pangalan ng host ay hindi lumilitaw sa itaas ng "Start Game" button kung ang manlalaro ang host.
+- Naayos ang bug kung saan ang mga manlalaro ng plugin ay maaaring makilala lamang ng host.
+- Naayos ang bug kung saan ang client ay nagpapadala ng mga error kapag tumatawag ng isang emergency meeting.
+- Naayos ang bug sa maling display ng estilo para sa bersyon ng mod & impormasyon ng koponan sa pahina ng simula.
+- Naayos ang bug kung saan ang code ng kwarto ay direkta na nakatago sa streamer mode.
+- Naayos ang bug kung saan hindi gumagana ng maayos ang pagsusuri ng mga bawal na salita.
+- Naayos ang bug sa teksto ng babala sa pagharang ng opisyal na link na hindi maayos na ipinapakita.
+- Naayos ang bug kung saan 'Auto-return to Lobby at End' ay hindi gumagana nang maayos sa online play.
+Fix: Slok
+- Naayos ang bug sa mga link ng opisyal na site & QQ group na mali.
+Fix: Qingfeng
+(PR#5)
+
+## Optimizations
+- Inopsyonal ang code para sa mas mahusay na pagganap.
+- Ilipat ang ilang mga kayamanan sa malayong imbakan upang bawasan ang laki ng file.
+- Inopsyonal ang estilo ng display para sa bersyon ng mod & impormasyon ng koponan sa pahina ng simula.
+- Muling isinulat ang sistema ng pagkilala ng manlalaro ng plugin gamit ang isang bagong paraan upang maiwasan ang pagkukulang pagsasalaysay ng iba pang mga mod.
+Ginawa ni: Slok
+
+## Changes
+- Nabago ang InnerSloth loading animation sa isang carousel ng ilustrasyon ng karakter na Final Suspect.
+Ginawa ni: Slok, 小黄117, KpCam
+- Nabago ang InnerSloth opening game animation sa opening game animation ng Final Suspect.
+Ginawa ni: Slok
+Reference: The Other Roles Community Edition, Nebula On The Ship
+- 'Audio Management' ngayon ay naghihigpit sa pag-delete ng kasalukuyang pinapalarong musika.
+- Inaayos ang mga kulay para sa Engineer, Shapeshifter, at Phantom.
+Ginawa ni: Slok
+- Ang proyektong ito ay hindi na isang sanga ng Town Of New Epic at ang kanyang pangunahing proyekto, ngunit isang malayang proyekto.
+- Palitan ang EAC sa FAC.
+Desisyon: Slok
+
+## Additions
+- Ang pagpindot ng F1 upang tingnan ang iyong role description ngayon ay nagpapakita din ng ilustrasyon ng karakter.
+Ginawa ni: Slok, 小黄117, KpCam
+- Ang mod announcement ngayon ay nagpapakita ng XtremeWave logo sa kaliwa.
+Ginawa ni: Slok
+Reference: Yu Ez Tool
+- Maaari pa ring i-load ng mga manlalaro ang mga pagsasalin kahit na hindi naka-install ang YamlDotNet.dll at YamlDotNet.xml.
+Ginawa ni: Yu, Slok
+(PR#3)
+- Idinagdag ang prompt na huwag paganahin ang accelerator kapag nabigo ang pagsusuri ng update sa Simplified Chinese.
+Ginawa ni: Yu
+(PR#3)
+- 7 bagong solong mga track.
+- Ang kulay ng icon ng button para sa pagbabago sa mga setting ay kasabay na ngayon ng kulay ng role.
+- Ang kulay ng icon para sa preview ng mga setting ng role ay kasabay na ngayon ng kulay ng role.
+- Inaayos ang kulay ng background para sa mga pagbabago sa mga setting ng role.
+- Inaayos ang kulay ng background para sa mga preview ng mga setting ng role.
+- Inaayos ang kulay ng background para sa mga pagbabago sa mga setting ng laro.
+- Inaayos ang kulay ng background para sa mga preview ng mga setting ng laro.
+- Pagsasara sa pangalan.
+- Idinagdag ang pagsusuri para sa fraude sa pagbabago ng pangalan.
+- Sa libreng laro, maaari nang gamitin ng mga manlalaro ang Eagle Eye.
+- Bagong hotkey sa pahina ng simula: I-click ang Tab upang itago ang UI.
+- Inaadapt ang bersyon ng Among Us: v2024.10.29.
+- Introduksyon sa nilalaman ng mod sa bar ng announcement.
+Ginawa ni: Slok
+- Anti-Cheat: Idinagdag ang pagsusuri para sa fraude sa KillNetwork.
+Ginawa ni: Nonalus
+(PR#6)
+
+## Remakes
+- Muling isinulat ang 'Audio Management' & 'My Music' system.
+Ginawa ni: Slok
+
+## Deletions
+- Temporarily na tinanggal: Abril Fools’ Map - Dleks
+Rason: Nakatagpo ang host sa animasyon ng pagpapalayas.
+- Temporarily na tinanggal: Shape Shifting - Abril Fools' Trojan Mode
+(Markado bilang nasira)
+Rason: Ang client ay bumaba sa pagpapakita ng reminder ng chat.
+- Temporarily na tinanggal: FAC - Host Check
+(Hiniwalayan na code)
+Rason: Isyu sa maling pagkilala.
+- Tinanggal: Tanging sa room na search feature ng Final Suspect.
+Rason: Itinuring na hindi na kailangang ang feature na ito.
+Desisyon: Slok

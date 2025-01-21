@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+
+		<Description>Your best functional tool for Among Us.</Description>
+		<Authors>XtremeWave</Authors>
+		
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		
+		<Configurations>Debug;Release</Configurations>
+		<BaseOutputPath>..\Export</BaseOutputPath>
+		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+	  <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include=".\Resources\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- nuget.bepinex.dev -->
+		<PackageReference Include="AmongUs.GameLibs.Steam" Version="2024.10.29" PrivateAssets="all" />
+		<PackageReference Include="BepInEx.IL2CPP.MSBuild" Version="2.1.0-rc.1" PrivatPeAssets="all" ExcludeAssets="runtime" />
+		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.733" Private="false" ExcludeAssets="runtime;native" />
+		<!-- nuget.org -->
+		<PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098" PrivateAssets="all" />
+		<PackageReference Include="GitInfo" Version="3.5.0" />
+		<PackageReference Include="Microsoft.VisualStudio.VsixColorCompiler" Version="17.11.35325.10" />
+		<PackageReference Include="System.Windows.Extensions" Version="8.0.0" />
+		<PackageReference Include="YamlDotNet" Version="16.2.0" />
+	</ItemGroup>
+
+	<Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
+		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
+	</Target>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="set &quot;sourcePath=..\Export\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)" />
+	</Target>
+</Project>

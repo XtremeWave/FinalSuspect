@@ -1,0 +1,88 @@
+﻿#Number:100002
+#Title:v1.0  Introduction of Functions & Optimizations
+#SubTitle:★★★★Our fantastic and wonderful content★★★★
+#ShortTitle:★Content Introduction
+#Date:2025-1-14T19:00:00Z
+#-----------------------------
+# English
+
+## Optimizations
+Main Menu:
+- Animation when starting the game
+- Animation for content loading - role illustrations
+- Optimized the main menu layout
+- Optimized the main menu background
+Online Search:
+- Optimized the room name
+In-game - Global:
+- Display FPS and server at the ping display
+- Display mod version information
+- Optimized chat bubble colors
+- Optimized disconnection causes
+In-game - Lobby:
+- Optimized lobby information board background
+- Colored the settings editing interface
+- Optimized the settings editing background
+- Colored the settings viewing interface
+- Added team logo in the lobby
+In-game -  Starting:
+- Roundstart animation
+- Colored the background of the mini-map according to teams and roles.
+- Colored different roles separately
+- Display players who exit during the meeting
+Game Results:
+- Optimized the results text
+
+## Functions
+Global:
+- Music playback (used in the settings interface)
+- Music download (used in the main menu - settings interface)
+Main Menu:
+- Automatic download remote mod resources
+Online Search:
+- Display the host client type and color the room name accordingly
+- Display the percentage of remaining room closing time
+- More server options
+Game Settings:
+- Unlock FPS(switch in the settings interface)
+- Change the outfit (switch in the main title - settings interface)
+- Kick players who are not logged in (switch in the settings interface)
+- Kick players who are banned (switch in the settings interface)
+- Kick players with deny names (switch in the settings interface)
+- Disable the Vanilla music (switch in the settings interface)
+- Automatically start game with lobby full (switch in the settings interface)
+- Automatically return to the lobby when the game ends (switch in the settings interface)
+- Enable custom Intro background(switch in the settings interface)
+- Enable custom map background color (switch in the settings interface)
+- Switch the map style (only for The Skeld, the button is located in the security room)
+In-game:
+- Final Anti-Cheat System
+- Ban words check & block
+- Display the scene & roles on meetings
+- Display of the task progress/kill count
+- Use the mouse wheel to use the clairvoyance (Usage conditions: Practice mode & local game, online game lobby/after death)
+- After death, non-guardian angels can see the roles, task progress/kill counts
+- After death, can see the death reasons & killer 
+- Ghost can see roles
+- Show other players with this mod in the lobby
+Game Results:
+- Information summary (roles, task progress/kill count, death reason & killer)
+Hotkeys - Global:
+- F11: Change the resolution
+- Ctrl+F1: Log output
+- F10: Open the game root directory
+Hotkeys - Main menu:
+- Tab: Hide the UI
+Hotkeys - Chat:
+- Ctrl+C: Copy the current chat box text
+- Ctrl+V: Paste the text into the chat box
+- Ctrl+X: Cut the current chat box text
+- ↑: Trace back to the previous chat history of yourself
+- ↓: Trace back to the next chat history of yourself
+Hotkeys - In-game:
+- F1: Display the role introduction and illustration
+Hotkeys - Global - Only for the Host:
+- Ctrl+F2: Switch if the log outputs in the game
+Hotkeys - Lobby - Only for the Host:
+- Shift: Skip the countdown and directly start the game
+- C: Reset the countdown

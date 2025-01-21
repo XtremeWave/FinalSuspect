@@ -1,0 +1,299 @@
+﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
+
+# 当前翻译文件语言的ID / Language ID of current file
+LangID: "11"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "インポスター"
+TypeCrewmate: "クルーメイト"
+
+# 阵营 / Teams
+TeamImpostor: "インポスター陣営"
+TeamImpostorOnly: "インポスター"
+TeamCrewmate: "クルーメイト陣営"
+
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>私たちのチームには {0} インポスターがいます</color>"
+ImpostorNumImpOnly: "<color=#ff1919>群衆の中にインポスターは 1 人しかいません</color>"
+ImpostorNumCrew: "<color=#8cffff>私たちの中に </color><color=#ff1919>{0}</color><color=#8cffff> インポスターがいます</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>悪が世界を包み込むように！</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>私は一人かもしれないけど、無限の力がある！</color>"
+CrewmateIntroText: "<color=#8cffff>あなたのタスクを完了し、これらの厄介な状況を解決するために団結してください！</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "クルーメイト"
+Engineer: "エンジニア"
+Scientist: "科学者"
+Tracker: "トラッカー"
+Noisemaker: "ノイズメーカー"
+GuardianAngel: "ガーディアンエンジェル"
+Impostor: "インポスター"
+Shapeshifter: "シェイプシフター"
+Phantom: "ファントム"
+CrewmateGhost: "クルーメイトの幽霊"
+ImpostorGhost: "インポスターの幽霊"
+CrewmateGhostBlurb: "タスクを完了する"
+ImpostorGhostBlurb: "施設を引き続き妨害する"
+CrewmateGhostBlurbLong: "タスクを完了し、遅れないで！"
+ImpostorGhostBlurbLong: "施設を妨害し、生き残っているインポスターが勝利を手助けする。"
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "最後まで生き残れ！"
+HnSEngineerBlurbLong: "時間切れまで生き残り、タスクを完了することで時間を延ばす。\nベントと脅威インジケーターを使用して隠れろ！\nタイマーが始まるやいなや、インポスターはあなたを狩り始める！"
+HnSImpostorBlurb: "皆を排除せよ！"
+HnSImpostorBlurbLong: "制限時間内にすべてのクルーメイトを殺害せよ！\n素早く行動しなければならない！ベントは使用不可。\n最後の瞬間に、スピードブーストと追跡ヒントが与えられる！"
+HnSCrewmateGhostBlurb: "仲間を応援しよう"
+HnSCrewmateGhostBlurbLong: "行け！応援！が！仲間たち！"
+
+# 死因 / Death Reason
+DeathReason.Kill: "殺害"
+DeathReason.Exile: "追放"
+DeathReason.Disconnect: "切断"
+
+# クライアントオプション / Client Options
+FinalSuspectOptions: "Final Suspect オプション"
+Back: "戻る"
+Yes: "はい"
+No: "いいえ"
+UnlockFPS: "FPS 解除"
+ChangeOutfit: "服装を変更"
+BeanMode: "クラシックビーンモード"
+HorseMode: "エイプリルフールの馬モード"
+LongMode: "エイプリルフールのロングモード"
+KickPlayerFriendCodeNotExist: "ログインしていないプレイヤーをキックする。"
+KickPlayerWithDenyName: "不適切なニックネームを使用するプレイヤーをキックする"
+KickPlayerInBanList: "禁止リストのプレイヤーをキックする"
+SpamDenyWord: "不適切なワードをブロックする"
+AutoStartGame: "ロビーが満員になると自動的に開始する"
+AutoEndGame: "ゲーム終了後、自動的にロビーに戻る"
+SwitchVanilla: "元のバージョンに切り替える"
+EnableRoleBackGround: "カスタムイントロ背景を有効にする"
+EnableMapBackGround: "カスタムマップカラーを有効にする"
+DisableVanillaSound: "Among Us の音楽を無効にする"
+DisableFAC: "チート検知機能を無効にする"
+ShowPlayerInfo: "プレイヤーのプラットフォームとクライアント情報を表示する"
+UseModCursor: "カスタムカーソルを使用する"
+PrunkMode: "いたずらモード"
+VersionCheat: "MODバージョンの同期チェックをスキップする"
+GodMode: "ゴッドモード"
+NoGameEnd: "ゲーム終了を無効にする"
+EnableFinalSuspect: "「Final Suspect」を有効にする"
+
+# クライアント機能 / Client Features
+FinalSuspectFeatures: "Final Suspect 機能"
+UnloadMod: "元のバージョンに切り替える"
+UnloadWarning: "<color=#ffff00><size=200%>警告</size></color>\nMODを再度有効化するには、ゲームを再起動する必要があります。\nそれでも続ける場合は、[OK]をクリックしてください。"
+CannotUnloadDuringGame: "ゲーム中は元のバージョンに切り替えることはできません"
+Cancel: "キャンセル"
+Unload: "アンロード"
+DumpLog: "ログを出力する"
+SoundOptions: "マイミュージック"
+AudioManagementOptions: "オーディオ管理"
+OnlyAvailableInMainMenu: "メインメニューでのみ使用可能です"
+
+# ヒント / Tips
+updatePleaseWait: "しばらくお待ちください..."
+updateInProgress: "更新中..."
+downloadInProgress: "ダウンロード中..."
+Playing: "プレイ中..."
+DownLoadSucceedNotice: "ダウンロードに成功しました！"
+DownLoadFailureNotice: "ダウンロードに失敗しました =("
+PleaseWait: "しばらくお待ちください..."
+
+# 更新チェック / Update Checker
+Retry: "再試行"
+updateCheckPopupTitle: "更新の確認"
+updateCheckFailedRetry: "更新の確認に失敗しました :(\n再度お試しください。"
+updateCheckFailedExit: "更新の確認に失敗しました :(\nネットワーク接続を確認し、再度お試しください。"
+
+# 更新リマインダー / Update Reminder
+UpdateBySelfTitle: "更新リマインダー"
+updateNotice: "更新リマインダー"
+UpdateBySelfText: "このバージョンではワンクリック更新はサポートされていません。手動で更新してください。"
+updateButton: "今すぐ更新"
+updatePopupTitle: "今すぐ更新"
+updatePopupTitleFialed: "更新に失敗しました"
+updatePopupTitleDone: "更新が完了しました"
+
+# 更新ソースの選択 / Update Chose Source
+updateChoseSource: "更新するソースを選択してください\n選択に迷う場合は [Github] を選択してください\n更新に失敗した場合は [Api] を選択してください"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.XtremeApi: "Api"
+
+# 更新完了の通知 / Update completion prompts
+updateRestart: "変更を適用するにはゲームを再起動してください :)"
+updatePingFialed: "理由: {0}\n選択したチャンネルが一時的に使用できない可能性があります。別のダウンロードチャンネルに切り替えてください。"
+updateFileMd5Incorrect: "理由: ファイルのチェックサムエラー\nこのチャンネルのファイルバージョンが最新ではありません。別のダウンロードチャンネルに切り替えてください。"
+downloadFailed: "理由: ダウンロードがタイムアウトまたは中断しました\nネットワークを変更するか、手動で更新してください。"
+
+# 公開ゲームに参加できない理由 / Unable to join public game reasons
+onSetPublicNoLatest: "重要なアップデートがあります。この MOD を更新してください。\nさもないと、公開ルームに参加できません。"
+CanNotJoinPublicRoomNoLatest: "重要なアップデートがあります。この MOD を更新してください。\nさもないと、公開ルームに参加できません。"
+ModBrokenMessage: "MOD ファイルが破損しています。ゲームを再起動するか、この MOD を再インストールしてください。"
+UnsupportedVersion: "あなたの Among Us のバージョンは FinalSuspect と互換性がありません。\nゲームを更新してください。"
+
+# 音声再生 / Audio Playback
+PlayMode0: "一度だけ再生"
+PlayMode1: "繰り返し再生"
+PlayMode2: "シャッフル再生"
+PlayMode3: "順番再生"
+Stop: "停止"
+CanPlay: "再生するにはクリック"
+NoFound: "[ファイルが見つかりません]"
+NextPage: "次ページ"
+PreviousPage: "前のページ"
+
+# 音声の追加 / Audio Addition
+download: "ダウンロード"
+delete: "削除"
+NewSound: "新しい音楽を追加"
+PleaseEnterMusic: "音楽の名前を入力してください"
+AudioManagementAlreadyExists: "この音楽名は既に存在します"
+NotAllowedMusic: "音楽の名前が許可されていません"
+
+# インターフェースのヒント / Interface Tips
+CustomAudioManagementHelp: "XtremeWave がサポートする音楽をダウンロードするか、自分の音楽を「オーディオ管理」に追加することができます。自分の音楽を追加する場合は、「オーディオ管理」に音楽の名前を追加し、対応する音声ファイルを「Among Us/Final Suspect_Data/Resources/Sounds」フォルダに配置してください（サポート形式:.wav）。音楽は「マイミュージック」で再生できます。"
+# , .flac, .aiff, .mp3, .aac, .ogg, .m4a
+CustomSoundHelp: "XtremeWave がサポートする音楽をダウンロードするか、自分の音楽を「オーディオ管理」に追加することができます。ローカルの音楽リソースのパスが見つからない場合は、「[ファイルが見つかりません]」と表示されます。"
+
+# メインメニューの音楽の注意 / Main Menu Music Reminder
+MusicNotYet: "現在の音楽ファイルが不完全と検出されました"
+AudioNYPro: "最高のゲーム体験を得るには、「ホーム-設定-その他の機能-オーディオ管理」で音楽をダウンロードしてください。"
+
+# 公式音楽 / Official Musics
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
+Mus.TidalSurge: "Tidal Surge"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "Return To Simplicity"
+
+# メッセージ / Messages
+Message.KickedByDenyName: "[{0}] は名前が [{1}] と一致するためキックされました"
+Message.BanedByBanList: "[{0}] は以前に禁止されていたため、禁止されました"
+Message.BanedByFACList: "[{0}] は FAC の禁止リストにいたため、禁止されました"
+Message.DumpfileSaved: "ログファイルはデスクトップに正常に保存されました。ファイル名: {0}"
+Message.KickedByNoFriendCode: "[{0}] のフレンドコードが存在しないためキックされました"
+Message.AddedPlayerToBanList: "[{0}] を禁止リストに追加しました"
+Message.KickedByFAC: "[{0}] は FAC によってキックされました。理由: {1}"
+Message.BanedByFAC: "[{0}] は FAC によってキックされました。理由: {1}"
+
+# 通知 / Notifications
+PlayerLeft: "[{0}] がゲームを退出しました"
+PlayerLeftCuzTimeout: "[{0}] は <color=#CA8A8A>接続タイムアウト</color> のためゲームを退出しました"
+PlayerKickByHost: "[{0}] はホストによってキックされました"
+PlayerBanByHost: "[{0}] はホストによって禁止されました"
+PlayerLeftCuzError: "[{0}] は <color=#E57373>エラー</color> のためゲームを退出しました"
+PlayerLeftByAU-Anticheat: "[{0}] は AmongU の公式チート検知システムによってキックされました（<color=#cecdfd>FinalSuspect</color> とは関係ありません）"
+KickBecauseDiffrentVersionOrMod: "[{0}] は異なるバージョンの MOD を使用していたためキックされました"
+
+# 警告 / Warnings
+Warning: "警告！"
+Warning.MismatchedVersion: "{0}\n{1} の異なるバージョンを使用しています"
+Warning.AutoExitAtMismatchedVersion: "ホストは {0} を使用しておらず、または異なるバージョンを使用しています\n{1} 秒後に自動的にキックされます"
+Warning.InvalidRpc: "{0} は無効な RPC を受信したためキックされました"
+Warning.InvalidRpc_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(無効な RPC: {1})</color>"
+Warning.SetName: "{0} は名前を複数回設定したためキックされました"
+Warning.SetName_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(名前を複数回設定)</color>"
+Warning.SendQuickChat: "{0} は 3 秒以内に複数のクイックメッセージを送信したためキックされました"
+Warning.SendQuickChat_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(3 秒以内に複数のクイックメッセージを送信)</color>"
+Warning.Cheater: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(公式 RPC を不正に送信: {1})</color>"
+Warning.CantKickDev: "開発者をキックすることはできません"
+Warning.RoomBroken: "このルームは破棄されました。別のルームに移動してゲームを続行してください"
+
+## エラーのレベル / Error Levels
+ErrorLevel1: "バグが発生する可能性があります"
+ErrorLevel2: "これはバグかもしれません"
+ErrorLevel3: "このバージョンはリリースされるべきではありませんでした"
+
+# チート検知 / FAC
+FAC.CheatDetected.HighLevel: "警告: FAC が高レベルのチートを検知しました"
+FAC.CheatDetected.LowLevel: "警告: FAC が低レベルのチートを検知しました。誰かがチートしています"
+FAC.CheatDetected.FAC: "チートプログラムの使用（例: AUM, YuMenu, SM など）"
+
+# MOD 情報 / Mod Infos
+Contributors: "貢献者"
+Acknowledgement: "謝辞"
+
+# 接続切断の理由 / Disconect Reasons
+DCNotify.Hacking: "チート検知システムによってキックされました。\n（MOD の使用はチートと誤認識される場合があります）"
+DCNotify.Banned: "このルームに入室する権限がありません"
+DCNotify.Kicked: "ルームからキックされました"
+DCNotify.DCFromServer: "サーバーから切断されました。\nこれはあなたのネットワークの不安定さが原因かもしれません。\nサーバーの不安定さが原因の場合もあります。"
+DCNotify.GameNotFound: "割り当てられたルームが見つかりません。ルームが解散された可能性があります。\nまたは、ルームとは異なるサーバーを選択している場合があります。"
+DCNotify.GameStarted: "ゲーム已经开始，请等待结束"
+DCNotify.GameFull: "ルームが満員です。しばらくしてから再度お試しください"
+DCNotify.IncorrectVersion: "あなたの Among Us のバージョンがこのルームと異なる"
+DCNotify.Description: "ゲームからキックされました。\n理由: {0}"
+DCNotify.DenyName: "あなたのニックネームに不適切な文字が含まれています"
+DCNotify.BanList: "ホストによって禁止されました"
+DCNotify.FACList: "FAC によって禁止されました"
+DCNotify.CheatDetected: "FAC によってチートが検知されました"
+DCNotify.InvalidRPC: "ホストと異なる MOD をインストールしているか、MOD が悪意を持って変更されています"
+DCNotify.ModVersionIncorrect: "あなたの MOD バージョンがホストと異なる"
+DCNotify.LowLevel: "あなたのレベルがこのルームの要件を満たしていません"
+DCNotify.NotLogin: "このルームではログインしていないプレイヤーは許可されていません"
+
+# タスクパネル / Task Panel
+PressF1ShowRoleDescription: "F1 を押してあなたの役職の説明を表示する"
+FakeTask: "偽のタスク:"
+KillCount: "殺害数"
+
+# 最終結果 / Last Results
+RoleSummaryText: "最終結果:"
+ShowResults: "最終結果を表示する"
+HideResults: "最終結果を隠す"
+NoInfoExists: "最終結果がありません"
+CrewsWin: "<color=#8cffff>クルーメイト陣営の勝利</color>"
+CrewmatesWin: "クルーメイトの勝利"
+CrewmatesWinBlurb: "希望の光が真実を照らし出します！"
+ImpsWin: "<color=#ff1919>インポスター陣営の勝利</color>"
+ImpostorsWin: "インポスターの勝利"
+ImpostorsWinBlurb: "悪が真実を灰に変える"
+HideSummaryTextToShowWinText: "<color=#ffff00>最終結果を隠して勝利のテキストを表示する</color>"
+
+# 公開ルームの無効化
+DisabledByProgram: "プログラムによって公開ルームの操作が無効化されました"
+PublicNotAvailableOnThis Version: "このバージョンの FinalSuspect では公開ルームは利用できません"
+
+# ホームページ / Main UI
+FinalSuspectWelcomeText: "pleasant <color={0}>ゲーム体験</color>をお祈りします！"
+ConnectToFinalSuspectServerFailed: "FinalSuspect サーバーへの接続に失敗しました"
+Website: "公式ウェブサイト"
+MainMenuCredential: "{0} © 2025"
+
+# ロビーリスト表示 / Lobby List
+IPhone: "IPhone"
+Android: "Android"
+
+# ピング表示 / Ping Tracker
+Ping: "ピング"
+FrameRate: "フレームレート"
+Server: "サーバー"
+Local: "<color=#D1FA87>ローカル</color>"
+
+# その他 / Other
+HongKong: "香港"
+FPSSetTo: "フレームレート上限が設定されました: {0}"
+BrowsingMode: "ブラウズモード"
+Broken: "故障"
+
+# 読み込み / Loading
+LanguageFilesLoadingComplete: "翻訳の読み込みが完了しました！"
+CheckingForFiles: "リソースファイルの整合性を確認中..."
+DownloadingResources: "リソースファイルをダウンロード中..."
+Loading: "読み込み中..."
+LoadingComplete: "読み込みが完了しました！"
+
+# 身元 / Identity
+Host: "ホスト"
+Cheater: "チーター"

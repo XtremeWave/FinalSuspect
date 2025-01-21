@@ -1,27 +1,25 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme, o melhor plugin original para Among Us.**
+**Final Suspect: O melhor módulo de suporte para Among Us!**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licenças">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="ÚltimaEtiqueta">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Downloads">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Seguidores">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Estrelas">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
-<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
-
-[Site Oficial do FSX](https://fsusx.top.cc) | [Site Oficial da XtremeWave](https://www.xtreme.net.cn)
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
+<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
 </div>
 
 ## Idiomas
-***Este plugin suporta todos os idiomas suportados pelo Among Us!***<br>
+***Este módulo suporta todos os idiomas disponíveis no Among Us!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
-[Português]<br>
+[Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
 [Русский](README_ru.md)<br>
 [Nederlands](README_nl.md)<br>
@@ -35,19 +33,36 @@
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
-## Aviso
-Este plugin não é afiliado ao Among Us ou à Innersloth LLC, e o conteúdo que inclui não é endossado nem patrocinado pela Innersloth LLC.<br>
-Alguns materiais aqui são propriedade da Innersloth LLC.
+## Aviso Importante
+Este módulo não está afiliado ao Among Us ou Innersloth LLC. O conteúdo incluído não foi aprovado ou patrocinado pela Innersloth LLC de nenhuma maneira.<br>
+Alguns dos materiais incluídos aqui são propriedade da Innersloth LLC.
 
-### Contribuintes
- - [KARPED1EM](https://github.com/KARPED1EM) - **Suporte Técnico**
- - [Yu (anteriormente Night)](https://github.com/Night-GUA) - **Desenvolvedor do [TOHEX](https://tohex.cc)**
- - [Amongus](https://github.com/XiezibanWrite) - **Tradução e Suporte Técnico**
- - [NikoCat233](https://github.com/NikoCat233) - **Suporte Técnico**
- - [Farewell](https://github.com/ksduye) - **Suporte de Consulta**
- - [LezaiYa](https://github.com/LezaiYa1) - **Suporte de Consulta**
- - [Imp11](https://github.com/dabao40) - **Suporte de Consulta**
- - [FangKuai](https://github.com/FangKuaiYa) - **Suporte de Consulta**
+## Colaboradores
+>[KARPED1EM](https://github.com/KARPED1EM) - **Suporte Técnico**<br>
+>Guia para correção de bugs
+
+>[Yu (anteriormente: Night)](https://github.com/Night-GUA) - **Suporte Técnico**<br>
+>Adicionando dicas &
+
+>[Amongus](https://github.com/XiezibanWrite) - **Tradução & Suporte Técnico**<br>
+>Suporte parcial de texto de tradução & suporte durante o desenvolvimento
+
+>[NikoCat233](https://github.com/NikoCat233) - **Suporte Técnico**<br>
+>Guia anti-trapaça
+
+> [QingFeng](https://github.com/QingFeng-awa) - **Suporte API**<br>
+>Fornecimento de suporte API Xtreme!
+
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **Suporte Técnico**<br>
+>Adicionando verificação de KillNetWork para FAC
+
+>[LezaiYa](https://github.com/LezaiYa1) - **Suporte de Consultoria**
+
+>[Imp11](https://github.com/dabao40) - **Suporte de Consultoria**
+
+>[FangKuai](https://github.com/FangKuaiYa) - **Suporte de Consultoria**
+
+>[ELinmei](https://github.com/linmeideli) - **Suporte de Consultoria**
 
 ## Histórico de Estrelas
-[![Gráfico de Histórico de Estrelas](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

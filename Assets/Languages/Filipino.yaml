@@ -1,0 +1,299 @@
+﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
+
+# 当前翻译文件语言的ID / Language ID of current file
+LangID: "7"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "Mga Impostor"
+TypeCrewmate: "Mga Crewmate"
+
+# 阵营 / Teams
+TeamImpostor: "Team-Impostor"
+TeamImpostorOnly: "Impostor"
+TeamCrewmate: "Team-Crewmate"
+
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>May {0} Impostor sa aming koponan</color>"
+ImpostorNumImpOnly: "<color=#ff1919>May 1 lamang Impostor sa multud</color>"
+ImpostorNumCrew: "<color=#8cffff>May </color><color=#ff1919>{0}</color><color=#8cffff> Impostor sa atin</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>Ipaslang ng kasamaan ang mundo!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>Baka ako nag-isa, ngunit may walang hanggang lakas ako!</color>"
+CrewmateIntroText: "<color=#8cffff>Kumpleto ang iyong mga gawain, magkaisa upang malutas ang mga nakakabuluhang sitwasyon!</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "Crewmate"
+Engineer: "Inhinyero"
+Scientist: "Agham-tao"
+Tracker: "Taga-sunod"
+Noisemaker: "Taga-ingay"
+GuardianAngel: "Tagapangalaga"
+Impostor: "Impostor"
+Shapeshifter: "Taga-bagong anyo"
+Phantom: "Multo"
+CrewmateGhost: "Crewmate Ghost"
+ImpostorGhost: "Impostor Ghost"
+CrewmateGhostBlurb: "Kumpleto ang iyong mga gawain"
+ImpostorGhostBlurb: "Tuloy ang pag-sabotage ng mga facilidades"
+CrewmateGhostBlurbLong: "Kumpleto ang mga gawain, huwag maging malapit!"
+ImpostorGhostBlurbLong: "Sabotage ang mga facilidades, tulungan ang mga nabubuhay na impostors sa pagkakakuha ng tagumpay."
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "Mabuhay hanggang sa wakas!"
+HnSEngineerBlurbLong: "Mananatili kang buhay hanggang mag-full ang oras; ang pagkumpleto ng mga gawain ay magpapahaba ng oras. \nGamitin ang mga bente at mga indikador ng banta upang magtago! \nPagka-nag-start na ang timer, maghahabol na ang Impostor sa'yo!"
+HnSImpostorBlurb: "Eliminate ang lahat!"
+HnSImpostorBlurbLong: "Patayin ang lahat ng mga miyembro ng crew sa loob ng limitasyon ng oras! \nKailangan mong mabilis ang aksyon! Hindi maaaring gamitin ang mga bente. \nSa huling sandali, makakatanggap ka ng boost sa bilis at mga hint ng tracking!"
+HnSCrewmateGhostBlurb: "Cheer para sa iyong mga kasamahan"
+HnSCrewmateGhostBlurbLong: "Go! Cheer! For! Your! Teammates!"
+
+# 死因 / Death Reason
+DeathReason.Kill: "Pinatay"
+DeathReason.Exile: "Pinag-iwan"
+DeathReason.Disconnect: "Nakatanggal ng koneksyon"
+
+# 客户端选项 / Client Options
+FinalSuspectOptions: "Mga Opsiyon ng Final Suspect"
+Back: "Bumalik"
+Yes: "Opo"
+No: "Hindi"
+UnlockFPS: "I-unlock ang FPS"
+ChangeOutfit: "Baguhin ang Outfit"
+BeanMode: "Klasikong Mode ng Bean"
+HorseMode: "Easter Egg na Mode ng Kabayo"
+LongMode: "Easter Egg na Long Mode"
+KickPlayerFriendCodeNotExist: "Tanggihan ang mga Player na Hindi Nakalogin."
+KickPlayerWithDenyName: "Tanggihan ang mga Player na Gumagamit ng Hindi Papatibayan na Nicknames"
+KickPlayerInBanList: "Tanggihan ang mga Banned na Player"
+SpamDenyWord: "Blokear ang mga Hindi Papatibayan na Salita"
+AutoStartGame: "Auto Start kapag Full ang Lobby"
+AutoEndGame: "Auto-balik sa Lobby sa End"
+SwitchVanilla: "Lumipat sa Vanilla"
+EnableRoleBackGround: "Paganahin ang Custom Intro Background"
+EnableMapBackGround: "Paganahin ang Custom Map Color"
+DisableVanillaSound: "I-disable ang Among U's Musics"
+DisableFAC: "I-disable ang Anti-Cheat"
+ShowPlayerInfo: "Ipakita ang Player Platform at Client Information"
+UseModCursor: "Gamitin ang Mod Cursor"
+PrunkMode: "Prank Mode"
+VersionCheat: "Bypass Mod Version Sync Check"
+GodMode: "God Mode"
+NoGameEnd: "Walang Game End"
+EnableFinalSuspect: "Paganahin ang 「Final Suspect」"
+
+# 客户端功能 / Client Features
+FinalSuspectFeatures: "Mga Feature ng Final Suspect"
+UnloadMod: "Lumipat sa Vanilla"
+UnloadWarning: "<color=#ffff00><size=200%>Babala</size></color>\nUpang muli ayusin ang mod, kailangan mong muli simulan ang laro.\nGusto mo pa rin magpatuloy?"
+CannotUnloadDuringGame: "Hindi maaaring ilipat sa vanilla sa gitna ng laro"
+Cancel: "Kanselahin"
+Unload: "I-unload"
+DumpLog: "I-output ang Log"
+SoundOptions: "Mga Musika Ko"
+AudioManagementOptions: "Audio Management"
+OnlyAvailableInMainMenu: "Available Only In Main Menu"
+
+# 提示 / Tips
+updatePleaseWait: "Maghintay sandali..."
+updateInProgress: "Nagpapa-update..."
+downloadInProgress: "Nag-download..."
+Playing: "Naglalaro..."
+DownLoadSucceedNotice: "Matagumpay na nai-download!"
+DownLoadFailureNotice: "Nabigo ang download =("
+PleaseWait: "Maghintay sandali..."
+
+# 更新检查 / Update Checker
+Retry: "Subukan muli"
+updateCheckPopupTitle: "Update Checker"
+updateCheckFailedRetry: "Nabigo ang update check :(\nSubukan muli?"
+updateCheckFailedExit: "Nabigo ang update check :(\nMangyaring suriin ang iyong koneksyon sa internet at subukan muli."
+
+# 更新提醒 / Update Reminder
+UpdateBySelfTitle: "Update Reminder"
+updateNotice: "Update Reminder"
+UpdateBySelfText: "Ang bersyon na ito ay hindi sumusuporta sa one-click update. Mangyaring mag-update nang manu-manu."
+updateButton: "Update Now"
+updatePopupTitle: "Update Now"
+updatePopupTitleFialed: "Update Failed"
+updatePopupTitleDone: "Update Completed"
+
+# 选择更新渠道 / Update Chose Source
+updateChoseSource: "Mangyaring piliin ang channel para mag-update\nkung hindi mo alam ano ang piliin, piliin ang [Github]\nKung nabigo ang update, piliin ang [Api]"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.XtremeApi: "Api"
+
+# 更新结束提示 / Update completion prompts
+updateRestart: "I-restart ang laro para mapatibayan ang mga pagbabago :)"
+updatePingFialed: "Rason: {0}\nMaaaring hindi magamit ngayon ang piniling channel. Subukan mo ang pagbabago ng download channel."
+updateFileMd5Incorrect: "Rason: File checksum error\nHindi ito ang pinakabagong bersyon ng file mula sa channel na ito. Subukan mo ang pagbabago ng download channel."
+downloadFailed: "Rason: Download timeout o interrupted\nSubukan mo muli pagkatapos ng pagbabago ng iyong network o mag-update nang manu-manu."
+
+# 无法加入公开游戏原因 / Unable to join public game reasons
+onSetPublicNoLatest: "Mayroon kaming mahahalagang update. Mangyaring mag-update ang mod na ito.\nKung hindi, hindi ka maaaring sumali sa mga public rooms."
+CanNotJoinPublicRoomNoLatest: "Mayroon kaming mahahalagang update. Mangyaring mag-update ang mod na ito.\nKung hindi, hindi ka maaaring sumali sa mga public rooms."
+ModBrokenMessage: "Ang mga file ng mod ay nasira. Mangyaring muli simulan ang laro o muli i-install ang mod na ito."
+UnsupportedVersion: "Hindi compatible ang iyong bersyon ng Among Us sa FinalSuspect.\nMangyaring i-update ang iyong laro."
+
+# 音频播放 / Audio Playback
+PlayMode0: "Maglaro ng Isang Beses"
+PlayMode1: "Ulitin ang Isang Kanta"
+PlayMode2: "Maglaro ng Random"
+PlayMode3: "Maglaro ng Sekwensyal"
+Stop: "Tigilin"
+CanPlay: "← Click para maglaro"
+NoFound: "[File Missing]"
+NextPage: "Susunod na Pahina"
+PreviousPage: "Bumalik sa Pahina"
+
+# 音频添加 / Audio Addition
+download: "Download"
+delete: "Burahin"
+NewSound: "Magdagdag ng Bagong Musik"
+PleaseEnterMusic: "Mangyaring Ilagay ang Pangalan ng Musik"
+AudioManagementAlreadyExists: "Ang pangalan ng musikang ito ay umiiral na"
+NotAllowedMusic: "Hindi payagan ang format ng pangalan ng musika"
+
+# 界面提示 / Interface Tips
+CustomAudioManagementHelp: "Maaari mong i-download ang musika na suportado ng XtremeWave o magdagdag ng iyong sariling musika sa 「Audio Management」. Kapag nagdaragdag ng iyong sariling musika, siguraduhing ilagay ang pangalan ng musika sa 「Audio Management」 at ilagay ang mga korespondente na audio file sa folder na 「Among Us/Final Suspect_Data/Resources/Sounds」 (suportado ang mga formatong .wav). Maaari mong maglaro ng musika sa 「Mga Musika Ko」."
+# , .flac, .aiff, .mp3, .aac, .ogg, .m4a
+CustomSoundHelp: "Maaari mong i-download ang musika na suportado ng XtremeWave o magdagdag ng iyong sariling musika sa 「Audio Management」. Kung nawawala ang lokal na resource path ng musika, papayagang ipakita ang '[File Missing]'."
+
+# 主界面音乐提醒 / Main Menu Music Reminder
+MusicNotYet: "Detected na incomplete ang kasalukuyang musika file"
+AudioNYPro: "Para sa mas magandang karanasan sa laro, i-download ang aming musika sa 「Home-Settings-More Features-Audio Management」"
+
+# 官方音乐 / Musics
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
+Mus.TidalSurge: "Tidal Surge"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "Return To Simplicity"
+
+# 信息 / Messages
+Message.KickedByDenyName: "[{0}] ay tinanggal dahil ang pangalan ay nagkakasundo sa [{1}]"
+Message.BanedByBanList: "[{0}] ay binan ng dahil sa nakaraang pagban"
+Message.BanedByFACList: "[{0}] ay binan dahil nasa FAC list of Banned people"
+Message.DumpfileSaved: "Matagumpay na itinago ang log file sa desktop, file name: {0}"
+Message.KickedByNoFriendCode: "[{0}] ay tinanggal dahil ang friend code ay walang eksistensya"
+Message.AddedPlayerToBanList: "Nilagay [{0}] sa ban list"
+Message.KickedByFAC: "[{0}]Tinanggal ni FAC, dahilan: {1}"
+Message.BanedByFAC: "[{0}] Tinanggal ni FAC, dahilan:{1}"
+
+# 通知 / Notifications
+PlayerLeft: "[{0}] umalis sa laro"
+PlayerLeftCuzTimeout: "[{0}] umalis sa laro dahil sa <color=#CA8A8A>connection timeout</color>"
+PlayerKickByHost: "[{0}]  tinanggal ng host"
+PlayerBanByHost: "[{0}] binan ng host"
+PlayerLeftCuzError: "[{0}] umalis sa laro dahil sa isang <color=#E57373>error</color>"
+PlayerLeftByAU-Anticheat: "[{0}] ay tinanggal ng AmongU's official anti-cheats (Hindi kaugnay ng <color=#cecdfd>FinalSuspect</color>)"
+KickBecauseDiffrentVersionOrMod: "[{0}] ay tinanggal dahil sa magkakaibang bersyon ng mod"
+
+# 警告 / Warnings
+Warning: "Babala!"
+Warning.MismatchedVersion: "{0}\nmay magkakaibang bersyon ng {1}"
+Warning.AutoExitAtMismatchedVersion: "Ang host ay walang o magkakaibang bersyon ng {0}\nIkaw ay itatanggal sa {1}"
+Warning.InvalidRpc: "{0} ay tinanggal dahil natanggap ang isang invalid RPC."
+Warning.InvalidRpc_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Invalid Rpc:{1})</color>"
+Warning.SetName: "{0} ay tinanggal dahil nagsiset ng pangalan para sa maraming beses."
+Warning.SetName_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Set Name For Multiple Times)</color>"
+Warning.SendQuickChat: "{0} ay tinanggal dahil nagpadala ng maraming quick messages sa loob ng 3s"
+Warning.SendQuickChat_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Send Multiple Quick Messages Within 3s)</color>"
+Warning.Cheater: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
+Warning.CantKickDev: "Sorry, hindi maaaring itatanggal ang developer"
+Warning.RoomBroken: "Sorry, ito ay binomba na ang kwarto. Paki-proceed sa ibang kwarto upang magpatuloy sa iyong laro."
+
+## 错误等级 / Error Levels
+ErrorLevel1: "Maaaring magkaroon ng mga bugs."
+ErrorLevel2: "Itinuturing na bug ito."
+ErrorLevel3: "Hindi dapat ilabas ang bersyon na ito."
+
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Babala: Naidetect ng FAC na mataas na antas ng mga cheats."
+FAC.CheatDetected.LowLevel: "Babala: Naidetect ng FAC na mababang antas ng mga cheats. Ang isa sa mga players ay nag-cheat."
+FAC.CheatDetected.FAC: "Gamit ang mga cheat program (hal., AUM, YuMenu, SM, etc.)"
+
+# 模组信息 / Mod Infos
+Contributors: "Mga Nagtribute"
+Acknowledgement: "Pagkilala"
+
+# 断连提示 / Disconect Reasons
+DCNotify.Hacking: "Ikaw ay tinanggal ng anti-cheat.\n(maaaring maling interpretasyon ang paggamit ng module bilang cheat)"
+DCNotify.Banned: "Hindi ka pinapayagan na pumasok sa kwarto na ito"
+DCNotify.Kicked: "Ikaw ay tinanggal sa kwarto"
+DCNotify.DCFromServer: "Ikaw ay natanggal mula sa server.\nMaaari ito na dahil sa instability sa iyong network.\nMaaari ito din dahil sa instability ng server."
+DCNotify.GameNotFound: "Hindi natagpuan ang pinagkaloob na kwarto, ang kwarto ay maaaring natanggal\n o suriin kung mayroon kang napiling ibang server mula sa kwarto"
+DCNotify.GameStarted: "Ang laro ay nagsimula na, maghintay hanggang matapos"
+DCNotify.GameFull: "Ang kwarto ay puno, subukan muli mamaya"
+DCNotify.IncorrectVersion: "Ang iyong bersyon ng Among Us ay nakaka-ibang sa kwarto na ito"
+DCNotify.Description: "Ikaw ay tinanggal sa laro.\nDahilan: {0}"
+DCNotify.DenyName: "Ang iyong nickname ay naglalaman ng mga irregular na characters"
+DCNotify.BanList: "Ikaw ay binan ng host"
+DCNotify.FACList: "Ikaw ay binan ng FAC"
+DCNotify.CheatDetected: "Ikaw ay naidetect na suspek ng cheating ng FAC"
+DCNotify.InvalidRPC: "Maaaring mayroon kang magkakaibang mod na naka-install kaysa sa host o ang iyong mod ay nakakalantad sa malicious na pagbabago"
+DCNotify.ModVersionIncorrect: "Ang iyong bersyon ng mod ay nakaka-ibang sa host"
+DCNotify.LowLevel: "Ang iyong antas ay hindi nakakatugma sa requirement ng kwarto na ito"
+DCNotify.NotLogin: "Ang mga hindi nakalogin na mga players ay hindi pinapayagan sa kwarto na ito"
+
+# 任务栏 / Task Panel
+PressF1ShowRoleDescription: "Pindutin ang F1 para makita ang iyong role description"
+FakeTask: "Fake Task:"
+KillCount: "Kills"
+
+# 复盘信息 / Last Results
+RoleSummaryText: "Last Results:"
+ShowResults: "Show Last Results"
+HideResults: "Hide Last Results"
+NoInfoExists: "Walang available na last results"
+CrewsWin: "<color=#8cffff>Team-Crewmate Win</color>"
+CrewmatesWin: "Crewmates Win"
+CrewmatesWinBlurb: "Ang liwanag ng katotohanan ay nagmumulay sa pag-asa!"
+ImpsWin: "<color=#ff1919>Team-Impostor Win</color>"
+ImpostorsWin: "Impostors Win"
+ImpostorsWinBlurb: "Ang kasamaan ay nagbabago ng katotohanan sa abo"
+HideSummaryTextToShowWinText: "<color=#ffff00>Hide last result to view victory text</color>"
+
+# 禁用公开
+DisabledByProgram: "Ang mga operasyon ng public room ay hindi pinapayagan ng programa"
+PublicNotAvailableOnThis Version: "Ang mga public rooms ay hindi available sa bersyon na ito ng FinalSuspect"
+
+# 主页 / Main UI
+FinalSuspectWelcomeText: "Wishing you a pleasant <color={0}>gaming experience</color>!"
+ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
+Website: "Official Website"
+MainMenuCredential: "{0} © 2025"
+
+# 大厅列表显示 / Lobby List
+IPhone: "IPhone"
+Android: "Android"
+
+# 延迟显示 / Ping Tracker
+Ping: "Ping"
+FrameRate: "Frame Rate"
+Server: "Server"
+Local: "<color=#D1FA87>Local</color>"
+
+# 其他 / Other
+HongKong: "Hong Kong"
+FPSSetTo: "Frame rate cap set to: {0}"
+BrowsingMode: "Browsing Mode"
+Broken: "Broken"
+
+# 加载 / Loading
+LanguageFilesLoadingComplete: "Translation Loading Complete!"
+CheckingForFiles: "Verifying Resource File Integrity..."
+DownloadingResources: "Downloading Resource Files..."
+Loading: "Loading..."
+LoadingComplete: "Loading Complete!"
+
+# 身份 / Identity
+Host: "Host"
+Cheater: "Cheater"

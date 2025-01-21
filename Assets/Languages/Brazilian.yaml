@@ -1,0 +1,299 @@
+# FinalSuspect 的语言文件 / Translation file of FinalSuspect
+
+# 当前翻译文件语言的ID / Language ID of current file
+LangID: "2"
+
+# 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+TextBelowVersionText: ""
+
+# 职业类型 / Role Type
+TypeImpostor: "Impostores"
+TypeCrewmate: "Tripulantes"
+
+# 阵营 / Teams
+TeamImpostor: "Time-Imostor"
+TeamImpostorOnly: "Impostor"
+TeamCrewmate: "Time-Tripulante"
+
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>Há {0} Impostores em nosso time</color>"
+ImpostorNumImpOnly: "<color=#ff1919>Só há 1 Impostor entre a multidão</color>"
+ImpostorNumCrew: "<color=#8cffff>Há </color><color=#ff1919>{0}</color><color=#8cffff> Impostores entre nós</color>"
+
+# 阵营开场
+ImpostorIntroText: "<color=#ff1919>Deixe o mal envolver o mundo!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>Eu posso estar sozinho, mas possuo força infinita!</color>"
+CrewmateIntroText: "<color=#8cffff>Complete suas tarefas, unindo-se para resolver essas situações problemáticas!</color>"
+
+## 原版职业 / Vanilla
+Crewmate: "Tripulante"
+Engineer: "Engenheiro"
+Scientist: "Cientista"
+Tracker: "Rastreador"
+Noisemaker: "Criador de Ruído"
+GuardianAngel: "Anjo da Guarda"
+Impostor: "Impostor"
+Shapeshifter: "Mudança de Forma"
+Phantom: "Fantasma"
+CrewmateGhost: "Fantasma de Tripulante"
+ImpostorGhost: "Fantasma de Impostor"
+CrewmateGhostBlurb: "Complete suas tarefas"
+ImpostorGhostBlurb: "Continue sabotando as instalações"
+CrewmateGhostBlurbLong: "Complete as tarefas, não fique para trás!"
+ImpostorGhostBlurbLong: "Sabotar instalações, ajudar impostores sobreviventes a alcançar a vitória."
+
+## 捉迷藏 / HnS
+HnSEngineerBlurb: "Sobreviva até o final!"
+HnSEngineerBlurbLong: "Permaneça vivo até que o tempo acabe; completar tarefas irá estender o tempo. \nUse ventos e indicadores de ameaça para se esconder! \nQuando o cronômetro começar, o Impostor começará a caçar você!"
+HnSImpostorBlurb: "Elimine todos!"
+HnSImpostorBlurbLong: "Mate todos os tripulantes dentro do limite de tempo! \nVocê deve agir rapidamente! Os ventos não estão acessíveis. \nNo último momento, você receberá um aumento de velocidade e dicas de rastreamento!"
+HnSCrewmateGhostBlurb: "Torça por seus companheiros"
+HnSCrewmateGhostBlurbLong: "Vá! Torça! Por! Seus! Companheiros!"
+
+# 死因 / Death Reason
+DeathReason.Kill: "Morto"
+DeathReason.Exile: "Exilado"
+DeathReason.Disconnect: "Desconectado"
+
+# 客户端选项 / Client Options
+FinalSuspectOptions: "Opções do Final Suspect"
+Back: "Voltar"
+Yes: "Sim"
+No: "Não"
+UnlockFPS: "Desbloquear FPS"
+ChangeOutfit: "Mudar Roupa"
+BeanMode: "Modo Clássico de Feijão"
+HorseMode: "Modo de Abril de Cavalo"
+LongMode: "Modo de Abril Longo"
+KickPlayerFriendCodeNotExist: "Expulsar Jogadores que Não estão Logados."
+KickPlayerWithDenyName: "Expulsar Jogadores com Apelidos Inapropriados"
+KickPlayerInBanList: "Expulsar Jogadores Banidos"
+SpamDenyWord: "Bloquear Palavras Inapropriadas"
+AutoStartGame: "Iniciar Automaticamente com Lobby Cheio"
+AutoEndGame: "Retornar Automaticamente ao Lobby no Fim"
+SwitchVanilla: "Alternar para Versão Original"
+EnableRoleBackGround: "Habilitar Fundo Personalizado de Introdução"
+EnableMapBackGround: "Habilitar Cor Personalizada do Mapa"
+DisableVanillaSound: "Desabilitar Músicas do Among Us"
+DisableFAC: "Desabilitar Anti-Cheat"
+ShowPlayerInfo: "Exibir Informações de Plataforma e Cliente do Jogador"
+UseModCursor: "Usar Cursor do Mod"
+PrunkMode: "Modo de Prank"
+VersionCheat: "Ignorar Verificação de Versão do Mod"
+GodMode: "Modo Deus"
+NoGameEnd: "Sem Fim de Jogo"
+EnableFinalSuspect: "Habilitar「Final Suspect」"
+
+# 客户端功能 / Client Features
+FinalSuspectFeatures: "Recursos do Final Suspect"
+UnloadMod: "Alternar para Versão Original"
+UnloadWarning: "<color=#ffff00><size=200%>Aviso</size></color>\nPara reativar o mod, você deve reiniciar o jogo.\nDeseja continuar mesmo assim?"
+CannotUnloadDuringGame: "Não é possível alternar para a versão original durante o jogo"
+Cancel: "Cancelar"
+Unload: "Desativar"
+DumpLog: "Gerar Log"
+SoundOptions: "Minhas Músicas"
+AudioManagementOptions: "Gerenciamento de Áudio"
+OnlyAvailableInMainMenu: "Somente Disponível no Menu Principal"
+
+# 提示 / Tips
+updatePleaseWait: "Por favor, aguarde..."
+updateInProgress: "Atualização em progresso..."
+downloadInProgress: "Baixando..."
+Playing: "Jogando..."
+DownLoadSucceedNotice: "Download bem-sucedido!"
+DownLoadFailureNotice: "Download falhou =("
+PleaseWait: "Por favor, aguarde..."
+
+# 更新检查 / Update Checker
+Retry: "Tentar Novamente"
+updateCheckPopupTitle: "Verificação de Atualização"
+updateCheckFailedRetry: "Falha ao verificar atualização :(\nTentar novamente?"
+updateCheckFailedExit: "Falha ao verificar atualização :(\nPor favor, verifique sua conexão de rede e tente novamente."
+
+# 更新提醒 / Update Reminder
+UpdateBySelfTitle: "Lembrete de Atualização"
+updateNotice: "Lembrete de Atualização"
+UpdateBySelfText: "Esta versão não suporta atualizações automáticas. Por favor, atualize manualmente."
+updateButton: "Atualizar Agora"
+updatePopupTitle: "Atualizar Agora"
+updatePopupTitleFialed: "Falha ao Atualizar"
+updatePopupTitleDone: "Atualização Concluída"
+
+# 选择更新渠道 / Update Chose Source
+updateChoseSource: "Por favor, selecione um canal para atualizar\nse você não sabe o que selecionar, por favor, selecione o [Github]\nSe a atualização falhar, selecione [Api]"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+updateSource.XtremeApi: "Api"
+
+# 更新结束提示 / Update completion prompts
+updateRestart: "Reinicie o jogo para aplicar as alterações :)"
+updatePingFialed: "Razão: {0}\nO canal selecionado pode estar temporariamente indisponível. Por favor, tente alternar o canal de download."
+updateFileMd5Incorrect: "Razão: Erro no checksum do arquivo\nA versão do arquivo desse canal não é a mais recente. Por favor, tente alternar o canal de download."
+downloadFailed: "Razão: Tempo limite de download ou interrupção\nPor favor, tente novamente após alterar sua rede ou atualizar manualmente."
+
+# 无法加入公开游戏原因 / Unable to join public game reasons
+onSetPublicNoLatest: "Temos uma atualização importante. Por favor, atualize este mod.\nCaso contrário, você não poderá entrar em salas públicas."
+CanNotJoinPublicRoomNoLatest: "Temos uma atualização importante. Por favor, atualize este mod.\nCaso contrário, você não poderá entrar em salas públicas."
+ModBrokenMessage: "Os arquivos do mod estão corrompidos. Por favor, reinicie o jogo ou reinstale este mod."
+UnsupportedVersion: "Sua versão do Among Us é incompatível com o FinalSuspect.\nPor favor, atualize seu jogo."
+
+# 音频播放 / Audio Playback
+PlayMode0: "Tocar uma vez"
+PlayMode1: "Repetir uma única"
+PlayMode2: "Aleatório"
+PlayMode3: "Sequencial"
+Stop: "Parar"
+CanPlay: "← Clique para Tocar"
+NoFound: "[Arquivo Ausente]"
+NextPage: "Próxima Página"
+PreviousPage: "Página Anterior"
+
+# 音频添加 / Audio Addition
+download: "Baixar"
+delete: "Excluir"
+NewSound: "Adicionar Nova Música"
+PleaseEnterMusic: "Por favor, insira o nome da música"
+AudioManagementAlreadyExists: "Este nome de música já existe"
+NotAllowedMusic: "O formato do nome da música não é permitido"
+
+# 界面提示 / Interface Tips
+CustomAudioManagementHelp: "Você pode baixar músicas suportadas pelo XtremeWave ou adicionar suas próprias músicas em 「Gerenciamento de Áudio」. Ao adicionar suas próprias músicas, certifique-se de adicionar o nome da música em 「Gerenciamento de Áudio」 e colocar o arquivo de áudio correspondente na pasta 「Among Us/Final Suspect_Data/Resources/Sounds」 (formatos suportados: .wav). As músicas podem ser tocadas em 「Minhas Músicas」."
+# , .flac, .aiff, .mp3, .aac, .ogg, .m4a
+CustomSoundHelp: "Você pode baixar músicas suportadas pelo XtremeWave ou adicionar suas próprias músicas em 「Gerenciamento de Áudio」. Se o caminho do recurso de música local estiver ausente, ele exibirá '[Arquivo Ausente]'."
+
+# 主界面音乐提醒 / Main Menu Music Reminder
+MusicNotYet: "O arquivo de música atual foi detectado como incompleto"
+AudioNYPro: "Para uma experiência de jogo aprimorada, baixe nossas músicas em 「Inicial-Configurações-Mais Recursos-Gerenciamento de Áudio」"
+
+# 官方音乐 / Musics
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
+Mus.TidalSurge: "Tidal Surge"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "Return To Simplicity"
+
+# 信息 / Messages
+Message.KickedByDenyName: "[{0}] foi expulso porque seu nome corresponde a [{1}]"
+Message.BanedByBanList: "[{0}] foi banido porque foi banido anteriormente."
+Message.BanedByFACList: "[{0}] foi banido porque está na lista de banidos do FAC."
+Message.DumpfileSaved: "O arquivo de log foi salvo com sucesso na área de trabalho, nome do arquivo: {0}"
+Message.KickedByNoFriendCode: "[{0}] foi expulso porque seu código de amigo não existe."
+Message.AddedPlayerToBanList: "Adicionado [{0}] à lista de banidos"
+Message.KickedByFAC: "[{0}] foi expulso pelo FAC, motivo: {1}"
+Message.BanedByFAC: "[{0}] foi banido pelo FAC, motivo:{1}"
+
+# 通知 / Notifications
+PlayerLeft: "[{0}] saiu do jogo"
+PlayerLeftCuzTimeout: "[{0}] saiu do jogo devido a <color=#CA8A8A>timeout de conexão</color>"
+PlayerKickByHost: "[{0}] foi expulso pelo anfitrião"
+PlayerBanByHost: "[{0}] foi banido pelo anfitrião"
+PlayerLeftCuzError: "[{0}] saiu do jogo devido a um <color=#E57373>erro</color>"
+PlayerLeftByAU-Anticheat: "[{0}] foi expulso pelos antitrapaças oficiais do AmongU (não relacionado ao <color=#cecdfd>FinalSuspect</color>)"
+KickBecauseDiffrentVersionOrMod: "[{0}] foi expulso porque tinha uma versão diferente do mod"
+
+# 警告 / Warnings
+Warning: "Aviso!"
+Warning.MismatchedVersion: "{0}\ntem uma versão diferente de {1}"
+Warning.AutoExitAtMismatchedVersion: "O anfitrião não tem ou tem uma versão diferente de {0}\nVocê será expulso em {1}"
+Warning.InvalidRpc: "{0} foi expulso porque um RPC inválido foi recebido."
+Warning.InvalidRpc_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(RPC Inválido:{1})</color>"
+Warning.SetName: "{0} foi expulso porque definiu o nome várias vezes."
+Warning.SetName_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Definir Nome Várias Vezes)</color>"
+Warning.SendQuickChat: "{0} foi expulso porque enviou várias mensagens rápidas em 3s"
+Warning.SendQuickChat_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Enviar Várias Mensagens Rápidas em 3s)</color>"
+Warning.Cheater: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Enviando oficialmente RPC ilegal: {1})</color>"
+Warning.CantKickDev: "Desculpe, você não pode expulsar o desenvolvedor"
+Warning.RoomBroken: "Desculpe, esta sala foi comprometida. Por favor, vá para outra sala para continuar o jogo."
+
+## 错误等级 / Error Levels
+ErrorLevel1: "Pode ocorrer bugs."
+ErrorLevel2: "Isso pode ser um bug."
+ErrorLevel3: "Esta versão não deveria ter sido lançada."
+
+# 反作弊 / FAC
+FAC.CheatDetected.HighLevel: "Aviso: FAC detectou um alto nível de trapaças."
+FAC.CheatDetected.LowLevel: "Aviso: FAC detectou um baixo nível de trapaças. Um dos jogadores está hackeando."
+FAC.CheatDetected.FAC: "Usando programas de trapaça (por exemplo, AUM, YuMenu, SM, etc.)"
+
+# 模组信息 / Mod Infos
+Contributors: "Colaboradores"
+Acknowledgement: "Agradecimentos"
+
+# 断连提示 / Disconect Reasons
+DCNotify.Hacking: "Você foi expulso pelo antitrapaças.\n (o uso de módulos pode ser mal interpretado como trapaça)"
+DCNotify.Banned: "Você não está autorizado a entrar nesta sala"
+DCNotify.Kicked: "Você foi expulso da sala"
+DCNotify.DCFromServer: "Você se desconectou do servidor.\nIsso pode ser devido à instabilidade em sua rede.\nTambém pode ser devido à instabilidade do servidor."
+DCNotify.GameNotFound: "A sala atribuída não foi encontrada, a sala pode ter sido dissolvida\n ou verifique se você selecionou um servidor diferente da sala"
+DCNotify.GameStarted: "O jogo já começou, por favor, espere até que ele termine"
+DCNotify.GameFull: "A sala está cheia, por favor, tente novamente mais tarde"
+DCNotify.IncorrectVersion: "Sua versão do Among Us é diferente desta sala"
+DCNotify.Description: "Você foi expulso do jogo.\nMotivo: {0}"
+DCNotify.DenyName: "Seu apelido contém caracteres irregulares"
+DCNotify.BanList: "Você foi banido pelo anfitrião"
+DCNotify.FACList: "Você foi banido pelo FAC"
+DCNotify.CheatDetected: "Você foi detectado como suspeito de trapaça pelo FAC"
+DCNotify.InvalidRPC: "Você pode ter instalado um mod diferente do anfitrião ou seu mod foi modificado maliciosamente"
+DCNotify.ModVersionIncorrect: "Sua versão do mod é diferente do anfitrião"
+DCNotify.LowLevel: "Seu nível não atinge o requisito desta sala"
+DCNotify.NotLogin: "Jogadores não logados não são permitidos nesta sala"
+
+# 任务栏 / Task Panel
+PressF1ShowRoleDescription: "Pressione F1 para visualizar a descrição de seu papel"
+FakeTask: "Tarefa Falsa:"
+KillCount: "Assassinatos"
+
+# 复盘信息 / Last Results
+RoleSummaryText: "Últimos Resultados:"
+ShowResults: "Mostrar Últimos Resultados"
+HideResults: "Ocultar Últimos Resultados"
+NoInfoExists: "Nenhum último resultado disponível"
+CrewsWin: "<color=#8cffff>Time-Tripulante Vence</color>"
+CrewmatesWin: "Tripulantes Vencem"
+CrewmatesWinBlurb: "A luz da verdade brilha na esperança!"
+ImpsWin: "<color=#ff1919>Time-Impostor Vence</color>"
+ImpostorsWin: "Impostores Vencem"
+ImpostorsWinBlurb: "O mal transforma a verdade em cinzas"
+HideSummaryTextToShowWinText: "<color=#ffff00>Ocultar último resultado para visualizar texto de vitória</color>"
+
+# 禁用公开
+DisabledByProgram: "Operações de sala pública foram desabilitadas pelo programa"
+PublicNotAvailableOnThisVersion: "Salas públicas não estão disponíveis nesta versão do FinalSuspect"
+
+# 主页 / Main UI
+FinalSuspectWelcomeText: "Desejando uma agradável <color={0}>experiência de jogo</color>!"
+ConnectToFinalSuspectServerFailed: "Falha ao conectar ao servidor do FinalSuspect"
+Website: "Site Oficial"
+MainMenuCredential: "{0} © 2025"
+
+# 大厅列表显示 / Lobby List
+IPhone: "IPhone"
+Android: "Android"
+
+# 延迟显示 / Ping Tracker
+Ping: "Ping"
+FrameRate: "Taxa de Quadros"
+Server: "Servidor"
+Local: "<color=#D1FA87>Local</color>"
+
+# 其他 / Other
+HongKong: "HongKong"
+FPSSetTo: "Taxa de quadros limitada definida para: {0}"
+BrowsingMode: "Modo de Navegação"
+Broken: "Quebrado"
+
+# 加载 / Loading
+LanguageFilesLoadingComplete: "Carregamento de Traduções Completo!"
+CheckingForFiles: "Verificando Integridade dos Arquivos de Recursos..."
+DownloadingResources: "Baixando Arquivos de Recursos..."
+Loading: "Carregando..."
+LoadingComplete: "Carregamento Completo!"
+
+# 身份 / Identity
+Host: "Anfitrião"
+Cheater: "Trapaceiro"

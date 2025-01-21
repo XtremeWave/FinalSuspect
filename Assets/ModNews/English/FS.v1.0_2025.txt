@@ -1,0 +1,118 @@
+﻿#Number:100001  
+#Title:Final Suspect v1.0  
+#SubTitle:★★★★ Formal Release! ★★★★  
+#ShortTitle:★Version Update v1.0  
+#Date: 2025-1-14T19:00:00Z  
+#-----------------------------  
+# English  
+As time passes, the winter in the Northern Hemisphere comes to an end, and spring begins to awaken everywhere.  
+Gazing at the snowy landscape of Mira, do the memories inside you stir? The warmth still flows within your heart.  
+No matter who the final suspect was, no matter whose handed the truth fractured,  
+in this refreshed experience, brainstorm and create new joyful memories.  
+Playing games, the most important thing is to have fun!!!  
+
+## Base  
+- Based on AmongUs v2024.10.29  
+
+## Update Content  
+- Fixes: 16  
+- Optimizations: 4  
+- Changes: 6  
+- Additions: 16  
+- Remakes: 1  
+- Deletions: 4  
+
+## Participants  
+- Slok  
+- 小黄117  
+- KpCam  
+- Yu  
+- Nonalus  
+- Qingfeng  
+- 白糖咖啡
+
+## Fixes  
+- Fixed the bug where 「Auto Start at Full Lobby」 only worked when there were 14 or more players.  
+- Fixed the bug of black screen after a meeting when the client is the host.  
+- Fixed the bug where the practice mode couldn't be entered.  
+- Fixed the bug where kill counts were not displayed in the game.  
+- Fixed the bug of wrong hidden imposter textures in Hide-n-Seek mode.  
+- Fixed the bug where the host name did not appear above the "Start Game" button when the player is the host.  
+- Fixed the bug where plugin players could only be recognized by the host.  
+- Fixed the bug where the client sent errors when calling an emergency meeting.  
+- Fixed the bug of incorrect display styles for the mod version & team info on the homepage.  
+- Fixed the bug where the room code was hidden directly in streamer mode.  
+- Fixed the bug where prohibited word checks didn't work properly.  
+- Fixed the bug with official link block warning text not showing correctly.  
+- Fixed the bug where 「Auto-return to Lobby at End」 didn’t work properly in online play.  
+Fix: Slok
+- Fixed the bug with the official website & QQ group links being incorrect.  
+Fix: Qingfeng  
+(PR#5)
+
+## Optimizations  
+- Optimized code for improved performance.  
+- Moved some resources to remote storage to reduce file size.  
+- Optimized the display style for mod version & team info on the homepage.  
+- Rewritten the plugin player recognition system using a new method to prevent being misjudged by other mods.  
+Made by: Slok  
+
+## Changes  
+- Changed the InnerSloth loading animation to a Final Suspect role illustration carousel loading animation.  
+Made by: Slok, 小黄117, KpCam  
+- Changed the InnerSloth opening game animation to the Final Suspect opening game animation.  
+Made by: Slok  
+Reference: The Other Roles Community Edition, Nebula On The Ship  
+- 「Audio Management」 now prevents deletion of currently playing music.  
+- Adjusted the colors for Engineer, Shapeshifter and Phantom.  
+Made by: Slok  
+- This project is no longer a branch of Town Of New Epic and its parent project, but an independent project.  
+- EAC has been renamed to FAC.  
+Decision: Slok  
+
+## Additions  
+- Pressing F1 to view your role description now also displays the role illustration.  
+Made by: Slok, 小黄117, KpCam  
+- The mod announcement now displays the XtremeWave logo on the left side.  
+Made by: Slok  
+Reference: Yu Ez Tool  
+- Players can still load translations even if YamlDotNet.dll and YamlDotNet.xml are not installed.  
+Made by: Yu, Slok  
+(PR#3)  
+- Added a prompt to disable the accelerator when Simplified Chinese update check fails.  
+Made by: Yu  
+(PR#3)  
+- 7 new single tracks.  
+- The settings modification button icon color now matches the role color.  
+- The role setting preview icon color now matches the role color.  
+- Adjusted the background color for role setting modifications.  
+- Adjusted the background color for role setting previews.  
+- Adjusted the background color for game setting modifications.  
+- Adjusted the background color for game setting previews.  
+- Forbidden name blocking.  
+- Added check for name modification cheating.  
+- In Free play, players can now use Eagle Eye.  
+- New homepage hotkey: Press Tab to hide the UI.  
+- Adapted to Among Us version: v2024.10.29.  
+- Mod content introduction in the announcement bar.  
+Made by: Slok  
+- Anti-Cheat: Added check for KillNetwork cheating.  
+Made by: Nonalus  
+(PR#6)  
+
+## Remakes  
+- Rewritten the 「Audio Management」 & 「My Music」 systems.  
+Made by: Slok  
+
+## Deletions  
+- Temporarily removed: April Fools’ Map - Dleks
+Reason: Host stuck in the ejection animation.  
+- Temporarily removed: Shape Shifting - April Fools' Trojan Mode
+(Marked as broken)  
+Reason: Client crashes when chat reminder pops up.  
+- Temporarily removed: FAC - Host Check
+(Disabled code)  
+Reason: Misjudgment issue.  
+- Removed: Final Suspect room-only search feature.  
+Reason: This feature was deemed unnecessary.  
+Decision: Slok

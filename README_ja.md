@@ -1,23 +1,21 @@
 ﻿<div align="center">
 
-![FSX-XW](Assets/FSX&XW.png)
+![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme、Among Us の最高のオリジナル Mod プラグインです。**
+**Final Suspect: Among Us 最高のサポートモジュール!**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="ライセンス">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="最新タグ">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="ダウンロード数">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="ウォッチャー">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="スター">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="フォーク数">
-<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
-
-[FSX 公式サイト](https://fsusx.top.cc) | [XtremeWave 公式サイト](https://www.xtreme.net.cn)
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
+<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
 </div>
 
 ## 言語
-***このプラグインは Among Us がサポートするすべての言語に対応しています！***<br>
+***このモジュールは Among Us でサポートされているすべての言語をサポートしています!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
@@ -29,25 +27,42 @@
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
-[日本語]<br>
+[日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
-## 注意
-このプラグインは Among Us または Innersloth LLC とは関係がなく、含まれている内容は Innersloth LLC によって承認またはサポートされていません。<br>
-ここにあるいくつかの資料は Innersloth LLC の所有物です。
+## 重要なお知らせ
+このモジュールは Among Us や Innersloth LLC とは関連がありません。ここに含まれるコンテンツは Innersloth LLC によって承認または後援されていません。<br>
+ここに含まれる一部の資料は Innersloth LLC の財産です。
 
-### 貢献者
- - [KARPED1EM](https://github.com/KARPED1EM) - **技術サポート**
- - [Yu（旧名：Night）](https://github.com/Night-GUA) - **[TOHEX](https://tohex.cc) 開発者**
- - [Amongus](https://github.com/XiezibanWrite) - **翻訳と技術サポート**
- - [NikoCat233](https://github.com/NikoCat233) - **技術サポート**
- - [Farewell](https://github.com/ksduye) - **コンサルティングサポート**
- - [LezaiYa](https://github.com/LezaiYa1) - **コンサルティングサポート**
- - [Imp11](https://github.com/dabao40) - **コンサルティングサポート**
- - [FangKuai](https://github.com/FangKuaiYa) - **コンサルティングサポート**
+## コントリビューター
+>[KARPED1EM](https://github.com/KARPED1EM) - **技術サポート**<br>
+>バグ修正のガイダンス
 
-## スターの歴史
-[![スターの歴史チャート](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+>[Yu (旧名: Night)](https://github.com/Night-GUA) - **技術サポート**<br>
+>ヒントの追加 &
+
+>[Amongus](https://github.com/XiezibanWrite) - **翻訳 & 技術サポート**<br>
+>部分的な翻訳テキストのサポート & 開発プロセスのサポート
+
+>[NikoCat233](https://github.com/NikoCat233) - **技術サポート**<br>
+>不正行為防止のガイダンス
+
+> [QingFeng](https://github.com/QingFeng-awa) - **API サポート**<br>
+>Xtreme API サポートの提供！
+
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **技術サポート**<br>
+>FAC への KillNetWork チェックの追加
+
+>[LezaiYa](https://github.com/LezaiYa1) - **コンサルティング サポート**
+
+>[Imp11](https://github.com/dabao40) - **コンサルティング サポート**
+
+>[FangKuai](https://github.com/FangKuaiYa) - **コンサルティング サポート**
+
+>[ELinmei](https://github.com/linmeideli) - **コンサルティング サポート**
+
+## スター履歴
+[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)
