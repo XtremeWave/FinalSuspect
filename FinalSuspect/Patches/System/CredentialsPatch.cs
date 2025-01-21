@@ -46,21 +46,21 @@ internal class PingTrackerUpdatePatch
 
         CreditTextCredential.text = sb.ToString();
         if (
-            (GameSettingMenu.Instance?.gameObject.active ?? false) 
+            (GameSettingMenu.Instance?.gameObject?.active ?? false) 
             || XtremeGameData.GameStates.IsMeeting 
-            || (FriendsListUI.Instance?.gameObject.active ?? false)
-            || (HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value)
+            || (FriendsListUI.Instance?.gameObject?.active ?? false)
+            || (HudManagerPatch.showHideButton?.Button?.gameObject?.active ?? false) && Main.ShowResults.Value)
             CreditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
-        string color = "#ff4500";
+        var color = "#ff4500";
         if (ping < 50) color = "#44dfcc";
         else if (ping < 100) color = "#7bc690";
         else if (ping < 200) color = "#f3920e";
         else if (ping < 400) color = "#ff146e";
 
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        float fps = Mathf.Ceil(1.0f / deltaTime);
+        var fps = Mathf.Ceil(1.0f / deltaTime);
 
 
         __instance.text.alignment = TextAlignmentOptions.TopGeoAligned;
@@ -133,9 +133,9 @@ public class VersionShowerStartPatch
 
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
         {
-            string credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={ColorHelper.TeamColor}>XtremeWave</color>");
+            var credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={ColorHelper.TeamColor}>XtremeWave</color>");
             credentialsText += "\n";
-            string versionText = $"<color={ColorHelper.ModColor}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+            var versionText = $"<color={ColorHelper.ModColor}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if DEBUG
         versionText = $"<color={ColorHelper.ModColor}>{ThisAssembly.Git.Branch}</color> - {ThisAssembly.Git.Commit}";
@@ -263,7 +263,7 @@ internal class TitleLogoPatch
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
-        StarGen starGen = Starfield.GetComponent<StarGen>();
+        var starGen = Starfield.GetComponent<StarGen>();
         starGen.SetDirection(new Vector2(0, -2));
         Starfield.transform.SetParent(FinalSuspect_Background.transform);
         Object.Destroy(Ambience);

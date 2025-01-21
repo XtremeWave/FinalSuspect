@@ -16,7 +16,7 @@ public class LobbyStartPatch
         Paint = Object.Instantiate(__instance.transform.FindChild("Leftbox").gameObject, __instance.transform);
         Paint.name = "FinalSuspect Lobby Paint";
         Paint.transform.localPosition = new Vector3(0.042f, -2.59f, -10.5f);
-        SpriteRenderer renderer = Paint.GetComponent<SpriteRenderer>();
+        var renderer = Paint.GetComponent<SpriteRenderer>();
         renderer.sprite = Utils.LoadSprite("TeamLogo.png", 290f);
     }
 }
@@ -27,7 +27,7 @@ public class LobbyBehaviourPatch
     public static void Update_Postfix(LobbyBehaviour __instance)
     {
         Func<ISoundPlayer, bool> lobbybgm = x => x.Name.Equals("MapTheme");
-        ISoundPlayer MapThemeSound = SoundManager.Instance.soundPlayers.Find(lobbybgm);
+        var MapThemeSound = SoundManager.Instance.soundPlayers.Find(lobbybgm);
         if (Main.DisableVanillaSound.Value)
         {
             if (MapThemeSound == null) return;
@@ -36,7 +36,7 @@ public class LobbyBehaviourPatch
         else
         {
             if (MapThemeSound != null) return;
-            SoundManager.Instance.CrossFadeSound("MapTheme", __instance.MapTheme, 0.07f);
+            
         }
     }
 }
@@ -51,9 +51,9 @@ public static class HostInfoPanelUpdatePatch
             if (HostText == null)
                 HostText = __instance.content.transform.FindChild("Name").GetComponent<TextMeshPro>();
 
-            string htmlStringRgb = ColorUtility.ToHtmlStringRGB(Palette.PlayerColors[__instance.player.ColorId]);
-            string hostName = Main.HostNickName;
-            string youLabel = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.HostYouLabel);
+            var htmlStringRgb = ColorUtility.ToHtmlStringRGB(Palette.PlayerColors[__instance.player.ColorId]);
+            var hostName = Main.HostNickName;
+            var youLabel = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.HostYouLabel);
 
             HostText.text = $"<color=#{htmlStringRgb}>{hostName}</color>  <size=90%><b><font=\"Barlow-BoldItalic SDF\" material=\"Barlow-BoldItalic SDF Outline\">{youLabel}";
         }

@@ -46,7 +46,7 @@ public static class SoundManager
     public static void Init()
     {
         if (!File.Exists(TAGS_PATH)) File.Create(TAGS_PATH).Close();
-        FileAttributes attributes = File.GetAttributes(TAGS_PATH);
+        var attributes = File.GetAttributes(TAGS_PATH);
         File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
 
         FinalMusic.InitializeAll();
@@ -63,14 +63,14 @@ public static class SoundManager
             var currectpath = path;
             var extensionsArray = extensions.ToArray();
             if (extensionsArray.Length == 0) return false;
-            string matchingKey = extensions.FirstOrDefault(currectpath.Contains);
+            var matchingKey = extensions.FirstOrDefault(currectpath.Contains);
             if (matchingKey is null) return false;
-            int currentIndex = Array.IndexOf(extensionsArray, matchingKey);
+            var currentIndex = Array.IndexOf(extensionsArray, matchingKey);
             if (currentIndex == -1)
             {
                 return false;
             }
-            int nextIndex = (currentIndex + 1) % extensionsArray.Length;
+            var nextIndex = (currentIndex + 1) % extensionsArray.Length;
             path = path.Replace(matchingKey, extensionsArray[nextIndex]);
             extensions.Remove(matchingKey);
         }

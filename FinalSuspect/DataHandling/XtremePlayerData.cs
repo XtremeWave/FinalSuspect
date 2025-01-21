@@ -6,6 +6,7 @@ using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
+using InnerNet;
 
 namespace FinalSuspect.DataHandling;
 public class XtremePlayerData : IDisposable
@@ -17,7 +18,7 @@ public class XtremePlayerData : IDisposable
         public string Name { get; private set; }
         public int ColorId { get; private set; }
         public byte PlayerId { get; private set; }
-        public string FriendCode { get; private set; }
+
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
@@ -38,8 +39,7 @@ public class XtremePlayerData : IDisposable
         public bool TaskCompleted => TotalTaskCount == CompleteTaskCount;
         public int KillCount { get; private set; }
         
-        
-
+        public FinalAntiCheat.PlayerCheatData CheatData { get; private set; }
         public XtremePlayerData(
             PlayerControl player,
             string playername,
@@ -48,7 +48,7 @@ public class XtremePlayerData : IDisposable
             Player = player;
             Name = playername;
             ColorId = colorid;
-            FriendCode = player.GetClient().FriendCode;
+            CheatData = new FinalAntiCheat.PlayerCheatData(player);
             PlayerId = player.PlayerId;
             IsImpostor = IsDead = RoleAssgined = false;
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
@@ -184,7 +184,7 @@ public void SetName(string name) => Name = name;
     {
         XtremeLogger.Info($"Disposing XtremePlayerData For {Name}", "Data");
         Player = null;
-        FriendCode = null;
+        CheatData = null;
         Name = null;
         ColorId = -1;
         IsImpostor = IsDead = RoleAssgined = false;
@@ -207,4 +207,77 @@ public void SetName(string name) => Name = name;
         
     }
 #pragma warning restore CA1816
+}
+
+public static class XtremePlayerDataExtensions
+{
+    public static XtremePlayerData GetXtremeData(this PlayerControl pc)
+    {
+        try
+        {
+            return XtremePlayerData.GetXtremeDataById(pc.PlayerId);
+        }
+        catch
+        {
+            try
+            {
+                return XtremePlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+       
+    }
+    public static FinalAntiCheat.PlayerCheatData GetCheatData(this PlayerControl pc)
+    {
+        try
+        {
+            return FinalAntiCheat.GetCheatDataById(pc.PlayerId);
+        }
+        catch
+        {
+            try
+            {
+                return pc.GetXtremeData().CheatData;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+       
+    }
+
+    public static bool IsAlive(this PlayerControl pc) => pc?.GetXtremeData()?.IsDead == false || !XtremeGameData.GameStates.IsInGame;
+
+    public static string GetDataName(this PlayerControl pc)
+    {
+        try
+        {
+            return XtremePlayerData.GetPlayerNameById(pc.PlayerId);
+        }
+        catch
+        {
+            return null;
+        }
+        
+    }
+
+    public static void SetDead(this PlayerControl pc) => pc.GetXtremeData().SetDead();
+    public static void SetDisconnected(this PlayerControl pc) => pc.GetXtremeData().SetDisconnected();
+    public static void SetRole(this PlayerControl pc, RoleTypes role) => pc.GetXtremeData().SetRole(role);
+
+    public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
+        => pc.GetXtremeData().SetDeathReason(deathReason, focus);
+
+    public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
+    {
+        if (pc.GetXtremeData().RealKiller != null || !pc.Data.IsDead) return;
+        pc.GetXtremeData().SetRealKiller(killer.GetXtremeData());
+    }
+
+    public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetXtremeData().SetTaskTotalCount(TaskTotalCount);
+    public static void OnCompleteTask(this PlayerControl pc) => pc.GetXtremeData().CompleteTask();
 }

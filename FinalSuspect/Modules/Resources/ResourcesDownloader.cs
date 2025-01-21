@@ -29,10 +29,10 @@ public class ResourcesDownloader
             default:
                 return false;
         }
-        string DownloadFileTempPath = filePath + ".xwr";
+        var DownloadFileTempPath = filePath + ".xwr";
 
         var retrytimes = 0;
-        RemoteType remoteType = RemoteType.Github;
+        var remoteType = RemoteType.Github;
         
     retry:
         if (IsChineseLanguageUser)
@@ -85,12 +85,12 @@ public class ResourcesDownloader
 
     private static bool IsValidUrl(string url)
     {
-        string pattern = @"^(https?|ftp)://[^\s/$.?#].[^\s]*$";
+        var pattern = @"^(https?|ftp)://[^\s/$.?#].[^\s]*$";
         return Regex.IsMatch(url, pattern);
     }
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
-        string msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
+        var msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
         XtremeLogger.Info(msg, "Download Resources");
     }
     public static string GetMD5HashFromFile(string fileName)

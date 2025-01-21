@@ -59,7 +59,7 @@ public class MainMenuManagerPatch
         if (TitleLogoPatch.RightPanel != null)
         {
             var pos1 = TitleLogoPatch.RightPanel.transform.localPosition;
-            Vector3 lerp1 = Vector3.Lerp(pos1, TitleLogoPatch.RightPanelOp + new Vector3((ShowingPanel ? 0f : 10f), 0f, 0f), Time.deltaTime * (ShowingPanel ? 3f : 2f));
+            var lerp1 = Vector3.Lerp(pos1, TitleLogoPatch.RightPanelOp + new Vector3((ShowingPanel ? 0f : 10f), 0f, 0f), Time.deltaTime * (ShowingPanel ? 3f : 2f));
             if (ShowingPanel
                 ? TitleLogoPatch.RightPanel.transform.localPosition.x > TitleLogoPatch.RightPanelOp.x + 0.03f
                 : TitleLogoPatch.RightPanel.transform.localPosition.x < TitleLogoPatch.RightPanelOp.x + 9f
@@ -70,7 +70,7 @@ public class MainMenuManagerPatch
         var bak = GameObject.Find("BackgroundTexture");
         if (bak == null || !bak.active) return;
         var pos2 = bak.transform.position;
-        Vector3 lerp2 = Vector3.Lerp(pos2, new Vector3(pos2.x, 7.1f, pos2.z), Time.deltaTime * 1.4f);
+        var lerp2 = Vector3.Lerp(pos2, new Vector3(pos2.x, 7.1f, pos2.z), Time.deltaTime * 1.4f);
         bak.transform.position = lerp2;
         if (pos2.y > 7f) ShowedBak = true;
 
@@ -83,7 +83,7 @@ public class MainMenuManagerPatch
 
         SimpleButton.SetBase(__instance.quitButton);
 
-        int row = 1; int col = 0;
+        var row = 1; var col = 0;
         GameObject CreatButton(string text, Action action)
         {
             col++; if (col > 2) { col = 1; row++; }
@@ -92,10 +92,10 @@ public class MainMenuManagerPatch
             button.transform.transform.FindChild("FontPlacer").GetChild(0).gameObject.DestroyTranslator();
             var buttonText = button.transform.FindChild("FontPlacer").GetChild(0).GetComponent<TextMeshPro>();
             buttonText.text = text;
-            PassiveButton passiveButton = button.GetComponent<PassiveButton>();
+            var passiveButton = button.GetComponent<PassiveButton>();
             passiveButton.OnClick = new();
             passiveButton.OnClick.AddListener(action);
-            AspectPosition aspectPosition = button.GetComponent<AspectPosition>();
+            var aspectPosition = button.GetComponent<AspectPosition>();
             aspectPosition.anchorPoint = new Vector2(col == 1 ? 0.415f : 0.583f, 0.5f - 0.08f * row);
             return button;
         }

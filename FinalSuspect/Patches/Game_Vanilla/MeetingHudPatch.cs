@@ -12,17 +12,17 @@ public static class MeetingHudPatch
         public static void Postfix(MeetingHud __instance)
         {
             if (AmongUsClient.Instance.AmHost) return;
-            for (int i = 0; i < __instance.playerStates.Length; i++)
+            for (var i = 0; i < __instance.playerStates.Length; i++)
             {
-                PlayerVoteArea playerVoteArea = __instance.playerStates[i];
-                NetworkedPlayerInfo playerById = GameData.Instance.GetPlayerById(playerVoteArea.TargetPlayerId);
+                var playerVoteArea = __instance.playerStates[i];
+                var playerById = GameData.Instance.GetPlayerById(playerVoteArea.TargetPlayerId);
                 if (playerById == null)
                 {
                     playerVoteArea.SetDisabled();
                 }
                 else
                 {
-                    bool flag = playerById.Disconnected || playerById.IsDead;
+                    var flag = playerById.Disconnected || playerById.IsDead;
                     if (flag != playerVoteArea.AmDead)
                     {
                         playerVoteArea.SetDead(__instance.reporterId == playerById.PlayerId, flag, playerById.Role.Role == RoleTypes.GuardianAngel);

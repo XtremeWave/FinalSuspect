@@ -40,3 +40,4 @@ D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\refint\FinalSuspect.dll
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.pdb
 D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\ref\FinalSuspect.dll
+D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\FinalSuspect\obj\Debug\net6.0\FinalSuspect.csproj.Fody.RuntimeCopyLocal.cache

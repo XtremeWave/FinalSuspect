@@ -192,7 +192,7 @@ public class GameStartManagerPatch
                         warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
                 }
                 */
-            string warningMessage = "";
+            var warningMessage = "";
             if (warningMessage == "")
             {
                 warningText.gameObject.SetActive(false);
@@ -215,9 +215,9 @@ public class GameStartManagerPatch
             if (!GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame || !XtremeGameData.GameStates.IsVanillaServer || !AmongUsClient.Instance.AmHost) return;
 
             timer = Mathf.Max(0f, timer -= Time.deltaTime);
-            int minutes = (int)timer / 60;
-            int seconds = (int)timer % 60;
-            string countDown = $"{minutes:00}:{seconds:00}";
+            var minutes = (int)timer / 60;
+            var seconds = (int)timer % 60;
+            var countDown = $"{minutes:00}:{seconds:00}";
             if (timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
             timerText.text = countDown;
 

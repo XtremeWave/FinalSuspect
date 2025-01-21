@@ -41,7 +41,7 @@ public static class Utils
     public static Color GetRoleColor(RoleTypes role)
     {
         Main.roleColors.TryGetValue(role, out var hexColor);
-        _ = ColorUtility.TryParseHtmlString(hexColor, out Color c);
+        _ = ColorUtility.TryParseHtmlString(hexColor, out var c);
         return c;
     }
     public static string GetRoleColorCode(RoleTypes role)
@@ -71,9 +71,9 @@ public static class Utils
     }
     public static string PadRightV2(this object text, int num)
     {
-        int bc = 0;
+        var bc = 0;
         var t = text.ToString();
-        foreach (char c in t) bc += Encoding.GetEncoding("UTF-8").GetByteCount(c.ToString()) == 1 ? 1 : 2;
+        foreach (var c in t) bc += Encoding.GetEncoding("UTF-8").GetByteCount(c.ToString()) == 1 ? 1 : 2;
         return t?.PadRight(Mathf.Max(num - (bc - t.Length), 0));
     }
     public static DirectoryInfo GetLogFolder(bool auto = false)
@@ -92,7 +92,7 @@ public static class Utils
         OpenDirectory(filename);
         if (PlayerControl.LocalPlayer != null)
         {
-            string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+            var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
             if (popup) 
                 HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
             else AddChatMessage(string.Format(GetString("Message.DumpfileSaved"), $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
@@ -106,9 +106,9 @@ public static class Utils
     }
     public static string CopyLog(string path)
     {
-        string f = $"{path}/Final Suspect-logs/";
-        string t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        string fileName = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
+        var f = $"{path}/Final Suspect-logs/";
+        var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+        var fileName = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
         FileInfo file = new(@$"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
         var logFile = file.CopyTo(fileName);
@@ -161,7 +161,7 @@ public static class Utils
         try
         {
             if (CachedSprites.TryGetValue(file + pixelsPerUnit, out var sprite)) return sprite;
-            Texture2D texture = LoadTextureFromResources(file);
+            var texture = LoadTextureFromResources(file);
             sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), pixelsPerUnit);
             sprite.hideFlags |= HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
             return CachedSprites[file + pixelsPerUnit] = sprite;
@@ -182,7 +182,7 @@ public static class Utils
             if (!File.Exists(path))
                 goto InDLL;
             
-            byte[] fileData = File.ReadAllBytes(path);
+            var fileData = File.ReadAllBytes(path);
             var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             if (texture.LoadImage(fileData))
             {
@@ -268,7 +268,7 @@ public static class Utils
 
 
         var comms = IsActive(SystemTypes.Comms);
-        string text = GetProgressText(pc.PlayerId, comms);
+        var text = GetProgressText(pc.PlayerId, comms);
         return enable? text : "";
     }
     private static string GetProgressText(byte playerId, bool comms = false)
@@ -295,8 +295,8 @@ public static class Utils
             return StringHelper.ColorString(KillColor, $"({GetString("KillCount")}: {data.KillCount})");
         }
         var NormalColor = data.TaskCompleted ? Color.green : Color.yellow;
-        Color TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
-        string Completed = comms ? "?" : $"{data.CompleteTaskCount}";
+        var TextColor = comms || data.IsDisconnected ? Color.gray : NormalColor;
+        var Completed = comms ? "?" : $"{data.CompleteTaskCount}";
         return StringHelper.ColorString(TextColor, $"({Completed}/{data.TotalTaskCount})");
 
     }
@@ -305,8 +305,8 @@ public static class Utils
         var data = XtremePlayerData.GetXtremeDataById(playerId);
         if (!data.IsDead || data.RealDeathReason is VanillaDeathReason.None) return "";
         
-        string deathReason = GetString("DeathReason." + data.RealDeathReason);
-        Color color = Palette.CrewmateBlue;
+        var deathReason = GetString("DeathReason." + data.RealDeathReason);
+        var color = Palette.CrewmateBlue;
         switch (data.RealDeathReason)
         {
             case VanillaDeathReason.Disconnect:

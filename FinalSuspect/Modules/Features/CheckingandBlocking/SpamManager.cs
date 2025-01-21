@@ -32,7 +32,7 @@ public static class SpamManager
                 if (File.Exists(@"./BanWords.txt")) File.Move(@"./BanWords.txt", BANEDWORDS_FILE_PATH);
                 else
                 {
-                    string fileName = GetUserLangByRegion().ToString();
+                    var fileName = GetUserLangByRegion().ToString();
                     XtremeLogger.Warn($"Create New BanWords: {fileName}", "SpamManager");
                     File.WriteAllText(BANEDWORDS_FILE_PATH, GetResourcesTxt($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt"));
                 }
@@ -62,14 +62,14 @@ public static class SpamManager
     }
     public static void CheckForUpdateBanWords()
     {
-        string fileName = GetUserLangByRegion().ToString();
+        var fileName = GetUserLangByRegion().ToString();
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
         stream.Position = 0;
         using StreamReader reader = new(stream, Encoding.UTF8);
         List<string> waitforupdate = []; 
         while (!reader.EndOfStream)
         {
-            string line = reader.ReadLine();
+            var line = reader.ReadLine();
             if (!BanWords.Contains(line))
             {
                 waitforupdate.Add(line);
@@ -84,7 +84,7 @@ public static class SpamManager
     }
     public static void CheckForUpdateDenyNames()
     {
-        string fileName = GetUserLangByRegion().ToString();
+        var fileName = GetUserLangByRegion().ToString();
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.DenyName.txt");
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
@@ -92,7 +92,7 @@ public static class SpamManager
         List<string> waitforupdate = []; 
         while (!reader1.EndOfStream)
         {
-            string line = reader1.ReadLine();
+            var line = reader1.ReadLine();
             if (!reader2.ReadToEnd().Contains(line))
                 waitforupdate.Add(line);
         }
@@ -126,11 +126,11 @@ public static class SpamManager
         try
         {
             var mt = text;
-            bool banned = BanWords.Any(mt.ToLower().Contains);
+            var banned = BanWords.Any(mt.ToLower().Contains);
 
             if (banned)
             {
-                foreach (string word in BanWords)
+                foreach (var word in BanWords)
                 {
                     if (text.ToLower().Contains(word.ToLower()))
                     {

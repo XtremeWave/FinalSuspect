@@ -31,7 +31,7 @@ class LateTask
     public static void Update(float deltaTime)
     {
         var TasksToRemove = new List<LateTask>();
-        for (int i = 0; i < Tasks.Count; i++)
+        for (var i = 0; i < Tasks.Count; i++)
         {
             var task = Tasks[i];
             try

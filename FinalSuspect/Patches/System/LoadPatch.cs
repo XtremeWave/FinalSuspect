@@ -112,11 +112,11 @@ public class LoadPatch
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
             loadText.fontStyle = FontStyles.Bold;
             loadText.text = null;
-            for (int i = PreReady_remoteImageList.Count - 1; i >= 0; i--)
+            for (var i = PreReady_remoteImageList.Count - 1; i >= 0; i--)
             {
                 fastboot = false;
                 var resource = PreReady_remoteImageList[i];
-                string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
+                var localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
                 if (File.Exists(localFilePath))
                 {
                     PreReady_remoteImageList.Remove(resource);
@@ -167,7 +167,7 @@ public class LoadPatch
                 while (p > 0f)
                 {
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = 1 - p;
+                    var alpha = 1 - p;
                     teamlogo.color = Color.white.AlphaMultiplied(alpha);
                     yield return null;
                 }
@@ -201,7 +201,7 @@ public class LoadPatch
             while (p > 0f)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = 1 - p;
+                var alpha = 1 - p;
                 if (fastboot)
                     glow.color = Color.white.AlphaMultiplied(alpha);
                 modlogo.color = Color.white.AlphaMultiplied(alpha);
@@ -226,7 +226,7 @@ public class LoadPatch
                 while (p > 0)
                 {
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = 1 - p;
+                    var alpha = 1 - p;
                     glow.color = Color.white.AlphaMultiplied(alpha);
                     if (alpha < 0.5f)
                         loadText.color = Color.white.AlphaMultiplied(alpha);
@@ -248,10 +248,10 @@ public class LoadPatch
             #region Download Depends
             if (!fastboot)
             {
-                for (int i = remoteDependList.Count - 1; i >= 0; i--)
+                for (var i = remoteDependList.Count - 1; i >= 0; i--)
                 {
                     var resource = remoteDependList[i];
-                    string localFilePath = PathManager.GetLocalPath(LocalType.BepInEx) + resource;
+                    var localFilePath = PathManager.GetLocalPath(LocalType.BepInEx) + resource;
                     if (File.Exists(localFilePath))
                     {
                         remoteDependList.Remove(resource);
@@ -279,10 +279,10 @@ public class LoadPatch
 
                 if (!ReloadLanguage)
                 {
-                    for (int i = remoteLanguageList.Count - 1; i >= 0; i--)
+                    for (var i = remoteLanguageList.Count - 1; i >= 0; i--)
                     {
                         var resource = remoteLanguageList[i];
-                        string localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
+                        var localFilePath = PathManager.GetResourceFilesPath(FileType.Languages, resource);
                         if (File.Exists(localFilePath))
                         {
                             remoteLanguageList.Remove(resource);
@@ -317,7 +317,7 @@ public class LoadPatch
             while (p > 0)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = p;
+                var alpha = p;
                 if (alpha < 0.5f)
                     loadText.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
@@ -327,7 +327,7 @@ public class LoadPatch
             while (p > 0)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = 1-p;
+                var alpha = 1-p;
                 if (alpha < 0.5f)
                     loadText.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
@@ -347,7 +347,7 @@ public class LoadPatch
             while (p > 0)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = 1-p;
+                var alpha = 1-p;
                 if (alpha < 0.5f)
                     processText.color = Color.blue.AlphaMultiplied(alpha);
                 yield return null;
@@ -358,10 +358,10 @@ public class LoadPatch
                 yield return null;
             }
             
-            for (int i = remoteImageList.Count - 1; i >= 0; i--)
+            for (var i = remoteImageList.Count - 1; i >= 0; i--)
             {
                 var resource = remoteImageList[i];
-                string localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
+                var localFilePath = PathManager.GetResourceFilesPath(FileType.Images, resource);
                 var task = IsUrl404Async(FileType.Images, resource);
                 while (!task.IsCompleted)
                 {
@@ -377,7 +377,7 @@ public class LoadPatch
                 }
             }
             
-            for (int i = remoteModNewsList.Count - 1; i >= 0; i--)
+            for (var i = remoteModNewsList.Count - 1; i >= 0; i--)
             {
                 var resource = remoteModNewsList[i];
                 remoteModNewsList.Remove(resource);
@@ -390,7 +390,7 @@ public class LoadPatch
                     {
                         yield return null; 
                     }
-                    string localFilePath = PathManager.GetResourceFilesPath(FileType.ModNews, file);
+                    var localFilePath = PathManager.GetResourceFilesPath(FileType.ModNews, file);
                     if (!File.Exists(localFilePath) && !task.Result)
                     {
                         remoteModNewsList.Add(file);
@@ -405,14 +405,14 @@ public class LoadPatch
             #region Download Resources
             yield return new WaitForSeconds(0.5f);
 
-            int process = 0;
+            var process = 0;
             if (remoteImageList.Count > 0 || remoteModNewsList.Count > 0)
             {
                 p = 1f;
                 while (p > 0)
                 {
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = p;
+                    var alpha = p;
                     if (alpha < 0.5f)
                         processText.color = Color.blue.AlphaMultiplied(alpha);
                     yield return null;
@@ -424,7 +424,7 @@ public class LoadPatch
                 {
                     
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = 1-p;
+                    var alpha = 1-p;
                     if (alpha < 0.5f)
                         processText.color = yellow.AlphaMultiplied(alpha);
                     yield return null;
@@ -471,7 +471,7 @@ public class LoadPatch
                 while (p > 0)
                 {
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = p;
+                    var alpha = p;
                     if (alpha < 0.5f)
                         processText.color = yellow.AlphaMultiplied(alpha);
                     yield return null;
@@ -481,7 +481,7 @@ public class LoadPatch
                 while (p > 0)
                 {
                     p -= Time.deltaTime * 2.8f;
-                    float alpha = 1 - p;
+                    var alpha = 1 - p;
                     if (alpha < 0.5f)
                         processText.color = yellow.AlphaMultiplied(alpha);
                     yield return null;
@@ -495,7 +495,7 @@ public class LoadPatch
             while (p > 0)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = p;
+                var alpha = p;
                 if (alpha < 0.5f)
                     processText.color = cur.AlphaMultiplied(alpha);
                 yield return null;
@@ -509,7 +509,7 @@ public class LoadPatch
             loadText.color = green.AlphaMultiplied(0.5f);
 
             loadText.text = GetString("LoadingComplete");
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 loadText.gameObject.SetActive(false);
                 yield return new WaitForSeconds(0.03f);

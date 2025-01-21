@@ -51,11 +51,11 @@ public class ModNewsHistory
     ModNews mn = new();
 
     using StreamReader reader = new(path, Encoding.UTF8);
-    string text = "";
-    uint langId = (uint)DataManager.Settings.Language.CurrentLanguage;
+    var text = "";
+    var langId = (uint)DataManager.Settings.Language.CurrentLanguage;
     while (!reader.EndOfStream)
     {
-        string line = reader.ReadLine();
+        var line = reader.ReadLine();
         if (line.StartsWith("#Number:")) mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
         else if (line.StartsWith("#LangId:")) langId = uint.Parse(line.Replace("#LangId:", string.Empty));
         else if (line.StartsWith("#Title:")) mn.Title = line.Replace("#Title:", string.Empty);
@@ -66,12 +66,12 @@ public class ModNewsHistory
         else if (line.StartsWith("# ")) continue;
         else
         {
-            string pattern = @"\[(.*?)\]\((.*?)\)";
-            Regex regex = new Regex(pattern);
+            var pattern = @"\[(.*?)\]\((.*?)\)";
+            var regex = new Regex(pattern);
             line = regex.Replace(line, match =>
             {
-                string content1 = match.Groups[1].Value;
-                string content2 = match.Groups[2].Value;
+                var content1 = match.Groups[1].Value;
+                var content2 = match.Groups[2].Value;
                 return $"<color=#cdfffd><nobr><link={content2}>{content1}</nobr></link></color> ";
             });
             
@@ -116,7 +116,7 @@ public class ModNewsHistory
         FinalAllNews.Sort((a1, a2) => { return DateTime.Compare(DateTime.Parse(a2.Date), DateTime.Parse(a1.Date)); });
 
         aRange = new(FinalAllNews.Count);
-        for (int i = 0; i < FinalAllNews.Count; i++)
+        for (var i = 0; i < FinalAllNews.Count; i++)
             aRange[i] = FinalAllNews[i];
 
         return true;

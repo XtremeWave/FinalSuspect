@@ -119,7 +119,7 @@ public static class LongBoiPatches
         __instance.SetupNeckGrowth();
         if (__instance.isExiledPlayer)
         {
-            ShipStatus instance = ShipStatus.Instance;
+            var instance = ShipStatus.Instance;
             if (instance == null || instance.Type != ShipStatus.MapType.Fungle)
             {
                 __instance.cosmeticLayer.AdjustCosmeticRotations(-17.75f);
@@ -153,7 +153,7 @@ public static class LongBoiPatches
         //    return false;
         //}
 
-        bool flag = AprilFoolsMode.ShouldLongAround();
+        var flag = AprilFoolsMode.ShouldLongAround();
 
         if (flag && string.Equals("skin_rhm", cosmeticID))
         {

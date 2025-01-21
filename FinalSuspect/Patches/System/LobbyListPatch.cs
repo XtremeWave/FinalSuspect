@@ -33,8 +33,8 @@ public static class MatchMakerGameButtonSetGamePatch
         var nameList = TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese ? Main.TName_Snacks_CN : Main.TName_Snacks_EN;
 
         if (game.Language.ToString().Length > 9) return true;
-        string str = Math.Abs(game.GameId).ToString();
-        int id = Math.Min(Math.Max(int.Parse(str.Substring(str.Length - 2, 2)), 1) * nameList.Count / 100, nameList.Count);
+        var str = Math.Abs(game.GameId).ToString();
+        var id = Math.Min(Math.Max(int.Parse(str.Substring(str.Length - 2, 2)), 1) * nameList.Count / 100, nameList.Count);
 
         var color = "#ffffff";
         string RoomName = null;
@@ -71,10 +71,10 @@ public static class MatchMakerGameButtonSetGamePatch
                 name = GetString("Android");
                 break;
             case Platforms.Switch:
-                string totalname = nameList[id];
-                int halfLength = totalname.Length / 2;
-                string firstHalf = totalname.AsSpan(0, halfLength).ToString();
-                string secondHalf = totalname.AsSpan(halfLength).ToString();
+                var totalname = nameList[id];
+                var halfLength = totalname.Length / 2;
+                var firstHalf = totalname.AsSpan(0, halfLength).ToString();
+                var secondHalf = totalname.AsSpan(halfLength).ToString();
 
                 RoomName = $"<color=#00B2FF>{firstHalf}</color><color=#ff0000>{secondHalf}</color>";
                 name = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";

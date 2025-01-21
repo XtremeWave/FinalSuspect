@@ -48,15 +48,15 @@ class RolesSettingsMenuPatch
         var header = GameObject.Find("HeaderButtons");
         var headerbuttons = new List<GameObject>();
 
-        for (int i = 4; i <= 10; i++)
+        for (var i = 4; i <= 10; i++)
         {
             headerbuttons.Add(header.transform.GetChild(i).gameObject);
         }
 
-        int index = 0;
+        var index = 0;
         foreach (var button in headerbuttons)
         {
-            Color roleColor = index <= 4 ? Utils.GetRoleColor(RoleTypes.Crewmate) : Utils.GetRoleColor(RoleTypes.Impostor);
+            var roleColor = index <= 4 ? Utils.GetRoleColor(RoleTypes.Crewmate) : Utils.GetRoleColor(RoleTypes.Impostor);
             SetColor(button, rolecolors[index], roleColor);
             index++;
         }
@@ -124,9 +124,9 @@ internal class GameOptionsMenuPatch
         Transform[] banners = setArea.GetComponentsInChildren<Transform>(true);
         if (XtremeGameData.GameStates.IsNormalGame)
         {
-            int headerindex = 0;
-            int numindex = 0;
-            int boxindex = 0;
+            var headerindex = 0;
+            var numindex = 0;
+            var boxindex = 0;
             foreach (var banner in banners)
             {
 
@@ -164,9 +164,9 @@ internal class GameOptionsMenuPatch
         }
         else
         {
-            int headerindex = 0;
-            int numindex = 0;
-            int boxindex = 0;
+            var headerindex = 0;
+            var numindex = 0;
+            var boxindex = 0;
             foreach (var banner in banners)
             {
                 if (banner.name == "CategoryHeaderMasked(Clone)")

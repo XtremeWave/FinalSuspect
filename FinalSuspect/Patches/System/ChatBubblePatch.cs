@@ -16,7 +16,7 @@ public static class ChatBubblePatch
         var sr = __instance.Background;
         Color namecolor= ColorHelper.FaultColor;
         string name = null;
-        bool modded = IsModdedMsg(__instance.playerInfo.PlayerName);
+        var modded = IsModdedMsg(__instance.playerInfo.PlayerName);
         if (__instance?.playerInfo?.PlayerId == null)
         {
             bgcolor = ColorHelper.HalfYellow;

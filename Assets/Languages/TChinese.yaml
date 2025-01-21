@@ -15,10 +15,10 @@ TeamImpostor: "偽裝者陣營"
 TeamImpostorOnly: "偽裝者"
 TeamCrewmate: "船員陣營"
 
-# 内鬼数量文字 / Impostor Text
-ImpostorNumImp:  "<color=#ff1919>團隊中有{0}名偽裝者</color>"
-ImpostorNumImpOnly:  "<color=#ff1919>人群中僅有1名偽裝者</color>"
-ImpostorNumCrew: "<color=#8cffff>我們中有</color><color=#ff1919>{0}</color><color=#8cffff>名偽裝者</color>"
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp:  "<color=#ff1919>團隊之中有{0}名偽裝者</color>"
+ImpostorNumImpOnly:  "<color=#ff1919>人群之中僅有1名偽裝者</color>"
+ImpostorNumCrew: "<color=#8cffff>我們之中有</color><color=#ff1919>{0}</color><color=#8cffff>名偽裝者</color>"
 
 # 阵营开场
 ImpostorIntroText: "<color=#ff1919>讓邪惡的力量籠罩整個世界！</color>"
@@ -29,26 +29,26 @@ CrewmateIntroText: "<color=#8cffff>完成你的任務，揪出那群壞蛋！</c
 Crewmate: "船員"
 Engineer: "工程師"
 Scientist: "科學家"
-Tracker: "偵查員"
-Noisemaker: "大嗓門"
+Tracker: "追蹤者"
+Noisemaker: "警示者"
 GuardianAngel: "守護天使"
 Impostor: "偽裝者"
 Shapeshifter: "變形者"
-Phantom: "幻象師"
+Phantom: "魅影"
 CrewmateGhost: "船員靈魂"
-ImpostorGhost: "內鬼靈魂"
+ImpostorGhost: "偽裝者靈魂"
 CrewmateGhostBlurb: "完成任務"
 ImpostorGhostBlurb: "繼續破壞設施"
-CrewmateGhostBlurbLong: "完成任務，別拖後腿！"
-ImpostorGhostBlurbLong: "破壞設施，協助存活的隊友取得勝利"
+CrewmateGhostBlurbLong: "完成任務，別拖後腿！\n使用「幽幽鬼影」查看偽裝者，幫助守護天使守護船員！"
+ImpostorGhostBlurbLong: "破壞設施，協助存活的隊友取得勝利！"
 
 ## 捉迷藏 / HnS
 HnSEngineerBlurb: "活到最後！"
 HnSEngineerBlurbLong: "堅持活下來，直到時間結束，完成任務可以推進時間。\n利用通風口和威脅指示器躲藏！\n開始計時後，偽裝者會開始追殺你！"
 HnSImpostorBlurb: "殺光所有人！"
-HnSImpostorBlurbLong: "在規定時間內，殺死所有船員！\n必須儘快行動！並且無法進入通風口。\n在最後關頭，你將獲得速度提升和行蹤提示！"
+HnSImpostorBlurbLong: "在規定時間內，殺死所有船員！\n必須盡快行動！並且無法進入通風口。\n在最後關頭，你將獲得速度提升和行蹤提示！"
 HnSCrewmateGhostBlurb: "給你的隊友加油打氣"
-HnSCrewmateGhostBlurbLong: "去！給！你！的！隊！友！加！油！"
+HnSCrewmateGhostBlurbLong: "死了還看啥呀，你有任務能做嗎？既然沒有...\n去！給！你！隊！友！加！油！"
 
 # 死因 / Death Reason
 DeathReason.Kill: "被殺"
@@ -60,63 +60,71 @@ FinalSuspectOptions: "Final Suspect 選項"
 Back: "返回"
 Yes: "是"
 No: "否"
+UnlockFPS: "解鎖幀數限制"
+ChangeOutfit: "切換形象"
+BeanMode: "經典豆子模式"
+HorseMode: "愚人節牧馬模式"
+LongMode: "愚人節長頸豆模式"
+KickPlayerFriendCodeNotExist: "踢出沒有登錄的玩家"
+KickPlayerWithDenyName: "踢出使用違規暱稱的玩家"
+KickPlayerInBanList: "踢出被封禁的玩家"
+SpamDenyWord: "屏蔽違禁詞"
+AutoStartGame: "人滿自動開始遊戲"
+AutoEndGame: "結束時自動返回大廳"
+SwitchVanilla: "切換為原版"
+EnableRoleBackGround: "啟用模組開場動畫"
+EnableMapBackGround: "啟用模組地圖背景顏色"
+DisableVanillaSound: "禁用原版遊戲音樂"
+DisableFAC: "禁用反作弊"
+ShowPlayerInfo: "展示玩家平台與客戶端信息"
+UseModCursor: "使用模組鼠標光標"
+PrunkMode: "惡搞模式"
+VersionCheat: "繞過版本同步檢查"
+GodMode: "上帝模式"
+NoGameEnd: "測試模式"
+EnableFinalSuspect: "啟用「終極嫌疑」"
+
+# 客户端功能 / Client Features
+FinalSuspectFeatures: "Final Suspect 功能"
 UnloadMod: "切換原版"
 UnloadWarning: "<color=#ffff00><size=200%>警告</size></color>\n如果您想要回到模組，您必須重啟遊戲\n您確定要切換為原版嗎？"
 CannotUnloadDuringGame: "遊戲中不能切換為原版"
 Cancel: "取消"
 Unload: "切換"
 DumpLog: "輸出日誌"
-UnlockFPS: "解鎖幀數限制"
-KickPlayerFriendCodeNotExist: "踢出沒有登入的玩家"
-ApplyDenyNameList: "踢出使用違規暱稱的玩家"
-KickPlayerInBanList: "踢出被封禁的玩家"
-VersionCheat: "繞過版本同步檢查"
-GodMode: "上帝模式"
-BeanMode: "經典豆子模式"
-HorseMode: "愚人節牧馬模式"
-LongMode: "愚人節長頸豆模式"
-AutoStartGame: "人滿自動開始遊戲"
-AutoEndGame: "結束時自動返回大廳"
-SwitchVanilla: "切換為原版"
-FastBoot: "快速啟動模式"
-EnableRoleBackGround: "啟用插件開場動畫"
-EnableMapBackGround: "啟用插件地圖背景顏色"
-DisableVanillaSound: "禁用原版遊戲音樂"
-FinalSuspectFeatures: "Final Suspect 功能"
 SoundOptions: "我的音樂"
-AudioManagementOptions: "音訊管理"
-ChangeOutfit: "切換形象"
-OnlyAvailableInMainMenu: "僅在首頁使用"
+AudioManagementOptions: "音頻管理"
+OnlyAvailableInMainMenu: "僅在主頁使用"
 
 # 提示 / Tips
 updatePleaseWait: "請稍候……"
 updateInProgress: "更新中……"
 downloadInProgress: "下載中……"
 Playing: "播放中……"
-DownLoadSucceedNotice: "下載成功!"
+DownLoadSucceedNotice: "下載成功！"
 DownLoadFailureNotice: "下載失敗=("
 PleaseWait: "請稍候……"
 
 # 更新检查
 Retry: "重試"
 updateCheckPopupTitle: "更新檢查"
-updateCheckFailedRetry: "檢查更新失敗 :(\n要重試嗎？"
-updateCheckFailedExit: "檢查更新失敗 :(\n請檢查您的網路強度後重試"
+updateCheckFailedRetry: "檢查更新失敗 :(\n要重試嗎？\n或者試試關掉你的加速器？"
+updateCheckFailedExit: "檢查更新失敗 :(\n請檢查您的網絡強度後重試\n或者試試關掉你的加速器！"
 
 # 更新提醒
 UpdateBySelfTitle: "更新提示"
-updateNotice: "更新提醒"
-UpdateBySelfText: "該版本不支持一鍵更新，請您手動更新"
 updateButton: "一鍵更新"
 updatePopupTitle: "一鍵更新"
 updatePopupTitleFialed: "更新失敗"
 updatePopupTitleDone: "更新完成"
+updateNotice: "更新提醒"
+UpdateBySelfText: "該版本不支持一鍵更新，請您手動更新"
 
 # 选择更新渠道 / update Chose Source
-updateChoseSource: "請選擇更新渠道\n如果您不知道選擇什麼，請選擇【Gitee（境內首選）】或者【官網】"
-updateSource.Github: "Github（境外首選）"
-updateSource.Gitee: "Gitee（境內首選）"
-Updatesource.XtremeApi: "官網"
+updateChoseSource: "請選擇更新渠道\n如果您不知道選擇什麼，請選擇【Github】或者【Api】"
+updateSource.Github: "Github"
+updateSource.Gitee: "Gitee"
+Updatesource.XtremeApi: "Api"
 
 # 更新结束提示 / up
 updateRestart: "重啟遊戲後生效 :)"
@@ -174,21 +182,18 @@ Message.KickedByDenyName: "【{0}】被踢出，因其暱稱包含違禁詞【{1
 Message.BanedByBanList: "【{0}】因在封禁名單內被踢出"
 Message.BanedByFACList: "【{0}】因在FAC封禁名單內被踢出"
 Message.DumpfileSaved: "日誌文件已成功保存到桌面上了，文件名為：{0}"
-Message.KickedByNoFriendCode: "【{0}】因該房禁止未登入玩家被請離"
+Message.KickedByNoFriendCode: "【{0}】因該房禁止未登錄玩家被請離"
 Message.AddedPlayerToBanList: "【{0}】被添加至黑名單"
 Message.KickedByFAC: "【{0}】被FAC踢出，理由：{1}"
 Message.BanedByFAC: "【{0}】被FAC封禁，理由：{1}"
-Message.NoticeByFAC: "檢測到【{0}】：{1}"
-Message.WarnWhoSayBanWord: "{0}說了違禁詞~"
 
 # 通知 / Notifications
 PlayerLeft: "【{0}】離開了遊戲"
+PlayerLeftCuzTimeout: "【{0}】因<color=#CA8A8A>連接超時</color>離開了遊戲"
 PlayerKickByHost: "【{0}】被房主踢出遊戲"
 PlayerBanByHost: "【{0}】被房主封禁"
-PlayerLeftCuzError: "【{0}】因為發生錯誤離開了遊戲"
-PlayerLeftByAU-Anticheat: "【{0}】被 AmongUs 官方的反作弊踢出（和 FinalSuspect 無關）"
-KickAndriodPlayer: "【{0}】因該房禁止安卓被請離房間"
-KickBecauseLowLevel: "【{0}】因未達到房主規定的等級限制被請離房間"
+PlayerLeftCuzError: "【{0}】因為<color=#E57373>發生錯誤</color>離開了遊戲"
+PlayerLeftByAU-Anticheat: "【{0}】被AmongUs官方的反作弊踢出（和<color=#cecdfd>FinalSuspect</color>無關）"
 KickBecauseDiffrentVersionOrMod: "【{0}】因安裝了不同版本的模組被請離房間"
 
 # 警告 / Warnings
@@ -197,37 +202,37 @@ Warning.MismatchedVersion: "{0}\n安裝了其它版本的 {1}"
 Warning.AutoExitAtMismatchedVersion: "您的 {0} 版本與房主不同\n您將在 {1} 秒內被踢出"
 Warning.InvalidRpc: "{0} 因為發送了無效的數據被踢出"
 Warning.InvalidRpc_NotHost: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出<color=#ffff00>(無效的Rpc:{1})</color>"
-Warning.SetName: "{0} 因為多次設定名稱被踢出"
-Warning.SetName_NotHost: "{0} 疑似使用了作弊程式，請提醒房主及時將其踢出<color=#ffff00>(多次設定名稱)</color>"
-Warning.Despawn: "{0} 因為非法卸載自身角色被踢出"
-Warning.Despawn_NotHost: "{0} 疑似使用了作弊程式，請提醒房主及時將其踢出<color=#ffff00>(非法卸載自身角色)</color>"
-Warning.Cheater: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出 <color=#ffff00>(非法發送官方Rpc: {1})</color>"
+Warning.SetName: "{0} 因為多次設置名稱被踢出"
+Warning.SetName_NotHost: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出<color=#ffff00>(多次設置名稱)</color>"
+Warning.SendQuickChat: "{0} 因為三秒內發送多條快捷消息被踢出"
+Warning.SendQuickChat_NotHost: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出<color=#ffff00>(三秒內發送多條快捷消息)</color>"
+Warning.Cheater: "{0} 疑似使用了作弊程序，請提醒房主及時將其踢出<color=#ffff00>(非法發送官方Rpc: {1})</color>"
 Warning.CantKickDev: "很抱歉，您無法踢出開發者"
 Warning.RoomBroken: "很抱歉，該房間遭受炸房攻擊，請到其他房間進行遊戲"
 
-## 错误等级 / Error Levels
+## 錯誤等級 / Error Levels
 ErrorLevel1: "可能同時產生多個bug"
-ErrorLevel2: "可能出現bug"
+ErrorLevel2: "可能會出現bug"
 ErrorLevel3: "未發布版本"
 
 # 反作弊 / FAC
-FAC.CheatDetected.HighLevel: "警告：FAC正在抵禦炸房外挂"
+FAC.CheatDetected.HighLevel: "警告：FAC正在抵禦炸房外掛"
 FAC.CheatDetected.LowLevel: "警告：FAC檢測到可能存在作弊玩家"
 FAC.CheatDetected.FAC: "使用作弊程序（例如AUM、YuMenu、SM等）"
 
-# 模组信息 / Mod Infos
+# 模組信息 / Mod Infos
 Contributors: "貢獻者"
 Acknowledgement: "特別致謝"
 
-# 断连提示 / Disconect Reasons
+# 斷連提示 / Disconect Reasons
 DCNotify.Hacking: "您被樹懶的反作弊系統踢出房間"
 DCNotify.Banned: "您被該房間封禁"
 DCNotify.Kicked: "您被該房間踢出"
-DCNotify.DCFromServer: "您與伺服器的連接已中斷\n這可能是因為您的網路不穩定\n也可能是因為伺服器不穩定或拒絕了您的訪問"
-DCNotify.GameNotFound: "未找到指定房間，可能是房間已解散\n或檢查您是否選擇了與房間不同的伺服器"
+DCNotify.DCFromServer: "您與服務器的連接已中斷\n這可能因為您的網絡不穩定\n也可能因為服務器不穩定或拒絕了您的訪問"
+DCNotify.GameNotFound: "未找到指定房間，可能是房間已解散\n或檢查您是否選擇了與房間不同的服務器"
 DCNotify.GameStarted: "該房間正在遊戲中，請等待遊戲結束後加入"
 DCNotify.GameFull: "該房間已滿人，請稍後重試"
-DCNotify.IncorrectVersion: "您的 AmongUs 版本與該房間不同"
+DCNotify.IncorrectVersion: "您的Among Us版本與該房間不同"
 DCNotify.Description: "您被踢出房間\n理由：{0}"
 DCNotify.DenyName: "您的暱稱含有違規字符"
 DCNotify.BanList: "您存在於該房間的黑名單"
@@ -250,42 +255,45 @@ HideResults: "隱藏複盤信息"
 NoInfoExists: "沒有存在的上局信息"
 CrewsWin: "<color=#8cffff>船員陣營勝利</color>"
 CrewmatesWin: "船員勝利"
-CrewmatesWinBlurb: "任何邪惡終將繩之以法！"
+CrewmatesWinBlurb: "真理的光芒在希望中閃耀！"
 ImpsWin: "<color=#ff1919>偽裝者陣營勝利</color>"
 ImpostorsWin: "偽裝者勝利"
-ImpostorsWinBlurb: "黑暗籠罩世界"
-HideSummaryTextToShowWinText: "<color=#ffff00>隱藏複盤信息查看勝利文本</color>"
+ImpostorsWinBlurb: "邪惡將真理化為灰燼"
+HideSummaryTextToShowWinText: "<color=#ffff00>隱藏復盤信息查看勝利文本</color>"
 
-# 禁用公开
+# 禁用公開 / Disable Public
 DisabledByProgram: "公開房間的操作已被程序禁用"
 PublicNotAvailableOnThisVersion: "該版本的 FinalSuspect 暫不支援公開"
 
 # 主页 / Main UI
 FinalSuspectWelcomeText: "祝願您擁有一場愉快的<color={0}>遊戲體驗</color>！"
-ConnectToFinalSuspectServerFailed: "無法連接至 FinalSuspect 伺服器"
+ConnectToFinalSuspectServerFailed: "無法連接至FinalSuspect服務器"
 Website: "模組官網"
 MainMenuCredential: "{0} © 2025"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "蘋果"
 Android: "安卓"
 
 # 延迟显示 / Ping Tracker
 Ping: "延遲"
 FrameRate: "幀率"
-Server: "伺服器"
+Server: "服務器"
 Local: "<color=#D1FA87>本地</color>"
 
-# 其他
+# 其他 / Other
 HongKong: "香港"
 FPSSetTo: "幀數上限設置為: {0}"
 BrowsingMode: "瀏覽模式"
-Broken: "Roto"
+Broken: "損壞"
 
-# 加载
+# 加载 / Loading
 LanguageFilesLoadingComplete: "翻譯文本加載完成！"
 CheckingForFiles: "驗證資源文件完整性中..."
 DownloadingResources: "下載資源文件中..."
 Loading: "加載中..."
 LoadingComplete: "加載完成！"
 
+# 身份 / Identity
+Host: "房主"
+Cheater: "作弊者"

@@ -24,7 +24,7 @@ public static class CustomSoundsManager
                 file.CurrectAudioStates = file.LastAudioStates = AudiosStates.IsPlaying;
         }
         
-        StopPlay();
+        StopPlayMod();
         ReloadTag();
         MyMusicPanel.RefreshTagList();
         SoundManagementPanel.RefreshTagList();
@@ -35,16 +35,32 @@ public static class CustomSoundsManager
     [DllImport("winmm.dll")]
     public static extern bool PlaySound(string Filename, int Mod, int Flags);
     public static void StartPlayLoop(string path) => PlaySound(@$"{path}", 0, 9);
-    public static void StopPlay()
+    public static void StopPlayMod()
     {
         PlaySound(null, 0, 0);
         finalMusics.Do(x => x.CurrectAudioStates = x.LastAudioStates);
-        global::SoundManager.Instance.StopAllSound();
+
         new LateTask(() =>
         {
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
         }, 0.01f, "Refresh Tag List");
+    }
+
+    public static void StopPlayVanilla()
+    {
+        global::SoundManager.Instance.StopNamedSound("MapTheme");
+        global::SoundManager.Instance.StopNamedSound("MainBG");
+    }
+
+    public static void StartPlayVanilla()
+    {
+        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        if (isPlaying) return;
+        if (XtremeGameData.GameStates.IsLobby)
+            global::SoundManager.Instance.CrossFadeSound("MapTheme", LobbyBehaviour.Instance.MapTheme, 0.07f);
+        else if (XtremeGameData.GameStates.IsNotJoined)
+            global::SoundManager.Instance.CrossFadeSound("MainBG", DestroyableSingleton<JoinGameButton>.Instance.IntroMusic, 0.07f);
     }
     /*
     //public static void AutoPlay(string sound, string name)

@@ -7,6 +7,7 @@ using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Templates;
 using TMPro;
 using UnityEngine;
+using static FinalSuspect.Patches.Game_Vanilla.HudManagerPatch;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -46,7 +47,7 @@ class SetEverythingUpPatch
         var WinnerText = WinnerTextObject.GetComponent<TextMeshPro>(); // WinTextと同じ型のコンポーネントを取得
         WinnerText.fontSizeMin = 3f;
 
-        string CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
+        var CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
         __instance.BackgroundBar.material.color = __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
         __instance.WinText.text = DidHumansWin ? GetString("CrewmatesWin") : GetString("ImpostorsWin");
         WinnerText.text = DidHumansWin ? GetString("CrewmatesWinBlurb") : GetString("ImpostorsWinBlurb");
@@ -76,25 +77,27 @@ class SetEverythingUpPatch
             Scale = new(1.5f, 0.5f),
             FontSize = 2f,
         };
-
-        StringBuilder sb = new($"{GetString("RoleSummaryText")}");
-        sb.Append(DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin"));
+        var lastgameresult = DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin");
+        LastGameResult = lastgameresult;
+        StringBuilder sb = new($"{GetString("RoleSummaryText")}{lastgameresult}");
         var gamecode =  StringHelper.ColorString(
             ColorHelper.ModColor32, 
-            DataManager.Settings.Gameplay.StreamerMode?  new string('*', HudManagerPatch.LastRoomCode.Length): HudManagerPatch.LastRoomCode);
-        sb.Append("\n"+ HudManagerPatch.LastServer +"  "+gamecode);
+            DataManager.Settings.Gameplay.StreamerMode?  new string('*', LastRoomCode.Length): LastRoomCode);
+        sb.Append("\n"+ LastServer +"  "+gamecode);
         sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
 
+        StringBuilder sb2 = new();
         foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
         {
-            sb.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
+            sb2.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
         }
         foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
         {
-            sb.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
+            sb2.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
         }
 
-        HudManagerPatch.LastResultText = sb.ToString().Replace("\n" + GetString("HideSummaryTextToShowWinText"), "");
+        LastGameData = sb2.ToString();
+        sb.Append(sb2);
         HudManagerPatch.Init();
         roleSummary = TMPTemplate.Create(
             "RoleSummaryText",

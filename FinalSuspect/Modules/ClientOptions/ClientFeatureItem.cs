@@ -47,7 +47,7 @@ public class ClientFeatureItem
                 UiElement[] selectableButtons = optionsMenuBehaviour.ControllerSelectable.ToArray();
                 PassiveButton leaveButton = null;
                 PassiveButton returnButton = null;
-                for (int i = 0; i < selectableButtons.Length; i++)
+                for (var i = 0; i < selectableButtons.Length; i++)
                 {
                     var button = selectableButtons[i];
                     if (button == null)

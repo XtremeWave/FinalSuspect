@@ -45,7 +45,7 @@ public class MainMenuButtonHoverAnimation
             __instance.mainMenuUI.SetActive(Active);
             VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(Active);
             VersionShowerStartPatch.VisitText.gameObject.SetActive(Active);
-            AwakeFriendCodeUIPatch.AccountTabInstance.SetActive(Active);
+            DestroyableSingleton<AccountTab>.Instance.gameObject.SetActive(Active);
             TitleLogoPatch.ModStamp.SetActive(Active);
         }
 

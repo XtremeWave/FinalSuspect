@@ -32,7 +32,7 @@ class TaskPanelBehaviourPatch
     {
         if (!XtremeGameData.GameStates.IsInGame) return;
 
-        PlayerControl player = PlayerControl.LocalPlayer;
+        var player = PlayerControl.LocalPlayer;
         var role = player.GetRoleType();
         var taskText = __instance.taskText.text;
         if (taskText == "None") return;
@@ -174,7 +174,7 @@ public static class HudManagerPatch
             while (p > 0f)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = 1 - p;
+                var alpha = 1 - p;
                 spriter.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
@@ -220,10 +220,7 @@ public static class HudManagerPatch
         backgroundRenderer = null;
     }
 
-    public static string LastResultText;
-    public static string LastGameData;
-    public static string LastRoomCode;
-    public static string LastServer;
+    
     public static void SetChatBG(HudManager __instance)
     {
         Color color;
@@ -259,6 +256,17 @@ public static class HudManagerPatch
         var lines = text.Split(["\r\n", "\n"], StringSplitOptions.None);
         return lines.Length;
     }
+    public static string LastResultText;
+    public static string LastGameData;
+    public static string LastGameResult;
+    public static string LastRoomCode;
+    public static string LastServer;
+
+    [GameModuleInitializer]
+    public static void InitForLastResult()
+    {
+        LastResultText = LastGameData = LastGameResult = LastRoomCode = LastServer = "";
+    }
     public static void UpdateResult(HudManager __instance)
     {
         if (XtremeGameData.GameStates.IsFreePlay || !XtremeGameData.GameStates.IsInGame && GetLineCount(LastResultText) < 6 )
@@ -289,7 +297,7 @@ public static class HudManagerPatch
         }
         
 
-        StringBuilder sb = new($"{GetString("RoleSummaryText")}");
+        StringBuilder sb = new($"{GetString("RoleSummaryText")}{LastGameResult}");
         if (XtremeGameData.GameStates.IsInGame)
         {
             LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
@@ -332,7 +340,7 @@ public static class HudManagerPatch
             roleSummary.SetOutlineColor(Color.black);
             roleSummary.SetOutlineThickness(0.15f);
  
-            GameObject backgroundObject = new GameObject("RoleSummaryBackground");
+            var backgroundObject = new GameObject("RoleSummaryBackground");
             backgroundObject.transform.SetParent(roleSummary.transform); 
             backgroundRenderer = backgroundObject.AddComponent<SpriteRenderer>();
             backgroundRenderer.sprite = Utils.LoadSprite("LastResult-BG.png",200f);
@@ -356,13 +364,13 @@ public static class HudManagerPatch
     {
         if (roleSummary != null && backgroundRenderer != null)
         {
-            Bounds textBounds = roleSummary.textBounds;
+            var textBounds = roleSummary.textBounds;
 
-            Sprite backgroundSprite = backgroundRenderer.sprite;
+            var backgroundSprite = backgroundRenderer.sprite;
             if (backgroundSprite != null)
             {
-                float scaleX = (textBounds.size.x + 0.4f) / backgroundSprite.bounds.size.x;
-                float scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
+                var scaleX = (textBounds.size.x + 0.4f) / backgroundSprite.bounds.size.x;
+                var scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
                 
                 backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f);
             }

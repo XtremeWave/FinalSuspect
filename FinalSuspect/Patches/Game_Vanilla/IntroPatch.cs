@@ -45,8 +45,8 @@ class IntroCutscenePatch
         __instance.ImpostorText.gameObject.SetActive(true);
         var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
 
-        Color color = Palette.ImpostorRed;
-        string colorcode= onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : ColorHelper.ColorToHex(Palette.ImpostorRed);
+        var color = Palette.ImpostorRed;
+        var colorcode= onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : ColorHelper.ColorToHex(Palette.ImpostorRed);
         __instance.TeamTitle.text = onlyimp?
             GetString("TeamImpostorOnly"):
             GetString("TeamImpostor");
@@ -94,13 +94,13 @@ class IntroCutscenePatch
     private static async void StartFadeIntro(IntroCutscene __instance, Color start, Color end)
     {
         await Task.Delay(1000);
-        int milliseconds = 0;
+        var milliseconds = 0;
         while (true)
         {
             await Task.Delay(20);
             milliseconds += 20;
-            float time = milliseconds / (float)500;
-            Color LerpingColor = Color.Lerp(start, end, time);
+            var time = milliseconds / (float)500;
+            var LerpingColor = Color.Lerp(start, end, time);
             if (__instance == null || milliseconds > 500)
             {
                 XtremeLogger.Info("break", "StartFadeIntro");

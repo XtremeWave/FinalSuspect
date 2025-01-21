@@ -86,7 +86,11 @@ public static class OptionsMenuBehaviourStartPatch
         //CreateOptionItem(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
         CreateOptionItem(ref DisableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
             if (Main.DisableVanillaSound.Value)
-                CustomSoundsManager.StopPlay();
+                CustomSoundsManager.StopPlayVanilla();
+            else
+            {
+                CustomSoundsManager.StartPlayVanilla();
+            }
         });
         CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
         CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
@@ -225,7 +229,7 @@ public static class OptionsMenuBehaviourStartPatch
     {
         try
         {
-            Sprite sprite = Utils.LoadSprite("Cursor.png");
+            var sprite = Utils.LoadSprite("Cursor.png");
             Cursor.SetCursor(Main.UseModCursor.Value ? sprite.texture: null, Vector2.zero, CursorMode.Auto);
         }
         catch 

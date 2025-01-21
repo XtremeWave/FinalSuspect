@@ -15,8 +15,8 @@ public static class Zoom
 
     public static void Postfix()
     {
-        bool canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
-                       XtremeGameData.GameStates.IsFreePlay ;
+        var canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
+                      XtremeGameData.GameStates.IsFreePlay ;
 
         if (!canZoom || !Utils.CanSeeOthersRole()|| XtremeGameData.GameStates.IsMeeting || !XtremeGameData.GameStates.IsCanMove || InGameRoleInfoMenu.Showing)
         {

@@ -15,7 +15,7 @@ TeamImpostor: "伪装者阵营"
 TeamImpostorOnly: "伪装者"
 TeamCrewmate: "船员阵营"
 
-# 内鬼数量文字 / Impostor Text
+# 伪装者数量文字 / Impostor Text
 ImpostorNumImp:  "<color=#ff1919>团队之中有{0}名伪装者</color>"
 ImpostorNumImpOnly:  "<color=#ff1919>人群之中仅有1名伪装者</color>"
 ImpostorNumCrew: "<color=#8cffff>我们之中有</color><color=#ff1919>{0}</color><color=#8cffff>名伪装者</color>"
@@ -36,11 +36,11 @@ Impostor: "伪装者"
 Shapeshifter: "变形者"
 Phantom: "幻象师"
 CrewmateGhost: "船员灵魂"
-ImpostorGhost: "内鬼灵魂"
+ImpostorGhost: "伪装者灵魂"
 CrewmateGhostBlurb: "完成任务"
 ImpostorGhostBlurb: "继续破坏设施"
-CrewmateGhostBlurbLong: "完成任务，别拖后腿！"
-ImpostorGhostBlurbLong: "破坏设施，协助存活的队友取得胜利"
+CrewmateGhostBlurbLong: "完成任务，别拖后腿！\n使用「幽幽鬼影」查看伪装者，帮助守护天使守护船员！"
+ImpostorGhostBlurbLong: "破坏设施，协助存活的队友取得胜利！"
 
 ## 捉迷藏 / HnS
 HnSEngineerBlurb: "活到最后！"
@@ -105,13 +105,13 @@ DownLoadSucceedNotice: "下载成功！"
 DownLoadFailureNotice: "下载失败=("
 PleaseWait: "请稍候……"
 
-# 更新检查
+# 更新检查 / Update Checker
 Retry: "重试"
 updateCheckPopupTitle: "更新检查"
 updateCheckFailedRetry: "检查更新失败 :(\n要重试吗？\n或者试试关掉你的加速器？"
 updateCheckFailedExit: "检查更新失败 :(\n请检查您的网络强度后重试\n或者试试关掉你的加速器！"
 
-# 更新提醒
+# 更新提醒 / Update Reminder
 UpdateBySelfTitle: "更新提示"
 updateButton: "一键更新"
 updatePopupTitle: "一键更新"
@@ -120,25 +120,25 @@ updatePopupTitleDone: "更新完成"
 updateNotice: "更新提醒"
 UpdateBySelfText: "该版本不支持一键更新，请您手动更新"
 
-# 选择更新渠道 / update Chose Source
+# 选择更新渠道 / Update Chose Source
 updateChoseSource: "请选择更新渠道\n如果您不知道选什么，请选择【Gitee】或者【Api（境内首选）】"
 updateSource.Github: "Github（境外首选）"
 updateSource.Gitee: "Gitee"
 updateSource.XtremeApi: "Api（境内首选）"
 
-# 更新结束提示 / up
+# 更新结束提示 / Update completion prompts
 updateRestart: "重启游戏后生效 :)"
 updatePingFialed: "原因：{0}\n该渠道可能暂时停用，请更换下载渠道重试"
 updateFileMd5Incorrect: "原因：文件校验错误\n该渠道的文件版本并不是最新的，请切换下载渠道重试"
 downloadFailed: "原因：下载更新文件超时或中断\n请更换网络后重试或手动更新"
 
-# 无法加入公开游戏原因 / Unable to join public game reason
+# 无法加入公开游戏原因 / Unable to join public game reasons
 onSetPublicNoLatest: "我们有一个重要的更新，请更新本模组\n否则您无法公开房间"
 CanNotJoinPublicRoomNoLatest: "我们有一个重要的更新，请更新本模组\n否则您无法加入公开房间"
 ModBrokenMessage: "模组文件损坏，请重启游戏或重装本模组"
 UnsupportedVersion: "您的 AmongUs 版本与 FinalSuspect 不兼容\n请更新游戏"
 
-# 音频播放
+# 音频播放 / Audio Playback
 PlayMode0: "单次播放"
 PlayMode1: "单曲循环"
 PlayMode2: "列表随机"
@@ -149,7 +149,7 @@ NoFound: "【文件丢失】"
 NextPage: "下一页"
 PreviousPage: "上一页"
 
-# 音频添加
+# 音频添加 / Audio Addition
 download: "下载"
 delete: "删除"
 NewSound: "新增音乐"
@@ -157,16 +157,16 @@ PleaseEnterMusic: "请输入音乐名"
 AudioManagementAlreadyExists: "该音乐名已存在"
 NotAllowedMusic: "音乐名称格式不合规"
 
-# 界面提示
+# 界面提示 / Interface Tips
 CustomAudioManagementHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐。当您添加自己的音乐时，请您在「音频管理」中添加音乐名并在路径“Among Us/Final Suspect_Data/Resources/Sounds”文件夹内添加同名音频文件（支持格式：.wav）。音乐可在「我的音乐」中播放。"
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "您可以在「音频管理」中下载XtremeWave支持的音乐或添加自己的音乐，如果音乐本地资源路径不存在则会显示「【文件丢失】」"
 
-# 主界面音乐提醒
+# 主界面音乐提醒 / Main Menu Music Reminder
 MusicNotYet: "检测到当前音乐文件不完整"
 AudioNYPro: "如果您希望提高您的游戏体验，请在「主页-设置-更多功能-音频管理」下载我们的音频"
 
-# 官方音乐
+# 官方音乐 / Musics
 Mus.GongXiFaCai: "恭喜发财"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.TidalSurge: "塘潮暗涌"
@@ -186,17 +186,14 @@ Message.KickedByNoFriendCode: "【{0}】因该房禁止未登录玩家被请离"
 Message.AddedPlayerToBanList: "【{0}】被添加至黑名单"
 Message.KickedByFAC: "【{0}】被FAC踢出，理由：{1}"
 Message.BanedByFAC: "【{0}】被FAC封禁，理由：{1}"
-Message.NoticeByFAC: "检测到【{0}】：{1}"
-Message.WarnWhoSayBanWord: "【{0}】说了违禁词~"
 
 # 通知 / Notifications
 PlayerLeft: "【{0}】离开了游戏"
+PlayerLeftCuzTimeout: "【{0}】因<color=#CA8A8A>连接超时</color>离开了游戏"
 PlayerKickByHost: "【{0}】被房主踢出游戏"
 PlayerBanByHost: "【{0}】被房主封禁"
-PlayerLeftCuzError: "【{0}】因为发生错误离开了游戏"
-PlayerLeftByAU-Anticheat: "【{0}】被AmongUs官方的反作弊踢出（和FinalSuspect无关）"
-KickAndriodPlayer: "【{0}】因该房禁止安卓被请离房间"
-KickBecauseLowLevel: "【{0}】因未达到房主规定的等级限制被请离房间"
+PlayerLeftCuzError: "【{0}】因为<color=#E57373>发生错误</color>离开了游戏"
+PlayerLeftByAU-Anticheat: "【{0}】被AmongUs官方的反作弊踢出（和<color=#cecdfd>FinalSuspect</color>无关）"
 KickBecauseDiffrentVersionOrMod: "【{0}】因安装了不同版本的模组被请离房间"
 
 # 警告 / Warnings
@@ -207,8 +204,8 @@ Warning.InvalidRpc: "{0} 因为发送了无效的数据被踢出"
 Warning.InvalidRpc_NotHost: "{0} 疑似使用了作弊程序，请提醒房主及时将其踢出<color=#ffff00>(无效的Rpc:{1})</color>"
 Warning.SetName: "{0} 因为多次设置名称被踢出"
 Warning.SetName_NotHost: "{0} 疑似使用了作弊程序，请提醒房主及时将其踢出<color=#ffff00>(多次设置名称)</color>"
-Warning.Despawn: "{0} 因为非法卸载自身角色被踢出"
-Warning.Despawn_NotHost: "{0} 疑似使用了作弊程序，请提醒房主及时将其踢出<color=#ffff00>(非法卸载自身角色)</color>"
+Warning.SendQuickChat: "{0} 因为三秒内发送多条快捷消息被踢出"
+Warning.SendQuickChat_NotHost: "{0} 疑似使用了作弊程序，请提醒房主及时将其踢出<color=#ffff00>(三秒内发送多条快捷消息)</color>"
 Warning.Cheater: "{0} 疑似使用了作弊程序，请提醒房主及时将其踢出<color=#ffff00>(非法发送官方Rpc: {1})</color>"
 Warning.CantKickDev: "很抱歉，您无法踢出开发者"
 Warning.RoomBroken: "很抱歉，该房间遭受炸房攻击，请到其他房间进行游戏"

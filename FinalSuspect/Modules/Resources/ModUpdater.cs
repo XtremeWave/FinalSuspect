@@ -58,8 +58,8 @@ public class ModUpdater
         task.ContinueWith(t =>
         {
             var (done, reason) = t.Result;
-            string title = done ? GetString("updatePopupTitleDone") : GetString("updatePopupTitleFialed");
-            string desc = done ? GetString("updateRestart") : reason;
+            var title = done ? GetString("updatePopupTitleDone") : GetString("updatePopupTitleFialed");
+            var desc = done ? GetString("updateRestart") : reason;
             CustomPopup.ShowLater(title, desc,
                 [(GetString(done ? StringNames.ExitGame : StringNames.Okay), done ? Application.Quit : null)]);
             SetUpdateButtonStatus();
@@ -115,7 +115,7 @@ public class ModUpdater
     }
     private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
     {
-        string msg = $"{GetString("updateInProgress")}\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
+        var msg = $"{GetString("updateInProgress")}\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
         XtremeLogger.Info(msg, "DownloadDLL");
         CustomPopup.UpdateTextLater(msg);
     }

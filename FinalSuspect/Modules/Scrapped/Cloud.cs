@@ -24,7 +24,7 @@ internal class Cloud
         try
         {
             var content = GetResourcesTxt("FinalSuspect.Resources.Configs.Port.txt");
-            string[] ar = content.Split('|');
+            var ar = content.Split('|');
             IP = ar[0];
             LOBBY_PORT = int.Parse(ar[1]);
             FAC_PORT = int.Parse(ar[2]);
@@ -51,10 +51,10 @@ internal class Cloud
 
             if (IP == null || LOBBY_PORT == 0) throw new("Has no ip or port");
             
-            string msg = $"{GameStartManager.Instance.GameRoomNameCode.text}|{Main.DisplayedVersion_Head}|{GameData.Instance.PlayerCount}|{TranslationController.Instance.currentLanguage.languageID}|{ServerName}|{DataManager.player.customization.name}";
+            var msg = $"{GameStartManager.Instance.GameRoomNameCode.text}|{Main.DisplayedVersion_Head}|{GameData.Instance.PlayerCount}|{TranslationController.Instance.currentLanguage.languageID}|{ServerName}|{DataManager.player.customization.name}";
             if (msg.Length <= 60)
             {
-                byte[] buffer = Encoding.Default.GetBytes(msg);
+                var buffer = Encoding.Default.GetBytes(msg);
                 ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 ClientSocket.Connect(IP, LOBBY_PORT);
                 ClientSocket.Send(buffer);

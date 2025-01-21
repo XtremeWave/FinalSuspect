@@ -1,6 +1,6 @@
-﻿#FinalSuspect 的语言文件 / Translation file of FinalSuspect
+﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
-#当前翻译文件语言的ID / Language ID of current file
+# 当前翻译文件语言的ID / Language ID of current file
 LangID: "0"
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
@@ -15,7 +15,7 @@ TeamImpostor: "Team-Impostor"
 TeamImpostorOnly: "Impostor"
 TeamCrewmate: "Team-Crewmate"
 
-# 内鬼数量文字 / Impostor Text
+# 伪装者数量文字 / Impostor Text
 ImpostorNumImp:  "<color=#ff1919>There Are {0} Impostors In Our Team</color>"
 ImpostorNumImpOnly:  "<color=#ff1919>There Is Only 1 Impostor Among The Crowd</color>"
 ImpostorNumCrew: "<color=#8cffff>There Are </color><color=#ff1919>{0}</color><color=#8cffff> Impostors Among Us</color>"
@@ -60,32 +60,40 @@ FinalSuspectOptions: "Final Suspect Options"
 Back: "Back"
 Yes: "Yes"
 No: "No"
+UnlockFPS: "Unlock FPS"
+ChangeOutfit: "Change Outfit"
+BeanMode: "Classic Bean Mode"
+HorseMode: "April Fools Horse Mode"
+LongMode: "April Fools Long Mode"
+KickPlayerFriendCodeNotExist: "Kick Players Who Are Not Logged In."
+KickPlayerWithDenyName: "Kick Players Using Inappropriate Nicknames"
+KickPlayerInBanList: "Kick Banned Players"
+SpamDenyWord: "Block Inappropriate Words"
+AutoStartGame: "Auto Start at Full Lobby"
+AutoEndGame: "Auto-return to Lobby at End"
+SwitchVanilla: "Switch Vanilla"
+EnableRoleBackGround: "Enable Custom Intro Background"
+EnableMapBackGround: "Enable Custom Map Color"
+DisableVanillaSound: "Disable Among U's Musics"
+DisableFAC: "Disable Anti-Cheat"
+ShowPlayerInfo: "Display Player Platform and Client Information"
+UseModCursor: "Use Mod Cursor"
+PrunkMode: "Prank Mode"
+VersionCheat: "Bypass Mod Version Sync Check"
+GodMode: "God Mode"
+NoGameEnd: "No Game End"
+EnableFinalSuspect: "Enable「Final Suspect」"
+
+# 客户端功能 / Client Features
+FinalSuspectFeatures: "Final Suspect Features"
 UnloadMod: "Switch Vanilla"
 UnloadWarning: "<color=#ffff00><size=200%>Warning</size></color>\nTo re-enable the mod, you must restart the game.\nWould you like to continue anyway?"
 CannotUnloadDuringGame: "Cannot switch to vanilla in game"
 Cancel: "Cancel"
 Unload: "Unload"
 DumpLog: "Output Log"
-UnlockFPS: "Unlock FPS"
-KickPlayerFriendCodeNotExist: "Kick Players Who Are Not Logged In."
-ApplyDenyNameList: "Kick Players Using Inappropriate Nicknames"
-ApplyBanList: "Kick Banned Players"
-VersionCheat: "Bypass Mod Version Sync Check"
-GodMode: "God Mode"
-BeanMode: "Classic Bean Mode"
-LongMode: "April Fools Long Mode"
-HorseMode: "April Fools Horse Mode"
-AutoStartGame: "Auto Start at Full Lobby"
-AutoEndGame: "Auto-return to Lobby at End"
-SwitchVanilla: "Switch Vanilla"
-FastBoot: "Fast Boot"
-EnableRoleBackGround: "Enable Custom Intro Background"
-EnableMapBackGround: "Enable Custom Map Color"
-DisableVanillaSound: "Disable Among U's Musics"
-FinalSuspectFeatures: "Final Suspect Features"
 SoundOptions: "My Musics"
 AudioManagementOptions: "Audio Management"
-ChangeOutfit: "Change Outfit"
 OnlyAvailableInMainMenu: "Only Available In Main Menu"
 
 # 提示 / Tips
@@ -97,13 +105,13 @@ DownLoadSucceedNotice: "Download successful!"
 DownLoadFailureNotice: "Download failed =("
 PleaseWait: "Please wait..."
 
-# 更新检查
+# 更新检查 / Update Checker
 Retry: "Retry"
 updateCheckPopupTitle: "Update Check"
 updateCheckFailedRetry: "Update check failed :(\nRetry?"
 updateCheckFailedExit: "Update check failed :(\nPlease check your network connection and try again."
 
-# 更新提醒 / Update reminder
+# 更新提醒 / Update Reminder
 UpdateBySelfTitle: "Update Reminder"
 updateNotice: "Update Reminder"
 UpdateBySelfText: "This version does not support one-click updates. Please update manually."
@@ -112,11 +120,11 @@ updatePopupTitle: "Update Now"
 updatePopupTitleFialed: "Update Failed"
 updatePopupTitleDone: "Update Completed"
 
-# 选择更新渠道 / update Chose Source
-updateChoseSource: "Please choose update source\nIf you are unsure, select either [Gitee (recommended for China)] or [Official Website (possibly better than Gitee)]"
+# 选择更新渠道 / Update Chose Source
+updateChoseSource: "Please select a channel to update\nif you do not know what to select, please select the [Github]\nIf the update fails, select [Api]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.XtremeApi: "Official Website"
+updateSource.XtremeApi: "Api"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "Restart the game to apply changes :)"
@@ -130,7 +138,7 @@ CanNotJoinPublicRoomNoLatest: "We have an important update. Please update this m
 ModBrokenMessage: "Mod files are corrupted. Please restart the game or reinstall this mod."
 UnsupportedVersion: "Your Among Us version is incompatible with FinalSuspect.\nPlease update your game."
 
-# Audio playback
+# 音频播放 / Audio Playback
 PlayMode0: "Play Once"
 PlayMode1: "Repeat Single"
 PlayMode2: "Shuffle"
@@ -141,7 +149,7 @@ NoFound: "[File Missing]"
 NextPage: "Next Page"
 PreviousPage: "Previous Page"
 
-# 音频添加 / Audio addition
+# 音频添加 / Audio Addition
 download: "Download"
 delete: "Delete"
 NewSound: "Add New Music"
@@ -149,16 +157,16 @@ PleaseEnterMusic: "Please Enter Music Name"
 AudioManagementAlreadyExists: "This music name already exists"
 NotAllowedMusic: "Music name format is not allowed"
 
-# 界面提示 / Interface tips
-CustomAudioManagementHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. When adding your own music, ensure you add the music name in 「Audio Management」 and place the corresponding audio file in the 「Among Us/Final Suspect_Data/Resources/Audios」 folder (supported formats: .wav). Music can be played in 「My Music」."
+# 界面提示 / Interface Tips
+CustomAudioManagementHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. When adding your own music, ensure you add the music name in 「Audio Management」 and place the corresponding audio file in the 「Among Us/Final Suspect_Data/Resources/Sounds」 folder (supported formats: .wav). Music can be played in 「My Music」."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
 CustomSoundHelp: "You can download XtremeWave supported music or add your own music in 「Audio Management」. If the local music resource path is missing, it will display '[File Missing]'."
 
-# 主界面音乐提醒 / Main interface music reminder
+# 主界面音乐提醒 / Main Menu Music Reminder
 MusicNotYet: "Current music file detected as incomplete"
 AudioNYPro: "For an enhanced gaming experience, download our audio in 「Home-Settings-More Features-Audio Management」"
 
-# 官方音乐
+# 官方音乐 / Musics
 Mus.GongXiFaCai: "恭喜发财"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.TidalSurge: "Tidal Surge"
@@ -167,39 +175,37 @@ Mus.Interlude: "Interlude"
 Mus.Fractured: "Fractured"
 Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
 Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.ReturnToSimplicity: "Return To Simplicity"
 
 # 信息 / Messages
 Message.KickedByDenyName: "[{0}] was kicked because its name matched [{1}]"
 Message.BanedByBanList: "[{0}] was banned because they were banned in the past."
-Message.BanedByFACList: "【{0}】 has been banned because he is in FAC list of Banned people."
+Message.BanedByFACList: "[{0}] has been banned because he is in FAC list of Banned people."
 Message.DumpfileSaved: "The log file was successfully saved to the desktop, filename: {0}"
 Message.KickedByNoFriendCode: "[{0}] was kicked because their friend code does not exist."
 Message.AddedPlayerToBanList: "Added [{0}] to the ban list"
 Message.KickedByFAC: "[{0}]Kicked by FAC, reason: {1}"
-Message.BanedByFAC: "【{0}】Kicked by FAC, reason:{1}"
-Message.NoticeByFAC: "[{0}] Detected: {1}"
-Message.WarnWhoSayBanWord: "{0} said a banned word~"
+Message.BanedByFAC: "[{0}]Kicked by FAC, reason:{1}"
 
 # 通知 / Notifications
 PlayerLeft: "[{0}] left the game"
+PlayerLeftCuzTimeout: "[{0}]left the game due to <color=#CA8A8A>connection timeout</color>"
 PlayerKickByHost: "[{0}]  kicked by host"
 PlayerBanByHost: "[{0}] banned by host"
-PlayerLeftCuzError: "[{0}] left the game due to an error"
-PlayerLeftByAU-Anticheat: "[{0}] was kicked by AmongU's official anti-cheats (Not related to FinalSuspect)"
-KickAndriodPlayer: "【{0}】 was kicked because of No Phones setting"
-KickBecauseLowLevel: "[{0}]  was kicked because their level was too low"
+PlayerLeftCuzError: "[{0}] left the game due to an <color=#E57373>error</color>"
+PlayerLeftByAU-Anticheat: "[{0}] was kicked by AmongU's official anti-cheats (Not related to <color=#cecdfd>FinalSuspect</color>)"
 KickBecauseDiffrentVersionOrMod: "[{0}] was kicked because they had a different version of the mod"
 
 # 警告 / Warnings
 Warning: "Warning!"
 Warning.MismatchedVersion: "{0}\nhave a different version of {1}"
 Warning.AutoExitAtMismatchedVersion: "The host has no or a different version of {0}\nYou will be kicked in {1}"
-Warning.InvalidRpc: "Kicked {0} because an invalid RPC was received.\nPlease check that no mods other than FinalSuspect installed."
+Warning.InvalidRpc: "Kicked {0} because an invalid RPC was received."
 Warning.InvalidRpc_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Invalid Rpc:{1})</color>"
-Warning.SetName: "Kicked {0} because they set name inproperly."
+Warning.SetName: "Kicked {0} because they set name set name for multiple times."
 Warning.SetName_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Set Name For Multiple Times)</color>"
-Warning.Despawn: "{0} has been kicked out for illegally despawning their character."
-Warning.Despawn_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Illegally Despawning Their Character)</color>."
+Warning.SendQuickChat: "Kicked {0} because they send multiple quick messages within 3s"
+Warning.SendQuickChat_NotHost: "0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Send Multiple Quick Messages Within 3s)</color>"
 Warning.Cheater: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
 Warning.CantKickDev: "Sorry, you cannot kick the developer"
 Warning.RoomBroken: "Sorry, this room has been bombed. Please proceed to another room to continue your game."
@@ -249,10 +255,10 @@ HideResults: "Hide Last Results"
 NoInfoExists: "No last results available"
 CrewsWin: "<color=#8cffff>Team-Crewmate Win</color>"
 CrewmatesWin: "Crewmates Win"
-CrewmatesWinBlurb: "Evil will always be brought to justice!"
+CrewmatesWinBlurb: "The light of truth shines in hope!"
 ImpsWin: "<color=#ff1919>Team-Impostor Win</color>"
 ImpostorsWin: "Impostors Win"
-ImpostorsWinBlurb: "Darkness envelops the world"
+ImpostorsWinBlurb: "Evil turns truth into ashes"
 HideSummaryTextToShowWinText: "<color=#ffff00>Hide last result to view victory text</color>"
 
 # 禁用公开
@@ -275,15 +281,19 @@ FrameRate: "Frame Rate"
 Server: "Server"
 Local: "<color=#D1FA87>Local</color>"
 
-# 其他
+# 其他 / Other
 HongKong: "HongKong"
 FPSSetTo: "Frame rate cap set to: {0}"
 BrowsingMode: "Browsing Mode"
-Broken: "损坏"
+Broken: "Broken"
 
-# 加载
+# 加载 / Loading
 LanguageFilesLoadingComplete: "Translation Loading Complete!"
 CheckingForFiles: "Verifying Resource File Integrity..."
 DownloadingResources: "Downloading Resource Files..."
 Loading: "Loading..."
 LoadingComplete: "Loading Complete!"
+
+# 身份 / Identity
+Host: "Host"
+Cheater: "Cheater"

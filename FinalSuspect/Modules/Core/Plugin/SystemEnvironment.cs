@@ -12,7 +12,7 @@ public static class SystemEnvironment
         await Task.Run(() => Environment.SetEnvironmentVariable("FINAL_SUSPECT_DIR_ROOT", Environment.CurrentDirectory, EnvironmentVariableTarget.User));
         await Task.Run(()=> XtremeLogger.Info("ROOT SET COMPLETE", "SetEnvironmentVariables"));
         // 将日志文件夹的路径设置为用户环境变量
-        string logFolderPath = await Task.Run(() => Utils.GetLogFolder().FullName);
+        var logFolderPath = await Task.Run(() => Utils.GetLogFolder().FullName);
         await Task.Run(() => Environment.SetEnvironmentVariable("FINAL_SUSPECT_DIR_LOGS", logFolderPath, EnvironmentVariableTarget.User));
         await Task.Run(()=> XtremeLogger.Info("LOGS SET COMPLETE", "SetEnvironmentVariables"));
     }

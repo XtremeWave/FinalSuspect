@@ -73,7 +73,7 @@ class LobbyViewSettingsPanePatch
                 #region 游戏设置
                 if (Area.childCount == 21)
                 {
-                    int catindex = 0;
+                    var catindex = 0;
                     var bannerindex = 0;
                     foreach (var banner in banners)
                     {
@@ -118,7 +118,7 @@ class LobbyViewSettingsPanePatch
 
                         if (banner.name == "ViewSettingsInfoPanel_Role Variant(Clone)")
                         {
-                            Color roleColor = bannerindex <= 4
+                            var roleColor = bannerindex <= 4
                                 ? Utils.GetRoleColor(RoleTypes.Crewmate)
                                 : Utils.GetRoleColor(RoleTypes.Impostor);
                             SetColorForRolesBanner(banner.gameObject, rolecolors[bannerindex], roleColor);
@@ -138,7 +138,7 @@ class LobbyViewSettingsPanePatch
                         if (banner.name == "AdvancedRoleViewPanel(Clone)")
                         {
                             var iconindex = enableroleindex.First();
-                            Color roleColor = iconindex <= 4
+                            var roleColor = iconindex <= 4
                                 ? Utils.GetRoleColor(RoleTypes.Crewmate)
                                 : Utils.GetRoleColor(RoleTypes.Impostor);
                             SetColorForIcon(banner.gameObject, rolecolors[iconindex], roleColor);
@@ -152,7 +152,7 @@ class LobbyViewSettingsPanePatch
             else
             {
                 #region 游戏设置
-                int catindex = 0;
+                var catindex = 0;
                 var bannerindex = 0;
                 foreach (var banner in banners)
                 {

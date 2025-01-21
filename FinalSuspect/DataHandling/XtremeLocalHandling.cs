@@ -41,7 +41,7 @@ public static class XtremeLocalHandling
         data.GetLobbyText(ref topcolor, ref bottomcolor, ref toptext, ref bottomtext);
         data.GetGameText(ref topcolor, ref toptext, topswap);
         SpamManager.CheckSpam(ref name);
-        if (!FAC.SuspectCheater.Contains(id) || Main.DisableFAC.Value) return name;
+        if (!player.GetCheatData().IsSuspectCheater || Main.DisableFAC.Value) return name;
         topcolor = ColorHelper.FaultColor;
         toptext = toptext.CheckAndAppendText(GetString("Cheater"));
         return name;
@@ -165,7 +165,7 @@ public static class XtremeLocalHandling
         var roleType = XtremePlayerData.GetRoleById(data.PlayerId);
         var player = data.Player;
 
-        if (Utils.CanSeeTargetRole(player, out bool bothImp))
+        if (Utils.CanSeeTargetRole(player, out var bothImp))
         {
             color = Utils.GetRoleColor(roleType);
             if (!topswap)
@@ -198,17 +198,13 @@ public static class XtremeLocalHandling
 
         try
         {
-            var name = __instance.CheckAndGetNameWithDetails(out Color topcolor, out Color bottomcolor, out string toptext, out string bottomtext);
+            var name = __instance.CheckAndGetNameWithDetails(out var topcolor, out var bottomcolor, out var toptext, out var bottomtext);
             if (Main.EnableFinalSuspect.Value)
             { 
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
-            if (!FAC.SuspectCheater.Contains(__instance.PlayerId) &&
-                (__instance.GetClient().IsFACPlayer() || __instance.GetClient().IsBannedPlayer()))
-            {
-                FAC.SuspectCheater.Add(__instance.PlayerId);
-            }
+            __instance.GetCheatData().HandleBan();
             
             var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
             var TopText = TopTextTransform.GetComponent<TextMeshPro>();
@@ -274,7 +270,7 @@ public static class XtremeLocalHandling
             {
                 pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
 
-                var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out Color color, out _, out string toptext, out _);
+                var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out var color, out _, out var toptext, out _);
 
                 var roleTextMeeting = Object.Instantiate(pva.NameText);
                 roleTextMeeting.text = "";
@@ -309,7 +305,7 @@ public static class XtremeLocalHandling
     public static void SetVentOutlineColor(Vent __instance, ref bool mainTarget)
     {
         if (!Main.EnableFinalSuspect.Value) return;
-        Color color = PlayerControl.LocalPlayer.GetRoleColor();
+        var color = PlayerControl.LocalPlayer.GetRoleColor();
         __instance.myRend.material.SetColor("_OutlineColor", color);
         __instance.myRend.material.SetColor("_AddColor", mainTarget ? color : Color.clear);
     }
@@ -349,7 +345,7 @@ public static class XtremeLocalHandling
                 return;
             }
             var player = Utils.GetPlayerById(playerId);
-            name = player.CheckAndGetNameWithDetails(out namecolor, out _,  out string toptext, out _, player.IsLocalPlayer());
+            name = player.CheckAndGetNameWithDetails(out namecolor, out _,  out var toptext, out _, player.IsLocalPlayer());
             toptext = toptext.Replace("\n", " ");
             if (player.IsLocalPlayer())
                 name = $"<size=60%>{toptext}</size>  " + name;

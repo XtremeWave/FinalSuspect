@@ -61,11 +61,11 @@ public static class BanManager
     public static string GetHashedPuid(this ClientData player)
     {
         if (player == null) return null;
-        string puid = player.ProductUserId;
+        var puid = player.ProductUserId;
         if (string.IsNullOrEmpty(puid)) return puid;
 
-        using SHA256 sha256 = SHA256.Create();
-        string sha256Hash = BitConverter.ToString(sha256.ComputeHash(Encoding.UTF8.GetBytes(puid))).Replace("-", "").ToLower();
+        using var sha256 = SHA256.Create();
+        var sha256Hash = BitConverter.ToString(sha256.ComputeHash(Encoding.UTF8.GetBytes(puid))).Replace("-", "").ToLower();
         return string.Concat(sha256Hash.AsSpan(0, 5), sha256Hash.AsSpan(sha256Hash.Length - 4));
     }
     public static void AddBanPlayer(ClientData player)
@@ -162,7 +162,7 @@ class BanMenuSelectPatch
 {
     public static void Postfix(BanMenu __instance, int clientId)
     {
-        ClientData recentClient = AmongUsClient.Instance.GetRecentClient(clientId);
+        var recentClient = AmongUsClient.Instance.GetRecentClient(clientId);
         if (recentClient == null) return;
         if (recentClient.IsBannedPlayer())
             __instance.BanButton.GetComponent<ButtonRolloverHandler>().SetEnabledColors();

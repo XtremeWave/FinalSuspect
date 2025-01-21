@@ -52,7 +52,7 @@ public class HashAuth
     {
         // 1.ハッシュ値計算
         var algorithm = SHA256.Create();
-        string hashValue = CalculateHash(value, salt, algorithm);
+        var hashValue = CalculateHash(value, salt, algorithm);
 
         // 2.ハッシュ値のログ出力
         //  salt有: ハッシュ値算出結果:<value> => <hashValue> (salt: <saltValue>)

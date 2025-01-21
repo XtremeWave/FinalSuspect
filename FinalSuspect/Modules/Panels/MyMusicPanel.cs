@@ -68,7 +68,7 @@ public static class MyMusicPanel
 
             var stopPassiveButton = stopButton.GetComponent<PassiveButton>();
             stopPassiveButton.OnClick = new();
-            stopPassiveButton.OnClick.AddListener(new Action(StopPlay));
+            stopPassiveButton.OnClick.AddListener(new Action(StopPlayMod));
 
             AddPageNavigationButton(optionsMenuBehaviour);
 
@@ -145,9 +145,9 @@ public static class MyMusicPanel
         XtremeLogger.Info($"currentPage:{currentPage}", "MyMusicPanel");
 
         
-        int startIndex = (currentPage - 1) * itemsPerPage;
+        var startIndex = (currentPage - 1) * itemsPerPage;
 
-        int count = 0;
+        var count = 0;
         foreach (var audio in finalMusics.Skip(startIndex))
         {
             if (count >= itemsPerPage)
@@ -175,9 +175,9 @@ public static class MyMusicPanel
             var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist;
 
 
-            float offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
-            float offsetY = 2.2f - (0.5f * (numItems / 2));
-            float offsetZ = -4f;
+            var offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
+            var offsetY = 2.2f - (0.5f * (numItems / 2));
+            var offsetZ = -4f;
 
             var ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
             ToggleButton.transform.localPosition = new Vector3(offsetX, offsetY, offsetZ);

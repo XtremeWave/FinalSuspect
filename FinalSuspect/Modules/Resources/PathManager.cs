@@ -20,7 +20,7 @@ public static class PathManager
 
     public static string GetRemoteBase(RemoteType remoteType)
     {
-        string remoteBase = "127.0.0.1";
+        var remoteBase = "127.0.0.1";
         switch (remoteType)
         {
             case RemoteType.Github:

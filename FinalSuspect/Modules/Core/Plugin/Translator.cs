@@ -33,12 +33,12 @@ public static class Translator
             yaml.Load(new StringReader(new StreamReader(file).ReadToEnd()));
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
 
-            int langId = -1;
+            var langId = -1;
             var dic = new Dictionary<string, string>();
 
             foreach (var entry in mapping.Children)
             {
-                (string key, string value) = (((YamlScalarNode)entry.Key).Value, ((YamlScalarNode)entry.Value).Value);
+                (var key, var value) = (((YamlScalarNode)entry.Key).Value, ((YamlScalarNode)entry.Value).Value);
 
                 if (key == "LangID")
                 {
@@ -76,7 +76,7 @@ public static class Translator
     {
         var langId = TranslationController.Instance?.currentLanguage?.languageID ?? GetUserLangByRegion();
         if (console) langId = SupportedLangs.SChinese;
-        string str = GetString(s, langId);
+        var str = GetString(s, langId);
         if (replacementDic != null)
             foreach (var rd in replacementDic)
                 str = str.Replace(rd.Key, rd.Value);
@@ -151,7 +151,7 @@ public static class Translator
     public static bool IsChineseLanguageUser => GetUserLangByRegion() is SupportedLangs.SChinese or SupportedLangs.TChinese;
     public static void LoadCustomTranslation(string filename, SupportedLangs lang)
     {
-        string path = @$"./{LANGUAGE_FOLDER_NAME}/{filename}";
+        var path = @$"./{LANGUAGE_FOLDER_NAME}/{filename}";
         if (File.Exists(path))
         {
             XtremeLogger.Info($"加载自定义翻译文件：{filename}", "LoadCustomTranslation");

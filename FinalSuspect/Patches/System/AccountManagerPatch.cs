@@ -9,11 +9,9 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch
 {
-    internal static GameObject AccountTabInstance;
     public static GameObject FriendsButton;
     public static void Prefix()
     {
-        AccountTabInstance = GameObject.Find("AccountTab");
 
         var BarSprit = GameObject.Find("BarSprite");
         if (BarSprit)
@@ -105,7 +103,7 @@ public static class AwakeAccountManager
             while (p > 0f)
             {
                 p -= Time.deltaTime * 2.8f;
-                float alpha = 1 - p;
+                var alpha = 1 - p;
                 spriter.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }

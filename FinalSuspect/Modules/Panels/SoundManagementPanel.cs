@@ -126,8 +126,8 @@ public static class SoundManagementPanel
 
             string buttontext;
             Color buttonColor;
-            bool enable = true;
-            string preview = "???";
+            var enable = true;
+            var preview = "???";
 
             var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist || CustomAudios.Contains(filename);
             var unpublished = audio.unpublished;
@@ -246,7 +246,7 @@ public static class SoundManagementPanel
         File.Delete(TAGS_PATH);
         File.Create(TAGS_PATH).Close();
 
-        FileAttributes attributes = File.GetAttributes(TAGS_PATH);
+        var attributes = File.GetAttributes(TAGS_PATH);
         File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
 
         using StreamWriter sw = new(TAGS_PATH, true);

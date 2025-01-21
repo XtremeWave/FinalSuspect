@@ -1,164 +1,172 @@
-#FinalSuspect 的语言文件 / Translation file of FinalSuspect
+# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
-#当前翻译文件语言的ID / Language ID of current file
+# 当前翻译文件语言的ID / Language ID of current file
 LangID: "5"
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
-TypeImpostor: "Предатели"
-TypeCrewmate: "Члены экипажа"
+TypeImpostor: "Импостор"
+TypeCrewmate: "Член экипажа"
 
 # 阵营 / Teams
-TeamImpostor: "Команда-предателей"
-TeamImpostorOnly: "Предатель"
-TeamCrewmate: "Команда-экипажа"
+TeamImpostor: "Команда Импосторов"
+TeamImpostorOnly: "Импостор"
+TeamCrewmate: "Команда Членов Экипажа"
 
-# 内鬼数量文字 / Impostor Text
-ImpostorNumImp: "<color=#ff1919>В нашей команде {0} предателей</color>"
-ImpostorNumImpOnly: "<color=#ff1919>В толпе только 1 предатель</color>"
-ImpostorNumCrew: "<color=#8cffff>Среди нас </color><color=#ff1919>{0}</color><color=#8cffff> предателей</color>"
+# 伪装者数量文字 / Impostor Text
+ImpostorNumImp: "<color=#ff1919>В нашей команде {0} импосторов</color>"
+ImpostorNumImpOnly: "<color=#ff1919>В толпе только один импостор</color>"
+ImpostorNumCrew: "<color=#8cffff>Среди нас </color><color=#ff1919>{0}</color><color=#8cffff> импосторов</color>"
 
 # 阵营开场
-ImpostorIntroText: "<color=#ff1919>Пусть зло окутывает мир!</color>"
-ImpostorIntroTextOnly: "<color=#ff1919>Я могу быть один, но обладаю бесконечной силой!</color>"
-CrewmateIntroText: "<color=#8cffff>Выполняйте свои задачи, объединяйтесь, чтобы решить эти трудные ситуации!</color>"
+ImpostorIntroText: "<color=#ff1919>Пусть зло окутает мир!</color>"
+ImpostorIntroTextOnly: "<color=#ff1919>Я могу быть один, но у меня бесконечная сила!</color>"
+CrewmateIntroText: "<color=#8cffff>Завершите свои задачи, объединитесь, чтобы решить эти сложные ситуации!</color>"
 
 ## 原版职业 / Vanilla
 Crewmate: "Член экипажа"
 Engineer: "Инженер"
-Scientist: "Учёный"
-Tracker: "Следопыт"
-Noisemaker: "Шумный"
-GuardianAngel: "Ангел-хранитель"
-Impostor: "Предатель"
-Shapeshifter: "Меняющий облик"
-Phantom: "Призрак"
+Scientist: "Ученый"
+Tracker: "Отслеживатель"
+Noisemaker: "Шумогенератор"
+GuardianAngel: "Хранитель ангел"
+Impostor: "Импостор"
+Shapeshifter: "Меняющий форму"
+Phantom: "Фантом"
 CrewmateGhost: "Призрак члена экипажа"
-ImpostorGhost: "Призрак предателя"
-CrewmateGhostBlurb: "Выполняйте свои задачи"
-ImpostorGhostBlurb: "Продолжайте саботировать объекты"
-CrewmateGhostBlurbLong: "Выполняйте задачи, не отставайте!"
-ImpostorGhostBlurbLong: "Саботируйте объекты, помогайте выжившим предателям достигать победы."
+ImpostorGhost: "Призрак импостора"
+CrewmateGhostBlurb: "Завершите свои задачи"
+ImpostorGhostBlurb: "Продолжайте саботировать установки"
+CrewmateGhostBlurbLong: "Завершите задачи, не отставайте!"
+ImpostorGhostBlurbLong: "Саботируйте установки, помогите выжившим импосторам добиться победы."
 
 ## 捉迷藏 / HnS
-HnSEngineerBlurb: "Выживайте до конца!"
-HnSEngineerBlurbLong: "Оставайтесь в живых до конца времени; выполнение задач увеличит время. \nИспользуйте вентиляцию и индикаторы угроз, чтобы спрятаться! \nКогда таймер начнёт отсчёт, предатель начнёт охоту на вас!"
-HnSImpostorBlurb: "Уничтожьте всех!"
-HnSImpostorBlurbLong: "Убейте всех членов экипажа в пределах временного лимита! \nДействуйте быстро! Вентиляция недоступна. \nВ последний момент вы получите увеличение скорости и подсказки для отслеживания!"
-HnSCrewmateGhostBlurb: "Поддержите своих товарищей"
-HnSCrewmateGhostBlurbLong: "Вперёд! Поддержите! Своих! Товарищей!"
+HnSEngineerBlurb: "Выживай до конца!"
+HnSEngineerBlurbLong: "Оставайся в живых до тех пор, пока не закончится время; выполнение задач продлит время. \nИспользуйте вентиляцию и индикаторы угроз, чтобы спрятаться! \nКак только таймер начнет отсчет, импостор начнет охотиться на вас!"
+HnSImpostorBlurb: "Уничтожь всех!"
+HnSImpostorBlurbLong: "Убей всех членов экипажа в пределах временного лимита! \nТебе нужно действовать быстро! Вентиляция недоступна. \nВ последний момент ты получишь прирост скорости и подсказки для отслеживания!"
+HnSCrewmateGhostBlurb: "Поддерживай своих товарищей"
+HnSCrewmateGhostBlurbLong: "Вперед! Поддерживай! За! Твоих! Товарищей!"
 
 # 死因 / Death Reason
 DeathReason.Kill: "Убит"
-DeathReason.Exile: "Изгнан"
-DeathReason.Disconnect: "Отключился"
+DeathReason.Exile: "Исключен"
+DeathReason.Disconnect: "Отключен"
 
 # 客户端选项 / Client Options
 FinalSuspectOptions: "Опции Final Suspect"
 Back: "Назад"
 Yes: "Да"
 No: "Нет"
-UnloadMod: "Переключить на Vanilla"
-UnloadWarning: "<color=#ffff00><size=200%>Предупреждение</size></color>\nЧтобы снова активировать мод, нужно перезапустить игру.\nХотите продолжить?"
-CannotUnloadDuringGame: "Нельзя переключить на vanilla во время игры"
-Cancel: "Отмена"
-Unload: "Выключить"
-DumpLog: "Вывести лог"
 UnlockFPS: "Разблокировать FPS"
-KickPlayerFriendCodeNotExist: "Исключить игроков, не вошедших в систему."
-ApplyDenyNameList: "Исключить игроков с неподобающими никнеймами"
-ApplyBanList: "Исключить заблокированных игроков"
-VersionCheat: "Обойти проверку синхронизации версии мода"
-GodMode: "Режим Бога"
-BeanMode: "Классический режим Bean"
-LongMode: "Длинный режим April Fools"
-HorseMode: "Режим лошади April Fools"
-AutoStartGame: "Автостарт при полном лобби"
-AutoEndGame: "Автовозврат в лобби в конце"
-SwitchVanilla: "Переключить на Vanilla"
-FastBoot: "Быстрый запуск"
-EnableRoleBackGround: "Включить пользовательский фон вступления"
+ChangeOutfit: "Сменить одежду"
+BeanMode: "Классический режим боба"
+HorseMode: "Режим лошади на 1 апреля"
+LongMode: "Режим длинного на 1 апреля"
+KickPlayerFriendCodeNotExist: "Исключить игроков, которые не вошли в игру."
+KickPlayerWithDenyName: "Исключить игроков с неподходящими никнеймами"
+KickPlayerInBanList: "Исключить заблокированных игроков"
+SpamDenyWord: "Блокировать неподходящие слова"
+AutoStartGame: "Автоматически начать, когда лобби будет заполнено"
+AutoEndGame: "Автоматически вернуться в лобби в конце"
+SwitchVanilla: "Переключиться на оригинальную версию"
+EnableRoleBackGround: "Включить пользовательский фон ввода"
 EnableMapBackGround: "Включить пользовательский цвет карты"
 DisableVanillaSound: "Отключить музыку Among Us"
+DisableFAC: "Отключить античит"
+ShowPlayerInfo: "Показать информацию о платформе и клиенте игрока"
+UseModCursor: "Использовать курсор мода"
+PrunkMode: "Режим розыгрыша"
+VersionCheat: "Обойти проверку версии мода"
+GodMode: "Режим Бога"
+NoGameEnd: "Без окончания игры"
+EnableFinalSuspect: "Включить「Final Suspect」"
+
+# 客户端功能 / Client Features
 FinalSuspectFeatures: "Функции Final Suspect"
+UnloadMod: "Переключиться на оригинальную версию"
+UnloadWarning: "<color=#ffff00><size=200%>Предупреждение</size></color>\nДля повторного включения мода, вам нужно перезапустить игру.\nХотите все же продолжить?"
+CannotUnloadDuringGame: "Нельзя переключиться на оригинальную версию во время игры"
+Cancel: "Отмена"
+Unload: "Выгрузить"
+DumpLog: "Выгрузить лог"
 SoundOptions: "Моя музыка"
-AudioManagementOptions: "Управление звуком"
-ChangeOutfit: "Сменить наряд"
+AudioManagementOptions: "Управление аудио"
 OnlyAvailableInMainMenu: "Доступно только в главном меню"
 
 # 提示 / Tips
 updatePleaseWait: "Пожалуйста, подождите..."
 updateInProgress: "Обновление в процессе..."
-downloadInProgress: "Скачивание..."
-Playing: "Играет..."
-DownLoadSucceedNotice: "Скачивание успешно!"
-DownLoadFailureNotice: "Скачивание не удалось =("
+downloadInProgress: "Загрузка в процессе..."
+Playing: "Играем..."
+DownLoadSucceedNotice: "Загрузка успешна!"
+DownLoadFailureNotice: "Загрузка не удалась =("
 PleaseWait: "Пожалуйста, подождите..."
 
-# 更新检查
-Retry: "Попробовать снова"
+# 更新检查 / Update Checker
+Retry: "Повторить"
 updateCheckPopupTitle: "Проверка обновлений"
 updateCheckFailedRetry: "Проверка обновлений не удалась :(\nПовторить?"
-updateCheckFailedExit: "Проверка обновлений не удалась :(\nПожалуйста, проверьте ваше соединение с интернетом и попробуйте снова."
+updateCheckFailedExit: "Проверка обновлений не удалась :(\nПожалуйста, проверьте ваше интернет-соединение и попробуйте снова."
 
-# 更新提醒 / Update reminder
+# 更新提醒 / Update Reminder
 UpdateBySelfTitle: "Напоминание об обновлении"
 updateNotice: "Напоминание об обновлении"
-UpdateBySelfText: "Эта версия не поддерживает обновления в один клик. Пожалуйста, обновите вручную."
+UpdateBySelfText: "Эта версия не поддерживает автоматические обновления. Обновите вручную."
 updateButton: "Обновить сейчас"
 updatePopupTitle: "Обновить сейчас"
-updatePopupTitleFialed: "Обновление не удалось"
+updatePopupTitleFialed: "Обновление неудачно"
 updatePopupTitleDone: "Обновление завершено"
 
-# 选择更新渠道 / update Chose Source
-updateChoseSource: "Пожалуйста, выберите источник обновления\nЕсли вы не уверены, выберите [Gitee (рекомендуется для Китая)] или [Официальный сайт (возможно, лучше, чем Gitee)]"
+# 选择更新渠道 / Update Chose Source
+updateChoseSource: "Пожалуйста, выберите канал для обновления\nесли вы не знаете, что выбрать, выберите [Github]\nесли обновление неудачно, выберите [Api]"
 updateSource.Github: "Github"
 updateSource.Gitee: "Gitee"
-updateSource.XtremeApi: "Официальный сайт"
+updateSource.XtremeApi: "Api"
 
 # 更新结束提示 / Update completion prompts
 updateRestart: "Перезапустите игру, чтобы применить изменения :)"
-updatePingFialed: "Причина: {0}\nВыбранный канал может быть временно недоступен. Пожалуйста, попробуйте переключиться на другой канал загрузки."
-updateFileMd5Incorrect: "Причина: Ошибка контрольной суммы файла\nВерсия файла с этого канала не является последней. Пожалуйста, попробуйте переключиться на другой канал загрузки."
-downloadFailed: "Причина: Истекло время ожидания загрузки или прервано\nПожалуйста, повторите попытку после изменения сети или обновите вручную."
+updatePingFialed: "Причина: {0}\nВыбранный канал может быть временно недоступен. Попробуйте изменить канал загрузки."
+updateFileMd5Incorrect: "Причина: Ошибка контрольной суммы файла\nВерсия файла с этого канала не является последней. Попробуйте изменить канал загрузки."
+downloadFailed: "Причина: Время загрузки истекло или прервано\nПопробуйте снова после изменения вашей сети или обновите вручную."
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
-onSetPublicNoLatest: "У нас есть важное обновление. Пожалуйста, обновите этот мод.\nИначе вы не сможете присоединиться к публичным комнатам."
-CanNotJoinPublicRoomNoLatest: "У нас есть важное обновление. Пожалуйста, обновите этот мод.\nИначе вы не сможете присоединиться к публичным комнатам."
-ModBrokenMessage: "Файлы мода повреждены. Пожалуйста, перезапустите игру или переустановите этот мод."
-UnsupportedVersion: "Ваша версия Among Us несовместима с FinalSuspect.\nПожалуйста, обновите вашу игру."
+onSetPublicNoLatest: "У нас есть важное обновление. Пожалуйста, обновите это мод.\nВ противном случае, вы не сможете присоединиться к публичным комнатам."
+CanNotJoinPublicRoomNoLatest: "У нас есть важное обновление. Пожалуйста, обновите это мод.\nВ противном случае, вы не сможете присоединиться к публичным комнатам."
+ModBrokenMessage: "Мод-файлы повреждены. Пожалуйста, перезапустите игру или переустановите этот мод."
+UnsupportedVersion: "Ваша версия Among Us не совместима с FinalSuspect.\nПожалуйста, обновите вашу игру."
 
-# Audio playback
-PlayMode0: "Играть один раз"
-PlayMode1: "Повторять один трек"
-PlayMode2: "Перемешать"
-PlayMode3: "Последовательно"
-Stop: "Стоп"
-CanPlay: "← Нажмите для воспроизведения"
-NoFound: "[Файл отсутствует]"
+# 音频播放 / Audio Playback
+PlayMode0: "Воспроизвести один раз"
+PlayMode1: "Повторить один раз"
+PlayMode2: "Случайный порядок"
+PlayMode3: "Последовательный порядок"
+Stop: "Остановить"
+CanPlay: "Нажмите, чтобы воспроизвести"
+NoFound: "[Файл не найден]"
 NextPage: "Следующая страница"
 PreviousPage: "Предыдущая страница"
 
-# 音频添加 / Audio addition
-download: "Скачать"
+# 音频添加 / Audio Addition
+download: "Загрузить"
 delete: "Удалить"
 NewSound: "Добавить новую музыку"
 PleaseEnterMusic: "Пожалуйста, введите название музыки"
 AudioManagementAlreadyExists: "Это название музыки уже существует"
-NotAllowedMusic: "Формат названия музыки не разрешён"
+NotAllowedMusic: "Формат названия музыки не разрешен"
 
-# 界面提示 / Interface tips
-CustomAudioManagementHelp: "Вы можете скачать музыку, поддерживаемую XtremeWave, или добавить свою музыку в 「Управление звуком」. При добавлении своей музыки убедитесь, что вы добавили название музыки в 'Управление звуком' и поместите соответствующий аудиофайл в папку 'Among Us/Final Suspect_Data/Resources/Audios' (поддерживаемые форматы: .wav). Музыка может воспроизводиться в 'Моя музыка'."
+# 界面提示 / Interface Tips
+CustomAudioManagementHelp: "Вы можете загрузить музыку, поддерживаемую XtremeWave, или добавить свою собственную музыку в 'Управление аудио'. При добавлении своей собственной музыки, убедитесь, что вы добавили название музыки в 'Управление аудио' и поместили соответствующий аудиофайл в папку 'Among Us/Final Suspect_Data/Resources/Sounds' (поддерживаемые форматы: .wav). Музыка может быть воспроизведена в 'Моя музыка'."
 # , .flac, .aiff, .mp3, .aac, .ogg, .m4a
-CustomSoundHelp: "Вы можете скачать музыку, поддерживаемую XtremeWave, или добавить свою музыку в 「Управление звуком」. Если локальный путь к музыкальным ресурсам отсутствует, отобразится '[Файл отсутствует]'."
+CustomSoundHelp: "Вы можете загрузить музыку, поддерживаемую XtremeWave, или добавить свою собственную музыку в 'Управление аудио'. Если локальный ресурс музыки отсутствует, будет отображаться '[Файл не найден]'."
 
-# 主界面音乐提醒 / Main interface music reminder
-MusicNotYet: "Текущий музыкальный файл обнаружен как неполный"
-AudioNYPro: "Для улучшения игрового опыта скачайте нашу музыку в 「Домашняя страница - Настройки - Дополнительные функции - Управление звуком」"
+# 主界面音乐提醒 / Main Menu Music Reminder
+MusicNotYet: "Текущий музыкальный файл был обнаружен как неполный"
+AudioNYPro: "Для лучшего игрового опыта загрузите нашу музыку в разделе 'Главная-Настройки-Дополнительные функции-Управление аудио'"
 
-# 官方音乐
+# 官方音乐 / Official Musics
 Mus.GongXiFaCai: "恭喜发财"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.TidalSurge: "Tidal Surge"
@@ -167,43 +175,40 @@ Mus.Interlude: "Interlude"
 Mus.Fractured: "Fractured"
 Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
 Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "return to simplicity"
+Mus.ReturnToSimplicity: "Return To Simplicity"
 
 # 信息 / Messages
-Message.KickedByDenyName: "[{0}] был исключён, так как его имя совпало с [{1}]"
-Message.BanedByBanList: "[{0}] был забанен, так как он был забанен ранее."
-Message.BanedByFACList: "【{0}】 был забанен, так как он находится в списке FAC заблокированных пользователей."
-Message.DumpfileSaved: "Файл лога был успешно сохранён на рабочий стол, имя файла: {0}"
-Message.KickedByNoFriendCode: "[{0}] был исключён, так как его код друга не существует."
-Message.AddedPlayerToBanList: "Добавлен [{0}] в список заблокированных"
-Message.KickedByFAC: "[{0}] исключён FAC, причина: {1}"
-Message.BanedByFAC: "【{0}】 исключён FAC, причина:{1}"
-Message.NoticeByFAC: "[{0}] Обнаружено: {1}"
-Message.WarnWhoSayBanWord: "{0} сказал запрещенное слово~"
+Message.KickedByDenyName: "[{0}] был исключен, потому что его имя соответствует [{1}]"
+Message.BanedByBanList: "[{0}] был заблокирован, потому что он был заблокирован ранее."
+Message.BanedByFACList: "[{0}] был заблокирован, потому что он находится в списке FAC."
+Message.DumpfileSaved: "Файл журнала был успешно сохранен на рабочем столе, имя файла: {0}"
+Message.KickedByNoFriendCode: "[{0}] был исключен, потому что его код друга не существует."
+Message.AddedPlayerToBanList: "Добавлен [{0}] в список блокировок"
+Message.KickedByFAC: "[{0}] был исключен FAC, причина: {1}"
+Message.BanedByFAC: "[{0}] был исключен FAC, причина: {1}"
 
 # 通知 / Notifications
-PlayerLeft: "[{0}] покинул игру"
-PlayerKickByHost: "[{0}] исключён хостом"
-PlayerBanByHost: "[{0}] забанен хостом"
-PlayerLeftCuzError: "[{0}] покинул игру из-за ошибки"
-PlayerLeftByAU-Anticheat: "[{0}] был исключён официальным античитом AmongU (Не связано с FinalSuspect)"
-KickAndriodPlayer: "【{0}】 был исключён из-за настройки 'No Phones'"
-KickBecauseLowLevel: "[{0}] был исключён, так как его уровень был слишком низким"
-KickBecauseDiffrentVersionOrMod: "[{0}] был исключён, так как у него была другая версия мода"
+PlayerLeft: "[{0}] вышел из игры"
+PlayerLeftCuzTimeout: "[{0}] вышел из игры из-за <color=#CA8A8A>истечения времени подключения</color>"
+PlayerKickByHost: "[{0}] был исключен хостом"
+PlayerBanByHost: "[{0}] был заблокирован хостом"
+PlayerLeftCuzError: "[{0}] вышел из игры из-за <color=#E57373>ошибки</color>"
+PlayerLeftByAU-Anticheat: "[{0}] был исключен системой античита AmongU (не связано с <color=#cecdfd>FinalSuspect</color>)"
+KickBecauseDiffrentVersionOrMod: "[{0}] был исключен, потому что у него была другая версия мода"
 
 # 警告 / Warnings
 Warning: "Предупреждение!"
 Warning.MismatchedVersion: "{0}\nимеет другую версию {1}"
-Warning.AutoExitAtMismatchedVersion: "Хост имеет другую версию {0}\nВы будете исключены через {1}"
-Warning.InvalidRpc: "Исключён {0}, так как получен недопустимый RPC.\nПожалуйста, проверьте, что другие моды кроме FinalSuspect не установлены."
-Warning.InvalidRpc_NotHost: "{0} подозревается в использовании читов. Пожалуйста, напомните хосту исключить его <color=#ffff00>(Недопустимый Rpc:{1})</color>"
-Warning.SetName: "Игрок {0} был кикнут за неправильную настройку имени."
-Warning.SetName_NotHost: "Подозревается, что {0} использует читы. Напомните хосту, чтобы он кикнул его <color=#ffff00>(Множественная смена имени)</color>"
-Warning.Despawn: "{0} был кикнут за незаконное исчезновение своего персонажа."
-Warning.Despawn_NotHost: "Подозревается, что {0} использует читы. Напомните хосту, чтобы он кикнул его <color=#ffff00>(Незаконное исчезновение персонажа)</color>."
-Warning.Cheater: "{0} подозревается в использовании чит-программы. Пожалуйста, напомните хозяину, чтобы он выгнал его вовремя <color=#ffff00>(Незаконная отправка официального Rpc: {1})</color>"
+Warning.AutoExitAtMismatchedVersion: "У хоста нет или есть другая версия {0}\nВы будете исключены через {1}"
+Warning.InvalidRpc: "{0} был исключен, потому что был получен недействительный RPC."
+Warning.InvalidRpc_NotHost: "{0} подозревается в использовании читов. Пожалуйста, попросите хоста исключить его <color=#ffff00>(Недействительный RPC: {1})</color>"
+Warning.SetName: "{0} был исключен, потому что он несколько раз устанавливал имя."
+Warning.SetName_NotHost: "{0} подозревается в использовании читов. Пожалуйста, попросите хоста исключить его <color=#ffff00>(Установка имени несколько раз)</color>"
+Warning.SendQuickChat: "{0} был исключен, потому что он отправил несколько быстрых сообщений в течение 3 секунд"
+Warning.SendQuickChat_NotHost: "{0} подозревается в использовании читов. Пожалуйста, попросите хоста исключить его <color=#ffff00>(Отправка нескольких быстрых сообщений в течение 3 секунд)</color>"
+Warning.Cheater: "{0} подозревается в использовании читов. Пожалуйста, попросите хоста исключить его <color=#ffff00>(Незаконная отправка официального RPC: {1})</color>"
 Warning.CantKickDev: "Извините, вы не можете исключить разработчика"
-Warning.RoomBroken: "Извините, эта комната была разрушена. Пожалуйста, перейдите в другую комнату для продолжения игры."
+Warning.RoomBroken: "Извините, эта комната была взломана. Пожалуйста, перейдите в другую комнату, чтобы продолжить игру."
 
 ## 错误等级 / Error Levels
 ErrorLevel1: "Могут возникнуть ошибки."
@@ -213,33 +218,33 @@ ErrorLevel3: "Эта версия не должна была быть выпущ
 # 反作弊 / FAC
 FAC.CheatDetected.HighLevel: "Предупреждение: FAC обнаружил высокий уровень читов."
 FAC.CheatDetected.LowLevel: "Предупреждение: FAC обнаружил низкий уровень читов. Один из игроков использует читы."
-FAC.CheatDetected.FAC: "Использование чит-программ (например, AUM, YuMenu, SM и др.)"
+FAC.CheatDetected.FAC: "Использование чит-программ (например, AUM, YuMenu, SM и т. д.)"
 
 # 模组信息 / Mod Infos
-Contributors: "Авторы"
+Contributors: "Участники"
 Acknowledgement: "Благодарности"
 
 # 断连提示 / Disconect Reasons
-DCNotify.Hacking: "Вы были исключены античитом.\n (использование модуля может быть ошибочно принято за читы)"
-DCNotify.Banned: "Вам не разрешено входить в эту комнату"
+DCNotify.Hacking: "Вы были исключены системой античита.\n(использование модов может быть ошибочно расценено как читы)"
+DCNotify.Banned: "Вам запрещено входить в эту комнату"
 DCNotify.Kicked: "Вы были исключены из комнаты"
-DCNotify.DCFromServer: "Вы отключились от сервера.\nЭто может быть связано с нестабильностью вашей сети.\nЭто также может быть связано с нестабильностью сервера."
-DCNotify.GameNotFound: "Назначенная комната не найдена, комната могла быть распущена\nили проверьте, выбрали ли вы другой сервер, чем комната"
-DCNotify.GameStarted: "Игра уже началась, пожалуйста, подождите, пока она не закончится"
-DCNotify.GameFull: "Комната полна, попробуйте снова позже"
+DCNotify.DCFromServer: "Вы отключились от сервера.\nЭто может быть из-за нестабильности вашей сети.\nЭто также может быть из-за нестабильности сервера."
+DCNotify.GameNotFound: "Не удалось найти назначенную комнату, комната может быть распущена\nили проверьте, не выбрали ли вы другой сервер, отличный от комнаты"
+DCNotify.GameStarted: "Игра уже началась, пожалуйста, подождите, пока она закончится"
+DCNotify.GameFull: "Комната заполнена, пожалуйста, попробуйте позже"
 DCNotify.IncorrectVersion: "Ваша версия Among Us отличается от этой комнаты"
 DCNotify.Description: "Вы были исключены из игры.\nПричина: {0}"
-DCNotify.DenyName: "Ваш ник содержит неправильные символы"
+DCNotify.DenyName: "Ваш никнейм содержит неправильные символы"
 DCNotify.BanList: "Вы были заблокированы хостом"
 DCNotify.FACList: "Вы были заблокированы FAC"
 DCNotify.CheatDetected: "Вы были обнаружены как подозреваемый в читах FAC"
-DCNotify.InvalidRPC: "Возможно, вы установили другой мод, чем хост, или ваш мод был злонамеренно изменён"
+DCNotify.InvalidRPC: "Вы, возможно, установили другой мод, чем у хоста, или ваш мод был изменен с умыслом"
 DCNotify.ModVersionIncorrect: "Ваша версия мода отличается от хоста"
 DCNotify.LowLevel: "Ваш уровень не соответствует требованиям этой комнаты"
-DCNotify.NotLogin: "Неавторизованные игроки не допускаются в эту комнату"
+DCNotify.NotLogin: "Неавторизованным игрокам не разрешен вход в эту комнату"
 
 # 任务栏 / Task Panel
-PressF1ShowRoleDescription: "Нажмите F1 для просмотра описания вашей роли"
+PressF1ShowRoleDescription: "Нажмите F1, чтобы показать описание вашей роли"
 FakeTask: "Ложная задача:"
 KillCount: "Убийства"
 
@@ -248,20 +253,20 @@ RoleSummaryText: "Последние результаты:"
 ShowResults: "Показать последние результаты"
 HideResults: "Скрыть последние результаты"
 NoInfoExists: "Нет доступной информации о последних результатах"
-CrewsWin: "<color=#8cffff>Победа команды-экипажа</color>"
-CrewmatesWin: "Победа членов экипажа"
-CrewmatesWinBlurb: "Зло всегда будет наказано!"
-ImpsWin: "<color=#ff1919>Победа команды-предателей</color>"
-ImpostorsWin: "Победа предателей"
-ImpostorsWinBlurb: "Тьма окутывает мир"
-HideSummaryTextToShowWinText: "<color=#ffff00>Скрыть информацию о результатах, чтобы увидеть текст победы</color>"
+CrewsWin: "<color=#8cffff>Победа команды Членов Экипажа</color>"
+CrewmatesWin: "Победа Членов Экипажа"
+CrewmatesWinBlurb: "Свет истины сияет в надежде!"
+ImpsWin: "<color=#ff1919>Победа команды Импосторов</color>"
+ImpostorsWin: "Победа Импосторов"
+ImpostorsWinBlurb: "Зло превращает истину в пепел"
+HideSummaryTextToShowWinText: "<color=#ffff00>Скрыть последние результаты, чтобы показать текст победы</color>"
 
 # 禁用公开
-DisabledByProgram: "Операции с публичными комнатами были отключены программой"
-PublicNotAvailableOnThisVersion: "Публичные комнаты недоступны в этой версии FinalSuspect"
+DisabledByProgram: "Публичные операции были отключены программой"
+PublicNotAvailableOnThis Version: "Публичные комнаты не доступны в этой версии FinalSuspect"
 
 # 主页 / Main UI
-FinalSuspectWelcomeText: "Желаем вам приятной <color={0}>игровой</color> сессии!"
+FinalSuspectWelcomeText: "Желаем вам <color={0}>приятной игры</color>!"
 ConnectToFinalSuspectServerFailed: "Не удалось подключиться к серверу FinalSuspect"
 Website: "Официальный сайт"
 MainMenuCredential: "{0} © 2025"
@@ -272,20 +277,23 @@ Android: "Android"
 
 # 延迟显示 / Ping Tracker
 Ping: "Пинг"
-FrameRate: "Частота кадров"
+FrameRate: "Кадров в секунду"
 Server: "Сервер"
 Local: "<color=#D1FA87>Локально</color>"
 
-# 其他
-HongKong: Гонконг
-FPSSetTo: "Ограничение частоты кадров установлено на: {0}"
+# 其他 / Other
+HongKong: "Гонконг"
+FPSSetTo: "Ограничение кадров установлено на: {0}"
 BrowsingMode: "Режим просмотра"
-Broken: "Сломанный"
+Broken: "Повреждено"
 
-# 加载
-LanguageFilesLoadingComplete: "Загрузка текстов перевода завершена!"
+# 加载 / Loading
+LanguageFilesLoadingComplete: "Загрузка переводов завершена!"
 CheckingForFiles: "Проверка целостности файлов ресурсов..."
-DownloadingResources: "Скачивание файлов ресурсов..."
+DownloadingResources: "Загрузка файлов ресурсов..."
 Loading: "Загрузка..."
 LoadingComplete: "Загрузка завершена!"
 
+# 身份 / Identity
+Host: "Хост"
+Cheater: "Читер"

@@ -7,29 +7,8 @@ using InnerNet;
 
 namespace FinalSuspect.DataHandling;
 
-public static class XtremeGameData
+public static partial class XtremeGameData
 {
-    public class PlayerVersion
-    {
-        public static Dictionary<byte, PlayerVersion> playerVersion = new();
-
-        public readonly Version version;
-        public readonly string tag;
-        public readonly string forkId;
-
-        public PlayerVersion(string ver, string tag_str, string forkId) : this(Version.Parse(ver), tag_str, forkId)
-        {
-        }
-
-        public PlayerVersion(Version ver, string tag_str, string forkId)
-        {
-            version = ver;
-            tag = tag_str;
-            this.forkId = forkId;
-        }
-
-    }
-
     public static class GameStates
     {
         public static bool InGame { private get; set; } = false;
@@ -100,53 +79,6 @@ public static class XtremeGameData
         }
     }
 
-    public static XtremePlayerData GetXtremeData(this PlayerControl pc)
-    {
-        try
-        {
-            return XtremePlayerData.GetXtremeDataById(pc.PlayerId);
-        }
-        catch
-        {
-            try
-            {
-                return XtremePlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-       
-    }
-
-    public static bool IsAlive(this PlayerControl pc) => pc?.GetXtremeData()?.IsDead == false || !GameStates.IsInGame;
-
-public static string GetDataName(this PlayerControl pc)
-    {
-        try
-        {
-            return XtremePlayerData.GetPlayerNameById(pc.PlayerId);
-        }
-        catch
-        {
-            return null;
-        }
-        
-    }
-
-    public static void SetDead(this PlayerControl pc) => pc.GetXtremeData().SetDead();
-    public static void SetDisconnected(this PlayerControl pc) => pc.GetXtremeData().SetDisconnected();
-    public static void SetRole(this PlayerControl pc, RoleTypes role) => pc.GetXtremeData().SetRole(role);
-    public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
-        => pc.GetXtremeData().SetDeathReason(deathReason, focus);
-    public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
-    {
-        if (pc.GetXtremeData().RealKiller != null || !pc.Data.IsDead) return;
-        pc.GetXtremeData().SetRealKiller(killer.GetXtremeData());
-    }
-    public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount) => pc.GetXtremeData().SetTaskTotalCount(TaskTotalCount);
-    public static void OnCompleteTask(this PlayerControl pc) => pc.GetXtremeData().CompleteTask();
     public static bool OtherModClient(this PlayerControl player) => OtherModClient(player.PlayerId) || player.Data.OwnerId == -2 && !IsFinalSuspect(player.PlayerId);
     public static bool OtherModClient(byte id) => PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId != ver.forkId;
 

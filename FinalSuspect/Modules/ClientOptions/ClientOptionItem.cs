@@ -90,7 +90,7 @@ public sealed class ClientOptionItem_String : ClientActionItem
         var item = new ClientOptionItem_String(name, config, selections, optionsMenuBehaviour);
         item.OnClickAction = () =>
         {
-            int currentIndex = Array.IndexOf(selections, config.Value);
+            var currentIndex = Array.IndexOf(selections, config.Value);
             
             if (currentIndex == -1)
             {
@@ -98,7 +98,7 @@ public sealed class ClientOptionItem_String : ClientActionItem
                 return;
             }
             
-            int nextIndex = (currentIndex + 1) % selections.Length;
+            var nextIndex = (currentIndex + 1) % selections.Length;
             name = 
             config.Value = selections[nextIndex];
             item.UpdateToggle(selections);
@@ -112,7 +112,7 @@ public sealed class ClientOptionItem_String : ClientActionItem
     {
         if (ToggleButton == null) return;
 
-        Color color = Config.Value == selections[0] ? Palette.Purple : Color.magenta;
+        var color = Config.Value == selections[0] ? Palette.Purple : Color.magenta;
         if (Config.Value == "HorseMode")
             color = Color.gray;
         ToggleButton.Background.color = color;

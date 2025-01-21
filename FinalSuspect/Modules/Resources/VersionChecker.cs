@@ -192,7 +192,7 @@ public static class VersionChecker
                 result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
             }
 
-            JObject data = JObject.Parse(result);
+            var data = JObject.Parse(result);
 
             verHead = new(data["verHead"]?.ToString());
 
@@ -214,7 +214,7 @@ public static class VersionChecker
             creation = int.Parse(data["creation"]?.ToString());
             isBroken = data["allowStart"]?.ToString().ToLower() != "true";
 
-            JObject announcement = data["announcement"].Cast<JObject>();
+            var announcement = data["announcement"].Cast<JObject>();
             ModUpdater.announcement_en = announcement["English"]?.ToString();
             ModUpdater.announcement_zh = announcement["SChinese"]?.ToString();
             ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);

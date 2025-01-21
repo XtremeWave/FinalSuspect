@@ -21,7 +21,7 @@ class Webhook
             { "username", "FinalSuspect-Debugger" },
             { "avatar_url", "https://npm.elemecdn.com/hexo-static@1.0.1/img/avatar.webp" }
         };
-        TaskAwaiter<HttpResponseMessage> awaiter = httpClient.PostAsync(
+        var awaiter = httpClient.PostAsync(
             Main.WebhookURL.Value, new FormUrlEncodedContent(strs)).GetAwaiter();
         awaiter.GetResult();
     }
@@ -51,16 +51,16 @@ class XtremeLogger
     {
         if (!isEnable || disableList.Contains(tag)) return;
         var logger = Main.Logger;
-        string t = DateTime.Now.ToString("HH:mm:ss");
+        var t = DateTime.Now.ToString("HH:mm:ss");
         if (sendToGameList.Contains(tag) || isAlsoInGame) SendInGame($"[{tag}]{text}");
         if (escapeCRLF)
             text = text.Replace("\r", "\\r").Replace("\n", "\\n");
-        string log_text = $"[{t}][{tag}]{text}";
+        var log_text = $"[{t}][{tag}]{text}";
         if (isDetail && DebugModeManager.AmDebugger)
         {
             StackFrame stack = new(2);
-            string className = stack.GetMethod().ReflectedType.Name;
-            string memberName = stack.GetMethod().Name;
+            var className = stack.GetMethod().ReflectedType.Name;
+            var memberName = stack.GetMethod().Name;
             log_text = $"[{t}][{className}.{memberName}({Path.GetFileName(fileName)}:{lineNumber})][{tag}]{text}";
         }
         switch (level)

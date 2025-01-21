@@ -84,7 +84,7 @@ public static class ServerAddManager
             };
         };
 
-        Color32 color = serverName switch
+        var color = serverName switch
         {
             "Asia" => new(58, 166, 117, 255),
             "Europe" => new(58, 166, 117, 255),
@@ -111,8 +111,8 @@ public static class ServerAddManager
 
     public static IRegionInfo CreateHttp(string ip, string name, ushort port, bool ishttps)
     {
-        string serverIp = (ishttps ? "https://" : "http://") + ip;
-        ServerInfo serverInfo = new ServerInfo(name, serverIp, port, false);
+        var serverIp = (ishttps ? "https://" : "http://") + ip;
+        var serverInfo = new ServerInfo(name, serverIp, port, false);
         ServerInfo[] ServerInfo = [serverInfo];
         return new StaticHttpRegionInfo(name, (StringNames)1003, ip, ServerInfo).Cast<IRegionInfo>();
     }
