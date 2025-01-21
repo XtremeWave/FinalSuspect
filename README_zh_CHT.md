@@ -2,7 +2,7 @@
 
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme，Among Us 的最佳原版插件。**
+**FinalSuspect_Xtreme，Among Us 的最佳原版模组。**
 
 <img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="許可證">
 <img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="最新標籤">
@@ -17,7 +17,7 @@
 </div>
 
 ## 語言
-***此插件支援 Among Us 所支援的所有語言！***<br>
+***此模组支援 Among Us 所支援的所有語言！***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
@@ -36,7 +36,7 @@
 [Gaeilge](README_ga.md)<br>
 
 ## 注意事項
-此插件並未隸屬於 Among Us 或 Innersloth LLC，所包含的內容也未經 Innersloth LLC 認可或贊助。<br>
+此模组並未隸屬於 Among Us 或 Innersloth LLC，所包含的內容也未經 Innersloth LLC 認可或贊助。<br>
 此處部分資料為 Innersloth LLC 的財產。
 
 ### 貢獻者

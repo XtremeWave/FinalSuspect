@@ -56,13 +56,12 @@ public class ModNewsHistory
     while (!reader.EndOfStream)
     {
         var line = reader.ReadLine();
-        if (line.StartsWith("#Number:")) mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
-        else if (line.StartsWith("#LangId:")) langId = uint.Parse(line.Replace("#LangId:", string.Empty));
-        else if (line.StartsWith("#Title:")) mn.Title = line.Replace("#Title:", string.Empty);
-        else if (line.StartsWith("#SubTitle:")) mn.SubTitle = line.Replace("#SubTitle:", string.Empty);
-        else if (line.StartsWith("#ShortTitle:")) mn.ShortTitle = line.Replace("#ShortTitle:", string.Empty);
-        else if (line.StartsWith("#Date:")) mn.Date = line.Replace("#Date:", string.Empty);
-        else if (line.StartsWith("#---")) continue;
+        if (line.StartsWith("# Number:")) mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
+        else if (line.StartsWith("# LangId:")) langId = uint.Parse(line.Replace("#LangId:", string.Empty));
+        else if (line.StartsWith("# Title:")) mn.Title = line.Replace("#Title:", string.Empty);
+        else if (line.StartsWith("# SubTitle:")) mn.SubTitle = line.Replace("#SubTitle:", string.Empty);
+        else if (line.StartsWith("# ShortTitle:")) mn.ShortTitle = line.Replace("#ShortTitle:", string.Empty);
+        else if (line.StartsWith("# Date:")) mn.Date = line.Replace("#Date:", string.Empty);
         else if (line.StartsWith("# ")) continue;
         else
         {
