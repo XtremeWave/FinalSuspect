@@ -64,6 +64,7 @@ public static class PathManager
         }
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Languages");
         CheckAndCreate(GetLocalPath(LocalType.Ban));
+        CheckAndCreate(GetLocalPath(LocalType.Bypass), false);
     }
 
     public static void CheckAndCreate(string path, bool hidden = true)
@@ -76,6 +77,10 @@ public static class PathManager
         File.SetAttributes(path, hidden
             ? attributes | FileAttributes.Hidden 
             : attributes & ~FileAttributes.Hidden);
+    }
+    public static string GetBypassFileType(FileType fileType, BypassType bypassType)
+    {
+        return GetLocalPath(LocalType.Bypass) + $"BypassCheck_{fileType}_{bypassType}.xwr";
     }
 }
 
@@ -98,5 +103,12 @@ public enum LocalType
 {
     Ban,
     Resources,
-    BepInEx
+    BepInEx,
+    Bypass
+}
+
+public enum BypassType
+{
+    Once,
+    Longterm
 }

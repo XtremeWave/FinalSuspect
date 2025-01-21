@@ -99,7 +99,7 @@ public class XtremePlayerData : IDisposable
     }
     public static int GetLongestNameByteCount() => AllPlayerData.Select(data => data.Name.GetByteCount()).OrderByDescending(byteCount => byteCount).FirstOrDefault();
 
-public void SetName(string name) => Name = name;
+    public void SetName(string name) => Name = name;
     public void SetDead()
     {
         IsDead = true;

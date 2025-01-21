@@ -226,8 +226,9 @@ public static class XtremeLocalHandling
         }
         catch
         {
-            var create = ((__instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
-                         __instance.GetRealName() != "Player(Clone)") && XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId));
+            var create = (__instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
+                         __instance.GetRealName() != "Player(Clone)") 
+                         && XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId);
             if (create)
                 XtremePlayerData.CreateDataFor(__instance);
         }

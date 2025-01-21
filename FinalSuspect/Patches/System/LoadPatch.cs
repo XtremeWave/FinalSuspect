@@ -96,9 +96,13 @@ public class LoadPatch
             var thisversion =
                 $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
             
-            if (thisversion != Main.LastStartVersion.Value)
+            ReloadLanguage = thisversion != Main.LastStartVersion.Value 
+                             && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Once)) 
+                             && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Longterm));
+            var reloadBypassPath = PathManager.GetBypassFileType(FileType.Languages, BypassType.Once);
+            if (File.Exists(reloadBypassPath))
             {
-                ReloadLanguage = true;
+                File.Delete(reloadBypassPath);
             }
             
             Main.LastStartVersion.Value = thisversion;
@@ -107,6 +111,7 @@ public class LoadPatch
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);
+            
             #region First Start Final Suspect
             loadText = GameObject.Instantiate(__instance.errorPopup.InfoText, null);
             loadText.transform.localPosition = new(0f, -0.28f, -10f);
@@ -313,27 +318,29 @@ public class LoadPatch
 
             #region After Download Depends
             Init();
-            p = 1f;
-            while (p > 0)
+            if (TranslationController.Instance.currentLanguage.languageID is not SupportedLangs.English)
             {
-                p -= Time.deltaTime * 2.8f;
-                var alpha = p;
-                if (alpha < 0.5f)
-                    loadText.color = Color.white.AlphaMultiplied(alpha);
-                yield return null;
-            }
-            loadText.text = GetString("Loading");
-            p = 1f;
-            while (p > 0)
-            {
-                p -= Time.deltaTime * 2.8f;
-                var alpha = 1-p;
-                if (alpha < 0.5f)
-                    loadText.color = Color.white.AlphaMultiplied(alpha);
-                yield return null;
-            }
+                p = 1f;
+                while (p > 0)
+                {
+                    p -= Time.deltaTime * 2.8f;
+                    var alpha = p;
+                    if (alpha < 0.5f)
+                        loadText.color = Color.white.AlphaMultiplied(alpha);
+                    yield return null;
+                }
 
-       
+                loadText.text = GetString("Loading");
+                p = 1f;
+                while (p > 0)
+                {
+                    p -= Time.deltaTime * 2.8f;
+                    var alpha = 1 - p;
+                    if (alpha < 0.5f)
+                        loadText.color = Color.white.AlphaMultiplied(alpha);
+                    yield return null;
+                }
+            }
             yield return new WaitForSeconds(1f);
             #endregion
             
