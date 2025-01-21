@@ -2,22 +2,20 @@
 
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme, il miglior plugin mod originale per Among Us.**
+**Final Suspect: Il miglior modulo di supporto per Among Us!**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Licenze">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="UltimoTag">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Download">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Osservatori">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Stelle">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
-<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
-
-[Sito Ufficiale di FS](https://fsusx.top.cc) | [Sito Ufficiale di XtremeWave](https://www.xtreme.net.cn)
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
+<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
 </div>
 
 ## Lingue
-***Questo plugin supporta tutte le lingue supportate da Among Us!***<br>
+***Questo modulo supporta tutte le lingue disponibili in Among Us!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
@@ -28,26 +26,43 @@
 [Filipino](README_tl.md)<br>
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
-[Italiano]<br>
+[Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
-## Nota
-Questo plugin non è affiliato a Among Us o Innersloth LLC, e il contenuto incluso non è approvato o sponsorizzato da Innersloth LLC.<br>
-Alcuni materiali qui sono di proprietà di Innersloth LLC.
+## Importante Nota
+Questo modulo non è affiliato a Among Us o Innersloth LLC. Il contenuto incluso non è stato approvato o sponsorizzato da Innersloth LLC.<br>
+Alcuni dei materiali inclusi qui sono proprietà di Innersloth LLC.
 
-### Contributori
- - [KARPED1EM](https://github.com/KARPED1EM) - **Supporto Tecnico**
- - [Yu (precedentemente Night)](https://github.com/Night-GUA) - **Supporto Tecnico**
- - [Amongus](https://github.com/XiezibanWrite) - **Traduzione e Supporto Tecnico**
- - [NikoCat233](https://github.com/NikoCat233) - **Supporto Tecnico**
- - [Farewell](https://github.com/ksduye) - **Supporto alla Consulenza**
- - [LezaiYa](https://github.com/LezaiYa1) - **Supporto alla Consulenza**
- - [Imp11](https://github.com/dabao40) - **Supporto alla Consulenza**
- - [FangKuai](https://github.com/FangKuaiYa) - **Supporto alla Consulenza**
+## Collaboratori
+>[KARPED1EM](https://github.com/KARPED1EM) - **Supporto tecnico**<br>
+>Guida per la risoluzione dei bug
 
-## Storia delle Stelle
-[![Grafico della Storia delle Stelle](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+>[Yu (precedentemente: Night)](https://github.com/Night-GUA) - **Supporto tecnico**<br>
+>Aggiunta di suggerimenti &
+
+>[Amongus](https://github.com/XiezibanWrite) - **Traduzione & Supporto tecnico**<br>
+>Supporto parziale per il testo di traduzione & supporto durante lo sviluppo
+
+>[NikoCat233](https://github.com/NikoCat233) - **Supporto tecnico**<br>
+>Guida antitruffa
+
+> [QingFeng](https://github.com/QingFeng-awa) - **Supporto API**<br>
+>Fornitura del supporto API Xtreme!
+
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔オー](https://github.com/Reborn5537) - **Supporto tecnico**<br>
+>Aggiunta della verifica di KillNetWork per FAC
+
+>[LezaiYa](https://github.com/LezaiYa1) - **Supporto di consulenza**
+
+>[Imp11](https://github.com/dabao40) - **Supporto di consulenza**
+
+>[FangKuai](https://github.com/FangKuaiYa) - **Supporto di consulenza**
+
+>[ELinmei](https://github.com/linmeideli) - **Supporto di consulenza**
+
+## Cronologia delle stelle
+[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

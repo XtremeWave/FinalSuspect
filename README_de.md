@@ -2,22 +2,20 @@
 
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**FinalSuspect_Xtreme, das beste originale Mod-Plugin für Among Us.**
+**Final Suspect: Der beste Support-Mod für Among Us!**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect_Xtreme" alt="Lizenzen">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect_Xtreme" alt="NeuesteTags">
-<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect_Xtreme" alt="Downloads">
-<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect_Xtreme" alt="Beobachter">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect_Xtreme" alt="Sterne">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect_Xtreme" alt="Forks">
-<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect_Xtreme" alt="PRs">
-
-[FS Offizielle Website](https://fsusx.top.cc) | [XtremeWave Offizielle Website](https://www.xtreme.net.cn)
+<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
+<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
+<img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
+<img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
+<img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
 </div>
 
 ## Sprachen
-***Dieses Plugin unterstützt alle von Among Us unterstützten Sprachen!***<br>
+***Dieses Mod unterstützt alle in Among Us verfügbaren Sprachen!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
@@ -27,7 +25,7 @@
 [Nederlands](README_nl.md)<br>
 [Filipino](README_tl.md)<br>
 [Français](README_fr.md)<br>
-[Deutsch]<br>
+[Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
@@ -35,19 +33,36 @@
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
-## Hinweis
-Dieses Plugin ist nicht mit Among Us oder Innersloth LLC verbunden, und der enthaltene Inhalt wird von Innersloth LLC weder genehmigt noch gesponsert.<br>
-Einige Materialien hier sind Eigentum von Innersloth LLC.
+## Wichtige Mitteilung
+Dieses Mod ist weder mit Among Us noch mit Innersloth LLC verbunden. Der enthaltene Inhalt wurde weder von Innersloth LLC genehmigt noch gesponsert.<br>
+Einige der hier enthaltenen Materialien sind Eigentum von Innersloth LLC.
 
-### Mitwirkende
- - [KARPED1EM](https://github.com/KARPED1EM) - **Technischer Support**
- - [Yu (ehemals Night)](https://github.com/Night-GUA) - **Technischer Support**
- - [Amongus](https://github.com/XiezibanWrite) - **Übersetzung und Technischer Support**
- - [NikoCat233](https://github.com/NikoCat233) - **Technischer Support**
- - [Farewell](https://github.com/ksduye) - **Beratungsunterstützung**
- - [LezaiYa](https://github.com/LezaiYa1) - **Beratungsunterstützung**
- - [Imp11](https://github.com/dabao40) - **Beratungsunterstützung**
- - [FangKuai](https://github.com/FangKuaiYa) - **Beratungsunterstützung**
+## Mitwirkende
+>[KARPED1EM](https://github.com/KARPED1EM) - **Technische Unterstützung**<br>
+>Anleitung zur Fehlersuche
 
-## Sternenhistorie
-[![Sternenhistorie Diagramm](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect_Xtreme&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect_Xtreme&Date)
+>[Yu (früher: Night)](https://github.com/Night-GUA) - **Technische Unterstützung**<br>
+>Hinzufügen von Tipps &
+
+>[Amongus](https://github.com/XiezibanWrite) - **Übersetzung & Technische Unterstützung**<br>
+>Teilweise Übersetzungsunterstützung & Unterstützung während der Entwicklung
+
+>[NikoCat233](https://github.com/NikoCat233) - **Technische Unterstützung**<br>
+>Anleitung zur Betrugserkennung
+
+> [QingFeng](https://github.com/QingFeng-awa) - **API-Unterstützung**<br>
+>Xtreme API-Unterstützung bereitgestellt!
+
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔オー](https://github.com/Reborn5537) - **Technische Unterstützung**<br>
+>KillNetWork-Überprüfung für FAC hinzugefügt
+
+>[LezaiYa](https://github.com/LezaiYa1) - **Beratungsunterstützung**
+
+>[Imp11](https://github.com/dabao40) - **Beratungsunterstützung**
+
+>[FangKuai](https://github.com/FangKuaiYa) - **Beratungsunterstützung**
+
+>[ELinmei](https://github.com/linmeideli) - **Beratungsunterstützung**
+
+## Sternhistorie
+[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)
