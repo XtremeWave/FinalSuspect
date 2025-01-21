@@ -53,7 +53,7 @@
 > [QingFeng](https://github.com/QingFeng-awa) - **API サポート**<br>
 >Xtreme API サポートの提供！
 
->[𝑵𝒐𝒏𝒂𝒍𝒖𝒔オー](https://github.com/Reborn5537) - **技術サポート**<br>
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **技術サポート**<br>
 >FAC への KillNetWork チェックの追加
 
 >[LezaiYa](https://github.com/LezaiYa1) - **コンサルティング サポート**

@@ -53,7 +53,7 @@ Is leithéid de phríobháid Innersloth LLC é roinnt de na himeallacha atá lua
 > [QingFeng](https://github.com/QingFeng-awa) - **Tacaíocht API**<br>
 >Tacaíocht API Xtreme a chur ar fáil!
 
->[𝑵𝒐𝒏𝒂𝒍𝒖𝒔オー](https://github.com/Reborn5537) - **Tacaíocht Teicniúil**<br>
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **Tacaíocht Teicniúil**<br>
 >Seiceáil KillNetWork a chur le FAC
 
 >[LezaiYa](https://github.com/LezaiYa1) - **Tacaíocht Chomhthuiscint**

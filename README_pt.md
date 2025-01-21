@@ -53,7 +53,7 @@ Alguns dos materiais incluídos aqui são propriedade da Innersloth LLC.
 > [QingFeng](https://github.com/QingFeng-awa) - **Suporte API**<br>
 >Fornecimento de suporte API Xtreme!
 
->[𝑵𝒐𝒏𝒂𝒍𝒖𝒔オー](https://github.com/Reborn5537) - **Suporte Técnico**<br>
+>[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **Suporte Técnico**<br>
 >Adicionando verificação de KillNetWork para FAC
 
 >[LezaiYa](https://github.com/LezaiYa1) - **Suporte de Consultoria**
