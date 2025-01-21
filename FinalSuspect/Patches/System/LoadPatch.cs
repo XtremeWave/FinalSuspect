@@ -99,13 +99,22 @@ public class LoadPatch
             ReloadLanguage = thisversion != Main.LastStartVersion.Value 
                              && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Once)) 
                              && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Longterm));
-            var reloadBypassPath = PathManager.GetBypassFileType(FileType.Languages, BypassType.Once);
-            if (File.Exists(reloadBypassPath))
+            var reloadBypassPath_Once = PathManager.GetBypassFileType(FileType.Languages, BypassType.Once);
+            var reloadBypassPath_Longterm = PathManager.GetBypassFileType(FileType.Languages, BypassType.Longterm);
+            
+            if (File.Exists(reloadBypassPath_Once) || File.Exists(reloadBypassPath_Longterm))
             {
-                File.Delete(reloadBypassPath);
+                
+                if (File.Exists(reloadBypassPath_Once))
+                {
+                    File.Delete(reloadBypassPath_Once);
+                }
+            }
+            else
+            {
+                Main.LastStartVersion.Value = thisversion;
             }
             
-            Main.LastStartVersion.Value = thisversion;
             
             var fastboot = Main.FastBoot.Value && !ReloadLanguage;
             #endregion
