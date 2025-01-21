@@ -5,14 +5,14 @@
 
 
   "minVer": "latest",
-  "creation": "2",
+  "creation": "1",
   "allowStart": "true",
   "CanUpdate": "false",
   "DebugVer": "0.0.0",
 
   "md5": "2e41727d5e868073b2b434e6549dac8d",
   "announcement": {
-    "SChinese": "当前无公告",
-    "English": "No announcements"
+    "SChinese": "新版本发布在即，敬请期待！",
+    "English": "The new version is about to be released. Stay tuned!"
   }
 }
