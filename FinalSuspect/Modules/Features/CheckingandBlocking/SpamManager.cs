@@ -69,7 +69,7 @@ public static class SpamManager
         List<string> waitforupdate = []; 
         while (!reader.EndOfStream)
         {
-            var line = reader.ReadLine();
+            var line = reader.ReadLine().ToLower();
             if (!BanWords.Contains(line))
             {
                 waitforupdate.Add(line);
