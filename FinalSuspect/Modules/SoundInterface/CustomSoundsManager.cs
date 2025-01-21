@@ -25,6 +25,7 @@ public static class CustomSoundsManager
         }
         
         StopPlayMod();
+        StopPlayVanilla();
         ReloadTag();
         MyMusicPanel.RefreshTagList();
         SoundManagementPanel.RefreshTagList();
@@ -45,6 +46,12 @@ public static class CustomSoundsManager
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
         }, 0.01f, "Refresh Tag List");
+        if (Main.DisableVanillaSound.Value)
+            StopPlayVanilla();
+        else
+        {
+           StartPlayVanilla();
+        }
     }
 
     public static void StopPlayVanilla()
