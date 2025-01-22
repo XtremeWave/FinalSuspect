@@ -71,8 +71,7 @@ public class ClientFeatureItem
                 ModOptionsButton.transform.localPosition = pos != null ? pos.Value - new Vector3(1.3f, 0f, 0f) : new(-1.3f, -2.4f, 1f);
                 ModOptionsButton.name = "FinalSuspectFeatures Options";
                 ModOptionsButton.Text.text = GetString("FinalSuspectFeatures");
-                if (ColorUtility.TryParseHtmlString(ColorHelper.ModColor, out var modColor))
-                    ModOptionsButton.Background.color = modColor;
+                ModOptionsButton.Background.color = ColorHelper.ClientFeatureColor;
                 var modOptionsPassiveButton = ModOptionsButton.GetComponent<PassiveButton>();
                 modOptionsPassiveButton.OnClick = new();
                 modOptionsPassiveButton.OnClick.AddListener(new Action(() =>
@@ -99,7 +98,7 @@ public class ClientFeatureItem
                 -6f);
             ToggleButton.name = name;
             ToggleButton.Text.text = GetString(name);
-            ToggleButton.Background.color = Color.white;
+            ToggleButton.Background.color = ColorHelper.ClientFeatureColor_ClickType;
             var passiveButton = ToggleButton.GetComponent<PassiveButton>();
             passiveButton.OnClick = new();
             passiveButton.OnClick.AddListener((Action)OnClick);

@@ -33,7 +33,6 @@ public static class ColorHelper
 
     public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
-    public static readonly Color32 OutColor = new(180, 179, 231, 255);
     public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
     public static readonly Color32 HalfModColor32 = new(206, 205, 253, 160);
     public static readonly Color32 FaultColor = new(229, 115, 115, 255);
@@ -43,6 +42,13 @@ public static class ColorHelper
     public static readonly Color32 DownloadYellow = new(252, 255, 152, 255);
     public static readonly Color32 LoadCompleteGreen = new(185, 255, 181, 255);
     
+    public static readonly Color32 ClientOptionColor = new(150, 149, 227, 255);
+    public static readonly Color32 ClientOptionColor_Disable = new(61, 60, 97, 255);
+    public static readonly Color32 ClientOptionColor_CanNotUse = new(90, 89, 108, 255);
+    public static readonly Color32 ClientFeatureColor = new(191, 149, 227, 255);
+    public static readonly Color32 ClientFeatureColor_ClickType = new(219, 207, 227, 255);
+    public static readonly Color32 ClientFeatureColor_CanNotUse = new(102, 89, 97, 255);
+
     /// <summary>
     /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。
     /// </summary>

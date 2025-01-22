@@ -50,7 +50,7 @@ public sealed class ClientOptionItem_Boolean : ClientActionItem
     {
         if (ToggleButton == null) return;
 
-        var color = Config.Value ? ColorHelper.OutColor : new Color32(77, 77, 77, byte.MaxValue);
+        var color = Config.Value ? ColorHelper.ClientOptionColor : ColorHelper.ClientOptionColor_Disable;
         ToggleButton.Background.color = color;
         ToggleButton.Rollover?.ChangeOutColor(color);
     }
@@ -58,16 +58,18 @@ public sealed class ClientOptionItem_Boolean : ClientActionItem
 public sealed class ClientOptionItem_String : ClientActionItem
 {
     public ConfigEntry<string> Config { get; private set; }
-
+    public string Name {get; private set;}
     private ClientOptionItem_String(
         string name,
+        string showingName,
         ConfigEntry<string> config,
         string[] selections,
         OptionsMenuBehaviour optionsMenuBehaviour)
     : base(
-        name,
+        showingName,
         optionsMenuBehaviour)
     {
+        Name = name;
         Config = config;
         UpdateToggle(selections);
     }
@@ -76,18 +78,21 @@ public sealed class ClientOptionItem_String : ClientActionItem
     /// Modオプション画面にconfigのトグルを追加します
     /// </summary>
     /// <param name="name">ボタンラベルの翻訳キーとボタンのオブジェクト名</param>
+    /// <param name="showingName"></param>
     /// <param name="config">対応するconfig</param>
     /// <param name="optionsMenuBehaviour">OptionsMenuBehaviourのインスタンス</param>
+    /// <param name="selections"></param>
     /// <param name="additionalOnClickAction">クリック時に追加で発火するアクション．configが変更されたあとに呼ばれる</param>
     /// <returns>作成したアイテム</returns>
     public static ClientOptionItem_String Create(
         string name,
+        string showingName,
         ConfigEntry<string> config,
         OptionsMenuBehaviour optionsMenuBehaviour,
         string[] selections,
         Action additionalOnClickAction = null)
     {
-        var item = new ClientOptionItem_String(name, config, selections, optionsMenuBehaviour);
+        var item = new ClientOptionItem_String(name, showingName, config, selections, optionsMenuBehaviour);
         item.OnClickAction = () =>
         {
             var currentIndex = Array.IndexOf(selections, config.Value);
@@ -99,11 +104,11 @@ public sealed class ClientOptionItem_String : ClientActionItem
             }
             
             var nextIndex = (currentIndex + 1) % selections.Length;
-            name = 
+            showingName = 
             config.Value = selections[nextIndex];
             item.UpdateToggle(selections);
-            item.UpdateName(name);
-           additionalOnClickAction?.Invoke();
+            item.UpdateName(showingName);
+            additionalOnClickAction?.Invoke();
         };
         return item;
     }
