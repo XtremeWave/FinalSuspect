@@ -10,6 +10,7 @@ namespace FinalSuspect.Patches.System;
 public static class AwakeFriendCodeUIPatch
 {
     public static GameObject FriendsButton;
+
     public static void Prefix()
     {
 
@@ -25,6 +26,7 @@ public static class AwakeFriendCodeUIPatch
             {
                 obj.transform.SetParent(CustomBarSprit.transform);
             }
+
             BarSprit.ForEachChild((Action<GameObject>)ResetParent);
             BarSprit.SetActive(false);
 
@@ -38,9 +40,12 @@ public static class AwakeFriendCodeUIPatch
         }
 
         FriendsButton = GameObject.Find("FriendsButton");
-
-}
+        FriendsButton.transform.FindChild("Highlight").FindChild("NewRequestActive").FindChild("Background").gameObject
+            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.5f);
+        FriendsButton.transform.FindChild("Inactive").FindChild("NewRequestInactive").FindChild("Background").gameObject
+            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.5f);
     }
+}
 
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager
