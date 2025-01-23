@@ -12,7 +12,6 @@ namespace FinalSuspect.Patches.System
     public sealed class LobbyJoinBind
     {
         static int GameId;
-
         static GameObject LobbyText;
 
         [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.JoinGame))]
@@ -46,9 +45,9 @@ namespace FinalSuspect.Patches.System
 
             string code2 = GUIUtility.systemCopyBuffer;
 
-            if (code2.Length != 6 || !Regex.IsMatch(code2, @"^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(code2, @"^[a-zA-Z]+$"))
                 code2 = "";
-            string code2Disp = DataManager.Settings.Gameplay.StreamerMode ? "****" : code2.ToUpper();
+            string code2Disp = DataManager.Settings.Gameplay.StreamerMode ? new string('*', code2.Length) : code2.ToUpper();
             if (GameId != 0 && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 __instance.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(GameId));
@@ -66,14 +65,14 @@ namespace FinalSuspect.Patches.System
                     string code = GameCode.IntToGameName(GameId);
                     if (code != "")
                     {
-                        code = DataManager.Settings.Gameplay.StreamerMode ? "****" : code;
+                        code = DataManager.Settings.Gameplay.StreamerMode ? new string('*', code.Length) : code;
                         LobbyText.GetComponent<TMPro.TextMeshPro>().text = "        " + GetString("LShift") + $": {code}  ";
 
                     }
                 }
                 if (code2 != "")
                 {
-                    LobbyText.GetComponent<TMPro.TextMeshPro>().text += "\n" + "        " + GetString("RShift") + $": {code2Disp}  ";//语言文件在云端的话就先这样了
+                    LobbyText.GetComponent<TMPro.TextMeshPro>().text += "\n" + "        " + GetString("RShift") + $": {code2Disp}  ";
                 }
             }
         }

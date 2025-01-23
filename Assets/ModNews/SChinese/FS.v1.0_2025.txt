@@ -19,12 +19,13 @@
 - 修正: 23
 - 优化: 9
 - 更改: 16
-- 新增: 35
+- 新增: 38
 - 重制: 1
 - 删除: 5
 
 ## 团队参与者
 - [Slok]("https://github.com/Slok7565/")
+- [Elinmei]("https://github.com/linmeideli/")
 - [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
 - KpCam
 - [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
@@ -145,6 +146,9 @@
 - 反作弊: 对KillNetwork作弊的检查
 制作: Nonalus
 (PR#6)
+- 按下左Shift加入上一个加入的房间
+- 按下右Shift加入粘贴板中的房间
+制作: Elinmei
 - 模组专属右上角MOD图标
 制作: Slok, KpCam
 想法来源: Better Among Us
