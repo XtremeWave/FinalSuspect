@@ -268,6 +268,8 @@ PublicNotAvailableOnThis Version: "Öffentliche Räume sind in dieser Version vo
 # 主页 / Main UI
 FinalSuspectWelcomeText: "Wünsche dir eine angenehme <color={0}>Spielserien</color>!"
 ConnectToFinalSuspectServerFailed: "Verbindung zum FinalSuspect-Server fehlgeschlagen"
+LShift: ""
+RSlift: ""
 Website: "Offizielle Website"
 MainMenuCredential: "{0} © 2025"
 

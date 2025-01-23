@@ -270,6 +270,8 @@ FinalSuspectWelcomeText: "Wens je een aangename <color={0}>gaming ervaring</colo
 ConnectToFinalSuspectServerFailed: "Verbinding met FinalSuspect-server mislukt"
 Website: "Officiële website"
 MainMenuCredential: "{0} © 2025"
+LShift: "Drücke LShift um in den vorherigen Raum zurückzukehren"
+RSlift: "Drücke RShift um in den Zwischenablage-Raum zu gehen"
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"

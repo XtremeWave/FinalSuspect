@@ -270,6 +270,8 @@ FinalSuspectWelcomeText: "Ag iarraidh go mbeidh tú ag imirt go hiontach <color=
 ConnectToFinalSuspectServerFailed: "Theip ar an nasc chuig an bhfreastalaí FinalSuspect"
 Website: "Suíomh Oifigiúil"
 MainMenuCredential: "{0} © 2025"
+LShift: ""
+RSlift: ""
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"

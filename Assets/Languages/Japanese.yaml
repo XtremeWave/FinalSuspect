@@ -270,6 +270,8 @@ FinalSuspectWelcomeText: "pleasant <color={0}>ゲーム体験</color>をお祈�
 ConnectToFinalSuspectServerFailed: "FinalSuspect サーバーへの接続に失敗しました"
 Website: "公式ウェブサイト"
 MainMenuCredential: "{0} © 2025"
+LShift: "LShiftキーを押して前の部屋に戻る"
+RSlift: "RShiftキーを押してクリップボードルームに入る"
 
 # ロビーリスト表示 / Lobby List
 IPhone: "IPhone"
