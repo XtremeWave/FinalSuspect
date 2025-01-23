@@ -273,9 +273,9 @@ ConnectToFinalSuspectServerFailed: "Falha ao conectar ao servidor do FinalSuspec
 Website: "Site Oficial"
 MainMenuCredential: "{0} © 2025"
 LShift: "Pressione LShift para retornar ao quarto anterior"
-RSlift: "Pressione RShift para entrar no quarto da área de transferência"
+RShift: "Pressione RShift para entrar no quarto da área de transferência"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "IPhone"
 Android: "Android"
 

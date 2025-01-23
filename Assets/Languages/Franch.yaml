@@ -273,7 +273,7 @@ ConnectToFinalSuspectServerFailed: "Échec de la connexion au serveur de FinalSu
 Website: "Site officiel"
 MainMenuCredential: "{0} © 2025"
 LShift: "Appuyez sur LShift pour retourner à la pièce précédente"
-RSlift: "Appuyez sur RShift pour entrer dans la salle du presse-papiers"
+RShift: "Appuyez sur RShift pour entrer dans la salle du presse-papiers"
 
 # 大厅列表显示 / Liste des salles
 IPhone: "IPhone"

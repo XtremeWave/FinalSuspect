@@ -273,7 +273,7 @@ ConnectToFinalSuspectServerFailed: "FinalSuspect サーバーへの接続に失�
 Website: "公式ウェブサイト"
 MainMenuCredential: "{0} © 2025"
 LShift: "LShiftキーを押して前の部屋に戻る"
-RSlift: "RShiftキーを押してクリップボードルームに入る"
+RShift: "RShiftキーを押してクリップボードルームに入る"
 
 # ロビーリスト表示 / Lobby List
 IPhone: "IPhone"

@@ -272,10 +272,10 @@ FinalSuspectWelcomeText: "Ag iarraidh go mbeidh tú ag imirt go hiontach <color=
 ConnectToFinalSuspectServerFailed: "Theip ar an nasc chuig an bhfreastalaí FinalSuspect"
 Website: "Suíomh Oifigiúil"
 MainMenuCredential: "{0} © 2025"
-LShift: ""
-RSlift: ""
+LShift: "Cliceáil an Shift chlé (LShift) chun ar ais chuig an seomra roimhe sin."
+RShift: "Cliceáil an Shift deas (RShift) chun isteach go dtí an seomra leabhairte."
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "IPhone"
 Android: "Android"
 

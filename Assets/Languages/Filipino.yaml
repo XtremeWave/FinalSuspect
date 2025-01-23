@@ -273,9 +273,9 @@ ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
 Website: "Official Website"
 MainMenuCredential: "{0} © 2025"
 LShift: "Pindutin ang LShift upang muli pumunta sa nakaraang kuwarto"
-RSlift: "Pindutin ang RShift upang pumasok sa clipboard room"
+RShift: "Pindutin ang RShift upang pumasok sa clipboard room"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "IPhone"
 Android: "Android"
 

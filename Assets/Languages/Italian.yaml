@@ -273,9 +273,9 @@ ConnectToFinalSuspectServerFailed: "Connessione al server di FinalSuspect non ri
 Website: "Sito ufficiale"
 MainMenuCredential: "{0} © 2025"
 LShift: "Premi LShift per tornare alla stanza precedente"
-RSlift: "Premi RShift per entrare nella stanza della clipboard"
+RShift: "Premi RShift per entrare nella stanza della clipboard"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "IPhone"
 Android: "Android"
 
