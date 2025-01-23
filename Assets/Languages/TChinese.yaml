@@ -270,6 +270,8 @@ FinalSuspectWelcomeText: "祝願您擁有一場愉快的<color={0}>遊戲體驗<
 ConnectToFinalSuspectServerFailed: "無法連接至FinalSuspect服務器"
 Website: "模組官網"
 MainMenuCredential: "{0} © 2025"
+LShift: "按LShift返回上一個房間"
+RSlift: "按RShift進入剪貼板房間"
 
 # 客户端平台 / Platform
 IPhone: "蘋果"

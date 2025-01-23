@@ -270,6 +270,8 @@ FinalSuspectWelcomeText: "Wishing you a pleasant <color={0}>gaming experience</c
 ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
 Website: "Official Website"
 MainMenuCredential: "{0} © 2025"
+LShift: "Press LShift to join to the last lobby"
+RSlift: "Press RShift to join the clipboard lobby"
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"
