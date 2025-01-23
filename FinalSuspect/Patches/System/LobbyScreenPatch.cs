@@ -2,6 +2,7 @@
 using HarmonyLib;
 using InnerNet;
 using System.Text.RegularExpressions;
+using FinalSuspect.Helpers;
 using UnityEngine;
 using static FinalSuspect.Modules.Core.Plugin.Translator;
 
@@ -66,13 +67,13 @@ namespace FinalSuspect.Patches.System
                     if (code != "")
                     {
                         code = DataManager.Settings.Gameplay.StreamerMode ? new string('*', code.Length) : code;
-                        LobbyText.GetComponent<TMPro.TextMeshPro>().text = "        " + GetString("LShift") + $": {code}  ";
+                        LobbyText.GetComponent<TMPro.TextMeshPro>().text = "        " + GetString("LShift") + $": <color={ColorHelper.ModColor}>{code}</color>  ";
 
                     }
                 }
                 if (code2 != "")
                 {
-                    LobbyText.GetComponent<TMPro.TextMeshPro>().text += "\n" + "        " + GetString("RShift") + $": {code2Disp}  ";
+                    LobbyText.GetComponent<TMPro.TextMeshPro>().text += "\n" + "        " + GetString("RShift") + $": <color={ColorHelper.ModColor}>{code2Disp}</color>  ";
                 }
             }
         }
