@@ -62,7 +62,5 @@ Alcuni dei materiali inclusi qui sono proprietà di Innersloth LLC.
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Supporto di consulenza**
 
->[ELinmei](https://github.com/linmeideli) - **Supporto di consulenza**
-
 ## Cronologia delle stelle
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

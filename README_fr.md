@@ -62,7 +62,5 @@ Certaines des ressources incluses ici sont la propriété d'Innersloth LLC.
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Support de consultation**
 
->[ELinmei](https://github.com/linmeideli) - **Support de consultation**
-
 ## Historique des étoiles
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

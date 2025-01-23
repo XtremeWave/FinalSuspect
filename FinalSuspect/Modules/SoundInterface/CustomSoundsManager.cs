@@ -43,11 +43,11 @@ public static class CustomSoundsManager
         PlaySound(null, 0, 0);
         finalMusics.Do(x => x.CurrectAudioStates = x.LastAudioStates);
 
-        Task.Run(() =>
+        new LateTask(() =>
         {
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
-        });
+        }, 0.01f, "Refresh");
         if (Main.DisableVanillaSound.Value)
             StopPlayVanilla();
         else

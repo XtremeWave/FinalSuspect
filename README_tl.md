@@ -62,7 +62,5 @@ Ang ilang mga materyales na kasama dito ay ari ng Innersloth LLC.
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Konsultasyon Suporta**
 
->[ELinmei](https://github.com/linmeideli) - **Konsultasyon Suporta**
-
 ## Kasaysayan ng Star
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

@@ -142,9 +142,6 @@ public static class MyMusicPanel
         Items = [];
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        XtremeLogger.Info($"currentPage:{currentPage}", "MyMusicPanel");
-
-        
         var startIndex = (currentPage - 1) * itemsPerPage;
 
         var count = 0;

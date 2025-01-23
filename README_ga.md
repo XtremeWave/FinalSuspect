@@ -62,7 +62,5 @@ Is leithéid de phríobháid Innersloth LLC é roinnt de na himeallacha atá lua
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Tacaíocht Chomhthuiscint**
 
->[ELinmei](https://github.com/linmeideli) - **Tacaíocht Chomhthuiscint**
-
 ## Stair na hÉirn
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

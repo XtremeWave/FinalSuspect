@@ -62,7 +62,5 @@
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Консультационная поддержка**
 
->[ELinmei](https://github.com/linmeideli) - **Консультационная поддержка**
-
 ## История звезд
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)
