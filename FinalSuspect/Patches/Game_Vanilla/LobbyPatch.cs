@@ -20,26 +20,7 @@ public class LobbyStartPatch
         renderer.sprite = Utils.LoadSprite("TeamLogo.png", 290f);
     }
 }
-[HarmonyPatch(typeof(LobbyBehaviour))]
-public class LobbyBehaviourPatch
-{
-    [HarmonyPatch(nameof(LobbyBehaviour.Update)), HarmonyPostfix]
-    public static void Update_Postfix(LobbyBehaviour __instance)
-    {
-        Func<ISoundPlayer, bool> lobbybgm = x => x.Name.Equals("MapTheme");
-        var MapThemeSound = SoundManager.Instance.soundPlayers.Find(lobbybgm);
-        if (Main.DisableVanillaSound.Value)
-        {
-            if (MapThemeSound == null) return;
-            SoundManager.Instance.StopNamedSound("MapTheme");
-        }
-        else
-        {
-            if (MapThemeSound != null) return;
-            
-        }
-    }
-}
+
 [HarmonyPatch(typeof(HostInfoPanel), nameof(HostInfoPanel.SetUp))]
 public static class HostInfoPanelUpdatePatch
 {
