@@ -272,6 +272,8 @@ FinalSuspectWelcomeText: "¡Deseándote una <color={0}>experiencia de juego</col
 ConnectToFinalSuspectServerFailed: "Fallo al conectar con el servidor de FinalSuspect"
 Website: "Sitio Oficial"
 MainMenuCredential: "{0} © 2025"
+LShift: "Presiona LShift para regresar a la habitación anterior"
+RSlift: "Presiona RShift para entrar en la habitación del portapapeles"
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"

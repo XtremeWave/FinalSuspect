@@ -272,6 +272,8 @@ FinalSuspectWelcomeText: "Желаем вам <color={0}>приятной игр
 ConnectToFinalSuspectServerFailed: "Не удалось подключиться к серверу FinalSuspect"
 Website: "Официальный сайт"
 MainMenuCredential: "{0} © 2025"
+LShift: "Нажмите LShift чтобы вернуться в предыдущую комнату"
+RSlift: "Нажмите RShift чтобы перейти в комнату буфера обмена"
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"

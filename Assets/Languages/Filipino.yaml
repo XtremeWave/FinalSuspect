@@ -272,6 +272,8 @@ FinalSuspectWelcomeText: "Wishing you a pleasant <color={0}>gaming experience</c
 ConnectToFinalSuspectServerFailed: "Failed to connect to FinalSuspect server"
 Website: "Official Website"
 MainMenuCredential: "{0} © 2025"
+LShift: "Pindutin ang LShift upang muli pumunta sa nakaraang kuwarto"
+RSlift: "Pindutin ang RShift upang pumasok sa clipboard room"
 
 # 大厅列表显示 / Lobby List
 IPhone: "IPhone"

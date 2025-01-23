@@ -272,6 +272,8 @@ FinalSuspectWelcomeText: "쾌적한 <color={0}>게임 경험</color>을 기원�
 ConnectToFinalSuspectServerFailed: "FinalSuspect 서버에 연결할 수 없습니다"
 Website: "공식 웹사이트"
 MainMenuCredential: "{0} © 2025"
+LShift: "LShift를 눌러 이전 방으로 돌아가기"
+RSlift: "RShift를 눌러 클립보드 방으로 이동하기"
 
 # 룸 리스트 표시 / Lobby List
 IPhone: "IPhone"
