@@ -95,7 +95,7 @@ public class LoadPatch
             ];
             var thisversion =
                 $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
-            
+            var writeinVer = false;
             ReloadLanguage = thisversion != Main.LastStartVersion.Value 
                              && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Once)) 
                              && !File.Exists(PathManager.GetBypassFileType(FileType.Languages, BypassType.Longterm));
@@ -112,7 +112,7 @@ public class LoadPatch
             }
             else
             {
-                Main.LastStartVersion.Value = thisversion;
+                writeinVer = true;
             }
             
             
@@ -326,6 +326,8 @@ public class LoadPatch
             #endregion
 
             #region After Download Depends
+            if (writeinVer)
+                Main.LastStartVersion.Value = thisversion;
             Init();
             if (TranslationController.Instance.currentLanguage.languageID is not SupportedLangs.English)
             {

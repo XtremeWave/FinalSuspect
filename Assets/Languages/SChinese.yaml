@@ -273,7 +273,7 @@ ConnectToFinalSuspectServerFailed: "无法连接至FinalSuspect服务器"
 Website: "模组官网"
 MainMenuCredential: "{0} © 2025"
 LShift: "按LShift返回上一个房间"
-RShift: "按RShift进入粘贴板房间"
+RShift: "按RShift进入剪贴板房间"
 
 # 客户端平台 / Platform
 IPhone: "苹果"

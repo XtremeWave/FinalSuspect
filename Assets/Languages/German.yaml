@@ -270,8 +270,8 @@ PublicNotAvailableOnThis Version: "Öffentliche Räume sind in dieser Version vo
 # 主页 / Main UI
 FinalSuspectWelcomeText: "Wünsche dir eine angenehme <color={0}>Spielserien</color>!"
 ConnectToFinalSuspectServerFailed: "Verbindung zum FinalSuspect-Server fehlgeschlagen"
-LShift: "Drücken Sie die linke Umschalttaste (LShift), um in den vorherigen Raum zurückzukehren."
-RShift: "Drücken Sie die rechte Umschalttaste (RShift), um in den Zwischenablage-Raum zu gelangen."
+LShift: "LShift: Drücke LShift, um zurückzukehren"
+RShift: "RShift: Drücke RShift, um dorthin zu gelangen"
 Website: "Offizielle Website"
 MainMenuCredential: "{0} © 2025"
 

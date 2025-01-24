@@ -28,8 +28,8 @@ public static class ColorHelper
     private const float MarkerVal = 1f;
     private const float MarkerAlpha = 0.2f;
 
-    public static readonly string TeamColor = "#cdfffd"; 
-    public static readonly string ModColor = "#cecdfd";
+    public const string TeamColor = "#cdfffd"; 
+    public const string ModColor = "#cecdfd";
 
     public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
     public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
