@@ -1,18 +1,32 @@
 {
   "version": "1.0.0",
   "verHead": "1.0",
-  "verDate": "20240815",
+  "verDate": "20240212",
 
 
   "minVer": "latest",
-  "creation": "1",
+  "creation": "2",
   "allowStart": "true",
   "CanUpdate": "false",
   "DebugVer": "0.0.0",
 
   "md5": "2e41727d5e868073b2b434e6549dac8d",
   "announcement": {
-    "SChinese": "新版本发布在即，敬请期待！",
-    "English": "The new version is about to be released. Stay tuned!"
+    "English": "No Announcements.",
+    "Latam": "El idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",
+    "Brazilian": "O idioma que você está usando é traduzido por IA e pode conter imprecisões. Por favor, forneça feedback ao desenvolvedor prontamente.",
+    "Portuguese": "A linguagem que você está usando é traduzida por IA e pode conter imprecisões. Por favor, forneça feedback ao desenvolvedor prontamente.",
+    "Korean": "사용 중인 언어는 AI로 번역되어 오류가 있을 수 있습니다. 개발자에게 신속히 피드백을 제공해 주세요.",
+    "Russian": "Язык, который вы используете, переводится с помощью ИИ и может содержать неточности. Пожалуйста, своевременно сообщите разработчику.",
+    "Dutch": "De taal die je gebruikt wordt vertaald door AI en kan onnauwkeurigheden bevatten. Geef alsjeblieft prompt feedback aan de ontwikkelaar.",
+    "Filipino": "Ang wika na ginagamit mo ay tinatranslate ng AI at maaaring magkaroon ng mga hindi katatapos. Mangyaring magbigay ng feedback sa developer nang maingay.",
+    "French": "La langue que vous utilisez est traduite par l'IA et peut contenir des inexactitudes. Veuillez fournir un retour d'information au développeur sans tarder.",
+    "German": "Die von Ihnen verwendete Sprache wird von einer KI übersetzt und kann Ungenauigkeiten enthalten. Bitte geben Sie dem Entwickler umgehend ein Feedback.",
+    "Italian": "La lingua che stai utilizzando è tradotta da IA e può contenere inesattezze. Per favore, fornisci feedback allo sviluppatore prontamente.",
+    "Japanese": "使用している言語は AI で翻訳されており、不正確な部分がある場合があります。開発者に速やかにフィードバックを提供してください。",
+    "Spanish": "El idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",
+    "SChinese": "当前无公告。",
+    "TChinese": "您所使用的語言使用AI翻譯，可能會出現偏差，請及時向開發者反饋。",
+    "Irish": "Is féidir go mbeadh eolais ar na teanga a bhí agat agus go mbeadh deachtlúchán ann. Tabhair feadhbach chun an t-ábhar."
   }
 }

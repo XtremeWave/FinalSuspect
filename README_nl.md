@@ -22,7 +22,7 @@
 [Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
 [Русский](README_ru.md)<br>
-[Nederlands](README_nl.md)<br>
+[Nederlands]<br>
 [Filipino](README_tl.md)<br>
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
@@ -42,7 +42,7 @@ Sommige materialen hier zijn eigendom van Innersloth LLC.
 >Richtlijnen voor het oplossen van bugs
 
 >[Yu (vroeger: Night)](https://github.com/Night-GUA) - **Technische ondersteuning**<br>
->Toevoeging van tips &
+>Toevoeging van tips & ingebouwde afhankelijkheden
 
 >[Amongus](https://github.com/XiezibanWrite) - **Vertaling & Technische ondersteuning**<br>
 >Gedeeltelijke vertaalsteun & ondersteuning tijdens de ontwikkeling

@@ -24,7 +24,7 @@
 [Русский](README_ru.md)<br>
 [Nederlands](README_nl.md)<br>
 [Filipino](README_tl.md)<br>
-[Français](README_fr.md)<br>
+[Français]<br>
 [Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
@@ -42,7 +42,7 @@ Certaines des ressources incluses ici sont la propriété d'Innersloth LLC.
 >Guide pour la correction des bugs
 
 >[Yu (anciennement : Night)](https://github.com/Night-GUA) - **Soutien technique**<br>
->Ajout de conseils &
+>Ajout de conseils & des dépendances intégrées
 
 >[Amongus](https://github.com/XiezibanWrite) - **Traduction & Soutien technique**<br>
 >Support partiel pour les textes de traduction & support pendant le développement

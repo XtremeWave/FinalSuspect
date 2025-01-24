@@ -17,7 +17,7 @@
 ## Idiomas
 ***Este módulo soporta todos los idiomas disponibles en Among Us!***<br>
 [English](README.md) <br>
-[Latam](README_es_LA.md)<br>
+[Latam]<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
@@ -42,7 +42,7 @@ Algunos de los materiales incluidos aquí son propiedad de Innersloth LLC.
 >Guía para la corrección de errores
 
 >[Yu (anteriormente: Night)](https://github.com/Night-GUA) - **Soporte Técnico**<br>
->Añadiendo consejos &
+>Añadiendo consejos & dependencias integradas
 
 >[Amongus](https://github.com/XiezibanWrite) - **Traducción & Soporte Técnico**<br>
 >Soporte de texto de traducción parcial & soporte durante el desarrollo

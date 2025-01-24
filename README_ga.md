@@ -31,7 +31,7 @@
 [Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
-[Gaeilge](README_ga.md)<br>
+[Gaeilge]<br>
 
 ## Tabhair ar Aitheantas
 Níl an mod seo ceangailte le Among Us nó le Innersloth LLC. Níor ghlac Innersloth LLC leis an ábhar atá luaite anseo nó níor chuireadar spórt air.<br>
@@ -42,7 +42,7 @@ Is leithéid de phríobháid Innersloth LLC é roinnt de na himeallacha atá lua
 >Rúbráitíocht buganna
 
 >[Yu (roimhe seo: Night)](https://github.com/Night-GUA) - **Tacaíocht Teicniúil**<br>
->Sugrúcháin a chur leis &
+>Cuir leaganacha & réamhchláranna suiteála
 
 >[Amongus](https://github.com/XiezibanWrite) - **Aistriú & Tacaíocht Teicniúil**<br>
 >Tacaíocht páirteach don téacs aistrithe & tacaíocht le linn an forbairt

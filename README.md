@@ -16,7 +16,7 @@
 
 ## Languages
 ***This mod supports all languages available in Among Us!***<br>
-[English](README.md) <br>
+[English] <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
@@ -42,7 +42,7 @@ Some of the materials included here are the property of Innersloth LLC.
 >Bug fixing guidance
 
 >[Yu (formerly: Night)](https://github.com/Night-GUA) - **Technical Support**<br>
->Added tips &
+>Added tips & built-in dependencies
 
 >[Amongus](https://github.com/XiezibanWrite) - **Translation & Technical Support**<br>
 >Partial translation support & support during development

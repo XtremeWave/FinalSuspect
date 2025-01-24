@@ -42,7 +42,7 @@
 >Bug修復指導
 
 >[Yu(原名：Night)](https://github.com/Night-GUA) - **技術支援**<br>
->新增提示&
+>新增提示&依賴項內置
 
 >[Amongus](https://github.com/XiezibanWrite) - **翻譯&技術支援**<br>
 >部分翻譯文本支援&開發過程支援
