@@ -41,7 +41,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20250121";
+    public const string DisplayedVersion_Date = "20250124";
 
     /// <summary>
     /// 测试信息；
@@ -167,9 +167,9 @@ public class Main : BasePlugin
 
         UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
         ChangeOutfit = Config.Bind("Client Options", "Change Outfit", OutfitType[0]);
-        KickPlayerWhoFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
-        KickPlayerInBanList = Config.Bind("Client Options", "Apply Ban List", true);
-        KickPlayerWithDenyName = Config.Bind("Client Options", "Apply Deny Name List", true);
+        KickPlayerWhoFriendCodeNotExist = Config.Bind("Client Options", "Kick Player FriendCode Not Exist", true);
+        KickPlayerInBanList = Config.Bind("Client Options", "Kick Player In BanList", true);
+        KickPlayerWithDenyName = Config.Bind("Client Options", "Kick Player With Deny Name", true);
         SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
         AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
         AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);

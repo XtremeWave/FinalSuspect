@@ -114,9 +114,9 @@ public class LoadPatch
             {
                 writeinVer = true;
             }
-            
-            
-            var fastboot = Main.FastBoot.Value && !ReloadLanguage;
+
+
+            var fastboot = false;//Main.FastBoot.Value && !ReloadLanguage;
             #endregion
             var LogoAnimator = GameObject.Find("LogoAnimator");
             LogoAnimator.SetActive(false);

@@ -1,7 +1,7 @@
 ﻿#Number:100001
-#Title:终极嫌疑 v1.0
+#Title:Final Suspect v1.0
 #SubTitle:★★★★时隔六个月，这款模组终于正式发行啦！★★★★
-#ShortTitle:★正式发行v1.0
+#ShortTitle:★Formal Release v1.0
 #Date:2025-2-11T19:00:00Z
 #-----------------------------
 # 简体中文
@@ -11,26 +11,26 @@
 在焕然一新的体验中，头脑风暴，留下全新的快乐回忆。
 玩游戏，开心最重要！！！
 
-## 对应官方版本
-- 基于 Among Us v2024.10.29
-- 基于 BepInEx 框架 v6.0.0-be.733
+## Base
+- Based on Among Us v2024.10.29
+- Based on BepInEx v6.0.0-be.733
 
-## 更新内容
-- 修正: 24
-- 优化: 9
-- 更改: 16
-- 新增: 39
-- 重制: 1
-- 删除: 5
+## Summary of Updates
+- Fixes: 24
+- Optimizations: 9
+- Changes: 16
+- Additions: 39
+- Remakes: 1
+- Deletions: 5
 
-## 团队参与者
+## Team Contributors
 - [Slok]("https://github.com/Slok7565/")
 - [Elinmei]("https://github.com/linmeideli/")
 - [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
 - KpCam
 - [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
 
-## 贡献者
+## Contributors
 - [Yu]("https://github.com/Night-GUA/")
 (PR#3)
 - [Qingfeng]("https://github.com/QingFeng-awa/")
@@ -38,8 +38,8 @@
 - [Nonalus]("https://github.com/Reborn5537/")
 (PR#6)
 
-## 修正
-- 修复了「人满自动开始游戏」无论房间最大人数是多少都只在14人及以上才自动开始的问题
+## Fixes
+- Fixed the bug of 「Auto Start at Full Lobby」 only triggered at 14 or more players, regardless of the room's maximum capacity.
 - 修复了当客户端是房主时会议后黑屏发生的问题
 - 修复了练习模式无法进入的问题
 - 修复了击杀数在游戏中不显示的问题
@@ -51,15 +51,15 @@
 - 修复了直播主模式下被屏蔽的房间号直接隐藏的问题
 - 修复了违禁词检查失效的问题
 - 修复了官方链接屏蔽警告文本异常的问题
-- 修复了「结束时自动返回大厅」在线游玩中不生效的问题
+- 修复了「Auto-return to Lobby at End」在线游玩中不生效的问题
 - 修复了守护天使可以使用千里眼的问题
 - 修复了聊天弹窗、退出游戏信息不屏蔽违禁词的问题
 - 修复了公告开头冗余空行的问题
 - 修复了客户端选项在更改语言后文本错误的问题
 - 修复了打开好友列表时模组信息仍旧显示的问题
 - 修复了启动游戏时程序可能未响应的问题
-- 修复了关闭「禁用原版游戏音乐」时主页音乐不会恢复的问题
-- 修复了在「音频播放」模块停止播放会让原版游戏音乐一同被停止的问题
+- 修复了关闭「Disable Among U's Musics」时主页音乐不会恢复的问题
+- 修复了在「My Music」模块停止播放会让原版游戏音乐一同被停止的问题
 - 修复了繁体中文中部分文本翻译错误的问题
 - 修复了公告语言错误的问题
 修复: Slok
@@ -80,18 +80,18 @@
 制作: Slok
 
 ## 更改
-- 「音频管理」中不可删除播放中的音乐
+- 「Audio Management」中不可删除播放中的音乐
 - 调整工程师、变形者、幻象师职业颜色
 - 允许在大厅和游戏中使用复盘信息
 - 死因从在名称后显示更改为在任务数量后显示
 - 更改死因为驱逐的判定以防止死因为驱逐时可能不显示死因的问题
 - 优化死亡判定
 - 为防止对模组的误报，加入+25端口服务器的房间时FAC不生效
-- 将「切换原版」归类于客户端功能
-- 将「输出日志」归类于客户端功能
+- 将「Switch Vanilla」归类于客户端功能
+- 将「Dump Log」归类于客户端功能
 - 调整部分客户端按钮颜色
 - 修改部分文本以方便引出之后的项目
-- 「结束时自动返回大厅」开启时将不再显示"继续"按钮
+- 「Auto-return to Lobby at End」开启时将不再显示"继续"按钮
 - 修改客户端选项&功能颜色
 制作: Slok
 - 本项目不再作为Town Of New Epic及其父系的分支，而是作为独立项目
@@ -102,23 +102,23 @@
 ## 新增
 - 按下F1显示职业详情时同时会显示职业立绘
 - 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
-- 将InnerSloth游戏加载动画改为FinalSuspect游戏加载动画
+- 将InnerSloth游戏加载动画改为Final Suspect游戏加载动画
 制作: Slok, 小黄117, KpCam
 参考: The Other Roles Community Edition
-- 模组公告左侧会显示XtremeWave标识
+- 模组公告左侧会显示团队标识
 制作: Slok
 参考: Yu Ez Tool
 - 玩家未装载YamlDotNet.dll与YamlDotNet.xml的情况下仍然可以加载翻译
 - 新增简体中文更新检查失败时关闭加速器的提示 
 制作: Yu
 (PR#3)
-- 客户端选项: 展示玩家平台与客户端信息
+- 客户端选项: Display Player Platform and Client Information
 制作: Slok
 想法: 1, KpCam
 - 7首单曲
-- 客户端选项: 屏蔽违禁词
-- 客户端选项: 禁用反作弊
-- 客户端选项: 使用模组鼠标光标
+- Client Option: Block Inappropriate Words
+- 客户端选项: Disable Anti-Cheat
+- 客户端选项: Use Mod Cursor
 - 设置修改按钮图标颜色与职业匹配
 - 职业设置预览图标颜色与职业匹配
 - 职业设置修改底板着色
@@ -165,7 +165,7 @@
 原因: 网站维护退出制作组
 - 暂时删除: 愚人节地图——骷髅舰(镜像)
 原因: 出现房主卡在驱逐动画的问题
-- 暂时删除: 切换形象——愚人节木马模式
+- 暂时删除: Change Outfit——April Fools Horse Mode
 (标记为损坏)
 原因: 出现聊天提醒弹出时客户端崩溃的问题
 - 删除: 仅Final Suspect房间搜索
