@@ -108,9 +108,9 @@ public static class FinalAntiCheat
 
         public void HandleSuspectCheater()
         {
-            if (_lastKick != -1 && _lastKick + 1 >= Utils.GetTimeStamp()) return;
+            if (!IsSuspectCheater || _lastKick != -1 && _lastKick + 1 >= Utils.GetTimeStamp()) return;
             _lastKick = Utils.GetTimeStamp();
-            Utils.KickPlayer(Player.PlayerId, false, "OutOfShip");
+            Utils.KickPlayer(Player.PlayerId, false, "Suspect Cheater");
         }
         public void MarkAsCheater()=> IsSuspectCheater = true;
     }
