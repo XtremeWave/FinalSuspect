@@ -92,12 +92,25 @@ public static class FinalAntiCheat
             _lastSendTime = Utils.GetTimeStamp();
             return false;
         }
-
-
         public void HandleBan()
         {
             if (ClientData.IsFACPlayer() || ClientData.IsBannedPlayer())
                 IsSuspectCheater = true;
+        }
+        public void HandleLobbyPosition()
+        {
+            if (!XtremeGameData.GameStates.IsLobby) return;
+            var posXOutOfRange = Player.GetTruePosition().x > 3.5f || Player.GetTruePosition().x < -3.5f;
+            var posYOutOfRange = Player.GetTruePosition().y > 4f || Player.GetTruePosition().y < -1f;
+            if (posXOutOfRange || posYOutOfRange)
+                IsSuspectCheater = true;
+        }
+
+        public void HandleSuspectCheater()
+        {
+            if (_lastKick != -1 && _lastKick + 1 >= Utils.GetTimeStamp()) return;
+            _lastKick = Utils.GetTimeStamp();
+            Utils.KickPlayer(Player.PlayerId, false, "OutOfShip");
         }
         public void MarkAsCheater()=> IsSuspectCheater = true;
     }
@@ -105,6 +118,7 @@ public static class FinalAntiCheat
     {
         public static int MeetingTimes = 0;
         public static int DeNum;
+        public static long _lastKick = -1;
         private static List<byte> LobbyDeadBodies = [];
 
         public static void Init()
@@ -134,7 +148,7 @@ public static class FinalAntiCheat
             notify = true;
             reason = "Hacking";
             ban = false;
-            if (Main.DisableFAC.Value || pc == null || reader == null || pc.AmOwner ) return false;
+            if (Main.DisableFAC.Value || pc == null || reader == null || pc.AmOwner) return false;
             try
             {
                 var sr = MessageReader.Get(reader);
@@ -227,6 +241,11 @@ public static class FinalAntiCheat
                             if (pc.IsImpostor())
                                 break;
                             return true;
+                        case RpcCalls.ReportDeadBody:
+                            var target = Utils.GetPlayerById(sr.ReadByte());
+                            if (target == null || !target.IsAlive())
+                                break;
+                            return true;
                     }
 
                 if (XtremeGameData.GameStates.IsMeeting)
@@ -301,9 +320,6 @@ public static class FinalAntiCheat
             switch (callId)
             {
                 case unchecked((byte)42069):
-                    //Report(pc, "AUM");
-                    HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
-                    return true;
                 case 101:
                     //Report(pc, "AUM");
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
@@ -313,17 +329,11 @@ public static class FinalAntiCheat
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
                     return true;
                 case 168:
-                    //Report(pc, "SM");
-                    HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
-                    return true;
                 case unchecked((byte)420):
                     //Report(pc, "SM");
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
                     return true;
                 case 119:
-                    //Report(pc, "KN");
-                    HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
-                    return true;
                 case unchecked(250):
                     //Report(pc, "KN");
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));

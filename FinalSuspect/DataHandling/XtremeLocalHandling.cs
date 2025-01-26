@@ -204,7 +204,10 @@ public static class XtremeLocalHandling
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
+            
             __instance.GetCheatData().HandleBan();
+            __instance.GetCheatData().HandleLobbyPosition();
+            __instance.GetCheatData().HandleSuspectCheater();
             
             var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
             var TopText = TopTextTransform.GetComponent<TextMeshPro>();
