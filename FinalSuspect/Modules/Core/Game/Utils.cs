@@ -325,7 +325,7 @@ public static class Utils
                 if (summary)
                     deathReason += $"<=<size=80%>{StringHelper.ColorString(killercolor, data.RealKiller.Name)}</size>";
                 else if (docolor)
-                    color = killercolor;
+                    deathReason = StringHelper.ColorString(killercolor, deathReason);
                 break;
             case VanillaDeathReason.Exile:
                 color = Palette.Purple;
@@ -335,7 +335,6 @@ public static class Utils
         if (!summary) deathReason = "(" + deathReason + ")";
         
         deathReason = StringHelper.ColorString(color, deathReason) ;
-
 
         return deathReason;
     }

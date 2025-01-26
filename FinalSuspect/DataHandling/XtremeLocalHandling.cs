@@ -169,9 +169,9 @@ public static class XtremeLocalHandling
         {
             color = Utils.GetRoleColor(roleType);
             if (!topswap)
-                roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+                roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId, docolor:Utils.CanSeeOthersRole())}";
             else
-                roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+                roleText = $"{Utils.GetVitalText(player.PlayerId, docolor:Utils.CanSeeOthersRole())} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
         else if (bothImp)
         {
@@ -245,11 +245,15 @@ public static class XtremeLocalHandling
         var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
         var Role_NotAssgin = data.RoleWhenAlive == null;
 
-        if (currectlyDisconnect || Task_NotAssgin || Role_NotAssgin)
+        if (pc.GetXtremeData().IsDisconnected)
         {
-            pc.SetDisconnected();
-            pc.SetDeathReason(VanillaDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
+            pc.Data.Disconnected = true;
+            pc.Data.IsDead = true;
         }
+            
+        if (!currectlyDisconnect && !Task_NotAssgin && !Role_NotAssgin) return;
+        pc.SetDisconnected();
+        pc.SetDeathReason(VanillaDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
     }
 
     private static void DeathSync(PlayerControl pc)
@@ -284,6 +288,40 @@ public static class XtremeLocalHandling
                 roleTextMeeting.fontSize = 1.5f;
                 roleTextMeeting.gameObject.name = "RoleTextMeeting";
                 roleTextMeeting.enableWordWrapping = false;
+
+                pva.NameText.text = name;
+                pva.NameText.color = color;
+
+                if (toptext.Length > 0)
+                {
+                    roleTextMeeting.text = toptext;
+                    roleTextMeeting.color = color;
+                    roleTextMeeting.enabled = true;
+                }
+            }
+            catch 
+            { }
+
+        }
+    }
+    
+    
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.First)]
+    public static void MeetingHudUpdate(MeetingHud __instance)
+    {
+        if (!Main.EnableFinalSuspect.Value) return;
+        foreach (var pva in __instance.playerStates)
+        {
+            try
+            {
+                pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
+
+                var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out var color, out _, out var toptext, out _);
+
+                var roleTextMeetingTransform = pva.NameText.transform.Find("RoleTextMeeting");
+                var roleTextMeeting = roleTextMeetingTransform.GetComponent<TextMeshPro>();
 
                 pva.NameText.text = name;
                 pva.NameText.color = color;

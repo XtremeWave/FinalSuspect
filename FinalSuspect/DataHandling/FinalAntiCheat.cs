@@ -238,12 +238,13 @@ public static class FinalAntiCheat
                             break;
                         case RpcCalls.CheckMurder:
                         case RpcCalls.MurderPlayer:
-                            if (pc.IsImpostor())
-                                break;
-                            return true;
+                            var target = sr.ReadNetObject<PlayerControl>();
+                            if (!target.IsAlive() || !pc.IsImpostor())
+                                return true;
+                            break;
                         case RpcCalls.ReportDeadBody:
-                            var target = Utils.GetPlayerById(sr.ReadByte());
-                            if (target == null || !target.IsAlive())
+                            var deadbody = Utils.GetPlayerById(sr.ReadByte());
+                            if (deadbody == null || !deadbody.IsAlive())
                                 break;
                             return true;
                     }
