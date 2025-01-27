@@ -1,88 +1,120 @@
 ﻿#Number:100002
-#Title:v1.0  Introduction of Functions & Optimizations
+#Title:v1.0  Introduction of Features & Optimizations
 #SubTitle:★★★★Our fantastic and wonderful content★★★★
-#ShortTitle:★Content Introduction
-#Date:2025-1-14T19:00:00Z
+#ShortTitle:★v1.0 Introduction
+#Date:2025-2-11T19:00:00Z
 #-----------------------------
 # English
-
-## Optimizations
+## Optimizations - 22
+Global: 
+- Mod cursor
+- Custom MOD icon in the top right corner
 Main Menu:
-- Animation when starting the game
-- Animation for content loading - role illustrations
-- Optimized the main menu layout
-- Optimized the main menu background
-Online Search:
-- Optimized the room name
-In-game - Global:
-- Display FPS and server at the ping display
-- Display mod version information
-- Optimized chat bubble colors
-- Optimized disconnection causes
-In-game - Lobby:
-- Optimized lobby information board background
-- Colored the settings editing interface
-- Optimized the settings editing background
-- Colored the settings viewing interface
-- Added team logo in the lobby
-In-game -  Starting:
-- Roundstart animation
-- Colored the background of the mini-map according to teams and roles.
-- Colored different roles separately
-- Display players who exit during the meeting
-Game Results:
-- Optimized the results text
+- Game launch animation
+- Loading animation - Role illustration carousel
+- Main Menu UI layout
+- Main Menu background
+Online Games:
+- Room name optimization
+In Game-Global:
+- Frame rate and server display in the ping area
+- Mod version information display
+- Chat bubble color optimization
+- Chat box background
+- Disconnection reason optimization
+In Game-Lobby:
+- Lobby information board background optimization
+- Settings editing interface coloring
+- Settings editing interface background optimization
+- Settings viewing interface coloring
+- Add team logo to the lobby
+In Game-In Task:
+- Opening animation
+- Color the minimap background based on roles and teams
+- Separate coloring for different roles
+- Display of players who exit during the meeting
+Game End:
+- Settlement text optimization
 
-## Functions
-Global:
-- Music playback (used in the settings interface)
-- Music download (used in the main menu - settings interface)
+## Features - 42
+Global: (Settings - Client Features)
+- Log output
+- Switch to vanilla
+- Music playback
+- Music download (only available in Main Menu)
+Loading screen:
+- Automatically download remote mod resources
 Main Menu:
-- Automatic download remote mod resources
-Online Search:
-- Display the host client type and color the room name accordingly
-- Display the percentage of remaining room closing time
+- Automatically check for mod version updates
+Online Games:
+- Host platform display and room name coloring based on this
+- Room code display
+- Display of remaining room time as a percentage
 - More server options
-Game Settings:
-- Unlock FPS(switch in the settings interface)
-- Change the outfit (switch in the main title - settings interface)
-- Kick players who are not logged in (switch in the settings interface)
-- Kick players who are banned (switch in the settings interface)
-- Kick players with deny names (switch in the settings interface)
-- Disable the Vanilla music (switch in the settings interface)
-- Automatically start game with lobby full (switch in the settings interface)
-- Automatically return to the lobby when the game ends (switch in the settings interface)
-- Enable custom Intro background(switch in the settings interface)
-- Enable custom map background color (switch in the settings interface)
-- Switch the map style (only for The Skeld, the button is located in the security room)
-In-game:
-- Final Anti-Cheat System
-- Ban words check & block
-- Display the scene & roles on meetings
-- Display of the task progress/kill count
-- Use the mouse wheel to use the clairvoyance (Usage conditions: Practice mode & local game, online game lobby/after death)
-- After death, non-guardian angels can see the roles, task progress/kill counts
-- After death, can see the death reasons & killer 
-- Ghost can see roles
-- Show other players with this mod in the lobby
-Game Results:
-- Information summary (roles, task progress/kill count, death reason & killer)
-Hotkeys - Global:
-- F11: Change the resolution
-- Ctrl+F1: Log output
+In Game-Global:
+- Final Anti-Cheat anti-cheating
+- Banned word check & blocking
+- Unlock frame rate limit (increase from 60FPS to 165FPS)
+- Automatically kick out players who meet the conditions
+In Game-Lobby: 
+- Display player platform and client information
+- Auto start at full lobby
+- Mutual recognition with other players using this mod
+- Display the lobby closing time (only for the host who created the room)
+In Game-In Task:
+- Scene & meeting role display
+- Task progress/Kill count display
+- Scroll the mouse wheel to use Clairvoyance (usage conditions: Practice mode & Local game global, Online game lobby/After death not Guardian Angel)
+- After death, non-Guardian Angel can see others' roles, task progress/Kill count
+- After death, can see others'death reasons & murderers
+- After death, can use lase result
+- The Haunting is colored for the role
+Game End:
+- Last Result (Roles, Tasks/Kills, Death Reasons&Murderers)
+- Auto-return to lobby at end
+Hotkeys-Global:
 - F10: Open the game root directory
-Hotkeys - Main menu:
+- F11: Change resolution
+- Ctrl+F1: Log output
+- Ctrl+F2: Toggle whether logs are output in the game (host only)
+Hotkeys-Main Menu:
 - Tab: Hide the UI
-Hotkeys - Chat:
+Hotkeys-Chat:
 - Ctrl+C: Copy the current chat box text
-- Ctrl+V: Paste the text into the chat box
-- Ctrl+X: Cut the current chat box text
+- Ctrl+V: Paste text into the chat box
+- Ctrl+X: Cut the current chat text
 - ↑: Trace back to the previous chat history of yourself
-- ↓: Trace back to the next chat history of yourself
-Hotkeys - In-game:
-- F1: Display the role introduction and illustration
-Hotkeys - Global - Only for the Host:
-- Ctrl+F2: Switch if the log outputs in the game
-Hotkeys - Lobby - Only for the Host:
-- Shift: Skip the countdown and directly start the game
-- C: Reset the countdown
+- ↓: Trace forward to the next chat history of yourself
+Hotkeys-Online Games:
+- Left Shift: join the last joined room
+- Right Shift: join the room in the clipboard
+Hotkeys-In Game:
+- F1: Display role details and illustrations
+Hotkeys-Lobby:
+- Shift: Skip the start game countdown and start the game directly (host only)
+- C: Reset the start game countdown (host only)
+
+Optional Settings: (Settings - Client Options) - 15
+- Change Outfit (only for use on the home page)
+- Unlock frame rate limit
+- Kick Players Who Are Not Logged In
+- Kick Banned Players
+- Kick Players Using Inappropriate Nicknames
+- Block Inappropriate Words
+- Auto Start at Full Lobby
+- Auto-return to Lobby at End
+- Enable Custom Intro Animation
+- Enable Custom Map Background Color
+- Disable Among U's Musics
+- Disable Anti-Cheat
+- Display Player Platform and Client Information
+- Use Mod Cursor
+Optional Settings: (Others)
+- Change map style (only for The Skeld, button located in the security room)
+
+## Warning!
+- If you see a cheater, it means they have engaged in illegal behavior or are on the mod ban list, but it does not necessarily mean their actions are cheating or that they are currently cheating.
+For example: When you see (Invalid RPC: 150), it means the other party may be a 「Better Among Us」 player, but we do not support their RPC and we will regard players who send invalid RPCs as cheaters.
+Of course, you can rest assured that because of our unique mutual recognition method, you will not be judged as a cheater in their view!
+- When a mod bug occurs, please click on 「Client Features - Log Output」 to output the log and feedback it along with the bug!
+- Except for 「Simplified Chinese」 and 「English」, all other languages are translated by AI and may have deviations, please feedback in time!

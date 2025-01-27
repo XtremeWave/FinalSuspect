@@ -1,25 +1,25 @@
 ﻿#Number:100001
 #Title:Final Suspect v1.0
-#SubTitle:★★★★时隔六个月，这款模组终于正式发行啦！★★★★
+#SubTitle:★★★★This mod has finally been formally released!★★★★
 #ShortTitle:★Formal Release v1.0
 #Date:2025-2-11T19:00:00Z
 #-----------------------------
-# 简体中文
-随着时间的推移，北半球的冬天迎来尾声，春意正在各处复苏。
-眺望米拉的雪景，内心中的回忆是否唤醒？暖流依旧心中流淌。
-无论嫌疑最终落在谁身，无论真理最后破碎于谁手，
-在焕然一新的体验中，头脑风暴，留下全新的快乐回忆。
-玩游戏，开心最重要！！！
+# English
+As time passes, the winter in the Northern Hemisphere is drawing to a close, and signs of spring are reviving everywhere.
+Gazing at the snowy scenery of Mira, are the memories within awakened? The warmth still flows in the heart.
+No matter who the suspicion ultimately falls on, no matter whose hands the truth finally shatters in,
+In the refreshed experience, brainstorming, leaving behind brand-new happy memories.
+Having fun is the most important!!!
 
 ## Base
 - Based on Among Us v2024.10.29
 - Based on BepInEx v6.0.0-be.733
 
 ## Summary of Updates
-- Fixes: 24
+- Fixes: 27
 - Optimizations: 9
 - Changes: 16
-- Additions: 39
+- Additions: 41
 - Remakes: 1
 - Deletions: 5
 
@@ -39,136 +39,141 @@
 (PR#6)
 
 ## Fixes
-- Fixed the bug of 「Auto Start at Full Lobby」 only triggered at 14 or more players, regardless of the room's maximum capacity.
-- 修复了当客户端是房主时会议后黑屏发生的问题
-- 修复了练习模式无法进入的问题
-- 修复了击杀数在游戏中不显示的问题
-- 修复了捉迷藏伪装者贴图错误的问题
-- 修复了当自己为房主时，开始游戏上方的房主信息不显示房主名称的问题
-- 修复了模组玩家只能与房主互认的问题
-- 修复了召开紧急会议时客户端发送错误的问题
-- 修复了主页模组版本&团队信息样式显示异常的问题
-- 修复了直播主模式下被屏蔽的房间号直接隐藏的问题
-- 修复了违禁词检查失效的问题
-- 修复了官方链接屏蔽警告文本异常的问题
-- 修复了「Auto-return to Lobby at End」在线游玩中不生效的问题
-- 修复了守护天使可以使用千里眼的问题
-- 修复了聊天弹窗、退出游戏信息不屏蔽违禁词的问题
-- 修复了公告开头冗余空行的问题
-- 修复了客户端选项在更改语言后文本错误的问题
-- 修复了打开好友列表时模组信息仍旧显示的问题
-- 修复了启动游戏时程序可能未响应的问题
-- 修复了关闭「Disable Among U's Musics」时主页音乐不会恢复的问题
-- 修复了在「My Music」模块停止播放会让原版游戏音乐一同被停止的问题
-- 修复了繁体中文中部分文本翻译错误的问题
-- 修复了公告语言错误的问题
-修复: Slok
-- 修复了QQ群链接错误的问题
-修复: Qingfeng
+- Fix the bug of 「Auto Start at Full Lobby」 only triggered at 14 or more players, regardless of the room's maximum capacity.
+- Fix the bug of the black screen occurring after the meeting when the client is the host
+- Fix the bug of being unable to enter practice mode
+- Fix the bug of the kill count not being displayed in the game
+- Fix the bug of the hide-and-seek imposter texture error
+- Fix the bug of the host information not displaying the host name above the start game when the client is the host
+- Fix the bug of mod players only being able to recognize each other with the host
+- Fix the bug of the client sending errors when calling an emergency meeting
+- Fix the bug of the Main Menu mod version and team information style displaying abnormally
+- Fix the bug of the room number being directly hidden in the streamer mode when it is blocked
+- Fix the bug of the blocked word check failing
+- Fix the bug of the official link block warning text displaying abnormally
+- Fix the bug of 「Auto-return to Lobby at End」 not taking effect in online play
+- Fix the bug of the Guardian Angel being able to use clairvoyance
+- Fix the bug of chat pop-ups and exit game information not blocking banned words
+- Fix the bug of redundant blank lines at the beginning of the announcement
+- Fix the bug of client options displaying text errors after changing languages
+- Fix the bug of mod information still being displayed when opening the friend list
+- Fix the bug of the program possibly not responding when starting the game
+- Fix the bug of the Main Menu music not being restored when disabling 「Disable Among U's Musics」
+- Fix the bug of stopping the music in the 「My Music」 module also stopping the original game music
+- Fix the bug of some text translation errors in Traditional Chinese
+- Fix the bug of announcement language errors
+- Fix the bug of FAC not being able to correctly kick out cheaters
+- Fix the bug of player data not being updated normally during the meeting
+- Fix the bug of the Guardian Angel being able to see the murderer's color when viewing other people's causes of death
+Fixed by Slok
+- Fix the bug of the incorrect QQ group link
+Fixed by Qingfeng
 (PR#5)
 
-## 优化
-- 重构代码以提升运行效率
-- 将几乎全部资源储存于远程以优化文件大小
-- 将依赖项储存在远程
-- 优化主页模组版本&团队信息样式
-- 优化本模组玩家互认
-- 全面优化FAC判断
-- 优化公告格式
-- 更多视觉效果优化
-- 优化好友请求透明度
-制作: Slok
+## Optimizations
+- Refactor code to improve runtime efficiency
+- Store almost all resources remotely to optimize file size
+- Store dependencies remotely
+- Optimize the style of the Main Menu mod version and team information
+- Optimize mutual recognition of players in this mod
+- Fully optimize FAC judgment
+- Optimize announcement format
+- More visual effect optimizations
+- Optimize friend request transparency
+Made by Slok
 
-## 更改
-- 「Audio Management」中不可删除播放中的音乐
-- 调整工程师、变形者、幻象师职业颜色
-- 允许在大厅和游戏中使用复盘信息
-- 死因从在名称后显示更改为在任务数量后显示
-- 更改死因为驱逐的判定以防止死因为驱逐时可能不显示死因的问题
-- 优化死亡判定
-- 为防止对模组的误报，加入+25端口服务器的房间时FAC不生效
-- 将「Switch Vanilla」归类于客户端功能
-- 将「Dump Log」归类于客户端功能
-- 调整部分客户端按钮颜色
-- 修改部分文本以方便引出之后的项目
-- 「Auto-return to Lobby at End」开启时将不再显示"继续"按钮
-- 修改客户端选项&功能颜色
-制作: Slok
-- 本项目不再作为Town Of New Epic及其父系的分支，而是作为独立项目
-- EAC更名为FAC
-- 修改部分文本用词
-决定: Slok
+## Changes
+- Cannot delete music that is currently playing in 「Audio Management」
+- Adjust the colors of the Engineer, Shapeshifter, and Phantom
+- Allow the use of replay information in the lobby and during the game
+- Change the display of cause of death from after the name to after the number of tasks
+- Modify the judgment of death by ejection to prevent the issue of not displaying the cause of death when it is ejection
+- Optimize death judgment
+- To prevent false reports of the mod, FAC will not take effect when joining a room on a +25 port server
+- Categorize 「Switch Vanilla」 as Client Feature
+- Categorize 「Dump Log」 as a Client Feature
+- Adjust the colors of some client buttons
+- Modify some text to facilitate the introduction of subsequent projects
+- When 「Auto-return to Lobby at End」 is enabled, the "Continue" button will no longer be displayed
+- Modify the colors of Client Options and Features
+Changed by Slok
+- This project is no longer a branch of Town Of New Epic and its parent, but an independent project
+- EAC has been renamed to FAC
+- Some text wording has been modified
+Decided by Slok
 
-## 新增
-- 按下F1显示职业详情时同时会显示职业立绘
-- 将InnerSloth加载动画更改为Final Suspect的立绘轮播加载动画
-- 将InnerSloth游戏加载动画改为Final Suspect游戏加载动画
-制作: Slok, 小黄117, KpCam
-参考: The Other Roles Community Edition
-- 模组公告左侧会显示团队标识
-制作: Slok
-参考: Yu Ez Tool
-- 玩家未装载YamlDotNet.dll与YamlDotNet.xml的情况下仍然可以加载翻译
-- 新增简体中文更新检查失败时关闭加速器的提示 
-制作: Yu
+## Additions
+- Pressing F1 to display role details will also display the role illustrations
+- Change the InnerSloth loading animation to the Final Suspect illustration carousel loading animation
+- Change the InnerSloth game launching animation to the Final Suspect game loading animation
+Made by Slok, 小黄117, KpCam
+Ref: The Other Roles Community Edition
+- The team logo will be displayed on the left side of the mod announcement
+Made by Slok
+Ref: Yu Ez Tool
+- Players can still load translations without YamlDotNet.dll and YamlDotNet.xml
+- Added a prompt to turn off the accelerator when the Simplified Chinese update check fails 
+Made by Yu
 (PR#3)
-- 客户端选项: Display Player Platform and Client Information
-制作: Slok
-想法: 1, KpCam
-- 7首单曲
+- Client Option: Display Player Platform and Client Information
+Made by Slok
+Idea: 1 & KpCam
+- 7 singles
 - Client Option: Block Inappropriate Words
-- 客户端选项: Disable Anti-Cheat
-- 客户端选项: Use Mod Cursor
-- 设置修改按钮图标颜色与职业匹配
-- 职业设置预览图标颜色与职业匹配
-- 职业设置修改底板着色
-- 职业设置预览底板着色
-- 游戏设置修改底板着色
-- 整游戏设置预览底板着色
-- 聊天背景着色
-- 违禁词全面屏蔽
-- 对修改名称作弊的额外检查
-- 对三秒内多次发送快捷聊天作弊的额外检查
-- 练习模式下可以使用千里眼
-- 首页快捷键: 按下Tab键隐藏UI
-- 公告栏模组内容介绍
-- 模组房间中可以无视发送消息间隔
-- 聊天气泡名前显示信息
-- 复盘信息显示服务器与房间号
-- 为贡献者与参与者添加超链接
-- 追加断连原因显示: 因连接超时离开了游戏
-- 根据玩家颜色为断连文本着色
-- 支持全语言模组公告
-- 适配Among Us版本: v2024.11.26
-- 更新BepInEx框架版本: v6.0.0-be.733
-制作: Slok
-- 在搜索房间的名称中显示房间号
-制作: Slok
-想法来源: Sicko Menu
-- 反作弊: 对KillNetwork作弊的检查
-制作: Nonalus
+- Client Option: Disable Anti-Cheat
+- Client Option: Use Mod Cursor
+- Set the modification button icon color to match the role
+- Role setting preview icon color matches the role
+- Modify the bottom plate coloring of role settings
+- Preview the bottom plate coloring of role settings
+- Modify the bottom plate coloring of game settings
+- Preview the bottom plate coloring of the entire game settings
+- Chat background coloring
+- Comprehensive spam of banned words
+- Extra checks for name modification cheating
+- Extra checks for quick chat cheating by sending multiple times within three seconds
+- Check for wall-passing cheating in the lobby
+- Clairvoyance can be used in practice mode
+- Main Menu hotkey: Press the Tab key to hide the UI
+- Mod content introduction in the announcement bar
+- Ignore message sending intervals in mod rooms
+- Display information before chat bubble names
+- Replay information displays server and room number
+- Add hyperlinks for contributors and participants
+- Add disconnection reason display: Left the game due to connection timeout
+- Color the disconnection text according to player color
+- Support full language mod announcements
+- Synchronize mod data with official data to fix the problem of official disconnection data errors when the player is the host- Support Among Us version: v2024.11.26
+- Support Among Us version: v2024.11.26
+- Update BepInEx framework version: v6.0.0-be.733
+Made by Slok
+- Display room codes in the room search names
+Made by Slok
+Inspiration: Sicko Menu
+- Anti-Cheat: Check for KillNetwork cheating
+Made by: Nonalus
 (PR#6)
-- 按下左Shift加入上一个加入的房间
-- 按下右Shift加入剪贴板中的房间
-制作: Elinmei
-想法来源: The Other Roles
-- 模组专属右上角MOD图标
-制作: Slok, KpCam
-想法来源: Better Among Us
+- Press Left Shift to join the last joined room
+- Press Right Shift to join the room in the clipboard
+Made by: Elinmei
+Inspiration: The Other Roles
+- Custom MOD icon in the top right corner
+Made by Slok & KpCam
+Inspiration: Better Among Us
 
-## 重制
-- 代码全面重构
-制作: Slok
+## Remakes
+- Complete code refactoring
+Made by Slok
 
-## 删除
-- 暂时删除: 主界面——官方网站按钮
-原因: 网站维护退出制作组
-- 暂时删除: 愚人节地图——骷髅舰(镜像)
-原因: 出现房主卡在驱逐动画的问题
-- 暂时删除: Change Outfit——April Fools Horse Mode
-(标记为损坏)
-原因: 出现聊天提醒弹出时客户端崩溃的问题
-- 删除: 仅Final Suspect房间搜索
-- 删除: 踢出与房主Final Suspect版本不同的玩家
-原因: 功能无意义
-决定: Slok
+## Deletions
+- Temporarily removed: Main Menu - Website Button
+Reason: Website maintenance and exit from the development team
+- Temporarily removed: April Fools Map - Dleks
+Reason: Hosts getting stuck in the ejection animation
+- Temporarily removed: Change Outfit - April Fools Horse Mode
+(Mark As Broken)
+Reason: Client crashes when chat pop-ups pop up
+- Removed: Final Suspect room search only
+- Removed: Kick out players with different Final Suspect versions
+Reason: The feature is meaningless
+Decided By Slok
