@@ -71,7 +71,7 @@ public class LoadPatch
             ];
             ListStr remoteModNewsList =
             [
-                "FS.v1.0_2025.txt",
+                "FS.v1.0_20250212.txt",
                 "FeaturesIntroduction.v1.0.txt"
             ];
             ListStr remoteLanguageList =
