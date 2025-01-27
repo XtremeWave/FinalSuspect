@@ -16,7 +16,7 @@ Having fun is the most important!!!
 - Based on BepInEx v6.0.0-be.733
 
 ## Summary of Updates
-- Fixes: 27
+- Fixes: 28
 - Optimizations: 9
 - Changes: 16
 - Additions: 41
@@ -65,6 +65,7 @@ Having fun is the most important!!!
 - Fix the bug of FAC not being able to correctly kick out cheaters
 - Fix the bug of player data not being updated normally during the meeting
 - Fix the bug of the Guardian Angel being able to see the murderer's color when viewing other people's causes of death
+- Fix the bug of the Last Result text exceeds the background length
 Fixed by Slok
 - Fix the bug of the incorrect QQ group link
 Fixed by Qingfeng

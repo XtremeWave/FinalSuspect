@@ -18,24 +18,26 @@ public static class FinalAntiCheat
         public bool IsSuspectCheater { get; private set; }
         public int SetNameTimes { get; private set; }
 
-        private PlayerControl Player { get; set; }
-        public ClientData ClientData { get; private set; }
+        private PlayerControl Player { get; }
+        public ClientData ClientData { get; }
         public string FriendCode => ClientData.FriendCode;
         public string Puid => ClientData.GetHashedPuid();
-        public static int SendQuickMessageCountPerSecond { get; private set; }
+        public int SendQuickMessageCountPerSecond { get; private set; }
 
         public PlayerCheatData(PlayerControl player)
         {
             IsSuspectCheater = false;
             SetNameTimes = 
             SendQuickMessageCountPerSecond = 0;
-            _lastSendTime = -1;
+            _lastKillTime = _lastSendTime = -1;
             Player = player;
             ClientData = Player.GetClient();
         }
         private long _lastSendTime; 
         private const long ResetInterval = 3;
-        
+
+        private long _lastKillTime;
+        private const long AdjustDelay = 1;
         public bool HandleSetName()
         {
             SetNameTimes++;
@@ -92,6 +94,12 @@ public static class FinalAntiCheat
             _lastSendTime = Utils.GetTimeStamp();
             return false;
         }
+        public bool HandleMurderPlayer(PlayerControl target)
+        {
+            var KillOnePlayerForManyTimes = _lastKillTime != -1 && _lastKillTime + AdjustDelay < Utils.GetTimeStamp() && !target.IsAlive();
+            _lastKillTime = Utils.GetTimeStamp();
+            return KillOnePlayerForManyTimes || !Player.IsImpostor();
+        }
         public void HandleBan()
         {
             if (ClientData.IsFACPlayer() || ClientData.IsBannedPlayer())
@@ -105,7 +113,6 @@ public static class FinalAntiCheat
             if (posXOutOfRange || posYOutOfRange)
                 IsSuspectCheater = true;
         }
-
         public void HandleSuspectCheater()
         {
             if (!IsSuspectCheater || !AmongUsClient.Instance.AmHost || _lastKick != -1 && _lastKick + 1 >= Utils.GetTimeStamp()) return;
@@ -239,7 +246,7 @@ public static class FinalAntiCheat
                         case RpcCalls.CheckMurder:
                         case RpcCalls.MurderPlayer:
                             var target = sr.ReadNetObject<PlayerControl>();
-                            if (!target.IsAlive() || !pc.IsImpostor())
+                            if (pc.GetCheatData().HandleMurderPlayer(target))
                                 return true;
                             break;
                         case RpcCalls.ReportDeadBody:

@@ -16,7 +16,7 @@ Ang pagkakataon ang pinaka mahalaga!!!
 - Batay sa BepInEx v6.0.0-be.733
 
 ## Buod ng mga Update
-- Mga Pagpapataw: 27
+- Mga Pagpapataw: 28
 - Mga Opo: 9
 - Mga Pagbabago: 16
 - Mga Pagganap: 41
@@ -65,6 +65,7 @@ Ang pagkakataon ang pinaka mahalaga!!!
 - Isang pagpapataw sa bug na FAC hindi maaaring tumpakin ang mga cheater na tumpak
 - Isang pagpapataw sa bug na mga datos ng player hindi normal na inilalagay sa oras ng meeting
 - Isang pagpapataw sa bug na Guardian Angel ay maaaring makita ang kulay ng murderer kapag pinapanood ang mga dahilan ng pagkamatay ng iba
+- Isang pagpapataw sa bug ng Huling Resulta ay nakakalaglag sa haba ng background
 Ginawa ni Slok
 - Isang pagpapataw sa bug ng hindi tumpak na link ng grupo QQ
 Ginawa ni Qingfeng

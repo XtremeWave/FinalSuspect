@@ -16,7 +16,7 @@ Het belangrijkst is om je te amuseren!!!
 - Gebaseerd op BepInEx v6.0.0-be.733
 
 ## Samenvatting van updates
-- Reparaties: 27
+- Reparaties: 28
 - Optimalisaties: 9
 - Veranderingen: 16
 - Toevoegingen: 41
@@ -65,6 +65,7 @@ Het belangrijkst is om je te amuseren!!!
 - Repareer de bug van FAC die niet correct cheaters kan uitschakelen
 - Repareer de bug van speler data die niet normaal wordt bijgewerkt tijdens de vergadering
 - Repareer de bug van de Guardian Angel die de moordenaar kleur kan zien wanneer hij de doodsoorzaak van anderen bekijkt
+- Repareer de bug dat de tekst van het Laatste Resultaat de achtergrondlengte overschrijdt
 Gemaakt door Slok
 - Repareer de bug van de onjuiste QQ-groep link
 Gemaakt door Qingfeng

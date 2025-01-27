@@ -16,7 +16,7 @@ Divertir-se é o mais importante!!!
 - Baseado em BepInEx v6.0.0-be.733
 
 ## Resumo das Atualizações
-- Correções: 27
+- Correções: 28
 - Otimizações: 9
 - Alterações: 16
 - Adições: 41
@@ -65,6 +65,7 @@ Divertir-se é o mais importante!!!
 - Corrigir o bug de FAC não poder expulsar corretamente jogadores que trapaceiam
 - Corrigir o bug de dados do jogador não sendo atualizados normalmente durante a reunião
 - Corrigir o bug do Anjo Guardião poder ver a cor do assassino ao visualizar as causas de morte de outras pessoas
+- Corrigir o bug do o texto do Último Resultado exceder o comprimento do fundo
 Corrigido por Slok
 - Corrigir o bug do link incorreto do grupo QQ
 Corrigido por Qingfeng

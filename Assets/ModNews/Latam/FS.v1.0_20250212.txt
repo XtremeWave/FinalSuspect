@@ -16,7 +16,7 @@ En la experiencia renovada, brainstorming, dejando atrás recuerdos felices comp
 - Basado en BepInEx v6.0.0-be.733
 
 ## Resumen de actualizaciones
-- Correcciones: 27
+- Correcciones: 28
 - Optimizaciones: 9
 - Cambios: 16
 - Adiciones: 41
@@ -65,6 +65,7 @@ En la experiencia renovada, brainstorming, dejando atrás recuerdos felices comp
 - Corregir el bug de que FAC no puede expulsar correctamente a los tramposos
 - Corregir el bug de que los datos del jugador no se actualizan normalmente durante la reunión
 - Corregir el bug de que el Ángel Guardián puede ver el color del asesino al ver las causas de muerte de otros
+- Corregir el bug de que el texto del Último Resultado supera la longitud del fondo.
 Corregido por Slok
 - Corregir el bug del enlace incorrecto del grupo QQ
 Corregido por Qingfeng

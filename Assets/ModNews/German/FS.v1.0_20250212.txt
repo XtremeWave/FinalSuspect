@@ -16,7 +16,7 @@ Viel Spaß ist das Wichtigste!!!
 - Basierend auf BepInEx v6.0.0-be.733
 
 ## Zusammenfassung der Updates
-- Korrekturen: 27
+- Korrekturen: 28
 - Optimierungen: 9
 - Änderungen: 16
 - Hinzufügungen: 41
@@ -65,6 +65,7 @@ Viel Spaß ist das Wichtigste!!!
 - Korrigiere den Bug von FAC, dass es nicht korrekt Cheater ausschließen kann
 - Korrigiere den Bug, dass Spielerdaten während der Besprechung nicht normal aktualisiert werden
 - Korrigiere den Bug, dass der Wächter die Mörderfarbe sehen kann, wenn er die Todesursachen anderer ansieht
+- Korrigiere den Bug, dass der Text des Letzten Ergebnisses die Hintergrundlänge überschreitet
 Von Slok korrigiert
 - Korrigiere den Bug des falschen QQ-Gruppenlinks
 Von Qingfeng korrigiert

@@ -373,9 +373,8 @@ public static class HudManagerPatch
                 var scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
                 
                 backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+                backgroundRenderer.transform.localPosition = new Vector3(textBounds.center.x, textBounds.center.y,2f);
             }
-            
-            backgroundRenderer.transform.localPosition = new Vector3(0, -textBounds.size.y * 0.5f, 0);
         }
     }
     

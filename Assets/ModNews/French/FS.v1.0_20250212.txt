@@ -16,7 +16,7 @@ S'amuser est le plus important!!!
 - Basé sur BepInEx v6.0.0-be.733
 
 ## Résumé des mises à jour
-- Corrections: 27
+- Corrections: 28
 - Optimisations: 9
 - Changements: 16
 - Ajouts: 41
@@ -65,6 +65,7 @@ S'amuser est le plus important!!!
 - Corriger le bug de FAC ne pouvant pas correctement expulser les tricheurs
 - Corriger le bug des données du joueur ne se mettant pas à jour normalement pendant la réunion
 - Corriger le bug de l'Ange Gardien pouvant voir la couleur du meurtrier lors de la consultation des causes de décès des autres
+- Corriger le bug où le texte du Dernier Résultat dépasse la longueur du fond
 Corrigé par Slok
 - Corriger le bug du lien incorrect du groupe QQ
 Corrigé par Qingfeng

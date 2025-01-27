@@ -55,7 +55,7 @@ HnSCrewmateGhostBlurbLong: "Go! Cheer! For! Your! Teammates!"
 # 死因 / Death Reason
 DeathReason.Kill: "Killed"
 DeathReason.Exile: "Exiled"
-DeathReason.Disconnect: "Disconnected"
+DeathReason.Disconnect: "D/C"
 
 # 客户端选项 / Client Options
 FinalSuspectOptions: "Final Suspect Options"
