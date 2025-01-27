@@ -55,7 +55,7 @@ public class Main : BasePlugin
     /// Scrapter: 废弃版
     /// </summary>
     public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 12;
+    public const int DisplayedVersion_TestCreation = 13;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
@@ -64,7 +64,7 @@ public class Main : BasePlugin
     // == 链接相关设定 / Link Config ==
     //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
     public static readonly string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
-    public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
+    public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect/";
 
     // ==========

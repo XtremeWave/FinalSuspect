@@ -280,8 +280,8 @@ public static class HudManagerPatch
                __instance.transform,
                "ShowHideResultsButton",
                XtremeGameData.GameStates.IsInGame? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -14f),  // 比 BackgroundLayer(z = -13) 更靠前
-               new(209, 190, 0, byte.MaxValue),
-               new(byte.MaxValue, byte.MaxValue, 0, byte.MaxValue),
+               new(209, 190, 255, byte.MaxValue),
+               new(208, 222, 255, byte.MaxValue),
                () =>
                {
                    var setToActive = !roleSummary.gameObject.activeSelf;
