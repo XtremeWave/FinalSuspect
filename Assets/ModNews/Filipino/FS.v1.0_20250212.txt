@@ -1,0 +1,179 @@
+﻿#Number:100001
+#Title:Final Suspect v1.0
+#SubTitle:★★★★Ang mod na ito ay opisyal na inilabas na!★★★★
+#ShortTitle:★Opisyal na Ilabas v1.0
+#Date:2025-2-11T19:00:00Z
+#-----------------------------
+# Filipino
+Habang nagpapasya ang panahon, ang taglamig sa Hilagang Hemisfero ay nagpapatungo na sa kanyang dulo at ang mga tanda ng tag-init ay muli ay nabubuhay sa lahat ng lugar.
+Tayo ay tumitingin sa mga eskinita ng Mira, ang mga ala-ala sa loob ay nagiging buhay? Ang init ay patuloy na nagpapalibot sa puso.
+Walang pakialam kung sa sino ang pagtutungkol ay tumutulo, walang pakialam kung sa kanino ang katotohanan ay nababagsak sa wakas,
+Sa maingay na karanasan, brainstorming, mag-iwan ng mga bagong maluwalhati ng kasiyahan.
+Ang pagkakataon ang pinaka mahalaga!!!
+
+## Base
+- Batay sa Among Us v2024.10.29
+- Batay sa BepInEx v6.0.0-be.733
+
+## Buod ng mga Update
+- Mga Pagpapataw: 27
+- Mga Opo: 9
+- Mga Pagbabago: 16
+- Mga Pagganap: 41
+- Mga Pagtutulungan: 1
+- Mga Pagtanggal: 5
+
+## Mga Nagtrabaho sa Team
+- [Slok]("https://github.com/Slok7565/")
+- [Elinmei]("https://github.com/linmeideli/")
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- KpCam
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Mga Nagtrabaho
+- [Yu]("https://github.com/Night-GUA/")
+(PR#3)
+- [Qingfeng]("https://github.com/QingFeng-awa/")
+(PR#5)
+- [Nonalus]("https://github.com/Reborn5537/")
+(PR#6)
+
+## Mga Pagpapataw
+- Isang pagpapataw sa bug na 「Auto Start at Full Lobby」 na nagpapatak sa 14 o higit pang mga player, walang pakialam sa pinakamalaking kapasidad ng kwarto.
+- Isang pagpapataw sa bug ng itim na screen na nangyayari pagkatapos ng meeting kapag ang kliente ay ang host
+- Isang pagpapataw sa bug ng hindi makapasok sa practice mode
+- Isang pagpapataw sa bug ng hindi inilalagay ang bilang ng mga pagpatay sa laro
+- Isang pagpapataw sa bug ng hide-and-seek imposter texture error
+- Isang pagpapataw sa bug ng hindi inilalagay ang pangalan ng host sa itaas ng start game kapag ang kliente ay ang host
+- Isang pagpapataw sa bug ng mga player na may mod na maaaring magkikilala sa isa't isa sa host lamang
+- Isang pagpapataw sa bug ng mga pagkakamali ng pagpadala ng kliente sa pagtawag ng isang emergency meeting
+- Isang pagpapataw sa bug ng gaya ng estilo ng bersyon ng mod at mga impormasyon ng koponan sa pangunahing menu na hindi normal na inilalagay
+- Isang pagpapataw sa bug ng direktang itinago ang numero ng kwarto sa mode ng streamer kapag ito ay nabablock
+- Isang pagpapataw sa bug ng hindi gumagana ang pagsubok ng mga bawal na salita
+- Isang pagpapataw sa bug ng hindi normal na inilalagay ang teksto ng babala sa pagbublock ng opisyal na link
+- Isang pagpapataw sa bug na 「Auto-return to Lobby at End」 na hindi gumagana sa online play
+- Isang pagpapataw sa bug na Guardian Angel ay maaaring gumamit ng clairvoyance
+- Isang pagpapataw sa bug ng mga pop-up ng chat at mga impormasyon ng paglabas ng laro na hindi nagbablock ng mga bawal na salita
+- Isang pagpapataw sa bug ng redundant na mga blank na linya sa simula ng announcement
+- Isang pagpapataw sa bug ng mga opsyon ng kliente na nagpapakita ng mga error sa teksto pagkatapos ng pagbabago ng mga wika
+- Isang pagpapataw sa bug ng mga impormasyon ng mod na patuloy na inilalagay kapag binubuksan ang listahan ng mga kaibigan
+- Isang pagpapataw sa bug na ang programa ay maaaring hindi tugon kapag nagpapatakbo ng laro
+- Isang pagpapataw sa bug na ang musika ng pangunahing menu hindi inilalagay muli kapag inaalis ang 「Disable Among U's Musics」
+- Isang pagpapataw sa bug na paghinto ng musika sa 「My Music」 module na din dinhinto din ang mga orihinal na musika ng laro
+- Isang pagpapataw sa bug ng ilang mga pagsala ng teksto sa Chinong Traditional
+- Isang pagpapataw sa bug ng mga pagsala ng wika sa announcement
+- Isang pagpapataw sa bug na FAC hindi maaaring tumpakin ang mga cheater na tumpak
+- Isang pagpapataw sa bug na mga datos ng player hindi normal na inilalagay sa oras ng meeting
+- Isang pagpapataw sa bug na Guardian Angel ay maaaring makita ang kulay ng murderer kapag pinapanood ang mga dahilan ng pagkamatay ng iba
+Ginawa ni Slok
+- Isang pagpapataw sa bug ng hindi tumpak na link ng grupo QQ
+Ginawa ni Qingfeng
+(PR#5)
+
+## Mga Opo
+- Refaktoring ng code upang mapabuti ang runtime efficiency
+- I-store ang halos lahat ng mga resources sa remote upang mapabuti ang laki ng file
+- I-store ang mga dependency sa remote
+- Opo ang estilo ng bersyon ng mod at mga impormasyon ng koponan sa pangunahing menu
+- Opo ang pagkilala ng isa't isa ng mga player sa mod na ito
+- Buong opo ang paghuhusga ng FAC
+- Opo ang format ng announcement
+- Mga opo sa mga visual effect
+- Opo ang transparensya ng mga hiling ng kaibigan
+Ginawa ni Slok
+
+## Mga Pagbabago
+- Hindi maaaring i-delete ang musika na kasalukuyang naglalaro sa 「Audio Management」
+- Ajustar ang mga kulay ng Engineer, Shapeshifter, at Phantom
+- Payag na gumamit ng mga impormasyon ng replay sa lobby at sa oras ng laro
+- Baguhin ang paglalagay ng dahilan ng pagkamatay mula sa pagkatapos ng pangalan sa pagkatapos ng bilang ng mga gawain
+- Baguhin ang paghuhusga ng pagkamatay sa pag-eject upang maiwasan ang isyu ng hindi inilalagay ang dahilan ng pagkamatay kapag ito ay eject
+- Opo ang paghuhusga ng pagkamatay
+- Upang maiwasan ang mga maling ulat ng mod, ang FAC ay hindi magiging epektibo kapag nag-iingay sa isang kwarto sa isang +25 port server
+- Kategorize 「Switch Vanilla」 bilang Client Feature
+- Kategorize 「Dump Log」 bilang isang Client Feature
+- Ajustar ang mga kulay ng ilang mga pindutan ng kliente
+- Baguhin ang ilang teksto upang madali ang pag-iintroduce ng mga susunod na mga proyekto
+- Kapag 「Auto-return to Lobby at End」 ay naitag, ang "Continue" button ay hindi na magiging inilalagay
+- Baguhin ang mga kulay ng mga Opsyon at Mga Feature ng Kliente
+Ginawa ni Slok
+- Ang proyekto na ito ay hindi na isang branch ng Town Of New Epic at ang kanyang magulang, kundi isang independent na proyekto
+- Ang EAC ay binago sa FAC
+- Ang ilang mga salitang pagsasabisa ay binago
+Ginawa ni Slok
+
+## Mga Pagganap
+- Pindutin ang F1 upang ipakita ang mga detalye ng papel ay magpapakita din ng mga ilustrasyon ng papel
+- Baguhin ang InnerSloth loading animation sa Final Suspect illustration carousel loading animation
+- Baguhin ang InnerSloth game launching animation sa Final Suspect game loading animation
+Ginawa ni Slok, 小黄117, KpCam
+Ref: The Other Roles Community Edition
+- Ang logo ng koponan ay magiging inilalagay sa kaliwang bahagi ng mod announcement
+Ginawa ni Slok
+Ref: Yu Ez Tool
+- Ang mga player ay maaaring mag-load pa rin ng mga pagsasalin nang walang YamlDotNet.dll at YamlDotNet.xml
+- Idagdag ang isang prompt upang isara ang accelerator kapag ang pagsubok ng update sa Simplified Chinese ay nabigo 
+Ginawa ni Yu
+(PR#3)
+- Opsyon ng Kliente: Ipakita ang impormasyon ng platform ng player at client
+Ginawa ni Slok
+Idea: 1 & KpCam
+- 7 singles
+- Opsyon ng Kliente: Blokear ang mga bawal na salita
+- Opsyon ng Kliente: Disable Anti-Cheat
+- Opsyon ng Kliente: Gumamit ng Mod Cursor
+- I-set ang kulay ng icon ng button ng pagbabago upang tugma sa papel
+- Ang kulay ng icon ng preview ng setting ng papel ay tugma sa papel
+- Ibagong kulay ng piso ng setting ng papel
+- Preview ang kulay ng piso ng setting ng papel
+- Ibagong kulay ng piso ng setting ng laro
+- Preview ang kulay ng piso ng buong setting ng laro
+- Kulay ng piso ng chat
+- Buong spam ng mga bawal na salita
+- Extra checks para sa pagbabago ng pangalan na nagchecheat
+- Extra checks para sa pagchecheat ng quick chat sa pamamagitan ng pagpadala ng maraming beses sa loob ng tatlong segundo
+- Check para sa pagchecheat ng lobby wall-passing
+- Ang clairvoyance ay maaaring gamitin sa practice mode
+- Pangunahing menu hotkey: Pindutin ang Tab key upang itago ang UI
+- Mod content introduction in the announcement bar
+- Ignore message sending intervals in mod rooms
+- Display information before chat bubble names
+- Replay information displays server and room number
+- Add hyperlinks for contributors and participants
+- Add disconnection reason display: Left the game due to connection timeout
+- Color the disconnection text according to player color
+- Support full language mod announcements
+- Synchronize mod data with official data to fix the problem of official disconnection data errors when the player is the host- Support Among Us version: v2024.11.26
+- Support Among Us version: v2024.11.26
+- Update BepInEx framework version: v6.0.0-be.733
+Ginawa ni Slok
+- Display room codes in the room search names
+Ginawa ni Slok
+Inspired by: Sicko Menu
+- Anti-Cheat: Check for KillNetwork cheating
+Ginawa ni: Nonalus
+(PR#6)
+- Pindutin ang Left Shift to join the last joined room
+- Pindutin ang Right Shift to join the room in the clipboard
+Ginawa ni: Elinmei
+Inspired by: The Other Roles
+- Custom MOD icon in the top right corner
+Ginawa ni Slok & KpCam
+Inspired by: Better Among Us
+
+## Mga Pagtutulungan
+- Buong pag-refactor ng code
+Ginawa ni Slok
+
+## Mga Pagtanggal
+- Tampok na inalis: Main Menu - Website Button
+Dahilan: Website maintenance and exit from the development team
+- Tampok na inalis: April Fools Map - Dleks
+Dahilan: Hosts getting stuck in the ejection animation
+- Tampok na inalis: Change Outfit - April Fools Horse Mode
+(Mark As Broken)
+Dahilan: Client crashes when chat pop-ups pop up
+- Inalis: Final Suspect room search only
+- Inalis: Kick out players with different Final Suspect versions
+Dahilan: The feature is meaningless
+Ginawa ni Slok

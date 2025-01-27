@@ -1,0 +1,120 @@
+﻿#Número:100002
+#Título:v1.0  Introducción de funciones y optimizaciones
+#Subtítulo:★★★★Nuestro fantástico y maravilloso contenido★★★★
+#Título Corto:★v1.0 Introducción
+#Fecha:2025-2-11T19:00:00Z
+#-----------------------------
+# Español (Latinoamérica)
+## Optimizaciones - 22
+Global: 
+- Cursor del mod
+- Ícono personalizado del MOD en la esquina superior derecha
+Menú Principal:
+- Animación de inicio del juego
+- Animación de carga - Carrousel de ilustraciones de roles
+- Diseño de la interfaz del Menú Principal
+- Fondo del Menú Principal
+Juegos en línea:
+- Optimización del nombre de la sala
+En el juego - Global:
+- Mostrar la tasa de fotogramas y el servidor en el área de ping
+- Mostrar información de la versión del mod
+- Optimización del color de las burbujas de chat
+- Fondo del cuadro de chat
+- Optimización del motivo de desconexión
+En el juego - Lobby:
+- Optimización del fondo del tablero de información del lobby
+- Color de la interfaz de edición de configuraciones
+- Optimización del fondo de la interfaz de edición de configuraciones
+- Color de la interfaz de visualización de configuraciones
+- Agregar logo del equipo al lobby
+En el juego - En tarea:
+- Animación de apertura
+- Color del fondo del minimapa según roles y equipos
+- Color separado para diferentes roles
+- Mostrar jugadores que salen durante la reunión
+Fin del juego:
+- Optimización del texto de liquidación
+
+## Funciones - 42
+Global: (Configuración - Funcionalidades del cliente)
+- Salida de registro
+- Cambiar a la versión original
+- Reproducción de música
+- Descarga de música (solo disponible en el Menú Principal)
+Pantalla de carga:
+- Descargar automáticamente recursos de mod remotos
+Menú Principal:
+- Verificar automáticamente actualizaciones de la versión del mod
+Juegos en línea:
+- Mostrar plataforma del anfitrión y colorear el nombre de la sala según esto
+- Mostrar código de la sala
+- Mostrar el tiempo restante de la sala como porcentaje
+- Más opciones de servidor
+En el juego - Global:
+- Anti-Cheat anti-trampas
+- Verificación y bloqueo de palabras prohibidas
+- Desbloquear límite de tasa de fotogramas (aumentar de 60FPS a 165FPS)
+- Expulsar automáticamente a los jugadores que cumplan las condiciones
+En el juego - Lobby: 
+- Mostrar información de la plataforma del jugador y del cliente
+- Inicio automático cuando el lobby esté lleno
+- Reconocimiento mutuo con otros jugadores que usan este mod
+- Mostrar la hora de cierre del lobby (solo para el anfitrión que creó la sala)
+En el juego - En tarea:
+- Mostrar roles y reunión
+- Mostrar progreso de la tarea/Conteo de muertes
+- Desplazar la rueda del mouse para usar la clarividencia (condiciones de uso: Modo de práctica & Juego local global, Lobby de juego en línea/Después de la muerte no Guardian Angel)
+- Después de la muerte, el no-Guardian Angel puede ver los roles, el progreso de la tarea/Conteo de muertes de los demás
+- Después de la muerte, se pueden ver las causas de muerte y asesinos de los demás
+- Después de la muerte, se puede usar el último resultado
+- El fantasma está coloreado para el rol
+Fin del juego:
+- Último resultado (Roles, Tareas/Muertes, Causas de muerte & Asesinos)
+- Retorno automático al lobby al final
+Atajos globales:
+- F10: Abrir el directorio raíz del juego
+- F11: Cambiar resolución
+- Ctrl+F1: Salida de registro
+- Ctrl+F2: Alternar si los registros se muestran en el juego (anfitrión solo)
+Atajos del Menú Principal:
+- Tab: Ocultar la UI
+Atajos de chat:
+- Ctrl+C: Copiar el texto actual de la caja de chat
+- Ctrl+V: Pegar texto en la caja de chat
+- Ctrl+X: Cortar el texto actual del chat
+- ↑: Volver al historial de chat anterior de usted mismo
+- ↓: Avanzar al siguiente historial de chat de usted mismo
+Atajos de juegos en línea:
+- Shift izquierdo: unirse a la última sala unida
+- Shift derecho: unirse a la sala en el portapapeles
+Atajos en el juego:
+- F1: Mostrar detalles e ilustraciones del rol
+Atajos del lobby:
+- Shift: Saltar el conteo regresivo de inicio del juego y comenzar el juego directamente (anfitrión solo)
+- C: Reiniciar el conteo regresivo de inicio del juego (anfitrión solo)
+
+Opciones opcionales: (Configuración - Funcionalidades del cliente) - 15
+- Cambiar traje (solo para uso en la página de inicio)
+- Desbloquear límite de tasa de fotogramas
+- Expulsar a los jugadores que no están conectados
+- Expulsar a los jugadores baneados
+- Expulsar a los jugadores que usan apodos inapropiados
+- Bloquear palabras inapropiadas
+- Inicio automático cuando el lobby esté lleno
+- Retorno automático al lobby al final
+- Habilitar animación de introducción personalizada
+- Habilitar color de fondo de mapa personalizado
+- Desactivar música de Among U
+- Desactivar Anti-Cheat
+- Mostrar información de la plataforma del jugador y del cliente
+- Usar cursor del mod
+Opciones opcionales: (Otras)
+- Cambiar estilo del mapa (solo para The Skeld, botón ubicado en la sala de seguridad)
+
+## Advertencia!
+- Si ves a un tramposo, significa que han realizado un comportamiento ilegal o están en la lista de ban del mod, pero no significa necesariamente que sus acciones son trampas o que están trampeando actualmente.
+Por ejemplo: Cuando ves (Invalid RPC: 150), significa que la otra parte puede ser un jugador de 「Better Among Us」, pero no soportamos su RPC y consideraremos a los jugadores que envían RPCs inválidas como tramposos.
+Por supuesto, puedes estar seguro de que debido a nuestro único método de reconocimiento mutuo, no serás juzgado como tramposo en su vista!
+- Cuando ocurre un bug del mod, haga clic en 「Funcionalidades del cliente - Salida de registro」 para exportar el registro y enviarlo junto con el bug!
+- Excepto para 「Chino simplificado」 y 「Inglés」, todas las demás lenguas son traducidas por IA y pueden tener desviaciones, ¡envía comentarios a tiempo!

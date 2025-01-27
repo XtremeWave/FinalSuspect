@@ -1,11 +1,11 @@
 ﻿#Number:100002
-#Title:v1.0 Introduction of Features & Optimizations
+#Title:v1.0  Introduction of Features & Optimizations
 #SubTitle:★★★★Our fantastic and wonderful content★★★★
 #ShortTitle:★v1.0 Introduction
 #Date:2025-2-11T19:00:00Z
 #-----------------------------
-# English
-## Optimizations - 22
+# Filipino
+## Opo - 22
 Global: 
 - Mod cursor
 - Custom MOD icon in the top right corner
@@ -36,7 +36,7 @@ In Game-In Task:
 Game End:
 - Settlement text optimization
 
-## Features - 42
+## Mga Tampok - 42
 Global: (Settings - Client Features)
 - Log output
 - Switch to vanilla
@@ -66,11 +66,11 @@ In Game-In Task:
 - Task progress/Kill count display
 - Scroll the mouse wheel to use Clairvoyance (usage conditions: Practice mode & Local game global, Online game lobby/After death not Guardian Angel)
 - After death, non-Guardian Angel can see others' roles, task progress/Kill count
-- After death, can see others'death reasons & murderers
-- After death, can use lase result
-- The Haunting is colored for the role
+- After death, can see others' death reasons & murderers
+- After death, can use last result
+- The haunting is colored for the role
 Game End:
-- Last Result (Roles, Tasks/Kills, Death Reasons&Murderers)
+- Last Result (Roles, Tasks/Kills, Death Reasons & Murderers)
 - Auto-return to lobby at end
 Hotkeys-Global:
 - F10: Open the game root directory
@@ -94,27 +94,27 @@ Hotkeys-Lobby:
 - Shift: Skip the start game countdown and start the game directly (host only)
 - C: Reset the start game countdown (host only)
 
-Optional Settings: (Settings - Client Options) - 15
-- Change Outfit (only for use on the home page)
-- Unlock frame rate limit
-- Kick Players Who Are Not Logged In
-- Kick Banned Players
-- Kick Players Using Inappropriate Nicknames
-- Block Inappropriate Words
-- Auto Start at Full Lobby
-- Auto-return to Lobby at End
-- Enable Custom Intro Animation
-- Enable Custom Map Background Color
-- Disable Among U's Musics
-- Disable Anti-Cheat
-- Display Player Platform and Client Information
-- Use Mod Cursor
-Optional Settings: (Others)
-- Change map style (only for The Skeld, button located in the security room)
+Optionele instellingen: (Instellingen - Client opties) - 15
+- Verander outfit (alleen voor gebruik op de startpagina)
+- Ontgrendel framesnelheid limiet
+- Schop spelers uit die niet zijn ingelogd
+- Schop gebannede spelers uit
+- Schop spelers uit die ongepaste bijnamen gebruiken
+- Blokkeer ongepaste woorden
+- Automatisch starten bij volle lobby
+- Automatisch terugkeren naar lobby aan het einde
+- Schakel aangepaste intro animatie in
+- Schakel aangepaste kaart achtergrond kleur in
+- Schakel muziek van Among U uit
+- Schakel Anti-Cheat uit
+- Toon informatie over spelerplatform en client
+- Gebruik mod cursor
+Optionele instellingen: (Andere)
+- Verander kaartstijl (alleen voor The Skeld, knop bevindt zich in de beveiligingskamer)
 
-## Warning!
-- If you see a cheater, it means they have engaged in illegal behavior or are on the mod ban list, but it does not necessarily mean their actions are cheating or that they are currently cheating.
-For example: When you see (Invalid RPC: 150), it means the other party may be a 「Better Among Us」 player, but we do not support their RPC and we will regard players who send invalid RPCs as cheaters.
-Of course, you can rest assured that because of our unique mutual recognition method, you will not be judged as a cheater in their view!
-- When a mod bug occurs, please click on 「Client Features - Log Output」 to output the log and feedback it along with the bug!
-- Except for 「Simplified Chinese」 and 「English」, all other languages are translated by AI and may have deviations, please feedback in time!
+## Waarschuwing!
+- Als u een bedrieger ziet, betekent dit dat zij illegaal gedrag hebben gepleegd of op de mod banlijst staan, maar dit betekent niet noodzakelijk dat hun acties bedrog zijn of dat ze momenteel bedriegen.
+Bijvoorbeeld: Wanneer u (Invalid RPC: 150) ziet, betekent dit dat de andere partij mogelijk een 「Better Among Us」 speler is, maar we ondersteunen hun RPC niet en zullen we spelers die ongeldige RPC's verzenden beschouwen als bedriegers.
+Natuurlijk kunt u gerust zijn dat u vanwege onze unieke wederzijdse herkeningsmethode niet als bedrieger zal worden beoordeeld in hun visie!
+- Wanneer een mod bug optreedt, klik dan op 「Client Features - Log Output」 om het log te exporteren en samen met de bug terug te geven!
+- Behalve 「Vereenvoudigd Chinees」 en 「Engels」, zijn alle andere talen vertaald door AI en kunnen afwijkingen hebben, geef gerust feedback op tijd!

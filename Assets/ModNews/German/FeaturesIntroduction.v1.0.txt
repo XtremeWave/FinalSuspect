@@ -1,0 +1,120 @@
+﻿#Number:100002
+#Title:v1.0  Funktionen und Optimierungen
+#SubTitle:★★★★Unser fantastischer und wunderbarer Inhalt★★★★
+#ShortTitle:★v1.0 Einführung
+#Date:2025-2-11T19:00:00Z
+#-----------------------------
+# Deutsch
+## Optimierungen - 22
+Global: 
+- Mod-Zeiger
+- Benutzerdefiniertes MOD-Symbol in der oberen rechten Ecke
+Hauptmenü:
+- Spielstartanimation
+- Ladeanimation - Rollenillustrationen-Carousel
+- Hauptmenü-Benutzeroberfläche
+- Hauptmenü-Hintergrund
+Online-Spiele:
+- Optimierung des Raumnamens
+Im Spiel - Global:
+- Anzeige der Bildwiederholrate und des Servers im Ping-Bereich
+- Anzeige der Mod-Versionsinformationen
+- Optimierung der Chat-Bubble-Farbe
+- Chat-Fenster-Hintergrund
+- Optimierung des Abmeldegrundes
+Im Spiel - Lobby:
+- Optimierung des Hintergrunds des Lobby-Infobretts
+- Farbgebung der Einstellungsbearbeitungsbenutzeroberfläche
+- Optimierung des Hintergrunds der Einstellungsbearbeitungsbenutzeroberfläche
+- Farbgebung der Einstellungsansichtsbenutzeroberfläche
+- Hinzufügen des Team-Logos zur Lobby
+Im Spiel - In der Aufgabe:
+- Öffnungsanimation
+- Färbung des Minimap-Hintergrunds basierend auf Rollen und Teams
+- Getrennte Färbung für verschiedene Rollen
+- Anzeige der Spieler, die während der Besprechung den Raum verlassen
+Spielende:
+- Optimierung des Abrechnungstextes
+
+## Funktionen - 42
+Global: (Einstellungen - Client-Funktionen)
+- Log-Ausgabe
+- Zurück zur Originalversion
+- Musikwiedergabe
+- Musikdownload (nur im Hauptmenü verfügbar)
+Ladebildschirm:
+- Automatisches Herunterladen von externen Mod-Ressourcen
+Hauptmenü:
+- Automatische Überprüfung auf Mod-Version-Updates
+Online-Spiele:
+- Anzeige der Host-Plattform und Farbgebung des Raumnamens basierend darauf
+- Anzeige des Raumcodes
+- Anzeige der verbleibenden Raumzeit in Prozent
+- Mehr Serveroptionen
+Im Spiel - Global:
+- Anti-Cheat-Betrugserkennung
+- Überprüfung und Blockierung von verbotenen Wörtern
+- Entsperren der Bildwiederholrate (Erhöhung von 60FPS auf 165FPS)
+- Automatisches Kicken von Spielern, die den Bedingungen entsprechen
+Im Spiel - Lobby: 
+- Anzeigen der Plattform- und Clientinformationen des Spielers
+- Automatisches Starten, wenn die Lobby voll ist
+- gegenseitige Erkennung mit anderen Spielern, die dieses Mod verwenden
+- Anzeigen der Lobby-Schließzeit (nur für den Host, der den Raum erstellt hat)
+Im Spiel - In der Aufgabe:
+- Anzeigen der Rollen und Besprechungen
+- Anzeigen des Aufgabenfortschritts/Tötungszahlen
+- Scrollen Sie mit der Mausrad, um die Hellseherei zu verwenden (Verwendungsvoraussetzungen: Übungsmodus & Lokales Spiel global, Online-Spiel-Lobby/Nach dem Tod nicht Guardian Angel)
+- Nach dem Tod kann der Nicht-Guardian-Angel die Rollen, den Aufgabenfortschritt/Tötungszahlen der anderen sehen
+- Nach dem Tod kann man die Todesursachen und Mörder der anderen sehen
+- Nach dem Tod kann man die letzten Ergebnisse verwenden
+- Das Gespenst ist für die Rolle gefärbt
+Spielende:
+- Letztes Ergebnis (Rollen, Aufgaben/Tötungen, Todesursachen & Mörder)
+- Automatisches Zurückkehren zur Lobby am Ende
+Tastenkürzel-Global:
+- F10: Öffnen des Spiel-Root-Verzeichnisses
+- F11: Auflösung ändern
+- Ctrl+F1: Log-Ausgabe
+- Ctrl+F2: Umschalten, ob Logs im Spiel ausgegeben werden (nur für den Host)
+Tastenkürzel-Hauptmenü:
+- Tab: UI verbergen
+Tastenkürzel-Chat:
+- Ctrl+C: Kopieren des aktuellen Chat-Fenster-Texts
+- Ctrl+V: Text in das Chat-Fenster einfügen
+- Ctrl+X: Aktuellen Chat-Text ausschneiden
+- ↑: Zurück zur vorherigen Chat-Geschichte von Ihnen
+- ↓: Zur nächsten Chat-Geschichte von Ihnen
+Tastenkürzel-Online-Spiele:
+- Links Shift: Trete in den zuletzt betretenen Raum ein
+- Rechts Shift: Trete in den Raum im Zwischenablage ein
+Tastenkürzel-Im Spiel:
+- F1: Rollendetails und -illustrationen anzeigen
+Tastenkürzel-Lobby:
+- Shift: Überspringen des Spielstarts-Countdown und das Spiel direkt starten (nur für den Host)
+- C: Spielstarts-Countdown zurücksetzen (nur für den Host)
+
+Optionale Einstellungen: (Einstellungen - Client-Optionen) - 15
+- Outfit ändern (nur für die Startseite)
+- Bildwiederholrate entsperren
+- Spieler, die nicht angemeldet sind, kicken
+- Gebannte Spieler kicken
+- Spieler mit unangemessenen Spitznamen kicken
+- Verbotene Wörter blockieren
+- Automatisches Starten, wenn die Lobby voll ist
+- Automatisches Zurückkehren zur Lobby am Ende
+- Benutzerdefinierte Intro-Animation aktivieren
+- Benutzerdefinierte Karten-Hintergrundfarbe aktivieren
+- Musik von Among U deaktivieren
+- Anti-Cheat deaktivieren
+- Plattform- und Clientinformationen des Spielers anzeigen
+- Mod-Zeiger verwenden
+Optionale Einstellungen: (Andere)
+- Kartenstil ändern (nur für The Skeld, Taste in der Sicherheitskammer)
+
+## Warnung!
+- Wenn Sie einen Betrüger sehen, bedeutet dies, dass sie illegales Verhalten gezeigt oder auf der Mod-Blockliste stehen, aber dies bedeutet nicht zwangsläufig, dass ihre Aktionen Betrug sind oder dass sie gerade betrügen.
+Zum Beispiel: Wenn Sie (Invalid RPC: 150) sehen, bedeutet dies, dass die andere Partei möglicherweise ein 「Better Among Us」-Spieler ist, aber wir unterstützen ihre RPC nicht und wir betrachten Spieler, die ungültige RPCs senden, als Betrüger.
+Natürlich können Sie sicher sein, dass Sie aufgrund unserer einzigartigen gegenseitigen Erkennungsmethode nicht als Betrüger in ihrer Sicht beurteilt werden!
+- Wenn ein Mod-Bug auftritt, klicken Sie auf 「Client-Funktionen - Log-Ausgabe」, um das Log zu exportieren und zusammen mit dem Bug zu senden!
+- Mit Ausnahme von 「Vereinfachtes Chinesisch」 und 「Englisch」 werden alle anderen Sprachen von KI übersetzt und können Abweichungen haben, geben Sie bitte rechtzeitig Feedback!

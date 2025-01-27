@@ -1,0 +1,120 @@
+﻿#Number:100002
+#Title:v1.0 Inleiding van functies en optimalisaties
+#SubTitle:★★★★Onze fantastische en geweldige inhoud★★★★
+#ShortTitle:★v1.0 Inleiding
+#Date:2025-2-11T19:00:00Z
+#-----------------------------
+# Nederlands
+## Optimalisaties - 22
+Globaal: 
+- Mod cursor
+- Aangepast MOD pictogram in de rechterbovenhoek
+Hoofdmenu:
+- Spel start animatie
+- Laden animatie - Rol illustratie carrousel
+- Hoofdmenu UI lay-out
+- Hoofdmenu achtergrond
+Online Games:
+- Optimalisatie van kamernaam
+In Game-Global:
+- Weergave van framesnelheid en server in de ping gebied
+- Weergave van mod versie informatie
+- Optimalisatie van chat bubbel kleur
+- Chat vak achtergrond
+- Optimalisatie van de reden voor verbinding verbreken
+In Game-Lobby:
+- Optimalisatie van de achtergrond van het lobby informatie bord
+- Kleur van de instellingen bewerkingsinterface
+- Optimalisatie van de achtergrond van de instellingen bewerkingsinterface
+- Kleur van de instellingen weergaveinterface
+- Voeg team logo toe aan de lobby
+In Game-In Taak:
+- Openingsanimatie
+- Kleur van het minimap achtergrond op basis van rollen en teams
+- Aparte kleur voor verschillende rollen
+- Weergave van spelers die tijdens de vergadering afsluiten
+Game Einde:
+- Optimalisatie van afreken tekst
+
+## Functies - 42
+Globaal: (Instellingen - Client Functies)
+- Log uitvoer
+- Overschakelen naar origineel
+- Muziek afspelen
+- Muziek downloaden (alleen beschikbaar in Hoofdmenu)
+Loading screen:
+- Automatisch downloaden van externe mod resources
+Hoofdmenu:
+- Automatisch controleren op mod versie updates
+Online Games:
+- Weergave van gastheer platform en kamernaam kleuring op basis hiervan
+- Weergave van kamernummer
+- Weergave van resterende kamertijd als percentage
+- Meer server opties
+In Game-Global:
+- Final Anti-Cheat anti-cheating
+- Controle en blokkade van verboden woorden
+- Ontgrendel framesnelheid limiet (verhogen van 60FPS naar 165FPS)
+- Automatisch uitschakelen van spelers die aan de voorwaarden voldoen
+In Game-Lobby: 
+- Weergave van speler platform en client informatie
+- Automatisch starten bij volle lobby
+- Wederzijdse herkenning met andere spelers die deze mod gebruiken
+- Weergave van de lobby sluitings tijd (alleen voor de gastheer die de kamer heeft gemaakt)
+In Game-In Taak:
+- Scene & vergadering rol weergave
+- Taak voortgang/Dood tellen weergave
+- Scroll met de muis wieltje om Clairvoyance te gebruiken (gebruiksvoorwaarden: Oefenmodus & Lokale game globaal, Online game lobby/Nadat de dood niet Guardian Angel)
+- Na de dood kan non-Guardian Angel de rollen, taak voortgang/Dood tellen van anderen zien
+- Na de dood kan je de doodsoorzaak en moordenaars van anderen zien
+- Na de dood kan je laatste resultaat gebruiken
+- De spoken jagen zijn gekleurd voor de rol
+Game Einde:
+- Laatste Resultaat (Rollen, Taken/Doden, Doodsoorzaken & Moordenaars)
+- Automatisch terugkeren naar lobby aan het einde
+Sneltoetsen-Globaal:
+- F10: Open het spel hoofdmap
+- F11: Verander resolutie
+- Ctrl+F1: Log uitvoer
+- Ctrl+F2: Schakel of logs worden weergegeven in het spel (gastheer alleen)
+Sneltoetsen-Hoofdmenu:
+- Tab: Verberg de UI
+Sneltoetsen-Chat:
+- Ctrl+C: Kopieer de huidige chat vak tekst
+- Ctrl+V: Plak tekst in het chat vak
+- Ctrl+X: Knip de huidige chat tekst
+- ↑: Ga terug naar de vorige chat geschiedenis van jezelf
+- ↓: Ga naar de volgende chat geschiedenis van jezelf
+Sneltoetsen-Online Games:
+- Links Shift: sluit de laatst betreden kamer
+- Rechts Shift: sluit de kamer in het klembord
+Sneltoetsen-In Game:
+- F1: Toon rol details en illustraties
+Sneltoetsen-Lobby:
+- Shift: Sla de start game teller over en start het spel direct (gastheer alleen)
+- C: Reset de start game teller (gastheer alleen)
+
+Optionele instellingen: (Instellingen - Client opties) - 15
+- Verander outfit (alleen voor gebruik op de startpagina)
+- Ontgrendel framesnelheid limiet
+- Schop spelers uit die niet zijn ingelogd
+- Schop gebannede spelers uit
+- Schop spelers uit die ongepaste bijnamen gebruiken
+- Blokkeer ongepaste woorden
+- Automatisch starten bij volle lobby
+- Automatisch terugkeren naar lobby aan het einde
+- Schakel aangepaste intro animatie in
+- Schakel aangepaste kaart achtergrond kleur in
+- Schakel muziek van Among U uit
+- Schakel Anti-Cheat uit
+- Toon informatie over spelerplatform en client
+- Gebruik mod cursor
+Optionele instellingen: (Andere)
+- Verander kaartstijl (alleen voor The Skeld, knop bevindt zich in de beveiligingskamer)
+
+## Waarschuwing!
+- Als u een bedrieger ziet, betekent dit dat zij illegaal gedrag hebben gepleegd of op de mod banlijst staan, maar dit betekent niet noodzakelijk dat hun acties bedrog zijn of dat ze momenteel bedriegen.
+Bijvoorbeeld: Wanneer u (Invalid RPC: 150) ziet, betekent dit dat de andere partij mogelijk een 「Better Among Us」 speler is, maar we ondersteunen hun RPC niet en zullen we spelers die ongeldige RPC's verzenden beschouwen als bedriegers.
+Natuurlijk kunt u gerust zijn dat u vanwege onze unieke wederzijdse herkeningsmethode niet als bedrieger zal worden beoordeeld in hun visie!
+- Wanneer een mod bug optreedt, klik dan op 「Client Features - Log Output」 om het log te exporteren en samen met de bug terug te geven!
+- Behalve 「Vereenvoudigd Chinees」 en 「Engels」, zijn alle andere talen vertaald door AI en kunnen afwijkingen hebben, geef gerust feedback op tijd!
