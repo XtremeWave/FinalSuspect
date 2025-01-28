@@ -244,8 +244,9 @@ public static class OptionsMenuBehaviourStartPatch
             var sprite = Utils.LoadSprite("Cursor.png");
             Cursor.SetCursor(Main.UseModCursor.Value ? sprite.texture: null, Vector2.zero, CursorMode.Auto);
         }
-        catch 
+        catch
         {
+            Main.UseModCursor.Value = false;
         }
        
     }
