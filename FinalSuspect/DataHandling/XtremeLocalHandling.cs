@@ -177,8 +177,12 @@ public static class XtremeLocalHandling
         {
             color = Palette.ImpostorRed;
         }
+
         if (player.GetXtremeData().IsDisconnected)
+        {
             color = Color.gray;
+        }
+            
     }
 
     public static string CheckAndAppendText(this string toptext, string extratext)
@@ -209,20 +213,20 @@ public static class XtremeLocalHandling
             __instance.GetCheatData().HandleLobbyPosition();
             __instance.GetCheatData().HandleSuspectCheater();
             
-            var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
-            var TopText = TopTextTransform.GetComponent<TextMeshPro>();
-            TopText.enabled = true;
-            TopText.text = toptext;
-            TopText.color = topcolor;
-            TopText.transform.SetLocalY(0.2f);
+            var topTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
+            var topText = topTextTransform.GetComponent<TextMeshPro>();
+            topText.enabled = true;
+            topText.text = toptext;
+            topText.color = topcolor;
+            topText.transform.SetLocalY(0.2f);
             
-            var BottomTextTransform = __instance.cosmetics.nameText.transform.Find("BottomText");
-            var BottomText = BottomTextTransform.GetComponent<TextMeshPro>();
-            BottomText.enabled = true;
-            BottomText.text = bottomtext;
-            BottomText.color = bottomcolor;
-            BottomText.transform.SetLocalY(-1.6f);
-            BottomText.fontSize = 1.6f;
+            var bottomTextTransform = __instance.cosmetics.nameText.transform.Find("BottomText");
+            var bottomText = bottomTextTransform.GetComponent<TextMeshPro>();
+            bottomText.enabled = true;
+            bottomText.text = bottomtext;
+            bottomText.color = bottomcolor;
+            bottomText.transform.SetLocalY(-1.6f);
+            bottomText.fontSize = 1.6f;
 
             __instance.cosmetics.nameText.text = name;
             __instance.cosmetics.nameText.color = topcolor;
@@ -316,8 +320,6 @@ public static class XtremeLocalHandling
         {
             try
             {
-                pva.ColorBlindName.transform.localPosition -= new Vector3(1.35f, 0f, 0f);
-
                 var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out var color, out _, out var toptext, out _);
 
                 var roleTextMeetingTransform = pva.NameText.transform.Find("RoleTextMeeting");
@@ -357,7 +359,7 @@ public static class XtremeLocalHandling
     {
         if (!Main.EnableFinalSuspect.Value) return;
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
-        var color = normal? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
+        var color = normal ? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
         if (Main.EnableMapBackGround.Value)
             map.ColorControl.SetColor(color);
     }
