@@ -33,6 +33,7 @@ public static class VersionChecker
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "fs_info.json")}",
 #else
         "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/fs_info.json",
+        "https://api.xtreme.net.cn/FinalSuspect/fs_info.json",
         "https://gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/fs_info.json",
 #endif
     };
