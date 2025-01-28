@@ -103,7 +103,7 @@ public static class FinalAntiCheat
         public void HandleBan()
         {
             if (ClientData.IsFACPlayer() || ClientData.IsBannedPlayer())
-                IsSuspectCheater = true;
+                MarkAsCheater();
         }
         public void HandleLobbyPosition()
         {
@@ -111,7 +111,7 @@ public static class FinalAntiCheat
             var posXOutOfRange = Player.GetTruePosition().x > 3.5f || Player.GetTruePosition().x < -3.5f;
             var posYOutOfRange = Player.GetTruePosition().y > 4f || Player.GetTruePosition().y < -1f;
             if (posXOutOfRange || posYOutOfRange)
-                IsSuspectCheater = true;
+                MarkAsCheater();
         }
         public void HandleSuspectCheater()
         {
@@ -119,7 +119,7 @@ public static class FinalAntiCheat
             _lastKick = Utils.GetTimeStamp();
             Utils.KickPlayer(Player.PlayerId, false, "Suspect Cheater");
         }
-        public void MarkAsCheater()=> IsSuspectCheater = true;
+        public void MarkAsCheater() => IsSuspectCheater = true;
     }
     internal class FAC
     {
