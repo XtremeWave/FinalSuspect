@@ -21,7 +21,7 @@
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
-[Русский](README_ru.md)<br>
+[Русский]<br>
 [Nederlands](README_nl.md)<br>
 [Filipino](README_tl.md)<br>
 [Français](README_fr.md)<br>
@@ -42,7 +42,7 @@
 >Руководство по исправлению ошибок
 
 >[Yu (ранее: Night)](https://github.com/Night-GUA) - **Техническая поддержка**<br>
->Добавление подсказок &
+>Добавление подсказок & встроенные зависимости
 
 >[Amongus](https://github.com/XiezibanWrite) - **Перевод & Техническая поддержка**<br>
 >Частичная поддержка текста перевода & поддержка в процессе разработки
@@ -61,8 +61,6 @@
 >[Imp11](https://github.com/dabao40) - **Консультационная поддержка**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Консультационная поддержка**
-
->[ELinmei](https://github.com/linmeideli) - **Консультационная поддержка**
 
 ## История звезд
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

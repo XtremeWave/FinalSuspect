@@ -41,8 +41,19 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
     public const string DisplayedVersion_Head = "1.0";
-    public const string DisplayedVersion_Date = "20250117";
-
+    private const string DisplayedVersion_Date_Focus = "";
+    private static string DisplayedVersion_Date_Current 
+    {
+        get
+        {
+            var currentDate = DateTime.Now;
+            var year = currentDate.Year.ToString();
+            var month = currentDate.Month.ToString("D2");  
+            var day = currentDate.Day.ToString("D2");    
+            return $"{year}{month}{day}";
+        }
+        
+    }
     /// <summary>
     /// 测试信息；
     /// 支持的内容：Alpha, Beta, Canary, Dev, RC, Preview, Scrapter
@@ -54,18 +65,18 @@ public class Main : BasePlugin
     /// Preview: 预览/预发行版
     /// Scrapter: 废弃版
     /// </summary>
-    public const string DisplayedVersion_TestText = "RC";
-    public const int DisplayedVersion_TestCreation = 10;
+    private const string DisplayedVersion_TestText = "";
+    private const int DisplayedVersion_TestCreation = 0;
     public static readonly string DisplayedVersion = 
-        $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
+        $"{DisplayedVersion_Head}_{(DisplayedVersion_Date_Focus != "" ? DisplayedVersion_Date_Focus : DisplayedVersion_Date_Current)}" +
         $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
 
 
     // == 链接相关设定 / Link Config ==
     //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
     public static readonly string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
-    public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
-    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect";
+    public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
+    public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect/";
 
     // ==========
     public Harmony Harmony { get; } = new (PluginGuid);
@@ -98,8 +109,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
     public static ConfigEntry<bool> NoGameEnd { get; private set; }
-
-
+    
 
     public static readonly string[] OutfitType =
     [
@@ -167,9 +177,9 @@ public class Main : BasePlugin
 
         UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
         ChangeOutfit = Config.Bind("Client Options", "Change Outfit", OutfitType[0]);
-        KickPlayerWhoFriendCodeNotExist = Config.Bind("Client Options", "KickPlayerFriendCodeNotExist", true);
-        KickPlayerInBanList = Config.Bind("Client Options", "Apply Ban List", true);
-        KickPlayerWithDenyName = Config.Bind("Client Options", "Apply Deny Name List", true);
+        KickPlayerWhoFriendCodeNotExist = Config.Bind("Client Options", "Kick Player FriendCode Not Exist", true);
+        KickPlayerInBanList = Config.Bind("Client Options", "Kick Player In BanList", true);
+        KickPlayerWithDenyName = Config.Bind("Client Options", "Kick Player With Deny Name", true);
         SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
         AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
         AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);
@@ -261,4 +271,15 @@ public class Main : BasePlugin
         XtremeLogger.Msg("========= FinalSuspect loaded! =========", "Plugin Load");
         Application.quitting += new Action(Utils.SaveNowLog);
     }
+}
+
+public enum VersionTypes
+{
+    Alpha,// 早期内测版
+    Beta,// 内测版
+    Canary,// 测试版(不稳定)
+    Dev,// 开发版
+    RC,// 发行候选版Release Candidate
+    Preview,// 预览/预发行版
+    Scrapter,// 废弃版
 }

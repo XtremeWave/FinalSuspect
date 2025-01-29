@@ -169,16 +169,20 @@ public static class XtremeLocalHandling
         {
             color = Utils.GetRoleColor(roleType);
             if (!topswap)
-                roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId)}";
+                roleText = $"<size=80%>{GetRoleString(roleType.ToString())}</size> {Utils.GetProgressText(player)} {Utils.GetVitalText(player.PlayerId, docolor:Utils.CanSeeOthersRole())}";
             else
-                roleText = $"{Utils.GetVitalText(player.PlayerId)} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+                roleText = $"{Utils.GetVitalText(player.PlayerId, docolor:Utils.CanSeeOthersRole())} {Utils.GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
         else if (bothImp)
         {
             color = Palette.ImpostorRed;
         }
+
         if (player.GetXtremeData().IsDisconnected)
+        {
             color = Color.gray;
+        }
+            
     }
 
     public static string CheckAndAppendText(this string toptext, string extratext)
@@ -204,30 +208,34 @@ public static class XtremeLocalHandling
                 DisconnectSync(__instance);
                 DeathSync(__instance);
             }
+            
             __instance.GetCheatData().HandleBan();
+            __instance.GetCheatData().HandleLobbyPosition();
+            __instance.GetCheatData().HandleSuspectCheater();
             
-            var TopTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
-            var TopText = TopTextTransform.GetComponent<TextMeshPro>();
-            TopText.enabled = true;
-            TopText.text = toptext;
-            TopText.color = topcolor;
-            TopText.transform.SetLocalY(0.2f);
+            var topTextTransform = __instance.cosmetics.nameText.transform.Find("TopText");
+            var topText = topTextTransform.GetComponent<TextMeshPro>();
+            topText.enabled = true;
+            topText.text = toptext;
+            topText.color = topcolor;
+            topText.transform.SetLocalY(0.2f);
             
-            var BottomTextTransform = __instance.cosmetics.nameText.transform.Find("BottomText");
-            var BottomText = BottomTextTransform.GetComponent<TextMeshPro>();
-            BottomText.enabled = true;
-            BottomText.text = bottomtext;
-            BottomText.color = bottomcolor;
-            BottomText.transform.SetLocalY(-1.6f);
-            BottomText.fontSize = 1.6f;
+            var bottomTextTransform = __instance.cosmetics.nameText.transform.Find("BottomText");
+            var bottomText = bottomTextTransform.GetComponent<TextMeshPro>();
+            bottomText.enabled = true;
+            bottomText.text = bottomtext;
+            bottomText.color = bottomcolor;
+            bottomText.transform.SetLocalY(-1.6f);
+            bottomText.fontSize = 1.6f;
 
             __instance.cosmetics.nameText.text = name;
             __instance.cosmetics.nameText.color = topcolor;
         }
         catch
         {
-            var create = ((__instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
-                         __instance.GetRealName() != "Player(Clone)") && XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId));
+            var create = (__instance.GetRealName() == null && XtremeGameData.GameStates.IsFreePlay ||
+                         __instance.GetRealName() != "Player(Clone)") 
+                         && XtremePlayerData.AllPlayerData.All(data => data.PlayerId != __instance.PlayerId);
             if (create)
                 XtremePlayerData.CreateDataFor(__instance);
         }
@@ -241,11 +249,15 @@ public static class XtremeLocalHandling
         var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
         var Role_NotAssgin = data.RoleWhenAlive == null;
 
-        if (currectlyDisconnect || Task_NotAssgin || Role_NotAssgin)
+        if (pc.GetXtremeData().IsDisconnected)
         {
-            pc.SetDisconnected();
-            pc.SetDeathReason(VanillaDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
+            pc.Data.Disconnected = true;
+            pc.Data.IsDead = true;
         }
+            
+        if (!currectlyDisconnect && !Task_NotAssgin && !Role_NotAssgin) return;
+        pc.SetDisconnected();
+        pc.SetDeathReason(VanillaDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
     }
 
     private static void DeathSync(PlayerControl pc)
@@ -296,6 +308,38 @@ public static class XtremeLocalHandling
 
         }
     }
+    
+    
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.First)]
+    public static void MeetingHudUpdate(MeetingHud __instance)
+    {
+        if (!Main.EnableFinalSuspect.Value) return;
+        foreach (var pva in __instance.playerStates)
+        {
+            try
+            {
+                var name = CheckAndGetNameWithDetails(pva.TargetPlayerId, out var color, out _, out var toptext, out _);
+
+                var roleTextMeetingTransform = pva.NameText.transform.Find("RoleTextMeeting");
+                var roleTextMeeting = roleTextMeetingTransform.GetComponent<TextMeshPro>();
+
+                pva.NameText.text = name;
+                pva.NameText.color = color;
+
+                if (toptext.Length > 0)
+                {
+                    roleTextMeeting.text = toptext;
+                    roleTextMeeting.color = color;
+                    roleTextMeeting.enabled = true;
+                }
+            }
+            catch 
+            { }
+
+        }
+    }
 
 
     #endregion
@@ -315,7 +359,7 @@ public static class XtremeLocalHandling
     {
         if (!Main.EnableFinalSuspect.Value) return;
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
-        var color = normal? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
+        var color = normal ? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
         if (Main.EnableMapBackGround.Value)
             map.ColorControl.SetColor(color);
     }

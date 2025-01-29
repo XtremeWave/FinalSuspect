@@ -23,7 +23,7 @@
 [한국어](README_ko.md)<br>
 [Русский](README_ru.md)<br>
 [Nederlands](README_nl.md)<br>
-[Filipino](README_tl.md)<br>
+[Filipino]<br>
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
@@ -42,7 +42,7 @@ Ang ilang mga materyales na kasama dito ay ari ng Innersloth LLC.
 >Pagpapagana ng mga Bug
 
 >[Yu (dating: Night)](https://github.com/Night-GUA) - **Teknikal na Suporta**<br>
->Pagdaragdag ng mga Tip &
+>Pagdaragdag ng mga Tip & built-in dependencies
 
 >[Amongus](https://github.com/XiezibanWrite) - **Pagsasalin & Teknikal na Suporta**<br>
 >Partial translation support & support during development
@@ -61,8 +61,6 @@ Ang ilang mga materyales na kasama dito ay ari ng Innersloth LLC.
 >[Imp11](https://github.com/dabao40) - **Konsultasyon Suporta**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Konsultasyon Suporta**
-
->[ELinmei](https://github.com/linmeideli) - **Konsultasyon Suporta**
 
 ## Kasaysayan ng Star
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

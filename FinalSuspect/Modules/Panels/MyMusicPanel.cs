@@ -142,9 +142,6 @@ public static class MyMusicPanel
         Items = [];
         numItems = 0;
         var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        XtremeLogger.Info($"currentPage:{currentPage}", "MyMusicPanel");
-
-        
         var startIndex = (currentPage - 1) * itemsPerPage;
 
         var count = 0;
@@ -201,16 +198,17 @@ public static class MyMusicPanel
             if (audio.CurrectAudioStates is AudiosStates.IsPlaying)
             {
                 preview = GetString("Playing");
-                color = ColorHelper.OutColor;
+                color = ColorHelper.ModColor32;
             }
             else if (audioExist)
             {
-                color = audio.UnOfficial ? Color.green : Color.cyan;
+                color = audio.UnOfficial ? Color.green : ColorHelper.ClientFeatureColor;
                 preview = GetString("CanPlay");
             }
             else
             {
-                color = Palette.DisabledGrey;
+                color = ColorHelper.ClientFeatureColor_CanNotUse;
+                ToggleButton.enabled = false;
                 preview = GetString("NoFound");
             }
             

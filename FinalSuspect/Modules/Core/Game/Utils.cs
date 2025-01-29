@@ -63,7 +63,13 @@ public static class Utils
         return GetString($"{text}{Info}");
     }
 
-    public static void KickPlayer(int playerId, bool ban, string reason = "")
+    public static void KickPlayer(int clientId, bool ban, string reason = "")
+    {
+        XtremeLogger.Info($"try to kick {GetClientById(clientId)?.Character?.GetRealName()}", "Kick");
+        AmongUsClient.Instance.KickPlayer(clientId, ban);
+        OnPlayerLeftPatch.Add(clientId);
+    }
+    public static void KickPlayer(byte playerId, bool ban, string reason = "")
     {
         XtremeLogger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
         AmongUsClient.Instance.KickPlayer(playerId, ban);
@@ -319,7 +325,7 @@ public static class Utils
                 if (summary)
                     deathReason += $"<=<size=80%>{StringHelper.ColorString(killercolor, data.RealKiller.Name)}</size>";
                 else if (docolor)
-                    color = killercolor;
+                    deathReason = StringHelper.ColorString(killercolor, deathReason);
                 break;
             case VanillaDeathReason.Exile:
                 color = Palette.Purple;
@@ -329,7 +335,6 @@ public static class Utils
         if (!summary) deathReason = "(" + deathReason + ")";
         
         deathReason = StringHelper.ColorString(color, deathReason) ;
-
 
         return deathReason;
     }

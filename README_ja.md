@@ -27,7 +27,7 @@
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
-[日本語](README_ja.md)<br>
+[日本語]<br>
 [Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
@@ -42,7 +42,7 @@
 >バグ修正のガイダンス
 
 >[Yu (旧名: Night)](https://github.com/Night-GUA) - **技術サポート**<br>
->ヒントの追加 &
+>ヒントの追加 & 機能拡張
 
 >[Amongus](https://github.com/XiezibanWrite) - **翻訳 & 技術サポート**<br>
 >部分的な翻訳テキストのサポート & 開発プロセスのサポート
@@ -61,8 +61,6 @@
 >[Imp11](https://github.com/dabao40) - **コンサルティング サポート**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **コンサルティング サポート**
-
->[ELinmei](https://github.com/linmeideli) - **コンサルティング サポート**
 
 ## スター履歴
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

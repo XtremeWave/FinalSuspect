@@ -20,7 +20,7 @@
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
-[한국어](README_ko.md)<br>
+[한국어]<br>
 [Русский](README_ru.md)<br>
 [Nederlands](README_nl.md)<br>
 [Filipino](README_tl.md)<br>
@@ -42,7 +42,7 @@
 >버그 수정 가이드
 
 >[Yu (이전명: Night)](https://github.com/Night-GUA) - **기술 지원**<br>
->팁 추가 &
+>팁 추가 & 내장 종속성
 
 >[Amongus](https://github.com/XiezibanWrite) - **번역 & 기술 지원**<br>
 >번역 텍스트 일부 지원 & 개발 과정 지원
@@ -61,8 +61,6 @@
 >[Imp11](https://github.com/dabao40) - **자문 지원**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **자문 지원**
-
->[ELinmei](https://github.com/linmeideli) - **자문 지원**
 
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

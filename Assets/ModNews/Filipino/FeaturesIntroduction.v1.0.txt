@@ -1,0 +1,120 @@
+﻿#Number:100002
+#Title:v1.0  Introduction of Features & Optimizations
+#SubTitle:★★★★Our fantastic and wonderful content★★★★
+#ShortTitle:★v1.0 Introduction
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# Filipino
+## Opo - 22
+Global: 
+- Mod cursor
+- Custom MOD icon in the top right corner
+Main Menu:
+- Game launch animation
+- Loading animation - Role illustration carousel
+- Main Menu UI layout
+- Main Menu background
+Online Games:
+- Room name optimization
+In Game-Global:
+- Frame rate and server display in the ping area
+- Mod version information display
+- Chat bubble color optimization
+- Chat box background
+- Disconnection reason optimization
+In Game-Lobby:
+- Lobby information board background optimization
+- Settings editing interface coloring
+- Settings editing interface background optimization
+- Settings viewing interface coloring
+- Add team logo to the lobby
+In Game-In Task:
+- Opening animation
+- Color the minimap background based on roles and teams
+- Separate coloring for different roles
+- Display of players who exit during the meeting
+Game End:
+- Settlement text optimization
+
+## Mga Tampok - 42
+Global: (Settings - Client Features)
+- Log output
+- Switch to vanilla
+- Music playback
+- Music download (only available in Main Menu)
+Loading screen:
+- Automatically download remote mod resources
+Main Menu:
+- Automatically check for mod version updates
+Online Games:
+- Host platform display and room name coloring based on this
+- Room code display
+- Display of remaining room time as a percentage
+- More server options
+In Game-Global:
+- Final Anti-Cheat anti-cheating
+- Banned word check & blocking
+- Unlock frame rate limit (increase from 60FPS to 165FPS)
+- Automatically kick out players who meet the conditions
+In Game-Lobby: 
+- Display player platform and client information
+- Auto start at full lobby
+- Mutual recognition with other players using this mod
+- Display the lobby closing time (only for the host who created the room)
+In Game-In Task:
+- Scene & meeting role display
+- Task progress/Kill count display
+- Scroll the mouse wheel to use Clairvoyance (usage conditions: Practice mode & Local game global, Online game lobby/After death not Guardian Angel)
+- After death, non-Guardian Angel can see others' roles, task progress/Kill count
+- After death, can see others' death reasons & murderers
+- After death, can use last result
+- The haunting is colored for the role
+Game End:
+- Last Result (Roles, Tasks/Kills, Death Reasons & Murderers)
+- Auto-return to lobby at end
+Hotkeys-Global:
+- F10: Open the game root directory
+- F11: Change resolution
+- Ctrl+F1: Log output
+- Ctrl+F2: Toggle whether logs are output in the game (host only)
+Hotkeys-Main Menu:
+- Tab: Hide the UI
+Hotkeys-Chat:
+- Ctrl+C: Copy the current chat box text
+- Ctrl+V: Paste text into the chat box
+- Ctrl+X: Cut the current chat text
+- ↑: Trace back to the previous chat history of yourself
+- ↓: Trace forward to the next chat history of yourself
+Hotkeys-Online Games:
+- Left Shift: join the last joined room
+- Right Shift: join the room in the clipboard
+Hotkeys-In Game:
+- F1: Display role details and illustrations
+Hotkeys-Lobby:
+- Shift: Skip the start game countdown and start the game directly (host only)
+- C: Reset the start game countdown (host only)
+
+Optionele instellingen: (Instellingen - Client opties) - 15
+- Verander outfit (alleen voor gebruik op de startpagina)
+- Ontgrendel framesnelheid limiet
+- Schop spelers uit die niet zijn ingelogd
+- Schop gebannede spelers uit
+- Schop spelers uit die ongepaste bijnamen gebruiken
+- Blokkeer ongepaste woorden
+- Automatisch starten bij volle lobby
+- Automatisch terugkeren naar lobby aan het einde
+- Schakel aangepaste intro animatie in
+- Schakel aangepaste kaart achtergrond kleur in
+- Schakel muziek van Among U uit
+- Schakel Anti-Cheat uit
+- Toon informatie over spelerplatform en client
+- Gebruik mod cursor
+Optionele instellingen: (Andere)
+- Verander kaartstijl (alleen voor The Skeld, knop bevindt zich in de beveiligingskamer)
+
+## Waarschuwing!
+- Als u een bedrieger ziet, betekent dit dat zij illegaal gedrag hebben gepleegd of op de mod banlijst staan, maar dit betekent niet noodzakelijk dat hun acties bedrog zijn of dat ze momenteel bedriegen.
+Bijvoorbeeld: Wanneer u (Invalid RPC: 150) ziet, betekent dit dat de andere partij mogelijk een 「Better Among Us」 speler is, maar we ondersteunen hun RPC niet en zullen we spelers die ongeldige RPC's verzenden beschouwen als bedriegers.
+Natuurlijk kunt u gerust zijn dat u vanwege onze unieke wederzijdse herkeningsmethode niet als bedrieger zal worden beoordeeld in hun visie!
+- Wanneer een mod bug optreedt, klik dan op 「Client Features - Log Output」 om het log te exporteren en samen met de bug terug te geven!
+- Behalve 「Vereenvoudigd Chinees」 en 「Engels」, zijn alle andere talen vertaald door AI en kunnen afwijkingen hebben, geef gerust feedback op tijd!

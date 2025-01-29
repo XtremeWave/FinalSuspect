@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
+using Il2CppSystem.Diagnostics.Tracing;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -31,6 +33,7 @@ public static class VersionChecker
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "fs_info.json")}",
 #else
         "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/fs_info.json",
+        "https://api.xtreme.net.cn/FinalSuspect/fs_info.json",
         "https://gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/fs_info.json",
 #endif
     };
@@ -61,7 +64,6 @@ public static class VersionChecker
     public static int creation;
     public static string md5 = "";
     public static bool IsSupported { get; private set; } = true;
-    public static int visit => isChecked ? 216822 : 0;
 
     private static int retried;
     private static bool firstLaunch = true;
@@ -110,8 +112,6 @@ public static class VersionChecker
             XtremeLogger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
             XtremeLogger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
             XtremeLogger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
-            XtremeLogger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
-            XtremeLogger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
 
         }
 
@@ -144,13 +144,11 @@ public static class VersionChecker
             XtremeLogger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
             XtremeLogger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
             XtremeLogger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
-            XtremeLogger.Info("Announcement (English): " + ModUpdater.announcement_en, "CheckRelease");
-            XtremeLogger.Info("Announcement (SChinese): " + ModUpdater.announcement_zh, "CheckRelease");
 
             if (firstLaunch || isBroken)
             {
                 firstLaunch = false;
-                var annos = IsChineseUser ? ModUpdater.announcement_zh : ModUpdater.announcement_en;
+                var annos = ModUpdater.announcement[TranslationController.Instance.currentLanguage.languageID];
                 if (isBroken) CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
                     [(GetString(StringNames.ExitGame), Application.Quit)]);
                 else CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
@@ -215,8 +213,8 @@ public static class VersionChecker
             isBroken = data["allowStart"]?.ToString().ToLower() != "true";
 
             var announcement = data["announcement"].Cast<JObject>();
-            ModUpdater.announcement_en = announcement["English"]?.ToString();
-            ModUpdater.announcement_zh = announcement["SChinese"]?.ToString();
+            foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
+                ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
             ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);
             hasUpdate = Main.version < latestVersion;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;

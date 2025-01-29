@@ -42,7 +42,7 @@
 >Bug修复指导
 
 >[Yu(原名：Night)](https://github.com/Night-GUA) - **技术支持**<br>
->添加提示&
+>添加提示&依赖项内置
 
 >[Amongus](https://github.com/XiezibanWrite) - **翻译&技术支持**<br>
 >部分翻译文本支持&开发过程支持
@@ -61,8 +61,6 @@
 >[Imp11](https://github.com/dabao40) - **咨询支持**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **咨询支持**
-
->[ELinmei](https://github.com/linmeideli) - **咨询支持**
 
 ## 星标历史
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

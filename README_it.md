@@ -26,7 +26,7 @@
 [Filipino](README_tl.md)<br>
 [Français](README_fr.md)<br>
 [Deutsch](README_de.md)<br>
-[Italiano](README_it.md)<br>
+[Italiano]<br>
 [日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
 [简体中文](README_zh.md)<br>
@@ -42,7 +42,7 @@ Alcuni dei materiali inclusi qui sono proprietà di Innersloth LLC.
 >Guida per la risoluzione dei bug
 
 >[Yu (precedentemente: Night)](https://github.com/Night-GUA) - **Supporto tecnico**<br>
->Aggiunta di suggerimenti &
+>Aggiunta di suggerimenti & dipendenze integrate
 
 >[Amongus](https://github.com/XiezibanWrite) - **Traduzione & Supporto tecnico**<br>
 >Supporto parziale per il testo di traduzione & supporto durante lo sviluppo
@@ -61,8 +61,6 @@ Alcuni dei materiali inclusi qui sono proprietà di Innersloth LLC.
 >[Imp11](https://github.com/dabao40) - **Supporto di consulenza**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Supporto di consulenza**
-
->[ELinmei](https://github.com/linmeideli) - **Supporto di consulenza**
 
 ## Cronologia delle stelle
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

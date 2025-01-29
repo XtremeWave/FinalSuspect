@@ -18,7 +18,7 @@
 ***Este módulo suporta todos os idiomas disponíveis no Among Us!***<br>
 [English](README.md) <br>
 [Latam](README_es_LA.md)<br>
-[Brasileiro](README_pt_BR.md)<br>
+[Brasileiro]<br>
 [Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
 [Русский](README_ru.md)<br>
@@ -42,7 +42,7 @@ Alguns dos materiais incluídos aqui são propriedade da Innersloth LLC.
 >Guia para correção de bugs
 
 >[Yu (anteriormente: Night)](https://github.com/Night-GUA) - **Suporte Técnico**<br>
->Adicionando dicas &
+>Adicionando dicas & dependências integradas
 
 >[Amongus](https://github.com/XiezibanWrite) - **Tradução & Suporte Técnico**<br>
 >Suporte parcial de texto de tradução & suporte durante o desenvolvimento
@@ -61,8 +61,6 @@ Alguns dos materiais incluídos aqui são propriedade da Innersloth LLC.
 >[Imp11](https://github.com/dabao40) - **Suporte de Consultoria**
 
 >[FangKuai](https://github.com/FangKuaiYa) - **Suporte de Consultoria**
-
->[ELinmei](https://github.com/linmeideli) - **Suporte de Consultoria**
 
 ## Histórico de Estrelas
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

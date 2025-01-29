@@ -1,10 +1,10 @@
-//请注意，请将{{path}}改为自己要获取的文件夹路径
-以下是在PowerShell运行的命令（Win+R打开PowerShell）：
+//锟斤拷注锟解，锟诫将{{path}}锟斤拷为锟皆硷拷要锟斤拷取锟斤拷锟侥硷拷锟斤拷路锟斤拷
+锟斤拷锟斤拷锟斤拷锟斤拷PowerShell锟斤拷锟叫碉拷锟斤拷锟筋（Win+R锟斤拷PowerShell锟斤拷锟斤拷
 //"Please note, please change the {{path}} to your own path
 Here is the command to run in PowerShell (Win+R to open PowerShell):
 
 
-$folderPath = "D:\QQ\OtherFiles\FinalSuspect_Xtreme\FinalSuspect_Xtreme\Assets\Sounds"
+$folderPath = "D:\RiderProjects\FinalSuspect\Export\Release\net6.0"
 $outputFile = Join-Path -Path $folderPath -ChildPath ".md5Pair.txt"
 
 Set-Content -Path $outputFile -Value $null

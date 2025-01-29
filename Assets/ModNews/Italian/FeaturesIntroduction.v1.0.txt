@@ -1,0 +1,120 @@
+﻿#Number:100002
+#Title:v1.0  Introduzione delle funzioni e delle ottimizzazioni
+#SubTitle:★★★★Il nostro fantastico e meraviglioso contenuto★★★★
+#ShortTitle:★v1.0 Introduzione
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# Italiano
+## Ottimizzazioni - 22
+Globale: 
+- Cursor del mod
+- Icona personalizzata del MOD nell'angolo superiore destro
+Menu Principale:
+- Animazione di avvio del gioco
+- Animazione di caricamento - Carosello di illustrazioni del ruolo
+- Layout dell'interfaccia del Menu Principale
+- Sfondo del Menu Principale
+Giochi Online:
+- Ottimizzazione del nome della stanza
+Nel Gioco - Globale:
+- Visualizzazione del framerate e del server nell'area di ping
+- Visualizzazione delle informazioni sulla versione del mod
+- Ottimizzazione del colore delle bolle di chat
+- Sfondo della casella di chat
+- Ottimizzazione del motivo di disconnessione
+Nel Gioco - Lobby:
+- Ottimizzazione dello sfondo del pannello di informazioni della lobby
+- Colorazione dell'interfaccia di modifica delle impostazioni
+- Ottimizzazione dello sfondo dell'interfaccia di modifica delle impostazioni
+- Colorazione dell'interfaccia di visualizzazione delle impostazioni
+- Aggiungere il logo del team alla lobby
+Nel Gioco - In Missione:
+- Animazione di apertura
+- Colorazione dello sfondo della minimappa in base ai ruoli e alle squadre
+- Colorazione separata per differenti ruoli
+- Visualizzazione dei giocatori che escono durante la riunione
+Fine del Gioco:
+- Ottimizzazione del testo di liquidazione
+
+## Funzioni - 42
+Globale: (Impostazioni - Funzioni del client)
+- Output del log
+- Passa alla versione originale
+- Riproduzione della musica
+- Download della musica (solo disponibile nel Menu Principale)
+Schermata di caricamento:
+- Scaricare automaticamente le risorse del mod remote
+Menu Principale:
+- Verifica automatica degli aggiornamenti della versione del mod
+Giochi Online:
+- Visualizzazione della piattaforma dell'host e colorazione del nome della stanza in base a questo
+- Visualizzazione del codice della stanza
+- Visualizzazione del tempo rimanente della stanza in percentuale
+- Più opzioni di server
+Nel Gioco - Globale:
+- Anti-Cheat anti-trucco
+- Controllo e blocco delle parole vietate
+- Sblocca il limite del framerate (aumenta da 60FPS a 165FPS)
+- Espellere automaticamente i giocatori che soddisfano le condizioni
+Nel Gioco - Lobby: 
+- Visualizza le informazioni sulla piattaforma del giocatore e sul client
+- Avvio automatico quando la lobby è piena
+- Riconoscimento reciproco con altri giocatori che utilizzano questo mod
+- Visualizza l'orario di chiusura della lobby (solo per l'host che ha creato la stanza)
+Nel Gioco - In Missione:
+- Visualizzazione del ruolo e della riunione
+- Visualizzazione del progresso del compito/Conteggio delle uccisioni
+- Scorri la rotella del mouse per utilizzare la chiaroveggenza (condizioni di utilizzo: Modalità pratica & Gioco locale globale, Lobby di gioco online/Dopo la morte non Angelo Custode)
+- Dopo la morte, il non-Angelo Custode può vedere i ruoli, il progresso del compito/Conteggio delle uccisioni degli altri
+- Dopo la morte, è possibile vedere le cause di morte e gli assassini degli altri
+- Dopo la morte, è possibile utilizzare l'ultimo risultato
+- Il fantasma è colorato per il ruolo
+Fine del Gioco:
+- Ultimo Risultato (Ruoli, Compiti/Uccisioni, Cause di Morte & Assassini)
+- Ritorno automatico alla lobby alla fine
+Tasti di scelta rapida - Globale:
+- F10: Aprire la directory radice del gioco
+- F11: Cambia risoluzione
+- Ctrl+F1: Output del log
+- Ctrl+F2: Attiva/disattiva se i log vengono visualizzati nel gioco (solo per l'host)
+Tasti di scelta rapida - Menu Principale:
+- Tab: Nascondi l'interfaccia utente
+Tasti di scelta rapida - Chat:
+- Ctrl+C: Copia il testo attuale della casella di chat
+- Ctrl+V: Incolla il testo nella casella di chat
+- Ctrl+X: Taglia il testo attuale della chat
+- ↑: Torna alla cronologia della chat precedente di te stesso
+- ↓: Vai alla cronologia della chat successiva di te stesso
+Tasti di scelta rapida - Giochi Online:
+- Shift sinistro: entra nell'ultima stanza entrata
+- Shift destro: entra nella stanza nella clipboard
+Tasti di scelta rapida - Nel Gioco:
+- F1: Visualizza i dettagli e le illustrazioni del ruolo
+Tasti di scelta rapida - Lobby:
+- Shift: Salta il countdown di inizio gioco e inizia il gioco direttamente (solo per l'host)
+- C: Resetta il countdown di inizio gioco (solo per l'host)
+
+Opzioni facoltative: (Impostazioni - Funzioni del client) - 15
+- Cambia abito (solo per l'uso nella pagina iniziale)
+- Sblocca il limite del framerate
+- Espellere i giocatori che non sono loggati
+- Espellere i giocatori bannati
+- Espellere i giocatori che utilizzano soprannomi inappropriati
+- Bloccare parole inappropriati
+- Avvio automatico quando la lobby è piena
+- Ritorno automatico alla lobby alla fine
+- Attiva l'animazione di introduzione personalizzata
+- Attiva il colore di fondo della mappa personalizzato
+- Disattiva le musiche di Among U
+- Disattiva Anti-Cheat
+- Visualizza le informazioni sulla piattaforma del giocatore e sul client
+- Usare cursore del mod
+Opzioni facoltative: (Altre)
+- Cambia lo stile della mappa (solo per The Skeld, pulsante situato nella stanza di sicurezza)
+
+## Avvertimento!
+- Se vedi un truffatore, significa che hanno commesso un comportamento illegale o sono nella lista di ban del mod, ma non significa necessariamente che le loro azioni sono truffe o che stanno truffando attualmente.
+Ad esempio: Quando vedi (Invalid RPC: 150), significa che l'altra parte potrebbe essere un giocatore di 「Better Among Us」, ma non supportiamo il loro RPC e considereremo i giocatori che inviano RPC non valide come truffatori.
+Naturalmente, puoi stare tranquillo che grazie al nostro metodo unico di riconoscimento reciproco, non sarai giudicato come truffatore nella loro vista!
+- Quando si verifica un bug del mod, fai clic su 「Funzioni del client - Output del log」 per esportare il log e inviarlo insieme al bug!
+- Oltre al 「Cinese semplificato」 e all'「Inglese」, tutte le altre lingue sono tradotte da IA e possono avere deviazioni, invia feedback in tempo utile!

@@ -1,0 +1,180 @@
+﻿#Number:100001
+#Title:Final Suspect v1.0
+#SubTitle:★★★★Questo mod è stato finalmente ufficialmente rilasciato!★★★★
+#ShortTitle:★Rilascio Ufficiale v1.0
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# Italiano
+Man mano che passa il tempo, l'inverno nell'emisfero nord si avvicina alla fine e i segni della primavera si risvegliano ovunque.
+Guardando la nevicata di Mira, i ricordi all'interno si risvegliano? Il calore scorre ancora nel cuore.
+Non importa su chi ricada infine il sospetto, non importa in quali mani la verità si infranga infine,
+Nell'esperienza rinnovata, brainstorming, lasciando dietro nuovi ricordi felici.
+Divertirsi è la cosa più importante!!!
+
+## Base
+- Basato su Among Us v2024.10.29
+- Basato su BepInEx v6.0.0-be.733
+
+## Riepilogo delle aggiornamenti
+- Correzioni: 28
+- Ottimizzazioni: 9
+- Modifiche: 16
+- Aggiunte: 41
+- Rimodellamenti: 1
+- Rimozioni: 5
+
+## Collaboratori del team
+- [Slok]("https://github.com/Slok7565/")
+- [Elinmei]("https://github.com/linmeideli/")
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- KpCam
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Collaboratori
+- [Yu]("https://github.com/Night-GUA/")
+(PR#3)
+- [Qingfeng]("https://github.com/QingFeng-awa/")
+(PR#5)
+- [Nonalus]("https://github.com/Reborn5537/")
+(PR#6)
+
+## Correzioni
+- Correggere il bug di 「Auto Start at Full Lobby」 che si attiva solo con 14 o più giocatori, indipendentemente dalla capacità massima della stanza.
+- Correggere il bug dello schermo nero che si verifica dopo la riunione quando il client è l'host
+- Correggere il bug dell'impossibilità di entrare in modalità pratica
+- Correggere il bug del conteggio delle uccisioni non visualizzato nel gioco
+- Correggere il bug dell'errore di texture dell'impostore di nascondino
+- Correggere il bug delle informazioni dell'host che non visualizzano il nome dell'host sopra il gioco di avvio quando il client è l'host
+- Correggere il bug dei giocatori con mod che possono riconoscere solo tra loro con l'host
+- Correggere il bug degli errori di invio del client quando si chiama una riunione d'emergenza
+- Correggere il bug dello stile della versione del mod e delle informazioni del team nel menu principale che si visualizzano in modo anomalo
+- Correggere il bug del codice della stanza che viene direttamente nascosto in modalità streamer quando è bloccato
+- Correggere il bug del controllo delle parole vietate che fallisce
+- Correggere il bug del testo di avviso di blocco del link ufficiale che si visualizza in modo anomalo
+- Correggere il bug di 「Auto-return to Lobby at End」 che non ha effetto in gioco online
+- Correggere il bug dell'Angelo Custode che può usare la chiaroveggenza
+- Correggere il bug delle pop-up di chat e delle informazioni di uscita dal gioco che non bloccano le parole vietate
+- Correggere il bug delle righe vuote ridondanti all'inizio dell'annuncio
+- Correggere il bug delle opzioni del client che visualizzano errori di testo dopo aver cambiato lingua
+- Correggere il bug delle informazioni del mod che vengono ancora visualizzate quando si apre l'elenco degli amici
+- Correggere il bug del programma che potrebbe non rispondere quando si avvia il gioco
+- Correggere il bug della musica del menu principale che non viene ripristinata quando si disattiva 「Disable Among U's Musics」
+- Correggere il bug dell'arresto della musica nel modulo 「My Music」 che ferma anche la musica originale del gioco
+- Correggere il bug di alcuni errori di traduzione di testo in cinese tradizionale
+- Correggere il bug degli errori di lingua nell'annuncio
+- Correggere il bug di FAC che non riesce a espellere correttamente i truffatori
+- Correggere il bug dei dati del giocatore che non si aggiornano normalmente durante la riunione
+- Correggere il bug dell'Angelo Custode che può vedere il colore dell'assassino quando visualizza le cause di morte degli altri
+- Correggere il bug in cui il testo dell'Ultimo Risultato supera la lunghezza dello sfondo
+Corretto da Slok
+- Correggere il bug del link del gruppo QQ errato
+Corretto da Qingfeng
+(PR#5)
+
+## Ottimizzazioni
+- Refactoring del codice per migliorare l'efficienza di esecuzione
+- Memorizzare quasi tutte le risorse remotamente per ottimizzare la dimensione del file
+- Memorizzare le dipendenze remotamente
+- Ottimizzare lo stile della versione del mod e delle informazioni del team nel menu principale
+- Ottimizzare il riconoscimento reciproco dei giocatori in questo mod
+- Ottimizzare completamente il giudizio del FAC
+- Ottimizzare il formato dell'annuncio
+- Altre ottimizzazioni visive
+- Ottimizzare la trasparenza delle richieste di amicizia
+Realizzato da Slok
+
+## Modifiche
+- Non è possibile eliminare la musica che è attualmente in riproduzione in 「Audio Management」
+- Regolare i colori dell'Ingegnere, del Cambiante e del Fantasma
+- Consentire l'utilizzo delle informazioni di replay nella lobby e durante il gioco
+- Modificare la visualizzazione della causa di morte da dopo il nome a dopo il numero di compiti
+- Modificare il giudizio della morte per espulsione per evitare il problema della non visualizzazione della causa di morte quando si tratta di espulsione
+- Ottimizzare il giudizio della morte
+- Per evitare segnalazioni false del mod, il FAC non avrà effetto quando si entra in una stanza su un server con +25 porte
+- Classificare 「Switch Vanilla」 come Funzione del Client
+- Classificare 「Dump Log」 come una Funzione del Client
+- Regolare i colori di alcuni pulsanti del client
+- Modificare alcuni testi per facilitare l'introduzione di progetti successivi
+- Quando 「Auto-return to Lobby at End」 è abilitato, il pulsante "Continua" non verrà più visualizzato
+- Modificare i colori delle Opzioni e Funzioni del Client
+Modificato da Slok
+- Questo progetto non è più un ramo di Town Of New Epic e suo padre, ma un progetto indipendente
+- EAC è stato rinominato in FAC
+- Alcune formulazioni di testo sono state modificate
+Deciso da Slok
+
+## Aggiunte
+- Premendo F1 per visualizzare i dettagli del ruolo verranno anche visualizzate le illustrazioni del ruolo
+- Modificare l'animazione di caricamento di InnerSloth in animazione di carosello di illustrazioni di Final Suspect
+- Modificare l'animazione di avvio del gioco di InnerSloth in animazione di caricamento del gioco di Final Suspect
+Realizzato da Slok, 小黄117, KpCam
+Ref: The Other Roles Community Edition
+- Il logo del team verrà visualizzato sul lato sinistro dell'annuncio del mod
+Realizzato da Slok
+Ref: Yu Ez Tool
+- I giocatori possono ancora caricare traduzioni senza YamlDotNet.dll e YamlDotNet.xml
+- Aggiungere un prompt per disattivare l'acceleratore quando il controllo dell'aggiornamento in cinese semplificato fallisce 
+Realizzato da Yu
+(PR#3)
+- Opzione del client: Visualizza informazioni sulla piattaforma del giocatore e sul client
+Realizzato da Slok
+Idea: 1 & KpCam
+- 7 singoli
+- Opzione del client: Bloccare parole inappropriati
+- Opzione del client: Disattivare Anti-Cheat
+- Opzione del client: Usare cursore del mod
+- Impostare il colore dell'icona del pulsante di modifica in modo che corrisponda al ruolo
+- Il colore dell'icona di anteprima delle impostazioni del ruolo corrisponde al ruolo
+- Modificare il colore della placca inferiore delle impostazioni del ruolo
+- Anteprima del colore della placca inferiore delle impostazioni del ruolo
+- Modificare il colore della placca inferiore delle impostazioni del gioco
+- Anteprima del colore della placca inferiore delle impostazioni del gioco intero
+- Colorazione dello sfondo del chat
+- Blocco completo delle parole vietate
+- Controlli aggiuntivi per il trucco della modifica del nome
+- Controlli aggiuntivi per il trucco del chat rapido inviando più volte entro tre secondi
+- Verificare il trucco del passaggio attraverso il muro nella lobby
+- La chiaroveggenza può essere utilizzata in modalità pratica
+- Tasto di scelta rapida del menu principale: Premere il tasto Tab per nascondere l'interfaccia utente
+- Introduzione al contenuto del mod nella barra di annuncio
+- Ignorare gli intervalli di invio dei messaggi nelle stanze del mod
+- Visualizzare le informazioni prima dei nomi delle bolle di chat
+- Le informazioni di replay visualizzano il server e il numero della stanza
+- Aggiungere collegamenti ipertestuali per i contributori e i partecipanti
+- Aggiungere la visualizzazione del motivo di disconnessione: Uscito dal gioco a causa di un timeout di connessione
+- Colorare il testo di disconnessione in base al colore del giocatore
+- Supporto per annunci di mod in tutte le lingue
+- Sincronizzare i dati del mod con i dati ufficiali per risolvere il problema di dati di disconnessione ufficiali errati quando il giocatore è l'host- Supporto per la versione Among Us: v2024.11.26
+- Supporto per la versione Among Us: v2024.11.26
+- Aggiornamento del framework BepInEx: v6.0.0-be.733
+Realizzato da Slok
+- Visualizzare i codici delle stanze nei nomi di ricerca delle stanze
+Realizzato da Slok
+Ispirato da: Sicko Menu
+- Anti-Cheat: Verificare il trucco KillNetwork
+Realizzato da: Nonalus
+(PR#6)
+- Premere Shift sinistro per entrare nell'ultima stanza entrata
+- Premere Shift destro per entrare nella stanza nella clipboard
+Realizzato da: Elinmei
+Ispirato da: The Other Roles
+- Icona personalizzata del MOD nell'angolo superiore destro
+Realizzato da Slok & KpCam
+Ispirato da: Better Among Us
+
+## Rimodellamenti
+- Refactoring completo del codice
+Realizzato da Slok
+
+## Rimozioni
+- Temporaneamente rimosso: Menu Principale - Pulsante del sito web
+Motivo: Manutenzione del sito web e uscita dalla squadra di sviluppo
+- Temporaneamente rimosso: Mappa di April Fools - Dleks
+Motivo: Gli host si bloccano nell'animazione di espulsione
+- Temporaneamente rimosso: Cambia abito - Modalità cavallo di April Fools
+(Marca come rotto)
+Motivo: Il client si blocca quando compaiono i popup di chat
+- Rimosso: Ricerca solo nella stanza del Sospetto Finale
+- Rimosso: Espellere i giocatori con versioni diverse del Sospetto Finale
+Motivo: La funzione è inutile
+Deciso da Slok

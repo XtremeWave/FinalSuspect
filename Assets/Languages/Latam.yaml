@@ -4,6 +4,8 @@
 LangID: "1"
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+# 注: 为了防止您的翻译在版本更新中重制，请在本地目录Among Us/Final Suspect_Data/Bypass/中添加文件: BypassCheck_Languages_Longterm.xwr(仅需空文件即可)
+# Note: To prevent your translation from being reset during version updates, please add the file: BypassCheck_Languages_Longterm.xwr (an empty file is sufficient) in the local directory Among Us/Final Suspect_Data/Bypass/.
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
@@ -271,9 +273,9 @@ ConnectToFinalSuspectServerFailed: "Fallo al conectar con el servidor de FinalSu
 Website: "Sitio Oficial"
 MainMenuCredential: "{0} © 2025"
 LShift: "Presiona LShift para regresar a la habitación anterior"
-RSlift: "Presiona RShift para entrar en la habitación del portapapeles"
+RShift: "Presiona RShift para entrar en la habitación del portapapeles"
 
-# 大厅列表显示 / Lobby List
+# 客户端平台 / Platform
 IPhone: "IPhone"
 Android: "Android"
 

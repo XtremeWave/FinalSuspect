@@ -4,6 +4,8 @@
 LangID: "4"
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
+# 注: 为了防止您的翻译在版本更新中重制，请在本地目录Among Us/Final Suspect_Data/Bypass/中添加文件: BypassCheck_Languages_Longterm.xwr(仅需空文件即可)
+# Note: To prevent your translation from being reset during version updates, please add the file: BypassCheck_Languages_Longterm.xwr (an empty file is sufficient) in the local directory Among Us/Final Suspect_Data/Bypass/.
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
@@ -271,7 +273,7 @@ ConnectToFinalSuspectServerFailed: "FinalSuspect 서버에 연결할 수 없습�
 Website: "공식 웹사이트"
 MainMenuCredential: "{0} © 2025"
 LShift: "LShift를 눌러 이전 방으로 돌아가기"
-RSlift: "RShift를 눌러 클립보드 방으로 이동하기"
+RShift: "RShift를 눌러 클립보드 방으로 이동하기"
 
 # 룸 리스트 표시 / Lobby List
 IPhone: "IPhone"

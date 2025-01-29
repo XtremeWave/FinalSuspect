@@ -1,0 +1,180 @@
+﻿#Number:100001
+#Title:Final Suspect v1.0
+#SubTitle:★★★★Deze mod is eindelijk officieel gelanceerd!★★★★
+#ShortTitle:★Officiële lancering v1.0
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# Nederlands
+Terwijl de tijd verstrijkt, komt de winter in het noordelijk halfrond tot een einde en herstelt het voorjaar overal.
+Kijkend naar het sneeuwlandschap van Mira, worden de herinneringen binnen gewekt? De warmte stroomt nog steeds door het hart.
+Het maakt niet uit bij wie de verdenking uiteindelijk valt, het maakt niet uit in wiens handen de waarheid uiteindelijk breekt,
+In de vernieuwde ervaring, brainstormen, achterlaten helemaal nieuwe gelukkige herinneringen.
+Het belangrijkst is om je te amuseren!!!
+
+## Basis
+- Gebaseerd op Among Us v2024.10.29
+- Gebaseerd op BepInEx v6.0.0-be.733
+
+## Samenvatting van updates
+- Reparaties: 28
+- Optimalisaties: 9
+- Veranderingen: 16
+- Toevoegingen: 41
+- Herstellingen: 1
+- Verwijderingen: 5
+
+## Team contributors
+- [Slok]("https://github.com/Slok7565/")
+- [Elinmei]("https://github.com/linmeideli/")
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- KpCam
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Contributors
+- [Yu]("https://github.com/Night-GUA/")
+(PR#3)
+- [Qingfeng]("https://github.com/QingFeng-awa/")
+(PR#5)
+- [Nonalus]("https://github.com/Reborn5537/")
+(PR#6)
+
+## Reparaties
+- Repareer de bug van 「Auto Start at Full Lobby」 alleen geactiveerd bij 14 of meer spelers, ongeacht de maximale capaciteit van de kamer.
+- Repareer de bug van het zwart scherm dat optreedt na de vergadering wanneer de client de gastheer is
+- Repareer de bug van het niet kunnen ingaan van de oefenmodus
+- Repareer de bug van het niet weergeven van het aantal doden in het spel
+- Repareer de bug van de verstopper tekstuurfout
+- Repareer de bug van de gastheer informatie die de gastheer naam niet weergeeft boven het starten van het spel wanneer de client de gastheer is
+- Repareer de bug van mod spelers die alleen met elkaar kunnen herkennen met de gastheer
+- Repareer de bug van de client die fouten stuurt bij het oproepen van een noodgeval
+- Repareer de bug van de stijl van de hoofdmenu mod versie en team informatie die abnormaal wordt weergegeven
+- Repareer de bug van het direct verbergen van het kamernummer in de streamer modus wanneer het wordt geblokkeerd
+- Repareer de bug van de geblokkeerde woorden controle die faalt
+- Repareer de bug van de officiële link blokkade waarschuwing tekst die abnormaal wordt weergegeven
+- Repareer de bug van 「Auto-return to Lobby at End」 die niet生效 in online play
+- Repareer de bug van de Guardian Angel die clairvoyance kan gebruiken
+- Repareer de bug van chat pop-ups en exit game informatie die niet geblokkeerde woorden blokkeert
+- Repareer de bug van redundant blank lines aan het begin van de aankondiging
+- Repareer de bug van client opties die tekst fouten weergeven na het veranderen van talen
+- Repareer de bug van mod informatie die nog steeds wordt weergegeven wanneer de vriendenlijst wordt geopend
+- Repareer de bug van het programma dat mogelijk niet reageert wanneer het spel wordt gestart
+- Repareer de bug van de hoofdmenu muziek die niet wordt hersteld wanneer 「Disable Among U's Musics」 wordt uitgeschakeld
+- Repareer de bug van het stoppen van de muziek in het 「My Music」 module dat ook de originele game muziek stopt
+- Repareer de bug van sommige tekst vertaal fouten in het traditionele Chinees
+- Repareer de bug van aankondiging taal fouten
+- Repareer de bug van FAC die niet correct cheaters kan uitschakelen
+- Repareer de bug van speler data die niet normaal wordt bijgewerkt tijdens de vergadering
+- Repareer de bug van de Guardian Angel die de moordenaar kleur kan zien wanneer hij de doodsoorzaak van anderen bekijkt
+- Repareer de bug dat de tekst van het Laatste Resultaat de achtergrondlengte overschrijdt
+Gemaakt door Slok
+- Repareer de bug van de onjuiste QQ-groep link
+Gemaakt door Qingfeng
+(PR#5)
+
+## Optimalisaties
+- Hernoem code om de runtime efficiëntie te verbeteren
+- Sla bijna alle resources op afstand op om de bestandsgrootte te optimaliseren
+- Sla afhankelijkheden op afstand op
+- Optimaliseer de stijl van de hoofdmenu mod versie en team informatie
+- Optimaliseer de wederzijdse herkenning van spelers in deze mod
+- Volledig optimaliseer FAC beoordeling
+- Optimaliseer aankondigingsformaat
+- Meer visuele effecten optimalisaties
+- Optimaliseer vriendenverzoek transparantie
+Gemaakt door Slok
+
+## Veranderingen
+- Je kunt geen muziek verwijderen die momenteel wordt afgespeeld in 「Audio Management」
+- Pas de kleuren van de Ingenieur, Shapeshifter en Phantom aan
+- Staat toe om replay informatie te gebruiken in de lobby en tijdens het spel
+- Verander de weergave van de doodsoorzaak van na de naam naar na het aantal taken
+- Pas de beoordeling van de dood door uitschakeling aan om het probleem te voorkomen dat de doodsoorzaak niet wordt weergegeven wanneer het uitschakeling is
+- Optimaliseer doodsoordeel
+- Om valse rapporten van de mod te voorkomen, heeft FAC geen effect wanneer je een kamer op een +25 poort server betreed
+- Categoriseer 「Switch Vanilla」 als Client Feature
+- Categoriseer 「Dump Log」 als een Client Feature
+- Pas de kleuren van sommige client knoppen aan
+- Pas sommige tekst aan om de introductie van latere projecten te vergemakkelijken
+- Wanneer 「Auto-return to Lobby at End」 is ingeschakeld, wordt de "Continue" knop niet langer weergegeven
+- Pas de kleuren van Client Opties en Functies aan
+Gemaakt door Slok
+- Dit project is nu geen tak meer van Town Of New Epic en zijn ouder, maar een onafhankelijk project
+- EAC is hernoemd naar FAC
+- Sommige tekstformuleringen zijn aangepast
+Beslist door Slok
+
+## Toevoegingen
+- Druk op F1 om rol details weer te geven zal ook de rol illustraties weergeven
+- Verander de InnerSloth loading animatie naar de Final Suspect illustratie carrousel loading animatie
+- Verander de InnerSloth game launching animatie naar de Final Suspect game loading animatie
+Gemaakt door Slok, 小黄117, KpCam
+Ref: The Other Roles Community Edition
+- Het team logo zal worden weergegeven aan de linkerkant van de mod aankondiging
+Gemaakt door Slok
+Ref: Yu Ez Tool
+- Spelers kunnen nog steeds vertalingen laden zonder YamlDotNet.dll en YamlDotNet.xml
+- Voeg een prompt toe om de versneller uit te schakelen wanneer de update controle voor het vereenvoudigde Chinees faalt 
+Gemaakt door Yu
+(PR#3)
+- Client Optie: Geef informatie over spelerplatform en client weer
+Gemaakt door Slok
+Idee: 1 & KpCam
+- 7 singles
+- Client Optie: Blokkeer ongepaste woorden
+- Client Optie: Schakel Anti-Cheat uit
+- Client Optie: Gebruik Mod Cursor
+- Stel de wijzigingsknop pictogram kleur in overeenstemming met de rol
+- Rol instelling preview pictogram kleur overeenkomt met de rol
+- Pas de kleur van de onderste plaat van de rol instellingen aan
+- Preview de kleur van de onderste plaat van de rol instellingen
+- Pas de kleur van de onderste plaat van de game instellingen aan
+- Preview de kleur van de onderste plaat van de hele game instellingen
+- Chat achtergrond kleur
+- Compleet spammen van geblokkeerde woorden
+- Extra controles voor naam wijzigingen fraude
+- Extra controles voor snel chat fraude door meerdere keren binnen drie seconden te verzenden
+- Controleer fraude door muur door te dringen in de lobby
+- Clairvoyance kan worden gebruikt in de oefenmodus
+- Hoofdmenu sneltoets: Druk op de Tab-toets om de UI te verbergen
+- Mod inhoud introductie in de aankondigingsbalk
+- Negeer bericht verzend intervallen in mod kamers
+- Geef informatie weer voor chat bubbel namen
+- Replay informatie toont server en kamernummer
+- Voeg hyperlinks toe voor bijdragers en deelnemers
+- Voeg afsluit reden weer te geven: Het spel verlaten vanwege een time-out
+- Kleur de afsluit tekst overeenkomstig de speler kleur
+- Ondersteun volledige taal mod aankondigingen
+- Synchroniseer mod data met officiële data om het probleem van officiële afsluit data fouten op te lossen wanneer de speler de gastheer is- Ondersteun Among Us versie: v2024.11.26
+- Ondersteun Among Us versie: v2024.11.26
+- Update BepInEx framework versie: v6.0.0-be.733
+Gemaakt door Slok
+- Geef kamernummers weer in de kamersoeknamen
+Gemaakt door Slok
+Inspired by: Sicko Menu
+- Anti-Cheat: Controleer KillNetwork fraude
+Gemaakt door: Nonalus
+(PR#6)
+- Druk op Links Shift om de laatst betreden kamer te betreden
+- Druk op Rechts Shift om de kamer in het klembord te betreden
+Gemaakt door: Elinmei
+Inspired by: The Other Roles
+- Custom MOD icon in the top right corner
+Gemaakt door Slok & KpCam
+Inspired by: Better Among Us
+
+## Herstellingen
+- Compleet hernoemen van de code
+Gemaakt door Slok
+
+## Verwijderingen
+- Tijdelijk verwijderd: Hoofdmenu - Website knop
+Reden: Website onderhoud en uitstappen van het ontwikkelteam
+- Tijdelijk verwijderd: April Fools Map - Dleks
+Reden: Gastheren blijven steken in de uitschakelanimatie
+- Tijdelijk verwijderd: Change Outfit - April Fools Horse Mode
+(Mark As Broken)
+Reden: De client stort af wanneer chat pop-ups verschijnen
+- Verwijderd: Final Suspect room search only
+- Verwijderd: Expulsie van spelers met verschillende Final Suspect versies
+Reden: De functie is zinloos
+Beslist door Slok

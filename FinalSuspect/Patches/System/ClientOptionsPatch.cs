@@ -118,7 +118,8 @@ public static class OptionsMenuBehaviourStartPatch
 
         if (!XtremeGameData.GameStates.IsNotJoined)
         {
-            SetFeatureItemDisabled(AudioManagementBtn, true);
+            SetOptionItemDisabled(ChangeOutfit);
+            SetFeatureItemDisabled(AudioManagementBtn);
         }
 
         MyMusicPanel.Init(__instance);
@@ -154,7 +155,7 @@ public static class OptionsMenuBehaviourStartPatch
         }
         if (item == null || item.ToggleButton == null)
         {
-            item = ClientOptionItem_String.Create(value.Value ?? options[0], value, instance, options, toggleAction);
+            item = ClientOptionItem_String.Create(name,value.Value ?? options[0], value, instance, options, toggleAction);
         }
     }
 
@@ -188,14 +189,25 @@ public static class OptionsMenuBehaviourStartPatch
     {
         item.ToggleButton.Text.text = GetString(text);
         item.ToggleButton.GetComponent<PassiveButton>().enabled = true;
-        item.ToggleButton.Background.color = ColorHelper.ModColor32;
+        item.ToggleButton.Background.color = ColorHelper.ClientFeatureColor;
     }
-
-    private static void SetFeatureItemDisabled(ClientFeatureItem item, bool isDisabled)
+    private static void SetOptionItemDisabled(ClientOptionItem_Boolean item)
     {
-        item.ToggleButton.Text.text += "|" + GetString("OnlyAvailableInMainMenu");
+        item.ToggleButton.Text.text += $"\n|{GetString("OnlyAvailableInMainMenu")}|";
         item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-        item.ToggleButton.Background.color = Palette.DisabledGrey;
+        item.ToggleButton.Background.color = ColorHelper.ClientOptionColor_CanNotUse;
+    }
+    private static void SetOptionItemDisabled(ClientOptionItem_String item)
+    {
+        item.ToggleButton.Text.text = GetString(item.Name) + $"\n|{GetString("OnlyAvailableInMainMenu")}|";
+        item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+        item.ToggleButton.Background.color = ColorHelper.ClientOptionColor_CanNotUse;
+    }
+    private static void SetFeatureItemDisabled(ClientFeatureItem item)
+    {
+        item.ToggleButton.Text.text += $"\n|{GetString("OnlyAvailableInMainMenu")}|";
+        item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+        item.ToggleButton.Background.color = ColorHelper.ClientFeatureColor_CanNotUse;
     }
 
     private static void UnlockFPSButtonToggle()
@@ -232,8 +244,9 @@ public static class OptionsMenuBehaviourStartPatch
             var sprite = Utils.LoadSprite("Cursor.png");
             Cursor.SetCursor(Main.UseModCursor.Value ? sprite.texture: null, Vector2.zero, CursorMode.Auto);
         }
-        catch 
+        catch
         {
+            Main.UseModCursor.Value = false;
         }
        
     }

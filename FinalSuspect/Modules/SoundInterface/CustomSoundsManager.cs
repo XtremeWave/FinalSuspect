@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.FinalMusic;
@@ -25,6 +26,7 @@ public static class CustomSoundsManager
         }
         
         StopPlayMod();
+        StopPlayVanilla();
         ReloadTag();
         MyMusicPanel.RefreshTagList();
         SoundManagementPanel.RefreshTagList();
@@ -34,7 +36,8 @@ public static class CustomSoundsManager
 
     [DllImport("winmm.dll")]
     public static extern bool PlaySound(string Filename, int Mod, int Flags);
-    public static void StartPlayLoop(string path) => PlaySound(@$"{path}", 0, 9);
+
+    private static void StartPlayLoop(string path) => PlaySound(@$"{path}", 0, 9);
     public static void StopPlayMod()
     {
         PlaySound(null, 0, 0);
@@ -44,7 +47,13 @@ public static class CustomSoundsManager
         {
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
-        }, 0.01f, "Refresh Tag List");
+        }, 0.01f, "Refresh");
+        if (Main.DisableVanillaSound.Value)
+            StopPlayVanilla();
+        else
+        {
+           StartPlayVanilla();
+        }
     }
 
     public static void StopPlayVanilla()

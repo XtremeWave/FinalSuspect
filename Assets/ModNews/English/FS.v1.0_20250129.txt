@@ -1,0 +1,180 @@
+﻿#Number:100001
+#Title:Final Suspect v1.0
+#SubTitle:★★★★This mod has finally been formally released!★★★★
+#ShortTitle:★Formal Release v1.0
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# English
+As time passes, the winter in the Northern Hemisphere is drawing to a close, and signs of spring are reviving everywhere.
+Gazing at the snowy scenery of Mira, are the memories within awakened? The warmth still flows in the heart.
+No matter who the suspicion ultimately falls on, no matter whose hands the truth finally shatters in,
+In the refreshed experience, brainstorming, leaving behind brand-new happy memories.
+Having fun is the most important!!!
+
+## Base
+- Based on Among Us v2024.10.29
+- Based on BepInEx v6.0.0-be.733
+
+## Summary of Updates
+- Fixes: 28
+- Optimizations: 9
+- Changes: 16
+- Additions: 41
+- Remakes: 1
+- Deletions: 5
+
+## Team Contributors
+- [Slok]("https://github.com/Slok7565/")
+- [Elinmei]("https://github.com/linmeideli/")
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- KpCam
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Contributors
+- [Yu]("https://github.com/Night-GUA/")
+(PR#3)
+- [Qingfeng]("https://github.com/QingFeng-awa/")
+(PR#5)
+- [Nonalus]("https://github.com/Reborn5537/")
+(PR#6)
+
+## Fixes
+- Fix the bug of 「Auto Start at Full Lobby」 only triggered at 14 or more players, regardless of the room's maximum capacity.
+- Fix the bug of the black screen occurring after the meeting when the client is the host
+- Fix the bug of being unable to enter practice mode
+- Fix the bug of the kill count not being displayed in the game
+- Fix the bug of the hide-and-seek imposter texture error
+- Fix the bug of the host information not displaying the host name above the start game when the client is the host
+- Fix the bug of mod players only being able to recognize each other with the host
+- Fix the bug of the client sending errors when calling an emergency meeting
+- Fix the bug of the Main Menu mod version and team information style displaying abnormally
+- Fix the bug of the room number being directly hidden in the streamer mode when it is blocked
+- Fix the bug of the blocked word check failing
+- Fix the bug of the official link block warning text displaying abnormally
+- Fix the bug of 「Auto-return to Lobby at End」 not taking effect in online play
+- Fix the bug of the Guardian Angel being able to use clairvoyance
+- Fix the bug of chat pop-ups and exit game information not blocking banned words
+- Fix the bug of redundant blank lines at the beginning of the announcement
+- Fix the bug of client options displaying text errors after changing languages
+- Fix the bug of mod information still being displayed when opening the friend list
+- Fix the bug of the program possibly not responding when starting the game
+- Fix the bug of the Main Menu music not being restored when disabling 「Disable Among U's Musics」
+- Fix the bug of stopping the music in the 「My Music」 module also stopping the original game music
+- Fix the bug of some text translation errors in Traditional Chinese
+- Fix the bug of announcement language errors
+- Fix the bug of FAC not being able to correctly kick out cheaters
+- Fix the bug of player data not being updated normally during the meeting
+- Fix the bug of the Guardian Angel being able to see the murderer's color when viewing other people's causes of death
+- Fix the bug of the Last Result text exceeds the background length
+Fixed by Slok
+- Fix the bug of the incorrect QQ group link
+Fixed by Qingfeng
+(PR#5)
+
+## Optimizations
+- Refactor code to improve runtime efficiency
+- Store almost all resources remotely to optimize file size
+- Store dependencies remotely
+- Optimize the style of the Main Menu mod version and team information
+- Optimize mutual recognition of players in this mod
+- Fully optimize FAC judgment
+- Optimize announcement format
+- More visual effect optimizations
+- Optimize friend request transparency
+Made by Slok
+
+## Changes
+- Cannot delete music that is currently playing in 「Audio Management」
+- Adjust the colors of the Engineer, Shapeshifter, and Phantom
+- Allow the use of replay information in the lobby and during the game
+- Change the display of cause of death from after the name to after the number of tasks
+- Modify the judgment of death by ejection to prevent the issue of not displaying the cause of death when it is ejection
+- Optimize death judgment
+- To prevent false reports of the mod, FAC will not take effect when joining a room on a +25 port server
+- Categorize 「Switch Vanilla」 as Client Feature
+- Categorize 「Dump Log」 as a Client Feature
+- Adjust the colors of some client buttons
+- Modify some text to facilitate the introduction of subsequent projects
+- When 「Auto-return to Lobby at End」 is enabled, the "Continue" button will no longer be displayed
+- Modify the colors of Client Options and Features
+Changed by Slok
+- This project is no longer a branch of Town Of New Epic and its parent, but an independent project
+- EAC has been renamed to FAC
+- Some text wording has been modified
+Decided by Slok
+
+## Additions
+- Pressing F1 to display role details will also display the role illustrations
+- Change the InnerSloth loading animation to the Final Suspect illustration carousel loading animation
+- Change the InnerSloth game launching animation to the Final Suspect game loading animation
+Made by Slok, 小黄117, KpCam
+Ref: The Other Roles Community Edition
+- The team logo will be displayed on the left side of the mod announcement
+Made by Slok
+Ref: Yu Ez Tool
+- Players can still load translations without YamlDotNet.dll and YamlDotNet.xml
+- Added a prompt to turn off the accelerator when the Simplified Chinese update check fails 
+Made by Yu
+(PR#3)
+- Client Option: Display Player Platform and Client Information
+Made by Slok
+Idea: 1 & KpCam
+- 7 singles
+- Client Option: Block Inappropriate Words
+- Client Option: Disable Anti-Cheat
+- Client Option: Use Mod Cursor
+- Set the modification button icon color to match the role
+- Role setting preview icon color matches the role
+- Modify the bottom plate coloring of role settings
+- Preview the bottom plate coloring of role settings
+- Modify the bottom plate coloring of game settings
+- Preview the bottom plate coloring of the entire game settings
+- Chat background coloring
+- Comprehensive spam of banned words
+- Extra checks for name modification cheating
+- Extra checks for quick chat cheating by sending multiple times within three seconds
+- Check for wall-passing cheating in the lobby
+- Clairvoyance can be used in practice mode
+- Main Menu hotkey: Press the Tab key to hide the UI
+- Mod content introduction in the announcement bar
+- Ignore message sending intervals in mod rooms
+- Display information before chat bubble names
+- Replay information displays server and room number
+- Add hyperlinks for contributors and participants
+- Add disconnection reason display: Left the game due to connection timeout
+- Color the disconnection text according to player color
+- Support full language mod announcements
+- Synchronize mod data with official data to fix the problem of official disconnection data errors when the player is the host- Support Among Us version: v2024.11.26
+- Support Among Us version: v2024.11.26
+- Update BepInEx framework version: v6.0.0-be.733
+Made by Slok
+- Display room codes in the room search names
+Made by Slok
+Inspiration: Sicko Menu
+- Anti-Cheat: Check for KillNetwork cheating
+Made by: Nonalus
+(PR#6)
+- Press Left Shift to join the last joined room
+- Press Right Shift to join the room in the clipboard
+Made by: Elinmei
+Inspiration: The Other Roles
+- Custom MOD icon in the top right corner
+Made by Slok & KpCam
+Inspiration: Better Among Us
+
+## Remakes
+- Complete code refactoring
+Made by Slok
+
+## Deletions
+- Temporarily removed: Main Menu - Website Button
+Reason: Website maintenance and exit from the development team
+- Temporarily removed: April Fools Map - Dleks
+Reason: Hosts getting stuck in the ejection animation
+- Temporarily removed: Change Outfit - April Fools Horse Mode
+(Mark As Broken)
+Reason: Client crashes when chat pop-ups pop up
+- Removed: Final Suspect room search only
+- Removed: Kick out players with different Final Suspect versions
+Reason: The feature is meaningless
+Decided By Slok

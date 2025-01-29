@@ -69,7 +69,7 @@ public static class SpamManager
         List<string> waitforupdate = []; 
         while (!reader.EndOfStream)
         {
-            var line = reader.ReadLine();
+            var line = reader.ReadLine().ToLower();
             if (!BanWords.Contains(line))
             {
                 waitforupdate.Add(line);
@@ -82,27 +82,30 @@ public static class SpamManager
         foreach (var line in waitforupdate)
             writer.WriteLine(line);
     }
-    public static void CheckForUpdateDenyNames()
+
+    private static void CheckForUpdateDenyNames()
     {
-        var fileName = GetUserLangByRegion().ToString();
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.DenyName.txt");
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
-        using StreamReader reader2 = new(DENY_NAME_LIST_PATH,  Encoding.UTF8);
-        List<string> waitforupdate = []; 
+        var existingNames = ReturnAllNewLinesInFile(DENY_NAME_LIST_PATH);
+        List<string> waitforupdate = [];
         while (!reader1.EndOfStream)
         {
             var line = reader1.ReadLine();
-            if (!reader2.ReadToEnd().Contains(line))
+            if (!existingNames.Contains(line))
+            {
                 waitforupdate.Add(line);
+            }
         }
         reader1.Dispose();
-        reader2.Dispose();
 
         using StreamWriter writer = new(DENY_NAME_LIST_PATH, true);
         foreach (var line in waitforupdate)
+        {
             writer.WriteLine(line);
-    }
+        }
+    }    
     private static string GetResourcesTxt(string path)
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);

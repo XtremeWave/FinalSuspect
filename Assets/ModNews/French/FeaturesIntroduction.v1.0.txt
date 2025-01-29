@@ -1,0 +1,120 @@
+﻿#Number:100002
+#Title:v1.0  Introduction des fonctionnalités et des optimisations
+#SubTitle:★★★★Nos contenus fantastiques et merveilleux★★★★
+#ShortTitle:★v1.0 Introduction
+#Date:2025-1-28T19:00:00Z
+#-----------------------------
+# Français
+## Optimisations - 22
+Global : 
+- Curseur du mod
+- Icône personnalisée du MOD dans le coin supérieur droit
+Menu Principal :
+- Animation de lancement du jeu
+- Animation de chargement - Illustration de rôle en carrousel
+- Disposition de l'interface du Menu Principal
+- Fond du Menu Principal
+Jeux en ligne :
+- Optimisation du nom de la salle
+Dans le jeu - Global :
+- Affichage du taux de trames et du serveur dans la zone de ping
+- Affichage des informations sur la version du mod
+- Optimisation de la couleur des bulles de chat
+- Fond de la boîte de chat
+- Optimisation de la raison de la déconnexion
+Dans le jeu - Lobby :
+- Optimisation du fond du tableau d'information du lobby
+- Coloration de l'interface d'édition des paramètres
+- Optimisation du fond de l'interface d'édition des paramètres
+- Coloration de l'interface de visualisation des paramètres
+- Ajouter le logo de l'équipe au lobby
+Dans le jeu - En tâche :
+- Animation d'ouverture
+- Coloration du fond de la minimap en fonction des rôles et des équipes
+- Coloration séparée pour les différents rôles
+- Affichage des joueurs qui quittent pendant la réunion
+Fin du jeu :
+- Optimisation du texte de règlement
+
+## Fonctionnalités - 42
+Global : (Paramètres - Fonctionnalités du client)
+- Sortie de log
+- Basculer vers l'original
+- Lecture de musique
+- Téléchargement de musique (disponible uniquement dans le Menu Principal)
+Écran de chargement :
+- Télécharger automatiquement les ressources de mod à distance
+Menu Principal :
+- Vérifier automatiquement les mises à jour de la version du mod
+Jeux en ligne :
+- Affichage de la plateforme de l'hôte et coloration du nom de la salle en fonction de celle-ci
+- Affichage du code de la salle
+- Affichage du temps restant de la salle en pourcentage
+- Plus d'options de serveur
+Dans le jeu - Global :
+- Anti-Cheat anti-triche
+- Vérification et blocage des mots interdits
+- Déverrouiller la limite de taux de trames (augmenter de 60FPS à 165FPS)
+- Expulser automatiquement les joueurs qui répondent aux conditions
+Dans le jeu - Lobby : 
+- Afficher les informations de la plateforme du joueur et du client
+- Démarrage automatique lorsque le lobby est plein
+- Reconnaissance mutuelle avec d'autres joueurs utilisant ce mod
+- Afficher l'heure de fermeture du lobby (uniquement pour l'hôte qui a créé la salle)
+Dans le jeu - En tâche :
+- Affichage du rôle et de la réunion
+- Affichage du progrès de la tâche/Nombre de meurtres
+- Faites défiler la molette de la souris pour utiliser la Clairvoyance (conditions d'utilisation : Mode de pratique & Jeu local global, Lobby de jeu en ligne/ Après la mort non An
+- Après la mort, le non-Guardian Angel peut voir les rôles, le progrès des tâches/Nombre de meurtres des autres
+- Après la mort, il est possible de voir les causes de mort et les meurtriers des autres
+- Après la mort, il est possible d'utiliser le dernier résultat
+- Le fantôme est coloré pour le rôle
+Fin du jeu :
+- Dernier Résultat (Rôles, Tâches/Meurtres, Causes de Mort & Meurtriers)
+- Retour automatique au lobby à la fin
+Raccourcis-Global :
+- F10 : Ouvrir le répertoire racine du jeu
+- F11 : Changer la résolution
+- Ctrl+F1 : Sortie de log
+- Ctrl+F2 : Basculer si les logs sont affichés dans le jeu (hôte uniquement)
+Raccourcis-Menu Principal :
+- Tab : Masquer l'UI
+Raccourcis-Chat :
+- Ctrl+C : Copier le texte actuel de la boîte de chat
+- Ctrl+V : Coller le texte dans la boîte de chat
+- Ctrl+X : Couper le texte actuel du chat
+- ↑ : Remonter à l'historique de chat précédent de vous-même
+- ↓ : Avancer à l'historique de chat suivant de vous-même
+Raccourcis-Jeux en ligne :
+- Shift gauche : rejoindre la dernière salle rejointe
+- Shift droit : rejoindre la salle dans le presse-papiers
+Raccourcis-Dans le jeu :
+- F1 : Afficher les détails et les illustrations du rôle
+Raccourcis-Lobby :
+- Shift : Sauter le compte à rebours du début du jeu et démarrer le jeu directement (hôte uniquement)
+- C : Réinitialiser le compte à rebours du début du jeu (hôte uniquement)
+
+Options facultatives : (Paramètres - Fonctionnalités du client) - 15
+- Changer de tenue (uniquement pour utilisation sur la page d'accueil)
+- Déverrouiller la limite de taux de trames
+- Expulser les joueurs qui ne sont pas connectés
+- Expulser les joueurs bannis
+- Expulser les joueurs utilisant des surnoms inappropriés
+- Bloquer les mots inappropriés
+- Démarrage automatique lorsque le lobby est plein
+- Retour automatique au lobby à la fin
+- Activer l'animation d'introduction personnalisée
+- Activer la couleur de fond de la carte personnalisée
+- Désactiver les musiques d'Among U
+- Désactiver Anti-Cheat
+- Afficher les informations de la plateforme du joueur et du client
+- Utiliser le curseur du mod
+Options facultatives : (Autres)
+- Changer le style de la carte (uniquement pour The Skeld, bouton situé dans la salle de sécurité)
+
+## Avertissement!
+- Si vous voyez un tricheur, cela signifie qu'ils ont commis un comportement illégal ou sont sur la liste de bannissement du mod, mais cela ne signifie pas nécessairement que leurs actions sont des tricheries ou qu'ils trichent actuellement.
+Par exemple : Lorsque vous voyez (Invalid RPC: 150), cela signifie que l'autre partie peut être un joueur de 「Better Among Us」, mais nous ne prenons pas en charge leur RPC et nous considérons les joueurs qui envoient des RPC invalides comme des tricheurs.
+Bien sûr, vous pouvez être rassuré que grâce à notre méthode unique de reconnaissance mutuelle, vous ne serez pas jugé comme un tricheur dans leur vue !
+- Lorsqu'un bug de mod se produit, cliquez sur 「Fonctionnalités du client - Sortie de log」 pour exporter le log et l'envoyer avec le bug !
+- À l'exception du 「Chinois simplifié」 et de l'「Anglais」, toutes les autres langues sont traduites par IA et peuvent avoir des écarts, veuillez envoyer des retours en temps opportun !
