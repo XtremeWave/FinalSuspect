@@ -2,7 +2,7 @@
 #Title:v1.0 Inleiding van functies en optimalisaties
 #SubTitle:★★★★Onze fantastische en geweldige inhoud★★★★
 #ShortTitle:★v1.0 Inleiding
-#Date:2025-2-11T19:00:00Z
+#Date:2025-1-28T19:00:00Z
 #-----------------------------
 # Nederlands
 ## Optimalisaties - 22

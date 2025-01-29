@@ -1,11 +1,11 @@
-﻿#Número:100001
-#Título:Final Suspect v1.0
-#Subtítulo:★★★★Este mod finalmente ha sido lanzado oficialmente!★★★★
-#Título Corto:★Lanzamiento Oficial v1.0
-#Fecha:2025-2-11T19:00:00Z
+﻿#Number:100001
+#Title:Final Suspect v1.0
+#SubTitle:★★★★¡Este mod ha sido lanzado oficialmente!★★★★
+#ShortTitle:★Lanzamiento Oficial v1.0
+#Date:2025-1-28T19:00:00Z
 #-----------------------------
-# Español (Latinoamérica)
-A medida que pasa el tiempo, el invierno en el hemisferio norte está llegando a su fin y las señales de la primavera están reviviendo en todas partes.
+# Español
+A medida que pasa el tiempo, el invierno en el hemisferio norte está llegando a su fin y los signos de la primavera están reviviendo en todas partes.
 Mientras se contempla el paisaje nevado de Mira, ¿se despiertan los recuerdos interiores? El calor aún fluye en el corazón.
 No importa quién sea el objeto de la sospecha, no importa en cuyas manos se rompa la verdad,
 En la experiencia renovada, brainstorming, dejando atrás recuerdos felices completamente nuevos.
@@ -65,7 +65,7 @@ En la experiencia renovada, brainstorming, dejando atrás recuerdos felices comp
 - Corregir el bug de que FAC no puede expulsar correctamente a los tramposos
 - Corregir el bug de que los datos del jugador no se actualizan normalmente durante la reunión
 - Corregir el bug de que el Ángel Guardián puede ver el color del asesino al ver las causas de muerte de otros
-- Corregir el bug de que el texto del Último Resultado supera la longitud del fondo.
+- Corregir el error de que el texto del Último Resultado supera la longitud del fondo
 Corregido por Slok
 - Corregir el bug del enlace incorrecto del grupo QQ
 Corregido por Qingfeng
@@ -92,10 +92,10 @@ Realizado por Slok
 - Optimizar el juicio de muerte
 - Para evitar falsos reportes del mod, FAC no tendrá efecto al unirse a una sala en un servidor con +25 puertos
 - Categorizar 「Switch Vanilla」 como Funcionalidad del Cliente
-- Categorizar 「Dump Log」 como una Funcionalidad del Cliente
+- Categorizar "Dump Log" como una Funcionalidad del Cliente
 - Ajustar los colores de algunos botones del cliente
 - Modificar algunos textos para facilitar la introducción de proyectos posteriores
-- Cuando 「Auto-return to Lobby at End」 está habilitado, el botón "Continuar" no se mostrará más
+- Cuando "Auto-return to Lobby at End" está habilitado, el botón "Continuar" no se mostrará más
 - Modificar los colores de las Opciones y Funcionalidades del Cliente
 Modificado por Slok
 - Este proyecto ya no es una rama de Town Of New Epic y su padre, sino un proyecto independiente

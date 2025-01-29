@@ -2,7 +2,7 @@
 #Title:v1.0 Introdução dos Recursos e Otimizações
 #SubTitle:★★★★Nosso conteúdo fantástico e maravilhoso★★★★
 #ShortTitle:★v1.0 Introdução
-#Date:2025-2-11T19:00:00Z
+#Date:2025-1-28T19:00:00Z
 #-----------------------------
 # Brasileiro
 ## Otimizações - 22
