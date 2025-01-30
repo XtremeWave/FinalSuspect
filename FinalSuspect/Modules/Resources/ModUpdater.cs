@@ -20,9 +20,9 @@ public class ModUpdater
     public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
 
     public static Dictionary<SupportedLangs, string> announcement = new();
-    public static string downloadUrl_github = "https://github.com/releases/latest/download/FinalSuspect.dll";
-    public static string downloadUrl_gitee = "https://gitee.com/releases/download/v{showVer}/FinalSuspect.dll";
-    public static string downloadUrl_objectstorage = "https://api.xtreme.net.cn/FinalSuspect/FinalSuspect.dll";
+    public static string downloadUrl_github = "https://github.com/XtremeWave/FinalSuspect/releases/latest/download/FinalSuspect.dll";
+    public static string downloadUrl_gitee = "https://gitee.com/XtremeWave/FinalSuspect/releases/download/v{showVer}/FinalSuspect.dll";
+    public static string downloadUrl_objectstorage = "https://api.xtreme.net.cn/download/FinalSuspect/FinalSuspect.dll";
 
     public static void SetUpdateButtonStatus()
     {
