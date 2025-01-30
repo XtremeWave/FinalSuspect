@@ -1,7 +1,7 @@
 {
   "version": "1.0.1",
   "verHead": "1.0",
-  "verDate": "20240130",
+  "verDate": "20250130",
 
 
   "minVer": "latest",
@@ -10,7 +10,7 @@
   "CanUpdate": "true",
   "DebugVer": "0.0.0",
 
-  "md5": "5a00bb9e0d284dfe9b02b545294a95bc",
+  "md5": "fbc393a18fd6e21b24f944c536000a1e",
   "announcement": {
     "English": "Update #20250130\nFix the bug of Wrong Version\nFix the bug of sometimes FAC can not kick cheaters。",
     "Latam": "Actualización #20250130\nSe corrigió el problema de error de versión\nSe corrigió el problema en el que el anti-cheat no podía expulsar a los jugadores\nEl idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",
