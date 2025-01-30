@@ -65,11 +65,13 @@ public class Main : BasePlugin
     /// Preview: 预览/预发行版
     /// Scrapter: 废弃版
     /// </summary>
-    private const string DisplayedVersion_TestText = "";
+    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
     private const int DisplayedVersion_TestCreation = 0;
     public static readonly string DisplayedVersion = 
-        $"{DisplayedVersion_Head}_{(DisplayedVersion_Date_Focus != "" ? DisplayedVersion_Date_Focus : DisplayedVersion_Date_Current)}" +
-        $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
+        $"{DisplayedVersion_Head}_{(DisplayedVersion_Date_Focus != "" ? 
+            DisplayedVersion_Date_Focus : DisplayedVersion_Date_Current)}" +
+        $"{(DisplayedVersion_TestText != VersionTypes.Release ? 
+            $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
 
 
     // == 链接相关设定 / Link Config ==
@@ -264,7 +266,6 @@ public class Main : BasePlugin
 
         Harmony.PatchAll();
         
-        
         if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();
 
@@ -282,4 +283,5 @@ public enum VersionTypes
     RC,// 发行候选版Release Candidate
     Preview,// 预览/预发行版
     Scrapter,// 废弃版
+    Release,// 发行版
 }

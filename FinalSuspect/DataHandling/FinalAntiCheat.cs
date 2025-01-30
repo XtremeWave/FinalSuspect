@@ -130,7 +130,7 @@ public static class FinalAntiCheat
 
         public static void Init()
         {
-            DeNum = new();
+            DeNum = 0;
             LobbyDeadBodies = [];
         }
 
@@ -295,7 +295,7 @@ public static class FinalAntiCheat
         //    //Cloud.SendData(msg);
         //    //Logger.Warn($"FAC报告：{pc.GetRealName()}: {reason}", "FAC Cloud");
         //}
-        static bool CheckForInvalidRpc(PlayerControl player, byte callId)
+        private static bool CheckForInvalidRpc(PlayerControl player, byte callId)
         {
             if (player.PlayerId != 0 && !Enum.IsDefined(typeof(RpcCalls), callId) &&
                 !XtremeGameData.GameStates.OtherModHost)
@@ -303,9 +303,10 @@ public static class FinalAntiCheat
                 XtremeLogger.Warn(
                     $"{player?.Data?.PlayerName}:{callId}({RPC.GetRpcName(callId)}) 已取消，因为它是由主机以外的其他人发送的。",
                     "FAC");
+                if (ReceiveInvalidRpc(player, callId)) return true;
                 if (AmongUsClient.Instance.AmHost)
                 {
-                    if (!ReceiveInvalidRpc(player, callId)) return true;
+                   
                     XtremeLogger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                     NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc"),
                         player?.Data?.PlayerName));
@@ -322,9 +323,8 @@ public static class FinalAntiCheat
             return false;
         }
 
-        public static bool ReceiveInvalidRpc(PlayerControl pc, byte callId)
+        private static bool ReceiveInvalidRpc(PlayerControl pc, byte callId)
         {
-
             switch (callId)
             {
                 case unchecked((byte)42069):
@@ -348,12 +348,11 @@ public static class FinalAntiCheat
                     return true;
             }
 
-            return true;
+            return false;
         }
 
         public static void HandleCheat(PlayerControl pc, string text)
         {
-            Utils.KickPlayer(pc.GetClientId(), true, "CheatDetected");
             NotificationPopperPatch.NotificationPop(pc.GetDataName() + text);
         }
     }

@@ -3,22 +3,19 @@ using AmongUs.Data;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using InnerNet;
 using UnityEngine;
+using XUnity.AutoTranslator.Plugin.Core;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(ChatController))]
-
-
 [HarmonyPatch(typeof(ChatController), nameof(ChatController.Update))]
 public static class ChatControllerUpdatePatch
 {
     public static int CurrentHistorySelection = -1;
     public static void Prefix()
     {
-
         if (AmongUsClient.Instance.AmHost && DataManager.Settings.Multiplayer.ChatMode == QuickChatModes.QuickChatOnly)
-            DataManager.Settings.Multiplayer.ChatMode = QuickChatModes.FreeChatOrQuickChat; //コマンドを打つためにホストのみ常時フリーチャット開放
-
+            DataManager.Settings.Multiplayer.ChatMode = QuickChatModes.FreeChatOrQuickChat; 
     }
     public static void Postfix(ChatController __instance)
     {
