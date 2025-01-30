@@ -216,7 +216,7 @@ public static class VersionChecker
             foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
                 ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
             ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);
-            hasUpdate = Main.version < latestVersion;
+            hasUpdate = Main.version < latestVersion|| creation > Main.PluginCreation;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
 #if DEBUG
             DebugUnused = Main.version < DebugVer;

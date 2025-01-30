@@ -29,7 +29,7 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public static readonly string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.0.0";
+    public const string PluginVersion = "1.0.1";
     public const string PluginGuid = "cn.finalsuspect.xtremewave";
     public const int PluginCreation = 3;
 
