@@ -71,9 +71,10 @@ public static class Utils
     }
     public static void KickPlayer(byte playerId, bool ban, string reason = "")
     {
-        XtremeLogger.Info($"try to kick {GetPlayerById(playerId)?.GetRealName()}", "Kick");
-        AmongUsClient.Instance.KickPlayer(playerId, ban);
-        OnPlayerLeftPatch.Add(playerId);
+        var player = GetPlayerById(playerId);
+        XtremeLogger.Info($"try to kick {player?.GetRealName()}", "Kick");
+        AmongUsClient.Instance.KickPlayer(player.GetClient().Id, ban);
+        OnPlayerLeftPatch.Add(player.GetClient().Id);
     }
     public static string PadRightV2(this object text, int num)
     {

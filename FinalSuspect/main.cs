@@ -16,6 +16,7 @@ using FinalSuspect.Modules.Random;
 using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
 
+
 [assembly: AssemblyFileVersion(Main.PluginVersion)]
 [assembly: AssemblyInformationalVersion(Main.PluginVersion)]
 [assembly: AssemblyVersion(Main.PluginVersion)]
@@ -30,7 +31,7 @@ public class Main : BasePlugin
     public const string ForkId = "Final Suspect";
     public const string PluginVersion = "1.0.0";
     public const string PluginGuid = "cn.finalsuspect.xtremewave";
-    public const int PluginCreation = 2;
+    public const int PluginCreation = 3;
 
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
@@ -40,20 +41,29 @@ public class Main : BasePlugin
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2024.10.29";
 
+
     public const string DisplayedVersion_Head = "1.0";
-    private const string DisplayedVersion_Date_Focus = "";
-    private static string DisplayedVersion_Date_Current 
+    private static string DisplayedVersion_Date
+
     {
         get
         {
+#if DEBUG
             var currentDate = DateTime.Now;
             var year = currentDate.Year.ToString();
             var month = currentDate.Month.ToString("D2");  
             var day = currentDate.Day.ToString("D2");    
             return $"{year}{month}{day}";
+#else
+            return "20240130";
+#endif
         }
-        
     }
+    
+
+
+        
+
     /// <summary>
     /// 测试信息；
     /// 支持的内容：Alpha, Beta, Canary, Dev, RC, Preview, Scrapter
@@ -68,8 +78,7 @@ public class Main : BasePlugin
     private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
     private const int DisplayedVersion_TestCreation = 0;
     public static readonly string DisplayedVersion = 
-        $"{DisplayedVersion_Head}_{(DisplayedVersion_Date_Focus != "" ? 
-            DisplayedVersion_Date_Focus : DisplayedVersion_Date_Current)}" +
+        $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != VersionTypes.Release ? 
             $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
 

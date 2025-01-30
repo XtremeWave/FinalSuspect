@@ -355,6 +355,7 @@ public static class XtremeLocalHandling
     }
 
     #endregion
+    
     public static void ShowMap(MapBehaviour map, bool normal)
     {
         if (!Main.EnableFinalSuspect.Value) return;
@@ -362,6 +363,31 @@ public static class XtremeLocalHandling
         var color = normal ? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
         if (Main.EnableMapBackGround.Value)
             map.ColorControl.SetColor(color);
+        
+        /*foreach (var player in Main.AllAlivePlayerControls)
+        {
+            if (Utils.CanSeeTargetRole(player, out _))
+            {
+                Vector3 vector = player.transform.position;
+                if (MeetingHud.Instance && map.preMeetingPosition != null)
+                {
+                    vector = map.preMeetingPosition.Value;
+                }
+                else if (map.preMeetingPosition != null)
+                {
+                    map.preMeetingPosition = null;
+                }
+
+                vector /= ShipStatus.Instance.MapScale;
+                vector.x *= Mathf.Sign(ShipStatus.Instance.transform.localScale.x);
+                vector.z = -1f;
+                var rend = Object.Instantiate(map.HerePoint);
+                rend.transform.SetParent(map.HerePoint.transform.parent);
+                rend.transform.localPosition = vector;
+                PlayerMaterial.SetColors(player.Data.DefaultOutfit.ColorId, map.HerePoint);
+            }
+        }*/
+        
     }
 
     public static bool GetHauntFilterText(HauntMenuMinigame __instance)
