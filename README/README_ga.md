@@ -16,7 +16,7 @@
 
 ## Teangacha
 ***Tacaíonn an mod seo le gach teanga atá ar fáil i Among Us!***<br>
-[English](README.md) <br>
+[English](../README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
@@ -29,7 +29,7 @@
 [Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
-[简体中文](README_zh.md)<br>
+[简体中文](../README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge]<br>
 

@@ -2,7 +2,7 @@
 
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**Final Suspect: ¡El mejor módulo de soporte para Among Us!**
+**Final Suspect: ¡El mejor módulo de ayuda para Among Us!**
 
 <img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
 <img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
@@ -16,8 +16,8 @@
 
 ## Idiomas
 ***Este módulo soporta todos los idiomas disponibles en Among Us!***<br>
-[English](README.md) <br>
-[Latam](README_es_LA.md)<br>
+[English](../README.md) <br>
+[Latam]<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
 [한국어](README_ko.md)<br>
@@ -28,13 +28,13 @@
 [Deutsch](README_de.md)<br>
 [Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
-[Español]<br>
-[简体中文](README_zh.md)<br>
+[Español](README_es.md)<br>
+[简体中文](../README_zh.md)<br>
 [繁體中文](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
 ## Aviso Importante
-Este módulo no está afiliado a Among Us ni a Innersloth LLC. El contenido incluido no ha sido aprobado ni patrocinado por Innersloth LLC.<br>
+Este módulo no está afiliado a Among Us o Innersloth LLC. El contenido incluido no ha sido aprobado ni patrocinado por Innersloth LLC de ninguna manera.<br>
 Algunos de los materiales incluidos aquí son propiedad de Innersloth LLC.
 
 ## Colaboradores
@@ -45,16 +45,16 @@ Algunos de los materiales incluidos aquí son propiedad de Innersloth LLC.
 >Añadiendo consejos & dependencias integradas
 
 >[Amongus](https://github.com/XiezibanWrite) - **Traducción & Soporte Técnico**<br>
->Soporte parcial de texto de traducción & soporte durante el desarrollo
+>Soporte de texto de traducción parcial & soporte durante el desarrollo
 
 >[NikoCat233](https://github.com/NikoCat233) - **Soporte Técnico**<br>
 >Guía anti-trampas
 
 > [QingFeng](https://github.com/QingFeng-awa) - **Soporte API**<br>
->¡Proporcionando soporte API Xtreme!
+>¡Proporcionó soporte API Xtreme!
 
 >[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **Soporte Técnico**<br>
->Añadiendo verificación de KillNetWork para FAC
+>Añadiendo comprobación de KillNetWork para FAC
 
 >[LezaiYa](https://github.com/LezaiYa1) - **Soporte de Consultoría**
 

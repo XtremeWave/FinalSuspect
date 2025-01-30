@@ -16,7 +16,7 @@
 
 ## 語言
 ***本模組支援Among Us所支援的全部語言！***<br>
-[English](README.md) <br>
+[English](../README.md) <br>
 [Latam](README_es_LA.md)<br>
 [Brasileiro](README_pt_BR.md)<br>
 [Português](README_pt.md)<br>
@@ -29,7 +29,7 @@
 [Italiano](README_it.md)<br>
 [日本語](README_ja.md)<br>
 [Español](README_es.md)<br>
-[簡體中文](README_zh.md)<br>
+[簡體中文](../README_zh.md)<br>
 [繁體中文]<br>
 [Gaeilge](README_ga.md)<br>
 
