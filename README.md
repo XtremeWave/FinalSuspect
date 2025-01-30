@@ -33,9 +33,9 @@
 [Traditional Chinese](README_zh_CHT.md)<br>
 [Gaeilge](README_ga.md)<br>
 
-## Important Notice
-This mod is not affiliated with Among Us or Innersloth LLC. The content included has not been endorsed or sponsored by Innersloth LLC in any way.<br>
-Some of the materials included here are the property of Innersloth LLC.
+## Regarding
+This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC.
+Portions of the materials contained herein are property of Innersloth LLC. © Innersloth LLC.
 
 ## Contributors
 >[KARPED1EM](https://github.com/KARPED1EM) - **Technical Support**<br>

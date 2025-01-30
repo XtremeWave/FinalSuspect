@@ -60,7 +60,7 @@ Einige der hier enthaltenen Materialien sind Eigentum von Innersloth LLC.
 
 >[Imp11](https://github.com/dabao40) - **Beratungsunterstützung**
 
->[FangKuai](https://github.com/FangKuaiYa) - **Beratungsunterstützung**
+>[FangKuai](https://github.com/FangKuaiYa/) - **Beratungsunterstützung**
 
 ## Sternhistorie
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

@@ -8,7 +8,7 @@
 <img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
 <img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
 <img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
+<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect/" alt="Stars">
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
@@ -35,7 +35,8 @@
 
 ## 须知
 本模组不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。<br>
-此处包含的部分材料是Innersloth LLC的财产。
+此处包含的部分材料是Innersloth LLC的财产。© Innersloth LLC.
+
 
 ## 贡献者
 >[KARPED1EM](https://github.com/KARPED1EM) - **技术支持**<br>

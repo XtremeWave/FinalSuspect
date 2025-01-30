@@ -9,7 +9,7 @@
 <img src="https://badgen.net/github/assets-dl/XtremeWave/FinalSuspect" alt="Downloads">
 <img src="https://badgen.net/github/watchers/XtremeWave/FinalSuspect" alt="Watchers">
 <img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect" alt="Stars">
-<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
+<img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect/" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
 </div>
