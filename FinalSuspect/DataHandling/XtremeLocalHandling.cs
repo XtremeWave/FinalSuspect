@@ -389,7 +389,7 @@ public static class XtremeLocalHandling
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
             var player = data.Player;
-            if (!Utils.CanSeeTargetRole(player, out _) || player.IsLocalPlayer()) continue;
+            if (data.IsDisconnected || !Utils.CanSeeTargetRole(player, out _) || player.IsLocalPlayer()) continue;
             var vector = player.transform.position;
             if (MeetingHud.Instance && data.preMeetingPosition != null)
             {
