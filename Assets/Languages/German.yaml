@@ -208,7 +208,7 @@ Warning.SetName: "{0} wurde entfernt, weil er mehrmals einen Namen gesetzt hat."
 Warning.SetName_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte den Host darum bitten, ihn zu entfernen <color=#ffff00>(Mehrfach Namenssetzung)</color>"
 Warning.SendQuickChat: "{0} wurde entfernt, weil er innerhalb von 3 Sekunden mehrere Quick-Nachrichten gesendet hat"
 Warning.SendQuickChat_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte den Host darum bitten, ihn zu entfernen <color=#ffff00>(Versand mehrerer Quick-Nachrichten innerhalb von 3 Sekunden)</color>"
-Warning.Cheater: "{0} wird verdächtigt, Cheats zu verwenden. Bitte den Host darum bitten, ihn zu entfernen <color=#ffff00>(Ungültiges offizielles Rpc senden: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} wird verdächtigt, Cheats zu verwenden. Bitte den Host darum bitten, ihn zu entfernen <color=#ffff00>(Ungültiges offizielles Rpc senden: {1})</color>"
 Warning.CantKickDev: "Entschuldigung, du kannst den Entwickler nicht entfernen"
 Warning.RoomBroken: "Entschuldigung, dieses Zimmer wurde sabotiert. Bitte gehe in ein anderes Zimmer, um weiterzuspielen."
 

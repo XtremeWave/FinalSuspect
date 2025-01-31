@@ -29,8 +29,8 @@
 [Italiano](README_it.md)<br>
 [日本語](README/README_ja.md)<br>
 [Español](README/README_es.md)<br>
-[Simplified Chinese](README_zh.md)<br>
-[Traditional Chinese](README/README_zh_CHT.md)<br>
+[简体中文](README_zh.md)<br>
+[繁體中文](README/README_zh_CHT.md)<br>
 [Gaeilge](README/README_ga.md)<br>
 
 ## Regarding

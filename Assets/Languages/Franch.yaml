@@ -208,7 +208,7 @@ Warning.SetName: "{0} a été expulsé car il a défini son nom plusieurs fois."
 Warning.SetName_NotHost: "{0} est suspect d'utiliser des tricheurs. Veuillez demander à l'hôte de l'expulser <color=#ffff00>(Définir le nom plusieurs fois)</color>"
 Warning.SendQuickChat: "{0} a été expulsé car il a envoyé plusieurs messages rapides en 3 secondes"
 Warning.SendQuickChat_NotHost: "{0} est suspect d'utiliser des tricheurs. Veuillez demander à l'hôte de l'expulser <color=#ffff00>(Envoyer plusieurs messages rapides en 3 secondes)</color>"
-Warning.Cheater: "{0} est suspect d'utiliser des tricheurs. Veuillez demander à l'hôte de l'expulser <color=#ffff00>(Envoi illégal d'un RPC officiel : {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} est suspect d'utiliser des tricheurs. Veuillez demander à l'hôte de l'expulser <color=#ffff00>(Envoi illégal d'un RPC officiel : {1})</color>"
 Warning.CantKickDev: "Désolé, vous ne pouvez pas expulser le développeur"
 Warning.RoomBroken: "Désolé, cette salle a été compromises. Veuillez aller dans une autre salle pour continuer votre partie."
 

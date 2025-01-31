@@ -208,7 +208,7 @@ Warning.SetName: "{0} is verwijderd omdat hij meerdere keren een naam heeft inge
 Warning.SetName_NotHost: "{0} wordt verdacht van het gebruik van cheats. Vraag de gastheer om hem te verwijderen <color=#ffff00>(Meerdere keren naam instellen)</color>"
 Warning.SendQuickChat: "{0} is verwijderd omdat hij binnen 3 seconden meerdere snelberichten heeft verstuurd"
 Warning.SendQuickChat_NotHost: "{0} wordt verdacht van het gebruik van cheats. Vraag de gastheer om hem te verwijderen <color=#ffff00>(Meerdere snelberichten binnen 3 seconden versturen)</color>"
-Warning.Cheater: "{0} wordt verdacht van het gebruik van cheats. Vraag de gastheer om hem te verwijderen <color=#ffff00>(Onrechtmatig verzenden van officiële Rpc: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} wordt verdacht van het gebruik van cheats. Vraag de gastheer om hem te verwijderen <color=#ffff00>(Onrechtmatig verzenden van officiële Rpc: {1})</color>"
 Warning.CantKickDev: "Sorry, je kunt de ontwikkelaar niet verwijderen"
 Warning.RoomBroken: "Sorry, deze kamer is gehackt. Ga naar een andere kamer om verder te spelen."
 

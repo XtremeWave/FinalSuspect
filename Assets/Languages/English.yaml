@@ -208,7 +208,7 @@ Warning.SetName: "Kicked {0} because they set name set name for multiple times."
 Warning.SetName_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Set Name For Multiple Times)</color>"
 Warning.SendQuickChat: "Kicked {0} because they send multiple quick messages within 3s"
 Warning.SendQuickChat_NotHost: "0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Send Multiple Quick Messages Within 3s)</color>"
-Warning.Cheater: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} is suspected of using cheats. Please remind the host to kick them out <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
 Warning.CantKickDev: "Sorry, you cannot kick the developer"
 Warning.RoomBroken: "Sorry, this room has been bombed. Please proceed to another room to continue your game."
 

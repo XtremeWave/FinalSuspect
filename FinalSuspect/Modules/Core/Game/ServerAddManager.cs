@@ -15,7 +15,7 @@ public static class ServerAddManager
     [PluginModuleInitializer]
     public static void Init()
     {
-        serverManager.AvailableRegions = ServerManager.DefaultRegions;
+        //serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos =
         [
             CreateHttp("game.xtreme.net.cn", "XtremeWave[HongKong]", 443, true),

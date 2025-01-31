@@ -42,7 +42,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
 
-    public const string DisplayedVersion_Head = "1.0";
+    public const string DisplayedVersion_Head = "1.1";
     private static string DisplayedVersion_Date
 
     {
@@ -75,8 +75,8 @@ public class Main : BasePlugin
     /// Preview: 预览/预发行版
     /// Scrapter: 废弃版
     /// </summary>
-    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
-    private const int DisplayedVersion_TestCreation = 0;
+    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Alpha;
+    private const int DisplayedVersion_TestCreation = 1;
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != VersionTypes.Release ? 

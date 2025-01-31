@@ -208,7 +208,7 @@ Warning.SetName: "{0} díbeartha mar gheall ar a ainm a shocruithe go luath."
 Warning.SetName_NotHost: "{0} tá sé mar gheall ar chalaois a bheith agat. Déan iarracht ar an óstach a chur amach <color=#ffff00>(Ainm a Shocruithe Go Luath)</color>"
 Warning.SendQuickChat: "{0} díbeartha mar gheall ar na h-earraí chat luath a sheoladh go luath i 3 soicind"
 Warning.SendQuickChat_NotHost: "{0} tá sé mar gheall ar chalaois a bheith agat. Déan iarracht ar an óstach a chur amach <color=#ffff00>(Seoladh Luath na hEarráí Chat i 3 Soicind)</color>"
-Warning.Cheater: "{0} tá sé mar gheall ar chalaois a bheith agat. Déan iarracht ar an óstach a chur amach <color=#ffff00>(RPC oifigiúil neamhchiallmhar a sheoladh: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} tá sé mar gheall ar chalaois a bheith agat. Déan iarracht ar an óstach a chur amach <color=#ffff00>(RPC oifigiúil neamhchiallmhar a sheoladh: {1})</color>"
 Warning.CantKickDev: "Tá brón orm, ní féidir leat an t-oidhre a chur amach"
 Warning.RoomBroken: "Tá brón orm, tá an seomra briste. Tá sé de dhíth chun dul isteach sa chluiche."
 

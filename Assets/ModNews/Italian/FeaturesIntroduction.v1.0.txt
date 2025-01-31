@@ -2,7 +2,7 @@
 #Title:v1.0  Introduzione delle funzioni e delle ottimizzazioni
 #SubTitle:★★★★Il nostro fantastico e meraviglioso contenuto★★★★
 #ShortTitle:★v1.0 Introduzione
-#Date:2025-1-28T19:00:00Z
+#Date:2025-01-28T19:00:00Z
 #-----------------------------
 # Italiano
 ## Ottimizzazioni - 22

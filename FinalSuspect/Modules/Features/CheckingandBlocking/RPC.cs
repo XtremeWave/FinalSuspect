@@ -42,10 +42,13 @@ internal class RPCHandlerPatch
                 {
                     Utils.KickPlayer(__instance.PlayerId, ban, reason);
                     FinalAntiCheat.FAC.WarnHost();
+                    if (notify)
+                        NotificationPopperPatch.NotificationPop
+                            (string.Format(GetString("Warning.InvalidSlothRPC"), __instance.GetRealName(), $"{callId}({RPC.GetRpcName(callId)})"));
                 }
                 else if (notify)
                     NotificationPopperPatch.NotificationPop
-                        (string.Format(GetString("Warning.Cheater"), __instance.GetRealName(), $"{callId}({RPC.GetRpcName(callId)})"));
+                        (string.Format(GetString("Warning.InvalidSlothRPC_NotHost"), __instance.GetRealName(), $"{callId}({RPC.GetRpcName(callId)})"));
                 return false;
             }
 

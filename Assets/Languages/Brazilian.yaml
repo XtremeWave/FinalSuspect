@@ -208,7 +208,7 @@ Warning.SetName: "{0} foi expulso porque definiu o nome várias vezes."
 Warning.SetName_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Definir Nome Várias Vezes)</color>"
 Warning.SendQuickChat: "{0} foi expulso porque enviou várias mensagens rápidas em 3s"
 Warning.SendQuickChat_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Enviar Várias Mensagens Rápidas em 3s)</color>"
-Warning.Cheater: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Enviando oficialmente RPC ilegal: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} é suspeito de usar trapaças. Por favor, lembre o anfitrião de expulsá-lo <color=#ffff00>(Enviando oficialmente RPC ilegal: {1})</color>"
 Warning.CantKickDev: "Desculpe, você não pode expulsar o desenvolvedor"
 Warning.RoomBroken: "Desculpe, esta sala foi comprometida. Por favor, vá para outra sala para continuar o jogo."
 

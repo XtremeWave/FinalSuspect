@@ -208,7 +208,7 @@ Warning.SetName: "{0}은(는) 이름을 여러 번 설정하여 추방되었습�
 Warning.SetName_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(이름을 여러 번 설정)</color>"
 Warning.SendQuickChat: "{0}은(는) 3초 이내에 여러 빠른 메시지를 보냈기 때문에 추방되었습니다."
 Warning.SendQuickChat_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(3초 이내에 여러 빠른 메시지를 보내기)</color>"
-Warning.Cheater: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(공식 RPC를 부정하게 보내기: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0}은(는) 부정행위를 사용하고 있는 것으로 의심됩니다. 호스트에게 추방을 요청하십시오 <color=#ffff00>(공식 RPC를 부정하게 보내기: {1})</color>"
 Warning.CantKickDev: "죄송합니다, 개발자를 추방할 수 없습니다."
 Warning.RoomBroken: "죄송합니다, 이 방은 파괴되었습니다. 다른 방으로 이동하여 게임을 계속하십시오."
 

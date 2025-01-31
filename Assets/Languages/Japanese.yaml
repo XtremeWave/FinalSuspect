@@ -208,7 +208,7 @@ Warning.SetName: "{0} は名前を複数回設定したためキックされま�
 Warning.SetName_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(名前を複数回設定)</color>"
 Warning.SendQuickChat: "{0} は 3 秒以内に複数のクイックメッセージを送信したためキックされました"
 Warning.SendQuickChat_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(3 秒以内に複数のクイックメッセージを送信)</color>"
-Warning.Cheater: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(公式 RPC を不正に送信: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} はチートを使用していると疑われます。ホストにキックするようお願いしてください <color=#ffff00>(公式 RPC を不正に送信: {1})</color>"
 Warning.CantKickDev: "開発者をキックすることはできません"
 Warning.RoomBroken: "このルームは破棄されました。別のルームに移動してゲームを続行してください"
 

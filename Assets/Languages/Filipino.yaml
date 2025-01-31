@@ -208,7 +208,7 @@ Warning.SetName: "{0} ay tinanggal dahil nagsiset ng pangalan para sa maraming b
 Warning.SetName_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Set Name For Multiple Times)</color>"
 Warning.SendQuickChat: "{0} ay tinanggal dahil nagpadala ng maraming quick messages sa loob ng 3s"
 Warning.SendQuickChat_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Send Multiple Quick Messages Within 3s)</color>"
-Warning.Cheater: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
+Warning.InvalidSlothRPC_NotHost: "{0} ay suspek ng paggamit ng cheats. Paki-reminder sa host na ito ay itatanggal <color=#ffff00>(Illegally sending official Rpc: {1})</color>"
 Warning.CantKickDev: "Sorry, hindi maaaring itatanggal ang developer"
 Warning.RoomBroken: "Sorry, ito ay binomba na ang kwarto. Paki-proceed sa ibang kwarto upang magpatuloy sa iyong laro."
 

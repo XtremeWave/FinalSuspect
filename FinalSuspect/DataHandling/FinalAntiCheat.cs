@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AmongUs.GameOptions;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Patches.Game_Vanilla;
 using Hazel;
 using InnerNet;
+using Unity.Services.Core.Internal;
 using static FinalSuspect.DataHandling.FinalAntiCheat.FAC;
 
 
@@ -107,17 +109,40 @@ public static class FinalAntiCheat
         }
         public void HandleLobbyPosition()
         {
-            if (!XtremeGameData.GameStates.IsLobby) return;
-            var posXOutOfRange = Player.GetTruePosition().x > 3.5f || Player.GetTruePosition().x < -3.5f;
-            var posYOutOfRange = Player.GetTruePosition().y > 4f || Player.GetTruePosition().y < -1f;
-            if (posXOutOfRange || posYOutOfRange)
-                MarkAsCheater();
+            if (XtremeGameData.GameStates.IsLobby)
+            {
+
+
+                var posXOutOfRange = Player.GetTruePosition().x > 3.5f || Player.GetTruePosition().x < -3.5f;
+                var posYOutOfRange = Player.GetTruePosition().y > 4f || Player.GetTruePosition().y < -1f;
+                if (posXOutOfRange || posYOutOfRange)
+                    MarkAsCheater();
+            }
+            else
+            {
+                /*List<PlainShipRoom> rooms = [];
+                foreach (var room in ShipStatus.Instance.FastRooms)
+                {
+                    rooms.Add(room.Value);
+                }
+                rooms.AddRange(ShipStatus.Instance.AllRooms);
+
+                if (rooms.Any(room => Player.Collider.IsTouching(room.roomArea)) 
+                    || rooms.Any(room => room.roomArea.OverlapPoint(Player.GetTruePosition())) 
+                    || rooms.Any(room => room.roomArea.IsTouching(Player.Collider)) 
+                    || !Player.IsAlive()) return;
+                MarkAsCheater();*/
+            }
         }
         public void HandleSuspectCheater()
         {
-            if (!IsSuspectCheater || !AmongUsClient.Instance.AmHost || _lastKick != -1 && _lastKick + 1 >= Utils.GetTimeStamp()) return;
-            _lastKick = Utils.GetTimeStamp();
+            if (Main.DisableFAC.Value || !IsSuspectCheater || _lastHandleCheater != -1 && _lastHandleCheater + 1 >= Utils.GetTimeStamp()) return;
+            _lastHandleCheater = Utils.GetTimeStamp();
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.SetName_NotHost"),
+                Player.GetDataName()));
+            if (!AmongUsClient.Instance.AmHost)return;
             Utils.KickPlayer(Player.PlayerId, false, "Suspect Cheater");
+            
         }
         public void MarkAsCheater() => IsSuspectCheater = true;
     }
@@ -125,7 +150,7 @@ public static class FinalAntiCheat
     {
         public static int MeetingTimes = 0;
         public static int DeNum;
-        public static long _lastKick = -1;
+        public static long _lastHandleCheater = -1;
         private static List<byte> LobbyDeadBodies = [];
 
         public static void Init()
@@ -309,7 +334,7 @@ public static class FinalAntiCheat
                    
                     XtremeLogger.Warn($"收到来自 {player?.Data?.PlayerName} 的不受信用的RPC，因此将其踢出。", "Kick");
                     NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.InvalidRpc"),
-                        player?.Data?.PlayerName));
+                        player?.Data?.PlayerName, callId));
                     return true;
 
                 }

@@ -356,37 +356,56 @@ public static class XtremeLocalHandling
 
     #endregion
     
-    public static void ShowMap(MapBehaviour map, bool normal)
+    public static void ShowMap(MapBehaviour map, MapOptions opts)
+    {
+        if (!Main.EnableFinalSuspect.Value ) return;
+        foreach (var data in XtremePlayerData.AllPlayerData)
+        {
+            data.Player.SetPlayerMaterialColors(data.rend);
+            if (opts.Mode == MapOptions.Modes.CountOverlay)
+                data.rend.enabled = opts.ShowLivePlayerPosition;
+        }
+        
+        if (!Main.EnableMapBackGround.Value) return;
+        var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
+        var color = Utils.GetRoleColor(roleType);
+        var mode = opts.Mode;
+        switch (mode)
+        {
+            case MapOptions.Modes.CountOverlay:
+                color = Palette.AcceptedGreen;
+                break;
+            case MapOptions.Modes.Sabotage:
+                color = Palette.DisabledGrey;
+                break;
+        }
+
+        map.ColorControl.SetColor(color);
+
+    }
+    public static void UpdateMap()
     {
         if (!Main.EnableFinalSuspect.Value) return;
-        var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
-        var color = normal ? Utils.GetRoleColor(roleType): Palette.DisabledGrey;
-        if (Main.EnableMapBackGround.Value)
-            map.ColorControl.SetColor(color);
-        
-        /*foreach (var player in Main.AllAlivePlayerControls)
+        foreach (var data in XtremePlayerData.AllPlayerData)
         {
-            if (Utils.CanSeeTargetRole(player, out _))
+            var player = data.Player;
+            if (!Utils.CanSeeTargetRole(player, out _) || player.IsLocalPlayer()) continue;
+            var vector = player.transform.position;
+            if (MeetingHud.Instance && data.preMeetingPosition != null)
             {
-                Vector3 vector = player.transform.position;
-                if (MeetingHud.Instance && map.preMeetingPosition != null)
-                {
-                    vector = map.preMeetingPosition.Value;
-                }
-                else if (map.preMeetingPosition != null)
-                {
-                    map.preMeetingPosition = null;
-                }
-
-                vector /= ShipStatus.Instance.MapScale;
-                vector.x *= Mathf.Sign(ShipStatus.Instance.transform.localScale.x);
-                vector.z = -1f;
-                var rend = Object.Instantiate(map.HerePoint);
-                rend.transform.SetParent(map.HerePoint.transform.parent);
-                rend.transform.localPosition = vector;
-                PlayerMaterial.SetColors(player.Data.DefaultOutfit.ColorId, map.HerePoint);
+                vector = data.preMeetingPosition.Value;
             }
-        }*/
+            else if (data.preMeetingPosition != null)
+            {
+               data.preMeetingPosition = null;
+            }
+
+            vector /= ShipStatus.Instance.MapScale;
+            vector.x *= Mathf.Sign(ShipStatus.Instance.transform.localScale.x);
+            vector.z = -1f;
+            data.rend.transform.localPosition = vector;
+            data.rend.gameObject.SetActive(true);
+        }
         
     }
 

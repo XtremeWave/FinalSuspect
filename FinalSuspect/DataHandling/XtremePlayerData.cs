@@ -7,6 +7,7 @@ using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using InnerNet;
+using UnityEngine;
 
 namespace FinalSuspect.DataHandling;
 public class XtremePlayerData : IDisposable
@@ -54,8 +55,13 @@ public class XtremePlayerData : IDisposable
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
             RealDeathReason = VanillaDeathReason.None;
             RealKiller = null;
+            rend = null;
+            preMeetingPosition = null;
         }
 
+        
+        public SpriteRenderer rend {get;  set;}
+        public Vector3? preMeetingPosition{get;  set;}
     #endregion
     ///////////////FUNCTIONS\\\\\\\\\\\\\\\
     

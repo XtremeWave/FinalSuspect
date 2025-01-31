@@ -5,6 +5,7 @@ using FinalSuspect.Modules.ClientOptions;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
+using Object = System.Object;
 
 namespace FinalSuspect.Patches.System;
 
@@ -270,6 +271,15 @@ public static class LanguageSetterSetLanguagePatch
     public static void Postfix()
     {
         OptionsMenuBehaviourStartPatch.recreate = true;
+        try
+        {
+            GameObject.Destroy(VersionShowerStartPatch.VisitText);
+        }
+        catch (Exception e)
+        {
+        }
+        VersionShowerStartPatch.VisitText = null;
+        VersionShowerStartPatch.CreateVisitText(null);
         OptionsMenuBehaviourStartPatch.Postfix(OptionsMenuBehaviourStartPatch.Instance);
     }
 }

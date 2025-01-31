@@ -48,6 +48,8 @@ public static class ColorHelper
     public static readonly Color32 ClientFeatureColor = new(191, 149, 227, 255);
     public static readonly Color32 ClientFeatureColor_ClickType = new(219, 207, 227, 255);
     public static readonly Color32 ClientFeatureColor_CanNotUse = new(102, 89, 97, 255);
+    
+    public static readonly Color32 ImpostorRedPale = new(255, 90, 90, 255);
 
     /// <summary>
     /// Darkness:１の比率で黒色と元の色を混ぜる。マイナスだと白色と混ぜる。
