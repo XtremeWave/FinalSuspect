@@ -1,0 +1,44 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]:"
+labels: [Bug]
+assignees: 
+  - Slok7565
+body:
+  - type: checkboxes
+    id: preface
+    attributes:
+      label: Prerequisites
+      description: Thank you for taking the time to fill out this issue report! Before you begin, you will need to confirm the following.
+      options:
+        - label: I have searched for related issues in the [issues](https://github.com/XtremeWave/FinalSuspect) list.
+          required: true
+        - label: I am using the latest version of FinalSuspect.
+          required: true
+  - type: markdown
+    id: details
+    attributes:
+      value: "## Details"
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: "What happened?"
+      description: "For ease of management, please do not report multiple unrelated issues under the same issue."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: "Reproduce Steps"
+      description: "If it can be consistently reproduced, please provide detailed steps."
+  - type: textarea
+    id: log
+    attributes:
+      label: "Relevant log output"
+      description: "Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks."
+      render: shell
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: "Additional information"
+      description: "If you have other information to note, you can fill it in here (screenshots, videos, etc.)."
