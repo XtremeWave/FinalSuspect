@@ -1,0 +1,30 @@
+name: Feature Request
+description: File a feature request
+labels: [considered]
+assignees: 
+  - Slok7565
+body:
+  - type: checkboxes
+    id: preface
+    attributes:
+      label: Prerequisites
+      description: Hello! Thank you for submitting a new feature suggestion for FinalSuspect. Before we begin, we highly recommend reading through the [Open Source Guides](https://opensource.guide/), which will greatly improve our mutual efficiency.
+      options:
+        - label: I have searched for related issues in the [Issues](https://github.com/XtremeWave/FinalSuspect/issue) list.
+          required: true
+  - type: markdown
+    id: details
+    attributes:
+      value: "## Details"
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe this feature"
+      description: "For ease of management, please do not submit multiple unrelated features under the same issue."
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: "Additional information"
+      description: "If you have other information to note, you can fill it in here (screenshots, videos, etc.)."
