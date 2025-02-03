@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: QQ群
+  - name: 加入Q群
     url: https://qm.qq.com/q/jI7L0QzdiE
-    about: 让群u们一起解决你的问题
+    about: 加入我们的官方QQ群以便向开发者提问。
+  - name: Join our discord
+    url: https://discord.gg/pMd4NMW6kV
+    about: Join our discord in order to ask the developers questions.
