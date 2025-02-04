@@ -1,0 +1,44 @@
+name: Bug 反馈
+description: 提交 Bug 反馈
+title: "[Bug]:"
+labels: [Bug]
+assignees:
+  - Slok7565
+body:
+  - type: checkboxes
+    id: preface
+    attributes:
+      label: 前置条件
+      description: 感谢你花时间填写此错误报告！在开始之前,您需要确认以下内容。
+      options: 
+        - label: 已经在[议题列表](https://github.com/XtremeWave/FinalSuspect/issue)中搜索了相关问题。
+          required: true
+        - label: 您使用的是FinalSuspect的最新版本。
+          required: true
+  - type: markdown
+    id: details
+    attributes:
+      value: "## 详细信息"
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: "发生了什么？"
+      description: "为了方便我们管理，请不要在同一个 issue 下报告多个不相关的问题。"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: "复现步骤"
+      description: "如果可以稳定复现，请提供详细的步骤。"
+  - type: textarea
+    id: logs
+    attributes:
+      label: "相关日志输出"
+      description: "请复制并粘贴任何相关的日志输出。这将自动格式化为代码，因此无需反引号。"
+      render: shell
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: "附加信息"
+      description: "如果你还有其他需要提供的信息，可以在这里填写（可以提供截图、视频等）。"
