@@ -438,7 +438,7 @@ public static class Utils
         catch (Exception ex)
         {
             if (Log)
-            XtremeLogger.Error(ex.ToString(), "Execute With Try Catch");
+                XtremeLogger.Error(ex.ToString(), "Execute With Try Catch");
         }
     }
 }

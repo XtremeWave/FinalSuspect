@@ -184,7 +184,6 @@ public class Main : BasePlugin
         LastStartVersion = Config.Bind("Xtreme System", "Last Start Version", "0.0.0");
         
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
-        
 
         UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
         ChangeOutfit = Config.Bind("Client Options", "Change Outfit", OutfitType[0]);

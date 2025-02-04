@@ -173,13 +173,13 @@ public static class VersionChecker
             string result;
             if (url.StartsWith("file:///"))
             {
-                result = File.ReadAllText(url[8..]);
+                result = await File.ReadAllTextAsync(url[8..]);
             }
             else
             {
                 using HttpClient client = new();
                 client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect Updater");
-                client.DefaultRequestHeaders.Add("Referer", "www.xtreme.net.cn");
+                client.DefaultRequestHeaders.Add("Referer", "api.xtreme.net.cn");
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode || response.Content == null)
                 {
@@ -216,7 +216,7 @@ public static class VersionChecker
             foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
                 ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
             ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);
-            hasUpdate = Main.version < latestVersion|| creation > Main.PluginCreation;
+            hasUpdate = Main.version < latestVersion && creation > Main.PluginCreation;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
 #if DEBUG
             DebugUnused = Main.version < DebugVer;

@@ -361,9 +361,20 @@ public static class XtremeLocalHandling
         if (!Main.EnableFinalSuspect.Value ) return;
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
-            data.Player.SetPlayerMaterialColors(data.rend);
-            if (opts.Mode == MapOptions.Modes.CountOverlay)
-                data.rend.enabled = opts.ShowLivePlayerPosition;
+            if (data.IsDisconnected)
+                data.rend.gameObject.SetActive(false);
+            else
+            {
+                if (opts.Mode == MapOptions.Modes.CountOverlay)
+                    data.rend.enabled = opts.ShowLivePlayerPosition;
+                else
+                {
+                    data.Player.SetPlayerMaterialColors(data.rend);
+                    data.rend.gameObject.SetActive(true);
+                    UpdateMap();
+                }
+            }
+            
         }
         
         if (!Main.EnableMapBackGround.Value) return;
@@ -389,7 +400,16 @@ public static class XtremeLocalHandling
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
             var player = data.Player;
-            if (data.IsDisconnected || !Utils.CanSeeTargetRole(player, out _) || player.IsLocalPlayer()) continue;
+            if (data.deadbodyrend)
+                data.deadbodyrend.gameObject.SetActive(Utils.CanSeeTargetRole(player, out _));
+            if (data.IsDisconnected || !Utils.CanSeeTargetRole(player, out _) || player.IsLocalPlayer())
+            {
+                data.rend.gameObject.SetActive(false);
+                continue;
+            }
+            if (data.IsDead)
+                data.rend.color = Color.white.AlphaMultiplied(0.6f);
+           
             var vector = player.transform.position;
             if (MeetingHud.Instance && data.preMeetingPosition != null)
             {
@@ -409,6 +429,7 @@ public static class XtremeLocalHandling
         
     }
 
+    
     public static bool GetHauntFilterText(HauntMenuMinigame __instance)
     {
         if (!Main.EnableFinalSuspect.Value) return true;

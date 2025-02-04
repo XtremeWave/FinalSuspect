@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Linq;
+using BepInEx.Unity.IL2CPP.Utils;
+using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -14,13 +17,19 @@ public class MapRealTimeLocationPatch
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Awake)), HarmonyPostfix]
     public static void AwakeAfter(MapBehaviour __instance)
     {
-        foreach (var player in Main.AllPlayerControls)
-        {
-            var rend = Object.Instantiate(__instance.HerePoint);
-            rend.transform.SetParent(__instance.HerePoint.transform.parent);
-            rend.gameObject.SetActive(false);
-            player.GetXtremeData().rend = rend;
+        AmongUsClient.Instance.StartCoroutine(CreateTargetRends(__instance));
 
+    }
+
+    private static IEnumerator CreateTargetRends(MapBehaviour mapBehaviour)
+    {
+        while (XtremePlayerData.AllPlayerData.Count < Main.AllPlayerControls.Count()) yield return null;
+        foreach (var data in XtremePlayerData.AllPlayerData)
+        {
+            var rend = Object.Instantiate(mapBehaviour.HerePoint);
+            rend.transform.SetParent(mapBehaviour.HerePoint.transform.parent);
+            rend.gameObject.SetActive(false);
+            data.rend = rend;
         }
     }
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.FixedUpdate)), HarmonyPostfix]
@@ -34,17 +43,25 @@ public class MapRealTimeLocationPatch
     {
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
+            if (data.IsDisconnected)continue;
             data.preMeetingPosition = data.Player.GetTruePosition();
         }
     }
-
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.GenericShow)), HarmonyPostfix]
     public static void GenericShowAfter(MapBehaviour __instance)
     {
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
+            if (data.IsDisconnected)continue;
             data.rend.material.SetInt(PlayerMaterial.MaskLayer, 255);
         }
-        
+    }
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close)), HarmonyPostfix]
+    public static void CloseAfter(MapBehaviour __instance)
+    {
+        foreach (var data in XtremePlayerData.AllPlayerData)
+        {
+            data.rend.enabled = true;
+        }
     }
 }
