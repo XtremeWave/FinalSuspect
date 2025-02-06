@@ -433,15 +433,12 @@ public static class XtremeLocalHandling
     public static bool GetHauntFilterText(HauntMenuMinigame __instance)
     {
         if (!Main.EnableFinalSuspect.Value) return true;
-        if (__instance.HauntTarget != null)
-        {
-            var role = __instance.HauntTarget.GetRoleType();
-            var color = Utils.GetRoleColor(role);
-            __instance.NameText.color = __instance.FilterText.color = color;
-            __instance.FilterText.text = Utils.GetRoleName(role);
-            return false;
-        }
-        return true;
+        if (__instance.HauntTarget == null) return true;
+        var role = __instance.HauntTarget.GetRoleType();
+        var color = Utils.GetRoleColor(role);
+        __instance.NameText.color = __instance.FilterText.color = color;
+        __instance.FilterText.text = Utils.GetRoleName(role);
+        return false;
     }
 
     public static void GetChatBubbleText(byte playerId, ref string name, ref Color32 bgcolor,

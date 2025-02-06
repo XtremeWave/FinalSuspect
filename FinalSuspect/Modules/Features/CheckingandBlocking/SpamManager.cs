@@ -62,25 +62,32 @@ public static class SpamManager
     }
     public static void CheckForUpdateBanWords()
     {
-        var fileName = GetUserLangByRegion().ToString();
-        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
-        stream.Position = 0;
-        using StreamReader reader = new(stream, Encoding.UTF8);
-        List<string> waitforupdate = []; 
-        while (!reader.EndOfStream)
+        try
         {
-            var line = reader.ReadLine().ToLower();
-            if (!BanWords.Contains(line))
+            var fileName = GetUserLangByRegion().ToString();
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
+            stream.Position = 0;
+            using StreamReader reader = new(stream, Encoding.UTF8);
+            List<string> waitforupdate = []; 
+            while (!reader.EndOfStream)
             {
-                waitforupdate.Add(line);
-                BanWords.Add(line);
+                var line = reader.ReadLine().ToLower();
+                if (!BanWords.Contains(line))
+                {
+                    waitforupdate.Add(line);
+                    BanWords.Add(line);
+                }
             }
-        }
-        reader.Dispose();
+            reader.Dispose();
 
-        using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
-        foreach (var line in waitforupdate)
-            writer.WriteLine(line);
+            using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
+            foreach (var line in waitforupdate)
+                writer.WriteLine(line);
+        }
+        catch 
+        {
+        }
+
     }
 
     private static void CheckForUpdateDenyNames()
