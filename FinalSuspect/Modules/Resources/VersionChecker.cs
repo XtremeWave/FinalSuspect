@@ -33,8 +33,8 @@ public static class VersionChecker
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "fs_info.json")}",
 #else
         "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/fs_info.json",
-        "https://api.xtreme.net.cn/FinalSuspect/fs_info.json",
         "https://gitee.com/XtremeWave/FinalSuspect/raw/FinalSus/fs_info.json",
+        "https://api.xtreme.net.cn/FinalSuspect/fs_info.json",
 #endif
     };
     private static IReadOnlyList<string> GetInfoFileUrlList()
@@ -85,50 +85,17 @@ public static class VersionChecker
         CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("PleaseWait"), null);
         _ = new LateTask(CheckForUpdate, 0.3f, "Retry Check Update");
     }
-
-    [PluginModuleInitializer]
-    public static void CheckForInit()
-    {
-        isChecked = false;
-
-        foreach (var url in GetInfoFileUrlList())
-        {
-            if (GetVersionInfo(url).GetAwaiter().GetResult())
-            {
-                isChecked = true;
-                break;
-            }
-        }
-
-        XtremeLogger.Msg("Check For Update: " + isChecked, "CheckRelease");
-        if (isChecked)
-        {
-            XtremeLogger.Info("Has Update: " + hasUpdate, "CheckRelease");
-            XtremeLogger.Info("Latest Version: " + latestVersion, "CheckRelease");
-            XtremeLogger.Info("Minimum Version: " + minimumVersion, "CheckRelease");
-            XtremeLogger.Info("Creation: " + creation, "CheckRelease");
-            XtremeLogger.Info("Force Update: " + forceUpdate, "CheckRelease");
-            XtremeLogger.Info("File MD5: " + md5, "CheckRelease");
-            XtremeLogger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
-            XtremeLogger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
-            XtremeLogger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
-
-        }
-
-    }
     public static void CheckForUpdate()
     {
-        ResolutionManager.SetResolution(1920, 1080, true);
+        ResolutionManager.SetResolution(1920, 1080, Screen.fullScreen);
         isChecked = false;
         ModUpdater.DeleteOldFiles();
 
         foreach (var url in GetInfoFileUrlList())
         {
-            if (GetVersionInfo(url).GetAwaiter().GetResult())
-            {
-                isChecked = true;
-                break;
-            }
+            if (!GetVersionInfo(url).GetAwaiter().GetResult()) continue;
+            isChecked = true;
+            break;
         }
 
         XtremeLogger.Msg("Check For Update: " + isChecked, "CheckRelease");

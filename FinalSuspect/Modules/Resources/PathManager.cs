@@ -36,6 +36,17 @@ public static class PathManager
 
         return remoteBase;
     }
+
+    public static string GetLocalFilePath(FileType fileType, string file)
+    {
+        switch (fileType)
+        {
+            case FileType.Depends:
+                return GetLocalPath(LocalType.BepInEx) + file;
+            default:
+                return GetResourceFilesPath(fileType, file);
+        }
+    }
     public static string GetLocalPath(LocalType localType)
     {
         if (localType == LocalType.BepInEx)

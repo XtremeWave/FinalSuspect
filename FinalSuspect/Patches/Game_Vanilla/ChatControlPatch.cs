@@ -3,7 +3,6 @@ using AmongUs.Data;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using InnerNet;
 using UnityEngine;
-using XUnity.AutoTranslator.Plugin.Core;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 

@@ -15,35 +15,42 @@ public static class Zoom
 
     public static void Postfix()
     {
-        var canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
-                      XtremeGameData.GameStates.IsFreePlay ;
-
-        if (!canZoom || !Utils.CanSeeOthersRole()|| XtremeGameData.GameStates.IsMeeting || !XtremeGameData.GameStates.IsCanMove || InGameRoleInfoMenu.Showing)
+        try
         {
-            Flag.Run(() => { SetZoomSize(reset: true); }, "Zoom");
-            return;
-        }
+            var canZoom = XtremeGameData.GameStates.IsShip || XtremeGameData.GameStates.IsLobby ||
+                          XtremeGameData.GameStates.IsFreePlay ;
 
-
-        if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            if (Camera.main.orthographicSize > 3.0f) SetZoomSize(times: false);
-        }
-
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            if (XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsFreePlay ||
-                DebugModeManager.AmDebugger || XtremeGameData.GameStates.IsLobby || Main.GodMode.Value)
+            if (!canZoom || !Utils.CanSeeOthersRole()|| XtremeGameData.GameStates.IsMeeting || !XtremeGameData.GameStates.IsCanMove || InGameRoleInfoMenu.Showing)
             {
-                if (Camera.main.orthographicSize < 18.0f)
+                Flag.Run(() => { SetZoomSize(reset: true); }, "Zoom");
+                return;
+            }
+
+
+            if (Camera.main.orthographicSize > 3.0f) ResetButtons = true;
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                if (Camera.main.orthographicSize > 3.0f) SetZoomSize(times: false);
+            }
+
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                if (XtremeGameData.GameStates.IsDead || XtremeGameData.GameStates.IsFreePlay ||
+                    DebugModeManager.AmDebugger || XtremeGameData.GameStates.IsLobby || Main.GodMode.Value)
                 {
-                    SetZoomSize(times: true);
+                    if (Camera.main.orthographicSize < 18.0f)
+                    {
+                        SetZoomSize(times: true);
+                    }
                 }
             }
-        }
 
-        Flag.NewFlag("Zoom");
+            Flag.NewFlag("Zoom");
+        }
+        catch 
+        {
+        }
+        
     }
 
     public static void SetZoomSize(bool times = false, bool reset = false)
@@ -76,7 +83,7 @@ public static class Zoom
         SetZoomSize(reset: true);
     }
     public static void OnFixedUpdate()
-        => DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive((Camera.main.orthographicSize == 3.0f) && PlayerControl.LocalPlayer.IsAlive());
+        => DestroyableSingleton<HudManager>.Instance?.ShadowQuad?.gameObject?.SetActive(Camera.main.orthographicSize == 3.0f && PlayerControl.LocalPlayer.IsAlive());
 }
 
 public static class Flag

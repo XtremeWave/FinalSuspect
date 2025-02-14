@@ -55,7 +55,7 @@ class TaskPanelBehaviourPatch
         if (sb.Length > 1)
         {
             var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
-            if (player.IsImpostor() && sb.ToString().Count(s => (s == '\n')) >= 2)
+            if (player.IsImpostor() && sb.ToString().Count(s => s == '\n') >= 2)
                 text = $"{StringHelper.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
             AllText += $"\r\n\r\n<size=85%>{text}</size>";
         }

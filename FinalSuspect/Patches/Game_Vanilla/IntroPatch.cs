@@ -26,7 +26,6 @@ class IntroCutscenePatch
             __instance.RoleText.SetOutlineColor(Utils.GetRoleColor(cr).ShadeColor(0.1f).SetAlpha(0.38f));
             __instance.RoleText.SetOutlineThickness(0.17f);
             __instance.RoleBlurbText.text = cr.GetRoleInfoForVanilla();
-
         }, 0.0001f, "Override Role Text");
 
     }
@@ -46,24 +45,24 @@ class IntroCutscenePatch
         var onlyimp = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount) == 1;
 
         var color = Palette.ImpostorRed;
-        var colorcode= onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : ColorHelper.ColorToHex(Palette.ImpostorRed);
-        __instance.TeamTitle.text = onlyimp?
-            GetString("TeamImpostorOnly"):
-            GetString("TeamImpostor");
+        var colorcode = onlyimp ? ColorHelper.ColorToHex(Palette.DisabledGrey) : ColorHelper.ColorToHex(Palette.ImpostorRed);
+        __instance.TeamTitle.text = onlyimp 
+            ? GetString("TeamImpostorOnly") 
+            : GetString("TeamImpostor");
 
         __instance.TeamTitle.color = color;
         __instance.ImpostorText.text = $"<color=#{colorcode}>";
-        __instance.ImpostorText.text += onlyimp ? 
-            GetString("ImpostorNumImpOnly"):
-            $"{string.Format(GetString("ImpostorNumImp"), GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount))}";
+        __instance.ImpostorText.text += onlyimp
+            ? GetString("ImpostorNumImpOnly")
+            : $"{string.Format(GetString("ImpostorNumImp"), GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount))}";
 
-        __instance.ImpostorText.text += "\n" + (onlyimp ?
-            GetString("ImpostorIntroTextOnly"):
-            GetString("ImpostorIntroText"));
+        __instance.ImpostorText.text += "\n" + (onlyimp
+            ? GetString("ImpostorIntroTextOnly")
+            : GetString("ImpostorIntroText"));
 
         __instance.BackgroundBar.material.color = Palette.DisabledGrey;
 
-        StartFadeIntro(__instance,  Palette.DisabledGrey, Palette.ImpostorRed);
+        StartFadeIntro(__instance, Palette.DisabledGrey, Palette.ImpostorRed);
     }
 
     [HarmonyPatch(nameof(IntroCutscene.BeginCrewmate)), HarmonyPostfix]

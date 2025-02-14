@@ -90,7 +90,7 @@ public static class SoundManagementPanel
         if (!XtremeGameData.GameStates.IsNotJoined) return;
         numItems = 0;
         var scroller = Slider.GetComponent<Scroller>();
-        scroller.Inner.gameObject.ForEachChild((Action<GameObject>)(DestroyObj));
+        scroller.Inner.gameObject.ForEachChild((Action<GameObject>)DestroyObj);
         static void DestroyObj(GameObject obj)
         {
             if (obj.name.StartsWith("AccountButton")) Object.Destroy(obj);

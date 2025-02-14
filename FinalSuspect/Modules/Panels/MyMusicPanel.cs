@@ -173,7 +173,7 @@ public static class MyMusicPanel
 
 
             var offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
-            var offsetY = 2.2f - (0.5f * (numItems / 2));
+            var offsetY = 2.2f - 0.5f * (numItems / 2);
             var offsetZ = -4f;
 
             var ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
@@ -184,7 +184,7 @@ public static class MyMusicPanel
             numItems++; 
 
             offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
-            offsetY = 2.2f - (0.5f * (numItems / 2));
+            offsetY = 2.2f - 0.5f * (numItems / 2);
             offsetZ = -6f;
 
             var previewText = Object.Instantiate(optionsMenuBehaviour.DisableMouseMovement.Text, CustomBackground.transform);

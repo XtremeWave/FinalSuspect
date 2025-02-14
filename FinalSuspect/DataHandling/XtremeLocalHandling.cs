@@ -358,7 +358,7 @@ public static class XtremeLocalHandling
     
     public static void ShowMap(MapBehaviour map, MapOptions opts)
     {
-        if (!Main.EnableFinalSuspect.Value ) return;
+        if (!Main.EnableFinalSuspect.Value) return;
         foreach (var data in XtremePlayerData.AllPlayerData)
         {
             if (data.IsDisconnected)

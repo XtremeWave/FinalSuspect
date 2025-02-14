@@ -18,12 +18,20 @@ public static class SpamManager
     [PluginModuleInitializer]
     public static void Init()
     {
-        CreateIfNotExists();
-        BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
-        CheckForUpdateBanWords();
-        CheckForUpdateDenyNames();
+        
+        try
+        {
+            CreateIfNotExists();
+            BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
+            CheckForUpdateBanWords();
+            CheckForUpdateDenyNames();
+        }
+        catch
+        {
+        }
     }
-    public static void CreateIfNotExists()
+
+    private static void CreateIfNotExists()
     {
         if (!File.Exists(BANEDWORDS_FILE_PATH))
         {
@@ -42,7 +50,8 @@ public static class SpamManager
                 XtremeLogger.Exception(ex, "SpamManager");
             }
         }
-        if (!File.Exists(DENY_NAME_LIST_PATH))
+
+        if (File.Exists(DENY_NAME_LIST_PATH)) return;
         {
             try
             {
@@ -58,14 +67,15 @@ public static class SpamManager
                 XtremeLogger.Exception(ex, "SpamManager");
             }
         }
-
     }
-    public static void CheckForUpdateBanWords()
+
+    private static void CheckForUpdateBanWords()
     {
         try
         {
             var fileName = GetUserLangByRegion().ToString();
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
+            if (stream == null) return;
             stream.Position = 0;
             using StreamReader reader = new(stream, Encoding.UTF8);
             List<string> waitforupdate = []; 
@@ -78,6 +88,7 @@ public static class SpamManager
                     BanWords.Add(line);
                 }
             }
+
             reader.Dispose();
 
             using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
@@ -93,6 +104,7 @@ public static class SpamManager
     private static void CheckForUpdateDenyNames()
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.DenyName.txt");
+        if (stream == null) return;
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
         var existingNames = ReturnAllNewLinesInFile(DENY_NAME_LIST_PATH);
@@ -112,10 +124,12 @@ public static class SpamManager
         {
             writer.WriteLine(line);
         }
-    }    
+    }
+
     private static string GetResourcesTxt(string path)
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
+        if (stream == null) return "";
         stream.Position = 0;
         using StreamReader reader = new(stream, Encoding.UTF8);
         return reader.ReadToEnd();

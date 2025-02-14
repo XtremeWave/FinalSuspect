@@ -27,6 +27,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean DisableFAC;
     private static ClientOptionItem_Boolean ShowPlayerInfo;
     private static ClientOptionItem_Boolean UseModCursor;
+    private static ClientOptionItem_Boolean FastBoot;
     private static ClientFeatureItem UnloadMod;
     private static ClientFeatureItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
@@ -96,6 +97,7 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
         CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
         CreateOptionItem(ref UseModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
+        CreateOptionItem(ref FastBoot, "FastBoot", Main.FastBoot, __instance);
         if (DebugModeManager.AmDebugger)
         {
             CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
@@ -238,6 +240,7 @@ public static class OptionsMenuBehaviourStartPatch
             GameStartManager.Instance.ResetStartState();
         }
     }
+    
     public static void SetCursor()
     {
         try

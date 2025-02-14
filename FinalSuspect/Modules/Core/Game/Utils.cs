@@ -131,7 +131,7 @@ public static class Utils
         var longestNameByteCount = XtremePlayerData.GetLongestNameByteCount();
 
 
-        var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
+        var pos = Math.Min((float)longestNameByteCount / 2 + 1.5f, 11.5f);
 
 
         var colorId = thisdata.ColorId;
