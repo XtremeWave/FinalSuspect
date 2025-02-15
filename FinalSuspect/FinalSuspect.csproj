@@ -37,6 +37,8 @@
 		<PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098" PrivateAssets="all" />
 		<PackageReference Include="GitInfo" Version="3.5.0" />
 		<PackageReference Include="Microsoft.VisualStudio.VsixColorCompiler" Version="17.11.35325.10" />
+		<PackageReference Include="NAudio" Version="1.7.3" />
+		<PackageReference Include="NAudio.Flac" Version="1.0.5702.29018" />
 		<PackageReference Include="YamlDotNet" Version="16.3.0" />
 	</ItemGroup>
 

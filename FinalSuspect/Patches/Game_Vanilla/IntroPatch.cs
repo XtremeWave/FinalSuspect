@@ -13,7 +13,6 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.ShowRole)), HarmonyPostfix]
     public static void ShowRole_Postfix(IntroCutscene __instance)
     {
-        if (!Main.EnableRoleBackGround.Value) return;
         if (XtremeGameData.GameStates.OtherModHost) return;
 
         _ = new LateTask(() =>
@@ -38,7 +37,6 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.BeginImpostor)), HarmonyPostfix]
     public static void BeginImpostor_Postfix(IntroCutscene __instance, ref List<PlayerControl> yourTeam)
     {
-        if (!Main.EnableRoleBackGround.Value) return;
         if (XtremeGameData.GameStates.OtherModHost) return;
 
         __instance.ImpostorText.gameObject.SetActive(true);
@@ -68,7 +66,6 @@ class IntroCutscenePatch
     [HarmonyPatch(nameof(IntroCutscene.BeginCrewmate)), HarmonyPostfix]
     public static void BeginCrewmate_Postfix(IntroCutscene __instance, ref List<PlayerControl> teamToDisplay)
     {
-        if (!Main.EnableRoleBackGround.Value) return;
         if (XtremeGameData.GameStates.OtherModHost) return;
 
         __instance.TeamTitle.text = $"{GetString("TeamCrewmate")}";

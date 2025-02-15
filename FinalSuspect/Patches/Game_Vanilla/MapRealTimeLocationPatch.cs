@@ -12,13 +12,12 @@ public class MapRealTimeLocationPatch
     public static void ShowMapAfter(MapBehaviour __instance, [HarmonyArgument(0)] MapOptions opts)
     {
         XtremeLocalHandling.ShowMap(__instance, opts);
-        
     }
+
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Awake)), HarmonyPostfix]
     public static void AwakeAfter(MapBehaviour __instance)
     {
         AmongUsClient.Instance.StartCoroutine(CreateTargetRends(__instance));
-
     }
 
     private static IEnumerator CreateTargetRends(MapBehaviour mapBehaviour)

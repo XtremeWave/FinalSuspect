@@ -374,10 +374,8 @@ public static class XtremeLocalHandling
                     UpdateMap();
                 }
             }
-            
         }
         
-        if (!Main.EnableMapBackGround.Value) return;
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
         var color = Utils.GetRoleColor(roleType);
         var mode = opts.Mode;

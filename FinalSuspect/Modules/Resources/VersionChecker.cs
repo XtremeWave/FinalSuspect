@@ -108,9 +108,9 @@ public static class VersionChecker
             XtremeLogger.Info("Creation: " + creation, "CheckRelease");
             XtremeLogger.Info("Force Update: " + forceUpdate, "CheckRelease");
             XtremeLogger.Info("File MD5: " + md5, "CheckRelease");
-            XtremeLogger.Info("Github Url: " + ModUpdater.downloadUrl_github, "CheckRelease");
-            XtremeLogger.Info("Gitee Url: " + ModUpdater.downloadUrl_gitee, "CheckRelease");
-            XtremeLogger.Info("Website Url: " + ModUpdater.downloadUrl_objectstorage, "CheckRelease");
+            XtremeLogger.Info("Github Url: " + PathManager.downloadUrl_github, "CheckRelease");
+            XtremeLogger.Info("Gitee Url: " + PathManager.downloadUrl_gitee, "CheckRelease");
+            XtremeLogger.Info("Website Url: " + PathManager.downloadUrl_xtremeapi, "CheckRelease");
 
             if (firstLaunch || isBroken)
             {
@@ -182,7 +182,7 @@ public static class VersionChecker
             var announcement = data["announcement"].Cast<JObject>();
             foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
                 ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
-            ModUpdater.downloadUrl_gitee = ModUpdater.downloadUrl_gitee.Replace("{showVer}", showVer);
+            PathManager.downloadUrl_gitee = PathManager.downloadUrl_gitee.Replace("{showVer}", showVer);
             hasUpdate = Main.version < latestVersion && creation > Main.PluginCreation;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
 #if DEBUG

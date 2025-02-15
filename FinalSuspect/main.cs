@@ -109,8 +109,6 @@ public class Main : BasePlugin
     public static ConfigEntry<string> ChangeOutfit { get; private set; }
     public static ConfigEntry<bool> AutoStartGame { get; private set; }
     public static ConfigEntry<bool> AutoEndGame { get; private set; }
-    public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
-    public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
     public static ConfigEntry<bool> DisableFAC { get; private set; }
     public static ConfigEntry<bool> PrunkMode { get; private set; }
@@ -193,8 +191,6 @@ public class Main : BasePlugin
         SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
         AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
         AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);
-        EnableMapBackGround = Config.Bind("Client Options", "Enable Map BackGround", true);
-        EnableRoleBackGround = Config.Bind("Client Options", "Enable Role BackGround", true);
         DisableVanillaSound = Config.Bind("Client Options", "Disable Vanilla Sound", false);
         DisableFAC = Config.Bind("Client Options", "Disable FAC", false);
         PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);

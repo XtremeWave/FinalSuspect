@@ -56,15 +56,16 @@ public class XtremePlayerData : IDisposable
             CompleteTaskCount = KillCount = TotalTaskCount = 0;
             RealDeathReason = VanillaDeathReason.None;
             RealKiller = null;
-
         }
 
         
-        public SpriteRenderer rend {get;  set;}
-        public SpriteRenderer deadbodyrend {get;  set;}
-        public Vector3? preMeetingPosition{get;  set;}
-    #endregion
-    ///////////////FUNCTIONS\\\\\\\\\\\\\\\
+        public SpriteRenderer rend { get; set; }
+        public SpriteRenderer deadbodyrend { get; set; }
+        public Vector3? preMeetingPosition{ get; set; }
+ 
+        #endregion
+ 
+        ///////////////FUNCTIONS\\\\\\\\\\\\\\\
     
     public static XtremePlayerData GetXtremeDataById(byte id)
     {
@@ -110,6 +111,8 @@ public class XtremePlayerData : IDisposable
     public void SetDead()
     {
         IsDead = true;
+        deadbodyrend = Object.Instantiate(rend, rend.transform.parent);
+        deadbodyrend.flipY = true;
         XtremeLogger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
     }
     public void SetDisconnected()
@@ -156,10 +159,6 @@ public class XtremePlayerData : IDisposable
 
         XtremeLogger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
         
-        if (XtremeGameData.GameStates.IsNormalGame) return;
-        deadbodyrend = Object.Instantiate(rend, rend.transform.parent);
-        deadbodyrend.flipY = true;
-        deadbodyrend.color = new Color32(255, 90, 90, 255);
     }
     public void SetTaskTotalCount(int count) => TotalTaskCount = count;
     public void CompleteTask() => CompleteTaskCount++;

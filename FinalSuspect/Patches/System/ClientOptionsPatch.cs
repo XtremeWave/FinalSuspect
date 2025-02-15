@@ -20,8 +20,6 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean SpamDenyWord;
     private static ClientOptionItem_Boolean AutoStartGame;
     private static ClientOptionItem_Boolean AutoEndGame;
-    private static ClientOptionItem_Boolean EnableMapBackGround;
-    private static ClientOptionItem_Boolean EnableRoleBackGround;
     //private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
@@ -83,8 +81,6 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref SpamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
         CreateOptionItem(ref AutoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
         CreateOptionItem(ref AutoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
-        CreateOptionItem(ref EnableRoleBackGround, "EnableRoleBackGround", Main.EnableRoleBackGround, __instance);
-        CreateOptionItem(ref EnableMapBackGround, "EnableMapBackGround", Main.EnableMapBackGround, __instance);
         //CreateOptionItem(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
         CreateOptionItem(ref DisableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
             if (Main.DisableVanillaSound.Value)
@@ -278,7 +274,7 @@ public static class LanguageSetterSetLanguagePatch
         {
             GameObject.Destroy(VersionShowerStartPatch.VisitText);
         }
-        catch (Exception e)
+        catch 
         {
         }
         VersionShowerStartPatch.VisitText = null;

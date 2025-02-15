@@ -8,6 +8,10 @@ public static class PathManager
 {
     public const string LocalPath_Data = "Final Suspect_Data/";
     public static string DependsSavePath = "BepInEx/core/";
+    public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+    public static string downloadUrl_github = "https://github.com/XtremeWave/FinalSuspect/releases/latest/download/FinalSuspect.dll";
+    public static string downloadUrl_gitee = "https://gitee.com/XtremeWave/FinalSuspect/releases/download/v{showVer}/FinalSuspect.dll";
+    public static string downloadUrl_xtremeapi = "https://api.xtreme.net.cn/download/FinalSuspect/FinalSuspect.dll";
     
     public static string GetFile(FileType fileType, RemoteType remoteType, string file)
     {
@@ -93,6 +97,7 @@ public static class PathManager
     {
         return GetLocalPath(LocalType.Bypass) + $"BypassCheck_{fileType}_{bypassType}.xwr";
     }
+    
 }
 
 public enum FileType
@@ -121,5 +126,6 @@ public enum LocalType
 public enum BypassType
 {
     Once,
-    Longterm
+    Longterm,
+    
 }
