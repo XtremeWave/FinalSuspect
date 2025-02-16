@@ -97,7 +97,7 @@ public class VersionShowerStartPatch
 #endif
 
 #if RELEASE
-        string additionalCredentials = GetString("TextBelowVersionText");
+        var additionalCredentials = GetString("TextBelowVersionText");
         if (additionalCredentials != null && additionalCredentials != "*" && additionalCredentials != "")
         {
             Main.CredentialsText += $"\r\n{additionalCredentials}";
