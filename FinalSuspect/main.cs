@@ -29,7 +29,7 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.1.0";
+    public const string PluginVersion = "1.2.0";
     public const string PluginGuid = "cn.finalsuspect.xtremewave";
     public const int PluginCreation = 0;
 
@@ -42,7 +42,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
 
-    public const string DisplayedVersion_Head = "1.1";
+    public const string DisplayedVersion_Head = "1.2";
     private static string DisplayedVersion_Date
 
     {
@@ -75,9 +75,9 @@ public class Main : BasePlugin
     /// Preview: 预览/预发行版
     /// Scrapter: 废弃版
     /// </summary>
-    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
+    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Alpha;
 
-    private const int DisplayedVersion_TestCreation = 0;
+    private const int DisplayedVersion_TestCreation = 1;
     
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
