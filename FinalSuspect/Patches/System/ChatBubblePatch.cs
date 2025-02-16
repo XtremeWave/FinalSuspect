@@ -12,6 +12,7 @@ public static class ChatBubblePatch
     [HarmonyPatch(nameof(ChatBubble.SetText)), HarmonyPrefix]
     public static void SetText_Prefix(ChatBubble __instance, ref string chatText)
     {
+        if (__instance.TextArea.color == Color.red) return;
         var bgcolor = ColorHelper.HalfModColor32;
         var sr = __instance.Background;
         Color namecolor= ColorHelper.FaultColor;

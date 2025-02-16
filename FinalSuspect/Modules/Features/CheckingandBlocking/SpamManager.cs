@@ -18,12 +18,20 @@ public static class SpamManager
     [PluginModuleInitializer]
     public static void Init()
     {
-        CreateIfNotExists();
-        BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
-        CheckForUpdateBanWords();
-        CheckForUpdateDenyNames();
+        
+        try
+        {
+            CreateIfNotExists();
+            BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
+            CheckForUpdateBanWords();
+            CheckForUpdateDenyNames();
+        }
+        catch
+        {
+        }
     }
-    public static void CreateIfNotExists()
+
+    private static void CreateIfNotExists()
     {
         if (!File.Exists(BANEDWORDS_FILE_PATH))
         {
@@ -42,7 +50,8 @@ public static class SpamManager
                 XtremeLogger.Exception(ex, "SpamManager");
             }
         }
-        if (!File.Exists(DENY_NAME_LIST_PATH))
+
+        if (File.Exists(DENY_NAME_LIST_PATH)) return;
         {
             try
             {
@@ -58,34 +67,44 @@ public static class SpamManager
                 XtremeLogger.Exception(ex, "SpamManager");
             }
         }
-
     }
-    public static void CheckForUpdateBanWords()
-    {
-        var fileName = GetUserLangByRegion().ToString();
-        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
-        stream.Position = 0;
-        using StreamReader reader = new(stream, Encoding.UTF8);
-        List<string> waitforupdate = []; 
-        while (!reader.EndOfStream)
-        {
-            var line = reader.ReadLine().ToLower();
-            if (!BanWords.Contains(line))
-            {
-                waitforupdate.Add(line);
-                BanWords.Add(line);
-            }
-        }
-        reader.Dispose();
 
-        using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
-        foreach (var line in waitforupdate)
-            writer.WriteLine(line);
+    private static void CheckForUpdateBanWords()
+    {
+        try
+        {
+            var fileName = GetUserLangByRegion().ToString();
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"FinalSuspect.Resources.Configs.BanWords.{fileName}.txt");
+            if (stream == null) return;
+            stream.Position = 0;
+            using StreamReader reader = new(stream, Encoding.UTF8);
+            List<string> waitforupdate = []; 
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine().ToLower();
+                if (!BanWords.Contains(line))
+                {
+                    waitforupdate.Add(line);
+                    BanWords.Add(line);
+                }
+            }
+
+            reader.Dispose();
+
+            using StreamWriter writer = new(BANEDWORDS_FILE_PATH, true);
+            foreach (var line in waitforupdate)
+                writer.WriteLine(line);
+        }
+        catch 
+        {
+        }
+
     }
 
     private static void CheckForUpdateDenyNames()
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("FinalSuspect.Resources.Configs.DenyName.txt");
+        if (stream == null) return;
         stream.Position = 0;
         using StreamReader reader1 = new(stream, Encoding.UTF8);
         var existingNames = ReturnAllNewLinesInFile(DENY_NAME_LIST_PATH);
@@ -105,10 +124,12 @@ public static class SpamManager
         {
             writer.WriteLine(line);
         }
-    }    
+    }
+
     private static string GetResourcesTxt(string path)
     {
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
+        if (stream == null) return "";
         stream.Position = 0;
         using StreamReader reader = new(stream, Encoding.UTF8);
         return reader.ReadToEnd();

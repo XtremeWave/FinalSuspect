@@ -5,6 +5,7 @@ using FinalSuspect.Modules.ClientOptions;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.SoundInterface;
 using UnityEngine;
+using Object = System.Object;
 
 namespace FinalSuspect.Patches.System;
 
@@ -19,13 +20,12 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem_Boolean SpamDenyWord;
     private static ClientOptionItem_Boolean AutoStartGame;
     private static ClientOptionItem_Boolean AutoEndGame;
-    private static ClientOptionItem_Boolean EnableMapBackGround;
-    private static ClientOptionItem_Boolean EnableRoleBackGround;
     //private static ClientOptionItem_Boolean PrunkMode;
     private static ClientOptionItem_Boolean DisableVanillaSound;
     private static ClientOptionItem_Boolean DisableFAC;
     private static ClientOptionItem_Boolean ShowPlayerInfo;
     private static ClientOptionItem_Boolean UseModCursor;
+    private static ClientOptionItem_Boolean FastBoot;
     private static ClientFeatureItem UnloadMod;
     private static ClientFeatureItem DumpLog;
     private static ClientOptionItem_Boolean VersionCheat;
@@ -81,8 +81,6 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref SpamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
         CreateOptionItem(ref AutoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
         CreateOptionItem(ref AutoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
-        CreateOptionItem(ref EnableRoleBackGround, "EnableRoleBackGround", Main.EnableRoleBackGround, __instance);
-        CreateOptionItem(ref EnableMapBackGround, "EnableMapBackGround", Main.EnableMapBackGround, __instance);
         //CreateOptionItem(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
         CreateOptionItem(ref DisableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () => {
             if (Main.DisableVanillaSound.Value)
@@ -95,6 +93,7 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref DisableFAC, "DisableFAC", Main.DisableFAC, __instance);
         CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
         CreateOptionItem(ref UseModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
+        CreateOptionItem(ref FastBoot, "FastBoot", Main.FastBoot, __instance);
         if (DebugModeManager.AmDebugger)
         {
             CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
@@ -122,6 +121,7 @@ public static class OptionsMenuBehaviourStartPatch
             SetFeatureItemDisabled(AudioManagementBtn);
         }
 
+        Modules.SoundInterface.SoundManager.ReloadTag();
         MyMusicPanel.Init(__instance);
         SoundManagementPanel.Init(__instance);
 
@@ -237,6 +237,7 @@ public static class OptionsMenuBehaviourStartPatch
             GameStartManager.Instance.ResetStartState();
         }
     }
+    
     public static void SetCursor()
     {
         try
@@ -270,6 +271,15 @@ public static class LanguageSetterSetLanguagePatch
     public static void Postfix()
     {
         OptionsMenuBehaviourStartPatch.recreate = true;
+        try
+        {
+            GameObject.Destroy(VersionShowerStartPatch.VisitText);
+        }
+        catch 
+        {
+        }
+        VersionShowerStartPatch.VisitText = null;
+        VersionShowerStartPatch.CreateVisitText(null);
         OptionsMenuBehaviourStartPatch.Postfix(OptionsMenuBehaviourStartPatch.Instance);
     }
 }

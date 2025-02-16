@@ -55,7 +55,7 @@ class TaskPanelBehaviourPatch
         if (sb.Length > 1)
         {
             var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
-            if (player.IsImpostor() && sb.ToString().Count(s => (s == '\n')) >= 2)
+            if (player.IsImpostor() && sb.ToString().Count(s => s == '\n') >= 2)
                 text = $"{StringHelper.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
             AllText += $"\r\n\r\n<size=85%>{text}</size>";
         }
@@ -144,7 +144,7 @@ public static class HudManagerPatch
             {
                 UpdateResult(__instance);
                 SetChatBG(__instance);
-                //SetAbilityButtonColor(__instance);
+                SetAbilityButtonColor(__instance);
             }
             catch 
             {
@@ -228,7 +228,7 @@ public static class HudManagerPatch
         {
             if (PlayerControl.LocalPlayer.IsImpostor())
             {
-                color = Utils.GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
+                color = ColorHelper.ImpostorRedPale;
             }
             else
             {
@@ -245,9 +245,11 @@ public static class HudManagerPatch
     }
     public static void SetAbilityButtonColor(HudManager __instance)
     {
-        if (!XtremeGameData.GameStates.IsInGame || PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.Crewmate or RoleTypes.Impostor or RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost)   return;
+        if (!XtremeGameData.GameStates.IsInGame) return;
         var color = Utils.GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
-        __instance.AbilityButton.buttonLabelText.color = color;
+        __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
+        __instance.AbilityButton.cooldownTimerText.color = Color.green;
+        __instance.KillButton.cooldownTimerText.color = ColorHelper. ImpostorRedPale;
     }
     public static int GetLineCount(string text)
     {

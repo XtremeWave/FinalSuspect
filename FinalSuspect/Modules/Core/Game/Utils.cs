@@ -66,15 +66,12 @@ public static class Utils
     public static void KickPlayer(int clientId, bool ban, string reason = "")
     {
         XtremeLogger.Info($"try to kick {GetClientById(clientId)?.Character?.GetRealName()}", "Kick");
-        AmongUsClient.Instance.KickPlayer(clientId, ban);
         OnPlayerLeftPatch.Add(clientId);
+        AmongUsClient.Instance.KickPlayer(clientId, ban);
     }
     public static void KickPlayer(byte playerId, bool ban, string reason = "")
     {
-        var player = GetPlayerById(playerId);
-        XtremeLogger.Info($"try to kick {player?.GetRealName()}", "Kick");
-        AmongUsClient.Instance.KickPlayer(player.GetClient().Id, ban);
-        OnPlayerLeftPatch.Add(player.GetClient().Id);
+        KickPlayer(GetPlayerById(playerId).GetClient().Id, ban, reason);
     }
     public static string PadRightV2(this object text, int num)
     {
@@ -134,7 +131,7 @@ public static class Utils
         var longestNameByteCount = XtremePlayerData.GetLongestNameByteCount();
 
 
-        var pos = Math.Min(((float)longestNameByteCount / 2) + 1.5f, 11.5f);
+        var pos = Math.Min((float)longestNameByteCount / 2 + 1.5f, 11.5f);
 
 
         var colorId = thisdata.ColorId;
@@ -420,7 +417,8 @@ public static class Utils
 
         return target.IsLocalPlayer() ||
         BothDeathCanSee ||
-        bothImp && LocalDead;
+        bothImp && LocalDead || 
+        Main.GodMode.Value;
     }
     public static bool CanSeeOthersRole()
     {
@@ -429,7 +427,7 @@ public static class Utils
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
         
-        return !IsAngel && LocalDead;
+        return !IsAngel && LocalDead || Main.GodMode.Value;
     }
     public static void ExecuteWithTryCatch(this Action action, bool Log = false)
     {
@@ -440,7 +438,7 @@ public static class Utils
         catch (Exception ex)
         {
             if (Log)
-            XtremeLogger.Error(ex.ToString(), "Execute With Try Catch");
+                XtremeLogger.Error(ex.ToString(), "Execute With Try Catch");
         }
     }
 }

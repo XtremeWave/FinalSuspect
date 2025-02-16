@@ -1,5 +1,6 @@
 using AmongUs.GameOptions;
 using FinalSuspect.Modules.Core.Game;
+using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -42,6 +43,12 @@ public static class MeetingHudPatch
             [HarmonyArgument(1)]NetworkedPlayerInfo exiled, 
             [HarmonyArgument(2)]bool tie )
         {
+            foreach (var data in XtremePlayerData.AllPlayerData)
+            {
+                if (data.deadbodyrend)
+                    GameObject.Destroy(data.deadbodyrend);
+                data.deadbodyrend = null;
+            }
             if (tie || exiled == null) return;
             var player = Utils.GetPlayerById(exiled.PlayerId);
             player.SetDead();

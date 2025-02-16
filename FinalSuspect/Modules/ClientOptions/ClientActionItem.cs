@@ -87,7 +87,7 @@ public class ClientActionItem
             ToggleButton.transform.localPosition = new Vector3(
                 // 現在のオプション数を基に位置を計算
                 numItems % 2 == 0 ? -1.3f : 1.3f,
-                2.2f - (0.5f * (numItems / 2)),
+                2.2f - 0.5f * (numItems / 2),
                 -6f);
             ToggleButton.name = name;
             ToggleButton.Text.text = GetString(name);

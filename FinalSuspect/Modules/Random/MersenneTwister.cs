@@ -126,7 +126,7 @@ public class MersenneTwister : IRandom
         if (minValue > maxValue) throw new ArgumentException("maxValue must be bigger than minValue.");
         if (minValue == maxValue) return minValue;
 
-        return (int)(minValue + (Next() % (maxValue - minValue)));
+        return (int)(minValue + Next() % (maxValue - minValue));
     }
 
     public int Next(int maxValue) => Next(0, maxValue);

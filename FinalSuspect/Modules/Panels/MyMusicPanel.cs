@@ -5,7 +5,7 @@ using FinalSuspect.Helpers;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
-using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.SoundInterface.XtremeMusic;
 using Object = UnityEngine.Object;
 using static FinalSuspect.Modules.SoundInterface.CustomSoundsManager;
 
@@ -20,7 +20,7 @@ public static class MyMusicPanel
 
     public static int currentPage { get; private set; } = 1;
     public static int itemsPerPage => 7;
-    public static int totalPageCount => (finalMusics.Count + itemsPerPage - 1) / itemsPerPage;
+    public static int totalPageCount => (musics.Count + itemsPerPage - 1) / itemsPerPage;
 
     private static int numItems;
     public static int PlayMode;
@@ -82,8 +82,6 @@ public static class MyMusicPanel
 
             AddChangePlayModeButton(optionsMenuBehaviour);
         }
-
-        ReloadTag();
         RefreshTagList();
     }
     static void AddPageNavigationButton(OptionsMenuBehaviour optionsMenuBehaviour)
@@ -108,7 +106,7 @@ public static class MyMusicPanel
             {
                 currentPage = 1;
             }
-
+            
             RefreshTagList() ;
         }));
     }
@@ -145,7 +143,7 @@ public static class MyMusicPanel
         var startIndex = (currentPage - 1) * itemsPerPage;
 
         var count = 0;
-        foreach (var audio in finalMusics.Skip(startIndex))
+        foreach (var audio in musics.Skip(startIndex))
         {
             if (count >= itemsPerPage)
             {
@@ -159,9 +157,8 @@ public static class MyMusicPanel
         }
         
     }
-    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, FinalMusic audio)
+    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, XtremeMusic audio)
     {
-
         try
         {
             var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
@@ -169,11 +166,9 @@ public static class MyMusicPanel
             var path = audio.Path;
             var filename = audio.FileName;
             var author = audio.Author;
-            var audioExist = audio.CurrectAudioStates is not AudiosStates.NotExist;
-
 
             var offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
-            var offsetY = 2.2f - (0.5f * (numItems / 2));
+            var offsetY = 2.2f - 0.5f * (numItems / 2);
             var offsetZ = -4f;
 
             var ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
@@ -184,7 +179,7 @@ public static class MyMusicPanel
             numItems++; 
 
             offsetX = numItems % 2 == 0 ? -1.3f : 1.3f;
-            offsetY = 2.2f - (0.5f * (numItems / 2));
+            offsetY = 2.2f - 0.5f * (numItems / 2);
             offsetZ = -6f;
 
             var previewText = Object.Instantiate(optionsMenuBehaviour.DisableMouseMovement.Text, CustomBackground.transform);
@@ -194,28 +189,42 @@ public static class MyMusicPanel
 
             Color color;
             string preview;
+            var enable = false;
 
-            if (audio.CurrectAudioStates is AudiosStates.IsPlaying)
+            switch (audio.CurrectAudioStates)
             {
-                preview = GetString("Playing");
-                color = ColorHelper.ModColor32;
-            }
-            else if (audioExist)
-            {
-                color = audio.UnOfficial ? Color.green : ColorHelper.ClientFeatureColor;
-                preview = GetString("CanPlay");
-            }
-            else
-            {
-                color = ColorHelper.ClientFeatureColor_CanNotUse;
-                ToggleButton.enabled = false;
-                preview = GetString("NoFound");
+                case AudiosStates.IsPlaying:
+                    preview = GetString("Playing");
+                    color = ColorHelper.ModColor32;
+                    break;
+                case AudiosStates.IsDownLoading:
+                    color = ColorHelper.DownloadYellow;
+                    preview = GetString("Downloading");
+                    break;
+                case AudiosStates.IsLoading:
+                    color = ColorHelper.ClientOptionColor;
+                    preview = GetString("LoadingMus");
+                    break;
+                case AudiosStates.DownLoadSucceedNotice:
+                case AudiosStates.Exist:
+                    color = audio.UnOfficial ? Color.green : ColorHelper.ClientFeatureColor;
+                    preview = GetString("CanPlay");
+                    enable = true;
+                    break;
+                case AudiosStates.NotExist:
+                case AudiosStates.DownLoadFailureNotice:
+                default:
+                {
+                    color = ColorHelper.ClientFeatureColor_CanNotUse;
+                    preview = GetString("NoFound");
+                    break;
+                }
             }
             
 
             previewText.text = preview;
             ToggleButton.Background.color = color;
-
+            ToggleButton.GetComponent<PassiveButton>().enabled = enable;
 
             var passiveButton = ToggleButton.GetComponent<PassiveButton>();
             passiveButton.OnClick = new();

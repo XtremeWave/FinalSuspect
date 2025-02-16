@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★A Presto★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Italian
+A presto.
+
+## Base
+- Basato su Among Us v2024.10.29
+- Basato su BepInEx v6.0.0-be.733
+
+## Riepilogo delle Aggiornamenti
+- Correzioni: 10
+- Ottimizzazioni: 1
+- Modifiche: 1
+- Aggiunte: 7
+- Ricostruzioni: 1
+- Rimozioni: 2
+
+## Team di Sviluppo
+- [Slok]("https://github.com/Slok7565/")
+
+## Collaboratori
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correzioni
+- Corretto il bug dell'anti-tradimento che non riusciva a espellere i giocatori
+- Corretto il bug dell'anti-tradimento che funzionava anche quando disattivato
+- Corretto il bug della visualizzazione della versione errata
+- Corretto il bug dei giocatori non contrassegnati come disconnessi quando uscivano
+- Corretto il bug degli errori frequenti di GC
+- Corretto il bug dei giocatori bloccati nell'animazione di avvio "Verifica Risorse"
+- Corretto il bug del volume errato per la musica del menu principale originale
+Corretto da Slok
+- Corretto il bug dei mod che a volte non si caricavano a causa di parole bloccate
+Corretto da Slok
+Feedback: ev3lynParker
+- Corretto il bug della lingua delle annunciazioni non aggiornata dopo il cambio di lingua
+- Corretto il bug del testo in basso a destra non aggiornato dopo il cambio di lingua
+Corretto da Slok
+Feedback: Trick_2012
+
+## Ottimizzazioni
+- Ottimizzato l'utilizzo della memoria dei mod
+Realizzato da Slok
+
+## Modifiche
+- Il gioco non forza più la modalità a schermo intero
+Modificato da Slok
+Idea: Nonalus, Yu
+
+## Aggiunte
+- Dopo la morte, i giocatori che non sono Guardiani possono vedere le posizioni di tutti i giocatori e le informazioni sui corpi sulla mappa
+Realizzato da Slok
+Idea: Amongus
+- Il volume della musica dei mod può essere controllato dal regolatore del volume del gioco.
+- Colorare il testo del pulsante delle abilità in base al colore della classe.
+- Ottimizzare il colore del testo del tempo di ricarica.
+- Colorare i server non ufficiali nella lista dei server.
+- Opzione del Client: Modalità Avvio Rapido
+Realizzato da Slok
+- Corretta la lista dei server per i server
+Realizzato da FangKuai
+
+## Ricostruzioni
+- Ricostruito la logica di riproduzione e analisi dell'audio
+Realizzato da Slok
+
+## Rimozioni
+- Rimosso: Opzione del Client: Abilita sfondo personalizzato intro
+- Rimosso: Opzione del Client: Abilita colore della mappa personalizzato
+Motivo: La funzione è inutile
+Deciso da Slok

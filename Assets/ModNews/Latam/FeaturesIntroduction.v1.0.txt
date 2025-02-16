@@ -2,7 +2,7 @@
 #Título:v1.0  Introducción de funciones y optimizaciones
 #Subtítulo:★★★★Nuestro fantástico y maravilloso contenido★★★★
 #Título Corto:★v1.0 Introducción
-#Fecha:2025-1-28T19:00:00Z
+#Fecha:2025-01-28T19:00:00Z
 #-----------------------------
 # Español (Latinoamérica)
 ## Optimizaciones - 22

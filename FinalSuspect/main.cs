@@ -27,11 +27,11 @@ namespace FinalSuspect;
 public class Main : BasePlugin
 {
     // == 程序基本设定 / Program Config ==
-    public static readonly string ModName = "Final Suspect";
+    public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.0.1";
+    public const string PluginVersion = "1.1.0";
     public const string PluginGuid = "cn.finalsuspect.xtremewave";
-    public const int PluginCreation = 3;
+    public const int PluginCreation = 0;
 
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
@@ -42,7 +42,7 @@ public class Main : BasePlugin
     public const string LowestSupportedVersion = "2024.10.29";
 
 
-    public const string DisplayedVersion_Head = "1.0";
+    public const string DisplayedVersion_Head = "1.1";
     private static string DisplayedVersion_Date
 
     {
@@ -55,7 +55,7 @@ public class Main : BasePlugin
             var day = currentDate.Day.ToString("D2");    
             return $"{year}{month}{day}";
 #else
-            return "20240130";
+            return "20240216";
 #endif
         }
     }
@@ -76,7 +76,9 @@ public class Main : BasePlugin
     /// Scrapter: 废弃版
     /// </summary>
     private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
+
     private const int DisplayedVersion_TestCreation = 0;
+    
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != VersionTypes.Release ? 
@@ -109,8 +111,6 @@ public class Main : BasePlugin
     public static ConfigEntry<string> ChangeOutfit { get; private set; }
     public static ConfigEntry<bool> AutoStartGame { get; private set; }
     public static ConfigEntry<bool> AutoEndGame { get; private set; }
-    public static ConfigEntry<bool> EnableMapBackGround { get; private set; }
-    public static ConfigEntry<bool> EnableRoleBackGround { get; private set; }
     public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
     public static ConfigEntry<bool> DisableFAC { get; private set; }
     public static ConfigEntry<bool> PrunkMode { get; private set; }
@@ -184,7 +184,6 @@ public class Main : BasePlugin
         LastStartVersion = Config.Bind("Xtreme System", "Last Start Version", "0.0.0");
         
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
-        
 
         UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
         ChangeOutfit = Config.Bind("Client Options", "Change Outfit", OutfitType[0]);
@@ -194,8 +193,6 @@ public class Main : BasePlugin
         SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
         AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
         AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);
-        EnableMapBackGround = Config.Bind("Client Options", "Enable Map BackGround", true);
-        EnableRoleBackGround = Config.Bind("Client Options", "Enable Role BackGround", true);
         DisableVanillaSound = Config.Bind("Client Options", "Disable Vanilla Sound", false);
         DisableFAC = Config.Bind("Client Options", "Disable FAC", false);
         PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
@@ -231,17 +228,17 @@ public class Main : BasePlugin
         {
             roleColors = new Dictionary<RoleTypes, string>
             {
-                {RoleTypes.CrewmateGhost, "#8CFFFF"},
-                {RoleTypes.GuardianAngel, "#8CFFDB"},
-                {RoleTypes.Crewmate, "#8CFFFF"},
-                {RoleTypes.Scientist, "#F8FF8C"},
-                {RoleTypes.Engineer, "#A5A8FF"},
-                {RoleTypes.Noisemaker, "#FFC08C"},
-                {RoleTypes.Tracker, "#93FF8C"},
-                {RoleTypes.ImpostorGhost, "#FF1919"},
-                {RoleTypes.Impostor, "#FF1919"},
-                {RoleTypes.Shapeshifter, "#FF819E"},
-                {RoleTypes.Phantom, "#CA8AFF"},
+                { RoleTypes.CrewmateGhost, "#8CFFFF" },
+                { RoleTypes.GuardianAngel, "#8CFFDB" },
+                { RoleTypes.Crewmate, "#8CFFFF" },
+                { RoleTypes.Scientist, "#F8FF8C" },
+                { RoleTypes.Engineer, "#A5A8FF" },
+                { RoleTypes.Noisemaker, "#FFC08C" },
+                { RoleTypes.Tracker, "#93FF8C" },
+                { RoleTypes.ImpostorGhost, "#FF1919" },
+                { RoleTypes.Impostor, "#FF1919" },
+                { RoleTypes.Shapeshifter, "#FF819E" },
+                { RoleTypes.Phantom, "#CA8AFF" },
             };
         }
         catch (ArgumentException ex)

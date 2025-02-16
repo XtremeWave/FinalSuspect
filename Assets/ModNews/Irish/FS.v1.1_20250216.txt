@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Slán go Fóill★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Irish
+Slán go fóill.
+
+## Base
+- Bunaithe ar Among Us v2024.10.29
+- Bunaithe ar BepInEx v6.0.0-be.733
+
+## Réamhrú na Nuashonraí
+- Leasuithe: 10
+- Optimalaithe: 1
+- Athruithe: 1
+- Curtha isteach: 7
+- Athbhreithnithe: 1
+- Scoipeadh: 2
+
+## An tAinmhitheach
+- [Slok]("https://github.com/Slok7565/")
+
+## Na Comhleitirí
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Leasuithe
+- Leasaithe an bug nach raibh an anti-cheat ábalta cluichithe a bhaint amach
+- Leasaithe an bug nach raibh an anti-cheat deichniúil nuair a bhí sé faoi mhíchú
+- Leasaithe an bug nach raibh an leagan amháin ar an bpríomhleagan
+- Leasaithe an bug nach raibh cluichithe marcáilte mar nach bhfuil siad ceangailte nuair a bhí siad ag imeacht
+- Leasaithe an bug nach raibh an GC ag déanamh earróidí go minic
+- Leasaithe an bug nach raibh cluichithe ag baint seirbhísí nuair a bhí siad ag an t-imeacht "Verifying Resources"
+- Leasaithe an bug nach raibh an bolyúm ceart ar an gcéad leagan amháin ceoil
+Leasuithe ag Slok
+- Leasaithe an bug nach raibh na modanna ábalta a luchtú de bharr focal bainte
+Leasuithe ag Slok
+Feadback: ev3lynParker
+- Leasaithe an bug nach raibh teanga an fhaisnéise ag uathú nuair a bhí teanga á athrú
+- Leasaithe an bug nach raibh an téacs i gcoinne chléithe deas ag uathú nuair a bhí teanga á athrú
+Leasuithe ag Slok
+Feadback: Trick_2012
+
+## Optimalaithe
+- Óptimiséadh úsáid chéime na gmodanna
+D'fhógair Slok é
+
+## Athruithe
+- Níl an gcluiche ag iarraidh modh scríne amháin arís
+Athraíodh ag Slok
+Idea: Nonalus, Yu
+
+## Curtha isteach
+- Tar éis bás, is féidir le cluichithe nach bhfuil siad mar Aingeal Coscann an suíomh de gach cluicheoir agus eolasacha a bhrú ar an gcéad leagan
+D'fhógair Slok é
+Idea: Amongus
+- Is féidir an bolyúm na ceoil na gmodanna a ghníomhú trí an sleasáil bolyúma an gcluiche.
+- Dathú an téacs an chnaipe cumaisc de réir dath an chineál
+- Óptimiséadh dath an téacs an chnaipe cumaisc de réir dath an chineál
+- Dathú na gservereanna neamh-oifigiúla sa liosta servereanna
+- Roghanna Cliant: Modh Tosaigh Go Schnéid
+D'fhógair Slok é
+- Liosta servereanna chomhthuise dona servereanna
+D'fhógair FangKuai é
+
+## Athbhreithnithe
+- Athbhreithniú loighic an chumaidh agus an aistriú ceoil
+D'fhógair Slok é
+
+## Scoipeadh
+- Scoipeadh: Roghanna Cliant: Cumas Leagan Céanna ar an Introduction
+- Scoipeadh: Roghanna Cliant: Cumas Dath na Chárta
+Cúis: Níl an feidhm ar bith
+Roghnaíodh ag Slok

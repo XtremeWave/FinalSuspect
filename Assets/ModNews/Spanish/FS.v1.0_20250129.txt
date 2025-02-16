@@ -2,7 +2,7 @@
 #Title:Final Suspect v1.0
 #SubTitle:★★★★¡Este mod ha sido lanzado oficialmente!★★★★
 #ShortTitle:★Lanzamiento Oficial v1.0
-#Date:2025-1-28T19:00:00Z
+#Date:2025-01-28T19:00:00Z
 #-----------------------------
 # Español
 A medida que pasa el tiempo, el invierno en el hemisferio norte está llegando a su fin y los signos de la primavera están reviviendo en todas partes.

@@ -168,12 +168,3 @@ class BanMenuSelectPatch
             __instance.BanButton.GetComponent<ButtonRolloverHandler>().SetEnabledColors();
     }
 }
-[HarmonyPatch(typeof(BanMenu), nameof(BanMenu.Update))]
-class BanMenuUpdatePatch
-{
-    public static void Postfix(BanMenu __instance)
-    {
-        __instance.KickButton.gameObject.SetActive(true);
-        __instance.BanButton.gameObject.SetActive(true);
-    }
-}

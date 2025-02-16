@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Bis später★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# German
+Bis später.
+
+## Basis
+- Basierend auf Among Us v2024.10.29
+- Basierend auf BepInEx v6.0.0-be.733
+
+## Zusammenfassung der Aktualisierungen
+- Korrekturen: 10
+- Optimierungen: 1
+- Änderungen: 1
+- Hinzufügungen: 7
+- Überarbeitungen: 1
+- Entfernungen: 2
+
+## Entwicklerteam
+- [Slok]("https://github.com/Slok7565/")
+
+## Mitwirkende
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Korrekturen
+- Behebung des Fehlers, dass der Anti-Cheat-Modus Spieler nicht entfernen konnte
+- Behebung des Fehlers, dass der Anti-Cheat-Modus aktiv war, obwohl er deaktiviert war
+- Behebung des Fehlers der falschen Versionsanzeige
+- Behebung des Fehlers, dass einige Spieler nicht als getrennt gekennzeichnet wurden, wenn sie das Spiel verließen
+- Behebung des Fehlers der häufigen GC-Fehler
+- Behebung des Fehlers, dass Spieler bei der Startanimation "Ressourcen werden überprüft" hängen blieben
+- Behebung des Fehlers des falschen Volumens für die ursprüngliche Hauptmenü-Musik
+Von Slok behoben
+- Behebung des Fehlers, dass Mods manchmal aufgrund von gesperrten Wörtern nicht geladen wurden
+Von Slok behoben
+Feedback: ev3lynParker
+- Behebung des Fehlers, dass die Anzeigensprache der Ankündigungen nach dem Wechsel der Sprache nicht aktualisiert wurde
+- Behebung des Fehlers, dass der Text in der unteren rechten Ecke nach dem Wechsel der Sprache nicht aktualisiert wurde
+Von Slok behoben
+Feedback: Trick_2012
+
+## Optimierungen
+- Optimierung des Mod-Speicherverbrauchs
+Von Slok durchgeführt
+
+## Änderungen
+- Das Spiel erzwingt nicht mehr den Vollbildmodus
+Von Slok geändert
+Idee: Nonalus, Yu
+
+## Hinzufügungen
+- Nach dem Tod können Nicht-Bewahrer die Positionen aller Spieler und Informationen über Leichen auf der Karte sehen
+Von Slok erstellt
+Idee: Amongus
+- Das Volumen der Mod-Musik kann über den Volumenregler des Spiels gesteuert werden.
+- Die Schaltflächen-Texte werden entsprechend der Klassenfarbe gefärbt.
+- Optimierung der Abklingzeit-Textfarbe.
+- Nicht-offizielle Server in der Serverliste werden farbig markiert.
+- Client-Option: Schnellstartmodus
+Von Slok erstellt
+- Korrektur der Serverliste für Server
+Von FangKuai erstellt
+
+## Überarbeitungen
+- Überarbeitung der Audio-Wiedergabe- und -Analyselogik
+Von Slok erstellt
+
+## Entfernungen
+- Entfernt: Client-Option: Benutzerdefiniertes Intro-Hintergrund aktivieren
+- Entfernt: Client-Option: Benutzerdefinierte Kartenfarbe aktivieren
+Grund: Die Funktion ist sinnlos
+Von Slok entschieden

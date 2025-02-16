@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Até Mais★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Português
+Até mais.
+
+## Base
+- Baseado em Among Us v2024.10.29
+- Baseado em BepInEx v6.0.0-be.733
+
+## Resumo das Atualizações
+- Correções: 10
+- Otimizações: 1
+- Alterações: 1
+- Adições: 7
+- Recriações: 1
+- Remoções: 2
+
+## Equipe de Desenvolvimento
+- [Slok]("https://github.com/Slok7565/")
+
+## Colaboradores
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correções
+- Corrigido o erro de o anticheat não expulsar jogadores.
+- Corrigido o erro de o anticheat funcionar mesmo desativado.
+- Corrigido o erro de exibição de versão incorreta.
+- Corrigido o erro de jogadores não marcados como desconectados ao sair.
+- Corrigido o erro de erros frequentes de GC.
+- Corrigido o erro de jogadores ficando presos na animação de início "Verificando Recursos".
+- Corrigido o erro do volume incorreto para a música do menu principal original.
+Corrigido por Slok.
+- Corrigido o erro de mods às vezes não carregarem devido a palavras bloqueadas.
+Corrigido por Slok.
+Feedback: ev3lynParker.
+- Corrigido o erro de o idioma dos anúncios não atualizar após trocar o idioma.
+- Corrigido o erro de o texto no canto inferior direito não atualizar após trocar o idioma.
+Corrigido por Slok.
+Feedback: Trick_2012.
+
+## Otimizações
+- Otimizado o uso de memória dos mods.
+Realizado por Slok.
+
+## Alterações
+- O jogo não força mais o modo tela cheia.
+Alterado por Slok.
+Ideia: Nonalus, Yu.
+
+## Adições
+- Após a morte, jogadores que não são Guardiões podem ver a localização de todos os jogadores e informações sobre corpos no mapa.
+Realizado por Slok.
+Ideia: Amongus.
+- O volume da música dos mods pode ser controlado pelo controle de volume do jogo.
+- Colorir o texto do botão de habilidade de acordo com a cor da classe.
+- Otimizar a cor do texto do tempo de reutilização.
+- Colorir os servidores não oficiais na lista de servidores.
+- Opção do Cliente: Modo de Inicialização Rápida.
+Realizado por Slok.
+- Corrigida a lista de servidores para os servidores.
+Realizado por FangKuai.
+
+## Recriações
+- Reescrita a lógica de reprodução e análise de áudio.
+Realizado por Slok.
+
+## Remoções
+- Removido: Opção do Cliente: Habilitar Fundo de Introdução Personalizado.
+- Removido: Opção do Cliente: Habilitar Cor de Mapa Personalizado.
+Motivo: A função é desnecessária.
+Decisão de Slok.

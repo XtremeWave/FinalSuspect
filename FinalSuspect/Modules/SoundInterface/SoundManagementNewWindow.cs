@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
-using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.SoundInterface.XtremeMusic;
 
 namespace FinalSuspect.Modules.SoundInterface;
 
@@ -78,7 +78,7 @@ public static class SoundManagementNewWindow
             var code = EnterBox.GetComponent<TextBoxTMP>().text;
             var reg = new Regex(@"^(\s{1}|)$");
 
-            if (finalMusics.Any(x => x.Name == code))
+            if (musics.Any(x => x.Name == code))
             {
                 ConfirmButton.SetActive(false);
                 colorInfoTmp.text = GetString("AudioManagementAlreadyExist");

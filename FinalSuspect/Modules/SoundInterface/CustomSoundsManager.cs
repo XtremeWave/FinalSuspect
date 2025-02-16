@@ -1,58 +1,74 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
-using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.SoundInterface.XtremeMusic;
+using Object = UnityEngine.Object;
 
 
 namespace FinalSuspect.Modules.SoundInterface;
 
 public static class CustomSoundsManager
 {
-
-    public static void Play(FinalMusic audio)
+    public static async void Play(XtremeMusic audio)
     {
-
-        if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
-        if (!Constants.ShouldPlaySfx()) return;
-
-        foreach (var file in finalMusics)
+        try
         {
-            if (file.FileName != audio.FileName)
-                file.CurrectAudioStates = file.LastAudioStates;
-            else
-                file.CurrectAudioStates = file.LastAudioStates = AudiosStates.IsPlaying;
-        }
+            if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
+            if (!Constants.ShouldPlaySfx()) return;
         
-        StopPlayMod();
-        StopPlayVanilla();
-        ReloadTag();
-        MyMusicPanel.RefreshTagList();
-        SoundManagementPanel.RefreshTagList();
-        StartPlayLoop(audio.Path);
-        XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+            _ = new LateTask(() =>
+            {
+                StopPlayMod();
+                StopPlayVanilla();
+            }, 0.01F, "");
+        
+            await LoadClip(audio.CurrectAudio);
+        
+            _ = new LateTask(() =>
+            {
+                foreach (var file in musics.Where(file => file.FileName == audio.FileName))
+                {
+                    file.CurrectAudioStates = AudiosStates.IsPlaying;
+                }
+        
+                ReloadTag();
+                MyMusicPanel.RefreshTagList();
+                SoundManagementPanel.RefreshTagList();
+                global::SoundManager.Instance.CrossFadeSound(audio.FileName, audio.Clip, 1f);
+                XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+            }, 0.01F, "");
+        }
+        catch 
+        {
+            //
+        }
     }
-
-    [DllImport("winmm.dll")]
-    public static extern bool PlaySound(string Filename, int Mod, int Flags);
-
-    private static void StartPlayLoop(string path) => PlaySound(@$"{path}", 0, 9);
+ 
     public static void StopPlayMod()
     {
-        PlaySound(null, 0, 0);
-        finalMusics.Do(x => x.CurrectAudioStates = x.LastAudioStates);
+        musics.Do(x =>
+        {
+            x.Clip = null;
+            x.CurrectAudioStates = x.LastAudioStates;
+            global::SoundManager.Instance.StopNamedSound(x.FileName);
+        });
 
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
         }, 0.01f, "Refresh");
         if (Main.DisableVanillaSound.Value)
+        {
             StopPlayVanilla();
+        }
         else
         {
-           StartPlayVanilla();
+            StartPlayVanilla();
         }
     }
 
@@ -64,12 +80,12 @@ public static class CustomSoundsManager
 
     public static void StartPlayVanilla()
     {
-        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = musics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         if (isPlaying) return;
         if (XtremeGameData.GameStates.IsLobby)
             global::SoundManager.Instance.CrossFadeSound("MapTheme", LobbyBehaviour.Instance.MapTheme, 0.07f);
         else if (XtremeGameData.GameStates.IsNotJoined)
-            global::SoundManager.Instance.CrossFadeSound("MainBG", DestroyableSingleton<JoinGameButton>.Instance.IntroMusic, 0.07f);
+            global::SoundManager.Instance.CrossFadeSound("MainBG", DestroyableSingleton<JoinGameButton>.Instance.IntroMusic, 1f);
     }
     /*
     //public static void AutoPlay(string sound, string name)
@@ -84,7 +100,7 @@ public static class CustomSoundsManager
     //{
     //    var rd = IRandom.Instance;
     //    List<string> mus = new();
-    //    foreach (var audio in FinalMusic.finalMusics)
+    //    foreach (var audio in XtremeMusic.musics)
     //    {
     //        var music = audio.FileName;
     //        mus.Add(music);
@@ -130,7 +146,7 @@ public static class CustomSoundsManager
     //}
     //public static void StartPlayOnce(string path) => PlaySound(@$"{path}", 0, 1); //第3个形参，换为9，连续播放
 
-    //public static void StartPlayInAmongUs(FinalMusic audio)
+    //public static void StartPlayInAmongUs(XtremeMusic audio)
     //{
     //    if (audio.Clip != null)
     //    {
@@ -150,31 +166,70 @@ public class AudioManagementPlaySoundPatch
 {
     public static bool Prefix(global::SoundManager __instance, [HarmonyArgument(0)] AudioClip clip, [HarmonyArgument(1)] bool loop)
     {
-        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = musics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
         var disableVanilla = Main.DisableVanillaSound.Value;
         return !(isPlaying || disableVanilla) || !loop;
     }
-
 }
+
 [HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayDynamicSound))]
 [HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayNamedSound))]
 public class AudioManagementPlayDynamicandNamedSoundPatch
 {
-    public static bool Prefix([HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
+    public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
     {
-        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = musics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isModMusic = musics.Any(x => x.FileName == name);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(isPlaying || disableVanilla) || !loop;
+        return !(isPlaying || disableVanilla) || !loop || isModMusic;
     }
 }
 
 [HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.CrossFadeSound))]
 public class AudioManagementCrossFadeSoundPatch
 {
-    public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip)
+    public static bool Prefix([HarmonyArgument(0)] string name)
     {
-        var isPlaying = finalMusics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isPlaying = musics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isModMusic = musics.Any(x => x.FileName == name);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(isPlaying || disableVanilla);
+        return !(isPlaying || disableVanilla) || isModMusic;
+    }
+}
+
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.StopAllSound))]
+public class AudioManagementStopAllSoundPatch
+{
+    public static bool Prefix(global::SoundManager __instance)
+    {
+        for (var i = __instance.soundPlayers.Count - 1; i >= 0; i--)
+        {
+            if (musics.Any(x => x.Clip == __instance.soundPlayers[i].Player.clip)) 
+                continue;
+            
+            Object.Destroy(__instance.soundPlayers[i].Player);
+            __instance.soundPlayers.RemoveAt(i);
+        }
+        
+        var keysToRemove = new List<AudioClip>();
+        foreach (var (key, value) in __instance.allSources)
+        {
+            if (musics.Any(x => x.Clip == key)) 
+            {
+                continue; 
+            }
+
+            value.volume = 0f;
+            value.Stop();
+            Object.Destroy(value);
+            keysToRemove.Add(key);
+        }
+        
+        foreach (var key in keysToRemove)
+        {
+            __instance.allSources.Remove(key);
+        }
+
+        return false;
     }
 }

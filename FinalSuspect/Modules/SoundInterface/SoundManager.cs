@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
+using FinalSuspect.Modules.Random;
 using FinalSuspect.Modules.Resources;
+using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
 
 namespace FinalSuspect.Modules.SoundInterface;
@@ -15,6 +19,7 @@ public static class SoundManager
     public static readonly string TAGS_PATH = PathManager.GetResourceFilesPath(FileType.Sounds, "SoundsName.txt");
 
     public static List<string> CustomAudios = [];
+ 
     public static void ReloadTag(bool official = true)
     {
         CustomAudios = [];
@@ -24,34 +29,32 @@ public static class SoundManager
             Init();
             return;
         }
-        
 
         try
         {
             using StreamReader sr = new(TAGS_PATH);
-            string line;
-            while ((line = sr.ReadLine()) != null)
+            while (sr.ReadLine() is { } line)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
-                new FinalMusic(line);
+                XtremeMusic.CreateMusic(line);
                 XtremeLogger.Info($"Audio Loaded: {line}", "AudioManager");
             }
-
         }
         catch (Exception ex)
         {
             XtremeLogger.Error("Load Audios Failed\n" + ex, "AudioManager", false);
         }
     }
+    
     public static void Init()
     {
         if (!File.Exists(TAGS_PATH)) File.Create(TAGS_PATH).Close();
         var attributes = File.GetAttributes(TAGS_PATH);
         File.SetAttributes(TAGS_PATH, attributes | FileAttributes.Hidden);
 
-        FinalMusic.InitializeAll();
-        
+        XtremeMusic.InitializeAll();
     }
+    
     public static bool ConvertExtension(ref string path)
     {
         if (path == null) return false;
@@ -77,7 +80,7 @@ public static class SoundManager
 
         return true;
     }
-
+    
     public static void PlaySound(byte playerID, Sounds sound)
     {
         if (PlayerControl.LocalPlayer.PlayerId == playerID)
@@ -103,11 +106,19 @@ public static class SoundManager
         }
     }
 }
-public enum FSAudios
+
+public enum SupportedMusics
 {
     UnOfficial,
+    
+    // ## World Music
     GongXiFaCai__Andy_Lau,
     NeverGonnaGiveYouUp__Rick_Astley,
+    CountingStars__One_Republic,
+    
+    //20250214
+    
+    // ## Mod Music
     TidalSurge__Slok,
     TrailOfTruth__Slok, 
     Interlude__Slok, 
@@ -115,7 +126,11 @@ public enum FSAudios
     ElegyOfFracturedVow__Slok, 
     VestigiumSplendoris__Slok,
     ReturnToSimplicity__Slok,
-    //Affinity__Slok
+
+    //20250214
+    Affinity__Slok,
+    Inceps_Plus_InProgress__Slok
+    
 }
 public enum AudiosStates
 {
@@ -125,32 +140,34 @@ public enum AudiosStates
     IsPlaying,
     DownLoadSucceedNotice,
     DownLoadFailureNotice,
+    IsLoading,
 }
 
-public class FinalMusic
+public class XtremeMusic
 {
-    public static List<FinalMusic> finalMusics = [];
+    public static List<XtremeMusic> musics = [];
 
     public string Name;
     public string FileName;
     public string Author;
     public string Path;
+    public AudioClip Clip;
 
-    public FSAudios CurrectAudio;
+    public SupportedMusics CurrectAudio;
     public AudiosStates CurrectAudioStates;
     public AudiosStates LastAudioStates;
-
+    
     public bool UnOfficial;
     public bool unpublished;
 
 
-    public static void InitializeAll()
+    public static async void InitializeAll()
     {
-        foreach (var file in EnumHelper.GetAllValues<FSAudios>().ToList())
+        foreach (var file in EnumHelper.GetAllValues<SupportedMusics>().ToList())
         {
-            new FinalMusic(music: file);
+            CreateMusic(music: file);
         }
-
+        
         var soundnum = 0;
         try
         {
@@ -159,28 +176,56 @@ public class FinalMusic
             while ((line = sr.ReadLine()) != null)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
-                if (line != null)
-                {
-                    new FinalMusic(line);
-                    XtremeLogger.Info($"Sound Loaded: {line}", "AudioManager");
-                }
+                CreateMusic(line);
+                XtremeLogger.Info($"Sound Loaded: {line}", "AudioManager");
                 soundnum++;
             }
-
         }
         catch (Exception ex)
         {
             XtremeLogger.Error("Load Audio Failed\n" + ex, "AudioManager", false);
         }
-
-
-        XtremeLogger.Msg($"{soundnum} Sounds Loaded", "AudioManager");
+        
+        XtremeLogger.Msg($"{soundnum} Custom Sounds Loaded", "AudioManager");
     }
+    
     private static readonly object finalMusicsLock = new();
 
-    public FinalMusic(string name = "", FSAudios music = FSAudios.UnOfficial)
+    public static void CreateMusic(string name = "", SupportedMusics music = SupportedMusics.UnOfficial)
     {
-        if (music != FSAudios.UnOfficial)
+        var mus = new XtremeMusic();
+        mus.Create(name, music);
+    }
+
+    public static async Task LoadClip(SupportedMusics music = SupportedMusics.UnOfficial)
+    {
+        var mus = musics.FirstOrDefault(x => x.CurrectAudio == music);
+        if (mus != null)
+            await mus.Load();
+    }
+
+    private async Task Load()
+    {
+        if (CurrectAudioStates != AudiosStates.Exist) return;
+        var task = AudioLoader.LoadAudioClipAsync(Path);
+        _ = new LateTask(() =>
+        {
+            LastAudioStates = CurrectAudioStates = AudiosStates.IsLoading;
+            MyMusicPanel.RefreshTagList();
+        }, 0.01F, "");
+        await task;
+        _ = new LateTask(() =>
+        {
+            if (task.Result != null)
+                Clip = task.Result;
+            LastAudioStates = CurrectAudioStates = Clip != null ? AudiosStates.Exist : AudiosStates.NotExist;
+            MyMusicPanel.RefreshTagList();
+        }, 0.01F, "");
+    }
+
+    private void Create(string name, SupportedMusics music)
+    {
+        if (music != SupportedMusics.UnOfficial)
         {
             var Part = music.ToString().Split("__");
             FileName = Part[0];
@@ -194,25 +239,26 @@ public class FinalMusic
             FileName = Name = name;
             Author = "";
         }
-        UnOfficial = music == FSAudios.UnOfficial;
+
+        UnOfficial = music == SupportedMusics.UnOfficial;
         CurrectAudio = music;
         Path = PathManager.GetResourceFilesPath(FileType.Sounds, FileName + ".wav");
         CurrectAudioStates = LastAudioStates = ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;
-
+        
         lock (finalMusicsLock)
         {
-            var file = finalMusics.Find(x => x.FileName == FileName);
+            var file = musics.Find(x => x.FileName == FileName);
             if (file != null)
             {
-                XtremeLogger.Info($"Replace {file.FileName}", "FinalMusic");
-                var index = finalMusics.IndexOf(file);
-                if (file.CurrectAudioStates == AudiosStates.IsPlaying) CurrectAudioStates = AudiosStates.IsPlaying;
-                finalMusics.RemoveAt(index);
-                finalMusics.Insert(index, this);
-
+                file.Path = Path;
+                if (file.CurrectAudioStates is AudiosStates.DownLoadFailureNotice or AudiosStates.DownLoadSucceedNotice 
+                    || CurrectAudioStates is AudiosStates.NotExist)
+                {
+                    file.CurrectAudioStates = file.LastAudioStates = CurrectAudioStates;
+                }
             }
             else if (Name != string.Empty)
-                finalMusics.Add(this);
+                musics.Add(this);
         }
     }
 }

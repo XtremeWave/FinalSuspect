@@ -7,6 +7,8 @@ using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using InnerNet;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.DataHandling;
 public class XtremePlayerData : IDisposable
@@ -22,8 +24,8 @@ public class XtremePlayerData : IDisposable
 
         public bool IsImpostor { get; private set; }
         public bool IsDead { get; private set; }
-        public bool IsDisconnected => RealDeathReason == VanillaDeathReason.Disconnect;
-
+        public bool DeathByDisconnected => RealDeathReason == VanillaDeathReason.Disconnect;
+        public bool IsDisconnected { get; private set; }
 
         public RoleTypes? RoleWhenAlive { get; private set; }
         public RoleTypes? RoleAfterDeath { get; private set; }
@@ -56,8 +58,14 @@ public class XtremePlayerData : IDisposable
             RealKiller = null;
         }
 
-    #endregion
-    ///////////////FUNCTIONS\\\\\\\\\\\\\\\
+        
+        public SpriteRenderer rend { get; set; }
+        public SpriteRenderer deadbodyrend { get; set; }
+        public Vector3? preMeetingPosition{ get; set; }
+ 
+        #endregion
+ 
+        ///////////////FUNCTIONS\\\\\\\\\\\\\\\
     
     public static XtremePlayerData GetXtremeDataById(byte id)
     {
@@ -103,6 +111,8 @@ public class XtremePlayerData : IDisposable
     public void SetDead()
     {
         IsDead = true;
+        deadbodyrend = Object.Instantiate(rend, rend.transform.parent);
+        deadbodyrend.flipY = true;
         XtremeLogger.Info($"Set Death For {Player.GetNameWithRole()}", "Data");
     }
     public void SetDisconnected()
@@ -114,6 +124,7 @@ public class XtremePlayerData : IDisposable
             return;
         }
         XtremeLogger.Info($"Set Disconnect For {Player.GetNameWithRole()}", "Data");
+        IsDisconnected = true;
         SetDead();
         SetDeathReason(VanillaDeathReason.Disconnect);
     }
@@ -137,7 +148,7 @@ public class XtremePlayerData : IDisposable
         if (IsDead && RealDeathReason == VanillaDeathReason.None || focus)
             RealDeathReason = deathReason;
         XtremeLogger.Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
-
+        
     }
     public void SetRealKiller(XtremePlayerData killer)
     {
@@ -145,7 +156,9 @@ public class XtremePlayerData : IDisposable
         SetDeathReason(VanillaDeathReason.Kill);
         killer.KillCount++;
         RealKiller = killer;
+
         XtremeLogger.Info($"Set Real Killer For {Player.GetNameWithRole()}, Killer: {killer.Player.GetNameWithRole()}, DeathReason:", "Data");
+        
     }
     public void SetTaskTotalCount(int count) => TotalTaskCount = count;
     public void CompleteTask() => CompleteTaskCount++;
@@ -191,6 +204,8 @@ public class XtremePlayerData : IDisposable
         CompleteTaskCount = KillCount = TotalTaskCount = 0;
         RealDeathReason = VanillaDeathReason.None;
         RealKiller = null;
+        deadbodyrend = rend = null;
+        preMeetingPosition = null;
     }
 
     public static void DisposeAll()

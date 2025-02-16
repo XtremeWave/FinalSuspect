@@ -17,12 +17,7 @@ namespace FinalSuspect.Modules.Resources;
 [HarmonyPatch]
 public class ModUpdater
 {
-    public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
-
-    public static Dictionary<SupportedLangs, string> announcement = new();
-    public static string downloadUrl_github = "https://github.com/XtremeWave/FinalSuspect/releases/latest/download/FinalSuspect.dll";
-    public static string downloadUrl_gitee = "https://gitee.com/XtremeWave/FinalSuspect/releases/download/v{showVer}/FinalSuspect.dll";
-    public static string downloadUrl_objectstorage = "https://api.xtreme.net.cn/download/FinalSuspect/FinalSuspect.dll";
+    public static readonly Dictionary<SupportedLangs, string> announcement = new();
 
     public static void SetUpdateButtonStatus()
     {
@@ -36,9 +31,9 @@ public class ModUpdater
         if (url == "waitToSelect")
         {
             CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"), [
-                (GetString("updateSource.XtremeApi"), () => StartUpdate(downloadUrl_objectstorage)),
-                (GetString("updateSource.Github"), () => StartUpdate(downloadUrl_github)),
-                (GetString("updateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
+                (GetString("updateSource.XtremeApi"), () => StartUpdate(PathManager.downloadUrl_xtremeapi)),
+                (GetString("updateSource.Github"), () => StartUpdate(PathManager.downloadUrl_github)),
+                (GetString("updateSource.Gitee"), () => StartUpdate(PathManager.downloadUrl_gitee)),
                 (GetString(StringNames.Cancel), SetUpdateButtonStatus)
             ]);
             return;
@@ -85,30 +80,30 @@ public class ModUpdater
     }
     public static async Task<(bool, string)> DownloadDLL(string url)
     {
-        File.Delete(DownloadFileTempPath);
-        File.Create(DownloadFileTempPath).Close();
+        File.Delete(PathManager.DownloadFileTempPath);
+        File.Create(PathManager.DownloadFileTempPath).Close();
 
         XtremeLogger.Msg("Start Downlaod From: " + url, "DownloadDLL");
-        XtremeLogger.Msg("Save To: " + DownloadFileTempPath, "DownloadDLL");
+        XtremeLogger.Msg("Save To: " + PathManager.DownloadFileTempPath, "DownloadDLL");
         try
         {
-            using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
+            using var client = new HttpClientDownloadWithProgress(url, PathManager.DownloadFileTempPath);
             client.ProgressChanged += OnDownloadProgressChanged;
             await client.StartDownload();
             Thread.Sleep(100);
-            if (GetMD5HashFromFile(DownloadFileTempPath) != md5)
+            if (GetMD5HashFromFile(PathManager.DownloadFileTempPath) != md5)
             {
-                File.Delete(DownloadFileTempPath);
+                File.Delete(PathManager.DownloadFileTempPath);
                 return (false, GetString("updateFileMd5Incorrect"));
             }
             var fileName = Assembly.GetExecutingAssembly().Location;
             File.Move(fileName, fileName + ".bak");
-            File.Move(DownloadFileTempPath, fileName);
+            File.Move(PathManager.DownloadFileTempPath, fileName);
             return (true, null);
         }
         catch (Exception ex)
         {
-            File.Delete(DownloadFileTempPath);
+            File.Delete(PathManager.DownloadFileTempPath);
             XtremeLogger.Error($"更新失败\n{ex.Message}", "DownloadDLL", false);
             return (false, GetString("downloadFailed"));
         }

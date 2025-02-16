@@ -7,7 +7,7 @@ using FinalSuspect.Modules.Resources;
 using TMPro;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
-using static FinalSuspect.Modules.SoundInterface.FinalMusic;
+using static FinalSuspect.Modules.SoundInterface.XtremeMusic;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Modules.SoundInterface;
@@ -81,8 +81,7 @@ public static class SoundManagementPanel
                 mask.transform.localScale = new Vector3(4.9f, 3.92f, 1f);
             }
         }
-
-        ReloadTag();
+        
         RefreshTagList();
     }
     public static void RefreshTagList()
@@ -90,7 +89,7 @@ public static class SoundManagementPanel
         if (!XtremeGameData.GameStates.IsNotJoined) return;
         numItems = 0;
         var scroller = Slider.GetComponent<Scroller>();
-        scroller.Inner.gameObject.ForEachChild((Action<GameObject>)(DestroyObj));
+        scroller.Inner.gameObject.ForEachChild((Action<GameObject>)DestroyObj);
         static void DestroyObj(GameObject obj)
         {
             if (obj.name.StartsWith("AccountButton")) Object.Destroy(obj);
@@ -101,8 +100,7 @@ public static class SoundManagementPanel
 
         Items?.Values?.Do(Object.Destroy);
         Items = new();
-        foreach (var audio in finalMusics)
-        
+        foreach (var audio in musics)
         {
             numItems++;
             var filename = audio.FileName;
@@ -179,7 +177,6 @@ public static class SoundManagementPanel
                 if (audioExist)
                 {
                     Delete(audio);
-
                 }
                 else
                 {
@@ -195,7 +192,7 @@ public static class SoundManagementPanel
 
                             new LateTask(() =>
                             {
-                                new FinalMusic(music: audio.CurrectAudio);
+                                CreateMusic(music: audio.CurrectAudio);
                                 RefreshTagList();
                                 MyMusicPanel.RefreshTagList();
                             }, 3f, "Refresh Tag List");
@@ -216,14 +213,14 @@ public static class SoundManagementPanel
     }
 
 
-    public static void Delete(FinalMusic audio)
+    public static void Delete(XtremeMusic audio)
     {
         var sound = audio.FileName;
         if (audio.UnOfficial)
             DeleteSoundInName(sound);
         DeleteSoundInFile(sound);
         if (!audio.UnOfficial)
-            new FinalMusic(music: audio.CurrectAudio);
+            CreateMusic(music: audio.CurrectAudio);
         RefreshTagList();
         MyMusicPanel.RefreshTagList();
     }
@@ -255,8 +252,8 @@ public static class SoundManagementPanel
         {
             sw.WriteLine(line);
         }
-        var item = finalMusics.Where(x => x.Name == name).FirstOrDefault();
-        finalMusics.Remove(item);
+        var item = musics.Where(x => x.Name == name).FirstOrDefault();
+        musics.Remove(item);
     }
     static void DeleteSoundInFile(string sound)
     {

@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★À Plus tard★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# French
+À plus tard.
+
+## Base
+- Basé sur Among Us v2024.10.29
+- Basé sur BepInEx v6.0.0-be.733
+
+## Résumé des Mises à Jour
+- Corrections : 10
+- Optimisations : 1
+- Changements : 1
+- Ajouts : 7
+- Réécritures : 1
+- Suppressions : 2
+
+## Équipe de Développement
+- [Slok]("https://github.com/Slok7565/")
+
+## Contributeurs
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Corrections
+- Correction du bug où l'anti-triche ne parvenait pas à expulser les joueurs
+- Correction du bug où l'anti-triche était actif même lorsqu'il était désactivé
+- Correction du bug de mauvaise affichage de la version
+- Correction du bug où certains joueurs n'étaient pas marqués comme déconnectés lorsqu'ils quittaient
+- Correction du bug des erreurs fréquentes de GC
+- Correction du bug où les joueurs restaient bloqués sur l'animation de démarrage "Vérification des ressources"
+- Correction du bug du volume incorrect pour la musique du menu principal d'origine
+Corrigé par Slok
+- Correction du bug où les mods ne chargeaient parfois pas à cause de mots bloqués
+Corrigé par Slok
+Feedback : ev3lynParker
+- Correction du bug où la langue des annonces ne se rafraîchissait pas après le changement de langue
+- Correction du bug où le texte en bas à droite ne se rafraîchissait pas après le changement de langue
+Corrigé par Slok
+Feedback : Trick_2012
+
+## Optimisations
+- Optimisation de l'utilisation de la mémoire des mods
+Réalisé par Slok
+
+## Changements
+- Le jeu ne force plus le mode plein écran
+Modifié par Slok
+Idée : Nonalus, Yu
+
+## Ajouts
+- Après la mort, les joueurs qui ne sont pas des Gardiens peuvent voir la position de tous les joueurs et les informations sur les corps sur la carte
+Réalisé par Slok
+Idée : Amongus
+- Le volume de la musique des mods peut être contrôlé par le curseur de volume du jeu.
+- Colorer le texte des boutons de compétence en fonction de la couleur de la classe.
+- Optimiser la couleur du texte du temps de recharge.
+- Colorer les serveurs non officiels dans la liste des serveurs.
+- Option Client : Mode de Lancement Rapide
+Réalisé par Slok
+- Réparation de la liste des serveurs pour les serveurs
+Réalisé par FangKuai
+
+## Réécritures
+- Réécriture de la logique de lecture et d'analyse des sons
+Réalisé par Slok
+
+## Suppressions
+- Supprimé : Option Client : Activer le Fond d'écran personnalisé de l'introduction
+- Supprimé : Option Client : Activer la Couleur personnalisée de la carte
+Raison : La fonctionnalité est inutile
+Décision de Slok

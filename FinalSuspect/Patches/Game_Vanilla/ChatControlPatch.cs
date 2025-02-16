@@ -3,7 +3,6 @@ using AmongUs.Data;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using InnerNet;
 using UnityEngine;
-using XUnity.AutoTranslator.Plugin.Core;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -41,9 +40,9 @@ public static class ChatControllerUpdatePatch
         if (Input.GetKeyDown(KeyCode.DownArrow) && ChatCommands.SentHistory.Count > 0)
         {
             CurrentHistorySelection++;
-            if (CurrentHistorySelection < ChatCommands.SentHistory.Count)
-                __instance.freeChatField.textArea.SetText(ChatCommands.SentHistory[CurrentHistorySelection]);
-            else __instance.freeChatField.textArea.SetText("");
+            __instance.freeChatField.textArea.SetText(CurrentHistorySelection < ChatCommands.SentHistory.Count
+                ? ChatCommands.SentHistory[CurrentHistorySelection]
+                : "");
         }
     }
 }

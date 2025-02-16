@@ -110,25 +110,7 @@ public class VersionShowerStartPatch
 
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && VisitText == null)
         {
-            VisitText = Object.Instantiate(__instance.text);
-            VisitText.name = "FinalSuspect VisitText";
-            VisitText.alignment = TextAlignmentOptions.Left;
-            VisitText.text = VersionChecker.isChecked
-                ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.ModColor)
-                : GetString("ConnectToFinalSuspectServerFailed");
-            VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);
-            VisitText.enabled = GameObject.Find("FinalSuspect Background") != null;
-
-            __instance.text.alignment = TextAlignmentOptions.Left;
-            OVersionShower.transform.localPosition = new Vector3(-4.92f, -3.3f, 0f);
-
-            var ap1 = OVersionShower.GetComponent<AspectPosition>();
-            if (ap1 != null) Object.Destroy(ap1);
-            var ap2 = VisitText.GetComponent<AspectPosition>();
-            if (ap2 != null) Object.Destroy(ap2);
-
-
+            CreateVisitText(__instance);
         };
 
         if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
@@ -178,6 +160,34 @@ public class VersionShowerStartPatch
         ModLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
         ModLogo.transform.localPosition = new Vector3(3.7f, -2.6f, 0f);
         ModLogo.SetActive(false);
+    }
+
+    private static VersionShower Instance;
+    public static void CreateVisitText(VersionShower __instance)
+    {
+        if (__instance == null)
+            __instance = Instance;
+        else
+        {
+            Instance = __instance;
+        }
+        VisitText = Object.Instantiate(__instance.text);
+        VisitText.name = "FinalSuspect VisitText";
+        VisitText.alignment = TextAlignmentOptions.Left;
+        VisitText.text = VersionChecker.isChecked
+            ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.ModColor)
+            : GetString("ConnectToFinalSuspectServerFailed");
+        VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);
+        VisitText.enabled = GameObject.Find("FinalSuspect Background") != null;
+
+        __instance.text.alignment = TextAlignmentOptions.Left;
+        OVersionShower.transform.localPosition = new Vector3(-4.92f, -3.3f, 0f);
+
+        var ap1 = OVersionShower.GetComponent<AspectPosition>();
+        if (ap1 != null) Object.Destroy(ap1);
+        var ap2 = VisitText.GetComponent<AspectPosition>();
+        if (ap2 != null) Object.Destroy(ap2);
     }
 }
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.First)]
