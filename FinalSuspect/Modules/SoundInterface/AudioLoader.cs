@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using System.IO;
 using System.Threading.Tasks;
-using NAudio.Flac;
-using NAudio.Wave;
 using UnityEngine.Networking;
 
 namespace FinalSuspect.Modules.SoundInterface;
