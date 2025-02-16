@@ -10,12 +10,13 @@ public class NotificationPopperPatch
     private static bool Prefix(NotificationPopper __instance, string item)
     {
         if (!WaitToSend.Contains(item)) return false;
+        SpamManager.CheckSpam(ref item);
         WaitToSend.Remove(item);
         return true;
     }
     public static void AddItem(string text)
     {
-        SpamManager.CheckSpam(ref text);
+        
         WaitToSend.Add(text);
         if (DestroyableSingleton<HudManager>._instance) DestroyableSingleton<HudManager>.Instance.Notifier.AddDisconnectMessage(text);
         else WaitToSend.Remove(text);
