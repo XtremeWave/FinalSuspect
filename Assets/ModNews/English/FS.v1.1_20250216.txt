@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★See Ya Later★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# English
+See you later.
+
+## Base
+- Based on Among Us v2024.10.29
+- Based on BepInEx v6.0.0-be.733
+
+## Summary of Updates
+- Fixes: 10
+- Optimizations: 1
+- Changes: 1
+- Additions: 7
+- Remakes: 1
+- Deletions: 2
+
+## Team Contributors
+- [Slok]("https://github.com/Slok7565/")
+
+## Contributors
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Fixes
+- Fix the bug of anti-cheat failed to kick players
+- Fix the bug of anti-cheat was effective when disabled
+- Fix the bug of wrong version display
+- Fix the bug of some players not being marked as disconnected when exiting
+- Fix the bug of frequent GC errors
+- Fix the bug of players stuck at the game startup animation "Verifying Resources"
+- Fix the bug of incorrect volume for the original main menu music
+Fixed by Slok
+- Fix the bug of mods sometimes failing to load due to blocked words
+Fixed by Slok
+Feedback: ev3lynParker
+- Fix the bug of announcement language not refreshing after switching languages
+- Fix the bug of bottom-right prompt text not refreshing after switching languages
+Fixed by Slok
+Feedback: Trick_2012
+
+## Optimizations
+- Optimized mod memory usage
+Made by Slok
+
+## Changes
+- The game no longer forces fullscreen mode
+Changed by Slok
+Idea: Nonalus, Yu
+
+## Additions
+- After death, non-Guardian Angel players can see the locations of all players and corpse information on the map.
+Made by Slok
+Idea: Amongus
+- The volume of mod music can be controlled by the game volume slider.
+- Color the skill button text according to the class color.
+- Optimize the cooldown text color.
+- Color the unofficial servers in the server list.
+- Client Option: Fast Launch Mode
+Made by Slok
+- Fixed the server list for servers
+Made by FangKuai
+
+## Remakes
+- Rewrote the audio playback and parsing logic
+Made by Slok
+
+## Deletions
+- Removed: Client Option: Enable Custom Intro Background
+- Removed: Client Option: Enable Custom Map Color
+Reason: The feature is meaningless
+Decided By Slok

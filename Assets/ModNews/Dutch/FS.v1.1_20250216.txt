@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Tot ziens★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Dutch
+Tot ziens.
+
+## Basis
+- Gebaseerd op Among Us v2024.10.29
+- Gebaseerd op BepInEx v6.0.0-be.733
+
+## Samenvatting van updates
+- Fixes: 10
+- Optimalisaties: 1
+- Veranderingen: 1
+- Toevoegingen: 7
+- Hervormingen: 1
+- Verwijderingen: 2
+
+## Team contributors
+- [Slok]("https://github.com/Slok7565/")
+
+## Contributors
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Fixes
+- Fix de bug van anti-cheat die spelers niet kon verwijderen
+- Fix de bug van anti-cheat die werkte toen deze uitgeschakeld was
+- Fix de bug van verkeerde versie weergave
+- Fix de bug dat sommige spelers niet gemarkeerd werden als onverbonden bij het verlaten
+- Fix de bug van frequente GC-fouten
+- Fix de bug dat spelers vast kwamen te zitten bij het startanimatie "Verifying Resources"
+- Fix de bug van verkeerd volume voor de originele hoofdmenu muziek
+Fixed by Slok
+- Fix de bug dat mods soms niet laadden door geblokkeerde woorden
+Fixed by Slok
+Feedback: ev3lynParker
+- Fix de bug dat de aankondigingstaal niet vernieuwd werd na het wisselen van talen
+- Fix de bug dat de tekst in de onderste rechterhoek niet vernieuwd werd na het wisselen van talen
+Fixed by Slok
+Feedback: Trick_2012
+
+## Optimalisaties
+- Optimalisatie van mod geheugengebruik
+Gemaakt door Slok
+
+## Veranderingen
+- Het spel dwingt niet meer tot volledig schermmodus
+Veranderd door Slok
+Idee: Nonalus, Yu
+
+## Toevoegingen
+- Na dood zijn zijn de locaties van alle spelers en lijken zichtbaar voor niet-bewakers op de kaart
+Gemaakt door Slok
+Idee: Amongus
+- Het volume van mod muziek kan worden aangepast met de volumeregelaar van het spel.
+- Kleur de tekst van de vaardigheidknop overeenkomstig de klas kleur.
+- Optimaliseer de tekst van de cooldown kleur.
+- Kleur de onofficiële servers in de serverlijst.
+- Client Optie: Snelle Startmodus
+Gemaakt door Slok
+- Vaste serverlijst voor servers
+Gemaakt door FangKuai
+
+## Hervormingen
+- Hernoemde de logica van audio afspelen en parseren
+Gemaakt door Slok
+
+## Verwijderingen
+- Verwijderd: Client Optie: Aangepaste Intro Achtergrond inschakelen
+- Verwijderd: Client Optie: Aangepaste Kaartkleur inschakelen
+Reden: De functie is zinloos
+Beslist door Slok

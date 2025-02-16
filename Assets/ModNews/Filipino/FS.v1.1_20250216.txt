@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Magkita Tayo Lagi★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Filipino
+Magkita tayo lagi.
+
+## Base
+- Batay sa Among Us v2024.10.29
+- Batay sa BepInEx v6.0.0-be.733
+
+## Buod ng mga Update
+- Mga Pagsasawali: 10
+- Pagsisikap: 1
+- Mga Pagbabago: 1
+- Mga Nagdaragdag: 7
+- Mga Pagbago-bago: 1
+- Mga Tinanggal: 2
+
+## Mga Nagtrabaho sa Team
+- [Slok]("https://github.com/Slok7565/")
+
+## Mga Nagtrabaho
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Mga Pagsasawali
+- Tinanggal ang bug ng anti-cheat na hindi nakakaboto ng mga player
+- Tinanggal ang bug ng anti-cheat na gumagana kahit na ito ay hindi pinagana
+- Tinanggal ang bug ng maling pagpapakita ng bersyon
+- Tinanggal ang bug ng hindi nakakapaglabel ng mga player bilang hindi nakakonekta kapag lumabas
+- Tinanggal ang bug ng madalas na mga pagkakamali ng GC
+- Tinanggal ang bug ng mga player na nakakapigil sa pagkakataon ng "Verifying Resources"
+- Tinanggal ang bug ng maling bolyum ng orihinal na musika ng pangunahing menu
+Tinanggal ni Slok
+- Tinanggal ang bug ng hindi kumakarga ang mga mods dahil sa mga bloked na salita
+Tinanggal ni Slok
+Feedback: ev3lynParker
+- Tinanggal ang bug ng hindi nagbabago ang wika ng announcement pagkatapos magbago ng wika
+- Tinanggal ang bug ng hindi nagbabago ang teksto sa kanan baba pagkatapos magbago ng wika
+Tinanggal ni Slok
+Feedback: Trick_2012
+
+## Pagsisikap
+- Pinagandarhan ang paggamit ng memorya ng mga mods
+Ginawa ni Slok
+
+## Mga Pagbabago
+- Hindi na pinipilit ng laro ang fullscreen mode
+Binago ni Slok
+Idea: Nonalus, Yu
+
+## Mga Nagdaragdag
+- Pagkamatay, ang mga player na hindi Guardian ay makakakita ng mga lokasyon ng lahat ng mga player at impormasyon tungkol sa mga laban sa map
+Ginawa ni Slok
+Idea: Amongus
+- Ang bolyum ng musika ng mga mods ay maaaring kontrolin sa pamamagitan ng slider ng bolyum ng laro.
+- Pagkolor ng teksto ng pindutan ng kalyeng ayon sa kulay ng klase.
+- Pagpapaganda ng kulay ng teksto ng cooldown.
+- Pagkolor ng mga hindi opisyal na mga server sa listahan ng mga server.
+- Mga Opsiyon ng Kliyente: Mabilis na Mode ng Paglulunsad
+Ginawa ni Slok
+- Tinanggal ang listahan ng mga server para sa mga server
+Ginawa ni FangKuai
+
+## Mga Pagbago-bago
+- Mulang isinulat ang logika ng pagpapataw ng audio at pagpaparasa
+Ginawa ni Slok
+
+## Mga Tinanggal
+- Tinanggal: Opsiyon ng Kliyente: Paganahin ang Custom Intro Background
+- Tinanggal: Opsiyon ng Kliyente: Paganahin ang Custom Map Color
+Dahilan: Walang kahulugan ang tampok
+Napasyahan ni Slok

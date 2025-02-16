@@ -1,0 +1,75 @@
+#Number:100003
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Hasta Luego★★★★
+#ShortTitle:★Update v1.1
+#Date:2025-02-16T0:00:00Z
+#-----------------------------
+# Español
+Hasta luego.
+
+## Base
+- Basado en Among Us v2024.10.29
+- Basado en BepInEx v6.0.0-be.733
+
+## Resumen de Actualizaciones
+- Correcciones: 10
+- Optimizaciones: 1
+- Cambios: 1
+- Adiciones: 7
+- Remakes: 1
+- Eliminaciones: 2
+
+## Equipo de Desarrollo
+- [Slok]("https://github.com/Slok7565/")
+
+## Colaboradores
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correcciones
+- Se corrigió el error de que el anticheat no expulsara a los jugadores.
+- Se corrigió el error de que el anticheat funcionara incluso cuando estaba desactivado.
+- Se corrigió el error de la versión mostrada incorrectamente.
+- Se corrigió el error de que algunos jugadores no se marcaran como desconectados al salir.
+- Se corrigió el error de errores frecuentes de GC.
+- Se corrigió el error de que los jugadores se quedaran atascados en la animación de inicio "Verificando Recursos".
+- Se corrigió el error del volumen incorrecto para la música del menú principal original.
+Corregido por Slok.
+- Se corrigió el error de que los mods a veces no se cargaran debido a palabras bloqueadas.
+Corregido por Slok.
+Feedback: ev3lynParker.
+- Se corrigió el error de que el idioma de los anuncios no se actualizara después de cambiar el idioma.
+- Se corrigió el error de que el texto en la esquina inferior derecha no se actualizara después de cambiar el idioma.
+Corregido por Slok.
+Feedback: Trick_2012.
+
+## Optimizaciones
+- Se optimizó el uso de memoria de los mods.
+Realizado por Slok.
+
+## Cambios
+- El juego ya no fuerza el modo pantalla completa.
+Cambiado por Slok.
+Idea: Nonalus, Yu.
+
+## Adiciones
+- Después de morir, los jugadores que no son Guardianes pueden ver la ubicación de todos los jugadores y la información sobre los cuerpos en el mapa.
+Realizado por Slok.
+Idea: Amongus.
+- El volumen de la música de los mods se puede controlar con el control de volumen del juego.
+- Colorear el texto del botón de habilidad según el color de la clase.
+- Optimizar el color del texto del tiempo de reutilización.
+- Colorear los servidores no oficiales en la lista de servidores.
+- Opción del Cliente: Modo de Inicio Rápido.
+Realizado por Slok.
+- Se corrigió la lista de servidores para los servidores.
+Realizado por FangKuai.
+
+## Remakes
+- Se reescribió la lógica de reproducción y análisis de audio.
+Realizado por Slok.
+
+## Eliminaciones
+- Eliminado: Opción del Cliente: Habilitar Fondo de Introducción Personalizado.
+- Eliminado: Opción del Cliente: Habilitar Color de Mapa Personalizado.
+Razón: La función es innecesaria.
+Decisión de Slok.
