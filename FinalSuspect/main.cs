@@ -27,11 +27,11 @@ namespace FinalSuspect;
 public class Main : BasePlugin
 {
     // == 程序基本设定 / Program Config ==
-    public static readonly string ModName = "Final Suspect";
+    public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.0.1";
+    public const string PluginVersion = "1.1.0";
     public const string PluginGuid = "cn.finalsuspect.xtremewave";
-    public const int PluginCreation = 3;
+    public const int PluginCreation = 0;
 
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
@@ -55,7 +55,7 @@ public class Main : BasePlugin
             var day = currentDate.Day.ToString("D2");    
             return $"{year}{month}{day}";
 #else
-            return "20240130";
+            return "20240216";
 #endif
         }
     }
@@ -75,8 +75,10 @@ public class Main : BasePlugin
     /// Preview: 预览/预发行版
     /// Scrapter: 废弃版
     /// </summary>
-    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Alpha;
-    private const int DisplayedVersion_TestCreation = 1;
+    private const VersionTypes DisplayedVersion_TestText = VersionTypes.Release;
+
+    private const int DisplayedVersion_TestCreation = 0;
+    
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_TestText != VersionTypes.Release ? 
@@ -226,17 +228,17 @@ public class Main : BasePlugin
         {
             roleColors = new Dictionary<RoleTypes, string>
             {
-                {RoleTypes.CrewmateGhost, "#8CFFFF"},
-                {RoleTypes.GuardianAngel, "#8CFFDB"},
-                {RoleTypes.Crewmate, "#8CFFFF"},
-                {RoleTypes.Scientist, "#F8FF8C"},
-                {RoleTypes.Engineer, "#A5A8FF"},
-                {RoleTypes.Noisemaker, "#FFC08C"},
-                {RoleTypes.Tracker, "#93FF8C"},
-                {RoleTypes.ImpostorGhost, "#FF1919"},
-                {RoleTypes.Impostor, "#FF1919"},
-                {RoleTypes.Shapeshifter, "#FF819E"},
-                {RoleTypes.Phantom, "#CA8AFF"},
+                { RoleTypes.CrewmateGhost, "#8CFFFF" },
+                { RoleTypes.GuardianAngel, "#8CFFDB" },
+                { RoleTypes.Crewmate, "#8CFFFF" },
+                { RoleTypes.Scientist, "#F8FF8C" },
+                { RoleTypes.Engineer, "#A5A8FF" },
+                { RoleTypes.Noisemaker, "#FFC08C" },
+                { RoleTypes.Tracker, "#93FF8C" },
+                { RoleTypes.ImpostorGhost, "#FF1919" },
+                { RoleTypes.Impostor, "#FF1919" },
+                { RoleTypes.Shapeshifter, "#FF819E" },
+                { RoleTypes.Phantom, "#CA8AFF" },
             };
         }
         catch (ArgumentException ex)

@@ -81,8 +81,7 @@ public static class SoundManagementPanel
                 mask.transform.localScale = new Vector3(4.9f, 3.92f, 1f);
             }
         }
-
-        ReloadTag();
+        
         RefreshTagList();
     }
     public static void RefreshTagList()
@@ -178,7 +177,6 @@ public static class SoundManagementPanel
                 if (audioExist)
                 {
                     Delete(audio);
-
                 }
                 else
                 {
@@ -194,7 +192,7 @@ public static class SoundManagementPanel
 
                             new LateTask(() =>
                             {
-                                new XtremeMusic(music: audio.CurrectAudio);
+                                CreateMusic(music: audio.CurrectAudio);
                                 RefreshTagList();
                                 MyMusicPanel.RefreshTagList();
                             }, 3f, "Refresh Tag List");
@@ -222,7 +220,7 @@ public static class SoundManagementPanel
             DeleteSoundInName(sound);
         DeleteSoundInFile(sound);
         if (!audio.UnOfficial)
-            new XtremeMusic(music: audio.CurrectAudio);
+            CreateMusic(music: audio.CurrectAudio);
         RefreshTagList();
         MyMusicPanel.RefreshTagList();
     }

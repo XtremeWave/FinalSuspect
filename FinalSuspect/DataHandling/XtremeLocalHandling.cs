@@ -415,7 +415,7 @@ public static class XtremeLocalHandling
             }
             else if (data.preMeetingPosition != null)
             {
-               data.preMeetingPosition = null;
+                data.preMeetingPosition = null;
             }
 
             vector /= ShipStatus.Instance.MapScale;
@@ -424,7 +424,6 @@ public static class XtremeLocalHandling
             data.rend.transform.localPosition = vector;
             data.rend.gameObject.SetActive(true);
         }
-        
     }
 
     

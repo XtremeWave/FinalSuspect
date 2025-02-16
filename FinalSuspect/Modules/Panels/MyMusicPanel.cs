@@ -82,8 +82,6 @@ public static class MyMusicPanel
 
             AddChangePlayModeButton(optionsMenuBehaviour);
         }
-
-        ReloadTag();
         RefreshTagList();
     }
     static void AddPageNavigationButton(OptionsMenuBehaviour optionsMenuBehaviour)
@@ -108,7 +106,7 @@ public static class MyMusicPanel
             {
                 currentPage = 1;
             }
-
+            
             RefreshTagList() ;
         }));
     }
@@ -161,7 +159,6 @@ public static class MyMusicPanel
     }
     public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, XtremeMusic audio)
     {
-
         try
         {
             var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
@@ -196,7 +193,6 @@ public static class MyMusicPanel
 
             switch (audio.CurrectAudioStates)
             {
-                
                 case AudiosStates.IsPlaying:
                     preview = GetString("Playing");
                     color = ColorHelper.ModColor32;
@@ -205,15 +201,10 @@ public static class MyMusicPanel
                     color = ColorHelper.DownloadYellow;
                     preview = GetString("Downloading");
                     break;
-                case AudiosStates.ReadyLoading:
-                    color = ColorHelper.ClientFeatureColor_CanNotUse;
-                    preview = GetString("ReadyToLoad");
-                    break;
                 case AudiosStates.IsLoading:
                     color = ColorHelper.ClientOptionColor;
                     preview = GetString("LoadingMus");
                     break;
-
                 case AudiosStates.DownLoadSucceedNotice:
                 case AudiosStates.Exist:
                     color = audio.UnOfficial ? Color.green : ColorHelper.ClientFeatureColor;
@@ -224,7 +215,6 @@ public static class MyMusicPanel
                 case AudiosStates.DownLoadFailureNotice:
                 default:
                 {
-                    
                     color = ColorHelper.ClientFeatureColor_CanNotUse;
                     preview = GetString("NoFound");
                     break;

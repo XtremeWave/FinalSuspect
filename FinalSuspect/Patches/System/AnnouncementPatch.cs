@@ -134,7 +134,7 @@ public static bool SetModAnnouncements(PlayerAnnouncementData __instance, [Harmo
             });
         }
         
-        List<Announcement> FinalAllNews = new List<Announcement>();
+        var FinalAllNews = new List<Announcement>();
         AllModNews.ForEach(n =>
         {
             if (n.Lang == (uint)TranslationController.Instance.currentLanguage.languageID)

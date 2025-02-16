@@ -57,7 +57,8 @@ public class LoadPatch
     private static List<string> remoteModNewsList =
     [
         "FS.v1.0_20250129.txt",
-        "FeaturesIntroduction.v1.0.txt"
+        "FeaturesIntroduction.v1.0.txt",
+        "FS.v1.0_20250216.txt",
     ];
 
     private static List<string> remoteLanguageList =
@@ -83,9 +84,9 @@ public class LoadPatch
     private static TextMeshPro LoadText = null!;
     private static TextMeshPro ProcessText = null!;
     private static SpriteRenderer Teamlogo = null!;
-    private static SpriteRenderer Modlogo= null!;
-    private static SpriteRenderer ModlogoBlurred= null!;
-    private static SpriteRenderer Glow= null!;
+    private static SpriteRenderer Modlogo = null!;
+    private static SpriteRenderer ModlogoBlurred = null!;
+    private static SpriteRenderer Glow = null!;
     private static bool ReloadLanguage;
     private static bool SkipLoadAnima = false;
 
@@ -202,7 +203,6 @@ public class LoadPatch
                     ProcessText.color = Color.green;
                     ProcessText.transform.localPosition = new Vector3(0, -0.7f, -5f);
                     yield return new WaitForSeconds(1f);
-                    XtremeLogger.Test("0000");
                     SkipLoadAnima = true;
                     break;
                 }

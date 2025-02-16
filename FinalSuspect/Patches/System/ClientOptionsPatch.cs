@@ -121,6 +121,7 @@ public static class OptionsMenuBehaviourStartPatch
             SetFeatureItemDisabled(AudioManagementBtn);
         }
 
+        Modules.SoundInterface.SoundManager.ReloadTag();
         MyMusicPanel.Init(__instance);
         SoundManagementPanel.Init(__instance);
 

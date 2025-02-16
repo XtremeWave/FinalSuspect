@@ -1,45 +1,63 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using UnityEngine;
 using static FinalSuspect.Modules.SoundInterface.SoundManager;
 using static FinalSuspect.Modules.SoundInterface.XtremeMusic;
+using Object = UnityEngine.Object;
 
 
 namespace FinalSuspect.Modules.SoundInterface;
 
 public static class CustomSoundsManager
 {
-    public static void Play(XtremeMusic audio)
+    public static async void Play(XtremeMusic audio)
     {
-        if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
-        if (!Constants.ShouldPlaySfx()) return;
-
-        foreach (var file in musics)
+        try
         {
-            if (file.FileName != audio.FileName)
-                file.CurrectAudioStates = file.LastAudioStates;
-            else
-                file.CurrectAudioStates = file.LastAudioStates = AudiosStates.IsPlaying;
-        }
+            if (audio.CurrectAudioStates is AudiosStates.NotExist or AudiosStates.IsPlaying) return;
+            if (!Constants.ShouldPlaySfx()) return;
         
-        StopPlayMod();
-        StopPlayVanilla();
-        ReloadTag();
-        MyMusicPanel.RefreshTagList();
-        SoundManagementPanel.RefreshTagList();
-        global::SoundManager.Instance.CrossFadeSound(audio.FileName, audio.Clip, 1f);
-        XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+            _ = new LateTask(() =>
+            {
+                StopPlayMod();
+                StopPlayVanilla();
+            }, 0.01F, "");
+        
+            await LoadClip(audio.CurrectAudio);
+        
+            _ = new LateTask(() =>
+            {
+                foreach (var file in musics.Where(file => file.FileName == audio.FileName))
+                {
+                    file.CurrectAudioStates = AudiosStates.IsPlaying;
+                }
+        
+                ReloadTag();
+                MyMusicPanel.RefreshTagList();
+                SoundManagementPanel.RefreshTagList();
+                global::SoundManager.Instance.CrossFadeSound(audio.FileName, audio.Clip, 1f);
+                XtremeLogger.Msg($"播放声音：{audio.Name}", "CustomSounds");
+            }, 0.01F, "");
+        }
+        catch 
+        {
+            //
+        }
     }
+ 
     public static void StopPlayMod()
     {
         musics.Do(x =>
         {
+            x.Clip = null;
             x.CurrectAudioStates = x.LastAudioStates;
             global::SoundManager.Instance.StopNamedSound(x.FileName);
         });
 
-        new LateTask(() =>
+        _ = new LateTask(() =>
         {
             MyMusicPanel.RefreshTagList();
             SoundManagementPanel.RefreshTagList();
@@ -67,7 +85,7 @@ public static class CustomSoundsManager
         if (XtremeGameData.GameStates.IsLobby)
             global::SoundManager.Instance.CrossFadeSound("MapTheme", LobbyBehaviour.Instance.MapTheme, 0.07f);
         else if (XtremeGameData.GameStates.IsNotJoined)
-            global::SoundManager.Instance.CrossFadeSound("MainBG", DestroyableSingleton<JoinGameButton>.Instance.IntroMusic, 0.07f);
+            global::SoundManager.Instance.CrossFadeSound("MainBG", DestroyableSingleton<JoinGameButton>.Instance.IntroMusic, 1f);
     }
     /*
     //public static void AutoPlay(string sound, string name)
@@ -152,17 +170,18 @@ public class AudioManagementPlaySoundPatch
         var disableVanilla = Main.DisableVanillaSound.Value;
         return !(isPlaying || disableVanilla) || !loop;
     }
-
 }
+
 [HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayDynamicSound))]
 [HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.PlayNamedSound))]
 public class AudioManagementPlayDynamicandNamedSoundPatch
 {
-    public static bool Prefix([HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
+    public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip, [HarmonyArgument(2)] bool loop)
     {
         var isPlaying = musics.Any(x => x.CurrectAudioStates == AudiosStates.IsPlaying);
+        var isModMusic = musics.Any(x => x.FileName == name);
         var disableVanilla = Main.DisableVanillaSound.Value;
-        return !(isPlaying || disableVanilla) || !loop;
+        return !(isPlaying || disableVanilla) || !loop || isModMusic;
     }
 }
 
@@ -175,5 +194,42 @@ public class AudioManagementCrossFadeSoundPatch
         var isModMusic = musics.Any(x => x.FileName == name);
         var disableVanilla = Main.DisableVanillaSound.Value;
         return !(isPlaying || disableVanilla) || isModMusic;
+    }
+}
+
+[HarmonyPatch(typeof(global::SoundManager), nameof(global::SoundManager.StopAllSound))]
+public class AudioManagementStopAllSoundPatch
+{
+    public static bool Prefix(global::SoundManager __instance)
+    {
+        for (var i = __instance.soundPlayers.Count - 1; i >= 0; i--)
+        {
+            if (musics.Any(x => x.Clip == __instance.soundPlayers[i].Player.clip)) 
+                continue;
+            
+            Object.Destroy(__instance.soundPlayers[i].Player);
+            __instance.soundPlayers.RemoveAt(i);
+        }
+        
+        var keysToRemove = new List<AudioClip>();
+        foreach (var (key, value) in __instance.allSources)
+        {
+            if (musics.Any(x => x.Clip == key)) 
+            {
+                continue; 
+            }
+
+            value.volume = 0f;
+            value.Stop();
+            Object.Destroy(value);
+            keysToRemove.Add(key);
+        }
+        
+        foreach (var key in keysToRemove)
+        {
+            __instance.allSources.Remove(key);
+        }
+
+        return false;
     }
 }

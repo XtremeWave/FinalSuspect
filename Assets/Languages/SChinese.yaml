@@ -102,7 +102,6 @@ updatePleaseWait: "请稍候……"
 updateInProgress: "更新中……"
 downloadInProgress: "下载中……"
 Playing: "播放中……"
-ReadyToLoad: "等待中……"
 LoadingMus: "解析中……"
 DownLoadSucceedNotice: "下载成功！"
 DownLoadFailureNotice: "下载失败=("
@@ -172,6 +171,8 @@ AudioNYPro: "如果您希望提高您的游戏体验，请在「主页-设置-�
 # 官方音乐 / Musics
 Mus.GongXiFaCai: "恭喜发财"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
+Mus.CountingStars: "Counting Stars"
+
 Mus.TidalSurge: "塘潮暗涌"
 Mus.TrailOfTruth: "真理之途"
 Mus.Interlude: "插叙"
@@ -179,6 +180,8 @@ Mus.Fractured: "破碎"
 Mus.ElegyOfFracturedVow: "誓碎终殇"
 Mus.VestigiumSplendoris: "余璨"
 Mus.ReturnToSimplicity: "返璞归真"
+Mus.Affinity: "祉缘谐乐"
+Mus.Inceps_Plus_InProgress: "始 + 进行时"
 
 # 信息 / Messages
 Message.KickedByDenyName: "【{0}】被踢出，因其昵称包含违禁词【{1}】"
