@@ -122,7 +122,7 @@ public class LoadPatch
             var thisversion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{ThisAssembly.Git.Commit}-{ThisAssembly.Git.Branch}";
             var writeinVer = false;
             ReloadLanguage = thisversion != Main.LastStartVersion.Value 
-                             && !(File.Exists(reloadBypassPath_Once) || !File.Exists(reloadBypassPath_Longterm));
+                             && !(File.Exists(reloadBypassPath_Once) || File.Exists(reloadBypassPath_Longterm));
 
             if (File.Exists(reloadBypassPath_Once) || File.Exists(reloadBypassPath_Longterm))
             {
@@ -387,7 +387,7 @@ public class LoadPatch
                     ProcessText.color = ColorHelper.DownloadYellow;
                     yield return FadeProcessText(false);
                     ProcessText.color = ColorHelper.DownloadYellow;
-                    ProcessText.text = GetString("DownLoadCompleteNotice");
+                    ProcessText.text = GetString("DownLoadSucceedNotice");
                     yield return FadeProcessText(true);
                 }
 
