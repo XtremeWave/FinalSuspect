@@ -281,6 +281,7 @@ Website: "公式ウェブサイト"
 MainMenuCredential: "{0} © 2025"
 LShift: "LShiftキーを押して前の部屋に戻る"
 RShift: "RShiftキーを押してクリップボードルームに入る"
+LobbyTimeDisplayText: "生存期間"
 
 # ロビーリスト表示 / Lobby List
 IPhone: "IPhone"

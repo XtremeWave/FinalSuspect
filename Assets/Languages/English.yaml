@@ -281,6 +281,7 @@ Website: "Official Website"
 MainMenuCredential: "{0} © 2025"
 LShift: "Press LShift to join to the last lobby"
 RShift: "Press RShift to join the clipboard lobby"
+LobbyTimeDisplayText: "LobbyTimeDisplay"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

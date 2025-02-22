@@ -281,6 +281,7 @@ Website: "Site Oficial"
 MainMenuCredential: "{0} © 2025"
 LShift: "Pressione LShift para voltar ao quarto anterior"
 RShift: "Pressione RShift para entrar no quarto da área de transferência"
+LobbyTimeDisplayText: "Tempo decorrido de existência"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

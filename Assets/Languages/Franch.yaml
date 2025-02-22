@@ -281,6 +281,7 @@ Website: "Site officiel"
 MainMenuCredential: "{0} © 2025"
 LShift: "Appuyez sur LShift pour retourner à la pièce précédente"
 RShift: "Appuyez sur RShift pour entrer dans la salle du presse-papiers"
+LobbyTimeDisplayText: "Temps d’existence"
 
 # 大厅列表显示 / Liste des salles
 IPhone: "IPhone"

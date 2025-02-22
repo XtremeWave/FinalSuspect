@@ -281,6 +281,7 @@ Website: "공식 웹사이트"
 MainMenuCredential: "{0} © 2025"
 LShift: "LShift를 눌러 이전 방으로 돌아가기"
 RShift: "RShift를 눌러 클립보드 방으로 이동하기"
+LobbyTimeDisplayText: "존재 경과 시간"
 
 # 룸 리스트 표시 / Lobby List
 IPhone: "IPhone"

@@ -281,6 +281,7 @@ Website: "Sito ufficiale"
 MainMenuCredential: "{0} © 2025"
 LShift: "Premi LShift per tornare alla stanza precedente"
 RShift: "Premi RShift per entrare nella stanza della clipboard"
+LobbyTimeDisplayText: "Tempo di esistenza trascorso"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"
