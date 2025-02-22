@@ -41,7 +41,8 @@ public static class MatchMakerGameButtonSetGamePatch
         var name = "?";
         int LobbyTime = (int)Math.Max(0, game.Age);
         string lobbyTimeDisplay = "";
-        lobbyTimeDisplay = $"TimeDisplay:{LobbyTime / 60}:{(LobbyTime % 60 < 10 ? "0" : "")}{LobbyTime % 60}";
+        string LobbyTimeDisplayText = GetString("LobbyTimeDisplay");
+        lobbyTimeDisplay = $"{LobbyTimeDisplayText}:{LobbyTime / 60}:{(LobbyTime % 60 < 10 ? "0" : "")}{LobbyTime % 60}";
 
         switch (game.Platform)
         {
