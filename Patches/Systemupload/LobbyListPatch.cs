@@ -1,6 +1,6 @@
-﻿using System;
-using FinalSuspect.Helpers;
+﻿using FinalSuspect.Helpers;
 using InnerNet;
+using System;
 using TMPro;
 using UnityEngine;
 
