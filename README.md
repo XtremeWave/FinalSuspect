@@ -26,26 +26,12 @@
 > © Innersloth LLC.
 
 ## Contributors
->[KARPED1EM](https://github.com/KARPED1EM) - **Technical Support**<br>
->Bug fixing guidance
 
->[Yu (formerly: Night)](https://github.com/Night-GUA) - **Technical Support**<br>
->Added tips & built-in dependencies
-
->[Amongus](https://github.com/XiezibanWrite) - **Translation & Technical Support**<br>
->Partial translation support & support during development
-
->[NikoCat233](https://github.com/NikoCat233) - **Technical Support**<br>
->Anti-cheat guidance
-
->[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **Technical Support**<br>
->Added KillNetWork check for FAC
-
->[LezaiYa](https://github.com/LezaiYa1) - **Consultation Support**
-
->[Imp11](https://github.com/dabao40) - **Consultation Support**
-
->[FangKuai](https://github.com/FangKuaiYa) - **Consultation Support**
+<div align="center">
+  <a href="https://github.com/XtremeWave/FinalSuspect/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=XtremeWave/FinalSuspect" alt="Contributors List">
+  </a>
+</div>
 
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)

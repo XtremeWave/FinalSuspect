@@ -25,29 +25,12 @@
 > © Innersloth LLC.
 
 ## 贡献者
->[KARPED1EM](https://github.com/KARPED1EM) - **技术支持**<br>
->Bug修复指导
 
->[Yu(原名：Night)](https://github.com/Night-GUA) - **技术支持**<br>
->添加提示&依赖项内置
-
->[Amongus](https://github.com/XiezibanWrite) - **翻译&技术支持**<br>
->部分翻译文本支持&开发过程支持
-
->[NikoCat233](https://github.com/NikoCat233) - **技术支持**<br>
->反作弊指导
-
-> [QingFeng](https://github.com/QingFeng-awa) - **Api支持**<br>
->提供了Xtreme Api支持！
-
->[𝑵𝒐𝒏𝒂𝒍𝒖𝒔🍥](https://github.com/Reborn5537) - **技术支持**<br>
->为FAC添加了对KillNetWork的检查
-
->[LezaiYa](https://github.com/LezaiYa1) - **咨询支持**
-
->[Imp11](https://github.com/dabao40) - **咨询支持**
-
->[FangKuai](https://github.com/FangKuaiYa) - **咨询支持**
+<div align="center">
+  <a href="https://github.com/XtremeWave/FinalSuspect/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=XtremeWave/FinalSuspect" alt="Contributors List">
+  </a>
+</div>
 
 ## 星标历史
 [![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)
