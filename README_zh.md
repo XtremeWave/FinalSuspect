@@ -33,4 +33,4 @@
 </div>
 
 ## 星标历史
-[![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)](https://star-history.com/#XtremeWave/FinalSuspect&Date)
+![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)
