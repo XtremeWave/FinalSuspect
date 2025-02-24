@@ -12,31 +12,16 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
+[English]
 </div>
 
-## 语言
-***本模组支持Among Us所支持的全部语言！***<br>
-[English](README.md) <br>
-[Latam](README/README_es_LA.md)<br>
-[Brasileiro](README/README_pt_BR.md)<br>
-[Português](README/README_pt.md)<br>
-[한국어](README/README_ko.md)<br>
-[Русский](README/README_ru.md)<br>
-[Nederlands](README/README_nl.md)<br>
-[Filipino](README/README_tl.md)<br>
-[Français](README/README_fr.md)<br>
-[Deutsch](README/README_de.md)<br>
-[Italiano](README/README_it.md)<br>
-[日本語](README/README_ja.md)<br>
-[Español](README/README_es.md)<br>
-[简体中文]<br>
-[繁體中文](README/README_zh_CHT.md)<br>
-[Gaeilge](README/README_ga.md)<br>
+> [!important]
+> 由于本模组开发者学业原因，您的issue可能无法得到及时的答复，请谅解！
 
-## 须知
-本模组不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。<br>
-此处包含的部分材料是Innersloth LLC的财产。© Innersloth LLC.
-
+> [!note]
+> 本模组不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。\
+> 此处包含的部分材料是Innersloth LLC的财产。\
+> © Innersloth LLC.
 
 ## 贡献者
 >[KARPED1EM](https://github.com/KARPED1EM) - **技术支持**<br>
