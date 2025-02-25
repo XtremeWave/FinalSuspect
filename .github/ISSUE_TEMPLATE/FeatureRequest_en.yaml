@@ -3,6 +3,7 @@ description: File a feature request
 labels: [considered]
 assignees: 
   - Slok7565
+  - QingFeng-awa
 body:
   - type: checkboxes
     id: preface
