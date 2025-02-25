@@ -4,6 +4,7 @@ title: "[Bug]:"
 labels: [Bug]
 assignees:
   - Slok7565
+  - QingFeng-awa
 body:
   - type: checkboxes
     id: preface
