@@ -281,6 +281,7 @@ Website: "模組官網"
 MainMenuCredential: "{0} © 2025"
 LShift: "按LShift返回上一個房間"
 RShift: "按RShift進入剪貼板房間"
+LobbyTimeDisplayText: "生存期間"
 
 # 客户端平台 / Platform
 IPhone: "蘋果"

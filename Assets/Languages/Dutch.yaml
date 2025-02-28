@@ -281,6 +281,7 @@ Website: "Officiële website"
 MainMenuCredential: "{0} © 2025"
 LShift: "Drücke LShift um in den vorherigen Raum zurückzukehren"
 RShift: "Drücke RShift um in den Zwischenablage-Raum zu gehen"
+LobbyTimeDisplayText: "Verstreken tijd van bestaan"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

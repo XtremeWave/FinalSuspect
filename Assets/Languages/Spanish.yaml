@@ -281,6 +281,7 @@ Website: "Sitio Oficial"
 MainMenuCredential: "{0} © 2025"
 LShift: "Presiona LShift para regresar a la habitación anterior"
 RShift: "Presiona RShift para entrar en la habitación del portapapeles"
+LobbyTimeDisplayText: "Tiempo de existencia transcurrido"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

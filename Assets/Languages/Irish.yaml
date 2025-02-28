@@ -281,6 +281,7 @@ Website: "Suíomh Oifigiúil"
 MainMenuCredential: "{0} © 2025"
 LShift: "Cliceáil an Shift chlé (LShift) chun ar ais chuig an seomra roimhe sin."
 RShift: "Cliceáil an Shift deas (RShift) chun isteach go dtí an seomra leabhairte."
+LobbyTimeDisplayText: "Tempus existentiae"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

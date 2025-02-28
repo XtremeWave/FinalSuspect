@@ -281,6 +281,7 @@ LShift: "LShift: Drücke LShift, um zurückzukehren"
 RShift: "RShift: Drücke RShift, um dorthin zu gelangen"
 Website: "Offizielle Website"
 MainMenuCredential: "{0} © 2025"
+LobbyTimeDisplayText: "Zeit des Bestehens"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"

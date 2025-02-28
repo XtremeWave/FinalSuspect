@@ -281,6 +281,7 @@ Website: "Official Website"
 MainMenuCredential: "{0} © 2025"
 LShift: "Pindutin ang LShift upang muli pumunta sa nakaraang kuwarto"
 RShift: "Pindutin ang RShift upang pumasok sa clipboard room"
+LobbyTimeDisplayText: "Panahon ng pag iral"
 
 # 客户端平台 / Platform
 IPhone: "IPhone"
