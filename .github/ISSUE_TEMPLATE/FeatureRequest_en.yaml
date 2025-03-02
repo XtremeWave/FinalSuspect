@@ -1,6 +1,7 @@
 name: Feature Request
 description: File a feature request
-labels: [considered]
+title: "[Feat]:"
+labels: [Considered]
 assignees: 
   - Slok7565
   - QingFeng-awa
