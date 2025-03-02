@@ -25,6 +25,12 @@
 > Portions of the materials contained herein are property of Innersloth LLC. \
 > © Innersloth LLC.
 
+## About
+
+FinalSuspect is an original optimization plugin designed for Among Us.\
+The plugin introduces over 10 optimizations to the original game, enhancing the overall experience.\
+For detailed documentation on how to use this plugin (installation, updates, etc.), please refer to the [website's documentation](https://www.xtreme.net.cn/docs/FS/en-us/guide/).
+
 ## Contributors
 
 <div align="center">
