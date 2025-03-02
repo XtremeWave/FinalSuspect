@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
-[英文](README.md) | [简体中文]
+[English](README.md) | [简体中文]
 
 </div>
 
