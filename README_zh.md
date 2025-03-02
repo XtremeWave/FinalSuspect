@@ -12,7 +12,7 @@
 <img src="https://badgen.net/github/forks/XtremeWave/FinalSuspect" alt="Forks">
 <img src="https://badgen.net/github/prs/XtremeWave/FinalSuspect" alt="PRs">
 
-[English](README.md) | [简体中文]
+[英文](README.md) | [简体中文]
 
 </div>
 
@@ -26,12 +26,12 @@
 
 ## 关于
 
-FinalSuspect是一个适用于Among Us的原版优化插件。
+FinalSuspect是一个适用于Among Us的原版优化插件。\
+插件为原版带来了10+项优化,使得原版也能获得更好的体验。\
+有关该插件的详细使用文档(安装,更新等),请参阅[网站文档](https://www.xtreme.net.cn/docs/FS/)。
 
-### 功能列表
-
-|           |           |            |              |
-|:---------:|:---------:|:----------:|:------------:|
+| 功能列表      |           |            |              |
+|-----------|-----------|------------|--------------|
 | 实时查看好友代码  | 更高的帧率上限   | 更明确的职业信息显示 | 颜色更丰富的聊天框与地图 |
 | 全新的加载动画   | 更小的安装包体积  | 复盘信息显示     | 职业信息显示       |
 | 房间关闭倒计时显示 | 房主所属客户端显示 | 房间号显示优化    | 全新首页UI与背景    |
