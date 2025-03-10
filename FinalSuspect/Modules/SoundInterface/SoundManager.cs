@@ -161,7 +161,7 @@ public class XtremeMusic
     public bool unpublished;
 
 
-    public static async void InitializeAll()
+    public static void InitializeAll()
     {
         foreach (var file in EnumHelper.GetAllValues<SupportedMusics>().ToList())
         {
