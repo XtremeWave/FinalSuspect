@@ -88,11 +88,11 @@ public class ResourcesDownloader
         var pattern = @"^(https?|ftp)://[^\s/$.?#].[^\s]*$";
         return Regex.IsMatch(url, pattern);
     }
-    private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
-    {
-        var msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        XtremeLogger.Info(msg, "Download Resources");
-    }
+    //private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
+    //{
+    //    var msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
+    //    XtremeLogger.Info(msg, "Download Resources");
+    //}
     public static string GetMD5HashFromFile(string fileName)
     {
         try
@@ -108,9 +108,9 @@ public class ResourcesDownloader
             return "";
         }
     }
-    public static async Task<bool> IsUrl404Async(FileType fileType, string file)
-    {
-        return false;
+    //public static async Task<bool> IsUrl404Async(FileType fileType, string file)
+    //{
+        //return false;
             /*
             using var client = new HttpClient();
             try
@@ -136,5 +136,5 @@ public class ResourcesDownloader
             return false;
         }
 */
-    }
+    //}
 }
