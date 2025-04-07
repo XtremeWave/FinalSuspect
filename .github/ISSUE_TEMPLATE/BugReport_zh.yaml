@@ -15,15 +15,15 @@ body:
           required: true
         - label: 这是FinalSuspect本身存在的问题。
           required: true
+  - type: markdown
+    attributes:
+      value: "## 环境信息"
   - type: input
     attributes:
       label: 您使用的FinalSuspect版本是?
       placeholder: v1.1_20250216
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: "## 环境信息"
   - type: dropdown
     attributes:
       label: 您的系统环境是?
