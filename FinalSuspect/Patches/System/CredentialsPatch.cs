@@ -23,26 +23,43 @@ internal class PingTrackerUpdatePatch
     {
         if (CreditTextCredential == null)
         {
+            // 抓日志启动！
+            Info("Initializing CreditTextCredential...", "null");
             var uselessPingTracker = Object.Instantiate(__instance, __instance.transform.parent);
+            if (uselessPingTracker == null)
+            {
+                Error("Failed to instantiate uselessPingTracker!", "null");
+                return;
+            }
             CreditTextCredential = uselessPingTracker.GetComponent<TextMeshPro>();
-            Object.Destroy(uselessPingTracker);
+            if (CreditTextCredential == null)
+            {
+                Error("Failed to get TextMeshPro component!", "null");
+                Object.Destroy(uselessPingTracker);
+                return;
+            }
             CreditTextCredential.alignment = TextAlignmentOptions.TopRight;
             CreditTextCredential.color = new(1f, 1f, 1f, 0.7f);
             CreditTextCredential.rectTransform.pivot = new(1f, 1f);  // 中心を右上角に設定
             CreditTextCredentialAspectPos = CreditTextCredential.GetComponent<AspectPosition>();
             CreditTextCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
         }
-        if (CreditTextCredentialAspectPos)
+        if (CreditTextCredentialAspectPos != null)
         {
             CreditTextCredentialAspectPos.DistanceFromEdge = 
                 DestroyableSingleton<HudManager>.InstanceExists && DestroyableSingleton<HudManager>.Instance.Chat.chatButton.gameObject.active 
                     ? new(2.5f, 0f, -800f) : new(1.8f, 0f, -800f);
+        }
+        else
+        {
+            Warn("CreditTextCredentialAspectPos is null!", "null");
         }
         StringBuilder sb = new();
         
         sb.Append(Main.CredentialsText);
 
         CreditTextCredential.text = sb.ToString();
+        if (HudManagerPatch.showHideButton != null)
         if (
             (GameSettingMenu.Instance?.gameObject.active ?? false) 
             || IsMeeting 
