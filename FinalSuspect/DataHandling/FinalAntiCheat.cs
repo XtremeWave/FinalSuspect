@@ -25,8 +25,7 @@ public static class FinalAntiCheat
         public PlayerCheatData(PlayerControl player)
         {
             IsSuspectCheater = false;
-            SetNameTimes = 
-                SendQuickMessageCountPerSecond = 0;
+            SetNameTimes = SendQuickMessageCountPerSecond = 0;
             _lastKillTime = _lastSendTime = -1;
             Player = player;
             ClientData = Player.GetClient();
@@ -134,7 +133,7 @@ public static class FinalAntiCheat
 
         public static int DeNum;
         public static long _lastHandleCheater = -1;
-        public static List<byte> LobbyDeadBodies = [];
+        private static List<byte> LobbyDeadBodies = [];
 
         public static void Init()
         {
@@ -218,6 +217,8 @@ public static class FinalAntiCheat
                         case RpcCalls.VotingComplete:
                         case RpcCalls.ClimbLadder:
                         case RpcCalls.UpdateSystem:
+                        case RpcCalls.CheckShapeshift:
+                        case RpcCalls.Shapeshift:
                         {
                             if (AmongUsClient.Instance.AmHost) return true;
                             NotificationPopperPatch.NotificationPop(GetString("Warning.RoomBroken"));
