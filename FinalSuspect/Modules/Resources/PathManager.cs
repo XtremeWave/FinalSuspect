@@ -34,7 +34,7 @@ public static class PathManager
                 remoteBase = "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets/";
                 break;
             case RemoteType.Gitee:
-                remoteBase = "gitee.com/LezaiYa/FinalSuspect/raw/FinalSus/Assets/";
+                remoteBase = "gitee.com/LezaiYa/FinalSuspectAssets/tree/main/Assets/";
                 break;
             case RemoteType.XtremeApi:
                 remoteBase = "api.xtreme.net.cn/download/FinalSuspect/Assets/";
