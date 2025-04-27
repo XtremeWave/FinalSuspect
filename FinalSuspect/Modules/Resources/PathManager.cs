@@ -13,7 +13,7 @@ public static class PathManager
     public static string DependsSavePath = "BepInEx/core/";
     public static string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
     public static string downloadUrl_github = "https://github.com/XtremeWave/FinalSuspect/releases/latest/download/FinalSuspect.dll";
-    public static string downloadUrl_gitee = "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
+    public static string downloadUrl_gitee = "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v1.1_20250412/FinalSuspect.dll";
     public static string downloadUrl_xtremeapi = "https://api.xtreme.net.cn/download/FinalSuspect/FinalSuspect.dll";
     
     public static string GetFile(FileType fileType, RemoteType remoteType, string file)
@@ -34,7 +34,7 @@ public static class PathManager
                 remoteBase = "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets/";
                 break;
             case RemoteType.Gitee:
-                remoteBase = "gitee.com/LezaiYa/FinalSuspectAssets/tree/main/Assets/";
+                remoteBase = "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/Assets/";
                 break;
             case RemoteType.XtremeApi:
                 remoteBase = "api.xtreme.net.cn/download/FinalSuspect/Assets/";
@@ -119,7 +119,7 @@ public static class PathManager
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else        
         "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/",
-        "https://gitee.com/LezaiYa/FinalSuspect/raw/FinalSus/",
+        "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main",
         "https://api.xtreme.net.cn/download/FinalSuspect/",
 #endif
     };
