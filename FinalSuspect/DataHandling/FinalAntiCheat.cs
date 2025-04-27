@@ -338,6 +338,7 @@ public static class FinalAntiCheat
                     //Report(pc, "YM");
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
                     return true;
+                case 168:
                 case unchecked((byte)420): //SM RPC 164
                     //Report(pc, "SM");
                     HandleCheat(pc, GetString("FAC.CheatDetected.FAC"));
