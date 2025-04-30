@@ -75,7 +75,7 @@ public class Main : BasePlugin
     public static readonly string DisplayedVersion = 
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
         $"{(DisplayedVersion_Type != VersionTypes.Release ? 
-            $"_{DisplayedVersion_Type}_{DisplayedVersion_TestCreation}" : "")}";
+        $"_{DisplayedVersion_Type}_{DisplayedVersion_TestCreation}" : "")}";
 
     // == 链接相关设定 / Link Config ==
     //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
