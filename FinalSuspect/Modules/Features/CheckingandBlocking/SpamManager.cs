@@ -126,13 +126,13 @@ public static class SpamManager
             {
                 try
                 {
-                    // 处理 Windows 路径格式
+                    // Windows 格式
                     string filePath = url[8..].Replace('/', '\\');
                     result = await File.ReadAllTextAsync(filePath);
                 }
                 catch (FileNotFoundException)
                 {
-                    Warn($"本地配置文件缺失: {url[8..]}", "SpamManager");
+                    Warn($"服务器文件缺失: {url[8..]}", "SpamManager");
                     return false;
                 }
                 catch (Exception ex)
@@ -158,7 +158,7 @@ public static class SpamManager
                 result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
             }
 
-            // 增强 JSON 解析容错
+            // 增强JSON解析
             try
             {
                 var data = JObject.Parse(result);
