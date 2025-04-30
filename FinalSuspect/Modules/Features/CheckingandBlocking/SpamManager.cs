@@ -150,10 +150,9 @@ public static class SpamManager
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode)
                 {
-                    Error($"远程配置请求失败 [{url}]: {response.StatusCode}", "CheckRelease");
+                    Error($"服务器请求失败 [{url}]: {response.StatusCode}", "CheckRelease");
                     return false;
                 }
-
                 result = await response.Content.ReadAsStringAsync();
                 result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
             }
