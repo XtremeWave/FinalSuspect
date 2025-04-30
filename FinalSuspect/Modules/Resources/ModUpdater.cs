@@ -31,8 +31,9 @@ public class ModUpdater
     {
         if (url == "waitToSelect")
         {
-            CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"), [
-                (GetString("updateSource.XtremeApi"), () => StartUpdate(downloadUrl_xtremeapi)),
+            CustomPopup.Show(GetString("updatePopupTitle"), GetString("updateChoseSource"),
+            [
+                //(GetString("updateSource.XtremeApi"), () => StartUpdate(downloadUrl_xtremeapi)),
                 (GetString("updateSource.Github"), () => StartUpdate(downloadUrl_github)),
                 (GetString("updateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
                 (GetString(StringNames.Cancel), SetUpdateButtonStatus)

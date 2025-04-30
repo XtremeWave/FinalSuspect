@@ -44,7 +44,7 @@ public static class CustomPopup
             Init();
             if (Fill == null || InfoScreen == null || ActionButtonPrefab == null || TitleTMP == null || InfoTMP == null)
             {
-                Debug.LogError("Failed to initialize CustomPopup.");
+                Debug.LogError("CustomPopup not initialized properly.");
                 return;
             }
         }

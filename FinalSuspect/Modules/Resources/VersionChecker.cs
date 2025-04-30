@@ -94,7 +94,7 @@ public static class VersionChecker
             Info("File MD5: " + md5, "CheckRelease");
             Info("Github Url: " + downloadUrl_github, "CheckRelease");
             Info("Gitee Url: " + downloadUrl_gitee, "CheckRelease");
-            Info("Website Url: " + downloadUrl_xtremeapi, "CheckRelease");
+            //Info("Website Url: " + downloadUrl_xtremeapi, "CheckRelease");
 
             if (firstLaunch || isBroken)
             {
@@ -130,7 +130,7 @@ public static class VersionChecker
             {
                 using HttpClient client = new();
                 client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect Updater");
-                client.DefaultRequestHeaders.Add("Referer", "api.xtreme.net.cn");
+                client.DefaultRequestHeaders.Add("Referer", "gitee.com");
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode)
                 {
