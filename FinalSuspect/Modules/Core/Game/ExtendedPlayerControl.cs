@@ -39,7 +39,7 @@ static class ExtendedPlayerControl
         if (IsLobby) return false;
         return pc.GetRoleType() switch
         {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost => true,
+            Impostor or Shapeshifter or Phantom or ImpostorGhost => true,
             _ => false,
         };
     }

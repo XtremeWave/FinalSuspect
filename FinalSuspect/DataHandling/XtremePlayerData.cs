@@ -88,7 +88,7 @@ public class XtremePlayerData : IDisposable
 
         if (dead && !IsFreePlay)
         {
-            nullrole = data.IsImpostor ? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost;
+            nullrole = data.IsImpostor ? ImpostorGhost : CrewmateGhost;
         }
         else
         {

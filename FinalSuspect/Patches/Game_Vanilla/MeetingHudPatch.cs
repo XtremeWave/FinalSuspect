@@ -31,7 +31,7 @@ public static class MeetingHudPatch
                     {
                         var isReporter = __instance.reporterId == playerById.PlayerId; 
                         playerVoteArea.SetDead(isReporter, flag, 
-                            playerById.Role?.Role == RoleTypes.GuardianAngel);
+                            playerById.Role?.Role == GuardianAngel);
                         __instance.SetDirtyBit(1U);
                     }
                 }

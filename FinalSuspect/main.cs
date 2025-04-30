@@ -222,17 +222,17 @@ public class Main : BasePlugin
         {
             roleColors = new Dictionary<RoleTypes, string>
             {
-                { RoleTypes.CrewmateGhost, "#8CFFFF" },
-                { RoleTypes.GuardianAngel, "#8CFFDB" },
-                { RoleTypes.Crewmate, "#8CFFFF" },
-                { RoleTypes.Scientist, "#F8FF8C" },
-                { RoleTypes.Engineer, "#A5A8FF" },
-                { RoleTypes.Noisemaker, "#FFC08C" },
-                { RoleTypes.Tracker, "#93FF8C" },
-                { RoleTypes.ImpostorGhost, "#FF1919" },
-                { RoleTypes.Impostor, "#FF1919" },
-                { RoleTypes.Shapeshifter, "#FF819E" },
-                { RoleTypes.Phantom, "#CA8AFF" },
+                { CrewmateGhost, "#8CFFFF" },
+                { GuardianAngel, "#8CFFDB" },
+                { Crewmate, "#8CFFFF" },
+                { Scientist, "#F8FF8C" },
+                { Engineer, "#A5A8FF" },
+                { Noisemaker, "#FFC08C" },
+                { Tracker, "#93FF8C" },
+                { ImpostorGhost, "#FF1919" },
+                { Impostor, "#FF1919" },
+                { Shapeshifter, "#FF819E" },
+                { Phantom, "#CA8AFF" },
             };
         }
         catch (ArgumentException ex)

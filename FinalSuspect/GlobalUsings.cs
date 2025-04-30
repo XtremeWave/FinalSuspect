@@ -11,3 +11,4 @@ global using static FinalSuspect.DataHandling.XtremeGameData.GameStates;
 global using static FinalSuspect.DataHandling.FinalAntiCheat.FAC;
 global using static FinalSuspect.Modules.Core.Plugin.XtremeLogger;
 global using static FinalSuspect.Modules.Core.Game.Utils;
+global using static AmongUs.GameOptions.RoleTypes;

@@ -228,7 +228,7 @@ public static class HudManagerPatch
             }
             else
             {
-                color = GetRoleColor(RoleTypes.Crewmate);
+                color = GetRoleColor(Crewmate);
             }
         }
         else
@@ -343,7 +343,7 @@ public static class HudManagerPatch
             IsInGame ? new(0.2f, 2.685f, -14f) : new(-4.5f, 2.6f, -1f);
         if (IsInGame)
             showHideButton.Button.gameObject.SetActive
-            (PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost &&
+            (PlayerControl.LocalPlayer.GetRoleType() is CrewmateGhost or ImpostorGhost &&
              !IsMeeting);
         else
             showHideButton.Button.gameObject.SetActive(true);

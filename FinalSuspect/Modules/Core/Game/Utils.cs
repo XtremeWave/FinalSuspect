@@ -48,7 +48,7 @@ public static class Utils
     }
     public static string GetRoleInfoForVanilla(this RoleTypes role, bool InfoLong = false)
     {
-        if (role is RoleTypes.Crewmate or RoleTypes.Impostor)
+        if (role is Crewmate or Impostor)
             InfoLong = false;
 
         var text = role.ToString();
@@ -147,8 +147,8 @@ public static class Utils
 
         builder.AppendFormat("<pos={0}em>", pos);
 
-        var oldrole = thisdata.RoleWhenAlive ?? RoleTypes.Crewmate;
-        var newrole = thisdata.RoleAfterDeath ?? (thisdata.IsImpostor? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost);
+        var oldrole = thisdata.RoleWhenAlive ?? Crewmate;
+        var newrole = thisdata.RoleAfterDeath ?? (thisdata.IsImpostor? ImpostorGhost : CrewmateGhost);
         builder.Append(StringHelper.ColorString(GetRoleColor(oldrole), GetString($"{oldrole}")));
 
         if (thisdata.IsDead  && newrole != oldrole)
@@ -396,14 +396,14 @@ public static class Utils
     {
         return role switch
         {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost => true,
+            Impostor or Shapeshifter or Phantom or ImpostorGhost => true,
             _ => false,
         };
     }
     public static bool CanSeeTargetRole(PlayerControl target, out bool bothImp)
     {
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
-        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
+        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is GuardianAngel;
         var BothDeathCanSee = LocalDead && ((!target.IsAlive() && IsAngel) || !IsAngel);
         bothImp = PlayerControl.LocalPlayer.IsImpostor() && target.IsImpostor();
 
@@ -417,7 +417,7 @@ public static class Utils
         if (!IsInGame) return true;
         if (IsFreePlay) return true;
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
-        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
+        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is GuardianAngel;
         
         return !IsAngel && LocalDead || Main.GodMode.Value;
     }

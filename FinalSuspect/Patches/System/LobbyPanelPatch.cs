@@ -30,27 +30,27 @@ class LobbyViewSettingsPanePatch
     }
     private static readonly List<Color32> Normalbannercolors =
     [
-        GetRoleColor(RoleTypes.Impostor),
-        GetRoleColor(RoleTypes.Crewmate),
+        GetRoleColor(Impostor),
+        GetRoleColor(Crewmate),
         Color.yellow,
         Color.green
     ];
     private static readonly List<Color32> HnSbannercolors =
     [
-        GetRoleColor(RoleTypes.Crewmate),
-        GetRoleColor(RoleTypes.Impostor),
+        GetRoleColor(Crewmate),
+        GetRoleColor(Impostor),
         Palette.Purple,
         Color.green
     ];
     private static readonly List<Color32> rolecolors =
     [
-        GetRoleColor(RoleTypes.Engineer),
-        GetRoleColor(RoleTypes.GuardianAngel),
-        GetRoleColor(RoleTypes.Scientist),
-        GetRoleColor(RoleTypes.Tracker),
-        GetRoleColor(RoleTypes.Noisemaker),
-        GetRoleColor(RoleTypes.Shapeshifter),
-        GetRoleColor(RoleTypes.Phantom)
+        GetRoleColor(Engineer),
+        GetRoleColor(GuardianAngel),
+        GetRoleColor(Scientist),
+        GetRoleColor(Tracker),
+        GetRoleColor(Noisemaker),
+        GetRoleColor(Shapeshifter),
+        GetRoleColor(Phantom)
     ];
     private static readonly List<Color32> rolecatcolors =
     [
@@ -117,8 +117,8 @@ class LobbyViewSettingsPanePatch
                         if (banner.name == "ViewSettingsInfoPanel_Role Variant(Clone)")
                         {
                             var roleColor = bannerindex <= 4
-                                ? GetRoleColor(RoleTypes.Crewmate)
-                                : GetRoleColor(RoleTypes.Impostor);
+                                ? GetRoleColor(Crewmate)
+                                : GetRoleColor(Impostor);
                             SetColorForRolesBanner(banner.gameObject, rolecolors[bannerindex], roleColor);
                             if (banner.gameObject.transform.FindChild("LabelBackground").gameObject
                                     .GetComponent<SpriteRenderer>().color != new Color(0.3f, 0.3f, 0.3f, 1))
@@ -134,8 +134,8 @@ class LobbyViewSettingsPanePatch
                         {
                             var iconindex = enableroleindex.First();
                             var roleColor = iconindex <= 4
-                                ? GetRoleColor(RoleTypes.Crewmate)
-                                : GetRoleColor(RoleTypes.Impostor);
+                                ? GetRoleColor(Crewmate)
+                                : GetRoleColor(Impostor);
                             SetColorForIcon(banner.gameObject, rolecolors[iconindex], roleColor);
                             enableroleindex.RemoveAt(0);
                         }
