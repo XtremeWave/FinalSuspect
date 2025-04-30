@@ -1,40 +1,40 @@
 #Number:100006
-#Title:终极嫌疑 v1.1
-#SubTitle:★★★★下载修复★★★★
-#ShortTitle:★下载修复v1.1
+#Title:Final Suspect v1.1
+#SubTitle:★★★★Download Fix★★★★
+#ShortTitle:★Download Fix v1.1
 #Date:2025-05-01T00:00:00Z
 #-----------------------------
-# 简体中文
-修复了一些在1.1的下载问题
+# English
+Fixed some download issues in v1.1
 
-## 对应官方版本
-- 基于 Among Us v16.0.2
-- 基于 BepInEx 框架 v6.0.0-be.733
+## Base
+- Based on Among Us v16.0.2
+- Based on v6.0.0-be.733  
 
-## 更新内容
-- 修正: 3
-- 优化: 1
-- 更改: 1
-- 新增: 0
-- 重制: 0
-- 删除: 1
+## Summary of Updates
+- Fixes: 3  
+- Optimizations: 1 
+- Changes: 1  
+- Additions: 0
+- Remakes: 0  
+- Deletions: 1
 
-## 修正
-- 修复了资源下载时出现的问题
-修复: LezaiYa
-反馈：警长小蓝
-- 修复了SM缺少检测RPC的问题
-- 修复了反作弊不检测RPC55的问题
-修复: LezaiYa
+## Fixes
+- Fixed resource download issues
+Fixed by: LezaiYa
+Feedback: 警长小蓝
+- Fixed missing RPC detection for SM
+- Fixed anti-cheat not detecting RPC55
+Fixed by: LezaiYa
 
-## 优化
-- 优化远程未检测到文件时的框架报错信息
-制作：LezaiYa
+## Optimizations
+- Improved framework error messages when remote files are undetected
+Made by LezaiYa 
 
-## 更改
-- 将国内Gitee镜像源改接新的资源镜像源
-制作：LezaiYa
+## Changes  
+- Updated Gitee mirror source to a new mirror  
+Made by LezaiYa
 
-## 删除
-- 删除API检查更新及下载资源
-制作：LezaiYa
+## Deletions
+- Removed API update checks and resource downloads
+Made by LezaiYa
