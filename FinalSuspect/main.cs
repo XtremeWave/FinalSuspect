@@ -38,7 +38,7 @@ public class Main : BasePlugin
     public const string DebugKeySalt = "59687b";
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     // == 版本相关设定 / Version Config ==
-    public const string LowestSupportedVersion = "2025.3.31"; // 16.0.2 also 2025.3.25
+    public const string LowestSupportedVersion = "2025.3.31"; // 16.0.2
 
     public const string DisplayedVersion_Head = "1.1";
     private static string DisplayedVersion_Date
@@ -52,7 +52,7 @@ public class Main : BasePlugin
             var day = currentDate.Day.ToString("D2");    
             return $"{year}{month}{day}";
 #else
-            return "20250412";
+            return "20250501";
 #endif
         }
     }
