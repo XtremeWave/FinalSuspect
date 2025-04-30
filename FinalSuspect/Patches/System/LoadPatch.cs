@@ -59,6 +59,7 @@ public class LoadPatch
         "FeaturesIntroduction.v1.0.txt",
         "FS.v1.1_20250216.txt",
         "FS.v1.1_20250412.txt",
+        "FS.v1.1_20250501.txt",
         "FeaturesIntroduction.v1.1.txt",
     ];
 
