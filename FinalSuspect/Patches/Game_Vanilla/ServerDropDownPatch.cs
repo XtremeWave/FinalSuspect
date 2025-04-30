@@ -91,7 +91,7 @@ public static class ServerDropDownPatch
         if (SceneManager.GetActiveScene().name != "FindAGame") return;
 
         var buttonSpacing = 0.6f;
-        var columnSpacing = 5.75f;
+        var columnSpacing = 6f;
 
         // 按钮按Y轴排序
         List<ServerListButton> allButtons = [.. __instance.GetComponentsInChildren<ServerListButton>().OrderByDescending(b => b.transform.localPosition.y)];
