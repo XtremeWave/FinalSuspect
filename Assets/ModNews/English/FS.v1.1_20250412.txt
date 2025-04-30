@@ -48,7 +48,7 @@ Made by LezaiYa
 
 ## Changes  
 - Updated Gitee mirror source to a new mirror  
-Made by LezaiYa & Nonalus
+Made by LezaiYa
 
 ## Additions  
 - Added online room search timer  
