@@ -94,7 +94,7 @@ public static class VersionChecker
             Info("File MD5: " + md5, "CheckRelease");
             Info("Github Url: " + downloadUrl_github, "CheckRelease");
             Info("Gitee Url: " + downloadUrl_gitee, "CheckRelease");
-            //Info("Website Url: " + downloadUrl_xtremeapi, "CheckRelease");
+            Info("Website Url: " + downloadUrl_xtremeapi, "CheckRelease");
 
             if (firstLaunch || isBroken)
             {
