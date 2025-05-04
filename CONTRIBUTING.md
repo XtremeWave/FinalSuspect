@@ -30,6 +30,6 @@ git push origin FinalSus
 #### 本地构建FinalSuspect
 
 ```bash
-dotnet restore
+dotnet nuget add source https://nuget.bepinex.dev/v3/index.json --name "BepInEx"
 dotnet build
 ```
