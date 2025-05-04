@@ -26,8 +26,8 @@ jobs:
       - name: Check SECURITY.md changes
         id: check-security
         run: |
-          # 比较 PR 合并提交与其父节点（基础分支）的差异
-          if git diff --name-only HEAD^1 HEAD | grep -q '^SECURITY.md$'; then
+          git fetch origin $GITHUB_BASE_REF
+          if git diff --name-only origin/$GITHUB_BASE_REF...HEAD | grep -q '^SECURITY.md$'; then
             echo "security_modified=true" >> $GITHUB_OUTPUT
           else
             echo "security_modified=false" >> $GITHUB_OUTPUT
