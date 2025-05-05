@@ -4,10 +4,31 @@ on:
   pull_request:
     types: [opened, synchronize, labeled, unlabeled, reopened]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   check-pr:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate event payload
+        id: validate-event
+        run: |
+          if [ ! -f "$GITHUB_EVENT_PATH" ]; then
+            echo "::error::Event payload file not found"
+            exit 1
+          fi
+          if ! jq -e . "$GITHUB_EVENT_PATH" >/dev/null; then
+            echo "::error::Invalid JSON in event payload"
+            exit 1
+          fi
+
       - name: Check for 'Develop' label
         id: check-label
         run: |
@@ -23,11 +44,27 @@ jobs:
           echo "PR does not have 'Develop' label, skipping..."
           exit 0
 
+      - name: Validate base ref
+        id: validate-ref
+        run: |
+          if [[ -z "${GITHUB_BASE_REF:-}" ]]; then
+            echo "::warning::Base ref is empty, this may be expected for certain PR events"
+            echo "base_ref_valid=false" >> $GITHUB_OUTPUT
+          else
+            echo "base_ref_valid=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Check SECURITY.md changes
         id: check-security
+        if: steps.validate-ref.outputs.base_ref_valid == 'true'
         run: |
-          git fetch origin $GITHUB_BASE_REF
-          if git diff --name-only origin/$GITHUB_BASE_REF...HEAD | grep -q '^SECURITY.md$'; then
+          echo "Fetching base ref: $GITHUB_BASE_REF"
+          if ! git fetch origin "$GITHUB_BASE_REF"; then
+            echo "::error::Failed to fetch base ref: $GITHUB_BASE_REF"
+            exit 1
+          fi
+          
+          if git diff --name-only "origin/$GITHUB_BASE_REF"...HEAD | grep -q '^SECURITY.md$'; then
             echo "security_modified=true" >> $GITHUB_OUTPUT
           else
             echo "security_modified=false" >> $GITHUB_OUTPUT
@@ -36,5 +73,5 @@ jobs:
       - name: Fail if SECURITY.md not modified
         if: steps.check-label.outputs.has_develop_label == 'true' && steps.check-security.outputs.security_modified == 'false'
         run: |
-          echo "SECURITY.md file was not modified but PR has 'Develop' label"
+          echo "::error::SECURITY.md file was not modified but PR has 'Develop' label"
           exit 1
