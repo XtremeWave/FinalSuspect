@@ -6,11 +6,14 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
+  pull-requests: write
+  statuses: write
 
 jobs:
   check-pr:
     runs-on: ubuntu-latest
+    env:
+      REQUIRED_CHECK_NAME: "Security Policy Validation"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -58,7 +61,6 @@ jobs:
         id: check-security
         if: steps.validate-ref.outputs.base_ref_valid == 'true'
         run: |
-          echo "Fetching base ref: $GITHUB_BASE_REF"
           if ! git fetch origin "$GITHUB_BASE_REF"; then
             echo "::error::Failed to fetch base ref: $GITHUB_BASE_REF"
             exit 1
@@ -70,8 +72,15 @@ jobs:
             echo "security_modified=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Fail if SECURITY.md not modified
+      - name: Notify and fail if SECURITY.md not modified
         if: steps.check-label.outputs.has_develop_label == 'true' && steps.check-security.outputs.security_modified == 'false'
-        run: |
-          echo "::error::SECURITY.md file was not modified but PR has 'Develop' label"
-          exit 1
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "大版本更新需要同时更新安全政策文件。\n更新此仓库的`SECURITY.md`,并将您的版本添加至版本列表中,将其标记为**受支持的版本**( :white_check_mark: )。"
+            })
+            core.setFailed("SECURITY.md file was not modified but PR has 'Develop' label")
