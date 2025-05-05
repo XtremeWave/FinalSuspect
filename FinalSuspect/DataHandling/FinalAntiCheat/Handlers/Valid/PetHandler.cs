@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
-using UnityEngine.UIElements;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 

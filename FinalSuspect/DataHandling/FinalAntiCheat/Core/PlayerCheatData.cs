@@ -97,7 +97,6 @@ public class PlayerCheatData
                     return true;
                 }
             }
-            
             record.LastReceivedTime = currentTime;
             _rpcRecords[rpcId] = record;
         }

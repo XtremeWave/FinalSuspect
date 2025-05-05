@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using FinalSuspect.Modules.Core.Game;
 using Hazel;

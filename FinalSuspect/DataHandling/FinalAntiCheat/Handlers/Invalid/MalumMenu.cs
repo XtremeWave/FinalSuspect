@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
@@ -8,6 +9,7 @@ public class MalumMenu : IRpcHandler
 {
     public List<byte> TargetRpcs =>
     [
+        // Noting
     ];
     
     public bool HandleInvalidRPC(PlayerControl sender, MessageReader reader,

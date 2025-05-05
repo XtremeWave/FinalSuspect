@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using FinalSuspect.Modules.Core.Game;
 using Hazel;
-using InnerNet;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 
@@ -28,5 +25,4 @@ public class MurderPlayerHandler : IRpcHandler
     {
         return true;
     }
-    
 }

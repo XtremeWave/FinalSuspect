@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -30,7 +29,6 @@ public class SetNameHandler : IRpcHandler
         {
             HandleCheat(sender, GetString("Warning.SetName_NotHost"));
         }
-        
         ban = true;
         notify = false;
         return true;

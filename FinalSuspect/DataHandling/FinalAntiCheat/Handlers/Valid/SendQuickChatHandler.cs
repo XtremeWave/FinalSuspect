@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -38,7 +37,6 @@ public class SendQuickChatHandler : IRpcHandler
                 {
                     HandleCheat(sender, GetString("Warning.SendQuickChat_NotHost"));
                 }
-                
                 Warn($"{sender.GetDataName()}({sender.GetCheatData().FriendCode})({sender.GetCheatData().Puid})一秒内多次发送快捷消息", "FAC");
                 ban = true;
                 notify = false;

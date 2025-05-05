@@ -2,12 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
-using InnerNet;
-using FinalSuspect.Modules.Core.Game;
-using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Patches.Game_Vanilla;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
@@ -51,8 +47,7 @@ public static class FAC
             ErrorText.Instance.Clear();
     }
 
-    public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader, 
-        out bool notify, out string reason, out bool ban)
+    public static bool ReceiveRpc(PlayerControl pc, byte callId, MessageReader reader, out bool notify, out string reason, out bool ban)
     {
         notify = true;
         reason = "Hacking";
@@ -68,10 +63,9 @@ public static class FAC
                 ban = true;
                 return true;
             }
-                
-            
+
             var sr = MessageReader.Get(reader);
-            
+
             var handlers = _handlers.FirstOrDefault(x => x.TargetRpcs.Contains(callId))?.Handlers;
 
             if (handlers != null)
@@ -109,7 +103,6 @@ public static class FAC
         {
             Fatal(e.ToString(), "FAC");
         }
-        
         WarnHost(-1);
         return false;
     }
@@ -125,4 +118,3 @@ public static class FAC
         }
     }
 }
-
