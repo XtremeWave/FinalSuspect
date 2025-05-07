@@ -5,16 +5,14 @@
 您的工作环境上需要安装下列内容:
 - .NET 6
 - Git
-- (可选但推荐) Visual Studio / Jetbrains Rider / Visual Studio Code / Mono Develop
 
 ### 提交贡献
 
 将FinalSuspect克隆至本地:
+> 在执行命令之前,请先Fork本仓库。
 ```bash
-git clone https://github.com/XtremeWave/FinalSuspect.git
+git clone git@github.com:<你的GitHub用户名>/FinalSuspect.git
 ```
-> [!TIP]
-> 若您复刻了自己的仓库,则需要将`XtremeWave`替换为您的GitHub用户名。
 
 使用此命令提交并推送:
 ```bash
