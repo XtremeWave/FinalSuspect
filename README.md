@@ -35,5 +35,9 @@ For detailed documentation on how to use this plugin (installation, updates, etc
   </a>
 </div>
 
+---
+
+Want to contribute to FinalSuspect? Check out the [CONTRIBUTING](CONTRIBUTING.md).
+
 ## Star History
 ![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)
