@@ -34,5 +34,9 @@ FinalSuspect是一个适用于Among Us的原版优化插件。\
   </a>
 </div>
 
+---
+
+要为FinalSuspect做贡献?请参阅[贡献指南](CONTRIBUTING.md)。
+
 ## 星标历史
 ![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)
