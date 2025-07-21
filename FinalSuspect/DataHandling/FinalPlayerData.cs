@@ -2,7 +2,7 @@ using System;
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace FinalSuspect.DataHandling;
 
-public class XtremePlayerData : IDisposable
+public class FinalPlayerData : IDisposable
 {
     ///////////////FUNCTIONS\\\\\\\\\\\\\\\
 
@@ -69,7 +69,7 @@ public class XtremePlayerData : IDisposable
         Info($"Set Death Reason For {Player.GetNameWithRole()}; Death Reason: {deathReason}", "Data");
     }
 
-    public void SetRealKiller(XtremePlayerData killer)
+    public void SetRealKiller(FinalPlayerData killer)
     {
         SetDead();
         SetDeathReason(VanillaDeathReason.Kill);
@@ -129,9 +129,9 @@ public class XtremePlayerData : IDisposable
                 break;
             }
 
-            AllPlayerData.Add(new XtremePlayerData(player, playername, colorId));
+            AllPlayerData.Add(new FinalPlayerData(player, playername, colorId));
             Info(
-                $"Creating XtremePlayerData For {player.GetClient().PlayerName ?? "Playername null"}({player.GetClient().FriendCode ?? "Friendcode null"})",
+                $"Creating FinalPlayerData For {player.GetClient().PlayerName ?? "Playername null"}({player.GetClient().FriendCode ?? "Friendcode null"})",
                 "Data");
         }
         catch
@@ -142,7 +142,7 @@ public class XtremePlayerData : IDisposable
 
     #region PLAYER_INFO
 
-    public static List<XtremePlayerData> AllPlayerData;
+    public static List<FinalPlayerData> AllPlayerData;
     public PlayerControl Player { get; private set; }
 
     public string Name { get; private set; }
@@ -160,7 +160,7 @@ public class XtremePlayerData : IDisposable
     public bool RoleAssgined { get; private set; }
 
     public VanillaDeathReason RealDeathReason { get; private set; }
-    public XtremePlayerData RealKiller { get; private set; }
+    public FinalPlayerData RealKiller { get; private set; }
 
     public int ProcessInt { get; private set; }
     public int TotalTaskCount { get; private set; }
@@ -168,7 +168,7 @@ public class XtremePlayerData : IDisposable
 
     public PlayerCheatData CheatData { get; private set; }
 
-    private XtremePlayerData(PlayerControl player, string playername, int colorid)
+    private FinalPlayerData(PlayerControl player, string playername, int colorid)
     {
         Player = player;
         Name = playername;
@@ -191,7 +191,7 @@ public class XtremePlayerData : IDisposable
 #pragma warning disable CA1816
     public void Dispose()
     {
-        Info($"Disposing XtremePlayerData For {Name}", "Data");
+        Info($"Disposing FinalPlayerData For {Name}", "Data");
         Player = null;
         CheatData.Dispose();
         CheatData = null;

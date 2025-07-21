@@ -1,6 +1,6 @@
 using System;
 using AmongUs.InnerNet.GameDataMessages;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
 using InnerNet;
@@ -12,7 +12,7 @@ public static class HandleGameDataPatch
 {
     public static bool Prefix(InnerNetClient __instance, [HarmonyArgument(0)] MessageReader parentReader)
     {
-        if (!IsLobby || IsNotJoined || !XtremeGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
 
         try
         {
@@ -36,7 +36,7 @@ public static class HandleGameDataInnerPatch
 
     public static bool Prefix(InnerNetClient._HandleGameDataInner_d__165 __instance)
     {
-        if (!IsLobby || IsNotJoined || !XtremeGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
         var reader = __instance.reader;
         if (reader.BytesRemaining < 1)
         {
@@ -95,7 +95,7 @@ public static class HandleGameDataInnerPatch
         }
 
         var ownerId = targetObject?.OwnerId;
-        if (!XtremePlayerData.AllPlayerData.Any(x => x.Player.OwnerId == ownerId))
+        if (!FinalPlayerData.AllPlayerData.Any(x => x.Player.OwnerId == ownerId))
         {
             sr.Recycle();
             return true;
@@ -127,7 +127,7 @@ public static class HandleGameDataInnerPatch
         }
 
         counter.IncomingOverload = true;
-        var _player = XtremePlayerData.AllPlayerData.FirstOrDefault(x => x.CheatData.ClientData.Id == clientData.Id)
+        var _player = FinalPlayerData.AllPlayerData.FirstOrDefault(x => x.CheatData.ClientData.Id == clientData.Id)
             ?.Player;
         Warn($"Incoming Msg Overloaded: {_player?.GetDataName() ?? ""}", "FAC");
         _player?.MarkAsHacker();
@@ -170,7 +170,7 @@ internal class HandleMessagePatch
 
     public static bool Prefix(InnerNetServer.Player client, MessageReader reader)
     {
-        if (!IsLobby || IsNotJoined || !XtremeGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
 
         if (!playerMsgCounters.TryGetValue(client.Id, out var counter))
         {
@@ -184,7 +184,7 @@ internal class HandleMessagePatch
         if (counter.TotalMsgLastSecond <= 100 && counter.GetRpcCount(reader.Tag) <= 60) return true;
 
         counter.IncomingOverload = true;
-        var _player = XtremePlayerData.AllPlayerData.FirstOrDefault(x => x.CheatData.ClientData.Id == client.Id)
+        var _player = FinalPlayerData.AllPlayerData.FirstOrDefault(x => x.CheatData.ClientData.Id == client.Id)
             ?.Player;
         Warn($"Incoming Msg Overloaded: {_player?.GetDataName() ?? ""}", "FAC");
         _player?.MarkAsHacker();

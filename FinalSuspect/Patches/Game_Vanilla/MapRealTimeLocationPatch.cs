@@ -11,7 +11,7 @@ public class MapRealTimeLocationPatch
     [HarmonyPostfix]
     public static void ShowMapAfter(MapBehaviour __instance, [HarmonyArgument(0)] MapOptions opts)
     {
-        XtremeLocalHandling.ShowMap(__instance, opts);
+        FinalLocalHandling.ShowMap(__instance, opts);
     }
 
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Awake))]
@@ -23,8 +23,8 @@ public class MapRealTimeLocationPatch
 
     private static IEnumerator CreateTargetRends(MapBehaviour mapBehaviour)
     {
-        while (XtremePlayerData.AllPlayerData.Count < Main.AllPlayerControls.Count()) yield return null;
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        while (FinalPlayerData.AllPlayerData.Count < Main.AllPlayerControls.Count()) yield return null;
+        foreach (var data in FinalPlayerData.AllPlayerData)
         {
             var rend = Object.Instantiate(mapBehaviour.HerePoint, mapBehaviour.HerePoint.transform.parent, true);
             rend.gameObject.SetActive(false);
@@ -38,7 +38,7 @@ public class MapRealTimeLocationPatch
     [HarmonyPostfix]
     public static void FixedUpdateAfter(MapBehaviour __instance)
     {
-        XtremeLocalHandling.UpdateMap();
+        FinalLocalHandling.UpdateMap();
     }
 
     [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.SetPreMeetingPosition))]
@@ -46,7 +46,7 @@ public class MapRealTimeLocationPatch
     public static void SetPreMeetingPositionAfter(MapBehaviour __instance,
         [HarmonyArgument(0)] Vector3 preMeetingPosition)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
         {
             data.PreMeetingPosition = data.Player.GetTruePosition();
         }
@@ -56,7 +56,7 @@ public class MapRealTimeLocationPatch
     [HarmonyPostfix]
     public static void GenericShowAfter(MapBehaviour __instance)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
         {
             data.Rend.material.SetInt(PlayerMaterial.MaskLayer, 255);
         }
@@ -66,6 +66,6 @@ public class MapRealTimeLocationPatch
     [HarmonyPostfix]
     public static void CloseAfter(MapBehaviour __instance)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData) data.Rend.enabled = true;
+        foreach (var data in FinalPlayerData.AllPlayerData) data.Rend.enabled = true;
     }
 }

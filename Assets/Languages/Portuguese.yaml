@@ -1,7 +1,7 @@
 ﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
-# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.xtremewave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
+# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.XtremeWave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
@@ -154,7 +154,7 @@ UpdateRemind.BySelf_Text: "Esta versão não suporta atualização com um clique
 UpdateSource.Choose: "Por favor escolhe a fonte de atualização\nSe não tiveres certeza, escolhe [Github]"
 UpdateSource.Github: "Github"
 UpdateSource.Gitee: "Gitee"
-UpdateSource.XtremeApi: "Api"
+UpdateSource.FinalApi: "Api"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "Temos uma atualização importante, atualiza este mod\nSenão não poderás juntar-te a salas públicas"
@@ -184,12 +184,12 @@ MainMenuStyle.Description_Security: "Não vamos cair, não vamos desistir, não 
 MainMenuStyle.Title_NewYear: "<color=#ff0000>Afinidade</color><color=#ffff00><size=80%> (Festival da Primavera)</size></color>"
 MainMenuStyle.Author_NewYear: "小黄117"
 MainMenuStyle.Description_NewYear: "Fortuna: Desejos concedidos    Vínculo: Tecido nos batimentos\nHarmonia: Fios de afeto    Felicidade: Paz em cada alma\nVínculos do destino forjam alegria partilhada  Viaje longe, encontre alegria na união\nEra dourada acolhe todos na alegria  A nossa oração—alegria para cada ser\nQue cada alma encontre o seu caminho no ano vindouro\nCom as nossas bênçãos a iluminar o teu caminho, embarca na tua jornada para forjar a tua própria lenda!<size=80%>\n\nNomeado por: Slok</size>"
-MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Xtreme Estúdio</color><color=#ffff00><size=80%> (Festival da Primavera)</size></color>"
+MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Final Estúdio</color><color=#ffff00><size=80%> (Festival da Primavera)</size></color>"
 MainMenuStyle.Author_MiraStudio: "小黄117"
 MainMenuStyle.Description_MiraStudio: "\"—Flores florescem como ondas, suaves como o vento, desejando que cada coração seja tão vasto quanto o vento e todas as coisas corram bem\"\n\"—Ventos primaveris sopram vigorosamente, ondas avançam por milhas, desejando que todos se mantenham corajosamente na vanguarda, florescendo e prosperando\"\n\"—Bem-vindo ao Especial do Festival da Primavera da XtremeWave!\"<size=80%>\n\nNomeado por: Slok</size>"
 MainMenuStyle.Title_XtremeWave: "<color=#cdfffd>XtremeWave</color>"
 MainMenuStyle.Author_XtremeWave: "Slok"
-MainMenuStyle.Description_XtremeWave: "「Xtreme esforçando-se pela excelência, sonho comandando ondas impetuosas!」<size=80%>\n\nNomeado por: Slok</size>"
+MainMenuStyle.Description_XtremeWave: "「Final esforçando-se pela excelência, sonho comandando ondas impetuosas!」<size=80%>\n\nNomeado por: Slok</size>"
 MainMenuStyle.Title_WhenLookingBackAtTheEnd: "<color=#d81919>Quando Olhar para Trás no Fim</color><color=#d8a911><size=80%> (Colaboração)</size></color>"
 MainMenuStyle.Author_WhenLookingBackAtTheEnd: "MAMTI.麦麦头"
 MainMenuStyle.Description_WhenLookingBackAtTheEnd: "「Olhando para trás no fim, tudo termina no fim」<size=80%>\n\nNomeado por: MAMTI.麦麦头</size>"

@@ -3,8 +3,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>latest</LangVersion>
 
-        <Description>Your best functional tool for Among Us.</Description>
-        <Authors>XtremeWave</Authors>
+        <Description>Your best functional tool Mod for Among Us.</Description>
+        <Authors>Slok7565</Authors>
 
         <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>

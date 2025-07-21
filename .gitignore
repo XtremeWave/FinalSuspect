@@ -16,9 +16,6 @@ FinalSuspect/FodyWeavers.xsd
 # 解决方案
 /FinalSuspect.sln
 
-# 忽略所有 ZIP 文件
-*.zip
-
 # 忽略 Assets/Mod 下所有内容
 Assets/Mod/**
 

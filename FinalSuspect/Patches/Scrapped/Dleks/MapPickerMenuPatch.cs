@@ -42,9 +42,9 @@
 //                    __instance.selectedButton.Button.SelectButton(true);
 //                    __instance.selectedMapId = 3;
 
-//                    if (XtremeGameData.GameStates.IsNormalGame)
+//                    if (FinalGameData.GameStates.IsNormalGame)
 //                        Main.NormalOptions.MapId = 0;
-//                    else if (XtremeGameData.GameStates.IsHideNSeek)
+//                    else if (FinalGameData.GameStates.IsHideNSeek)
 //                        Main.HideNSeekOptions.MapId = 0;
 
 //                    //__instance.MapImage.transform.localScale = new Vector3(-1f, 1f, 1f);

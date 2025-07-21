@@ -1,6 +1,7 @@
 using System.Text;
 using FinalSuspect.ClientActions;
 using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
@@ -9,6 +10,7 @@ using Il2CppSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
 using ColorHelper = FinalSuspect.Helpers.ColorHelper;
@@ -85,7 +87,7 @@ public class VersionShowerStartPatch
     public static TextMeshPro VisitText;
     public static TextMeshPro CreditTextCredential;
     public static GameObject ModLogo;
-    public static GameObject TeamLogo;
+    public static GameObject AuthorLogo;
 
     private static VersionShower Instance;
 
@@ -99,7 +101,7 @@ public class VersionShowerStartPatch
             $"<color={ColorHelper.FSColorHex}>{Main.ModName}</color> " +
             $"<color={ColorHelper.TeamColorHex}>==</color>"
             + "</size>";
-        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
+        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>Slok</color></size>";
         Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if !DEBUG
@@ -122,7 +124,7 @@ public class VersionShowerStartPatch
                 $"<color=#fffcbe>==</color>"
                 + "</size>";
             Main.CredentialsText += "\r\n <color=#cdffdd> By </color><color=#fffcbe>XtremeWives</color></size>";
-            Main.CredentialsText += "\r\n <color=#ff0000>4.1.4.1.4.1.4.1.4.1.4.1.Never Gonna Give You Up</color>";
+            Main.CredentialsText += "\r\n <color=#ff0000>4.1.Never Gonna Give You Up</color>";
         }
 
         ErrorText.Create(__instance.text);
@@ -134,7 +136,7 @@ public class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) && !CreditTextCredential)
         {
             var credentialsText = string.Format(GetString("MainMenuCredential"),
-                $"<color={ColorHelper.TeamColorHex}>XtremeWave</color>");
+                $"<color={ColorHelper.TeamColorHex}>Slok</color>");
             credentialsText += "\n";
 #if DEBUG
             var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
@@ -152,7 +154,7 @@ public class VersionShowerStartPatch
             if (Main.IsAprilFools)
             {
                 credentialsText =
-                    "<color=#fffcbe>XtremeWives © 1987</color>\n<color=#ff0000>4.1.4.1.4.1.4.1.4.1.4.1.Never Gonna Give You Up</color>";
+                    "<color=#fffcbe>XtremeWives © 1987</color>\n<color=#ff0000>4.1.Never Gonna Give You Up</color>";
             }
 
             CreditTextCredential = Object.Instantiate(__instance.text);
@@ -171,20 +173,20 @@ public class VersionShowerStartPatch
             ap_credit.updateAlways = true;
         }
 
-        TeamLogo = new GameObject
+        AuthorLogo = new GameObject
         {
             layer = 5,
-            name = "Team Logo"
+            name = "Author Logo"
         };
-        TeamLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("TeamLogo.png", 400f);
-        TeamLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
-        TeamLogo.transform.SetParent(VisitText.transform.parent);
-        var ap_teamLogo = TeamLogo.gameObject.AddComponent<AspectPosition>();
-        ap_teamLogo.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
-        ap_teamLogo.DistanceFromEdge = new Vector3(0.6f, 0.5f);
-        ap_teamLogo.updateAlways = true;
+        AuthorLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("AuthorLogo2.png", 840f);
+        AuthorLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+        AuthorLogo.transform.SetParent(VisitText.transform.parent);
+        var ap_authorLogo = AuthorLogo.gameObject.AddComponent<AspectPosition>();
+        ap_authorLogo.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
+        ap_authorLogo.DistanceFromEdge = new Vector3(0.6f, 0.5f);
+        ap_authorLogo.updateAlways = true;
 
-        TeamLogo.SetActive(false);
+        AuthorLogo.SetActive(false);
         ModLogo = new GameObject
         {
             layer = 5,
@@ -239,7 +241,7 @@ internal class TitleLogoPatch
         Color shade = new(0f, 0f, 0f, 0f);
         var standardActiveSprite = __instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
         var minorActiveSprite = __instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
-        var style = MainMenuStyleManager.BackGroundStyles[Main.CurrentBackgroundId.Value];
+        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
 
         var friendsButton = FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
@@ -376,11 +378,21 @@ internal class TitleLogoPatch
 internal class ModManagerLateUpdatePatch
 {
     private static bool firstRun;
+    private static string LastScene = "";
+
 
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
-        if (!firstRun)
+        if (firstRun)
+        {
+            if (LastScene != SceneManager.GetActiveScene().name)
+            {
+                LastScene = SceneManager.GetActiveScene().name;
+                OnSceneChange(LastScene);
+            }
+        }
+        else
         {
             OptionsMenuBehaviourStartPatch.SetCursor();
             __instance.ModStamp.sprite = LoadSprite("ModStamp.png", 100f);
@@ -397,6 +409,20 @@ internal class ModManagerLateUpdatePatch
         __instance.ModStamp.transform.position = AspectPosition.ComputeWorldPosition(
             __instance.localCamera, AspectPosition.EdgeAlignments.RightTop,
             new Vector3(0.4f, offset_y, __instance.localCamera.nearClipPlane + 0.1f));
+    }
+
+    private static void OnSceneChange(string name)
+    {
+        if (name is "MainMenu" or "MatchMaking")
+        {
+            var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrectAudio == style.MainMenuMusic);
+            if (audio != null)
+            {
+                audio.IsMainMenuMusic = true;
+                _ = new LateTask(() => { AudioPlayer.Play(audio); }, 0.01f, "Play Custom MainBG");
+            }
+        }
     }
 }
 

@@ -11,7 +11,7 @@ body:
       label: Prerequisites
       description: Thank you for taking the time to fill out this issue report! Before you begin, you will need to confirm the following.
       options:
-        - label: I have searched for related issues in the [议题](https://github.com/XtremeWave/FinalSuspect) list.
+        - label: I have searched for related issues in the [议题](https://github.com/Slok7565/FinalSuspect) list.
           required: true
         - label: I am using the latest version of FinalSuspect.
           required: true
@@ -43,7 +43,7 @@ body:
   - type: textarea
     attributes:
       label: "Relevant log output"
-      description: "Please refer to [this document](https://www.xtreme.net.cn/docs/FS/en-us/Guide/OutputLog) to export FinalSuspect logs."
+      description: "Please refer to [this document](https://www.Final.net.cn/docs/FS/en-us/Guide/OutputLog) to export FinalSuspect logs."
       render: shell
   - type: textarea
     attributes:

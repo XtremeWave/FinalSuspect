@@ -1,6 +1,6 @@
 using System.Text;
 using AmongUs.Data;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Templates;
@@ -16,9 +16,9 @@ internal class AmongUsClientEndGamePatch
 
     public static void Postfix()
     {
-        XtremeGameData.LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
+        FinalGameData.LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
         SummaryText = new Dictionary<byte, string>();
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        foreach (var data in FinalPlayerData.AllPlayerData)
             SummaryText[data.PlayerId] = SummaryTexts(data.PlayerId);
     }
 }
@@ -60,8 +60,8 @@ internal class SetEverythingUpPatch
                 __instance.transform,
                 "ShowHideResultsButton",
                 new Vector3(-4.5f * GetResolutionOffset(), 2.6f, -14f), // 比 BackgroundLayer(z = -13) 更靠前
-                XtremeGameData.LastLocalPlayerRoleColor,
-                XtremeGameData.LastLocalPlayerRoleColor.ShadeColor(0.1f),
+                FinalGameData.LastLocalPlayerRoleColor,
+                FinalGameData.LastLocalPlayerRoleColor.ShadeColor(0.1f),
                 () =>
                 {
                     var setToActive = !roleSummary.gameObject.activeSelf;
@@ -77,25 +77,25 @@ internal class SetEverythingUpPatch
                 FontSize = 2f
             };
         var lastGameResult = DidHumansWin ? GetString("Summary.CrewsWin") : GetString("Summary.ImpsWin");
-        XtremeGameData.LastGameResult = lastGameResult;
+        FinalGameData.LastGameResult = lastGameResult;
         StringBuilder sb = new($"{GetString("Summary.Text")}{lastGameResult}");
         var gameCode = StringHelper.ColorString(
             ColorHelper.FSColor,
             DataManager.Settings.Gameplay.StreamerMode
-                ? new string('*', XtremeGameData.LastRoomCode.Length)
-                : XtremeGameData.LastRoomCode);
-        sb.Append("\n" + XtremeGameData.LastServer + "  " + gameCode);
+                ? new string('*', FinalGameData.LastRoomCode.Length)
+                : FinalGameData.LastRoomCode);
+        sb.Append("\n" + FinalGameData.LastServer + "  " + gameCode);
         sb.Append("\n" + GetString("Tip.HideSummaryTextToShowWinText"));
 
         StringBuilder sb2 = new();
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
             sb2.Append($"\n<color={winnerColor}>★</color> ")
                 .Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
 
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
             sb2.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
 
-        XtremeGameData.LastGameData = sb2.ToString();
+        FinalGameData.LastGameData = sb2.ToString();
         sb.Append(sb2);
         HudManagerPatch.Init();
         roleSummary = TMPTemplate.Create(
@@ -112,6 +112,6 @@ internal class SetEverythingUpPatch
         roleSummary.SetOutlineColor(Color.black);
         roleSummary.SetOutlineThickness(0.15f);
 
-        XtremePlayerData.DisposeAll();
+        FinalPlayerData.DisposeAll();
     }
 }

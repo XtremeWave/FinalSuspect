@@ -39,7 +39,7 @@ public static class ChatBubblePatch
         }
         else
         {
-            XtremeLocalHandling.GetChatBubbleText(
+            FinalLocalHandling.GetChatBubbleText(
                 __instance.playerInfo.PlayerId,
                 ref name,
                 ref bgcolor,

@@ -9,7 +9,7 @@ public static class _StatesBoolean
 
     public static bool IsAlive(this PlayerControl pc)
     {
-        return pc?.GetXtremeData()?.IsDead == false || !IsInGame;
+        return pc?.GetFinalData()?.IsDead == false || !IsInGame;
     }
 
     public static bool OtherModClient(this PlayerControl player)

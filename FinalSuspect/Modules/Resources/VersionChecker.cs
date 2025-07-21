@@ -21,12 +21,10 @@ public static class VersionChecker
     public static bool forceUpdate;
     public static bool isBroken;
     public static bool isChecked;
-    private static bool DebugUnused;
     public static string versionInfoRaw = "";
 
     private static Version latestVersion;
     public static string showVer = "";
-    private static Version DebugVer;
     public static bool CanUpdate;
     private static string verHead = "";
     private static string verDate = "";
@@ -98,7 +96,6 @@ public static class VersionChecker
                 Info("File MD5: " + md5, "CheckRelease");
                 Info("Github Url: " + downloadUrl_github, "CheckRelease");
                 Info("Gitee Url: " + downloadUrl_gitee, "CheckRelease");
-                Info("Api Url: " + downloadUrl_xtremeapi, "CheckRelease");
 
                 if (firstLaunch || isBroken)
                 {
@@ -159,8 +156,6 @@ public static class VersionChecker
 
             verHead = new string(data["verHead"]?.ToString());
 
-            DebugVer = new Version(data["DebugVer"]?.ToString() ?? string.Empty);
-
             CanUpdate = bool.Parse(new string(data["CanUpdate"]?.ToString()));
 
             verDate = new string(data["verDate"]?.ToString());
@@ -180,10 +175,7 @@ public static class VersionChecker
             downloadUrl_gitee = downloadUrl_gitee.Replace("{showVer}", showVer);
             hasUpdate = Main.version < latestVersion && creation > Main.PluginCreation;
             forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
-#if DEBUG
-            DebugUnused = Main.version < DebugVer;
-            hasUpdate = forceUpdate = DebugUnused;
-#endif
+
             return true;
         }
         catch

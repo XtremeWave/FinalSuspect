@@ -1,5 +1,5 @@
 using AmongUs.Data;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
@@ -16,19 +16,19 @@ public class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         Info($"{__instance.GameId} 加入房间", "OnGameJoined");
-        XtremeGameData.PlayerVersion.playerVersion = new Dictionary<int, XtremeGameData.PlayerVersion>();
-        SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
-        XtremePlayerData.InitializeAll();
+        FinalGameData.PlayerVersion.playerVersion = new Dictionary<int, FinalGameData.PlayerVersion>();
+        FinalPlayerData.InitializeAll();
         UpdateGameState_IsInGame(false);
         UpdateGameState_IsInMeeting(false);
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();
-        XtremeGameData.JoinedCompleted = false;
+        FinalGameData.JoinedCompleted = false;
         Init_FAC();
         _ = new LateTask(() => { _ = RPC.RpcVersionCheck(); }, 0.5f, "SyncJoined");
-        _ = new LateTask(() => { XtremeGameData.JoinedCompleted = true; }, 4f, "SyncJoined");
+        _ = new LateTask(() => { FinalGameData.JoinedCompleted = true; }, 4f, "SyncJoined");
 
         if (AmongUsClient.Instance.AmHost) GameStartManagerPatch.GameStartManagerUpdatePatch.exitTimer = -1;
+        SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
         //Main.NewLobby = true;
     }
 }
@@ -45,7 +45,7 @@ internal class DisconnectInternalPatch
 
             Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
             HudManagerPatch.Init();
-            XtremePlayerData.DisposeAll();
+            FinalPlayerData.DisposeAll();
 
             ErrorText.Instance.CheatDetected = false;
             ErrorText.Instance.SBDetected = false;
@@ -153,7 +153,7 @@ internal class OnPlayerLeftPatch
 
             Dispose(data.Character?.PlayerId ?? 255);
 
-            XtremeGameData.PlayerVersion.playerVersion.Remove(data.Character?.GetClientId() ?? 0);
+            FinalGameData.PlayerVersion.playerVersion.Remove(data.Character?.GetClientId() ?? 0);
             ClientsProcessed.Remove(data.Id);
         }
         catch

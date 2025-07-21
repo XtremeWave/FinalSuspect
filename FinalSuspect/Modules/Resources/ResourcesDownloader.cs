@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO.Compression;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -38,7 +39,7 @@ public static class ResourcesDownloader
             remoteType = retrytimes switch
             {
                 0 => RemoteType.Gitee,
-                1 => RemoteType.XtremeApi,
+                1 => RemoteType.Github,
                 2 => RemoteType.Github,
                 _ => remoteType
             };
@@ -63,6 +64,24 @@ public static class ResourcesDownloader
             Thread.Sleep(100);
             File.Delete(filePath);
             File.Move(DownloadFileTempPath, filePath);
+
+            if (Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    var extractPath = Path.GetDirectoryName(filePath);
+                    Msg($"Unzipping file: {filePath}", "Download Resources");
+                    if (extractPath != null) ZipFile.ExtractToDirectory(filePath, extractPath);
+                    File.Delete(filePath);
+                    Warn($"Unzipped successfully: {filePath}", "Download Resources");
+                }
+                catch (Exception ex)
+                {
+                    Error($"Failed to unzip file\n{ex.Message}", "Download Resources", false);
+                    return false;
+                }
+            }
+
             Warn($"Succeed in {url}", "Download Resources");
             return true;
         }
@@ -83,9 +102,9 @@ public static class ResourcesDownloader
         switch (fileType)
         {
             case FileType.Images:
-            case FileType.Musics:
             case FileType.ModNews:
             case FileType.Languages:
+            case FileType.Musics:
             case FileType.SoundEffects:
                 filePath = GetResourceFilesPath(fileType, file);
                 break;
@@ -106,7 +125,7 @@ public static class ResourcesDownloader
             remoteType = retrytimes switch
             {
                 0 => RemoteType.Gitee,
-                1 => RemoteType.XtremeApi,
+                1 => RemoteType.Github,
                 2 => RemoteType.Github,
                 _ => remoteType
             };
@@ -188,7 +207,7 @@ public static class ResourcesDownloader
                 }
 
                 var urlGitee = PathManager.GetFile(fileType, RemoteType.Gitee, file);
-                var urlApi = PathManager.GetFile(fileType, RemoteType.XtremeApi, file);
+                var urlApi = PathManager.GetFile(fileType, RemoteType.FinalApi, file);
                 var response1 = await client.GetAsync(urlGitee);
                 var response2 = await client.GetAsync(urlApi);
                 return response1.StatusCode == HttpStatusCode.NotFound && response2.StatusCode == HttpStatusCode.NotFound;

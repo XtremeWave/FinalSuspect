@@ -2,6 +2,8 @@
 using System.Collections;
 using System.IO;
 using BepInEx.Unity.IL2CPP.Utils;
+using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using TMPro;
@@ -68,7 +70,8 @@ public static class LoadPatch
 
         private static void CreateLogoComponents()
         {
-            _teamLogo = ObjectHelper.CreateSpriteRenderer("Team_Logo", "TeamLogo.png", 120f, new Vector3(0, 0f, -5f));
+            _authorLogo =
+                ObjectHelper.CreateSpriteRenderer("Author_Logo", "AuthorLogo1.png", 120f, new Vector3(0, 0f, -5f));
             _modLogo = ObjectHelper.CreateSpriteRenderer("Mod_Logo", "FinalSuspect-Logo.png", 150f,
                 new Vector3(0, 0.3f, -5f));
             _modLogoBlurred = ObjectHelper.CreateSpriteRenderer("Mod_Logo_Blurred", "FinalSuspect-Logo-Blurred.png",
@@ -86,8 +89,12 @@ public static class LoadPatch
             var logoAnimator = GameObject.Find("LogoAnimator");
             logoAnimator.SetActive(false);
 
+
             CheckForListResources(ref ResourcesHelper.PreReadyRemoteImageList, FileType.Images);
+            CheckForListResources(ref ResourcesHelper.PreReadyRemoteMusicList, FileType.Musics);
             yield return DownloadResources(ResourcesHelper.PreReadyRemoteImageList, FileType.Images,
+                HandleFirstLaunchText, true);
+            yield return DownloadResources(ResourcesHelper.PreReadyRemoteMusicList, FileType.Musics,
                 HandleFirstLaunchText, true);
             if (string.IsNullOrEmpty(_loadText.text)) yield break;
             _loadText.text = string.Empty;
@@ -141,6 +148,15 @@ public static class LoadPatch
         {
             SetFastLaunchModeVisuals();
             TranslatorInit();
+            AudioManager.ReloadTag();
+            var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrectAudio == style.MainMenuMusic);
+            if (audio != null)
+            {
+                audio.IsMainMenuMusic = true;
+                AudioPlayer.Play(audio);
+            }
+
             UpdateProcessText(GetString("ClientOption.FastLaunchMode"), Color.green);
             yield return new WaitForSeconds(1f);
             _skipLoadAnimation = true;
@@ -148,9 +164,9 @@ public static class LoadPatch
 
         private static void SetFastLaunchModeVisuals()
         {
-            _teamLogo.color = Color.white;
-            _teamLogo.transform.localPosition = new Vector3(0, 1.7f, -5f);
-            _teamLogo.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            _authorLogo.color = Color.white;
+            _authorLogo.transform.localPosition = new Vector3(0, 2.4f, -5f);
+            _authorLogo.transform.localScale = new Vector3(0.55f, 0.55f, 1f);
 
             _modLogo.color = Color.white;
             _modLogo.transform.localPosition = new Vector3(0, 0, -5f);
@@ -161,7 +177,7 @@ public static class LoadPatch
 
         private static IEnumerator HandleNormalBoot()
         {
-            yield return AnimateTeamLogo();
+            yield return AnimateAuthorLogo();
             yield return AnimateModLogo();
             yield return ShowLoadingProgress();
         }
@@ -170,11 +186,12 @@ public static class LoadPatch
 
         #region Animation Coroutines
 
-        private static IEnumerator AnimateTeamLogo()
+        private static IEnumerator AnimateAuthorLogo()
         {
-            yield return FadeSprite(_teamLogo, 2.8f, false);
+            _authorLogo.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            yield return FadeSprite(_authorLogo, 2.8f, false);
             yield return new WaitForSeconds(1.5f);
-            yield return FadeSprite(_teamLogo, 2.8f, true);
+            yield return FadeSprite(_authorLogo, 2.8f, true);
             yield return new WaitForSeconds(2f);
         }
 
@@ -239,8 +256,19 @@ public static class LoadPatch
 
             if (RemoteLanguageList.Count > 0)
                 yield return DownloadResources(RemoteLanguageList, FileType.Languages, null, true);
+
             if (!_skipLoadAnimation)
+            {
                 TranslatorInit();
+                AudioManager.ReloadTag();
+                var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+                var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrectAudio == style.MainMenuMusic);
+                if (audio != null)
+                {
+                    audio.IsMainMenuMusic = true;
+                    AudioPlayer.Play(audio);
+                }
+            }
         }
 
         private static IEnumerator HandlePostDownloadProcess(bool fastLaunchMode)
@@ -337,7 +365,7 @@ public static class LoadPatch
             Object.Destroy(_processText.gameObject);
             Object.Destroy(_modLogo.gameObject);
             Object.Destroy(_modLogoBlurred.gameObject);
-            Object.Destroy(_teamLogo.gameObject);
+            Object.Destroy(_authorLogo.gameObject);
             Object.Destroy(_glow.gameObject);
         }
 
@@ -352,7 +380,10 @@ public static class LoadPatch
             for (var i = targetList.Count - 1; i >= 0; i--)
             {
                 var resource = targetList[i];
-                if (File.Exists(GetLocalFilePath(fileType, resource)))
+                var path = GetLocalFilePath(fileType, resource);
+                if (fileType is FileType.Musics)
+                    AudioManager.ConvertExtension(ref path);
+                if (File.Exists(path))
                     targetList.Remove(resource);
                 else
                     Warn($"File does not exist: {GetLocalFilePath(fileType, resource)}", "Check");
@@ -450,7 +481,7 @@ public static class LoadPatch
 
     private static TextMeshPro _loadText = null!;
     private static TextMeshPro _processText = null!;
-    private static SpriteRenderer _teamLogo = null!;
+    private static SpriteRenderer _authorLogo = null!;
     private static SpriteRenderer _modLogo = null!;
     private static SpriteRenderer _modLogoBlurred = null!;
     private static SpriteRenderer _glow = null!;

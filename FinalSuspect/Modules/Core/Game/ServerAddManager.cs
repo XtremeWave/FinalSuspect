@@ -58,7 +58,6 @@ public static class ServerAddManager
             "Niko233(AS)" => "Niko[AS]",
             "Niko233(EU)" => "Niko[EU]",
             "Niko233(CN)" => "Niko[CN]",
-            "XtremeWave(HK)" => "XW[HK]",
             _ => serverName
         };
 
@@ -70,7 +69,6 @@ public static class ServerAddManager
                 "Europe" => "欧服",
                 "North America" => "北美服",
                 "NA" => "北美服",
-                "XW[HK]" => "XW[香港]",
                 _ => name
             };
 

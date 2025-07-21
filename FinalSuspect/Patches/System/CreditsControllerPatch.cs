@@ -10,14 +10,22 @@ public class CreditsControllerPatch
         var devList = new List<string>
         {
             $"<size=120%><color={ColorHelper.FSColorHex}>{Main.ModName}</color></size>",
-            $"<color=#fffcbe>By</color> <color={ColorHelper.TeamColorHex}>XtremeWave</color>",
+            $"<color=#fffcbe>By</color> <color={ColorHelper.TeamColorHex}>By Slok</color>",
             //Others
             $"<size=120%>{GetString("Id.Contributor")}</size>",
+            "- Nonalus",
+            "- KpCam",
+            "- 小黄117",
             "- LezaiYa",
+            "- 白糖咖啡",
+            "- Elinmei",
+            "- QingFeng",
+            "- Yu(Night_瓜)",
+            "- FangKuai",
+
             "- KARPED1EM",
             "- Niko233",
             "- Amongus(水木年华)",
-            "- Yu(Night_瓜)",
             "- 天寸梦初"
         };
 

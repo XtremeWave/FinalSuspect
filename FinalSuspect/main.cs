@@ -32,7 +32,7 @@ public class Main : BasePlugin
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
     public const string PluginVersion = "1.2.0";
-    public const string PluginGuid = "cn.xtremewave.finalsuspect";
+    public const string PluginGuid = "cn.slok.finalsuspect";
     public const int PluginCreation = 0;
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "59687b";
@@ -53,10 +53,10 @@ public class Main : BasePlugin
 
 
     // == 链接相关设定 / Link Config ==
-    //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.xtreme.net.cn/project/FS/" : "https://www.xtreme.net.cn/en/project/FS/";
+    //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.Final.net.cn/project/FS/" : "https://www.Final.net.cn/en/project/FS/";
     public const string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
     public const string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
-    public const string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect/";
+    public const string GithubRepoUrl = "https://github.com/Slok7565/FinalSuspect/";
     public const float RoleTextSize = 2f;
 
     public static readonly string DisplayedVersion =
@@ -138,7 +138,7 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
     public static ConfigEntry<string> LastStartVersion { get; private set; }
     public static ConfigEntry<BypassType> LanguageUpdateBypass { get; private set; }
-    public static ConfigEntry<int> CurrentBackgroundId { get; private set; }
+    public static ConfigEntry<int> CurrentStyleId { get; private set; }
 
     public static IEnumerable<PlayerControl> AllPlayerControls =>
         PlayerControl.AllPlayerControls.ToArray().Where(p => p);
@@ -156,13 +156,13 @@ public class Main : BasePlugin
         Instance = this;
 
         //Configs
-        HideName = Config.Bind("Xtreme System", "Hide Game Code Name", "Final Suspect");
-        HideColor = Config.Bind("Xtreme System", "Hide Game Code Color", $"{ColorHelper.FSColorHex}");
-        EnableFinalSuspect = Config.Bind("Xtreme System", "Enable Final Suspect", true);
-        ShowResults = Config.Bind("Xtreme System", "Show Results", true);
-        LastStartVersion = Config.Bind("Xtreme System", "Last Start Version", "0.0.0");
-        LanguageUpdateBypass = Config.Bind("Xtreme System", "Language Update Bypass", BypassType.Dont);
-        CurrentBackgroundId = Config.Bind("Xtreme System", "BG Id", 0);
+        HideName = Config.Bind("Final System", "Hide Game Code Name", "Final Suspect");
+        HideColor = Config.Bind("Final System", "Hide Game Code Color", $"{ColorHelper.FSColorHex}");
+        EnableFinalSuspect = Config.Bind("Final System", "Enable Final Suspect", true);
+        ShowResults = Config.Bind("Final System", "Show Results", true);
+        LastStartVersion = Config.Bind("Final System", "Last Start Version", "0.0.0");
+        LanguageUpdateBypass = Config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
+        CurrentStyleId = Config.Bind("Final System", "BG Id", 0);
 
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
 

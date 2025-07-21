@@ -13,10 +13,7 @@ public static class PathManager
     public const string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
 
     public const string downloadUrl_github =
-        "https://github.com/XtremeWave/FinalSuspect/releases/latest/download/FinalSuspect.dll";
-
-    public const string downloadUrl_xtremeapi =
-        "https://api.xtreme.net.cn/FinalSuspect/download/FinalSuspect.dll";
+        "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
@@ -27,12 +24,12 @@ public static class PathManager
     private static IReadOnlyList<string> URLs => new List<string>
     {
 #if DEBUG
-        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/",
-        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect_Dev/FS_Dev/",
+        "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
+        "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Dev/FS_Dev/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else
-        "https://raw.githubusercontent.com/XtremeWave/FinalSuspect/FinalSus/",
+        "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
 #endif
     };
@@ -56,9 +53,8 @@ public static class PathManager
     {
         var remoteBase = remoteType switch
         {
-            RemoteType.Github => "github.com/XtremeWave/FinalSuspect/raw/FinalSus/Assets/",
+            RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/Assets/",
             RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/Assets/",
-            RemoteType.XtremeApi => "api.xtreme.net.cn/FinalSuspect/download/Assets/",
             _ => "127.0.0.1"
         };
 
@@ -171,8 +167,7 @@ public enum FileType
 public enum RemoteType
 {
     Github,
-    Gitee,
-    XtremeApi
+    Gitee
 }
 
 public enum LocalType

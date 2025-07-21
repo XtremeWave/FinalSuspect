@@ -1,9 +1,9 @@
 ﻿using FinalSuspect.Attributes;
 using UnityEngine;
 
-namespace FinalSuspect.DataHandling.XtremeGameData;
+namespace FinalSuspect.DataHandling.FinalGameData;
 
-public static partial class XtremeGameData
+public static partial class FinalGameData
 {
     public static string LastResultText;
     public static string LastRoomCode;

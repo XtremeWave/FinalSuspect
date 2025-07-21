@@ -1,7 +1,7 @@
 ﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
-# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.xtremewave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
+# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.XtremeWave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
@@ -154,7 +154,7 @@ UpdateRemind.BySelf_Text: "This version does not support one-click update, pleas
 UpdateSource.Choose: "Please choose update source\nIf unsure, choose [Github]"
 UpdateSource.Github: "Github"
 UpdateSource.Gitee: "Gitee"
-UpdateSource.XtremeApi: "Api"
+UpdateSource.FinalApi: "Api"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "We have an important update, please update this mod\nOtherwise you cannot join public rooms"
@@ -184,12 +184,12 @@ MainMenuStyle.Description_Security: "We will not fall, not give up, not disappoi
 MainMenuStyle.Title_NewYear: "<color=#ff0000>Affinity</color><color=#ffff00><size=80%> (Spring Festival)</size></color>"
 MainMenuStyle.Author_NewYear: "小黄117"
 MainMenuStyle.Description_NewYear: "Fortune: Wishes bestowed    Bond: Woven in heartbeats\nHarmony: Threads of affection    Bliss: Peace in every soul\nFated bonds forge shared joy  Journey far, find joy in unity\nPrime era cradles all in mirth  Our prayer—joy for every being\nMay each soul find their destined path in the coming year\nWith our blessings lighting your way, embark on your journey to forge your own legend!<size=80%>\n\nNamed by: Slok</size>"
-MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Xtreme Studio</color><color=#ffff00><size=80%> (Spring Festival)</size></color>"
+MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Final Studio</color><color=#ffff00><size=80%> (Spring Festival)</size></color>"
 MainMenuStyle.Author_MiraStudio: "小黄117"
 MainMenuStyle.Description_MiraStudio: "\"—Flowers bloom like waves, gentle as the wind, wishing everyone's heart as vast as the wind, all things go smoothly\"\n\"—Spring winds surge mightily, waves surge for miles, wishing everyone stands bravely at the forefront, thriving and prospering\"\n\"—Welcome to XtremeWave — Spring Festival Special Program!\"<size=80%>\n\nNamed by: Slok</size>"
 MainMenuStyle.Title_XtremeWave: "<color=#cdfffd>XtremeWave</color>"
 MainMenuStyle.Author_XtremeWave: "Slok"
-MainMenuStyle.Description_XtremeWave: "「Xtreme Striving Toward Excellence, Dream Commanding Surging Waves!」<size=80%>\n\nNamed by: Slok</size>"
+MainMenuStyle.Description_XtremeWave: "「Final Striving Toward Excellence, Dream Commanding Surging Waves!」<size=80%>\n\nNamed by: Slok</size>"
 MainMenuStyle.Title_WhenLookingBackAtTheEnd: "<color=#d81919>When Looking Back At The End</color><color=#d8a911><size=80%> (Collaboration)</size></color>"
 MainMenuStyle.Author_WhenLookingBackAtTheEnd: "MAMTI.麦麦头"
 MainMenuStyle.Description_WhenLookingBackAtTheEnd: "「Looking back at the end, it all ends at the end」<size=80%>\n\nNamed by: MAMTI.麦麦头</size>"

@@ -9,7 +9,12 @@ public static class ResourcesHelper
         "FinalSuspect-Logo.png",
         "FinalSuspect-Logo-Blurred.png",
         "LastResult-BG.png",
-        "TeamLogo.png"
+        "AuthorLogo1.png",
+    ];
+
+    public static List<string> PreReadyRemoteMusicList =
+    [
+        "FinalSuspect.zip"
     ];
 
     public static List<string> RemoteImageList =
@@ -36,7 +41,8 @@ public static class ResourcesHelper
         "FinalSuspect-BG-XtremeWave-Preview.png",
         "FinalSuspect-BG-WhenLookingBackAtTheEnd-Preview.png",
         "ModStamp.png",
-        "RightPanelCloseButton.png"
+        "RightPanelCloseButton.png",
+        "AuthorLogo2.png"
     ];
 
     public static List<string> RemoteDependList =

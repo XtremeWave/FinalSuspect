@@ -1,5 +1,5 @@
 using AmongUs.GameOptions;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Object = UnityEngine.Object;
@@ -53,7 +53,7 @@ public static class MeetingHudPatch
     {
         public static void Postfix([HarmonyArgument(1)] NetworkedPlayerInfo exiled, [HarmonyArgument(2)] bool tie)
         {
-            foreach (var data in XtremePlayerData.AllPlayerData.Where(data => data?.Rend_DeadBody))
+            foreach (var data in FinalPlayerData.AllPlayerData.Where(data => data?.Rend_DeadBody))
             {
                 if (data == null) continue;
                 Object.Destroy(data.Rend_DeadBody);

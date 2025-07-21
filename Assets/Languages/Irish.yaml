@@ -1,7 +1,7 @@
 ﻿# FinalSuspect 的语言文件 / Translation file of FinalSuspect
 
 # 作者署名（不需要请留空）/ A sign of an author (Please leave blank when not needed)
-# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.xtremewave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
+# 注: 为了防止您的翻译在版本更新中重制，请修改本地目录Among Us/BepInEx/cn.XtremeWave.finalsuspect.cfg的值"Language Update Bypass"修改为"LongTerm"
 TextBelowVersionText: ""
 
 # 职业类型 / Role Type
@@ -154,7 +154,7 @@ UpdateRemind.BySelf_Text: "Ní thacaíonn an leagan seo le nuashonrú cliceáil-
 UpdateSource.Choose: "Roghnaigh foinse nuashonraithe le do thoil\nMura bhfuil tú cinnte, roghnaigh [Github]"
 UpdateSource.Github: "Github"
 UpdateSource.Gitee: "Gitee"
-UpdateSource.XtremeApi: "Api"
+UpdateSource.FinalApi: "Api"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "Tá nuashonrú tábhachtach againn, nuashonraigh an mod seo le do thoil\nNó ní féidir leat seomraí poiblí a bhog isteach"
@@ -184,12 +184,12 @@ MainMenuStyle.Description_Security: "Ní thitfimid, ní thréigfimid, ní bhrisf
 MainMenuStyle.Title_NewYear: "<color=#ff0000>Caidreamh</color><color=#ffff00><size=80%> (Féile an Earraigh)</size></color>"
 MainMenuStyle.Author_NewYear: "小黄117"
 MainMenuStyle.Description_NewYear: "Fórtún: Mianach bronnta    Nasc: Sníthe i gcroí-luathadh\nComhchuibheas: Snáithíní cionta    Sonais: Síocháin i ngach anam\nNaisc chinniúnacha a chruthaíonn áthas comhroinnte  Turais i bhfad, aimsigh áthas san aontas\nRé órga a chuimil gach duine le háthas  Ár nguí — áthas do gach duine\nGo bhfaighidh gach duine a chosán cinnte sa bhliain atá le teacht\nLeis na beannachtaí ag solasú do bhealaigh, tosaigh ar do thuras chun do scéal féin a chruthú!<size=80%>\n\nAinmnithe ag: Slok</size>"
-MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Stiúideo Xtreme</color><color=#ffff00><size=80%> (Féile an Earraigh)</size></color>"
+MainMenuStyle.Title_MiraStudio: "<color=#cdfffd>Stiúideo Final</color><color=#ffff00><size=80%> (Féile an Earraigh)</size></color>"
 MainMenuStyle.Author_MiraStudio: "小黄117"
 MainMenuStyle.Description_MiraStudio: "\"—Bláthanna ag bláthú cosúil le tonnta, séimh cosúil leis an ngaoth, ag guí gach croí a bheith chomh leathan leis an ngaoth, gach rud ag dul go réidh\"\n\"—Gaoithe earraigh ag sileadh go láidir, tonnta ag sileadh ar mhíle, ag guí gach duine seasamh go cróga ag an mbarr, ag fás agus ag bláthú\"\n\"—Fáilte go XtremeWave — Clár Speisialta Féile an Earraigh!\"<size=80%>\n\nAinmnithe ag: Slok</size>"
 MainMenuStyle.Title_XtremeWave: "<color=#cdfffd>XtremeWave</color>"
 MainMenuStyle.Author_XtremeWave: "Slok"
-MainMenuStyle.Description_XtremeWave: "「Xtreme ag streachailt i dtreo barr feabhais, aisling ag ordú tonnta ag sileadh!」<size=80%>\n\nAinmnithe ag: Slok</size>"
+MainMenuStyle.Description_XtremeWave: "「Final ag streachailt i dtreo barr feabhais, aisling ag ordú tonnta ag sileadh!」<size=80%>\n\nAinmnithe ag: Slok</size>"
 MainMenuStyle.Title_WhenLookingBackAtTheEnd: "<color=#d81919>Nuair a Fheiceann tú Siar ag an Deireadh</color><color=#d8a911><size=80%> (Comhoibriú)</size></color>"
 MainMenuStyle.Author_WhenLookingBackAtTheEnd: "MAMTI.麦麦头"
 MainMenuStyle.Description_WhenLookingBackAtTheEnd: "「Ag féachaint siar ag an deireadh, críochnaíonn gach rud ag an deireadh」<size=80%>\n\nAinmnithe ag: MAMTI.麦麦头</size>"

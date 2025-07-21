@@ -149,7 +149,7 @@ public static class OptionsMenuBehaviourStartPatch
             SetFeatureItemDisabled_Menu(MainMenuStyleBtn);
         }
 
-        if (Directory.GetFiles(GetLogFolder(true).FullName + "/Final Suspect-logs").Length <= 0)
+        if (Directory.GetFiles(GetLogFolder(true).FullName).Length <= 0)
             SetFeatureItemDisabled(ClearAutoLogs);
 
         AudioManager.ReloadTag();

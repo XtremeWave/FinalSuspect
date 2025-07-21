@@ -210,7 +210,7 @@ public static class ResourcesPanel
             var type = Path.GetExtension(fileName) switch
             {
                 ".jpg" or ".png" => FileType.Images,
-                ".wav" => FileType.Musics,
+                ".wav" or ".zip" => FileType.Musics,
                 _ => FileType.Unknown
             };
             return type;

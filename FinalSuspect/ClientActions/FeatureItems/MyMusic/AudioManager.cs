@@ -36,7 +36,7 @@ public static class AudioManager
                 if (string.IsNullOrWhiteSpace(fileName))
                     continue;
 
-                XtremeMusic.CreateMusic(fileName);
+                FinalMusic.CreateMusic(fileName);
                 Info($"Audio Loaded: {fileName}", "AudioManager");
             }
         }
@@ -48,13 +48,13 @@ public static class AudioManager
 
     private static void Init()
     {
-        XtremeMusic.InitializeAll();
+        FinalMusic.InitializeAll();
     }
 
     public static bool ConvertExtension(ref string path)
     {
         if (path == null) return false;
-        List<string> extensions = [".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a"];
+        List<string> extensions = [".zip", ".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a"];
 
         while (!File.Exists(path))
         {
@@ -120,6 +120,7 @@ public enum SupportedMusics
     Affinity__Slok,
     TidalSurge__Slok,
     ReturnToSimplicity__Slok,
+    FinalSuspect__Slok,
 
     // 这里是EmberVeins的Demo曲
     TrailOfTruth__Slok,
@@ -141,9 +142,9 @@ public enum AudiosStates
     IsLoading
 }
 
-public class XtremeMusic
+public class FinalMusic
 {
-    public static readonly List<XtremeMusic> musics = [];
+    public static readonly List<FinalMusic> musics = [];
 
     private static readonly object finalMusicsLock = new();
     public string Author;
@@ -152,6 +153,8 @@ public class XtremeMusic
     public SupportedMusics CurrectAudio;
     public AudiosStates CurrectAudioStates;
     public string FileName;
+
+    public bool IsMainMenuMusic;
     public AudiosStates LastAudioStates;
 
     public string Name;
@@ -168,7 +171,7 @@ public class XtremeMusic
 
     public static void CreateMusic(string name = "", SupportedMusics music = SupportedMusics.UnOfficial)
     {
-        var mus = new XtremeMusic();
+        var mus = new FinalMusic();
         mus.Create(name, music);
     }
 

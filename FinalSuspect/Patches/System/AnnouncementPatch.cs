@@ -113,12 +113,12 @@ public class ModNewsHistory
     public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)
     {
         if (announcement.Number < 100000) return;
-        var teamLogo = new GameObject("TeamLogo") { layer = 5 };
-        teamLogo.transform.SetParent(__instance.transform);
-        teamLogo.transform.localPosition = new Vector3(-0.81f, 0.16f, 0.5f);
-        teamLogo.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-        var sr = teamLogo.AddComponent<SpriteRenderer>();
-        sr.sprite = LoadSprite("TeamLogo.png", 1000f);
+        var authorLogo = new GameObject("AuthorLogo") { layer = 5 };
+        authorLogo.transform.SetParent(__instance.transform);
+        authorLogo.transform.localPosition = new Vector3(-0.75f, 0.2f, 0.5f);
+        authorLogo.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        var sr = authorLogo.AddComponent<SpriteRenderer>();
+        sr.sprite = LoadSprite("AuthorLogo2.png", 1700f);
         sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
     }
 

@@ -5,7 +5,7 @@ using AmongUs.Data;
 using AmongUs.GameOptions;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
@@ -23,7 +23,7 @@ internal class SetVentOutlinePatch
 {
     public static void Postfix(Vent __instance, [HarmonyArgument(1)] ref bool mainTarget)
     {
-        XtremeLocalHandling.SetVentOutlineColor(__instance, ref mainTarget);
+        FinalLocalHandling.SetVentOutlineColor(__instance, ref mainTarget);
     }
 }
 
@@ -195,7 +195,7 @@ public static class HudManagerPatch
 
     private static void UpdateResult(HudManager __instance)
     {
-        if (IsFreePlay || (!IsInGame && GetLineCount(XtremeGameData.LastResultText) < 6))
+        if (IsFreePlay || (!IsInGame && GetLineCount(FinalGameData.LastResultText) < 6))
             return;
         var showInitially = Main.ShowResults.Value;
 
@@ -221,11 +221,11 @@ public static class HudManagerPatch
                 FontSize = 2f
             };
 
-        StringBuilder sb = new($"{GetString("Summary.Text")}{XtremeGameData.LastGameResult}");
+        StringBuilder sb = new($"{GetString("Summary.Text")}{FinalGameData.LastGameResult}");
         if (IsInGame)
         {
-            XtremeGameData.LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
-            XtremeGameData.LastServer = IsOnlineGame
+            FinalGameData.LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
+            FinalGameData.LastServer = IsOnlineGame
                 ? PingTrackerUpdatePatch.ServerName
                 : GetString("Local");
         }
@@ -233,24 +233,24 @@ public static class HudManagerPatch
         var gamecode = StringHelper.ColorString(
             ColorHelper.FSColor,
             DataManager.Settings.Gameplay.StreamerMode
-                ? new string('*', XtremeGameData.LastRoomCode.Length)
-                : XtremeGameData.LastRoomCode);
-        sb.Append("\n" + XtremeGameData.LastServer + "  " + gamecode);
+                ? new string('*', FinalGameData.LastRoomCode.Length)
+                : FinalGameData.LastRoomCode);
+        sb.Append("\n" + FinalGameData.LastServer + "  " + gamecode);
         if (IsInGame)
         {
             StringBuilder sb2 = new();
-            foreach (var data in XtremePlayerData.AllPlayerData)
+            foreach (var data in FinalPlayerData.AllPlayerData)
                 sb2.Append("\n\u3000 ").Append(SummaryTexts(data.PlayerId));
 
-            XtremeGameData.LastGameData = sb2.ToString();
+            FinalGameData.LastGameData = sb2.ToString();
         }
 
-        sb.Append(XtremeGameData.LastGameData);
-        XtremeGameData.LastResultText = sb.ToString();
+        sb.Append(FinalGameData.LastGameData);
+        FinalGameData.LastResultText = sb.ToString();
         if (!roleSummary)
         {
             roleSummary = TMPTemplate.Create(
-                "RoleSummaryText", XtremeGameData.LastResultText,
+                "RoleSummaryText", FinalGameData.LastResultText,
                 Color.white,
                 1.25f,
                 TextAlignmentOptions.TopLeft,
@@ -281,7 +281,7 @@ public static class HudManagerPatch
         else
             showHideButton.Button.gameObject.SetActive(true);
 
-        roleSummary.text = XtremeGameData.LastResultText;
+        roleSummary.text = FinalGameData.LastResultText;
         AdjustBackgroundSize();
     }
 
@@ -385,7 +385,8 @@ public static class HudManagerPatch
                 if (!IsFreePlay && IsInGame)
                 {
                     var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
-                                      !ControllerManagerUpdatePatch.ShowSettingsPanel;
+                                      !ControllerManagerUpdatePatch.ShowSettingsPanel ||
+                                      !ControllerManagerUpdatePatch.ShowHudUI;
 
                     if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)
                     {

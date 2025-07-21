@@ -26,7 +26,7 @@ internal class Webhook
     }
 }
 
-internal static class XtremeLogger
+internal static class FinalLogger
 {
     private static bool isEnable;
     private static readonly List<string> disableList = [];

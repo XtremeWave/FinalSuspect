@@ -3,9 +3,9 @@ using AmongUs.GameOptions;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using InnerNet;
 
-namespace FinalSuspect.DataHandling.XtremeGameData;
+namespace FinalSuspect.DataHandling.FinalGameData;
 
-public partial class XtremeGameData
+public partial class FinalGameData
 {
     public static class GameStates
     {

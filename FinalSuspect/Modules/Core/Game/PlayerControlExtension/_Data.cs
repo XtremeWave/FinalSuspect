@@ -1,6 +1,6 @@
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public static class _Data
         string dataName = null;
         try
         {
-            var data = player.GetXtremeData();
+            var data = player.GetFinalData();
             if (data != null)
                 dataName = player.GetDataName();
         }
@@ -36,22 +36,22 @@ public static class _Data
         out string bottomtext,
         bool topswap = false)
     {
-        return XtremeLocalHandling.CheckAndGetNameWithDetails(player.PlayerId, out topcolor, out bottomcolor,
+        return FinalLocalHandling.CheckAndGetNameWithDetails(player.PlayerId, out topcolor, out bottomcolor,
             out toptext, out bottomtext,
             topswap);
     }
 
-    public static XtremePlayerData GetXtremeData(this PlayerControl pc)
+    public static FinalPlayerData GetFinalData(this PlayerControl pc)
     {
         try
         {
-            return GetXtremeDataById(pc.PlayerId);
+            return GetFinalDataById(pc.PlayerId);
         }
         catch
         {
             try
             {
-                return XtremePlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
+                return FinalPlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
             }
             catch
             {
@@ -70,7 +70,7 @@ public static class _Data
         {
             try
             {
-                return pc.GetXtremeData().CheatData;
+                return pc.GetFinalData().CheatData;
             }
             catch
             {
@@ -95,7 +95,7 @@ public static class _Data
     {
         try
         {
-            var data = GetXtremeDataById(pc.PlayerId);
+            var data = GetFinalDataById(pc.PlayerId);
             return StringHelper.ColorString(Palette.PlayerColors[data.ColorId], data.Name);
         }
         catch
@@ -106,33 +106,33 @@ public static class _Data
 
     public static void SetDead(this PlayerControl pc)
     {
-        pc.GetXtremeData().SetDead();
+        pc.GetFinalData().SetDead();
     }
 
     public static void SetDisconnected(this PlayerControl pc)
     {
-        pc.GetXtremeData().SetDisconnected();
-        XtremePlayerData.AllPlayerData.Do(_data => _data.AdjustPlayerId());
+        pc.GetFinalData().SetDisconnected();
+        FinalPlayerData.AllPlayerData.Do(_data => _data.AdjustPlayerId());
     }
 
     public static void SetRole(this PlayerControl pc, RoleTypes role)
     {
-        pc.GetXtremeData().SetRole(role);
+        pc.GetFinalData().SetRole(role);
     }
 
     public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
     {
-        pc.GetXtremeData().SetDeathReason(deathReason, focus);
+        pc.GetFinalData().SetDeathReason(deathReason, focus);
     }
 
     public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
     {
-        if (pc.GetXtremeData().RealKiller != null || !pc.Data.IsDead) return;
-        pc.GetXtremeData().SetRealKiller(killer.GetXtremeData());
+        if (pc.GetFinalData().RealKiller != null || !pc.Data.IsDead) return;
+        pc.GetFinalData().SetRealKiller(killer.GetFinalData());
     }
 
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount)
     {
-        pc.GetXtremeData().SetTaskTotalCount(TaskTotalCount);
+        pc.GetFinalData().SetTaskTotalCount(TaskTotalCount);
     }
 }

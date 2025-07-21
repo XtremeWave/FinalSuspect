@@ -1,8 +1,8 @@
 using System;
 
-namespace FinalSuspect.DataHandling.XtremeGameData;
+namespace FinalSuspect.DataHandling.FinalGameData;
 
-public static partial class XtremeGameData
+public static partial class FinalGameData
 {
     public class PlayerVersion(Version ver, string tag_str, string forkId)
     {

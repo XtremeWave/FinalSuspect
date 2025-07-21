@@ -38,7 +38,7 @@ public class PlayerCheatData : IDisposable
     {
         if (IsSuspectCheater) return;
         IsSuspectCheater = true;
-        Warn($"Suspect Cheater: {_player.GetXtremeData().Name}," +
+        Warn($"Suspect Cheater: {_player.GetFinalData().Name}," +
              $"FriendCode: {FriendCode}," +
              $"Puid: {Puid},",
             "FAC");
@@ -48,7 +48,7 @@ public class PlayerCheatData : IDisposable
     {
         if (IsHacker) return;
         IsHacker = true;
-        Warn($"Overload Hacker: {_player.GetXtremeData().Name}," +
+        Warn($"Overload Hacker: {_player.GetFinalData().Name}," +
              $"FriendCode: {FriendCode}," +
              $"Puid: {Puid},",
             "FAC");

@@ -228,7 +228,7 @@ public static class GameStartManagerPatch
 
         /*private static bool MatchVersions(byte playerId, bool acceptVanilla = false)
         {
-            if (!XtremeGameData.PlayerVersion.playerVersion.TryGetValue(playerId, out var version)) return acceptVanilla;
+            if (!FinalGameData.PlayerVersion.playerVersion.TryGetValue(playerId, out var version)) return acceptVanilla;
             return Main.ForkId == version.forkId
                    && Main.version.CompareTo(version.version) == 0
                    && version.tag == $"{Main.GitCommit}({Main.GitBranch})";

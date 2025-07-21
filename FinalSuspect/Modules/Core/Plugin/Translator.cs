@@ -18,7 +18,7 @@ public static class Translator
     {
         Info("加载语言文件...", "Translator");
         LoadLangs();
-        Info("加载语言文件成功", "Translator");
+        Info("加载语言文件完成", "Translator");
     }
 
     public static void LoadLangs()

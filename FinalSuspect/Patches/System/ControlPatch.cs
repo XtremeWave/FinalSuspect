@@ -12,6 +12,7 @@ internal class ControllerManagerUpdatePatch
 
     private static int resolutionIndex;
     public static bool ShowSettingsPanel = true;
+    public static bool ShowHudUI = true;
 
     public static void Postfix()
     {
@@ -36,7 +37,13 @@ internal class ControllerManagerUpdatePatch
             resolutionIndex++;
             if (resolutionIndex >= resolutions.Length) resolutionIndex = 0;
             ResolutionManager.SetResolution(resolutions[resolutionIndex].Item1, resolutions[resolutionIndex].Item2,
-                false);
+                Screen.fullScreen);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            ResolutionManager.SetResolution(resolutions[resolutionIndex].Item1, resolutions[resolutionIndex].Item2,
+                !Screen.fullScreen);
         }
 
         //重新加载自定义翻译
@@ -69,6 +76,21 @@ internal class ControllerManagerUpdatePatch
 
         //打开游戏目录
         if (GetKeysDown(KeyCode.F10)) OpenDirectory(Environment.CurrentDirectory);
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (IsNotJoined)
+            {
+                VersionShowerStartPatch.ModLogo.SetActive(ModMainMenuManager.Active);
+                VersionShowerStartPatch.AuthorLogo.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.Active = !ModMainMenuManager.Active;
+                ModMainMenuManager.Instance.mainMenuUI.SetActive(ModMainMenuManager.Active);
+                VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(ModMainMenuManager.Active);
+                VersionShowerStartPatch.VisitText.gameObject.SetActive(ModMainMenuManager.Active);
+                DestroyableSingleton<AccountTab>.Instance.gameObject.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.ModStamp.SetActive(ModMainMenuManager.Active);
+            }
+        }
 
         //-- 下面是主机专用的命令--//
         if (!AmongUsClient.Instance.AmHost) return;

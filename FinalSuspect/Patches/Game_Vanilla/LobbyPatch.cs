@@ -16,7 +16,7 @@ public class LobbyStartPatch
         Paint.name = "FinalSuspect Lobby Paint";
         Paint.transform.localPosition = new Vector3(0.042f, -2.59f, -10.5f);
         var renderer = Paint.GetComponent<SpriteRenderer>();
-        renderer.sprite = LoadSprite("TeamLogo.png", 290f);
+        renderer.sprite = LoadSprite("AuthorLogo2.png", 440f);
     }
 }
 

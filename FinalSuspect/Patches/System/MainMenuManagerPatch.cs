@@ -67,7 +67,7 @@ public class MainMenuManagerPatch
 
         if (!GameObject.Find("MainUI")) ShowingPanel = false;
         VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel &&
-                                                                          MainMenuButtonHoverAnimation.Active);
+                                                                          Active);
 
         if (RightPanel)
         {

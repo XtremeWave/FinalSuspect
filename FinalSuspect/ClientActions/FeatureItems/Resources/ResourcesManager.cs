@@ -35,7 +35,7 @@ public static class ResourcesManager
             {
                 using HttpClient client = new();
                 client.DefaultRequestHeaders.Add("User-Agent", "FracturedTruth Updater");
-                client.DefaultRequestHeaders.Add("Referer", "www.xtreme.net.cn");
+                client.DefaultRequestHeaders.Add("Referer", "www.Final.net.cn");
 
                 using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
                 if (!response.IsSuccessStatusCode)

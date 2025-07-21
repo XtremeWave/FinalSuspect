@@ -1,4 +1,5 @@
 using System.IO;
+using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Modules.Resources;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 
 public abstract class MainMenuStyleManager
 {
-    public static readonly List<BackGroundStyle> BackGroundStyles =
+    public static readonly List<MainMenuStyle> MainMenuStyles =
     [
         new(
             "MiraHQ",
@@ -60,14 +61,19 @@ public abstract class MainMenuStyleManager
             [])
     ];
 
-    public class BackGroundStyle(string BGName, bool starFieldActive, List<Color> mainUIColors, int starGenDire = -2)
+    public class MainMenuStyle(
+        string BGName,
+        bool starFieldActive,
+        List<Color> mainUIColors,
+        int starGenDire = -2,
+        SupportedMusics supportedMusic = SupportedMusics.FinalSuspect__Slok)
     {
+        public readonly List<Color> MainUIColors = mainUIColors;
         private CurrentState _currentState = CurrentState.NotFound;
-
-        public List<Color> MainUIColors = mainUIColors;
         public bool Applied => CurrentState == CurrentState.Applied;
         public bool StarFieldActive { get; } = starFieldActive;
         public int StarGenDire { get; } = starGenDire;
+        public SupportedMusics MainMenuMusic { get; } = supportedMusic;
 
         public CurrentState CurrentState
         {

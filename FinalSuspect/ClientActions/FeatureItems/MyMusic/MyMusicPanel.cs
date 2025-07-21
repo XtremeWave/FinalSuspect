@@ -20,7 +20,7 @@ public static class MyMusicPanel
 
     public static int CurrentPage { get; private set; } = 1;
     public static int ItemsPerPage => 7;
-    public static int TotalPageCount => (XtremeMusic.musics.Count + ItemsPerPage - 1) / ItemsPerPage;
+    public static int TotalPageCount => (FinalMusic.musics.Count + ItemsPerPage - 1) / ItemsPerPage;
 
     //public static ToggleButtonBehaviour ChangePlayMode { get; private set; }
     public static void Hide()
@@ -63,7 +63,7 @@ public static class MyMusicPanel
 
             var stopPassiveButton = stopButton.GetComponent<PassiveButton>();
             stopPassiveButton.OnClick = new Button.ButtonClickedEvent();
-            stopPassiveButton.OnClick.AddListener(new Action(AudioPlayer.StopPlayMod));
+            stopPassiveButton.OnClick.AddListener(new Action(() => AudioPlayer.StopPlayMod()));
 
             AddPageNavigationButton(optionsMenuBehaviour);
 
@@ -141,7 +141,7 @@ public static class MyMusicPanel
         var startIndex = (CurrentPage - 1) * ItemsPerPage;
 
         var count = 0;
-        foreach (var audio in XtremeMusic.musics.Skip(startIndex))
+        foreach (var audio in FinalMusic.musics.Skip(startIndex))
         {
             if (count >= ItemsPerPage)
             {
@@ -153,7 +153,7 @@ public static class MyMusicPanel
         }
     }
 
-    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, XtremeMusic audio)
+    public static void RefreshTags(OptionsMenuBehaviour optionsMenuBehaviour, FinalMusic audio)
     {
         try
         {

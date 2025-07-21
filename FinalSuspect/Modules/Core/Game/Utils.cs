@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
-using FinalSuspect.DataHandling.XtremeGameData;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
@@ -53,7 +53,7 @@ public static class Utils
         if (OnPlayerLeftPatch.ClientsProcessed.Contains(clientId)) return;
         var client = GetClientById(clientId);
         Info($"try to kick {client?.Character?.GetRealName()} Due to {reason}", "Kick Player");
-        var _player = XtremePlayerData.AllPlayerData.FirstOrDefault(p => p.CheatData?.ClientData?.Id == clientId)
+        var _player = FinalPlayerData.AllPlayerData.FirstOrDefault(p => p.CheatData?.ClientData?.Id == clientId)
             ?.Player;
         try
         {
@@ -163,7 +163,10 @@ public static class Utils
     public static DirectoryInfo GetLogFolder(bool auto = false)
     {
         var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/FinalSuspect/Logs");
-        if (auto) folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
+        if (auto)
+        {
+            folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
+        }
 
         return folder;
     }
@@ -185,7 +188,7 @@ public static class Utils
 
     public static void ClearAutoLogs()
     {
-        foreach (var f in Directory.GetFiles(GetLogFolder(true).FullName + "/Final Suspect-logs")) File.Delete(f);
+        foreach (var f in Directory.GetFiles(GetLogFolder(true).FullName)) File.Delete(f);
     }
 
     public static void SaveNowLog()
@@ -197,7 +200,7 @@ public static class Utils
 
     public static string CopyLog(string path)
     {
-        var f = $"{path}/Final Suspect-logs/";
+        var f = $"{path}";
         var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
         var fileName = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
         if (!Directory.Exists(f)) Directory.CreateDirectory(f);
@@ -302,7 +305,7 @@ public static class Utils
 
     private static string GetProgressText(byte playerId, bool comms = false)
     {
-        var data = GetXtremeDataById(playerId);
+        var data = GetFinalDataById(playerId);
         if (!IsNormalGame)
         {
             if (!data.IsImpostor) return "";
@@ -324,7 +327,7 @@ public static class Utils
 
     public static string GetVitalText(byte playerId, bool summary = false, bool doColor = true)
     {
-        var data = GetXtremeDataById(playerId);
+        var data = GetFinalDataById(playerId);
         if (!data.IsDead || data.RealDeathReason is VanillaDeathReason.None) return "";
 
         var deathReason = GetString("DeathReason." + data.RealDeathReason);
@@ -508,7 +511,7 @@ public static class Utils
 
     public static string SummaryTexts(byte id)
     {
-        var thisData = GetXtremeDataById(id);
+        var thisData = GetFinalDataById(id);
 
         var builder = new StringBuilder();
         var longestNameByteCount = GetLongestNameByteCount();
@@ -543,13 +546,13 @@ public static class Utils
 
     private static int GetLongestNameByteCount()
     {
-        return XtremePlayerData.AllPlayerData.Select(data => data.Name.GetByteCount())
+        return FinalPlayerData.AllPlayerData.Select(data => data.Name.GetByteCount())
             .OrderByDescending(byteCount => byteCount).FirstOrDefault();
     }
 
     #endregion
 
-    #region XtremeGameData
+    #region FinalGameData
 
     public static bool ModClient(int id)
     {
@@ -563,23 +566,23 @@ public static class Utils
 
     public static bool IsFinalSuspect(int id)
     {
-        return XtremeGameData.PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId == ver.forkId;
+        return FinalGameData.PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId == ver.forkId;
     }
 
-    public static bool GetPlayerVersion(int id, out XtremeGameData.PlayerVersion ver)
+    public static bool GetPlayerVersion(int id, out FinalGameData.PlayerVersion ver)
     {
-        return XtremeGameData.PlayerVersion.playerVersion.TryGetValue(id, out ver) && ver != null;
+        return FinalGameData.PlayerVersion.playerVersion.TryGetValue(id, out ver) && ver != null;
     }
 
     #endregion
 
-    #region Xtreme Player Data
+    #region Final Player Data
 
-    public static XtremePlayerData GetXtremeDataById(byte id)
+    public static FinalPlayerData GetFinalDataById(byte id)
     {
         try
         {
-            return XtremePlayerData.AllPlayerData.FirstOrDefault(data => data.PlayerId == id);
+            return FinalPlayerData.AllPlayerData.FirstOrDefault(data => data.PlayerId == id);
         }
         catch
         {
@@ -589,18 +592,18 @@ public static class Utils
 
     public static string GetPlayerNameById(byte id)
     {
-        return GetXtremeDataById(id).Name;
+        return GetFinalDataById(id).Name;
     }
 
     public static RoleTypes GetRoleById(byte id)
     {
-        var data = GetXtremeDataById(id);
+        var data = GetFinalDataById(id);
         var dead = data?.IsDead ?? false;
         RoleTypes nullRole;
         if (dead && !IsFreePlay)
             nullRole = data.IsImpostor ? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost;
         else
-            nullRole = GetXtremeDataById(id).Player.Data.Role.Role;
+            nullRole = GetFinalDataById(id).Player.Data.Role.Role;
         var role = (dead ? data.RoleAfterDeath : data?.RoleWhenAlive) ?? nullRole;
         return role;
     }
@@ -609,7 +612,7 @@ public static class Utils
     {
         try
         {
-            return GetXtremeDataById(id)?.CheatData;
+            return GetFinalDataById(id)?.CheatData;
         }
         catch
         {

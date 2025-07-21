@@ -65,7 +65,7 @@ internal class CoStartGameHPatch
 
     public static void Postfix()
     {
-        var clientData = GetPlayerById(1).GetXtremeData().CheatData.ClientData;
+        var clientData = GetPlayerById(1).GetFinalData().CheatData.ClientData;
 
         AmongUsClient.Instance.SendLateRejection(clientData.Id, DisconnectReasons.ClientTimeout);
         clientData.IsReady = true;
