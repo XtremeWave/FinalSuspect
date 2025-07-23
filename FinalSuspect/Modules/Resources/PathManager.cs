@@ -146,7 +146,7 @@ public static class PathManager
     public static IReadOnlyList<string> GetInfoFileUrlList(bool allowDesktop = false)
     {
         var list = URLs.ToList();
-        if (!allowDesktop && DebugModeManager.AmDebugger)
+        if (!allowDesktop && DebugModeManager.IsDebugMode)
             list.RemoveAt(3);
         if (IsChineseUser) list.Reverse();
         return list;

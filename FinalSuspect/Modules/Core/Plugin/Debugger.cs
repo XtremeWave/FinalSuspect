@@ -72,7 +72,7 @@ internal static class FinalLogger
         if (escapeCRLF)
             text = text.Replace("\r", "\\r").Replace("\n", "\\n");
         var log_text = $"[{t}][{tag}]{text}";
-        if (isDetail && DebugModeManager.AmDebugger)
+        if (isDetail && DebugModeManager.IsDebugMode)
         {
             StackFrame stack = new(2);
             var className = stack.GetMethod()?.ReflectedType?.Name ?? "NullClass";

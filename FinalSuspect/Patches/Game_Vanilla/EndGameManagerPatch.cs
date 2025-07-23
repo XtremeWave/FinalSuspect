@@ -21,6 +21,6 @@ public class GameEndChecker
     [HarmonyPrefix]
     public static bool CheckEndCriteria()
     {
-        return !(Main.NoGameEnd.Value && DebugModeManager.AmDebugger);
+        return !(Main.NoGameEnd.Value && DebugModeManager.IsDebugMode);
     }
 }

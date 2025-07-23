@@ -190,7 +190,7 @@ public class Main : BasePlugin
         Disable("SwitchSystem");
         Disable("ModNews");
         Disable("CancelPet");
-        if (!DebugModeManager.AmDebugger)
+        if (!DebugModeManager.IsDebugMode)
         {
             Disable("Download Resources");
             Disable("GetAnnouncements");
@@ -258,7 +258,7 @@ public class Main : BasePlugin
 
         Harmony.PatchAll();
 
-        if (DebugModeManager.AmDebugger) ConsoleManager.CreateConsole();
+        if (DebugModeManager.IsDebugMode) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();
 
         Msg("========= FinalSuspect loaded! =========", "Plugin Load");

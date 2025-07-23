@@ -55,7 +55,7 @@ public static class OptionsMenuBehaviourStartPatch
         if (!__instance.DisableMouseMovement) return;
         Instance = __instance;
 
-        if (!reseted || !DebugModeManager.AmDebugger)
+        if (!reseted || !DebugModeManager.IsDebugMode)
         {
             reseted = true;
             Main.VersionCheat.Value = false;
@@ -113,7 +113,7 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
         CreateOptionItem(ref UseModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
         CreateOptionItem(ref FastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
-        if (DebugModeManager.AmDebugger)
+        if (DebugModeManager.IsDebugMode)
         {
             CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
             CreateOptionItem(ref GodMode, "GodMode", Main.GodMode, __instance);

@@ -281,7 +281,7 @@ internal static class RPC
 
     public static void SendRpcLogger(uint targetNetId, byte callId, int targetClientId = -1)
     {
-        if (!DebugModeManager.AmDebugger) return;
+        if (!DebugModeManager.IsDebugMode) return;
         var rpcName = GetRpcName(callId);
         var from = targetNetId.ToString();
         var target = targetClientId.ToString();

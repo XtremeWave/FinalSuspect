@@ -132,7 +132,7 @@ public class MainMenuManagerPatch
             {
                 PlayButton.SetActive(true);
                 UpdateButton.SetActive(false);
-                if (DebugModeManager.AmDebugger && Input.GetKey(KeyCode.LeftShift)) return;
+                if (DebugModeManager.IsDebugMode && Input.GetKey(KeyCode.LeftShift)) return;
                 if (VersionChecker.CanUpdate)
                     ModUpdater.StartUpdate();
                 else

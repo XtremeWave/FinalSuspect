@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
 
-public class AudioLoader
+public static class AudioLoader
 {
     static AudioLoader()
     {
