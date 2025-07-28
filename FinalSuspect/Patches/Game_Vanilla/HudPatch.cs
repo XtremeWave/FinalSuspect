@@ -9,6 +9,7 @@ using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
 using InnerNet;
@@ -385,7 +386,10 @@ public static class HudManagerPatch
                 if (!IsFreePlay && IsInGame)
                 {
                     var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
+                                      DisplayerRoleTagHelper.selectionUI != null &&
+                                      DisplayerRoleTagHelper.selectionUI.activeSelf ||
                                       !ControllerManagerUpdatePatch.ShowSettingsPanel ||
+                                      !FinalGameData.IntroDestroyed ||
                                       !ControllerManagerUpdatePatch.ShowHudUI;
 
                     if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)

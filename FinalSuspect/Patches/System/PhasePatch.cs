@@ -1,10 +1,11 @@
 using FinalSuspect.Attributes;
+using FinalSuspect.DataHandling.FinalGameData;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
-internal class ShipStatusStartPatch
+public class ShipStatusStartPatch
 {
     public static void Postfix()
     {
@@ -13,7 +14,7 @@ internal class ShipStatusStartPatch
 }
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
-internal class AmongUsClientOnGameEndPatch
+public class AmongUsClientOnGameEndPatch
 {
     public static void Postfix()
     {
@@ -24,7 +25,7 @@ internal class AmongUsClientOnGameEndPatch
 
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
 [HarmonyPriority(Priority.First)]
-internal class MeetingHudStartPatch
+public class MeetingHudStartPatch
 {
     public static void Prefix()
     {
@@ -78,6 +79,7 @@ public static class IntroCutsceneOnDestroyPatch
 {
     public static void Postfix()
     {
+        FinalGameData.IntroDestroyed = true;
         Info("OnDestroy", "IntroCutscene");
     }
 }

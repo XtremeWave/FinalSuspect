@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Ag Tóir ar an Maidin"
 Mus.StruggleAgainstFadingFlame: "Streachailt in aghaidh lasair ag dul i léig"
 Mus.Affinity: "Caidreamh"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Ról"
+DisplayedRoleTag.PlayerIdentityTag: "Clibeanna Aitheantais"
+
+PlayerIdentityTag.Hard_Cleared: "Daor dearg"
+PlayerIdentityTag.Silver_Clear: "Uisce airgid"
+PlayerIdentityTag.Wolf_Bucket: "Pota na mactíre"
+PlayerIdentityTag.No_Kill: "Gan marú"
+PlayerIdentityTag.Outside_Position: "Suíomh seachtrach"
+PlayerIdentityTag.Inside_Position: "Suíomh inmheánach"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "D'fhág [{0}] an cluiche"

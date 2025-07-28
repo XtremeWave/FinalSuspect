@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Chasing Dawn"
 Mus.StruggleAgainstFadingFlame: "Struggle Against Fading Flame"
 Mus.Affinity: "Affinity"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Role"
+DisplayedRoleTag.PlayerIdentityTag: "Player Identity Tag"
+
+PlayerIdentityTag.Hard_Cleared: "Confirmed Good"
+PlayerIdentityTag.Silver_Clear: "Soft Cleared"
+PlayerIdentityTag.Wolf_Bucket: "Wolf Pool"
+PlayerIdentityTag.No_Kill: "No Kill"
+PlayerIdentityTag.Outside_Position: "Outside Position"
+PlayerIdentityTag.Inside_Position: "Inside Position"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] left the game"

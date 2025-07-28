@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Dageraad Jagen"
 Mus.StruggleAgainstFadingFlame: "Strijd Tegen Vervagende Vlam"
 Mus.Affinity: "Verwantschap"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Rol"
+DisplayedRoleTag.PlayerIdentityTag: "Identiteitstag"
+
+PlayerIdentityTag.Hard_Cleared: "Bevestigd burger"
+PlayerIdentityTag.Silver_Clear: "Waarschijnlijk burger"
+PlayerIdentityTag.Wolf_Bucket: "Wolvenhol"
+PlayerIdentityTag.No_Kill: "Geen moord"
+PlayerIdentityTag.Outside_Position: "Buitenpositie"
+PlayerIdentityTag.Inside_Position: "Binnenpositie"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] verliet het spel"

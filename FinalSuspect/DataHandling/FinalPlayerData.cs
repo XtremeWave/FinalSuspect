@@ -6,6 +6,7 @@ using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using UnityEngine;
 
 namespace FinalSuspect.DataHandling;
@@ -47,7 +48,7 @@ public class FinalPlayerData : IDisposable
 
     public void SetRole(RoleTypes role)
     {
-        if (!RoleAssgined)
+        if (!RoleAssigned)
         {
             RoleWhenAlive = role;
             SetAsImp(IsImpostor(role));
@@ -58,7 +59,7 @@ public class FinalPlayerData : IDisposable
             RoleAfterDeath = role;
         }
 
-        RoleAssgined = !IsFreePlay;
+        RoleAssigned = !IsFreePlay;
         Info("Set Role For Player: " + Name + " => " + role, "SetRole");
     }
 
@@ -157,7 +158,7 @@ public class FinalPlayerData : IDisposable
 
     public RoleTypes? RoleWhenAlive { get; private set; }
     public RoleTypes? RoleAfterDeath { get; private set; }
-    public bool RoleAssgined { get; private set; }
+    public bool RoleAssigned { get; private set; }
 
     public VanillaDeathReason RealDeathReason { get; private set; }
     public FinalPlayerData RealKiller { get; private set; }
@@ -165,6 +166,8 @@ public class FinalPlayerData : IDisposable
     public int ProcessInt { get; private set; }
     public int TotalTaskCount { get; private set; }
     public bool TaskCompleted => TotalTaskCount == ProcessInt;
+
+    public DisplayerRoleTag RoleTag { get; private set; }
 
     public PlayerCheatData CheatData { get; private set; }
 
@@ -176,10 +179,11 @@ public class FinalPlayerData : IDisposable
         CheatData = new PlayerCheatData(player);
         PlayerId = player.PlayerId;
         NetId = player.NetId;
-        IsImpostor = IsDead = RoleAssgined = false;
+        IsImpostor = IsDead = RoleAssigned = false;
         ProcessInt = TotalTaskCount = 0;
         RealDeathReason = VanillaDeathReason.None;
         RealKiller = null;
+        RoleTag = new DisplayerRoleTag("", Color.white);
     }
 
     public SpriteRenderer Rend { get; set; }
@@ -197,12 +201,13 @@ public class FinalPlayerData : IDisposable
         CheatData = null;
         Name = null;
         ColorId = -1;
-        IsImpostor = IsDead = RoleAssgined = false;
+        IsImpostor = IsDead = RoleAssigned = false;
         ProcessInt = TotalTaskCount = -1;
         RealDeathReason = VanillaDeathReason.None;
         RealKiller = null;
         Rend_DeadBody = Rend = null;
         PreMeetingPosition = null;
+        RoleTag = null;
     }
 
     public static void DisposeAll()

@@ -225,6 +225,17 @@ Mus.ChasingDawn: "夜明けを追う"
 Mus.StruggleAgainstFadingFlame: "消えゆく炎との闘い"
 Mus.Affinity: "親和"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "役職"
+DisplayedRoleTag.PlayerIdentityTag: "アイデンティティ・タグ"
+
+PlayerIdentityTag.Hard_Cleared: "確定市民"
+PlayerIdentityTag.Silver_Clear: "銀水"
+PlayerIdentityTag.Wolf_Bucket: "狼ポジション"
+PlayerIdentityTag.No_Kill: "襲撃なし"
+PlayerIdentityTag.Outside_Position: "外ポジション"
+PlayerIdentityTag.Inside_Position: "内ポジション"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] がゲームから退出しました"

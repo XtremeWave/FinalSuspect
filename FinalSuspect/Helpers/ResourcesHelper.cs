@@ -42,7 +42,11 @@ public static class ResourcesHelper
         "FinalSuspect-BG-WhenLookingBackAtTheEnd-Preview.png",
         "ModStamp.png",
         "RightPanelCloseButton.png",
-        "AuthorLogo2.png"
+        "AuthorLogo2.png",
+        "EditTag.png",
+        "Plate_Clear.png",
+        "Plate_Category.png",
+        "Plate_Content.png",
     ];
 
     public static List<string> RemoteDependList =

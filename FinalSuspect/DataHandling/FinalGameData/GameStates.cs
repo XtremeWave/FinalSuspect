@@ -43,6 +43,10 @@ public partial class FinalGameData
         public static bool IsInTask => IsInGame && !MeetingHud.Instance;
         public static bool IsInMeeting => IsInGame && MeetingHud.Instance && InMeeting;
 
+        public static bool IsVoting => IsInMeeting &&
+                                       MeetingHud.Instance.state is MeetingHud.VoteStates.Voted
+                                           or MeetingHud.VoteStates.NotVoted;
+
         public static bool IsCountDown => GameStartManager.InstanceExists &&
                                           GameStartManager.Instance.startState ==
                                           GameStartManager.StartingStates.Countdown;

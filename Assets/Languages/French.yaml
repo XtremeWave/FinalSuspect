@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Chasse à l'Aube"
 Mus.StruggleAgainstFadingFlame: "Lutte Contre la Flamme Faiblissante"
 Mus.Affinity: "Affinité"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Rôle"
+DisplayedRoleTag.PlayerIdentityTag: "Étiquette d'identité"
+
+PlayerIdentityTag.Hard_Cleared: "Confirmé villageois"
+PlayerIdentityTag.Silver_Clear: "Probable villageois"
+PlayerIdentityTag.Wolf_Bucket: "Fosse aux loups"
+PlayerIdentityTag.No_Kill: "Pas de meurtre"
+PlayerIdentityTag.Outside_Position: "Position extérieure"
+PlayerIdentityTag.Inside_Position: "Position intérieure"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] a quitté la partie"

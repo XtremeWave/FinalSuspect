@@ -225,6 +225,17 @@ Mus.ChasingDawn: "逐光寻晓"
 Mus.StruggleAgainstFadingFlame: "峙燃绝焰"
 Mus.Affinity: "祉缘谐乐"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "职业"
+DisplayedRoleTag.PlayerIdentityTag: "身份标记"
+
+PlayerIdentityTag.Hard_Cleared: "金水"
+PlayerIdentityTag.Silver_Clear: "银水"
+PlayerIdentityTag.Wolf_Bucket: "狼坑"
+PlayerIdentityTag.No_Kill: "不出刀"
+PlayerIdentityTag.Outside_Position: "外置位"
+PlayerIdentityTag.Inside_Position: "内置位"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "【{0}】离开了游戏"
@@ -344,6 +355,7 @@ Disable: "禁用"
 Delete: "删除"
 Author: "作者"
 Close: "关闭"
+Clear: "清除"
 
 # 身份 / Identity
 Id.Host: "房主"

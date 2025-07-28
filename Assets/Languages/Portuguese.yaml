@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Perseguindo a Aurora"
 Mus.StruggleAgainstFadingFlame: "Luta contra a Chama que se Apaga"
 Mus.Affinity: "Afinidade"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Função"
+DisplayedRoleTag.PlayerIdentityTag: "Etiqueta de Identidade"
+
+PlayerIdentityTag.Hard_Cleared: "Confirmado Bom"
+PlayerIdentityTag.Silver_Clear: "Parcialmente Seguro"
+PlayerIdentityTag.Wolf_Bucket: "Reduto de Lobos"
+PlayerIdentityTag.No_Kill: "Sem Abate"
+PlayerIdentityTag.Outside_Position: "Posição Exterior"
+PlayerIdentityTag.Inside_Position: "Posição Interior"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] saiu do jogo"

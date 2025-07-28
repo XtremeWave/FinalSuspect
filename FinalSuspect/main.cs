@@ -72,7 +72,21 @@ public class Main : BasePlugin
     public static bool ExceptionMessageIsShown;
     public static string CredentialsText;
 
-    public static Dictionary<RoleTypes, string> roleColors;
+    public static readonly Dictionary<RoleTypes, string> roleColors = new()
+    {
+        { RoleTypes.CrewmateGhost, "#8CFFFF" },
+        { RoleTypes.GuardianAngel, "#8CFFDB" },
+        { RoleTypes.Crewmate, "#8CFFFF" },
+        { RoleTypes.Scientist, "#F8FF8C" },
+        { RoleTypes.Engineer, "#A5A8FF" },
+        { RoleTypes.Noisemaker, "#FFC08C" },
+        { RoleTypes.Tracker, "#93FF8C" },
+        { RoleTypes.ImpostorGhost, "#FF1919" },
+        { RoleTypes.Impostor, "#FF1919" },
+        { RoleTypes.Shapeshifter, "#FF819E" },
+        { RoleTypes.Phantom, "#CA8AFF" }
+    };
+
     public static List<int> clientIdList = [];
 
     public static string HostNickName = "";
@@ -209,31 +223,6 @@ public class Main : BasePlugin
 
         hasArgumentException = false;
         ExceptionMessage = "";
-        try
-        {
-            roleColors = new Dictionary<RoleTypes, string>
-            {
-                { RoleTypes.CrewmateGhost, "#8CFFFF" },
-                { RoleTypes.GuardianAngel, "#8CFFDB" },
-                { RoleTypes.Crewmate, "#8CFFFF" },
-                { RoleTypes.Scientist, "#F8FF8C" },
-                { RoleTypes.Engineer, "#A5A8FF" },
-                { RoleTypes.Noisemaker, "#FFC08C" },
-                { RoleTypes.Tracker, "#93FF8C" },
-                { RoleTypes.ImpostorGhost, "#FF1919" },
-                { RoleTypes.Impostor, "#FF1919" },
-                { RoleTypes.Shapeshifter, "#FF819E" },
-                { RoleTypes.Phantom, "#CA8AFF" }
-            };
-        }
-        catch (ArgumentException ex)
-        {
-            Error("错误：字典出现重复项", "LoadDictionary");
-            Exception(ex, "LoadDictionary");
-            hasArgumentException = true;
-            ExceptionMessage = ex.Message;
-            ExceptionMessageIsShown = false;
-        }
 
         RegistryManager.Init(); // 这是优先级最高的模块初始化方法，不能使用模块初始化属性
         DllChecker.Init();

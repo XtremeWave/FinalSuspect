@@ -64,7 +64,7 @@ public class ModNewsHistory
     [HarmonyPostfix]
     public static void AnnouncementPopupPostfix()
     {
-        if (!AnnouncementLoadComplete) ModMainMenuManager.Instance.announcementPopUp.Close();
+        if (!AnnouncementLoadComplete) Instance.announcementPopUp.Close();
     }
 
 
@@ -168,10 +168,10 @@ public class ModNewsHistory
         {
             AnnouncementLoadComplete = true;
             DataManager.Player.Announcements.AllAnnouncements.Clear();
-            if (!ModMainMenuManager.Instance) return;
+            if (!Instance) return;
             try
             {
-                ModMainMenuManager.Instance.announcementPopUp.Show();
+                Instance.announcementPopUp.Show();
                 Info("Loading mod announcements complete.", "SetModAnnouncements");
             }
             catch
@@ -276,7 +276,7 @@ public class ModNewsHistory
             }
             else
             {
-                var pattern = @"\[(.*?)\]\((.*?)\)";
+                const string pattern = @"\[(.*?)\]\((.*?)\)";
                 var regex = new Regex(pattern);
                 line = regex.Replace(line, match =>
                 {

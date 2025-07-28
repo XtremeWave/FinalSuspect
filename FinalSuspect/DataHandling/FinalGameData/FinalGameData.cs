@@ -12,10 +12,12 @@ public static partial class FinalGameData
     public static string LastGameResult;
     public static Color LastLocalPlayerRoleColor;
     public static bool JoinedCompleted;
+    public static bool IntroDestroyed;
 
     [GameModuleInitializer]
     public static void Init()
     {
+        IntroDestroyed = false;
         LastResultText = LastGameData = LastGameResult = LastRoomCode = LastServer = "";
     }
 }

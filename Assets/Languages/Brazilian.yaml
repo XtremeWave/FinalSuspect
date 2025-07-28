@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Perseguindo o Amanhecer"
 Mus.StruggleAgainstFadingFlame: "Luta Contra a Chama que Desaparece"
 Mus.Affinity: "Afinidade"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Função"
+DisplayedRoleTag.PlayerIdentityTag: "Marcação de Identidade"
+
+PlayerIdentityTag.Hard_Cleared: "Confirmado"
+PlayerIdentityTag.Silver_Clear: "Semi-Livre"
+PlayerIdentityTag.Wolf_Bucket: "Poço de Lobos"
+PlayerIdentityTag.No_Kill: "Sem Facada"
+PlayerIdentityTag.Outside_Position: "Posição Externa"
+PlayerIdentityTag.Inside_Position: "Posição Interna"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] saiu do jogo"

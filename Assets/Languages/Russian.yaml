@@ -225,6 +225,17 @@ Mus.ChasingDawn: "В погоне за рассветом"
 Mus.StruggleAgainstFadingFlame: "Борьба с угасающим пламенем"
 Mus.Affinity: "Симпатия"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Роль"
+DisplayedRoleTag.PlayerIdentityTag: "Метка личности"
+
+PlayerIdentityTag.Hard_Cleared: "Проверенный мирный"
+PlayerIdentityTag.Silver_Clear: "Вероятный мирный"
+PlayerIdentityTag.Wolf_Bucket: "Волчья яма"
+PlayerIdentityTag.No_Kill: "Без убийства"
+PlayerIdentityTag.Outside_Position: "Внешняя позиция"
+PlayerIdentityTag.Inside_Position: "Внутренняя позиция"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] покинул(а) игру"

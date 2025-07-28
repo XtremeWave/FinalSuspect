@@ -225,6 +225,17 @@ Mus.ChasingDawn: "Jag der Morgenröte"
 Mus.StruggleAgainstFadingFlame: "Kampf gegen die verblassende Flamme"
 Mus.Affinity: "Verbundenheit"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "Rolle"
+DisplayedRoleTag.PlayerIdentityTag: "Identität-Tag"
+
+PlayerIdentityTag.Hard_Cleared: "Bestätigter Dorfbewohner"
+PlayerIdentityTag.Silver_Clear: "Wahrscheinlicher Dorfbewohner"
+PlayerIdentityTag.Wolf_Bucket: "Wolfsgrube"
+PlayerIdentityTag.No_Kill: "Kein Mord"
+PlayerIdentityTag.Outside_Position: "Außenposition"
+PlayerIdentityTag.Inside_Position: "Innenposition"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] hat das Spiel verlassen"

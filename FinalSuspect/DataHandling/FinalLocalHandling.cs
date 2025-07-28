@@ -104,6 +104,11 @@ public static class FinalLocalHandling
                 ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())}"
                 : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
+        else if (data.RoleTag.TagColor != Color.white)
+        {
+            color = data.RoleTag.TagColor;
+            roleText = $"<size=80%>{data.RoleTag.TagStr}</size>";
+        }
         else if (bothImp)
         {
             color = Palette.ImpostorRed;
@@ -322,7 +327,7 @@ public static class FinalLocalHandling
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     [HarmonyPostfix]
-    [HarmonyPriority(Priority.First)]
+    [HarmonyPriority(Priority.HigherThanNormal)]
     public static void OnMeetingStart(MeetingHud __instance)
     {
         if (!Main.EnableFinalSuspect.Value) return;

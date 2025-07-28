@@ -225,6 +225,17 @@ Mus.ChasingDawn: "새벽을 좇아"
 Mus.StruggleAgainstFadingFlame: "사라지는 불꽃과의 싸움"
 Mus.Affinity: "친화력"
 
+# 会议界面职业标签 / DisplayedRoleTag
+DisplayedRoleTag.Role: "직업"
+DisplayedRoleTag.PlayerIdentityTag: "신분 태그"
+
+PlayerIdentityTag.Hard_Cleared: "확인된 시민"
+PlayerIdentityTag.Silver_Clear: "유력한 시민"
+PlayerIdentityTag.Wolf_Bucket: "늑대 구역"
+PlayerIdentityTag.No_Kill: "살인 없음"
+PlayerIdentityTag.Outside_Position: "외곽 위치"
+PlayerIdentityTag.Inside_Position: "내부 위치"
+
 # 通知 / Notifications
 ## 原版
 Notification.PlayerLeft: "[{0}] 님이 게임을 나갔습니다"
