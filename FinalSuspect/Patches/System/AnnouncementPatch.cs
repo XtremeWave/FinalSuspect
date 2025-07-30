@@ -268,11 +268,9 @@ public class ModNewsHistory
             }
             else if (line.StartsWith("#---"))
             {
-                continue;
             }
             else if (line.StartsWith("# "))
             {
-                continue;
             }
             else
             {

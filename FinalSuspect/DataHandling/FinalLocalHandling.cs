@@ -1,7 +1,6 @@
 using FinalSuspect.ClientActions.FeatureItems.NameTag;
 using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using TMPro;
@@ -96,18 +95,23 @@ public static class FinalLocalHandling
 
         var roleType = GetRoleById(data.PlayerId);
         var player = data.Player;
+        var roleTag = data.RoleTag;
 
         if (CanSeeTargetRole(player, out var bothImp))
         {
             color = GetRoleColor(roleType);
             roleText = !topswap
-                ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())}"
-                : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+                ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {player.GetPlainShipRoomName()} {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
+                : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} {player.GetPlainShipRoomName()} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
-        else if (data.RoleTag.TagColor != Color.white)
+        else if (roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "")
         {
             color = data.RoleTag.TagColor;
-            roleText = $"<size=80%>{data.RoleTag.TagStr}</size>";
+            roleText = !topswap
+                ? $"[<size=80%>{data.RoleTag.TagStr} " + StringHelper.ColorString(ColorHelper.ClientlessColor,
+                    $"{data.RoleTag.Room}") + "</size>]"
+                : "[<size=80%>" + StringHelper.ColorString(ColorHelper.ClientlessColor, $"{data.RoleTag.Room}") +
+                  $" {data.RoleTag.TagStr}</size>]";
         }
         else if (bothImp)
         {

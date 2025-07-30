@@ -1,5 +1,4 @@
 using System;
-using AmongUs.Data;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;

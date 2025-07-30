@@ -1,13 +1,9 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
-using Rewired.UI.ControlMapper;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements.UIR;
 
 // ReSharper disable UnusedMember.Local
 
@@ -147,6 +143,7 @@ public static class DisplayerRoleTagHelper
             {
                 thisTag.setTag("");
                 thisTag.setColor(Color.white);
+                thisTag.setRoom("");
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
                 UnityEngine.Object.Destroy(container.gameObject);
             }));
@@ -158,8 +155,9 @@ public static class DisplayerRoleTagHelper
             {
                 var color = category switch
                 {
-                    CategoryType.PlayerIdentityTag => GetIdentityColor(IdentityTypes.Hard_Cleared),
                     CategoryType.Role => GetRoleColor(RoleTypes.Crewmate),
+                    CategoryType.PlayerIdentityTag => GetIdentityColor(IdentityTypes.Hard_Cleared),
+                    CategoryType.Room => (Color)ColorHelper.ClientlessColor,
                     _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
                 };
 
@@ -207,25 +205,32 @@ public static class DisplayerRoleTagHelper
                 CreateOption(CategoryType.PlayerIdentityTag, identity.ToString());
             }
 
+            foreach (var room in ShipStatus.Instance.AllRooms)
+            {
+                CreateOption(CategoryType.Room, room.RoomId.ToString());
+            }
+
             void CreateOption(CategoryType category, string value)
             {
-                if (!CategoryButtons.ContainsKey(category))
-                    CategoryButtons.Add(category, []);
+                // 初始化列表（.NET 6+ 语法）
+                CategoryButtons.TryAdd(category, []);
+                if (CategoryButtons[category].Any(x => x.parent.name == value)) return;
 
-                Color color;
-                switch (category)
+                var color = category switch
                 {
-                    case CategoryType.PlayerIdentityTag:
-                        var identity = Enum.Parse<IdentityTypes>(value);
-                        color = GetIdentityColor(identity);
-                        break;
-                    case CategoryType.Role:
-                        var role = Enum.Parse<RoleTypes>(value);
-                        color = GetRoleColor(role);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(category), category, null);
-                }
+                    CategoryType.Role => GetRoleColor(Enum.Parse<RoleTypes>(value)),
+                    CategoryType.PlayerIdentityTag => GetIdentityColor(Enum.Parse<IdentityTypes>(value)),
+                    CategoryType.Room => (Color)ColorHelper.ClientlessColor,
+                    _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
+                };
+
+                var displayText = category switch
+                {
+                    CategoryType.Role => GetString($"{category}.{value}"),
+                    CategoryType.PlayerIdentityTag => GetString($"{category}.{value}"),
+                    CategoryType.Room => GetString(value),
+                    _ => throw new ArgumentOutOfRangeException(nameof(category))
+                };
 
                 var optionParent = new GameObject(value).transform;
                 optionParent.SetParent(container);
@@ -234,24 +239,19 @@ public static class DisplayerRoleTagHelper
                 option.FindChild("ControllerHighlight").gameObject.SetActive(false);
 
                 UnityEngine.Object.Instantiate(maskTemplate, optionParent);
-                var optionLabel = UnityEngine.Object.Instantiate(
-                    textTemplate, option);
+                var optionLabel = UnityEngine.Object.Instantiate(textTemplate, option);
                 optionLabel.enabled = true;
-                option.GetComponent<SpriteRenderer>().sprite = LoadSprite("Plate_Content.png", 115f);
-                option.GetComponent<SpriteRenderer>().color = Color.white;
 
-                CategoryButtons[category].Add(option);
+                var spriteRenderer = option.GetComponent<SpriteRenderer>();
+                spriteRenderer.sprite = LoadSprite("Plate_Content.png", 115f);
+                spriteRenderer.color = Color.white;
 
-                var index = CategoryButtons[category].Count - 1;
-                var row = index / 5;
-                var col = index % 5;
-
+                var index = CategoryButtons[category].Count;
+                var (row, col) = (index / 5, index % 5);
                 optionParent.localPosition = new Vector3(-3.47f + 1.75f * col, 1.5f - 0.45f * row, -200f);
-                optionParent.localScale = new Vector3(0.55f, 0.55f, 1f);
+                optionParent.localScale = Vector3.one * 0.55f;
 
-                var text = GetString($"{category}.{value}");
-                optionLabel.text = text;
-
+                optionLabel.text = displayText;
                 optionLabel.color = color;
                 optionLabel.alignment = TextAlignmentOptions.Center;
                 optionLabel.transform.localPosition = new Vector3(0, 0, optionLabel.transform.localPosition.z);
@@ -260,11 +260,20 @@ public static class DisplayerRoleTagHelper
 
                 option.GetComponent<PassiveButton>().OnClick.AddListener(new Action(() =>
                 {
-                    thisTag.setTag(text);
-                    thisTag.setColor(color);
+                    if (category == CategoryType.Room)
+                        thisTag.setRoom($"({displayText})");
+                    else
+                    {
+                        thisTag.setColor(color);
+                        thisTag.setTag(displayText);
+                    }
+
+
                     __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
                     UnityEngine.Object.Destroy(container.gameObject);
                 }));
+
+                CategoryButtons[category].Add(option);
             }
 
             void ReloadPage()
@@ -291,7 +300,8 @@ public static class DisplayerRoleTagHelper
     private enum CategoryType
     {
         Role,
-        PlayerIdentityTag
+        PlayerIdentityTag,
+        Room
     }
 
     private enum IdentityTypes
@@ -305,11 +315,13 @@ public static class DisplayerRoleTagHelper
     }
 }
 
-public class DisplayerRoleTag(string tagStr, Color tagColor)
+public class DisplayerRoleTag
 {
-    public string TagStr { get; private set; } = tagStr;
-    public Color TagColor { get; private set; } = tagColor;
+    public string TagStr { get; private set; } = "";
+    public Color TagColor { get; private set; } = Color.white;
+    public string Room { get; private set; } = "";
 
     public void setTag(string tagStr) => TagStr = tagStr;
     public void setColor(Color tagColor) => TagColor = tagColor;
+    public void setRoom(string room) => Room = room;
 }

@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static FinalSuspect.ClientActions.FeatureItems.MainMenuStyle.MainMenuStyleManager;
-using static FinalSuspect.Patches.System.TitleLogoPatch;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;

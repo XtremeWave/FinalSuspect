@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -49,6 +50,7 @@ public class MapRealTimeLocationPatch
         foreach (var data in FinalPlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
         {
             data.PreMeetingPosition = data.Player.GetTruePosition();
+            data.PreMeetingRoomName = data.Player.GetPlainShipRoomName();
         }
     }
 

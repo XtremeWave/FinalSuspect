@@ -1,5 +1,4 @@
 using AmongUs.GameOptions;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
 using UnityEngine;

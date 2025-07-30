@@ -1,8 +1,8 @@
-using System;
 using System.IO;
 using UnityEngine;
 
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
+// ReSharper disable once CheckNamespace
 internal static class Git
 {
     public static void Prefix(MainMenuManager __instance)

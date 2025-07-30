@@ -228,6 +228,7 @@ Mus.Affinity: "친화력"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "직업"
 DisplayedRoleTag.PlayerIdentityTag: "신분 태그"
+DisplayedRoleTag.Room: "방"
 
 PlayerIdentityTag.Hard_Cleared: "확인된 시민"
 PlayerIdentityTag.Silver_Clear: "유력한 시민"

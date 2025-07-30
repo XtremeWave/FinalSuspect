@@ -9,8 +9,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
-using FinalSuspect.Patches.System;
-using Il2CppInterop.Runtime.InteropTypes;
 using InnerNet;
 using UnityEngine;
 

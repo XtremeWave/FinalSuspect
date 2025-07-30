@@ -157,7 +157,7 @@ public static class HudManagerPatch
         }
         else
         {
-            color = ColorHelper.TeamColor;
+            color = ColorHelper.AuthorColor;
         }
 
         __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("Background").gameObject

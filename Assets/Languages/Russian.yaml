@@ -228,6 +228,7 @@ Mus.Affinity: "Симпатия"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Роль"
 DisplayedRoleTag.PlayerIdentityTag: "Метка личности"
+DisplayedRoleTag.Room: "Комната"
 
 PlayerIdentityTag.Hard_Cleared: "Проверенный мирный"
 PlayerIdentityTag.Silver_Clear: "Вероятный мирный"

@@ -8,10 +8,10 @@ public static class ColorHelper
     private const float MarkerVal = 1f;
     private const float MarkerAlpha = 0.2f;
 
-    public const string TeamColorHex = "#cdfffd";
+    public const string AuthorColorHex = "#cdfffd";
     public const string FSColorHex = "#cecdfd";
 
-    public static readonly Color32 TeamColor = new(205, 255, 253, 255);
+    public static readonly Color32 AuthorColor = new(205, 255, 253, 255);
     public static readonly Color32 FSColor = new(206, 205, 253, 255);
     public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
     public static readonly Color32 HalfFSColor = new(206, 205, 253, 160);

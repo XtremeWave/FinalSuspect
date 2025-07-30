@@ -228,6 +228,7 @@ Mus.Affinity: "Caidreamh"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Ról"
 DisplayedRoleTag.PlayerIdentityTag: "Clibeanna Aitheantais"
+DisplayedRoleTag.Room: "Seomra"
 
 PlayerIdentityTag.Hard_Cleared: "Daor dearg"
 PlayerIdentityTag.Silver_Clear: "Uisce airgid"

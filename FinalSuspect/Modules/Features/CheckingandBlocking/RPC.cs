@@ -6,7 +6,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Patches.Game_Vanilla;
-using FinalSuspect.Patches.System;
 using Hazel;
 using InnerNet;
 

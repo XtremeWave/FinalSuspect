@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using FinalSuspect.Modules.Features;
-using FinalSuspect.Patches.System;
 using TMPro;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ public class ModUpdater
         {
             CustomPopup.Show(GetString("UpdateRemind.updatePopup"), GetString("UpdateSource.Choose:"),
             [
-                //(GetString("UpdateSource.FinalApi"), () => StartUpdate(downloadUrl_Finalapi)),
+                (GetString("UpdateSource.GithubMirror"), () => StartUpdate(downloadUrl_githubMirror)),
                 (GetString("UpdateSource.Github"), () => StartUpdate(downloadUrl_github)),
                 (GetString("UpdateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
                 (GetString(StringNames.Cancel), SetUpdateButtonStatus)

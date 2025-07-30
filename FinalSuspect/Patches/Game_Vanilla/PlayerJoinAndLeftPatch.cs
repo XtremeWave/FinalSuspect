@@ -86,7 +86,6 @@ public class OnPlayerJoinedPatch
                 Info(
                     $"Kicked {client.PlayerName}(ClientID:{client.Id}/FriendCode:{client.FriendCode}) due to it was unspawned",
                     "OnPlayerJoinedPatchPostfix");
-                return;
             }
             catch
             {

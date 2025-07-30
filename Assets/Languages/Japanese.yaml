@@ -228,6 +228,7 @@ Mus.Affinity: "親和"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "役職"
 DisplayedRoleTag.PlayerIdentityTag: "アイデンティティ・タグ"
+DisplayedRoleTag.Room: "部屋"
 
 PlayerIdentityTag.Hard_Cleared: "確定市民"
 PlayerIdentityTag.Silver_Clear: "銀水"

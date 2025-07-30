@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;

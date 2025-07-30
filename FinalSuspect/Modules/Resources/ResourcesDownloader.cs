@@ -36,13 +36,7 @@ public static class ResourcesDownloader
         var remoteType = RemoteType.Github;
         retry:
         if (IsChineseLanguageUser)
-            remoteType = retrytimes switch
-            {
-                0 => RemoteType.Gitee,
-                1 => RemoteType.Github,
-                2 => RemoteType.Github,
-                _ => remoteType
-            };
+            remoteType = (RemoteType)retrytimes;
 
         var url = GetFile(fileType, remoteType, file);
 
@@ -122,13 +116,7 @@ public static class ResourcesDownloader
         var remoteType = RemoteType.Github;
         retry:
         if (IsChineseLanguageUser)
-            remoteType = retrytimes switch
-            {
-                0 => RemoteType.Gitee,
-                1 => RemoteType.Github,
-                2 => RemoteType.Github,
-                _ => remoteType
-            };
+            remoteType = (RemoteType)retrytimes;
 
         var url = GetPackageFile(packageName, remoteType, file);
 

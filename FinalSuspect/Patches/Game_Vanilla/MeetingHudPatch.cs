@@ -1,6 +1,5 @@
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalGameData;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Object = UnityEngine.Object;
 

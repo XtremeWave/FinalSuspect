@@ -28,14 +28,14 @@ public static class ChatBubblePatch
         else if (modded)
         {
             bgcolor = Color.black;
-            namecolor = ColorHelper.TeamColor;
+            namecolor = ColorHelper.AuthorColor;
             chatText = StringHelper.ColorString(Color.white, chatText.TrimEnd('\0'));
             __instance.SetLeft();
         }
         else if (__instance.NameText.color == Color.green)
         {
             bgcolor = ColorHelper.HalfYellow;
-            namecolor = ColorHelper.TeamColor;
+            namecolor = ColorHelper.AuthorColor;
         }
         else
         {

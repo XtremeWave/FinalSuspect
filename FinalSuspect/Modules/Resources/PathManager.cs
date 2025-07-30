@@ -15,11 +15,15 @@ public static class PathManager
     public const string downloadUrl_github =
         "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
+    public static string downloadUrl_gitee =
+        "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
+
+    public static string downloadUrl_githubMirror =
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
+
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
 
-    public static string downloadUrl_gitee =
-        "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
 
     private static IReadOnlyList<string> URLs => new List<string>
     {
@@ -30,6 +34,7 @@ public static class PathManager
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
+        "https://hub.gitmirror.com/https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
 #endif
     };
@@ -55,6 +60,8 @@ public static class PathManager
         {
             RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/Assets/",
             RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/Assets/",
+            RemoteType.GithubMirror =>
+                "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/Assets/",
             _ => "127.0.0.1"
         };
 
@@ -166,8 +173,9 @@ public enum FileType
 
 public enum RemoteType
 {
-    Github,
-    Gitee
+    GithubMirror,
+    Gitee,
+    Github
 }
 
 public enum LocalType

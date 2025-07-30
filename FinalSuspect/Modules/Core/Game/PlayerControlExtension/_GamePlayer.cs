@@ -1,6 +1,8 @@
+using FinalSuspect.Helpers;
+
 namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
-public static class _StatesBoolean
+public static class _GamePlayer
 {
     public static bool IsLocalPlayer(this PlayerControl player)
     {
@@ -34,5 +36,20 @@ public static class _StatesBoolean
     public static bool IsDev(this PlayerControl pc)
     {
         return Utils.IsDev(pc.FriendCode);
+    }
+
+    public static PlainShipRoom GetPlainShipRoom(this PlayerControl pc)
+    {
+        var Rooms = ShipStatus.Instance.AllRooms;
+        return Rooms?.Where(room => room.roomArea).FirstOrDefault(room => pc.Collider.IsTouching(room.roomArea));
+    }
+
+    public static string GetPlainShipRoomName(this PlayerControl pc)
+    {
+        var roomname = IsInMeeting
+            ? pc.GetFinalData().PreMeetingRoomName
+            : StringHelper.ColorString(ColorHelper.ClientlessColor,
+                $"({GetString(pc.GetPlainShipRoom().RoomId.ToString())})");
+        return roomname;
     }
 }

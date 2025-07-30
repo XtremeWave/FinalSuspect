@@ -228,6 +228,7 @@ Mus.Affinity: "Verbundenheit"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Rolle"
 DisplayedRoleTag.PlayerIdentityTag: "Identität-Tag"
+DisplayedRoleTag.Room: "Raum"
 
 PlayerIdentityTag.Hard_Cleared: "Bestätigter Dorfbewohner"
 PlayerIdentityTag.Silver_Clear: "Wahrscheinlicher Dorfbewohner"

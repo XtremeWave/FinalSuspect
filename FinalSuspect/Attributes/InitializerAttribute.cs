@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using FinalSuspect.Modules.LogHandler;
 
 namespace FinalSuspect.Attributes;

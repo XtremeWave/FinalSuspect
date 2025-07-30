@@ -228,6 +228,7 @@ Mus.Affinity: "Affinity"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Role"
 DisplayedRoleTag.PlayerIdentityTag: "Player Identity Tag"
+DisplayedRoleTag.Room: "Room"
 
 PlayerIdentityTag.Hard_Cleared: "Confirmed Good"
 PlayerIdentityTag.Silver_Clear: "Soft Cleared"

@@ -97,9 +97,9 @@ public class VersionShowerStartPatch
 
         Main.CredentialsText =
             $"\r\n<size=120%>" +
-            $"<color={ColorHelper.TeamColorHex}>==</color> " +
+            $"<color={ColorHelper.AuthorColorHex}>==</color> " +
             $"<color={ColorHelper.FSColorHex}>{Main.ModName}</color> " +
-            $"<color={ColorHelper.TeamColorHex}>==</color>"
+            $"<color={ColorHelper.AuthorColorHex}>==</color>"
             + "</size>";
         Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>Slok</color></size>";
         Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
@@ -136,7 +136,7 @@ public class VersionShowerStartPatch
         if ((OVersionShower = GameObject.Find("VersionShower")) && !CreditTextCredential)
         {
             var credentialsText = string.Format(GetString("MainMenuCredential"),
-                $"<color={ColorHelper.TeamColorHex}>Slok</color>");
+                $"<color={ColorHelper.AuthorColorHex}>Slok</color>");
             credentialsText += "\n";
 #if DEBUG
             var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";

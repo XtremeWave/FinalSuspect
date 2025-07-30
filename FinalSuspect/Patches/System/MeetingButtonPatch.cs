@@ -1,14 +1,10 @@
-using HarmonyLib;
-using Hazel;
 using System;
-using System.Linq;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Features.DisplayedRoleTag;
-using static FinalSuspect.Modules.Features.DisplayedRoleTag.DisplayerRoleTagHelper;
 using UnityEngine;
 using UnityEngine.UI;
+using static FinalSuspect.Modules.Features.DisplayedRoleTag.DisplayerRoleTagHelper;
 
-namespace FinalSuspect.Patches;
+namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(MeetingHud))]
 public class MeetingButtonManager
@@ -80,13 +76,10 @@ public class MeetingButtonManager
         ButtonCreated = true;
     }
 
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.OnDestroy))]
-    public class MeetingHudOnDestroyGuesserUIClose
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.OnDestroy)), HarmonyPostfix]
+    public static void OnDestroy()
     {
-        public static void Postfix()
-        {
-            if (textTemplate != null && textTemplate.gameObject != null)
-                UnityEngine.Object.Destroy(textTemplate.gameObject);
-        }
+        if (textTemplate != null && textTemplate.gameObject != null)
+            UnityEngine.Object.Destroy(textTemplate.gameObject);
     }
 }

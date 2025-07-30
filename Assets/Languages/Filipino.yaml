@@ -228,6 +228,7 @@ Mus.Affinity: "Affinity"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Tungkulin"
 DisplayedRoleTag.PlayerIdentityTag: "Tag ng Pagkakakilanlan"
+DisplayedRoleTag.Room: "Silid"
 
 PlayerIdentityTag.Hard_Cleared: "Tiyak na Mabuting Tao"
 PlayerIdentityTag.Silver_Clear: "Malamang na Mabuting Tao"

@@ -3,8 +3,6 @@ using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalGameData;
-using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using UnityEngine;
@@ -183,12 +181,13 @@ public class FinalPlayerData : IDisposable
         ProcessInt = TotalTaskCount = 0;
         RealDeathReason = VanillaDeathReason.None;
         RealKiller = null;
-        RoleTag = new DisplayerRoleTag("", Color.white);
+        RoleTag = new DisplayerRoleTag();
     }
 
     public SpriteRenderer Rend { get; set; }
     public SpriteRenderer Rend_DeadBody { get; set; }
     public Vector3? PreMeetingPosition { get; set; }
+    public string PreMeetingRoomName { get; set; }
 
     #endregion
 
@@ -208,6 +207,7 @@ public class FinalPlayerData : IDisposable
         Rend_DeadBody = Rend = null;
         PreMeetingPosition = null;
         RoleTag = null;
+        PreMeetingRoomName = null;
     }
 
     public static void DisposeAll()

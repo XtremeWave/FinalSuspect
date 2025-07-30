@@ -228,6 +228,7 @@ Mus.Affinity: "祉缘谐乐"
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "职业"
 DisplayedRoleTag.PlayerIdentityTag: "身份标记"
+DisplayedRoleTag.Room: "房间"
 
 PlayerIdentityTag.Hard_Cleared: "金水"
 PlayerIdentityTag.Silver_Clear: "银水"
