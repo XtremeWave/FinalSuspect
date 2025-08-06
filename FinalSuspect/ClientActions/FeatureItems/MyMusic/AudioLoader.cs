@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -114,8 +115,8 @@ public static class AudioLoader
 
         // 基本WAV文件检查（RIFF头）
         if (data.Length < 44 ||
-            System.Text.Encoding.ASCII.GetString(data, 0, 4) != "RIFF" ||
-            System.Text.Encoding.ASCII.GetString(data, 8, 4) != "WAVE")
+            Encoding.ASCII.GetString(data, 0, 4) != "RIFF" ||
+            Encoding.ASCII.GetString(data, 8, 4) != "WAVE")
         {
             return false;
         }
@@ -161,7 +162,7 @@ public static class AudioLoader
 
         while (index < data.Length - 8)
         {
-            var id = System.Text.Encoding.ASCII.GetString(data, index, 4);
+            var id = Encoding.ASCII.GetString(data, index, 4);
             var size = BitConverter.ToInt32(data, index + 4);
 
             if (id == chunkId)

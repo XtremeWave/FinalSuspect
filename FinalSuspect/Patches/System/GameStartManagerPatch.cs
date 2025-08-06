@@ -111,8 +111,8 @@ public static class GameStartManagerPatch
             cancelButton.OnClick.AddListener((Action)(__instance.ResetStartState));
             cancelButton.gameObject.SetActive(false);
 
-            if (!AmongUsClient.Instance.AmHost || (!VersionChecker.isBroken &&
-                                                   (!VersionChecker.hasUpdate || !VersionChecker.forceUpdate) &&
+            if (!AmongUsClient.Instance.AmHost || (!VersionChecker.IsBroken &&
+                                                   (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
                                                    VersionChecker.IsSupported)) return;
             __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
             __instance.HostPrivateButton.activeTextColor = Palette.DisabledClear;

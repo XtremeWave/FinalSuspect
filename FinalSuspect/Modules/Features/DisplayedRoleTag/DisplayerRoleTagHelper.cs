@@ -4,6 +4,8 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 // ReSharper disable UnusedMember.Local
 
@@ -25,7 +27,7 @@ public static class DisplayerRoleTagHelper
         { IdentityTypes.Hard_Cleared, "#FFD700" },
         { IdentityTypes.Silver_Clear, "#C0C0C0" },
         { IdentityTypes.Wolf_Bucket, "#B22222" },
-        { IdentityTypes.No_Kill, "#191970" },
+        { IdentityTypes.No_Kill, "#94AA24" },
         { IdentityTypes.Outside_Position, "#228B22" },
         { IdentityTypes.Inside_Position, "#663399" }
     };
@@ -76,7 +78,7 @@ public static class DisplayerRoleTagHelper
             __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(false));
 
             // 创建UI容器
-            var container = UnityEngine.Object.Instantiate(
+            var container = Object.Instantiate(
                 GameObject.Find("PhoneUI").transform, __instance.transform);
             var to = container.gameObject.AddComponent<TransitionOpen>();
             to.targetSize = 0.75f;
@@ -91,10 +93,10 @@ public static class DisplayerRoleTagHelper
 
             var exitButtonParent = new GameObject("ExitButton").transform;
             exitButtonParent.SetParent(container);
-            var exitButton = UnityEngine.Object.Instantiate(buttonTemplate, exitButtonParent);
+            var exitButton = Object.Instantiate(buttonTemplate, exitButtonParent);
             exitButton.FindChild("ControllerHighlight").gameObject.SetActive(false);
 
-            var exitButtonMask = UnityEngine.Object.Instantiate(maskTemplate, exitButtonParent);
+            var exitButtonMask = Object.Instantiate(maskTemplate, exitButtonParent);
             exitButtonMask.transform.localScale = new Vector3(2.88f, 0.8f, 1f);
             exitButtonMask.transform.localPosition = new Vector3(0f, 0f, 1f);
 
@@ -104,23 +106,23 @@ public static class DisplayerRoleTagHelper
             exitButtonParent.localScale = new Vector3(0.22f, 0.9f, 1f);
             exitButtonParent.transform.SetAsFirstSibling();
 
-            exitButton.GetComponent<PassiveButton>().OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+            exitButton.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
             exitButton.GetComponent<PassiveButton>().OnClick.AddListener(new Action(() =>
             {
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
-                UnityEngine.Object.Destroy(container.gameObject);
+                Object.Destroy(container.gameObject);
             }));
             exitButton.GetComponent<PassiveButton>();
 
 
             var clearButtonParent = new GameObject("ClearButton").transform;
             clearButtonParent.SetParent(container);
-            var clearButton = UnityEngine.Object.Instantiate(buttonTemplate, clearButtonParent);
+            var clearButton = Object.Instantiate(buttonTemplate, clearButtonParent);
             clearButton.FindChild("ControllerHighlight").gameObject.SetActive(false);
 
-            var clearLabel = UnityEngine.Object.Instantiate(
+            var clearLabel = Object.Instantiate(
                 textTemplate, clearButton);
-            var clearButtonMask = UnityEngine.Object.Instantiate(maskTemplate, clearButtonParent);
+            var clearButtonMask = Object.Instantiate(maskTemplate, clearButtonParent);
             clearButtonMask.transform.localScale = new Vector3(2.88f, 0.8f, 1f);
             clearButtonMask.transform.localPosition = new Vector3(0f, 0f, 1f);
 
@@ -138,14 +140,14 @@ public static class DisplayerRoleTagHelper
             clearLabel.autoSizeTextContainer = true;
             clearLabel.enabled = true;
 
-            clearButton.GetComponent<PassiveButton>().OnClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+            clearButton.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
             clearButton.GetComponent<PassiveButton>().OnClick.AddListener(new Action(() =>
             {
                 thisTag.setTag("");
                 thisTag.setColor(Color.white);
                 thisTag.setRoom("");
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
-                UnityEngine.Object.Destroy(container.gameObject);
+                Object.Destroy(container.gameObject);
             }));
             clearButton.GetComponent<PassiveButton>();
 
@@ -164,11 +166,11 @@ public static class DisplayerRoleTagHelper
                 var catButtonParent = new GameObject(category + "Tab").transform;
                 catButtonParent.SetParent(container);
 
-                var catButton = UnityEngine.Object.Instantiate(buttonTemplate, catButtonParent);
+                var catButton = Object.Instantiate(buttonTemplate, catButtonParent);
                 catButton.FindChild("ControllerHighlight").gameObject.SetActive(false);
 
-                UnityEngine.Object.Instantiate(maskTemplate, catButtonParent);
-                var catLabel = UnityEngine.Object.Instantiate(
+                Object.Instantiate(maskTemplate, catButtonParent);
+                var catLabel = Object.Instantiate(
                     textTemplate, catButton);
 
                 catButton.GetComponent<SpriteRenderer>().sprite = LoadSprite("Plate_Category.png", 115f);
@@ -235,11 +237,11 @@ public static class DisplayerRoleTagHelper
                 var optionParent = new GameObject(value).transform;
                 optionParent.SetParent(container);
 
-                var option = UnityEngine.Object.Instantiate(buttonTemplate, optionParent);
+                var option = Object.Instantiate(buttonTemplate, optionParent);
                 option.FindChild("ControllerHighlight").gameObject.SetActive(false);
 
-                UnityEngine.Object.Instantiate(maskTemplate, optionParent);
-                var optionLabel = UnityEngine.Object.Instantiate(textTemplate, option);
+                Object.Instantiate(maskTemplate, optionParent);
+                var optionLabel = Object.Instantiate(textTemplate, option);
                 optionLabel.enabled = true;
 
                 var spriteRenderer = option.GetComponent<SpriteRenderer>();
@@ -270,7 +272,7 @@ public static class DisplayerRoleTagHelper
 
 
                     __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
-                    UnityEngine.Object.Destroy(container.gameObject);
+                    Object.Destroy(container.gameObject);
                 }));
 
                 CategoryButtons[category].Add(option);

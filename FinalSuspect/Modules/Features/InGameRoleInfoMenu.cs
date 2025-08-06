@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
 using UnityEngine;

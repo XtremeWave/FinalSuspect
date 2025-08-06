@@ -7,7 +7,6 @@ using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
 using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using FinalSuspect.Patches.System;
@@ -388,6 +387,7 @@ public static class HudManagerPatch
                     var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
                                       DisplayerRoleTagHelper.selectionUI != null &&
                                       DisplayerRoleTagHelper.selectionUI.activeSelf ||
+                                      MapBehaviour.Instance.gameObject.activeSelf ||
                                       !ControllerManagerUpdatePatch.ShowSettingsPanel ||
                                       !FinalGameData.IntroDestroyed ||
                                       !ControllerManagerUpdatePatch.ShowHudUI;

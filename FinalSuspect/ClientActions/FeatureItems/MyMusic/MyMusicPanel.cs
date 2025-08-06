@@ -187,7 +187,7 @@ public static class MyMusicPanel
             string preview;
             var enable = false;
 
-            switch (audio.CurrectAudioStates)
+            switch (audio.CurrentAudioStates)
             {
                 case AudiosStates.IsPlaying:
                     preview = GetString("Tip.Playing");

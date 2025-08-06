@@ -15,11 +15,11 @@ public static class PathManager
     public const string downloadUrl_github =
         "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
+    public const string downloadUrl_githubMirror =
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
+
     public static string downloadUrl_gitee =
         "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
-
-    public static string downloadUrl_githubMirror =
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
@@ -28,13 +28,16 @@ public static class PathManager
     private static IReadOnlyList<string> URLs => new List<string>
     {
 #if DEBUG
+        "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Dev/FS_Dev/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
 #endif
     };
@@ -58,10 +61,12 @@ public static class PathManager
     {
         var remoteBase = remoteType switch
         {
-            RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/Assets/",
+            RemoteType.GithubMirror => "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/Assets/",
+            RemoteType.GithubMirror_Assets =>
+                "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/Assets/",
+            RemoteType.Github => "github.com/Slok7565/FinalSuspect/FinalSus/Assets/",
+            RemoteType.Github_Assets => "github.com/Slok7565/FinalSuspect_Assets/FinalAsset/Assets/",
             RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/Assets/",
-            RemoteType.GithubMirror =>
-                "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/Assets/",
             _ => "127.0.0.1"
         };
 
@@ -154,7 +159,7 @@ public static class PathManager
     {
         var list = URLs.ToList();
         if (!allowDesktop && DebugModeManager.IsDebugMode)
-            list.RemoveAt(3);
+            list.RemoveAt(4);
         if (IsChineseUser) list.Reverse();
         return list;
     }
@@ -174,8 +179,10 @@ public enum FileType
 public enum RemoteType
 {
     GithubMirror,
+    GithubMirror_Assets,
     Gitee,
-    Github
+    Github_Assets,
+    Github,
 }
 
 public enum LocalType

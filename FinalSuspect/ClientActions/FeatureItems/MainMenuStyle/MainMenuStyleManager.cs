@@ -55,10 +55,10 @@ public abstract class MainMenuStyleManager
                 new Color(0.7294f, 0.6353f, 1.0f, 0.8f),
                 new Color(0.9f, 0.551f, 0.9f, 0.8f),
             ]),
-        new(
-            "WhenLookingBackAtTheEnd",
-            false,
-            [])
+        //new(
+        //"WhenLookingBackAtTheEnd",
+        //false,
+        //[])
     ];
 
     public class MainMenuStyle(

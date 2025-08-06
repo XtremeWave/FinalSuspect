@@ -39,7 +39,7 @@ public static class ResourcesHelper
         "FinalSuspect-BG-Security-Preview.png",
         "FinalSuspect-BG-MiraStudio-Preview.png",
         "FinalSuspect-BG-XtremeWave-Preview.png",
-        "FinalSuspect-BG-WhenLookingBackAtTheEnd-Preview.png",
+        //"FinalSuspect-BG-WhenLookingBackAtTheEnd-Preview.png",
         "ModStamp.png",
         "RightPanelCloseButton.png",
         "AuthorLogo2.png",

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -22,7 +23,34 @@ public class HttpClientDownloadWithProgress(string downloadUrl, string destinati
 
     public async Task StartDownload()
     {
-        _httpClient = new HttpClient { Timeout = TimeSpan.FromDays(1) };
+        ServicePointManager.SecurityProtocol =
+            SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+
+        var handler = new HttpClientHandler
+        {
+            AllowAutoRedirect = true,
+            UseDefaultCredentials = true,
+            Proxy = null,
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+        };
+
+        _httpClient = new HttpClient(handler)
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+
+        // 浏览器级请求头, 完全防止403
+        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+            "AppleWebKit/537.36 (KHTML, like Gecko) " +
+            "Chrome/127.0.0.0 Safari/537.36");
+
+        _httpClient.DefaultRequestHeaders.Add("Accept",
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+        _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
+        _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
+        _httpClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
+        _httpClient.DefaultRequestHeaders.Add("Pragma", "no-cache");
 
         using var response = await _httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
         await DownloadFileFromHttpResponseMessage(response);

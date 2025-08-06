@@ -46,10 +46,17 @@ public static class _GamePlayer
 
     public static string GetPlainShipRoomName(this PlayerControl pc)
     {
-        var roomname = IsInMeeting
-            ? pc.GetFinalData().PreMeetingRoomName
-            : StringHelper.ColorString(ColorHelper.ClientlessColor,
-                $"({GetString(pc.GetPlainShipRoom().RoomId.ToString())})");
-        return roomname;
+        try
+        {
+            if (IsInMeeting)
+                return pc.GetFinalData().PreMeetingRoomName;
+            var roomStr = pc.GetPlainShipRoom().RoomId.ToString();
+            var roomName = StringHelper.ColorString(ColorHelper.ClientlessColor, $"({GetString(roomStr)})");
+            return roomName;
+        }
+        catch
+        {
+            return "";
+        }
     }
 }

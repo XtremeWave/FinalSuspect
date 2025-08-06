@@ -141,8 +141,8 @@ public class VersionShowerStartPatch
 #if DEBUG
             var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
 #elif RELEASE
-            var versionText =
-                $"<color={ColorHelper.ModColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+            var versionText = 
+                $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 #elif OPENBETA
             var versionText =
                 $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}\n" +
@@ -211,7 +211,7 @@ public class VersionShowerStartPatch
         VisitText = Object.Instantiate(__instance.text);
         VisitText.name = "FinalSuspect VisitText";
         VisitText.alignment = TextAlignmentOptions.Left;
-        VisitText.text = VersionChecker.isChecked
+        VisitText.text = VersionChecker.IsChecked
             ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.FSColorHex)
             : GetString("RetrieveVersionInfoFailed");
         VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
@@ -416,11 +416,11 @@ internal class ModManagerLateUpdatePatch
         if (name is "MainMenu" or "MatchMaking")
         {
             var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
-            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrectAudio == style.MainMenuMusic);
+            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
             if (audio != null)
             {
-                audio.IsMainMenuMusic = true;
-                _ = new LateTask(() => { AudioPlayer.Play(audio); }, 0.01f, "Play Custom MainBG");
+                audio.PlayAsMainMenuMusic = true;
+                _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
             }
         }
     }

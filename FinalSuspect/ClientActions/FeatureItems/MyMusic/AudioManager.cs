@@ -58,10 +58,10 @@ public static class AudioManager
 
         while (!File.Exists(path))
         {
-            var currectpath = path;
+            var currentPath = path;
             var extensionsArray = extensions.ToArray();
             if (extensionsArray.Length == 0) return false;
-            var matchingKey = extensions.FirstOrDefault(currectpath.Contains);
+            var matchingKey = extensions.FirstOrDefault(currentPath.Contains);
             if (matchingKey is null) return false;
             var currentIndex = Array.IndexOf(extensionsArray, matchingKey);
             if (currentIndex == -1) return false;
@@ -98,6 +98,8 @@ public static class AudioManager
                 SoundManager.Instance.PlaySound(
                     DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(sound), sound, null);
         }
     }
 }
@@ -105,6 +107,7 @@ public static class AudioManager
 public enum SupportedMusics
 {
     UnOfficial,
+    FinalSuspect__Slok,
 
     // ## World Music
     GongXiFaCai__Andy_Lau,
@@ -120,7 +123,6 @@ public enum SupportedMusics
     Affinity__Slok,
     TidalSurge__Slok,
     ReturnToSimplicity__Slok,
-    FinalSuspect__Slok,
 
     // 这里是EmberVeins的Demo曲
     TrailOfTruth__Slok,
@@ -150,18 +152,17 @@ public class FinalMusic
     public string Author;
     public AudioClip Clip;
 
-    public SupportedMusics CurrectAudio;
-    public AudiosStates CurrectAudioStates;
+    public SupportedMusics CurrentAudio;
+    public AudiosStates CurrentAudioStates;
     public string FileName;
-
-    public bool IsMainMenuMusic;
     public AudiosStates LastAudioStates;
 
     public string Name;
     public string Path;
 
+    public bool PlayAsMainMenuMusic;
+
     public bool UnOfficial;
-    //public bool unpublished;
 
 
     public static void InitializeAll()
@@ -177,27 +178,27 @@ public class FinalMusic
 
     public static async Task LoadClip(SupportedMusics music = SupportedMusics.UnOfficial)
     {
-        var mus = musics.FirstOrDefault(x => x.CurrectAudio == music);
+        var mus = musics.FirstOrDefault(x => x.CurrentAudio == music);
         if (mus != null)
             await mus.Load();
     }
 
     private async Task Load()
     {
-        if (CurrectAudioStates != AudiosStates.Exist) return;
+        if (CurrentAudioStates != AudiosStates.Exist) return;
         var task = AudioLoader.LoadAudioClipAsync(Path);
         _ = new MainThreadTask(() =>
         {
-            LastAudioStates = CurrectAudioStates = AudiosStates.IsLoading;
-            //MyMusicPanel.RefreshTagList();
+            LastAudioStates = CurrentAudioStates = AudiosStates.IsLoading;
+            MyMusicPanel.RefreshTagList();
         }, "Update Audio States");
         await task;
         _ = new MainThreadTask(() =>
         {
             if (task.Result)
                 Clip = task.Result;
-            LastAudioStates = CurrectAudioStates = Clip ? AudiosStates.Exist : AudiosStates.NotExist;
-            //MyMusicPanel.RefreshTagList();
+            LastAudioStates = CurrentAudioStates = Clip ? AudiosStates.Exist : AudiosStates.NotExist;
+            MyMusicPanel.RefreshTagList();
         }, "Update Audio States");
     }
 
@@ -219,9 +220,9 @@ public class FinalMusic
         }
 
         UnOfficial = music == SupportedMusics.UnOfficial;
-        CurrectAudio = music;
+        CurrentAudio = music;
         Path = GetResourceFilesPath(FileType.Musics, FileName + ".wav");
-        CurrectAudioStates = LastAudioStates =
+        CurrentAudioStates = LastAudioStates =
             AudioManager.ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;
 
         lock (finalMusicsLock)
@@ -230,9 +231,9 @@ public class FinalMusic
             if (file != null)
             {
                 file.Path = Path;
-                if (file.CurrectAudioStates is AudiosStates.DownLoadFailureNotice or AudiosStates.DownLoadSucceedNotice
-                    || CurrectAudioStates is AudiosStates.NotExist)
-                    file.CurrectAudioStates = file.LastAudioStates = CurrectAudioStates;
+                if (file.CurrentAudioStates is AudiosStates.DownLoadFailureNotice or AudiosStates.DownLoadSucceedNotice
+                    || CurrentAudioStates is AudiosStates.NotExist)
+                    file.CurrentAudioStates = file.LastAudioStates = CurrentAudioStates;
             }
             else if (Name != string.Empty)
             {

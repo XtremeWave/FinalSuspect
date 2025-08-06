@@ -3,6 +3,7 @@ using FinalSuspect.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 using static FinalSuspect.Modules.Features.DisplayedRoleTag.DisplayerRoleTagHelper;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
 
@@ -16,14 +17,14 @@ public class MeetingButtonManager
         => __instance.playerStates.ToList().ForEach(x =>
         {
             if (x.transform.FindChild("Custom Meeting Button") != null)
-                UnityEngine.Object.Destroy(x.transform.FindChild("Custom Meeting Button").gameObject);
+                Object.Destroy(x.transform.FindChild("Custom Meeting Button").gameObject);
         });
 
     [HarmonyPatch(nameof(MeetingHud.Start)), HarmonyPrefix]
     [HarmonyPriority(Priority.First)]
     public static void Start(MeetingHud __instance)
     {
-        textTemplate = UnityEngine.Object.Instantiate(__instance.playerStates[0]!.NameText);
+        textTemplate = Object.Instantiate(__instance.playerStates[0]!.NameText);
         textTemplate.enabled = false;
 
         ButtonCreated = false;
@@ -57,7 +58,7 @@ public class MeetingButtonManager
             var pc = GetPlayerById(pva.TargetPlayerId);
             if (pc == null) continue;
             var template = pva.Buttons.transform.Find("CancelButton").gameObject;
-            var targetBox = UnityEngine.Object.Instantiate(template, pva.transform);
+            var targetBox = Object.Instantiate(template, pva.transform);
             targetBox.name = "Custom Meeting Button";
             targetBox.transform.localPosition = new Vector3(-0.95f, 0.03f, -1.31f);
 
@@ -80,6 +81,6 @@ public class MeetingButtonManager
     public static void OnDestroy()
     {
         if (textTemplate != null && textTemplate.gameObject != null)
-            UnityEngine.Object.Destroy(textTemplate.gameObject);
+            Object.Destroy(textTemplate.gameObject);
     }
 }

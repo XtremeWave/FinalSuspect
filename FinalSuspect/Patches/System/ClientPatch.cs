@@ -16,11 +16,11 @@ internal class MakePublicPatch
 {
     public static bool Prefix()
     {
-        if (!VersionChecker.isBroken && (!VersionChecker.hasUpdate || !VersionChecker.forceUpdate) &&
+        if (!VersionChecker.IsBroken && (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
             VersionChecker.IsSupported) return true;
         var message = "";
-        if (VersionChecker.isBroken) message = GetString("ModBrokenMessage");
-        if (VersionChecker.hasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
+        if (VersionChecker.IsBroken) message = GetString("ModBrokenMessage");
+        if (VersionChecker.HasUpdate) message = GetString("CanNotJoinPublicRoomNoLatest");
         Info(message, "MakePublicPatch");
         SendInGame(message);
         return false;
@@ -32,7 +32,7 @@ internal class MMOnlineManagerStartPatch
 {
     public static void Postfix()
     {
-        if (!(VersionChecker.hasUpdate || VersionChecker.isBroken || !VersionChecker.IsSupported)) return;
+        if (!(VersionChecker.HasUpdate || VersionChecker.IsBroken || !VersionChecker.IsSupported)) return;
         var obj = GameObject.Find("FindGameButton");
         if (!obj) return;
         obj.SetActive(false);
@@ -42,9 +42,9 @@ internal class MMOnlineManagerStartPatch
         textObj.name = "CanNotJoinPublic";
         textObj.DestroyTranslator();
         var message = "";
-        if (VersionChecker.hasUpdate)
+        if (VersionChecker.HasUpdate)
             message = GetString("CanNotJoinPublicRoomNoLatest");
-        else if (VersionChecker.isBroken)
+        else if (VersionChecker.IsBroken)
             message = GetString("ModBrokenMessage");
         else if (!VersionChecker.IsSupported) message = GetString("UnsupportedVersion");
 

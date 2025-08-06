@@ -16,38 +16,38 @@ namespace FinalSuspect.ClientActions;
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch
 {
-    private static ClientOptionItem<bool> UnlockFPS;
-    private static ClientOptionItem<OutfitType> SwitchOutfitType;
-    private static ClientOptionItem<bool> KickPlayerWithAbnormalFriendCode;
-    private static ClientOptionItem<bool> KickPlayerWithDenyName;
-    private static ClientOptionItem<bool> KickPlayerInBanList;
-    private static ClientOptionItem<bool> SpamDenyWord;
-    private static ClientOptionItem<bool> AutoStartGame;
-    private static ClientOptionItem<bool> AutoEndGame;
+    private static ClientOptionItem<bool> _unlockFPS;
+    private static ClientOptionItem<OutfitType> _switchOutfitType;
+    private static ClientOptionItem<bool> _kickPlayerWithAbnormalFriendCode;
+    private static ClientOptionItem<bool> _kickPlayerWithDenyName;
+    private static ClientOptionItem<bool> _kickPlayerInBanList;
+    private static ClientOptionItem<bool> _spamDenyWord;
+    private static ClientOptionItem<bool> _autoStartGame;
+    private static ClientOptionItem<bool> _autoEndGame;
 
-    private static ClientOptionItem<bool> DisableVanillaSound;
-    private static ClientOptionItem<bool> EnableFAC;
-    private static ClientOptionItem<bool> EnableGuardian;
-    private static ClientOptionItem<bool> ShowPlayerInfo;
-    private static ClientOptionItem<bool> UseModCursor;
-    private static ClientOptionItem<bool> FastLaunchMode;
-    private static ClientOptionItem<bool> VersionCheat;
-    private static ClientOptionItem<bool> GodMode;
-    private static ClientOptionItem<bool> NoGameEnd;
+    private static ClientOptionItem<bool> _disableVanillaSound;
+    private static ClientOptionItem<bool> _enableFac;
+    private static ClientOptionItem<bool> _enableGuardian;
+    private static ClientOptionItem<bool> _showPlayerInfo;
+    private static ClientOptionItem<bool> _useModCursor;
+    private static ClientOptionItem<bool> _fastLaunchMode;
+    private static ClientOptionItem<bool> _versionCheat;
+    private static ClientOptionItem<bool> _godMode;
+    private static ClientOptionItem<bool> _noGameEnd;
 
-    private static ClientFeatureItem ClearAutoLogs;
-    private static ClientFeatureItem DumpLog;
-    private static ClientFeatureItem UnloadMod;
-    private static ClientFeatureItem MainMenuStyleBtn;
+    private static ClientFeatureItem _clearAutoLogs;
+    private static ClientFeatureItem _dumpLog;
+    private static ClientFeatureItem _unloadMod;
+    private static ClientFeatureItem _mainMenuStyleBtn;
 
-    private static ClientFeatureItem ResourceBtn;
+    private static ClientFeatureItem _resourceBtn;
 
-    //private static ClientFeatureItem MyMusicBtn;
-    private static ClientFeatureItem NameTagBtn;
+    private static ClientFeatureItem _myMusicBtn;
+    private static ClientFeatureItem _nameTagBtn;
 
 
-    private static bool reseted;
-    public static bool recreate;
+    private static bool _reseted;
+    public static bool Recreate;
     public static OptionsMenuBehaviour Instance { get; private set; }
 
     public static void Postfix(OptionsMenuBehaviour __instance)
@@ -55,15 +55,15 @@ public static class OptionsMenuBehaviourStartPatch
         if (!__instance.DisableMouseMovement) return;
         Instance = __instance;
 
-        if (!reseted || !DebugModeManager.IsDebugMode)
+        if (!_reseted || !DebugModeManager.IsDebugMode)
         {
-            reseted = true;
+            _reseted = true;
             Main.VersionCheat.Value = false;
             Main.GodMode.Value = false;
             Main.NoGameEnd.Value = false;
         }
 
-        if (recreate)
+        if (Recreate)
         {
             ClientActionItem.ModOptionsButton.gameObject.SetActive(false);
             Object.Destroy(ClientActionItem.ModOptionsButton);
@@ -91,84 +91,85 @@ public static class OptionsMenuBehaviourStartPatch
             NameTagPanel.CustomBackground = null;
         }
 
-        CreateOptionItem(ref UnlockFPS, "UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
-        CreateOptionItem(ref SwitchOutfitType, "SwitchOutfitType", Main.SwitchOutfitType, __instance, SwitchMode);
-        CreateOptionItem(ref KickPlayerWithAbnormalFriendCode, "KickPlayerWithAbnormalFriendCode",
+        CreateOptionItem(ref _unlockFPS, "UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
+        CreateOptionItem(ref _switchOutfitType, "SwitchOutfitType", Main.SwitchOutfitType, __instance, SwitchMode);
+        CreateOptionItem(ref _kickPlayerWithAbnormalFriendCode, "KickPlayerWithAbnormalFriendCode",
             Main.KickPlayerWithAbnormalFriendCode, __instance);
-        CreateOptionItem(ref KickPlayerInBanList, "KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
-        CreateOptionItem(ref KickPlayerWithDenyName, "KickPlayerWithDenyName", Main.KickPlayerWithDenyName, __instance);
-        CreateOptionItem(ref SpamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
-        CreateOptionItem(ref EnableFAC, "EnableFAC", Main.EnableFAC, __instance);
-        CreateOptionItem(ref EnableGuardian, "EnableGuardian", Main.EnableGuardian, __instance);
-        CreateOptionItem(ref AutoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
-        CreateOptionItem(ref AutoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
+        CreateOptionItem(ref _kickPlayerInBanList, "KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
+        CreateOptionItem(ref _kickPlayerWithDenyName, "KickPlayerWithDenyName", Main.KickPlayerWithDenyName,
+            __instance);
+        CreateOptionItem(ref _spamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
+        CreateOptionItem(ref _enableFac, "EnableFAC", Main.EnableFAC, __instance);
+        CreateOptionItem(ref _enableGuardian, "EnableGuardian", Main.EnableGuardian, __instance);
+        CreateOptionItem(ref _autoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
+        CreateOptionItem(ref _autoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
         //CreateOptionItem<bool>(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
-        CreateOptionItem(ref DisableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () =>
+        CreateOptionItem(ref _disableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () =>
         {
             if (Main.DisableVanillaSound.Value)
                 AudioPlayer.StopPlayVanilla();
             else
                 AudioPlayer.StartPlayVanilla();
         });
-        CreateOptionItem(ref ShowPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
-        CreateOptionItem(ref UseModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
-        CreateOptionItem(ref FastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
+        CreateOptionItem(ref _showPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
+        CreateOptionItem(ref _useModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
+        CreateOptionItem(ref _fastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
         if (DebugModeManager.IsDebugMode)
         {
-            CreateOptionItem(ref VersionCheat, "VersionCheat", Main.VersionCheat, __instance);
-            CreateOptionItem(ref GodMode, "GodMode", Main.GodMode, __instance);
-            CreateOptionItem(ref NoGameEnd, "NoGameEnd", Main.NoGameEnd, __instance);
+            CreateOptionItem(ref _versionCheat, "VersionCheat", Main.VersionCheat, __instance);
+            CreateOptionItem(ref _godMode, "GodMode", Main.GodMode, __instance);
+            CreateOptionItem(ref _noGameEnd, "NoGameEnd", Main.NoGameEnd, __instance);
         }
 
-        CreateFeatureItem(ref DumpLog, "DumpLog", () => { DumpLog(); }, __instance);
-        CreateFeatureItem(ref ClearAutoLogs, "ClearAutoLogs", () =>
+        CreateFeatureItem(ref _dumpLog, "DumpLog", () => { DumpLog(); }, __instance);
+        CreateFeatureItem(ref _clearAutoLogs, "ClearAutoLogs", () =>
         {
             ClearAutoLogs();
-            SetFeatureItemDisabled(ClearAutoLogs);
+            SetFeatureItemDisabled(_clearAutoLogs);
         }, __instance);
-        CreateFeatureItem(ref UnloadMod, "UnloadMod", ModUnloaderScreen.Show, __instance);
+        CreateFeatureItem(ref _unloadMod, "UnloadMod", ModUnloaderScreen.Show, __instance);
 
 
-        CreateFeatureItem(ref MainMenuStyleBtn, "MainMenuStyleManager",
+        CreateFeatureItem(ref _mainMenuStyleBtn, "MainMenuStyleManager",
             () => { MainMenuStylePanel.CustomBackground?.gameObject.SetActive(true); }, __instance);
-        CreateFeatureItem(ref ResourceBtn, "ResourceManager",
+        CreateFeatureItem(ref _resourceBtn, "ResourceManager",
             () => { ResourcesPanel.CustomBackground?.gameObject.SetActive(true); }, __instance);
-        //CreateFeatureItem(ref MyMusicBtn, "SoundOption", 
-        //() => { MyMusicPanel.CustomBackground?.gameObject.SetActive(true); }, __instance);
-        CreateFeatureItem(ref NameTagBtn, "NameTagManager",
+        CreateFeatureItem(ref _myMusicBtn, "SoundOption",
+            () => { MyMusicPanel.CustomBackground?.gameObject.SetActive(true); }, __instance);
+        CreateFeatureItem(ref _nameTagBtn, "NameTagManager",
             () => { NameTagPanel.CustomBackground?.gameObject.SetActive(true); }, __instance);
 
-        SetFeatureItemTextAndColor(MainMenuStyleBtn, "MainMenuStyleManager");
-        SetFeatureItemTextAndColor(ResourceBtn, "ResourceManager");
-        //SetFeatureItemTextAndColor(MyMusicBtn, "MyMusic");
-        SetFeatureItemTextAndColor(NameTagBtn, "NameTagManager");
+        SetFeatureItemTextAndColor(_mainMenuStyleBtn, "MainMenuStyleManager");
+        SetFeatureItemTextAndColor(_resourceBtn, "ResourceManager");
+        SetFeatureItemTextAndColor(_myMusicBtn, "MyMusic");
+        SetFeatureItemTextAndColor(_nameTagBtn, "NameTagManager");
 
         if (!IsNotJoined)
         {
-            SetFeatureItemDisabled_Menu(ResourceBtn);
-            SetFeatureItemDisabled_Menu(MainMenuStyleBtn);
+            SetFeatureItemDisabled_Menu(_resourceBtn);
+            SetFeatureItemDisabled_Menu(_mainMenuStyleBtn);
         }
 
         if (Directory.GetFiles(GetLogFolder(true).FullName).Length <= 0)
-            SetFeatureItemDisabled(ClearAutoLogs);
+            SetFeatureItemDisabled(_clearAutoLogs);
 
         AudioManager.ReloadTag();
 
         MainMenuStylePanel.Init(__instance);
         ResourcesPanel.Init(__instance);
-        //MyMusicPanel.Init(__instance);
+        MyMusicPanel.Init(__instance);
         NameTagPanel.Init(__instance);
 
 
         if (!ModUnloaderScreen.Popup)
             ModUnloaderScreen.Init(__instance);
-        recreate = false;
+        Recreate = false;
     }
 
     private static void CreateOptionItem<T>(ref ClientOptionItem<T> item, string name, ConfigEntry<T> value,
         OptionsMenuBehaviour instance, Action toggleAction = null)
     {
-        if (recreate)
+        if (Recreate)
         {
             Object.Destroy(item.ToggleButton.gameObject);
             item = null;
@@ -194,7 +195,7 @@ public static class OptionsMenuBehaviourStartPatch
     private static void CreateFeatureItem(ref ClientFeatureItem item, string name, Action action,
         OptionsMenuBehaviour instance)
     {
-        if (recreate)
+        if (Recreate)
         {
             Object.Destroy(item.ToggleButton.gameObject);
             item = null;
@@ -288,7 +289,7 @@ public static class OptionsMenuBehaviourClosePatch
         ModUnloaderScreen.Hide();
         MainMenuStylePanel.Hide();
         ResourcesPanel.Hide();
-        //MyMusicPanel.Hide();
+        MyMusicPanel.Hide();
         NameTagPanel.Hide();
     }
 }
@@ -298,7 +299,7 @@ public static class LanguageSetterSetLanguagePatch
 {
     public static void Postfix()
     {
-        OptionsMenuBehaviourStartPatch.recreate = true;
+        OptionsMenuBehaviourStartPatch.Recreate = true;
         try
         {
             Object.Destroy(VersionShowerStartPatch.VisitText);

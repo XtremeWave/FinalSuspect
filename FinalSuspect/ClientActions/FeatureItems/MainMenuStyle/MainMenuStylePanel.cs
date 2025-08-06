@@ -143,15 +143,13 @@ public static class MainMenuStylePanel
                     FormatButtonColor(__instance, passiveButton, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4,
                         kvp.Value.Item5);
                 });
-            var lastAudio = FinalMusic.musics.FirstOrDefault(x => x.IsMainMenuMusic);
-            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrectAudio == style.MainMenuMusic);
+            var lastAudio = FinalMusic.musics.FirstOrDefault(x => x.PlayAsMainMenuMusic);
+            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
 
             if (lastAudio == null || audio == null) return;
-            if (lastAudio == audio)
+            if (lastAudio != audio)
                 SoundManager.Instance.StopAllSound();
-            lastAudio.IsMainMenuMusic = false;
-            audio.IsMainMenuMusic = true;
-            AudioPlayer.Play(audio);
+            AudioPlayer.Play(audio, true);
         }));
         button.enabled = IsNotJoined;
     }

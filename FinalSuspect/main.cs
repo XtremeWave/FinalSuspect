@@ -48,7 +48,7 @@ public class Main : BasePlugin
     /// </summary>
     private const VersionTypes DisplayedVersion_Type = VersionTypes.RC;
 
-    private const int DisplayedVersion_TestCreation = 2;
+    private const int DisplayedVersion_TestCreation = 3;
 
 
     // == 链接相关设定 / Link Config ==

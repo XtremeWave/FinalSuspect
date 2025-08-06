@@ -17,13 +17,13 @@ public class ModUpdater
 
     public static void SetUpdateButtonStatus()
     {
-        ModMainMenuManager.UpdateButton.SetActive(VersionChecker.isChecked && VersionChecker.hasUpdate &&
-                                                  (VersionChecker.firstStart || VersionChecker.forceUpdate));
+        ModMainMenuManager.UpdateButton.SetActive(VersionChecker.IsChecked && VersionChecker.HasUpdate &&
+                                                  (VersionChecker.FirstStart || VersionChecker.ForceUpdate));
         ModMainMenuManager.PlayButton.SetActive(!ModMainMenuManager.UpdateButton.activeSelf);
         var buttonText = ModMainMenuManager.UpdateButton.transform.FindChild("FontPlacer").GetChild(0)
             .GetComponent<TextMeshPro>();
         buttonText.text =
-            $"{(VersionChecker.CanUpdate ? GetString("UpdateRemind.updatePopup") : GetString("UpdateRemind.updateNotice"))}\nv{VersionChecker.showVer ?? " ???"}";
+            $"{(VersionChecker.CanUpdate ? GetString("UpdateRemind.updatePopup") : GetString("UpdateRemind.updateNotice"))}\nv{VersionChecker.ShowVer ?? " ???"}";
     }
 
     public static void StartUpdate(string url = "waitToSelect")
@@ -96,7 +96,7 @@ public class ModUpdater
             client.ProgressChanged += OnDownloadProgressChanged;
             await client.StartDownload();
             Thread.Sleep(100);
-            if (GetMD5HashFromFile(DownloadFileTempPath) != VersionChecker.md5)
+            if (GetMD5HashFromFile(DownloadFileTempPath) != VersionChecker.MD5)
             {
                 File.Delete(DownloadFileTempPath);
                 return (false, GetString("UpdateResult.Failed_Reason_FileMd5Incorrect"));

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FinalSuspect.Templates;
 
-public sealed class TMPTemplate
+public static class TMPTemplate
 {
     private static TextMeshPro baseTMP;
 

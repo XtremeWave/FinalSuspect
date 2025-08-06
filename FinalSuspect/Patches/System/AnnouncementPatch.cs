@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -132,7 +131,7 @@ public class ModNewsHistory
             foreach (var target in ResourcesHelper.RemoteModNewsList)
             foreach (var url in GetInfoFileUrlList())
             {
-                var task = GetAnnouncements(url + $"Assets/ModNews/{lang}/{target}", target);
+                var task = GetAnnouncements(url + $"Assets/ModNews/{lang}/{target}");
                 await task;
                 var result = task.Result;
                 if (!result.Item1)
@@ -181,45 +180,14 @@ public class ModNewsHistory
         }, "ReShow mod announcements");
     }
 
-    private static async Task<(bool, string)> GetAnnouncements(string url, string name)
+    private static async Task<(bool, string)> GetAnnouncements(string url)
     {
         try
         {
-            string result;
-            if (url.StartsWith("file:///"))
-            {
-                try
-                {
-                    // Windows 格式
-                    var filePath = url[8..].Replace('/', '\\');
-                    result = await File.ReadAllTextAsync(filePath);
-                }
-                catch (FileNotFoundException)
-                {
-                    Warn($"服务器文件缺失: {url[8..]}", "GetAnnouncements");
-                    return (false, "");
-                }
-                catch (Exception ex)
-                {
-                    Error($"读取本地文件失败: {ex.Message}", "GetAnnouncements");
-                    return (false, "");
-                }
-            }
-            else
-            {
-                using HttpClient client = new();
-                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect" + name);
-                client.DefaultRequestHeaders.Add("Referer", "gitee.com");
-
-                using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
-                if (!response.IsSuccessStatusCode)
-                {
-                    Error($"服务器请求失败 [{url}]: {response.StatusCode}", "GetAnnouncements");
-                    return (false, "");
-                }
-
-                result = await response.Content.ReadAsStringAsync();
-            }
+            var task = JsonHelper.GetJsonStringAsync(url);
+            await task;
+            var (result, succeed) = task.Result;
+            if (!succeed) return (false, "");
 
             await Task.Delay(100);
             return (true, result);

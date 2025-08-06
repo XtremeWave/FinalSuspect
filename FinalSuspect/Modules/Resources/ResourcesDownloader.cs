@@ -1,10 +1,10 @@
 using System;
 using System.IO;
+using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.IO.Compression;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -30,13 +30,11 @@ public static class ResourcesDownloader
                 return false;
         }
 
-        var DownloadFileTempPath = filePath + ".xwr";
+        var downloadFileTempPath = filePath + ".xwr";
 
-        var retrytimes = 0;
-        var remoteType = RemoteType.Github;
+        var retryTimes = IsChineseLanguageUser ? 0 : 3;
         retry:
-        if (IsChineseLanguageUser)
-            remoteType = (RemoteType)retrytimes;
+        var remoteType = (RemoteType)retryTimes;
 
         var url = GetFile(fileType, remoteType, file);
 
@@ -46,18 +44,18 @@ public static class ResourcesDownloader
             return false;
         }
 
-        File.Create(DownloadFileTempPath).Close();
+        File.Create(downloadFileTempPath).Close();
 
         Msg("Start Downloading from: " + url, "Download Resources");
         Msg("Saving file to: " + filePath, "Download Resources");
 
         try
         {
-            using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
+            using var client = new HttpClientDownloadWithProgress(url, downloadFileTempPath);
             await client.StartDownload();
             Thread.Sleep(100);
             File.Delete(filePath);
-            File.Move(DownloadFileTempPath, filePath);
+            File.Move(downloadFileTempPath, filePath);
 
             if (Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
             {
@@ -82,9 +80,9 @@ public static class ResourcesDownloader
         catch (Exception ex)
         {
             Error($"Failed to download\n{ex.Message}", "Download Resources", false);
-            File.Delete(DownloadFileTempPath);
-            retrytimes++;
-            if (retrytimes < 3)
+            File.Delete(downloadFileTempPath);
+            retryTimes++;
+            if (retryTimes < 4)
                 goto retry;
             return false;
         }

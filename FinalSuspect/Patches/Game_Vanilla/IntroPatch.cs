@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
 using UnityEngine;

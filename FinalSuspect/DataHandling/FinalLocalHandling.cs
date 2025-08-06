@@ -101,8 +101,8 @@ public static class FinalLocalHandling
         {
             color = GetRoleColor(roleType);
             roleText = !topswap
-                ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {player.GetPlainShipRoomName()} {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
-                : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} {player.GetPlainShipRoomName()} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+                ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
+                : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
         else if (roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "")
         {

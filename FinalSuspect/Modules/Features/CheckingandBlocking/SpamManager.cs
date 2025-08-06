@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -64,26 +64,10 @@ public static class SpamManager
     {
         try
         {
-            string result;
-            if (url.StartsWith("file:///"))
-            {
-                result = await File.ReadAllTextAsync(url[8..]);
-            }
-            else
-            {
-                using HttpClient client = new();
-                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect " + name);
-                client.DefaultRequestHeaders.Add("Referer", "gitee.com");
-                using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
-                if (!response.IsSuccessStatusCode)
-                {
-                    Error($"Failed: {response.StatusCode}", "SpamManager");
-                    return false;
-                }
-
-                result = await response.Content.ReadAsStringAsync();
-                result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
-            }
+            var task = JsonHelper.GetJsonStringAsync(url);
+            await task;
+            var (result, succeed) = task.Result;
+            if (!succeed) return false;
 
             var data = JObject.Parse(result);
             try
