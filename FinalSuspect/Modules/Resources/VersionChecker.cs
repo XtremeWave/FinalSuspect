@@ -38,10 +38,11 @@ public static class VersionChecker
         try
         {
             _ = ModNewsHistory.LoadModAnnouncements();
-
+            await Task.Delay(100);
             await SpamManager.Init();
             await Task.Delay(100);
             await ResourcesManager.CheckForResources();
+            await Task.Delay(100);
             await CheckForUpdate();
         }
         catch
@@ -172,7 +173,7 @@ public static class VersionChecker
         public static void Postfix()
         {
             CustomPopup.Init();
-            if (FirstStart)
+            if (FirstStart && !Main.OfflineMode.Value)
             {
                 StartTasks();
                 CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);

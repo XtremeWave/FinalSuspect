@@ -7,6 +7,7 @@ using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.ClientActions.FeatureItems.NameTag;
 using FinalSuspect.ClientActions.FeatureItems.Resources;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Features;
 using FinalSuspect.Patches.System;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -31,6 +32,8 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem<bool> _showPlayerInfo;
     private static ClientOptionItem<bool> _useModCursor;
     private static ClientOptionItem<bool> _fastLaunchMode;
+    private static ClientOptionItem<bool> _offlineMode;
+
     private static ClientOptionItem<bool> _versionCheat;
     private static ClientOptionItem<bool> _godMode;
     private static ClientOptionItem<bool> _noGameEnd;
@@ -114,6 +117,12 @@ public static class OptionsMenuBehaviourStartPatch
         CreateOptionItem(ref _showPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
         CreateOptionItem(ref _useModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
         CreateOptionItem(ref _fastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
+        CreateOptionItem(ref _offlineMode, "OfflineMode", Main.OfflineMode, __instance, (() =>
+        {
+            __instance.Close();
+            CustomPopup.Show(GetString("ClientOption.OfflineMode"), GetString("UpdateResult.Succeed_Text"),
+                [(GetString(StringNames.ExitGame), Application.Quit)]);
+        }));
         if (DebugModeManager.IsDebugMode)
         {
             CreateOptionItem(ref _versionCheat, "VersionCheat", Main.VersionCheat, __instance);

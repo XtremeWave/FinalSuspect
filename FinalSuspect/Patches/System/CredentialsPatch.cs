@@ -419,7 +419,6 @@ internal class ModManagerLateUpdatePatch
             var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
             if (audio != null)
             {
-                audio.PlayAsMainMenuMusic = true;
                 _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
             }
         }

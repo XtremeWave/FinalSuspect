@@ -69,6 +69,7 @@ ClientOption.EnableGuardian: "クライアントガーディアンを有効化�
 ClientOption.ShowPlayerInfo: "プレイヤーのプラットフォームとクライアント情報を表示"
 ClientOption.UseModCursor: "MODカーソルを使用"
 ClientOption.FastLaunchMode: "高速起動モード"
+ClientOption.OfflineMode: "オフライン モード（実験的）"
 ClientOption.VersionCheat: "バージョン同期チェックを回避"
 ClientOption.GodMode: "ゴッドモード"
 ClientOption.NoGameEnd: "ゲーム終了なし"

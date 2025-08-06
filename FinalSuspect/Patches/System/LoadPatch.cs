@@ -121,10 +121,11 @@ public static class LoadPatch
 
     private static IEnumerator HandleCoreLoadingProcess()
     {
-        var fastLaunchMode = CheckFastLaunchModeCondition() && !_firstLaunch;
-        Main.FastLaunchMode.Value = fastLaunchMode;
+        var fastLaunchMode = (CheckFastLaunchModeCondition() || Main.OfflineMode.Value) && !_firstLaunch;
+        Main.OfflineMode.Value = Main.FastLaunchMode.Value = fastLaunchMode;
 
         yield return fastLaunchMode ? HandleFastLaunchMode() : HandleNormalBoot();
+
         yield return LoadEssentialResources();
         yield return HandlePostDownloadProcess(fastLaunchMode);
     }
@@ -168,7 +169,9 @@ public static class LoadPatch
             AudioPlayer.Play(audio, true);
 
 
-        UpdateProcessText(GetString("ClientOption.FastLaunchMode"), Color.green);
+        UpdateProcessText(
+            GetString(Main.OfflineMode.Value ? "ClientOption.OfflineMode" : "ClientOption.FastLaunchMode"),
+            Main.OfflineMode.Value ? Color.gray : Color.green);
         yield return new WaitForSeconds(1f);
         _skipLoadAnimation = true;
     }
@@ -183,7 +186,7 @@ public static class LoadPatch
         _modLogo.transform.localPosition = new Vector3(0, 0, -5f);
         _modLogo.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 
-        _glow.color = Color.green;
+        _glow.color = Main.OfflineMode.Value ? Color.gray : Color.green;
     }
 
     private static IEnumerator HandleNormalBoot()
@@ -256,17 +259,19 @@ public static class LoadPatch
     private static IEnumerator LoadEssentialResources()
     {
         yield return LoadAmongUsTranslation();
+
+        if (Main.OfflineMode.Value) yield break;
         CheckForListResources(ref ResourcesHelper.RemoteDependList, FileType.Depends);
         yield return DownloadResources(ResourcesHelper.RemoteDependList, FileType.Depends, null, true);
 
-        List<string> RemoteLanguageList = [];
-        RemoteLanguageList.AddRange(EnumHelper.GetAllNames<SupportedLangs>().Select(lang => lang + ".yaml"));
+        List<string> remoteLanguageList = [];
+        remoteLanguageList.AddRange(EnumHelper.GetAllNames<SupportedLangs>().Select(lang => lang + ".yaml"));
 
         if (!_reloadLanguage)
-            CheckForListResources(ref RemoteLanguageList, FileType.Languages);
+            CheckForListResources(ref remoteLanguageList, FileType.Languages);
 
-        if (RemoteLanguageList.Count > 0)
-            yield return DownloadResources(RemoteLanguageList, FileType.Languages, null, true);
+        if (remoteLanguageList.Count > 0)
+            yield return DownloadResources(remoteLanguageList, FileType.Languages, null, true);
 
         if (!_skipLoadAnimation)
         {

@@ -134,22 +134,29 @@ public static class MyMusicPanel
     }*/
     public static void RefreshTagList()
     {
-        Items?.Do(Object.Destroy);
-        Items = [];
-        numItems = 0;
-        var optionsMenuBehaviour = OptionsMenuBehaviourNow;
-        var startIndex = (CurrentPage - 1) * ItemsPerPage;
-
-        var count = 0;
-        foreach (var audio in FinalMusic.musics.Skip(startIndex))
+        try
         {
-            if (count >= ItemsPerPage)
-            {
-                break;
-            }
+            Items?.Do(Object.Destroy);
+            Items = [];
+            numItems = 0;
+            var optionsMenuBehaviour = OptionsMenuBehaviourNow;
+            var startIndex = (CurrentPage - 1) * ItemsPerPage;
 
-            RefreshTags(optionsMenuBehaviour, audio);
-            count++;
+            var count = 0;
+            foreach (var audio in FinalMusic.musics.Skip(startIndex))
+            {
+                if (count >= ItemsPerPage)
+                {
+                    break;
+                }
+
+                RefreshTags(optionsMenuBehaviour, audio);
+                count++;
+            }
+        }
+        catch
+        {
+            /* ignored */
         }
     }
 

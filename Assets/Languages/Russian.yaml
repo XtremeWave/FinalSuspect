@@ -69,6 +69,7 @@ ClientOption.EnableGuardian: "Включить клиент-защиту (экс
 ClientOption.ShowPlayerInfo: "Показывать платформу и клиент игрока"
 ClientOption.UseModCursor: "Использовать мод-указатель"
 ClientOption.FastLaunchMode: "Быстрый запуск"
+ClientOption.OfflineMode: "Автономный режим (экспериментально)"
 ClientOption.VersionCheat: "Обход проверки версии"
 ClientOption.GodMode: "Режим бога"
 ClientOption.NoGameEnd: "Бесконечная игра"
