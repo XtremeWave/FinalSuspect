@@ -5,11 +5,12 @@ internal class ShowDisconnectPopupPatch
 {
     public static DisconnectReasons Reason;
     public static string StringReason;
+
     public static void Postfix(DisconnectPopup __instance)
     {
         _ = new MainThreadTask(() =>
         {
-            if (__instance == null) return;
+            if (!__instance) return;
             try
             {
                 void SetText(string text)
@@ -17,7 +18,7 @@ internal class ShowDisconnectPopupPatch
                     if (__instance._textArea?.text != null)
                         __instance._textArea.text = text;
                 }
-  
+
                 switch (Reason)
                 {
                     case DisconnectReasons.Hacking:
@@ -42,11 +43,13 @@ internal class ShowDisconnectPopupPatch
                         SetText(GetString("DCNotify.IncorrectVersion"));
                         break;
                     case DisconnectReasons.Error:
-                        if (StringReason.Contains("Failed to send message")) SetText(GetString("DCNotify.DCFromServer"));
+                        if (StringReason.Contains("Failed to send message"))
+                            SetText(GetString("DCNotify.DCFromServer"));
                         break;
                     case DisconnectReasons.Custom:
-                        if (StringReason.Contains("Reliable packet")) SetText(GetString("DCNotify.DCFromServer"));
-                        else if (StringReason.Contains("remote has not responded to")) SetText(GetString("DCNotify.DCFromServer"));
+                        if (StringReason.Contains("Reliable packet") ||
+                            StringReason.Contains("remote has not responded to"))
+                            SetText(GetString("DCNotify.DCFromServer"));
                         break;
                 }
             }

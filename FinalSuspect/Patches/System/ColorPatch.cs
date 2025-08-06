@@ -4,26 +4,31 @@ using UnityEngine;
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ButtonRolloverHandler))]
-class ButtonRolloverHandlerPatch
+internal class ButtonRolloverHandlerPatch
 {
-    [HarmonyPatch(nameof(ButtonRolloverHandler.DoMouseOver)), HarmonyPrefix]
+    [HarmonyPatch(nameof(ButtonRolloverHandler.DoMouseOver))]
+    [HarmonyPrefix]
     public static void DoMouseOver_Prefix(ButtonRolloverHandler __instance)
     {
         if (__instance.OverColor == new Color(0, 1, 0, 1) || __instance.OverColor == Palette.AcceptedGreen)
-            __instance.OverColor = ColorHelper.ModColor32;
+            __instance.OverColor = ColorHelper.FSColor;
     }
-    [HarmonyPatch(nameof(ButtonRolloverHandler.ChangeOutColor)), HarmonyPrefix]
+
+    [HarmonyPatch(nameof(ButtonRolloverHandler.ChangeOutColor))]
+    [HarmonyPrefix]
     public static void ChangeOutColor_Prefix(ButtonRolloverHandler __instance, ref Color color)
     {
-        if (color.r == 0 && Mathf.Approximately(color.g, 1) && color.b is > 0.163f and < 0.165f && Mathf.Approximately(color.a, 1))
-            color = ColorHelper.ClientOptionColor;
+        if (color.r == 0 && Mathf.Approximately(color.g, 1) && color.b is > 0.163f and < 0.165f &&
+            Mathf.Approximately(color.a, 1))
+            color = ColorHelper.FSClientOptionColor;
     }
 }
 
 [HarmonyPatch(typeof(Palette))]
-class PalettePath
+internal class PalettePath
 {
-    [HarmonyPatch(nameof(Palette.AcceptedGreen), MethodType.Getter), HarmonyPrefix]
+    [HarmonyPatch(nameof(Palette.AcceptedGreen), MethodType.Getter)]
+    [HarmonyPrefix]
     public static bool Get_AcceptedGreen_Prefix(ref Color __result)
     {
         __result = new Color32(180, 179, 231, (byte)(__result.a * 255));

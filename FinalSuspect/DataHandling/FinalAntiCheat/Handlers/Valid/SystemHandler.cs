@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -11,13 +10,13 @@ public class SystemHandler : IRpcHandler
         (byte)RpcCalls.CloseDoorsOfType,
         (byte)RpcCalls.UpdateSystem
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         return true;
     }
-    
+
     public bool HandleGame_InMeeting(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

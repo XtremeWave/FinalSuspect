@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
@@ -9,20 +9,17 @@ namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 public class SendQuickChatHandler : IRpcHandler
 {
     private static readonly Dictionary<byte, (long timestamp, int count)> _records = new();
-    
+
     public List<byte> TargetRpcs =>
     [
-        (byte)RpcCalls.SendQuickChat,
+        (byte)RpcCalls.SendQuickChat
     ];
 
-    public bool HandleAll(PlayerControl sender, MessageReader reader, 
+    public bool HandleAll(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         var current = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        if (!_records.TryGetValue(sender.PlayerId, out var record))
-        {
-            record = (current, 0);
-        }
+        if (!_records.TryGetValue(sender.PlayerId, out var record)) record = (current, 0);
 
         if (current - record.timestamp < 3)
         {
@@ -30,14 +27,12 @@ public class SendQuickChatHandler : IRpcHandler
             if (record.count > 1)
             {
                 if (AmongUsClient.Instance.AmHost)
-                {
-                    HandleCheat(sender, GetString("Warning.SendQuickChat"));
-                }
-                else if (!OtherModHost)
-                {
-                    HandleCheat(sender, GetString("Warning.SendQuickChat_NotHost"));
-                }
-                Warn($"{sender.GetDataName()}({sender.GetCheatData().FriendCode})({sender.GetCheatData().Puid})一秒内多次发送快捷消息", "FAC");
+                    HandleCheat(sender, GetString("CheatDetected.SendQuickChat"));
+                else if (!OtherModHost) HandleCheat(sender, GetString("CheatDetected.SendQuickChat_NotHost"));
+
+                Warn(
+                    $"{sender.GetDataName()}({sender.GetCheatData().FriendCode})({sender.GetCheatData().Puid}) 一秒内多次发送快捷消息",
+                    "FAC");
                 ban = true;
                 notify = false;
                 return true;
@@ -51,8 +46,8 @@ public class SendQuickChatHandler : IRpcHandler
         _records[sender.PlayerId] = record;
         return false;
     }
-    
-    public bool HandleGame_InTask(PlayerControl sender, MessageReader reader, 
+
+    public bool HandleGame_InTask(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         return sender.IsAlive();

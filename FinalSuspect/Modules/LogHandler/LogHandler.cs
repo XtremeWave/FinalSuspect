@@ -2,20 +2,37 @@ using System;
 
 namespace FinalSuspect.Modules.LogHandler;
 
-class LogHandler(string tag) : ILogHandler
+internal class LogHandler(string tag) : ILogHandler
 {
     public string Tag { get; } = tag;
 
     public void Info(string text)
-        => XtremeLogger.Info(text, Tag);
+    {
+        FinalLogger.Info(text, Tag);
+    }
+
     public void Warn(string text)
-        => XtremeLogger.Warn(text, Tag);
+    {
+        FinalLogger.Warn(text, Tag);
+    }
+
     public void Error(string text)
-        => XtremeLogger.Error(text, Tag);
+    {
+        FinalLogger.Error(text, Tag);
+    }
+
     public void Fatal(string text)
-        => XtremeLogger.Fatal(text, Tag);
+    {
+        FinalLogger.Fatal(text, Tag);
+    }
+
     public void Msg(string text)
-        => XtremeLogger.Msg(text, Tag);
+    {
+        FinalLogger.Msg(text, Tag);
+    }
+
     public void Exception(Exception ex)
-        => XtremeLogger.Exception(ex, Tag);
+    {
+        FinalLogger.Exception(ex, Tag);
+    }
 }

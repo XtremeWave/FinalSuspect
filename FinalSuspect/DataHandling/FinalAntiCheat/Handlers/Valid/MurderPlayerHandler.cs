@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
+using InnerNet;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 
@@ -11,13 +11,18 @@ public class MurderPlayerHandler : IRpcHandler
     public List<byte> TargetRpcs =>
     [
         (byte)RpcCalls.MurderPlayer,
-        (byte)RpcCalls.CheckMurder,
+        (byte)RpcCalls.CheckMurder
     ];
 
-    public bool HandleGame_InTask(PlayerControl sender, MessageReader reader, 
+    public bool HandleGame_InTask(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        return !sender.IsImpostor();
+        var target = reader.ReadNetObject<PlayerControl>();
+        var resultFlags = (MurderResultFlags)reader.ReadInt32();
+
+        return !sender.IsImpostor()
+               && sender != target
+               && (resultFlags != MurderResultFlags.DecisionByHost || !sender.IsHost());
     }
 
     public bool HandleLobby(PlayerControl sender, MessageReader reader,

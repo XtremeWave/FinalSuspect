@@ -9,16 +9,10 @@ public class Xorshift(uint seed) : IRandom
 
     private uint num = seed;
 
-    public Xorshift() : this((uint)DateTime.UtcNow.Ticks) { }
-
-    public uint Next()
+    public Xorshift() : this((uint)DateTime.UtcNow.Ticks)
     {
-        num ^= num << 13;
-        num ^= num >> 17;
-        num ^= num << 5;
-
-        return num;
     }
+
     public int Next(int minValue, int maxValue)
     {
         if (minValue < 0) throw new ArgumentOutOfRangeException(nameof(minValue), "minValue must be bigger than 0.");
@@ -28,5 +22,18 @@ public class Xorshift(uint seed) : IRandom
 
         return (int)(minValue + Next() % (maxValue - minValue));
     }
-    public int Next(int maxValue) => Next(0, maxValue);
+
+    public int Next(int maxValue)
+    {
+        return Next(0, maxValue);
+    }
+
+    private uint Next()
+    {
+        num ^= num << 13;
+        num ^= num >> 17;
+        num ^= num << 5;
+
+        return num;
+    }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -10,9 +9,9 @@ public class StartMeetingHandler : IRpcHandler
     public List<byte> TargetRpcs =>
     [
         (byte)RpcCalls.ReportDeadBody,
-        (byte)RpcCalls.StartMeeting,
+        (byte)RpcCalls.StartMeeting
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

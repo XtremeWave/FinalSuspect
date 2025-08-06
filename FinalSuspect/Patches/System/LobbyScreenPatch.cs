@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using AmongUs.Data;
 using FinalSuspect.Helpers;
 using InnerNet;
@@ -11,15 +11,12 @@ namespace FinalSuspect.Patches.System;
 public sealed class LobbyJoinBind
 {
     private static int GameId;
-    private static GameObject LastRoomText;
-    private static GameObject CopiedRoomText;
-    private static TextMeshPro lastRoomTextComponent;
-    private static TextMeshPro copiedRoomTextComponent;
-
-    private const float TEXT_SIZE = 1.5f;
-    private const string LAST_ROOM_TEXT_NAME = "LastLobbyCode";
-    private const string COPIED_ROOM_TEXT_NAME = "CopiedLobbyCode";
-    private const string MOD_COLOR = ColorHelper.ModColor;
+    private static Color Color = ColorHelper.CompleteGreen;
+    private static GameObject LobbyText;
+    private static GameObject LeftShiftSprite;
+    private static GameObject RightShiftSprite;
+    private static GameObject KeyBindBackground;
+    private static GameObject KeyBindBackground_Clone;
 
     [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.JoinGame))]
     [HarmonyPostfix]
@@ -28,73 +25,121 @@ public sealed class LobbyJoinBind
         GameId = __instance.GameId;
     }
 
-    [HarmonyPatch(typeof(MMOnlineManager), nameof(MMOnlineManager.Start))]
+    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     [HarmonyPostfix]
     public static void Postfix()
     {
-        InitializeTextObject(ref LastRoomText, ref lastRoomTextComponent, LAST_ROOM_TEXT_NAME, new Vector3(9.8f, -3.6f, 0));
-        InitializeTextObject(ref CopiedRoomText, ref copiedRoomTextComponent, COPIED_ROOM_TEXT_NAME, new Vector3(9.8f, -3.8f, 0));
+        var code2 = GUIUtility.systemCopyBuffer;
+
+        if (code2.Length != 6 || !Regex.IsMatch(code2, "^[a-zA-Z]+$"))
+            code2 = "";
+
+        if (LobbyText) return;
+        LobbyText = new GameObject("lobbycode");
+        LobbyText.transform.SetParent(GameObject.Find("RightPanel").transform, false);
+        var comp = LobbyText.AddComponent<TextMeshPro>();
+        comp.fontSize = 2.5f;
+        comp.outlineWidth = -2f;
+        var lastY = code2 == "" ? -0.15f : 0.1f;
+        LobbyText.transform.localPosition = new Vector3(8.3f, lastY, 0);
+        LobbyText.SetActive(true);
+        //LeftShift Sprite
+        LeftShiftSprite = new GameObject("LeftShiftSprite");
+        LeftShiftSprite.transform.SetParent(GameObject.Find("RightPanel").transform, false);
+        var LSsp = LeftShiftSprite.AddComponent<SpriteRenderer>();
+        LSsp.sprite = LoadSprite("KeyLeftShift.png", 115f);
+        if (LobbyText != null) LeftShiftSprite.SetActive(true);
+        //RightShift Sprite
+        RightShiftSprite = new GameObject("RightShiftSprite");
+        RightShiftSprite.transform.SetParent(GameObject.Find("RightPanel").transform, false);
+        var RSsp = RightShiftSprite.AddComponent<SpriteRenderer>();
+        RSsp.sprite = LoadSprite("KeyRightShift.png", 115f);
+        if (LobbyText != null) RightShiftSprite.SetActive(true);
+        //KeyBindBackGround Belong to Left Shift
+        KeyBindBackground = new GameObject("KeyBindBackground");
+        KeyBindBackground.transform.SetParent(GameObject.Find("RightPanel").transform, false);
+        var KeyBindSp = KeyBindBackground.AddComponent<SpriteRenderer>();
+        KeyBindSp.GetComponent<SpriteRenderer>().sprite = LoadSprite("KeyBackground.png", 100f);
+        if (LeftShiftSprite != null) KeyBindBackground.SetActive(true);
+        //KeyBindBackGround Belong to Right Shift
+        KeyBindBackground_Clone = new GameObject("KeyBindBackground_Clone");
+        KeyBindBackground_Clone.transform.SetParent(GameObject.Find("RightPanel").transform, false);
+        var KeyBindSp_Clone = KeyBindBackground_Clone.AddComponent<SpriteRenderer>();
+        KeyBindSp_Clone.GetComponent<SpriteRenderer>().sprite = LoadSprite("KeyBackground.png", 100f);
+        if (RightShiftSprite != null) KeyBindBackground_Clone.SetActive(true);
     }
 
-    private static void InitializeTextObject(ref GameObject gameObject, ref TextMeshPro textComponent, string name, Vector3 position)
-    {
-        if (gameObject) return;
-        gameObject = new GameObject(name);
-        textComponent = gameObject.AddComponent<TextMeshPro>();
-        textComponent.fontSize = TEXT_SIZE;
-        gameObject.transform.localPosition = position;
-        gameObject.SetActive(true);
-    }
-
-    [HarmonyPatch(typeof(MMOnlineManager), nameof(MMOnlineManager.Update))]
+    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
     [HarmonyPostfix]
-    public static void Postfix(MMOnlineManager __instance)
+    public static void Postfix(MainMenuManager __instance)
     {
-        UpdateGameJoinLogic(__instance);
-        UpdateTextDisplay();
-    }
-    private static void UpdateGameJoinLogic(MMOnlineManager manager)
-    {
+        var code2 = GUIUtility.systemCopyBuffer;
+
+        if (code2.Length != 6 || !Regex.IsMatch(code2, "^[a-zA-Z]+$"))
+            code2 = "";
+        var code2Disp = DataManager.Settings.Gameplay.StreamerMode ? new string('*', code2.Length) : code2.ToUpper();
         if (GameId != 0 && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            manager.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(GameId));
+            __instance.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(GameId));
+            LobbyText.GetComponent<TextMeshPro>().color = Color.AlphaMultiplied(0.75f);
         }
-        else if (Input.GetKeyDown(KeyCode.RightShift))
+
+        else if (Input.GetKeyDown(KeyCode.RightShift) && code2 != "")
         {
-            var copyBuffer = GUIUtility.systemCopyBuffer;
-            if (Regex.IsMatch(copyBuffer, @"^[a-zA-Z]+$"))
+            __instance.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(GameCode.GameNameToInt(code2)));
+            LobbyText.GetComponent<TextMeshPro>().color = Color.AlphaMultiplied(0.75f);
+        }
+
+        if (LobbyText)
+        {
+            LobbyText.GetComponent<TextMeshPro>().text = "";
+            LeftShiftSprite.SetActive(false);
+            RightShiftSprite.SetActive(false);
+            KeyBindBackground.SetActive(false);
+            KeyBindBackground_Clone.SetActive(false);
+            if (GameId != 0 && GameId != 32)
             {
-                manager.StartCoroutine(AmongUsClient.Instance.CoJoinOnlineGameFromCode(GameCode.GameNameToInt(copyBuffer)));
+                var code = GameCode.IntToGameName(GameId);
+
+                if (code != "")
+                {
+                    code = DataManager.Settings.Gameplay.StreamerMode ? new string('*', code.Length) : code;
+                    LeftShiftSprite.transform.localPosition = new Vector3(-1.9f, 2.1f, -1);
+                    KeyBindBackground.transform.localPosition = new Vector3(LeftShiftSprite.transform.localPosition.x,
+                        LeftShiftSprite.transform.localPosition.y, -0.5f);
+                    KeyBindBackground.SetActive(true);
+                    LeftShiftSprite.SetActive(true);
+                    if (code != "" && code2 != "")
+                    {
+                        LeftShiftSprite.transform.localPosition = new Vector3(-1.9f, 2.4f, -1);
+                        RightShiftSprite.transform.localPosition = new Vector3(-1.9f, 2.15f, -1);
+                        KeyBindBackground.transform.localPosition = new Vector3(
+                            LeftShiftSprite.transform.localPosition.x, LeftShiftSprite.transform.localPosition.y,
+                            -0.5f);
+                        KeyBindBackground_Clone.transform.localPosition = new Vector3(
+                            RightShiftSprite.transform.localPosition.x, RightShiftSprite.transform.localPosition.y,
+                            -0.5f);
+                        LeftShiftSprite.SetActive(true);
+                        RightShiftSprite.SetActive(true);
+                        KeyBindBackground.SetActive(true);
+                        KeyBindBackground_Clone.SetActive(true);
+                    }
+
+                    LobbyText.GetComponent<TextMeshPro>().text =
+                        string.Format($"{GetString("LShift")}：<color={ColorHelper.FSColorHex}>{code}</color>");
+                }
+            }
+
+            if (code2 != "")
+            {
+                RightShiftSprite.transform.localPosition = new Vector3(-1.9f, 2.1f, -1);
+                KeyBindBackground_Clone.transform.localPosition = new Vector3(
+                    RightShiftSprite.transform.localPosition.x, RightShiftSprite.transform.localPosition.y, -0.5f);
+                RightShiftSprite.SetActive(true);
+                KeyBindBackground_Clone.SetActive(true);
+                LobbyText.GetComponent<TextMeshPro>().text +=
+                    string.Format($"\n{GetString("RShift")}：<color={ColorHelper.FSColorHex}>{code2Disp}</color>");
             }
         }
-    }
-
-    private static void UpdateTextDisplay()
-    {
-        if (lastRoomTextComponent == null || copiedRoomTextComponent == null)
-        {
-            return;
-        }
-        
-        var lastCode = GameId != 0 && GameId != 32 ? GameCode.IntToGameName(GameId) : "";
-        var copiedCode = GUIUtility.systemCopyBuffer;
-        
-        if (!Regex.IsMatch(copiedCode, @"^[a-zA-Z]+$") || copiedCode.Length > 6)
-        {
-            copiedCode = "";
-        }
-
-        if (DataManager.Settings.Gameplay.StreamerMode)
-        {
-            lastCode = new string('*', lastCode.Length);
-            copiedCode = new string('*', copiedCode.Length);
-        }
-        var lastY = copiedCode == "" ? -3.8f : -3.6f;
-        LastRoomText.transform.localPosition = new Vector3(9.8f, lastY, 0);
-        lastCode = string.IsNullOrEmpty(lastCode) ? "" : lastCode.ToUpper();
-        copiedCode = string.IsNullOrEmpty(copiedCode) ? "" : copiedCode.ToUpper();
-
-        lastRoomTextComponent.text = lastCode != "" ? $"        {GetString("LShift")}: <color={MOD_COLOR}>{lastCode}</color>  " : "";
-        copiedRoomTextComponent.text = copiedCode != "" ? $"        {GetString("RShift")}: <color={MOD_COLOR}>{copiedCode}</color>  " : "";
     }
 }

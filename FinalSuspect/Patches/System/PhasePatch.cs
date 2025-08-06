@@ -1,58 +1,84 @@
 using FinalSuspect.Attributes;
+using FinalSuspect.DataHandling.FinalGameData;
 
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
-class ShipStatusStartPatch
+public class ShipStatusStartPatch
 {
     public static void Postfix()
     {
         Info("-----------游戏开始-----------", "Phase");
     }
 }
+
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
-class AmongUsClientOnGameEndPatch
+public class AmongUsClientOnGameEndPatch
 {
     public static void Postfix()
     {
-        InGame = false;
+        UpdateGameState_IsInGame(false);
         Info("-----------游戏结束-----------", "Phase");
     }
 }
+
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
 [HarmonyPriority(Priority.First)]
-class MeetingHudStartPatch
+public class MeetingHudStartPatch
 {
     public static void Prefix()
     {
+        _ = new LateTask(() => UpdateGameState_IsInMeeting(true), 1f, "UpdateGameState_IsInMeeting");
         Info("------------会议开始------------", "Phase");
     }
 }
+
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.OnDestroy))]
-class MeetingHudOnDestroyPatch
+internal class MeetingHudOnDestroyPatch
 {
     public static void Postfix()
     {
+        UpdateGameState_IsInMeeting(false);
         Info("------------会议结束------------", "Phase");
     }
 }
+
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
 internal class CoStartGamePatch
 {
     public static void Postfix()
     {
-        IntroCutsceneOnDestroyPatch.IntroDestroyed = false;
         GameModuleInitializerAttribute.InitializeAll();
     }
-
 }
+
+/*[HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGameHost))]
+internal class CoStartGameHPatch
+{
+    public static void Prefix()
+    {
+        foreach (var client in AmongUsClient.Instance.allClients)
+        {
+            client.IsReady = true;
+        }
+    }
+
+    public static void Postfix()
+    {
+        var clientData = GetPlayerById(1).GetFinalData().CheatData.ClientData;
+
+        AmongUsClient.Instance.SendLateRejection(clientData.Id, DisconnectReasons.ClientTimeout);
+        clientData.IsReady = true;
+        AmongUsClient.Instance.OnPlayerLeft(clientData, DisconnectReasons.ClientTimeout);
+    }
+}*/
+
 [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
 public static class IntroCutsceneOnDestroyPatch
 {
-    public static bool IntroDestroyed;
     public static void Postfix()
     {
-        IntroDestroyed = true;
+        FinalGameData.IntroDestroyed = true;
         Info("OnDestroy", "IntroCutscene");
     }
 }

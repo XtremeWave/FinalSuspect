@@ -7,12 +7,12 @@
 - :x: 表示该版本已被标记为**过时版本**,我们**不会受理**此版本的安全问题。
 > 若您的版本未受到支持,不妨考虑更新到最新受支持的版本再尝试复现此安全问题。
 
-| 版本 | 是否支持          |
-| ------- | ------------------ |
-| v1.1_20250501   | :white_check_mark: |
-| v1.1_20250412   | :white_check_mark: |
-| v1.1_20250216   | :x:                |
-| v1.0开头的版本   | :x: |
+| 版本             | 是否支持          |
+|----------------| ------------------ |
+| v1.1_20250501  | :white_check_mark: |
+| v,1.1_20250412 | :white_check_mark: |
+| v1.1_20250216  | :x:                |
+| v1.0开头的版本      | :x: |
 
 ## 报告安全问题
 
@@ -25,4 +25,4 @@
   - 微信号: qingfengawa
   - (建议)QQ号: 3094606169
 
-你也可以通过在[安全](https://github.com/XtremeWave/FinalSuspect/security)页面点击`Report a vulnerability`以通过GitHub向我们报告一个安全问题。
+你也可以通过在[安全](https://github.com/Slok7565/FinalSuspect/security)页面点击`Report a vulnerability`以通过GitHub向我们报告一个安全问题。

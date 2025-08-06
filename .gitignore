@@ -1,12 +1,25 @@
-
+# 忽略所有 .editorconfig 文件
+# 定义代码编辑器配置的文件
 *.editorconfig
 
+# Visual Studio 的临时文件和目录
 .vs/
 
+# 导出目录
 Export/
+
+# 编译临时文件、发布配置文件、开发配置
 FinalSuspect/obj/
 FinalSuspect/Properties/PublishProfiles/
 FinalSuspect/FodyWeavers.xsd
 
+# 解决方案
 /FinalSuspect.sln
-*.zip
+
+# 忽略 Assets/Mod 下所有内容
+Assets/Mod/**
+
+# 白名单：保留 BaseBepInEx 目录及其所有内容
+!Assets/Mod/BaseBepInEx/
+Assets/Mod/BaseBepInEx/**
+!Assets/Mod/BaseBepInEx/**/*

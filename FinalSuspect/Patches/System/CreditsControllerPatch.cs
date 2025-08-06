@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FinalSuspect.Helpers;
+﻿using FinalSuspect.Helpers;
 
 namespace FinalSuspect.Patches.System;
 
@@ -11,16 +9,24 @@ public class CreditsControllerPatch
     {
         var devList = new List<string>
         {
-            $"<size=120%><color={ColorHelper.ModColor}>{Main.ModName}</color></size>",
-            $"<color=#fffcbe>By</color> <color={ColorHelper.TeamColor}>XtremeWave</color>",
+            $"<size=120%><color={ColorHelper.FSColorHex}>{Main.ModName}</color></size>",
+            $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>By Slok</color>",
             //Others
-            $"<size=120%>{GetString("ModInfos.Contributors")}</size>",
+            $"<size=120%>{GetString("Id.Contributor")}</size>",
+            "- Nonalus",
+            "- KpCam",
+            "- 小黄117",
             "- LezaiYa",
+            "- 白糖咖啡",
+            "- Elinmei",
+            "- QingFeng",
+            "- Yu(Night_瓜)",
+            "- FangKuai",
+
             "- KARPED1EM",
             "- Niko233",
             "- Amongus(水木年华)",
-            "- Yu(Night_瓜)",
-            "- 天寸梦初",
+            "- 天寸梦初"
         };
 
         var credits = new List<CreditsController.CreditStruct>();
@@ -41,31 +47,34 @@ public class CreditsControllerPatch
         {
             AddTitleToCredits(string.Empty);
         }
+
         void AddTitleToCredits(string title)
         {
             credits.Add(new CreditsController.CreditStruct
             {
                 format = "title",
-                columns = new[] { title },
+                columns = new[] { title }
             });
         }
+
         void AddPersonToCredits(List<string> list)
         {
-            foreach (var line in list)
+            foreach (var cols in list.Select(line => line.Split(" - ").ToList()))
             {
-                var cols = line.Split(" - ").ToList();
                 if (cols.Count < 2) cols.Add(string.Empty);
                 credits.Add(new CreditsController.CreditStruct
                 {
                     format = "person",
-                    columns = cols.ToArray(),
+                    columns = cols.ToArray()
                 });
             }
         }
     }
 
-    [HarmonyPatch(nameof(CreditsController.AddCredit)), HarmonyPrefix]
-    public static void AddCreditPrefix(CreditsController __instance, [HarmonyArgument(0)] CreditsController.CreditStruct originalCredit)
+    [HarmonyPatch(nameof(CreditsController.AddCredit))]
+    [HarmonyPrefix]
+    public static void AddCreditPrefix(CreditsController __instance,
+        [HarmonyArgument(0)] CreditsController.CreditStruct originalCredit)
     {
         if (originalCredit.columns[0] != "logoImage") return;
 

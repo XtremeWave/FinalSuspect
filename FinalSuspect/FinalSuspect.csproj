@@ -1,67 +1,98 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>latest</LangVersion>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
 
-		<Description>Your best functional tool for Among Us.</Description>
-		<Authors>XtremeWave</Authors>
-		
-		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-		
-		<Configurations>Debug;Canary;Release</Configurations>
-		<BaseOutputPath>..\Export</BaseOutputPath>
-		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		
-		<CompileDate>$([System.DateTime]::Now.ToString("yyyyMMdd"))</CompileDate>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Canary' ">
-		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-		<NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-	</PropertyGroup>
-	
-	<Target Name="InjectBuildTime" BeforeTargets="CoreCompile">
-		<WriteLinesToFile
-				File="$(IntermediateOutputPath)BuildTime.cs"
-				Lines="namespace FinalSuspect.Internal { public static class BuildTime { public const string Date = %22$(CompileDate)%22%3B } }"
-				Overwrite="true"
-				Encoding="UTF-8"/>
-		<ItemGroup>
-			<Compile Include="$(IntermediateOutputPath)BuildTime.cs"/>
-		</ItemGroup>
-	</Target>
-	
-	<ItemGroup>
-		<EmbeddedResource Include=".\Resources\**" />
-	</ItemGroup>
+        <Description>Your best functional tool Mod for Among Us.</Description>
+        <Authors>Slok7565</Authors>
 
-	<ItemGroup>
-		<!-- nuget.bepinex.dev -->
-		<PackageReference Include="AmongUs.GameLibs.Steam" Version="2025.3.25" PrivateAssets="all" />
-		<PackageReference Include="BepInEx.IL2CPP.MSBuild" Version="2.1.0-rc.1" PrivateAssets="all" ExcludeAssets="runtime" />
-		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.733" Private="false" ExcludeAssets="runtime;native" />
-		<!-- nuget.org -->
-		<PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098" PrivateAssets="all" />
-		<PackageReference Include="GitInfo" Version="3.5.0" />
-		<PackageReference Include="YamlDotNet" Version="16.3.0" />
-	</ItemGroup>
+        <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+        <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
 
-	<ItemGroup>
-	  <Compile Remove="DataHandling\FinalAntiCheat\Core\StateCleaner.cs" />
-	</ItemGroup>
-	
-	<Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
-		<Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
-	</Target>
+        <Configurations>Debug;OpenBeta;Release;</Configurations>
+        <BaseOutputPath>..\Export</BaseOutputPath>
+        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="set &quot;sourcePath=..\Export\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)" />
-	</Target>
+        <CompileDate>$([System.DateTime]::Now.ToString("yyyyMMdd"))</CompileDate>
+
+        <ImplicitUsings>disable</ImplicitUsings>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'OpenBeta' ">
+        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
+    </PropertyGroup>
+
+    <Target Name="InjectBuildTime" BeforeTargets="CoreCompile">
+        <WriteLinesToFile File="$(IntermediateOutputPath)BuildTime.cs" Lines="namespace FinalSuspect.Internal { public static class BuildTime { public const string Date = %22$(CompileDate)%22%3B } }" Overwrite="true" Encoding="UTF-8"/>
+        <ItemGroup>
+            <Compile Include="$(IntermediateOutputPath)BuildTime.cs"/>
+        </ItemGroup>
+    </Target>
+
+    <ItemGroup>
+        <EmbeddedResource Include=".\Resources\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- nuget.bepinex.dev -->
+        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2025.4.15" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.738" Private="false" ExcludeAssets="runtime;native"/>
+        <!-- nuget.org -->
+        <PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098" PrivateAssets="all"/>
+        <PackageReference Include="GitInfo" Version="3.5.0"/>
+        <PackageReference Include="NextBepLoader.BepInEx.IL2CPP.MSBuild" Version="2.1.0-dev-6">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="YamlDotNet" Version="16.3.0"/>
+    </ItemGroup>
+
+    <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
+        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'"/>
+    </Target>
+
+    <Target Name="CopyModFolder" AfterTargets="Build" Condition="'$(Configuration)' != 'Debug'">
+        <PropertyGroup>
+            <BaseBepInExDir>..\Assets\Mod\BaseBepInEx</BaseBepInExDir>
+
+            <_MainCsContent>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\main.cs'))</_MainCsContent>
+
+            <_VersionHeadPattern>private const string DisplayedVersion_Head = "([^"]+)";</_VersionHeadPattern>
+            <DisplayedVersion_Head>$([System.Text.RegularExpressions.Regex]::Match($(_MainCsContent), $(_VersionHeadPattern)).Groups[1].Value)</DisplayedVersion_Head>
+
+            <_VersionTypePattern>private const VersionTypes DisplayedVersion_Type = VersionTypes.([^;]+);</_VersionTypePattern>
+            <DisplayedVersion_Type>$([System.Text.RegularExpressions.Regex]::Match($(_MainCsContent), $(_VersionTypePattern)).Groups[1].Value)</DisplayedVersion_Type>
+
+            <_TestCreationPattern>private const int DisplayedVersion_TestCreation = (\d+);</_TestCreationPattern>
+            <DisplayedVersion_TestCreation>$([System.Text.RegularExpressions.Regex]::Match($(_MainCsContent), $(_TestCreationPattern)).Groups[1].Value)</DisplayedVersion_TestCreation>
+
+            <DisplayedVersion Condition="'$(Configuration)' == 'Release'">$(DisplayedVersion_Head)_$(CompileDate)</DisplayedVersion>
+            <DisplayedVersion Condition="'$(Configuration)' != 'Release'">$(DisplayedVersion_Head)_$(CompileDate)_$(DisplayedVersion_Type)_$(DisplayedVersion_TestCreation)</DisplayedVersion>
+
+            <TargetModDir>..\Assets\Mod\FinalSuspect v$(DisplayedVersion)</TargetModDir>
+        </PropertyGroup>
+
+        <Message Importance="high" Text="[版本组件] Head=$(DisplayedVersion_Head) Type=$(DisplayedVersion_Type) TestCreation=$(DisplayedVersion_TestCreation)"/>
+        <Message Importance="high" Text="[最终版本号] $(DisplayedVersion)"/>
+
+        <!-- 文件复制操作 -->
+        <ItemGroup>
+            <BaseBepInExFiles Include="$(BaseBepInExDir)\**\*.*"/>
+        </ItemGroup>
+
+        <Copy SourceFiles="@(BaseBepInExFiles)" DestinationFolder="$(TargetModDir)\%(RecursiveDir)" ContinueOnError="true"/>
+
+        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(TargetModDir)\BepInEx\plugins\" ContinueOnError="true"/>
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="set &quot;sourcePath=..\Export\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)"/>
+    </Target>
 </Project>

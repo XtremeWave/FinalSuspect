@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -12,9 +11,9 @@ public class VoteHandler : IRpcHandler
         (byte)RpcCalls.VotingComplete,
         (byte)RpcCalls.CastVote,
         (byte)RpcCalls.ClearVote,
-        (byte)RpcCalls.AddVote,
+        (byte)RpcCalls.AddVote
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

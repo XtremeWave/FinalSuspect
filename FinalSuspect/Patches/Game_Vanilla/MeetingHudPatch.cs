@@ -1,5 +1,6 @@
-using System.Linq;
 using AmongUs.GameOptions;
+using FinalSuspect.DataHandling.FinalGameData;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -8,22 +9,22 @@ namespace FinalSuspect.Patches.Game_Vanilla;
 public static class MeetingHudPatch
 {
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.UpdateButtons))]
-    class UpdatePatch
+    public class UpdatePatch
     {
         public static void Postfix(MeetingHud __instance)
         {
             try
             {
-                if (__instance == null) return; 
-                if (AmongUsClient.Instance?.AmHost == true) return; 
+                if (!__instance) return;
+                if (AmongUsClient.Instance?.AmHost == true) return;
 
-                for (var i = 0; i < __instance.playerStates?.Length; i++) 
+                for (var i = 0; i < __instance.playerStates?.Length; i++)
                 {
                     var playerVoteArea = __instance.playerStates[i];
-                    if (playerVoteArea == null) continue; 
+                    if (!playerVoteArea) continue;
 
                     var playerById = GameData.Instance?.GetPlayerById(playerVoteArea.TargetPlayerId);
-                    if (playerById == null)
+                    if (!playerById)
                     {
                         playerVoteArea.SetDisabled();
                     }
@@ -31,41 +32,43 @@ public static class MeetingHudPatch
                     {
                         var flag = playerById.Disconnected || playerById.IsDead;
                         if (flag == playerVoteArea.AmDead) continue;
-                        var isReporter = __instance.reporterId == playerById.PlayerId; 
-                        playerVoteArea.SetDead(isReporter, flag, 
+                        var isReporter = __instance.reporterId == playerById.PlayerId;
+                        playerVoteArea.SetDead(isReporter, flag,
                             playerById.Role?.Role == RoleTypes.GuardianAngel);
                         __instance.SetDirtyBit(1U);
                     }
                 }
             }
-            catch 
+            catch
             {
                 /* ignored */
             }
         }
     }
- 
+
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.VotingComplete))]
     [HarmonyPriority(Priority.First)]
-    class VotingCompletePatch
+    public class VotingCompletePatch
     {
-        public static void Postfix([HarmonyArgument(1)]NetworkedPlayerInfo exiled, [HarmonyArgument(2)]bool tie )
+        public static void Postfix([HarmonyArgument(1)] NetworkedPlayerInfo exiled, [HarmonyArgument(2)] bool tie)
         {
-            foreach (var data in XtremePlayerData.AllPlayerData.Where(data => data?.Deadbodyrend != null))
+            foreach (var data in FinalPlayerData.AllPlayerData.Where(data => data?.Rend_DeadBody))
             {
-                Object.Destroy(data.Deadbodyrend);
-                data.Deadbodyrend = null;
+                if (data == null) continue;
+                Object.Destroy(data.Rend_DeadBody);
+                data.Rend_DeadBody = null;
             }
 
-            if (tie || exiled == null) return;
+            if (tie || !exiled) return;
             var player = GetPlayerById(exiled.PlayerId);
             player.SetDead();
             player.SetDeathReason(VanillaDeathReason.Exile, true);
         }
     }
 }
+
 [HarmonyPatch(typeof(PlayerVoteArea), nameof(PlayerVoteArea.SetHighlighted))]
-class SetHighlightedPatch
+internal class SetHighlightedPatch
 {
     public static bool Prefix(PlayerVoteArea __instance, bool value)
     {

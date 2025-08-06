@@ -1,21 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Patches.Game_Vanilla;
 using InnerNet;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
 
-public class PlayerCheatData
+public class PlayerCheatData : IDisposable
 {
-    public bool IsSuspectCheater { get; private set; }
-    public ClientData ClientData { get; }
-    public string FriendCode => ClientData.FriendCode;
-    public string Puid => ClientData.GetHashedPuid();
-    
     private readonly PlayerControl _player;
+
+    private readonly Dictionary<byte, RpcRecord> _rpcRecords = new();
 
     public PlayerCheatData(PlayerControl player)
     {
@@ -23,9 +18,42 @@ public class PlayerCheatData
         ClientData = _player.GetClient();
     }
 
-    public void MarkAsCheater() => IsSuspectCheater = true;
+    public bool IsSuspectCheater { get; private set; }
+    public bool IsHacker { get; private set; }
+    public ClientData ClientData { get; private set; }
+    public string FriendCode => ClientData?.FriendCode ?? string.Empty;
+    public string Puid => ClientData?.GetHashedPuid() ?? string.Empty;
+    public bool InComingOverloaded { get; private set; }
 
-    public void HandleLobbyPosition()
+    public void Dispose()
+    {
+        IsSuspectCheater = false;
+        ClientData = null;
+        InComingOverloaded = false;
+        _rpcRecords.Clear();
+    }
+
+    public void MarkAsCheater()
+    {
+        if (IsSuspectCheater) return;
+        IsSuspectCheater = true;
+        Warn($"Suspect Cheater: {_player.GetFinalData().Name}," +
+             $"FriendCode: {FriendCode}," +
+             $"Puid: {Puid},",
+            "FAC");
+    }
+
+    public void MarkAsHacker()
+    {
+        if (IsHacker) return;
+        IsHacker = true;
+        Warn($"Overload Hacker: {_player.GetFinalData().Name}," +
+             $"FriendCode: {FriendCode}," +
+             $"Puid: {Puid},",
+            "FAC");
+    }
+
+    private void HandleLobbyPosition()
     {
         if (!IsLobby) return;
         var pos = _player.GetTruePosition();
@@ -33,71 +61,70 @@ public class PlayerCheatData
             MarkAsCheater();
     }
 
-    public void HandleBan()
+    private void HandleBan()
     {
         if (ClientData.IsFACPlayer() || ClientData.IsBannedPlayer())
             MarkAsCheater();
     }
-    
-    public void HandleSuspectCheater()
+
+    private void HandleSuspectCheater()
     {
-        if (Main.DisableFAC.Value || !IsSuspectCheater || _lastHandleCheater != -1 && _lastHandleCheater + 1 >= GetTimeStamp()) return;
+        if (!Main.EnableFAC.Value || !IsSuspectCheater ||
+            (_lastHandleCheater != -1 && _lastHandleCheater + 1 >= GetTimeStamp())) return;
         _lastHandleCheater = GetTimeStamp();
         if (!AmongUsClient.Instance.AmHost)
         {
-            NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.Cheater_NotHost"),
-                _player.GetDataName()));
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Cheater_NotHost"),
+                _player.GetColoredName()));
             return;
         }
-        
-        NotificationPopperPatch.NotificationPop(string.Format(GetString("Warning.Cheater"),
-            _player.GetDataName()));
-        KickPlayer(_player.PlayerId, false, "Suspect Cheater");
-    }
-    
-    private static readonly Regex ValidFormatRegex = new(
-        @"^[A-Za-z]+#\d{4}$", 
-        RegexOptions.Compiled
-    );
 
-    private void HandleFriendCode()
-    {
-        if (!ValidFormatRegex.IsMatch(FriendCode) && Main.KickPlayerWhoFriendCodeNotExist.Value)
-            MarkAsCheater();
+        KickPlayer(_player.PlayerId, false, "Cheater");
     }
-    
-    private readonly Dictionary<byte, RpcRecord> _rpcRecords = new();
-    
-    private struct RpcRecord
+
+    private void HandleHacker()
     {
-        public long LastReceivedTime; 
-        public int Count;
+        if (!Main.EnableGuardian.Value || !IsHacker ||
+            (_lastHandleCheater != -1 && _lastHandleCheater + 1 >= GetTimeStamp())) return;
+        _lastHandleCheater = GetTimeStamp();
+        if (!AmongUsClient.Instance.AmHost)
+        {
+            NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Overload_NotHost"),
+                _player.GetColoredName()));
+            return;
+        }
+
+        KickPlayer(_player.PlayerId, false, "Overload");
     }
-    
+
     public bool HandleIncomingRpc(byte rpcId)
     {
+        if (InComingOverloaded) return true;
         var currentTime = GetCurrentTimestamp();
-        
+
         if (_rpcRecords.TryGetValue(rpcId, out var record))
         {
             var timeDiff = currentTime - record.LastReceivedTime;
-            
+
             if (timeDiff > 1000)
             {
                 record.Count = 1;
+                record.LastReceivedTime = currentTime;
             }
             else
             {
                 record.Count++;
-                
-                if (record.Count > 10)
+
+                if (record.Count > record.MaxiCount)
                 {
                     MarkAsCheater();
                     record.Count = 0;
+                    InComingOverloaded = true;
+                    Warn($"InComingRpc Overloaded: {_player.GetDataName()}", "FAC");
                     return true;
                 }
             }
-            record.LastReceivedTime = currentTime;
+
             _rpcRecords[rpcId] = record;
         }
         else
@@ -105,28 +132,39 @@ public class PlayerCheatData
             _rpcRecords[rpcId] = new RpcRecord
             {
                 LastReceivedTime = currentTime,
-                Count = 1
+                Count = 1,
+                MaxiCount = _handlers.Where(handlers => handlers.TargetRpcs.Contains(rpcId))
+                    .SelectMany(handlers => handlers.Handlers)
+                    .Where(handler => handler.Condition(_player))
+                    .Select(handler => handler.MaxiReceivedNumPerSecond())
+                    .Prepend(5)
+                    .Max()
             };
         }
+
         return false;
-    }
-    
-    private static long GetCurrentTimestamp()
-    {
-        return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
     }
 
     public void HandleCheatData()
     {
         try
         {
+            ClientData ??= _player.GetClient();
             HandleBan();
             HandleLobbyPosition();
             HandleSuspectCheater();
+            HandleHacker();
         }
-        catch 
+        catch
         {
             /* ignored */
         }
+    }
+
+    private struct RpcRecord
+    {
+        public long LastReceivedTime;
+        public int Count;
+        public int MaxiCount;
     }
 }

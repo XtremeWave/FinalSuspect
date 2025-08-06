@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
@@ -14,15 +13,15 @@ public class PhantomHandler : IRpcHandler
         (byte)RpcCalls.CheckVanish,
         (byte)RpcCalls.StartVanish,
         (byte)RpcCalls.CheckAppear,
-        (byte)RpcCalls.StartAppear,
+        (byte)RpcCalls.StartAppear
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         return true;
     }
-    
+
     public bool HandleGame_All(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

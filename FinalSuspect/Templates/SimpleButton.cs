@@ -9,15 +9,21 @@ namespace FinalSuspect.Templates;
 
 public class SimpleButton
 {
-    /// <summary>新しいボタンを作成する</summary>
-    /// <param name="parent">親オブジェクト</param>
-    /// <param name="name">オブジェクト名</param>
-    /// <param name="localPosition"></param>
-    /// <param name="normalColor">通常時の背景色</param>
-    /// <param name="hoverColor">マウスホバー時の背景色</param>
-    /// <param name="action">クリック時に発火するアクション</param>
-    /// <param name="label">ボタンのラベル</param>
-    /// <param name="isActive">初期状態でアクティブにするかどうか(デフォルトtrue)</param>
+    private static PassiveButton baseButton;
+    private readonly BoxCollider2D buttonCollider;
+
+    private float _fontSize;
+    private Vector2 _scale;
+
+    /// <summary>创建新按钮</summary>
+    /// <param name="parent">父对象</param>
+    /// <param name="name">对象名称</param>
+    /// <param name="localPosition">本地坐标</param>
+    /// <param name="normalColor">正常状态背景色</param>
+    /// <param name="hoverColor">鼠标悬停时背景色</param>
+    /// <param name="action">点击时触发的动作</param>
+    /// <param name="label">按钮标签文本</param>
+    /// <param name="isActive">初始激活状态(默认true)</param>
     public SimpleButton(
         Transform parent,
         string name,
@@ -28,10 +34,7 @@ public class SimpleButton
         string label,
         bool isActive = true)
     {
-        if (baseButton == null)
-        {
-            throw new InvalidOperationException("baseButtonが未設定");
-        }
+        if (!baseButton) throw new InvalidOperationException("baseButtonが未設定");
 
         Button = Object.Instantiate(baseButton, parent);
         Label = Button.transform.Find("FontPlacer/Text_TMP").GetComponent<TextMeshPro>();
@@ -39,7 +42,6 @@ public class SimpleButton
         HoverSprite = Button.activeSprites.GetComponent<SpriteRenderer>();
         buttonCollider = Button.GetComponent<BoxCollider2D>();
 
-        // ラベルをセンタリング
         var container = Label.transform.parent;
         Object.Destroy(Label.GetComponent<AspectPosition>());
         container.SetLocalX(0f);
@@ -54,49 +56,49 @@ public class SimpleButton
         Label.text = label;
         Button.gameObject.SetActive(isActive);
     }
+
     public PassiveButton Button { get; }
     public TextMeshPro Label { get; }
-    public SpriteRenderer NormalSprite { get; }
-    public SpriteRenderer HoverSprite { get; }
-    private readonly BoxCollider2D buttonCollider;
-    private Vector2 _scale;
+    private SpriteRenderer NormalSprite { get; }
+    private SpriteRenderer HoverSprite { get; }
+
     public Vector2 Scale
     {
         get => _scale;
         set => _scale = NormalSprite.size = HoverSprite.size = buttonCollider.size = value;
     }
-    private float _fontSize;
+
     public float FontSize
     {
         get => _fontSize;
         set => _fontSize = Label.fontSize = Label.fontSizeMin = Label.fontSizeMax = value;
     }
 
-    private static PassiveButton baseButton;
     public static void SetBase(PassiveButton passiveButton)
     {
-        if (baseButton != null || passiveButton == null)
-        {
-            return;
-        }
-        // 複製
+        if (baseButton || !passiveButton) return;
+
+        // 复制按钮
         baseButton = Object.Instantiate(passiveButton);
         var label = baseButton.transform.Find("FontPlacer/Text_TMP").GetComponent<TextMeshPro>();
         baseButton.gameObject.SetActive(false);
-        // シーン切替時に破棄されないようにする
+        // 防止场景切换时被销毁
         Object.DontDestroyOnLoad(baseButton);
         baseButton.name = "FinalSuspect_SimpleButtonBase";
-        // 不要なコンポーネントを無効化
+        // 移除不需要的组件
         Object.Destroy(baseButton.GetComponent<AspectPosition>());
         label.DestroyTranslator();
         label.fontSize = label.fontSizeMax = label.fontSizeMin = 3.5f;
         label.enableWordWrapping = false;
         label.text = "FinalSuspect SIMPLE BUTTON BASE";
-        // 当たり判定がズレてるのを直す
+        // 修复碰撞体偏移问题
         var buttonCollider = baseButton.GetComponent<BoxCollider2D>();
         buttonCollider.offset = new Vector2(0f, 0f);
         baseButton.OnClick = new Button.ButtonClickedEvent();
     }
-    
-    public static bool IsNullOrDestroyed(SimpleButton button) => button == null || button.Button == null;
+
+    public static bool IsNullOrDestroyed(SimpleButton button)
+    {
+        return button == null || !button.Button;
+    }
 }

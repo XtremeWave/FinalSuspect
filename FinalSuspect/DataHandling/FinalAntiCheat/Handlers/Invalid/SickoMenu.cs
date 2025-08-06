@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -11,7 +10,7 @@ public class SickoMenu : IRpcHandler
         168,
         unchecked((byte)420)
     ];
-    
+
     public bool HandleInvalidRPC(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

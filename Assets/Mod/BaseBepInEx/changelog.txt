@@ -1,0 +1,48 @@
+46 changes since v6.0.0-pre.2
+
+Changelog (excluding merge commits):
+* (5fef357) [ManlyMarco] Bump Cpp2IL to pre-release.19 (#1103)
+* (995f049) [js6pak] Fix CI webhook
+* (0c2a3f1) [ManlyMarco] Switch Build.csproj TargetFramework to net8.0 (#1039)
+* (28559fe) [Howard Lam] Checks if target Unity binaries archive exists before attempting download in case game's network conenction is blocked (#1024)
+* (35f6b1b) [itectori] include DeobfuscationMap.csv.gz in ComputeHash (#1020)
+* (e1974e2) [ManlyMarco] Use joelwmale/webhook-action@2.4.1
+* (e2d5ab8) [ManlyMarco] Clean up empty files
+* (544f909) [aldelaro5] Revert "Merge pull request #960 from aldelaro5/metaplugins" (#995)
+* (d9b95a0) [aldelaro5] Add input abstraction layer to support games with the Input class disabled
+* (af5d939) [aldelaro5] Make Logger.Listeners and Logger.Sources thread safe
+* (8597ce7) [aldelaro5] Add TomlTypeConverter for UnityEngine.Rect
+* (6e846fc) [aldelaro5] Preload Harmony and MonoMod
+* (92f7d25) [aldelaro5] Print file write data in console
+* (a5b7dab) [aldelaro5] Add error when using *nix build with Windows executable
+* (b891cec) [aldelaro5] Upgrade the github workflows sdk to 8.0.x (#992)
+* (726b68e) [aldelaro5] Prioritize the shallowest path for the same assembly name in the default providers (#980)
+* (cdeaad7) [ManlyMarco] Use upload-artifact@v4 (#981)
+* (f800cbc) [ManlyMarco] Add GlobalMetadataPath setting (#978)
+* (cbd70eb) [ManlyMarco] Automatically load all interop assemblies before loading plugins (#777)
+* (2474dce) [aldelaro5] Use PascalCase for the cache versioning const
+* (ede28de) [aldelaro5] Make the cache version a const
+* (ae4d7bb) [aldelaro5] Actually write the cache version in SaveAssemblyCache
+* (d389ed8) [aldelaro5] Add versioning to CachedAssembly
+* (be1beb5) [aldelaro5] Address code review round 5
+* (7315b7d) [aldelaro5] Make the default providers classes internal in their assemblies
+* (6b38cee) [ManlyMarco] Fix failing to initialize if game's Data folder is just 'Data' (#975)
+* (c02ad9c) [aldelaro5] Add an obsolete property for compatibility
+* (e0a81df) [aldelaro5] Rename Location to prevent compilation with it
+* (d44b93b) [aldelaro5] Use the IL2CPPChainLoader instance for il2cpp to preserve compatibility
+* (e9337e9) [aldelaro5] Revert the removal of the il2cpp chainloader instance
+* (0a4f1d6) [aldelaro5] Accomodate breaking changes in preparation for api refactors
+* (5a32424) [thegu5] Bump Cpp2IL (#967)
+* (24cf635) [aldelaro5] Ensure providers and plugins / patchers folders are created if they don't exist
+* (4597be0) [aldelaro5] Remove files caching from CachedPluginLoadContext, make it forward the call instead
+* (ba3fac9) [aldelaro5] Upgrade MonoMod to 22.7.31.1 to fix old mono preloader crashes (#973)
+* (40643ff) [aldelaro5] Offload the load context caching to bepinex
+* (1f182c7) [aldelaro5] Correct the symbols resolution and rename the method
+* (ee5918b) [aldelaro5] Address minor code review
+* (e2396d2) [aldelaro5] address code review round 3
+* (b729aee) [aldelaro5] Address code review round 3 (first part)
+* (bfc539b) [aldelaro5] Address code review round 2
+* (b688bfa) [aldelaro5] Add a Source property to PluginInfo
+* (d8dd404) [aldelaro5] Address code review
+* (4d47c3c) [aldelaro5] Address code review
+* (952c74f) [aldelaro5] Implement Patcher and plugin providers

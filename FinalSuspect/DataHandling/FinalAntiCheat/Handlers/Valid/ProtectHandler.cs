@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -11,15 +9,15 @@ public class ProtectHandler : IRpcHandler
     public List<byte> TargetRpcs =>
     [
         (byte)RpcCalls.ProtectPlayer,
-        (byte)RpcCalls.CheckProtect,
+        (byte)RpcCalls.CheckProtect
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         return true;
     }
-    
+
     public bool HandleGame_InMeeting(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

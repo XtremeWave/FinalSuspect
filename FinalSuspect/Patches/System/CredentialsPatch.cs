@@ -1,5 +1,7 @@
-using System.Collections.Generic;
 using System.Text;
+using FinalSuspect.ClientActions;
+using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
@@ -8,7 +10,9 @@ using Il2CppSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
 using ColorHelper = FinalSuspect.Helpers.ColorHelper;
 using Object = UnityEngine.Object;
 
@@ -24,36 +28,35 @@ internal class PingTrackerUpdatePatch
 
     public static void Postfix(PingTracker __instance)
     {
-        if (CreditTextCredential == null)
+        if (!CreditTextCredential)
         {
             var uselessPingTracker = Object.Instantiate(__instance, __instance.transform.parent);
             CreditTextCredential = uselessPingTracker.GetComponent<TextMeshPro>();
             Object.Destroy(uselessPingTracker);
             CreditTextCredential.alignment = TextAlignmentOptions.TopRight;
             CreditTextCredential.color = new Color(1f, 1f, 1f, 0.7f);
-            CreditTextCredential.rectTransform.pivot = new Vector2(1f, 1f);  // 将中心点设定在右上角
+            CreditTextCredential.rectTransform.pivot = new Vector2(1f, 1f); // 将中心点设定在右上角
             CreditTextCredentialAspectPos = CreditTextCredential.GetComponent<AspectPosition>();
             CreditTextCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
         }
-        
+
         if (CreditTextCredentialAspectPos)
-        {
-            CreditTextCredentialAspectPos.DistanceFromEdge = 
-                DestroyableSingleton<HudManager>.InstanceExists && DestroyableSingleton<HudManager>.Instance.Chat.chatButton.gameObject.active 
-                    ? new Vector3(2.5f, 0f, -800f) 
+            CreditTextCredentialAspectPos.DistanceFromEdge =
+                DestroyableSingleton<HudManager>.InstanceExists &&
+                DestroyableSingleton<HudManager>.Instance.Chat.chatButton.gameObject.active
+                    ? new Vector3(2.5f, 0f, -800f)
                     : new Vector3(1.8f, 0f, -800f);
-        }
 
         StringBuilder sb = new();
-        
+
         sb.Append(Main.CredentialsText);
 
         CreditTextCredential.text = sb.ToString();
         if (
-            (GameSettingMenu.Instance?.gameObject.active ?? false) 
-            || IsMeeting 
+            (GameSettingMenu.Instance?.gameObject.active ?? false)
+            || IsInMeeting
             || (FriendsListUI.Instance?.gameObject.active ?? false)
-            || (HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value)
+            || ((HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value))
             CreditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
@@ -70,8 +73,8 @@ internal class PingTrackerUpdatePatch
         var fps = Mathf.Ceil(1.0f / deltaTime);
 
         __instance.text.alignment = TextAlignmentOptions.TopGeoAligned;
-        __instance.text.text = 
-            $"<color={color}>{GetString("Ping")}:{ping} <size=60%>ms</size></color>" + "  " 
+        __instance.text.text =
+            $"<color={color}>{GetString("Ping")}:{ping} <size=60%>ms</size></color>" + "  "
             + $"<color=#00a4ff>{GetString("FrameRate")}:{fps} <size=60%>FPS</size></color>" +
             $"{"    <color=#FFDCB1>◈</color>" + (IsOnlineGame ? ServerName : GetString("Local"))}";
     }
@@ -84,76 +87,106 @@ public class VersionShowerStartPatch
     public static TextMeshPro VisitText;
     public static TextMeshPro CreditTextCredential;
     public static GameObject ModLogo;
-    public static GameObject TeamLogo;
+    public static GameObject AuthorLogo;
+
+    private static VersionShower Instance;
 
     public static void Postfix(VersionShower __instance)
     {
         TMPTemplate.SetBase(__instance.text);
 
-        Main.CredentialsText = $"\r\n<size=120%>" +
-                               $"<color={ColorHelper.TeamColor}>==</color> <color={ColorHelper.ModColor}>{Main.ModName}</color> <color={ColorHelper.TeamColor}>==</color>"
-                               + "</size>";
-        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>XtremeWave</color></size>";
+        Main.CredentialsText =
+            $"\r\n<size=120%>" +
+            $"<color={ColorHelper.AuthorColorHex}>==</color> " +
+            $"<color={ColorHelper.FSColorHex}>{Main.ModName}</color> " +
+            $"<color={ColorHelper.AuthorColorHex}>==</color>"
+            + "</size>";
+        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>Slok</color></size>";
         Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
-
-#if RELEASE
+#if !DEBUG
         var additionalCredentials = GetString("TextBelowVersionText");
         if (additionalCredentials != null && additionalCredentials != "*" && additionalCredentials != "")
         {
             Main.CredentialsText += $"\r\n{additionalCredentials}";
         }
-#else
-        Main.CredentialsText += $"\r\n<color={ColorHelper.ModColor}>{Main.GitBranch}</color> - {Main.GitCommit}";
+#endif
+#if !RELEASE
+        Main.CredentialsText += $"\r\n<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
 #endif
 
-        ErrorText.Create(__instance.text);
-        if (Main.hasArgumentException && ErrorText.Instance != null)
-            ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
-
-        if ((OVersionShower = GameObject.Find("VersionShower")) != null && VisitText == null)
+        if (Main.IsAprilFools)
         {
-            CreateVisitText(__instance);
+            Main.CredentialsText =
+                $"\r\n<size=120%>" +
+                $"<color=#fffcbe>==</color> " +
+                $"<color=#C791F5>Feline Susspekt</color> " +
+                $"<color=#fffcbe>==</color>"
+                + "</size>";
+            Main.CredentialsText += "\r\n <color=#cdffdd> By </color><color=#fffcbe>XtremeWives</color></size>";
+            Main.CredentialsText += "\r\n <color=#ff0000>4.1.Never Gonna Give You Up</color>";
         }
 
-        if ((OVersionShower = GameObject.Find("VersionShower")) != null && CreditTextCredential == null)
-        {
-            var credentialsText =  string.Format(GetString("MainMenuCredential"), $"<color={ColorHelper.TeamColor}>XtremeWave</color>");
-            credentialsText += "\n";
-            var versionText = $"<color={ColorHelper.ModColor}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+        ErrorText.Create(__instance.text);
+        if (Main.hasArgumentException && ErrorText.Instance)
+            ErrorText.Instance.AddError(ErrorCode.Main_DictionaryError);
 
-#if !RELEASE
-            versionText = $"<color={ColorHelper.ModColor}>{Main.GitBranch}</color> - {Main.GitCommit}";
+        if ((OVersionShower = GameObject.Find("VersionShower")) && !VisitText) CreateVisitText(__instance);
+
+        if ((OVersionShower = GameObject.Find("VersionShower")) && !CreditTextCredential)
+        {
+            var credentialsText = string.Format(GetString("MainMenuCredential"),
+                $"<color={ColorHelper.AuthorColorHex}>Slok</color>");
+            credentialsText += "\n";
+#if DEBUG
+            var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
+#elif RELEASE
+            var versionText = 
+                $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
+#elif OPENBETA
+            var versionText =
+                $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}\n" +
+                $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 #endif
+
             credentialsText += versionText;
+
+            if (Main.IsAprilFools)
+            {
+                credentialsText =
+                    "<color=#fffcbe>XtremeWives © 1987</color>\n<color=#ff0000>4.1.Never Gonna Give You Up</color>";
+            }
 
             CreditTextCredential = Object.Instantiate(__instance.text);
             CreditTextCredential.name = "FinalSuspect CreditText";
             CreditTextCredential.alignment = TextAlignmentOptions.Right;
             CreditTextCredential.text = credentialsText;
             CreditTextCredential.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-            CreditTextCredential.transform.localPosition = new Vector3(0.3f, -2.6f, 0f);
 
-            CreditTextCredential.enabled = GameObject.Find("FinalSuspect Background") != null;
-            CreditTextCredential.SetOutlineColor(ColorHelper.ShadeColor(ColorHelper.ModColor32, 0.75f));
+            CreditTextCredential.enabled = GameObject.Find("FinalSuspect Background");
+            CreditTextCredential.SetOutlineColor(ColorHelper.ShadeColor(ColorHelper.FSColor, 0.75f));
             CreditTextCredential.SetOutlineThickness(0.20f);
             CreditTextCredential.fontStyle = FontStyles.Bold;
-            var ap1 = OVersionShower.GetComponent<AspectPosition>();
-            if (ap1 != null) Object.Destroy(ap1);
-            var ap2 = CreditTextCredential.GetComponent<AspectPosition>();
-            if (ap2 != null) Object.Destroy(ap2);
+            var ap_credit = CreditTextCredential.gameObject.AddComponent<AspectPosition>();
+            ap_credit.Alignment = AspectPosition.EdgeAlignments.RightBottom;
+            ap_credit.DistanceFromEdge = new Vector3(5f, 0.4f);
+            ap_credit.updateAlways = true;
         }
-        
-        TeamLogo = new GameObject
+
+        AuthorLogo = new GameObject
         {
             layer = 5,
-            name = "Team Logo"
+            name = "Author Logo"
         };
-        TeamLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("TeamLogo.png", 400f);
-        TeamLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
-        TeamLogo.transform.SetParent(VisitText.transform.parent);
-        TeamLogo.transform.localPosition = new Vector3(-4.72f, -2.5f, 0f);
-        TeamLogo.SetActive(false);
+        AuthorLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("AuthorLogo2.png", 840f);
+        AuthorLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
+        AuthorLogo.transform.SetParent(VisitText.transform.parent);
+        var ap_authorLogo = AuthorLogo.gameObject.AddComponent<AspectPosition>();
+        ap_authorLogo.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
+        ap_authorLogo.DistanceFromEdge = new Vector3(0.6f, 0.5f);
+        ap_authorLogo.updateAlways = true;
+
+        AuthorLogo.SetActive(false);
         ModLogo = new GameObject
         {
             layer = 5,
@@ -161,101 +194,86 @@ public class VersionShowerStartPatch
         };
         ModLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("FinalSuspect-Logo.png", 250f);
         ModLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
-        ModLogo.transform.localPosition = new Vector3(3.7f, -2.6f, 0f);
+        var ap_modLogo = ModLogo.gameObject.AddComponent<AspectPosition>();
+        ap_modLogo.Alignment = AspectPosition.EdgeAlignments.RightBottom;
+        ap_modLogo.DistanceFromEdge = new Vector3(1.6f, 0.4f);
+        ap_modLogo.updateAlways = true;
         ModLogo.SetActive(false);
     }
 
-    private static VersionShower Instance;
-    
     public static void CreateVisitText(VersionShower __instance)
     {
-        if (__instance == null)
+        if (!__instance)
             __instance = Instance;
         else
-        {
             Instance = __instance;
-        }
-        
+
         VisitText = Object.Instantiate(__instance.text);
         VisitText.name = "FinalSuspect VisitText";
         VisitText.alignment = TextAlignmentOptions.Left;
-        VisitText.text = VersionChecker.isChecked
-            ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.ModColor)
-            : GetString("ConnectToFinalSuspectServerFailed");
+        VisitText.text = VersionChecker.IsChecked
+            ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.FSColorHex)
+            : GetString("RetrieveVersionInfoFailed");
         VisitText.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-        VisitText.transform.localPosition = new Vector3(-3.92f, -2.9f, 0f);
-        VisitText.enabled = GameObject.Find("FinalSuspect Background") != null;
+        VisitText.enabled = GameObject.Find("FinalSuspect Background");
 
         __instance.text.alignment = TextAlignmentOptions.Left;
-        OVersionShower.transform.localPosition = new Vector3(-4.92f, -3.3f, 0f);
-
         var ap1 = OVersionShower.GetComponent<AspectPosition>();
-        if (ap1 != null) Object.Destroy(ap1);
-        var ap2 = VisitText.GetComponent<AspectPosition>();
-        if (ap2 != null) Object.Destroy(ap2);
+        ap1.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
+        ap1.DistanceFromEdge = new Vector3(0.4f, -0.3f);
+        ap1.updateAlways = true;
+
+        var ap2 = VisitText.gameObject.AddComponent<AspectPosition>();
+        ap2.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
+        ap2.DistanceFromEdge = new Vector3(1.4f, 0.1f);
+        ap2.updateAlways = true;
     }
 }
 
-[HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.First)]
+[HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
+[HarmonyPriority(Priority.First)]
 internal class TitleLogoPatch
 {
-    public static GameObject ModStamp;
-    public static GameObject FinalSuspect_Background;
-    public static GameObject Ambience;
-    public static GameObject Starfield;
-    public static GameObject LeftPanel;
-    public static GameObject RightPanel;
-    public static GameObject CloseRightButton;
-    public static GameObject Tint;
-    public static GameObject Sizer;
-    public static GameObject AULogo;
-    public static GameObject BottomButtonBounds;
-
-    public static Vector3 RightPanelOp;
-
     public static void Postfix(MainMenuManager __instance)
     {
-        GameObject.Find("BackgroundTexture")?.SetActive(!MainMenuManagerPatch.ShowedBak);
+        GameObject.Find("BackgroundTexture")?.SetActive(!ShowedBak);
 
         Color shade = new(0f, 0f, 0f, 0f);
         var standardActiveSprite = __instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
         var minorActiveSprite = __instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
+        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
 
-        var friendsButton = AwakeFriendCodeUIPatch.FriendsButton.GetComponent<PassiveButton>();
+        var friendsButton = FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
         {
             {
                 [__instance.playButton, __instance.inventoryButton, __instance.shopButton],
-                (standardActiveSprite, new Color(0.5216f, 1f, 0.9490f, 0.8f), shade, Color.white, Color.white)
+                (standardActiveSprite, style.MainUIColors[0], shade, Color.white, Color.white)
             },
             {
                 [__instance.newsButton, __instance.myAccountButton, __instance.settingsButton],
-                (minorActiveSprite, new Color( 0.5216f, 0.7765f, 1f, 0.8f), shade, Color.white, Color.white)
+                (minorActiveSprite, style.MainUIColors[1], shade, Color.white, Color.white)
             },
             {
                 [__instance.creditsButton, __instance.quitButton],
-                (minorActiveSprite, new Color(0.7294f, 0.6353f, 1.0f, 0.8f), shade, Color.white, Color.white)
+                (minorActiveSprite, style.MainUIColors[2], shade, Color.white, Color.white)
             },
             {
                 [friendsButton],
-                (minorActiveSprite, new Color(0.0235f, 0f, 0.8f, 0.8f), shade, Color.white, Color.white)
-            },
+                (minorActiveSprite, style.MainUIColors[3], shade, Color.white, Color.white)
+            }
         };
 
-        // ReSharper disable once UnusedParameter.Local
-        
-
         foreach (var kvp in mainButtons)
-        {
             kvp.Key.Do(button =>
             {
-                FormatButtonColor(__instance, button, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4, kvp.Value.Item5);
+                FormatButtonColor(__instance, button, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4,
+                    kvp.Value.Item5);
             });
-        }
-        
+
         try
         {
-            mainButtons.Keys.Flatten()?.DoIf(x => x != null, x => x.buttonText.color = Color.white);
+            mainButtons.Keys.Flatten()?.DoIf(x => x, x => x.buttonText.color = Color.white);
         }
         catch
         {
@@ -274,12 +292,13 @@ internal class TitleLogoPatch
             }
         };
         var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
-        bgRenderer.sprite = LoadSprite("FinalSuspect-BG-MiraHQ.jpg", 179f);
+        bgRenderer.sprite = style.Sprite;
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
+        Starfield.SetActive(style.StarFieldActive);
         var starGen = Starfield.GetComponent<StarGen>();
-        starGen.SetDirection(new Vector2(0, -2));
+        starGen.SetDirection(new Vector2(0, style.StarGenDire));
         Starfield.transform.SetParent(FinalSuspect_Background.transform);
         Object.Destroy(Ambience);
 
@@ -291,15 +310,14 @@ internal class TitleLogoPatch
         GameObject.Find("Divider")?.SetActive(false);
 
         if (!(RightPanel = GameObject.Find("RightPanel"))) return;
-        var rpap = RightPanel.GetComponent<AspectPosition>();
-        if (rpap) Object.Destroy(rpap);
-        RightPanelOp = RightPanel.transform.localPosition;
+        var rightPanelAP = RightPanel.GetComponent<AspectPosition>();
+        if (rightPanelAP) Object.Destroy(rightPanelAP);
         RightPanel.transform.localPosition = RightPanelOp + new Vector3(10f, 0f, 0f);
         RightPanel.GetComponent<SpriteRenderer>().color = new Color(1f, 0.78f, 0.9f, 1f);
 
         CloseRightButton = new GameObject("CloseRightPanelButton");
         CloseRightButton.transform.SetParent(RightPanel.transform);
-        CloseRightButton.transform.localPosition = new Vector3(-4.78f, 1.3f, 1f);
+        CloseRightButton.transform.localPosition = new Vector3(-4.78f * GetResolutionOffset(), 1.3f, 1f);
         CloseRightButton.transform.localScale = new Vector3(1f, 1f, 1f);
         CloseRightButton.AddComponent<BoxCollider2D>().size = new Vector2(0.6f, 1.5f);
         var closeRightSpriteRenderer = CloseRightButton.AddComponent<SpriteRenderer>();
@@ -309,15 +327,18 @@ internal class TitleLogoPatch
         closeRightPassiveButton.OnClick = new Button.ButtonClickedEvent();
         closeRightPassiveButton.OnClick.AddListener((global::System.Action)MainMenuManagerPatch.HideRightPanel);
         closeRightPassiveButton.OnMouseOut = new UnityEvent();
-        closeRightPassiveButton.OnMouseOut.AddListener((global::System.Action)(() => closeRightSpriteRenderer.color = new Color(1f, 0.78f, 0.9f, 1f)));
+        closeRightPassiveButton.OnMouseOut.AddListener((global::System.Action)(() =>
+            closeRightSpriteRenderer.color = new Color(1f, 0.78f, 0.9f, 1f)));
         closeRightPassiveButton.OnMouseOver = new UnityEvent();
-        closeRightPassiveButton.OnMouseOver.AddListener((global::System.Action)(() => closeRightSpriteRenderer.color = new Color(1f, 0.68f, 0.99f, 1f)));
+        closeRightPassiveButton.OnMouseOver.AddListener((global::System.Action)(() =>
+            closeRightSpriteRenderer.color = new Color(1f, 0.68f, 0.99f, 1f)));
 
         Tint = __instance.screenTint.gameObject;
         var ttap = Tint.GetComponent<AspectPosition>();
         if (ttap) Object.Destroy(ttap);
         Tint.transform.SetParent(RightPanel.transform);
-        Tint.transform.localPosition = new Vector3(-0.0824f, 0.0513f, Tint.transform.localPosition.z);
+        Tint.transform.localPosition =
+            new Vector3(-0.0824f * GetResolutionOffset(), 0.0513f, Tint.transform.localPosition.z);
         Tint.transform.localScale = new Vector3(1f, 1f, 1f);
 
         var creditsScreen = __instance.creditsScreen;
@@ -331,7 +352,8 @@ internal class TitleLogoPatch
 
         if (!(Sizer = GameObject.Find("Sizer"))) return;
         if (!(AULogo = GameObject.Find("LOGO-AU"))) return;
-        Sizer.transform.localPosition += new Vector3(0f, 0.12f, 0f);
+        Sizer.transform.localPosition =
+            new Vector3(-4.0f * GetResolutionOffset(), 1.4f, -1.0f);
         AULogo.transform.localScale = new Vector3(0.66f, 0.67f, 1f);
         AULogo.transform.position += new Vector3(0f, 0.1f, 0f);
         var logoRenderer = AULogo.GetComponent<SpriteRenderer>();
@@ -339,8 +361,16 @@ internal class TitleLogoPatch
 
         if (!(BottomButtonBounds = GameObject.Find("BottomButtonBounds"))) return;
         BottomButtonBounds.transform.localPosition -= new Vector3(0f, 0.1f, 0f);
+
+        var mainButtonsobj = GameObject.Find("Main Buttons");
+        mainButtonsobj.transform.position = new Vector3(-3.4f * GetResolutionOffset(),
+            mainButtonsobj.transform.position.y, mainButtonsobj.transform.position.z);
         return;
-        static void ResetParent(GameObject obj) => obj.transform.SetParent(LeftPanel.transform.parent);
+
+        static void ResetParent(GameObject obj)
+        {
+            obj.transform.SetParent(LeftPanel.transform.parent);
+        }
     }
 }
 
@@ -348,17 +378,27 @@ internal class TitleLogoPatch
 internal class ModManagerLateUpdatePatch
 {
     private static bool firstRun;
- 
+    private static string LastScene = "";
+
+
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
-        if (!firstRun)
+        if (firstRun)
+        {
+            if (LastScene != SceneManager.GetActiveScene().name)
+            {
+                LastScene = SceneManager.GetActiveScene().name;
+                OnSceneChange(LastScene);
+            }
+        }
+        else
         {
             OptionsMenuBehaviourStartPatch.SetCursor();
             __instance.ModStamp.sprite = LoadSprite("ModStamp.png", 100f);
             firstRun = true;
         }
-        
+
         LateTask.Update(Time.deltaTime);
         MainThreadTask.Update();
     }
@@ -370,6 +410,19 @@ internal class ModManagerLateUpdatePatch
             __instance.localCamera, AspectPosition.EdgeAlignments.RightTop,
             new Vector3(0.4f, offset_y, __instance.localCamera.nearClipPlane + 0.1f));
     }
+
+    private static void OnSceneChange(string name)
+    {
+        if (name is "MainMenu" or "MatchMaking")
+        {
+            var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
+            if (audio != null)
+            {
+                _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
+            }
+        }
+    }
 }
 
 [HarmonyPatch(typeof(CreditsScreenPopUp))]
@@ -379,5 +432,46 @@ internal class CreditsScreenPopUpPatch
     public static void Postfix(CreditsScreenPopUp __instance)
     {
         __instance.BackButton.transform.parent.FindChild("Background").gameObject.SetActive(false);
+    }
+}
+
+[HarmonyPatch(typeof(ResolutionManager))]
+internal class ResolutionManagerPatch
+{
+    [HarmonyPatch(nameof(ResolutionManager.SetResolution))]
+    public static void Postfix(int width, int height)
+    {
+        _ = new LateTask(() =>
+        {
+            if (!GameObject.Find("MainUI")) return;
+            var offset = GetResolutionOffset();
+            CloseRightButton.transform.localPosition = new Vector3(-4.78f * offset, 1.3f, 1.0f);
+            Tint.transform.localPosition =
+                new Vector3(-0.0824f * offset, 0.0513f, Tint.transform.localPosition.z);
+            Sizer.transform.localPosition = new Vector3(-4.0f * offset, 1.4f, -1.0f);
+            var mainButtons = GameObject.Find("Main Buttons");
+            mainButtons.transform.position = new Vector3(-3.4f * offset, mainButtons.transform.position.y,
+                mainButtons.transform.position.z);
+            MainMenuButtonHoverAnimation.RefreshButtons(mainButtons);
+
+            List<GameObject> nullObj = [];
+            foreach (var button in MainMenuCustomButtons)
+            {
+                if (!button)
+                {
+                    nullObj.Add(button);
+                    continue;
+                }
+
+                var scale = Instance.quitButton.transform.localScale;
+                button.transform.localScale =
+                    new Vector3(scale.x * GetResolutionOffset(), button.transform.localScale.y);
+            }
+
+            foreach (var obj in nullObj) MainMenuCustomButtons.Remove(obj);
+
+            CloseRightButton.transform.localPosition =
+                new Vector3(-4.78f * GetResolutionOffset(), 1.3f, 1f);
+        }, 0.01f, "RefreshMenu");
     }
 }

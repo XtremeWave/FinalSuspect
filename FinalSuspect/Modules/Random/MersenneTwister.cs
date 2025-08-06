@@ -27,26 +27,52 @@ namespace FinalSuspect.Modules.Random;
 public class MersenneTwister : IRandom
 {
     // 参考元
-    public const string REFERENCE_HOMEPAGE = "http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/mt.html";
-    public const string REFERENCE_SOURCE_CODE = "https://github.com/vpmedia/template-unity/blob/master/Framework/Assets/Frameworks/URandom/MersenneTwister.cs";
+    public const string REFERENCE_HOMEPAGE =
+        "http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/mt.html";
 
-    public MersenneTwister() : this((int)DateTime.UtcNow.Ticks) { }
-    public MersenneTwister(int seed)
-    {
-        Init((uint)seed);
-    }
+    public const string REFERENCE_SOURCE_CODE =
+        "https://github.com/vpmedia/template-unity/blob/master/Framework/Assets/Frameworks/URandom/MersenneTwister.cs";
 
     /// <summary>
-    /// 数値の上限を設定
-    /// これより下の値の一部は参考元のソースより拝借
+    ///     数値の上限を設定
+    ///     これより下の値の一部は参考元のソースより拝借
     /// </summary>
     private const int N = 624;
+
     private const int M = 397;
     private const uint MatrixA = 0x9908b0df;
     private const uint UpperMask = 0x80000000;
     private const uint LowerMask = 0x7fffffff;
     private const uint TemperingMaskB = 0x9d2c5680;
     private const uint TemperingMaskC = 0xefc60000;
+    private readonly uint[] _mag01 = [0x0, MatrixA];
+
+    private readonly uint[] _mt = new uint[N];
+    private short _mtItems;
+
+    public MersenneTwister() : this((int)DateTime.UtcNow.Ticks)
+    {
+    }
+
+    private MersenneTwister(int seed)
+    {
+        Init((uint)seed);
+    }
+
+    public int Next(int minValue, int maxValue)
+    {
+        if (minValue < 0) throw new ArgumentOutOfRangeException(nameof(minValue), "minValue must be bigger than 0.");
+        if (maxValue < 0) throw new ArgumentOutOfRangeException(nameof(maxValue), "maxValue must be bigger than 0.");
+        if (minValue > maxValue) throw new ArgumentException("maxValue must be bigger than minValue.");
+        if (minValue == maxValue) return minValue;
+
+        return (int)(minValue + Next() % (maxValue - minValue));
+    }
+
+    public int Next(int maxValue)
+    {
+        return Next(0, maxValue);
+    }
 
     private static uint ShiftU(uint y)
     {
@@ -68,10 +94,6 @@ public class MersenneTwister : IRandom
         return y >> 18;
     }
 
-    private readonly uint[] _mt = new uint[N];
-    private short _mtItems;
-    private readonly uint[] _mag01 = [0x0, MatrixA];
-
     private void Init(uint seed)
     {
         _mt[0] = seed & 0xffffffffU;
@@ -83,7 +105,7 @@ public class MersenneTwister : IRandom
         }
     }
 
-    public uint Next()
+    private uint Next()
     {
         uint y;
 
@@ -118,16 +140,4 @@ public class MersenneTwister : IRandom
 
         return y;
     }
-
-    public int Next(int minValue, int maxValue)
-    {
-        if (minValue < 0) throw new ArgumentOutOfRangeException(nameof(minValue), "minValue must be bigger than 0.");
-        if (maxValue < 0) throw new ArgumentOutOfRangeException(nameof(maxValue), "maxValue must be bigger than 0.");
-        if (minValue > maxValue) throw new ArgumentException("maxValue must be bigger than minValue.");
-        if (minValue == maxValue) return minValue;
-
-        return (int)(minValue + Next() % (maxValue - minValue));
-    }
-
-    public int Next(int maxValue) => Next(0, maxValue);
 }

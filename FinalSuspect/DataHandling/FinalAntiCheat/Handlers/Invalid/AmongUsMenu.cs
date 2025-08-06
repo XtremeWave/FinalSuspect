@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -11,7 +10,7 @@ public class AmongUsMenu : IRpcHandler
         unchecked((byte)42069),
         101
     ];
-    
+
     public bool HandleInvalidRPC(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

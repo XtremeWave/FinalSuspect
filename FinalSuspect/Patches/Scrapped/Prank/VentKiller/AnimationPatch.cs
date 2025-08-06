@@ -23,7 +23,7 @@ internal static class RpcEnterVentPatch
 
         return false;
     }
-        
+
 }
 [HarmonyPatch(typeof(PlayerPhysics._CoEnterVent_d__55), nameof(PlayerPhysics._CoEnterVent_d__55.MoveNext))]
 internal static class EnterVentAnimationPatch
@@ -88,3 +88,4 @@ internal static class ExitVentAnimationPatch
         }
     }
 }*/
+

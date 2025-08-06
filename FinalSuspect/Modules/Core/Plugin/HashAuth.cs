@@ -8,7 +8,7 @@ public class HashAuth(string hashValue, string salt = null, HashAlgorithm algori
     private readonly HashAlgorithm algorithm = algorithm ?? SHA256.Create();
 
     /// <summary>
-    /// 验证字符串是否匹配哈希值
+    ///     验证字符串是否匹配哈希值
     /// </summary>
     public bool CheckString(string value)
     {
@@ -17,18 +17,20 @@ public class HashAuth(string hashValue, string salt = null, HashAlgorithm algori
     }
 
     /// <summary>
-    /// 计算字符串的哈希值
+    ///     计算字符串的哈希值
     /// </summary>
     private string CalculateHash(string source)
-        => CalculateHash(source, salt, algorithm);
+    {
+        return CalculateHash(source, salt, algorithm);
+    }
 
     /// <summary>
-    /// 计算带盐值的哈希值
+    ///     计算带盐值的哈希值
     /// </summary>
     /// <param name="source">源字符串</param>
     /// <param name="salt">盐值</param>
     /// <param name="algorithm">哈希算法实例</param>
-    private static string CalculateHash(string source, string salt = null, HashAlgorithm algorithm = null)
+    private static string CalculateHash(string source, string salt, HashAlgorithm algorithm = null)
     {
         // 初始化算法
         algorithm ??= SHA256.Create();
@@ -51,12 +53,12 @@ public class HashAuth(string hashValue, string salt = null, HashAlgorithm algori
     }
 
     /// <summary>
-    /// 通过未哈希值创建验证器（仅用于测试）
+    ///     通过未哈希值创建验证器（仅用于测试）
     /// </summary>
     /// <param name="value">原始值</param>
     /// <param name="salt">盐值</param>
     /// <remarks>
-    /// 此方法会同时生成哈希值并输出日志，仅用于开发测试阶段
+    ///     此方法会同时生成哈希值并输出日志，仅用于开发测试阶段
     /// </remarks>
     public static HashAuth CreateByUnhashedValue(string value, string salt = null)
     {

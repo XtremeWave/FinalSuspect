@@ -8,16 +8,16 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Canary|Any CPU = Canary|Any CPU
 		Release|Any CPU = Release|Any CPU
+		OpenBeta|Any CPU = OpenBeta|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BB32D6D5-7915-496C-933A-A2632C78918F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB32D6D5-7915-496C-933A-A2632C78918F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB32D6D5-7915-496C-933A-A2632C78918F}.Canary|Any CPU.ActiveCfg = Canary|Any CPU
-		{BB32D6D5-7915-496C-933A-A2632C78918F}.Canary|Any CPU.Build.0 = Canary|Any CPU
+    	{BB32D6D5-7915-496C-933A-A2632C78918F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB32D6D5-7915-496C-933A-A2632C78918F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB32D6D5-7915-496C-933A-A2632C78918F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB32D6D5-7915-496C-933A-A2632C78918F}.OpenBeta|Any CPU.ActiveCfg = OpenBeta|Any CPU
+		{BB32D6D5-7915-496C-933A-A2632C78918F}.OpenBeta|Any CPU.Build.0 = OpenBeta|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

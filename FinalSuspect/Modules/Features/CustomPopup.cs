@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using FinalSuspect.Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
+#pragma warning disable CS8602 // 解引用可能出现空引用。
+
 namespace FinalSuspect.Modules.Features;
 
 #nullable enable
 public static class CustomPopup
 {
-    public static GameObject? Fill;
-    public static GameObject? InfoScreen;
+    private static GameObject? Fill;
+    private static GameObject? InfoScreen;
 
-    public static TextMeshPro? TitleTMP;
+    private static TextMeshPro? TitleTMP;
     public static TextMeshPro? InfoTMP;
 
-    public static PassiveButton? ActionButtonPrefab;
+    private static PassiveButton? ActionButtonPrefab;
 
     public static GameObject? FillTemp;
     public static GameObject? InfoScreenTemp;
@@ -28,26 +28,26 @@ public static class CustomPopup
 
     public static PassiveButton? ActionButtonPrefabTemp;
 
-    public static List<PassiveButton>? ActionButtons;
+    private static List<PassiveButton>? ActionButtons;
 
     private static bool busy;
 
+    private static (string title, string info, List<(string, Action)>? buttons)? waitToShow;
+
+    private static string waitToUpdateText = string.Empty;
+
     /// <summary>
-    /// 显示一个全屏信息显示界面
+    ///     显示一个全屏信息显示界面
     /// </summary>
     /// <param name="title">标题</param>
     /// <param name="info">内容</param>
     /// <param name="buttons">按钮（文字，点击事件）</param>
     public static void Show(string title, string info, List<(string, Action)>? buttons)
     {
-        if (busy || Fill == null || InfoScreen == null || ActionButtonPrefab == null || TitleTMP == null || InfoTMP == null)
+        if (busy || !Fill || !InfoScreen || !ActionButtonPrefab || !TitleTMP || !InfoTMP)
         {
             Init();
-            if (Fill == null || InfoScreen == null || ActionButtonPrefab == null || TitleTMP == null || InfoTMP == null)
-            {
-                Debug.LogError("CustomPopup not initialized properly.");
-                return;
-            }
+            if (!Fill || !InfoScreen || !ActionButtonPrefab || !TitleTMP || !InfoTMP) return;
         }
 
         busy = true;
@@ -59,15 +59,14 @@ public static class CustomPopup
         ActionButtons = [];
 
         if (buttons != null)
-        {
-            foreach (var buttonInfo in buttons.Where(b => b.Item1.Trim() is not null and not ""))
+            foreach (var buttonInfo in buttons.Where(b => !b.Item1.Trim().IsNullOrWhiteSpace()))
             {
                 var (text, action) = buttonInfo;
                 var button = Object.Instantiate(ActionButtonPrefab, InfoScreen.transform);
-                if (button == null) continue;
+                if (!button) continue;
 
                 var tmp = button.transform.FindChild("Text_TMP")?.GetComponent<TextMeshPro>();
-                if (tmp == null) continue;
+                if (!tmp) continue;
 
                 tmp.text = text;
                 button.OnClick = new Button.ButtonClickedEvent();
@@ -81,11 +80,11 @@ public static class CustomPopup
                 button.gameObject.SetActive(true);
                 ActionButtons?.Add(button);
             }
-        }
 
         if (ActionButtons?.Count > 1)
         {
-            var widthSum = ActionButtons.Count * (ActionButtonPrefab.gameObject.GetComponent<BoxCollider2D>()?.size.x ?? 0);
+            var widthSum = ActionButtons.Count *
+                           (ActionButtonPrefab.gameObject.GetComponent<BoxCollider2D>()?.size.x ?? 0);
             widthSum += (ActionButtons.Count - 1) * 0.1f;
             var start = -Math.Abs(widthSum / 2);
             var each = widthSum / ActionButtons.Count;
@@ -96,17 +95,22 @@ public static class CustomPopup
                 index++;
             }
         }
+
         Fill.SetActive(true);
         InfoScreen.SetActive(true);
 
         busy = false;
     }
 
-    private static (string title, string info, List<(string, Action)>? buttons)? waitToShow;
-    public static void ShowLater(string title, string info, List<(string, Action)>? buttons) => waitToShow = (title, info, buttons);
+    public static void ShowLater(string title, string info, List<(string, Action)>? buttons)
+    {
+        waitToShow = (title, info, buttons);
+    }
 
-    private static string waitToUpdateText = string.Empty;
-    public static void UpdateTextLater(string info) => waitToUpdateText = info;
+    public static void UpdateTextLater(string info)
+    {
+        waitToUpdateText = info;
+    }
 
     public static void Update()
     {
@@ -115,84 +119,64 @@ public static class CustomPopup
             Show(waitToShow.Value.title, waitToShow.Value.info, waitToShow.Value.buttons);
             waitToShow = null;
         }
-        if (!string.IsNullOrEmpty(waitToUpdateText))
-        {
-            InfoTMP?.SetText(waitToUpdateText);
-            waitToUpdateText = string.Empty;
-        }
+
+        if (string.IsNullOrEmpty(waitToUpdateText)) return;
+        InfoTMP?.SetText(waitToUpdateText);
+        waitToUpdateText = string.Empty;
     }
 
     public static void Init()
     {
         var DOBScreen = AccountManager.Instance?.transform.FindChild("DOBEnterScreen");
-        if (DOBScreen == null)
-        {
-            Debug.LogError("DOBEnterScreen not found!");
-            return;
-        }
+        if (!DOBScreen) return;
 
-        if (Fill == null)
+        if (!Fill)
         {
             Fill = Object.Instantiate(DOBScreen.FindChild("Fill")?.gameObject);
-            if (Fill == null)
-            {
-                Debug.LogError("Failed to instantiate Fill.");
-                return;
-            }
+            if (!Fill) return;
+
             FillTemp = Fill;
             Fill.transform.SetLocalZ(-100f);
             Fill.name = "FinalSuspect Info Popup Fill";
             Fill.SetActive(false);
         }
 
-        if (InfoScreen == null)
+        if (!InfoScreen)
         {
             InfoScreen = Object.Instantiate(DOBScreen.FindChild("InfoPage")?.gameObject);
-            if (InfoScreen == null)
-            {
-                Debug.LogError("Failed to instantiate InfoScreen.");
-                return;
-            }
+            if (!InfoScreen) return;
+
             InfoScreen.transform.SetLocalZ(-110f);
             InfoScreen.name = "FinalSuspect Info Popup Page";
             InfoScreen.SetActive(false);
         }
 
-        if (TitleTMP == null)
+        if (!TitleTMP)
         {
             TitleTMP = InfoScreen.transform.FindChild("Title Text")?.GetComponent<TextMeshPro>();
-            if (TitleTMP == null)
-            {
-                Debug.LogError("Failed to find TitleTMP.");
-                return;
-            }
+            if (!TitleTMP) return;
+
             TitleTMP.transform.localPosition = new Vector3(0f, 2.3f, 3f);
             TitleTMP.DestroyTranslator();
             TitleTMP.text = "";
         }
 
-        if (InfoTMP == null)
+        if (!InfoTMP)
         {
             InfoTMP = InfoScreen.transform.FindChild("InfoText_TMP")?.GetComponent<TextMeshPro>();
-            if (InfoTMP == null)
-            {
-                Debug.LogError("Failed to find InfoTMP.");
-                return;
-            }
+            if (!InfoTMP) return;
+
             InfoTMP.GetComponent<RectTransform>().sizeDelta = new Vector2(7f, 1.3f);
             InfoTMP.transform.localScale = new Vector3(1f, 1f, 1f);
             InfoTMP.DestroyTranslator();
             InfoTMP.text = "";
         }
 
-        if (ActionButtonPrefab == null)
+        if (!ActionButtonPrefab)
         {
             ActionButtonPrefab = InfoScreen.transform.FindChild("BackButton")?.GetComponent<PassiveButton>();
-            if (ActionButtonPrefab == null)
-            {
-                Debug.LogError("Failed to find ActionButtonPrefab.");
-                return;
-            }
+            if (!ActionButtonPrefab) return;
+
             ActionButtonPrefab.gameObject.name = "ActionButtonPrefab";
             ActionButtonPrefab.transform.localScale = new Vector3(0.66f, 0.66f, 0.66f);
             ActionButtonPrefab.transform.localPosition = new Vector3(0f, -0.65f, 3f);

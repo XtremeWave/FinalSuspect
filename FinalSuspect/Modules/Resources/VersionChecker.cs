@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
+using FinalSuspect.ClientActions.FeatureItems.NameTag;
+using FinalSuspect.ClientActions.FeatureItems.Resources;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
@@ -13,70 +13,62 @@ namespace FinalSuspect.Modules.Resources;
 
 public static class VersionChecker
 {
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start)), HarmonyPriority(Priority.LowerThanNormal)]
-    public class Start
-    {
-        public static void Postfix()
-        {
-            CustomPopup.Init();
-            if (firstStart)
-            {
-                _ = CheckForUpdate();
-                _ = SpamManager.Init();
-                _ = ModNewsHistory.LoadModAnnouncements();
-                CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("LoadingWithDot"), null);
-            }
-            
-            ModUpdater.SetUpdateButtonStatus();
-            firstStart = false;
-        }
-    }
+    public static bool FirstStart = true;
 
-    public static bool firstStart = true;
+    public static bool HasUpdate;
+    public static bool ForceUpdate;
+    public static bool IsBroken;
+    public static bool IsChecked;
 
-    public static bool hasUpdate;
-    public static bool forceUpdate;
-    public static bool isBroken;
-    public static bool isChecked;
-    public static bool DebugUnused;
-    public static string versionInfoRaw = "";
-
-    public static Version latestVersion;
-    public static string showVer = "";
-    public static Version DebugVer;
+    private static Version _latestVersion;
+    public static string ShowVer = "";
     public static bool CanUpdate;
-    public static string verHead = "";
-    public static string verDate = "";
-    public static Version minimumVersion;
-    public static int creation;
-    public static string md5 = "";
+    private static string _verHead = "";
+    private static string _verDate = "";
+    private static Version _minimumVersion;
+    private static int _creation;
+    public static string MD5 = "";
+
+    private static int _retried;
+    private static bool _firstLaunch = true;
     public static bool IsSupported { get; private set; } = true;
 
-    private static int retried;
-    private static bool firstLaunch = true;
+    private static async void StartTasks()
+    {
+        try
+        {
+            _ = ModNewsHistory.LoadModAnnouncements();
+            await Task.Delay(100);
+            await SpamManager.Init();
+            await Task.Delay(100);
+            await ResourcesManager.CheckForResources();
+            await Task.Delay(100);
+            await CheckForUpdate();
+        }
+        catch
+        {
+            /* ignored */
+        }
+    }
 
     public static void Check()
     {
         var amongUsVersion = Version.Parse(Application.version);
         var lowestSupportedVersion = Version.Parse(Main.LowestSupportedVersion);
         IsSupported = amongUsVersion >= lowestSupportedVersion;
-        if (!IsSupported)
-        {
-            ErrorText.Instance.AddError(ErrorCode.UnsupportedVersion);
-        }
+        if (!IsSupported) ErrorText.Instance.AddError(ErrorCode.UnsupportedVersion);
     }
 
     private static void Retry()
     {
-        retried++;
-        CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("PleaseWait"), null);
+        _retried++;
+        CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.PleaseWait"), null);
         _ = new LateTask(() => _ = CheckForUpdate(), 0.3f, "Retry Check Update");
     }
 
     private static async Task CheckForUpdate()
     {
-        ResolutionManager.SetResolution(1920, 1080, Screen.fullScreen);
-        isChecked = false;
+        IsChecked = false;
         ModUpdater.DeleteOldFiles();
 
         foreach (var url in GetInfoFileUrlList(true))
@@ -84,32 +76,32 @@ public static class VersionChecker
             var task = GetVersionInfo(url + "fs_info.json");
             await task;
             if (!task.Result) continue;
-            isChecked = true;
+            IsChecked = true;
             break;
         }
 
         _ = new MainThreadTask(() =>
         {
-            Msg("Check For Update: " + isChecked, "CheckRelease");
-            isBroken = !isChecked;
-            if (isChecked)
+            Msg("Check For Update: " + IsChecked, "CheckRelease");
+            IsBroken = !IsChecked;
+            if (IsChecked)
             {
-                Info("Has Update: " + hasUpdate, "CheckRelease");
-                Info("Latest Version: " + latestVersion, "CheckRelease");
-                Info("Minimum Version: " + minimumVersion, "CheckRelease");
-                Info("Creation: " + creation, "CheckRelease");
-                Info("Force Update: " + forceUpdate, "CheckRelease");
-                Info("File MD5: " + md5, "CheckRelease");
+                Info("Has Update: " + HasUpdate, "CheckRelease");
+                Info("Latest Version: " + _latestVersion, "CheckRelease");
+                Info("Minimum Version: " + _minimumVersion, "CheckRelease");
+                Info("Creation: " + _creation, "CheckRelease");
+                Info("Force Update: " + ForceUpdate, "CheckRelease");
+                Info("File MD5: " + MD5, "CheckRelease");
                 Info("Github Url: " + downloadUrl_github, "CheckRelease");
                 Info("Gitee Url: " + downloadUrl_gitee, "CheckRelease");
-                Info("Api Url: " + downloadUrl_xtremeapi, "CheckRelease");
 
-                if (firstLaunch || isBroken)
+                if (_firstLaunch || IsBroken)
                 {
-                    firstLaunch = false;
+                    _firstLaunch = false;
                     var annos = ModUpdater.announcement[TranslationController.Instance.currentLanguage.languageID];
-                    if (isBroken) CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
-                        [(GetString(StringNames.ExitGame), Application.Quit)]);
+                    if (IsBroken)
+                        CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
+                            [(GetString(StringNames.ExitGame), Application.Quit)]);
                     else
                         CustomPopup.Show(GetString(StringNames.AnnouncementLabel), annos,
                             [(GetString(StringNames.Okay), null)]);
@@ -117,14 +109,18 @@ public static class VersionChecker
             }
             else
             {
-                if (retried >= 2) 
-                    CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedExit"),
+                if (_retried >= 2)
+                    CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("UpdateCheck.Failed_Exit"),
                         [(GetString(StringNames.Okay), null)]);
                 else
-                    CustomPopup.Show(GetString("updateCheckPopupTitle"), GetString("updateCheckFailedRetry"),
+                    CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("UpdateCheck.Failed_Retry"),
                         [(GetString("Retry"), Retry)]);
             }
+
             ModUpdater.SetUpdateButtonStatus();
+            VersionShowerStartPatch.VisitText.text = IsChecked
+                ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.FSColorHex)
+                : GetString("RetrieveVersionInfoFailed");
         }, "Check For Update");
     }
 
@@ -133,61 +129,59 @@ public static class VersionChecker
         Msg(url, "CheckRelease");
         try
         {
-            string result;
-            if (url.StartsWith("file:///"))
-            {
-                result = await File.ReadAllTextAsync(url[8..]);
-            }
-            else
-            {
-                using HttpClient client = new();
-                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect Updater");
-                client.DefaultRequestHeaders.Add("Referer", "gitee.com");
-                using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
-                if (!response.IsSuccessStatusCode)
-                {
-                    Error($"Failed: {response.StatusCode}", "CheckRelease");
-                    return false;
-                }
-                
-                result = await response.Content.ReadAsStringAsync();
-                result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
-            }
+            var task = JsonHelper.GetJsonStringAsync(url);
+            await task;
+            var (result, succeed) = task.Result;
+            if (!succeed) return false;
 
             var data = JObject.Parse(result);
 
-            verHead = new string(data["verHead"]?.ToString());
-
-            DebugVer = new Version(data["DebugVer"]?.ToString() ?? string.Empty);
+            _verHead = new string(data["verHead"]?.ToString());
 
             CanUpdate = bool.Parse(new string(data["CanUpdate"]?.ToString()));
 
-            verDate = new string(data["verDate"]?.ToString());
-            md5 = data["md5"]?.ToString();
-            latestVersion = new Version(data["version"]?.ToString() ?? string.Empty);
+            _verDate = new string(data["verDate"]?.ToString());
+            MD5 = data["md5"]?.ToString();
+            _latestVersion = new Version(data["version"]?.ToString() ?? string.Empty);
 
-            showVer = $"{verHead}_{verDate}";
+            ShowVer = $"{_verHead}_{_verDate}";
 
             var minVer = data["minVer"]?.ToString();
-            if (minVer != null) minimumVersion = minVer.ToLower() == "latest" ? latestVersion : new Version(minVer);
-            creation = int.Parse(data["creation"]?.ToString() ?? string.Empty);
-            isBroken = data["allowStart"]?.ToString().ToLower() != "true";
+            if (minVer != null) _minimumVersion = minVer.ToLower() == "latest" ? _latestVersion : new Version(minVer);
+            _creation = int.Parse(data["creation"]?.ToString() ?? string.Empty);
+            IsBroken = data["allowStart"]?.ToString().ToLower() != "true";
 
             var announcement = data["announcement"].Cast<JObject>();
             foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
                 ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
-            downloadUrl_gitee = downloadUrl_gitee.Replace("{showVer}", showVer);
-            hasUpdate = Main.version < latestVersion && creation > Main.PluginCreation;
-            forceUpdate = Main.version < minimumVersion || creation > Main.PluginCreation;
-#if DEBUG
-            DebugUnused = Main.version < DebugVer;
-            hasUpdate = forceUpdate = DebugUnused;
-#endif
+            downloadUrl_gitee = downloadUrl_gitee.Replace("{showVer}", ShowVer);
+            HasUpdate = Main.version < _latestVersion && _creation > Main.PluginCreation;
+            ForceUpdate = Main.version < _minimumVersion || _creation > Main.PluginCreation;
+
             return true;
         }
         catch
         {
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
+    [HarmonyPriority(Priority.LowerThanNormal)]
+    public class Start
+    {
+        public static void Postfix()
+        {
+            CustomPopup.Init();
+            if (FirstStart && !Main.OfflineMode.Value)
+            {
+                StartTasks();
+                CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);
+            }
+
+            NameTagManager.ReloadTag(null);
+            ModUpdater.SetUpdateButtonStatus();
+            FirstStart = false;
         }
     }
 }

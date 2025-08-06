@@ -1,52 +1,33 @@
 ﻿using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
-using Il2CppSystem;
 using UnityEngine;
+using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
 
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(AccountTab), nameof(AccountTab.Awake))]
 public static class AwakeFriendCodeUIPatch
 {
-    public static GameObject FriendsButton;
-
     public static void Prefix()
     {
         var BarSprit = GameObject.Find("BarSprite");
         if (BarSprit)
         {
-            GameObject CustomBarSprit = new();
-            CustomBarSprit.transform.SetParent(BarSprit.transform.parent);
-            CustomBarSprit.transform.localScale = BarSprit.transform.localScale;
-            CustomBarSprit.transform.localPosition = BarSprit.transform.localPosition;
-
-            void ResetParent(GameObject obj)
-            {
-                obj.transform.SetParent(CustomBarSprit.transform);
-            }
-            BarSprit.ForEachChild((Action<GameObject>)ResetParent);
-            BarSprit.SetActive(false);
-        }
-
-        var newRequest = GameObject.Find("NewRequest");
-        if (newRequest != null)
-        {
-            newRequest.transform.localPosition -= new Vector3(0f, 0f, 10f);
-            newRequest.transform.localScale = new Vector3(0.8f, 1f, 1f);
+            BarSprit.GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
         FriendsButton = GameObject.Find("FriendsButton");
         FriendsButton.transform.FindChild("Highlight").FindChild("NewRequestActive").FindChild("Background").gameObject
-            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.5f);
+            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.3f);
         FriendsButton.transform.FindChild("Inactive").FindChild("NewRequestInactive").FindChild("Background").gameObject
-            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.5f);
+            .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.3f);
     }
 }
 
 [HarmonyPatch(typeof(AccountManager), nameof(AccountManager.Awake))]
 public static class AwakeAccountManager
 {
-    public static Sprite[] AllRoleRoleIllustration =
+    public static readonly Sprite[] AllRoleRoleIllustration =
     [
         LoadSprite("CI_Crewmate.png", 450f),
         LoadSprite("CI_HnSEngineer.png", 450f),
@@ -61,11 +42,13 @@ public static class AwakeAccountManager
         LoadSprite("CI_Shapeshifter.png", 450f),
         LoadSprite("CI_Phantom.png", 450f),
         LoadSprite("CI_ImpostorGhost.png", 450f)
-    ]; 
+    ];
+
     private static int currentIndex;
 
-    static GameObject crewpet_walk0001;
-    static GameObject ModLoading;
+    private static GameObject crewpet_walk0001;
+    private static GameObject ModLoading;
+
     public static void Prefix(AccountManager __instance)
     {
         try
@@ -80,19 +63,25 @@ public static class AwakeAccountManager
             ModLoading = new GameObject("ModLoading");
             ModLoading.transform.SetParent(crewpet_walk0001.transform.parent);
             ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
-            ModLoading.transform.localPosition = new Vector3(4.5f, - 2.4f, - 1f);
+            ModLoading.transform.localPosition = new Vector3(4.5f, -2.4f, -1f);
             var Sprite = ModLoading.AddComponent<SpriteRenderer>();
             Sprite.color = Color.white;
             Sprite.flipX = false;
             __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
             crewpet_walk0001.SetActive(false);
+
+            var ap = ModLoading.AddComponent<AspectPosition>();
+            ap.Alignment = AspectPosition.EdgeAlignments.RightBottom;
+            ap.DistanceFromEdge = new Vector3(0.6f, 0.5f, -1000);
+            ap.updateAlways = true;
         }
         catch
         {
             /* ignored */
         }
     }
-    public static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
+
+    private static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
     {
         while (true)
         {
@@ -107,6 +96,7 @@ public static class AwakeAccountManager
                 spriter.color = Color.white.AlphaMultiplied(alpha);
                 yield return null;
             }
+
             currentIndex = (currentIndex + 1) % AllRoleRoleIllustration.Length;
 
             yield return new WaitForSeconds(1f);

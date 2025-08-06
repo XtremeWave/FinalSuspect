@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -7,29 +5,35 @@ namespace FinalSuspect.Modules.Core.Plugin;
 
 public class ErrorText : MonoBehaviour
 {
-    #region Singleton
-    public static ErrorText Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
-    private static ErrorText _instance;
+    public TextMeshPro Text;
+    public Camera Camera;
+    public Vector3 TextOffset = new(0, 0.3f, -1000f);
 
-    private void Awake()
+    public bool CheatDetected;
+    public bool SBDetected;
+    private readonly List<ErrorData> AllErrors = [];
+
+    public void Update()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
+        AllErrors.ForEach(err => err.IncreaseTimer());
+        var ToRemove = AllErrors.Where(err => err.ErrorLevel <= 1 && 30f < err.Timer);
+        var errorDatas = ToRemove.ToList();
+        if (!errorDatas.Any()) return;
+        AllErrors.RemoveAll(errorDatas.Contains);
+        UpdateText();
     }
-    #endregion
+
+    public void LateUpdate()
+    {
+        if (!Text.enabled) return;
+
+        if (!Camera)
+            Camera = !HudManager.InstanceExists ? Camera.main : HudManager.Instance.PlayerCam.GetComponent<Camera>();
+        if (Camera)
+            transform.position =
+                AspectPosition.ComputeWorldPosition(Camera, AspectPosition.EdgeAlignments.Top, TextOffset);
+    }
+
     public static void Create(TextMeshPro baseText)
     {
         var Text = Instantiate(baseText);
@@ -44,45 +48,20 @@ public class ErrorText : MonoBehaviour
         Text.outlineColor = Color.black;
         Text.alignment = TextAlignmentOptions.Top;
     }
-    public TextMeshPro Text;
-    public Camera Camera;
-    public List<ErrorData> AllErrors = [];
-    public Vector3 TextOffset = new(0, 0.3f, -1000f);
-    public void Update()
-    {
-        AllErrors.ForEach(err => err.IncreaseTimer());
-        var ToRemove = AllErrors.Where(err => err.ErrorLevel <= 1 && 30f < err.Timer);
-        var errorDatas = ToRemove.ToList();
-        if (errorDatas.Any())
-        {
-            AllErrors.RemoveAll(errorDatas.Contains);
-            UpdateText();
-        }
-    }
-    public void LateUpdate()
-    {
-        if (!Text.enabled) return;
 
-        if (Camera == null)
-            Camera = !HudManager.InstanceExists ? Camera.main : HudManager.Instance.PlayerCam.GetComponent<Camera>();
-        if (Camera != null)
-        {
-            transform.position = AspectPosition.ComputeWorldPosition(Camera, AspectPosition.EdgeAlignments.Top, TextOffset);
-        }
-    }
     public void AddError(ErrorCode code)
     {
         var error = new ErrorData(code);
         //if (0 < error.ErrorLevel)
         //    Error($"エラー発生: {error}: {error.Message}", "ErrorText");
 
-        if (!AllErrors.Any(e => e.Code == code))
-        {
+        if (AllErrors.All(e => e.Code != code))
             //まだ出ていないエラー
             AllErrors.Add(error);
-        }
+
         UpdateText();
     }
+
     public void UpdateText()
     {
         var text = "";
@@ -92,6 +71,7 @@ public class ErrorText : MonoBehaviour
             text += $"{err}: {err.Message}\n";
             if (maxLevel < err.ErrorLevel) maxLevel = err.ErrorLevel;
         }
+
         if (maxLevel == 0)
         {
             Text.enabled = false;
@@ -100,27 +80,28 @@ public class ErrorText : MonoBehaviour
         {
             text += $"{GetString($"ErrorLevel{maxLevel}")}";
             if (CheatDetected)
-                text = SBDetected ? GetString("FAC.CheatDetected.HighLevel") : GetString("FAC.CheatDetected.LowLevel");
+                text = SBDetected ? GetString("CheatDetected.HighLevel") : GetString("FAC.CheatDetected.LowLevel");
             Text.enabled = true;
         }
+
         if (IsInGame && maxLevel != 3 && !CheatDetected)
             text += $"\n{GetString("TerminateCommand")}: Shift+L+Enter";
         Text.text = text;
     }
+
     public void Clear()
     {
         AllErrors.RemoveAll(err => err.ErrorLevel != 3);
         UpdateText();
     }
 
-    public class ErrorData
+    private class ErrorData
     {
         public readonly ErrorCode Code;
-        public readonly int ErrorType1;
-        public readonly int ErrorType2;
         public readonly int ErrorLevel;
-        public float Timer { get; private set; }
-        public string Message => GetString(ToString());
+        private readonly int ErrorType1;
+        private readonly int ErrorType2;
+
         public ErrorData(ErrorCode code)
         {
             Code = code;
@@ -129,33 +110,60 @@ public class ErrorText : MonoBehaviour
             ErrorLevel = (int)code - (int)code / 10 * 10;
             Timer = 0f;
         }
+
+        public float Timer { get; private set; }
+        public string Message => GetString(ToString());
+
         public override string ToString()
         {
             // ERR-xxx-yyy-z
             return $"ERR-{ErrorType1:000}-{ErrorType2:000}-{ErrorLevel:0}";
         }
-        public void IncreaseTimer() => Timer += Time.deltaTime;
+
+        public void IncreaseTimer()
+        {
+            Timer += Time.deltaTime;
+        }
     }
 
-    public bool CheatDetected;
-    public bool SBDetected;
+    #region Singleton
+
+    public static ErrorText Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+
+    #endregion
 }
+
 public enum ErrorCode
 {
     //xxxyyyz: ERR-xxx-yyy-z
-    //  xxx: エラー大まかなの種類 (HUD関連, 追放処理関連など)
-    //  yyy: エラーの詳細な種類 (BoutyHunterの処理, SerialKillerの処理など)
-    //  z:   深刻度
-    //    0: 処置不要 (非表示)
-    //    1: 正常に動作しなければ廃村 (一定時間で非表示)
-    //    2: 廃村を推奨 (廃村で非表示)
-    //    3: ユーザー側では対処不能 (消さない)
-    // ==========
-    // 001 Main
-    Main_DictionaryError = 0010003, // 001-000-3 Main Dictionary Error
-    OptionIDDuplicate = 001_010_3, // 001-010-3 オプションIDが重複している(DEBUGビルド時のみ)
-    // 002 サポート関連
-    UnsupportedVersion = 002_000_1,  // 002-000-1 AmongUsのバージョンが古い
+    //  xxx: 错误大类
+    //  yyy: 错误细类
+    //  z:   严重等级
+    //    0: 无需处理 (不显示)
+    //    1: 运行异常需终止对局 (短暂显示)
+    //    2: 建议终止对局 (终止后隐藏)
+    //    3: 用户无法处理 (需持续显示)
+    // =============
+    // 001 主系统
+    Main_DictionaryError = 0010003, // 001-000-3 主字典错误
+    OptionIDDuplicate = 001_010_3, // 001-010-3 选项ID重复(仅调试版本生效)
+
+    // 002 兼容支持
+    UnsupportedVersion = 002_000_1, // 002-000-1 AmongUs版本过旧
+
     // ==========
     // 000 Test
     NoError = 0000000, // 000-000-0 No Error
@@ -164,5 +172,5 @@ public enum ErrorCode
     TestError2 = 0009202, // 000-920-2 Test Error 2
     TestError3 = 0009303, // 000-930-3 Test Error 3
     CheatDetected = 000_666_2, // 000-666-2 疑似存在作弊玩家
-    SBDetected = 000_666_1, // 000-666-1 傻逼外挂司马东西
+    SBDetected = 000_666_1 // 000-666-1 傻逼外挂司马东西
 }

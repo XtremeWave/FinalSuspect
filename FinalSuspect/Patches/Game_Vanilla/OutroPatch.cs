@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using AmongUs.Data;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Templates;
 using TMPro;
 using UnityEngine;
@@ -10,22 +10,25 @@ using UnityEngine;
 namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
-class AmongUsClientEndGamePatch
+internal class AmongUsClientEndGamePatch
 {
     public static Dictionary<byte, string> SummaryText = new();
-    public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ref EndGameResult endGameResult)
+
+    public static void Postfix()
     {
+        FinalGameData.LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
         SummaryText = new Dictionary<byte, string>();
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        foreach (var data in FinalPlayerData.AllPlayerData)
             SummaryText[data.PlayerId] = SummaryTexts(data.PlayerId);
     }
 }
+
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
-class SetEverythingUpPatch
+internal class SetEverythingUpPatch
 {
     private static TextMeshPro roleSummary;
     private static SimpleButton showHideButton;
-    static bool DidHumansWin;
+    private static bool DidHumansWin;
 
     public static void Prefix()
     {
@@ -36,31 +39,29 @@ class SetEverythingUpPatch
     {
         var showInitially = Main.ShowResults.Value;
 
-        //#######################################
-        //          ==勝利陣営表示==
-        //#######################################
         var WinnerTextObject = Object.Instantiate(__instance.WinText.gameObject);
-        WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x, __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
+        WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x,
+            __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
         WinnerTextObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-        var WinnerText = WinnerTextObject.GetComponent<TextMeshPro>(); // WinTextと同じ型のコンポーネントを取得
-        WinnerText.fontSizeMin = 3f;
+        var winnerText = WinnerTextObject.GetComponent<TextMeshPro>();
+        winnerText.fontSizeMin = 3f;
 
-        var CustomWinnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
-        __instance.BackgroundBar.material.color = __instance.WinText.color = WinnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
-        __instance.WinText.text = DidHumansWin ? GetString("CrewmatesWin") : GetString("ImpostorsWin");
-        WinnerText.text = DidHumansWin ? GetString("CrewmatesWinBlurb") : GetString("ImpostorsWinBlurb");
+        var winnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
+        __instance.BackgroundBar.material.color = __instance.WinText.color =
+            winnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
+        __instance.WinText.text = DidHumansWin ? GetString("Outro.Crews_Win") : GetString("Outro.Imps_Win");
+        winnerText.text = DidHumansWin ? GetString("Outro.Crews_WinBlurb") : GetString("Outro.Imps_WinBlurb");
 
         __instance.WinText.gameObject.SetActive(!showInitially);
         WinnerTextObject.SetActive(!showInitially);
 
-        //ShowResult:
-        showHideButton = 
+        showHideButton =
             new SimpleButton(
                 __instance.transform,
                 "ShowHideResultsButton",
-                new Vector3(-4.5f, 2.6f, -14f),  // 比 BackgroundLayer(z = -13) 更靠前
-                new Color32(209, 190, 0, byte.MaxValue),
-                new Color32(byte.MaxValue, byte.MaxValue, 0, byte.MaxValue),
+                new Vector3(-4.5f * GetResolutionOffset(), 2.6f, -14f), // 比 BackgroundLayer(z = -13) 更靠前
+                FinalGameData.LastLocalPlayerRoleColor,
+                FinalGameData.LastLocalPlayerRoleColor.ShadeColor(0.1f),
                 () =>
                 {
                     var setToActive = !roleSummary.gameObject.activeSelf;
@@ -68,33 +69,33 @@ class SetEverythingUpPatch
                     Main.ShowResults.Value = setToActive;
                     __instance.WinText.gameObject.SetActive(!setToActive);
                     WinnerTextObject.SetActive(!setToActive);
-                    showHideButton.Label.text = GetString(setToActive ? "HideResults" : "ShowResults");
+                    showHideButton.Label.text = GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");
                 },
-                GetString(showInitially ? "HideResults" : "ShowResults"))
+                GetString(showInitially ? "Summary.HideResults" : "Summary.ShowResults"))
             {
                 Scale = new Vector2(1.5f, 0.5f),
-                FontSize = 2f,
+                FontSize = 2f
             };
-        var lastgameresult = DidHumansWin ? GetString("CrewsWin") : GetString("ImpsWin");
-        HudManagerPatch.LastGameResult = lastgameresult;
-        StringBuilder sb = new($"{GetString("RoleSummaryText")}{lastgameresult}");
-        var gamecode =  StringHelper.ColorString(
-            ColorHelper.ModColor32, 
-            DataManager.Settings.Gameplay.StreamerMode?  new string('*', HudManagerPatch.LastRoomCode.Length): HudManagerPatch.LastRoomCode);
-        sb.Append("\n"+ HudManagerPatch.LastServer +"  "+gamecode);
-        sb.Append("\n" + GetString("HideSummaryTextToShowWinText"));
+        var lastGameResult = DidHumansWin ? GetString("Summary.CrewsWin") : GetString("Summary.ImpsWin");
+        FinalGameData.LastGameResult = lastGameResult;
+        StringBuilder sb = new($"{GetString("Summary.Text")}{lastGameResult}");
+        var gameCode = StringHelper.ColorString(
+            ColorHelper.FSColor,
+            DataManager.Settings.Gameplay.StreamerMode
+                ? new string('*', FinalGameData.LastRoomCode.Length)
+                : FinalGameData.LastRoomCode);
+        sb.Append("\n" + FinalGameData.LastServer + "  " + gameCode);
+        sb.Append("\n" + GetString("Tip.HideSummaryTextToShowWinText"));
 
         StringBuilder sb2 = new();
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
-        {
-            sb2.Append($"\n<color={CustomWinnerColor}>★</color> ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
-        }
-        foreach (var data in XtremePlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
-        {
-            sb2.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
-        }
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
+            sb2.Append($"\n<color={winnerColor}>★</color> ")
+                .Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
 
-        HudManagerPatch.LastGameData = sb2.ToString();
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
+            sb2.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
+
+        FinalGameData.LastGameData = sb2.ToString();
         sb.Append(sb2);
         HudManagerPatch.Init();
         roleSummary = TMPTemplate.Create(
@@ -103,14 +104,14 @@ class SetEverythingUpPatch
             Color.white,
             1.25f,
             TextAlignmentOptions.TopLeft,
-            setActive: showInitially,
-            parent: showHideButton.Button.transform);
+            showInitially,
+            showHideButton.Button.transform);
         roleSummary.transform.localPosition = new Vector3(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
         roleSummary.fontStyle = FontStyles.Bold;
         roleSummary.SetOutlineColor(Color.black);
         roleSummary.SetOutlineThickness(0.15f);
- 
-        XtremePlayerData.DisposeAll();
+
+        FinalPlayerData.DisposeAll();
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
@@ -13,15 +12,15 @@ public class ShapeShifterHandler : IRpcHandler
     [
         (byte)RpcCalls.Shapeshift,
         (byte)RpcCalls.CheckShapeshift,
-        (byte)RpcCalls.RejectShapeshift,
+        (byte)RpcCalls.RejectShapeshift
     ];
-    
+
     public bool HandleLobby(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
         return true;
     }
-    
+
     public bool HandleGame_All(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

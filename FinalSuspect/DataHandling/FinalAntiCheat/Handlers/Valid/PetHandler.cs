@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -17,6 +16,11 @@ public class PetHandler : IRpcHandler
     public bool HandleAll(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        return !sender.cosmetics.HasPetEquipped() || reader.Length < 4;
+        return false;
+    }
+
+    public int MaxiReceivedNumPerSecond()
+    {
+        return 20;
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FinalSuspect.Attributes;
+﻿using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Patches.System;
 using UnityEngine;
@@ -9,12 +7,11 @@ namespace FinalSuspect.Modules.Core.Game;
 
 public static class ServerAddManager
 {
-    private static ServerManager serverManager = DestroyableSingleton<ServerManager>.Instance;
+    private static readonly ServerManager serverManager = DestroyableSingleton<ServerManager>.Instance;
 
     [PluginModuleInitializer]
     public static void Init()
     {
-        serverManager.AvailableRegions = ServerManager.DefaultRegions;
         List<IRegionInfo> regionInfos =
         [
             CreateHttp("au-us.niko233.me", "Niko233(NA)", 443, true),
@@ -24,14 +21,15 @@ public static class ServerAddManager
 
         if (IsChineseUser)
         {
-            regionInfos.Add(CreateHttp("au-cn.niko233.me", "Niko233(CN)", 443, true));
-
-            regionInfos.Add(CreateHttp("nb.8w.fan", "<color=#00FF00>新猫服</color><color=#ffff00>[宁波]</color>", 443, true));
-            regionInfos.Add(CreateHttp("bj.8w.fan", "<color=#9900CC>新猫服</color><color=#ffff00>[北京]</color>", 443, true));
-            regionInfos.Add(CreateHttp("player.fangkuai.fun", "<color=#00ffff>方块</color><color=#FF44FF>宿迁私服</color>", 443, true));
-            regionInfos.Add(CreateHttp("auhk.fangkuai.fun", "<color=#00ffff>方块</color><color=#FFC0CB>香港私服</color>", 443, true));
-
+            regionInfos.Add(CreateHttp("au-cn.niko233.me", "Niko233(CN)", 443,
+                true));
+            regionInfos.Add(CreateHttp("player.fangkuai.fun", "<color=#00ffff>方块</color><color=#FF44FF>宿迁私服</color>",
+                443,
+                true));
+            regionInfos.Add(CreateHttp("auhk.fangkuai.fun", "<color=#00ffff>方块</color><color=#FFC0CB>香港私服</color>", 443,
+                true));
         }
+
         regionInfos.Add(CreateHttp("au-as.duikbo.at", "Modded Asia (MAS)", 443, true));
         regionInfos.Add(CreateHttp("www.aumods.org", "Modded NA (MNA)", 443, true));
         regionInfos.Add(CreateHttp("au-eu.duikbo.at", "Modded EU (MEU)", 443, true));
@@ -42,6 +40,7 @@ public static class ServerAddManager
 
         SetServerName(defaultRegion.Name);
     }
+
     public static void SetServerName(string serverName = "")
     {
         if (serverName == "") serverName = ServerManager.Instance.CurrentRegion.Name;
@@ -59,29 +58,26 @@ public static class ServerAddManager
             "Niko233(AS)" => "Niko[AS]",
             "Niko233(EU)" => "Niko[EU]",
             "Niko233(CN)" => "Niko[CN]",
-            "XtremeWave[HongKong]" => "XW[HK]",
-            _ => serverName,
+            _ => serverName
         };
 
-        if ((TranslationController.Instance?.currentLanguage?.languageID ?? SupportedLangs.SChinese) is SupportedLangs.SChinese or SupportedLangs.TChinese)
-        {
+        if ((TranslationController.Instance?.currentLanguage?.languageID ?? SupportedLangs.SChinese) is
+            SupportedLangs.SChinese or SupportedLangs.TChinese)
             name = name switch
             {
                 "Asia" => "亚服",
                 "Europe" => "欧服",
                 "North America" => "北美服",
                 "NA" => "北美服",
-                "XW[HK]" => "XW[香港]",
-                _ => name,
+                _ => name
             };
-        }
 
         var color = GetServerColor(serverName);
         //Cloud.ServerName = name;
         PingTrackerUpdatePatch.ServerName = StringHelper.ColorString(color, name);
     }
 
-    public static Color GetServerColor(string serverName)
+    private static Color GetServerColor(string serverName)
     {
         var color = serverName switch
         {
@@ -91,21 +87,20 @@ public static class ServerAddManager
             "Modded Asia (MAS)" => new Color32(255, 132, 0, 255),
             "Modded NA (MNA)" => new Color32(255, 132, 0, 255),
             "Modded EU (MEU)" => new Color32(255, 132, 0, 255),
-            "<color=#00FF00>新猫服</color><color=#ffff00>[宁波]</color>" => new Color32(0, 255, 0, 255),
-            "<color=#9900CC>新猫服</color><color=#ffff00>[北京]</color>" => new Color32(153, 0, 204, 255),
             "<color=#00ffff>方块</color><color=#FF44FF>宿迁私服</color>" => new Color32(0, 255, 255, 255),
             "<color=#00ffff>方块</color><color=#FFC0CB>香港私服</color>" => new Color32(0, 255, 255, 255),
             "Niko233(NA)" => new Color32(255, 224, 0, 255),
             "Niko233(AS)" => new Color32(255, 224, 0, 255),
             "Niko233(EU)" => new Color32(255, 224, 0, 255),
             "Niko233(CN)" => new Color32(255, 224, 0, 255),
-            "XtremeWave[HongKong]" => ColorHelper.TeamColor32,
 
-            _ => new Color32(255, 255, 255, 255),
+            _ => new Color32(255, 255, 255, 255)
         };
+
         return color;
     }
-    public static IRegionInfo CreateHttp(string ip, string name, ushort port, bool ishttps)
+
+    private static IRegionInfo CreateHttp(string ip, string name, ushort port, bool ishttps)
     {
         var serverIp = (ishttps ? "https://" : "http://") + ip;
         var serverInfo = new ServerInfo(name, serverIp, port, false);

@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using StringWriter = Il2CppSystem.IO.StringWriter;
 
 namespace FinalSuspect.Modules.Features.CheckingandBlocking;
 
 public static class SpamManager
 {
-    private static readonly string BANEDWORDS_FILE_PATH = LocalPath_Data + "BanWords.json";
-    public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
-    public static List<string> BanWords = [];
+    private static List<string> BanWords = [];
 
     private static readonly List<string> Targets =
     [
@@ -23,23 +21,19 @@ public static class SpamManager
         "FACList.json",
         $"BanWords/{GetUserLangByRegion()}.json"
     ];
-    
-    //[PluginModuleInitializer]
+
     public static async Task Init()
     {
         try
         {
-            CreateIfNotExists();
             BanWords = ReturnAllNewLinesInFile(BANEDWORDS_FILE_PATH);
             foreach (var target in Targets)
+            foreach (var url in GetInfoFileUrlList())
             {
-                foreach (var url in GetInfoFileUrlList())
-                {
-                    var task = GetConfigs(url + "Assets/Configs/" + target, target);
-                    await task;
-                    if (!task.Result) continue;
-                    break;
-                }
+                var task = GetConfigs(url + "Assets/Configs/" + target, target);
+                await task;
+                if (!task.Result) continue;
+                break;
             }
         }
         catch (Exception ex)
@@ -48,103 +42,46 @@ public static class SpamManager
         }
     }
 
-    private static void CreateIfNotExists()
+
+    public static List<string> ReturnAllNewLinesInFile(string filepath)
     {
-        if (!File.Exists(BANEDWORDS_FILE_PATH))
+        if (!File.Exists(filepath)) return [];
+        var json = File.ReadAllText(filepath);
+        List<string> sendList;
+        try
         {
-            try
-            {
-                if (File.Exists(@"./BanWords.json")) 
-                    File.Move(@"./BanWords.json", BANEDWORDS_FILE_PATH);
-                else
-                {
-                    var fileName = GetUserLangByRegion().ToString();
-                    Warn($"Create New BanWords: {fileName}", "SpamManager");
-                }
-            }
-            catch (Exception ex)
-            {
-                Exception(ex, "SpamManager");
-            }
+            sendList = JsonConvert.DeserializeObject<List<string>>(json) ?? [];
+        }
+        catch
+        {
+            sendList = [];
         }
 
-        if (File.Exists(DENY_NAME_LIST_PATH)) return;
-        {
-            try
-            {
-                if (File.Exists(@"./DenyName.json")) 
-                    File.Move(@"./DenyName.json", DENY_NAME_LIST_PATH);
-            }
-            catch (Exception ex)
-            {
-                Exception(ex, "SpamManager");
-            }
-        }
-    }
-
-    private static List<string> ReturnAllNewLinesInFile(string filename)
-    {
-        if (!File.Exists(filename)) return [];
-        using StreamReader sr = new(filename, Encoding.GetEncoding("UTF-8"));
-        string text;
-        List<string> sendList = [];
-        while ((text = sr.ReadLine()) != null)
-            if (text.Length >= 1 && text != "")
-                sendList.Add(text.Replace("\\n", "\n").ToLower());
         return sendList;
     }
-    
+
     private static async Task<bool> GetConfigs(string url, string name)
     {
         try
         {
-            string result;
-            if (url.StartsWith("file:///"))
-            {
-                try
-                {
-                    // Windows 格式
-                    var filePath = url[8..].Replace('/', '\\');
-                    result = await File.ReadAllTextAsync(filePath);
-                }
-                catch (FileNotFoundException)
-                {
-                    Warn($"服务器文件缺失: {url[8..]}", "SpamManager");
-                    return false;
-                }
-                catch (Exception ex)
-                {
-                    Error($"读取本地文件失败: {ex.Message}", "SpamManager");
-                    return false;
-                }
-            }
-            else
-            {
-                using HttpClient client = new();
-                client.DefaultRequestHeaders.Add("User-Agent", "FinalSuspect" + name);
-                client.DefaultRequestHeaders.Add("Referer", "gitee.com");
-                
-                using var response = await client.GetAsync(new Uri(url), HttpCompletionOption.ResponseContentRead);
-                if (!response.IsSuccessStatusCode)
-                {
-                    Error($"服务器请求失败 [{url}]: {response.StatusCode}", "SpamManager");
-                    return false;
-                }
-                result = await response.Content.ReadAsStringAsync();
-                result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
-            }
+            var task = JsonHelper.GetJsonStringAsync(url);
+            await task;
+            var (result, succeed) = task.Result;
+            if (!succeed) return false;
+
+            var data = JObject.Parse(result);
             try
             {
-                var data = JObject.Parse(result);
                 ProcessBanWords(data);
                 ProcessDenyNames(data);
                 ProcessFacList(data);
             }
-            catch (JsonException ex)
+            catch (Exception ex)
             {
-                Error($"JSON 解析失败: {ex.Message}", "SpamManager");
+                Error($"JSON 解析失败: {ex.Message}\nData: {result[..Math.Min(100, result.Length)]}", "SpamManager");
                 return false;
             }
+
             await Task.Delay(100);
             return true;
         }
@@ -163,7 +100,8 @@ public static class SpamManager
             .Except(BanWords, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        UpdateBanWords(newWords);
+        BanWords.AddRange(newWords);
+        Update(newWords, BANEDWORDS_FILE_PATH);
     }
 
     private static void ProcessDenyNames(JObject data)
@@ -175,10 +113,7 @@ public static class SpamManager
             .Except(existingNames, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        if (newNames.Count > 0)
-        {
-            File.AppendAllLines(DENY_NAME_LIST_PATH, newNames);
-        }
+        Update(newNames, DENY_NAME_LIST_PATH);
     }
 
     private static void ProcessFacList(JObject data)
@@ -195,28 +130,23 @@ public static class SpamManager
 
     private static List<string> GetTokens(JToken token)
     {
-        if (token is not { Type: JTokenType.Array })
-        {
-            return [];
-        }
-        
+        if (token is not { Type: JTokenType.Array }) return [];
+
         var jarray = token.Cast<JArray>();
         var tokens = new List<string>();
-        for (var i = 0; i < jarray.Count; i++)
-        {
-            tokens.Add(jarray[i].ToString());
-        }
- 
+        for (var i = 0; i < jarray.Count; i++) tokens.Add(jarray[i].ToString());
+
         return
         [
             .. tokens
                 .Select(item => item?.ToString())
-                .Where(str => !string.IsNullOrEmpty(str))];
+                .Where(str => !string.IsNullOrEmpty(str))
+        ];
     }
-    
+
     private static string DecodeUnicodeEscapes(string input)
     {
-        return Regex.Replace(input, @"\\u([0-9A-Fa-f]{4})", match => 
+        return Regex.Replace(input, @"\\u([0-9A-Fa-f]{4})", match =>
         {
             try
             {
@@ -228,7 +158,7 @@ public static class SpamManager
             }
         });
     }
-    
+
     private static string DecryptBase64(string cipherText)
     {
         try
@@ -238,16 +168,43 @@ public static class SpamManager
         }
         catch
         {
-            return cipherText; 
+            return cipherText;
         }
     }
-    
-    private static void UpdateBanWords(List<string> newWords)
+
+    private static void Update(List<string> newWords, string path)
     {
         if (newWords.Count == 0) return;
 
-        BanWords.AddRange(newWords);
-        File.AppendAllLines(BANEDWORDS_FILE_PATH, newWords);
+        List<string> updateWords;
+        if (!File.Exists(path)) return;
+
+        try
+        {
+            var json = File.ReadAllText(path);
+            updateWords = JsonConvert.DeserializeObject<List<string>>(json) ?? [];
+        }
+        catch
+        {
+            updateWords = [];
+        }
+
+        var allWords = updateWords.Union(newWords).ToList();
+
+        _ = new MainThreadTask(() =>
+        {
+            StringWriter sw = new();
+            JsonWriter jsonWriter = new JsonTextWriter(sw);
+
+            jsonWriter.WriteStartArray();
+
+            foreach (var word in allWords) jsonWriter.WriteValue(word);
+
+            jsonWriter.WriteEndArray();
+            sw.Flush();
+
+            File.WriteAllText(path, sw.ToString());
+        }, "Write in Ban");
     }
 
     private static bool ShouldAddToFacList(string line)
@@ -256,7 +213,7 @@ public static class SpamManager
             .Where(p => p.IsDev())
             .Any(p => line.Contains(p.FriendCode, StringComparison.OrdinalIgnoreCase));
     }
-    
+
     public static void CheckSpam(ref string text)
     {
         if (!Main.SpamDenyWord.Value || BanWords.Count == 0) return;
@@ -267,13 +224,13 @@ public static class SpamManager
             var bannedWords = BanWords.Where(word => lowerText.Contains(word.ToLowerInvariant())).ToList();
 
             if (bannedWords.Count == 0) return;
-            
+
             var pattern = string.Join("|", bannedWords.Select(Regex.Escape));
-            text = Regex.Replace(text, pattern, match => 
-                    $"<color=#E57373>{new string('*', match.Value.Length)}</color>", 
+            text = Regex.Replace(text, pattern, match =>
+                    $"<color=#E57373>{new string('*', match.Value.Length)}</color>",
                 RegexOptions.IgnoreCase);
         }
-        catch 
+        catch
         {
             /* ignored */
         }

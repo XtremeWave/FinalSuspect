@@ -1,6 +1,7 @@
 ﻿using System.Text;
+using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
 using UnityEngine;
 
@@ -8,20 +9,25 @@ namespace FinalSuspect.Modules.Features;
 
 public static class InGameRoleInfoMenu
 {
-    public static bool Showing => Fill != null && Fill.active && Menu != null && Menu.active;
+    private const string FirstHeaderSize = "130%";
+    public const string SecondHeaderSize = "100%";
+    private const string BodySize = "70%";
+    private const string BlankLineSize = "30%";
 
-    public static GameObject Fill;
-    public static SpriteRenderer FillSP => Fill.GetComponent<SpriteRenderer>();
+    private static GameObject Fill;
 
-    public static GameObject Menu;
+    private static GameObject Menu;
 
-    public static GameObject RoleInfo;
-    public static GameObject RoleRoleIllustration;
-    public static SpriteRenderer RoleRoleIllustrationSP => RoleRoleIllustration.GetComponent<SpriteRenderer>();
+    private static GameObject RoleInfo;
+    private static GameObject RoleIllustration;
+    public static bool Showing => Fill && Fill.active && Menu && Menu.active;
+    private static SpriteRenderer FillRend => Fill.GetComponent<SpriteRenderer>();
+    private static SpriteRenderer RoleIllustrationRend => RoleIllustration.GetComponent<SpriteRenderer>();
 
-    public static TextMeshPro RoleInfoTMP => RoleInfo.GetComponent<TextMeshPro>();
+    private static TextMeshPro RoleInfoTMP => RoleInfo.GetComponent<TextMeshPro>();
 
-    public static void Init()
+    [GameModuleInitializer]
+    private static void Init()
     {
         var DOBScreen = AccountManager.Instance.transform.FindChild("DOBEnterScreen");
 
@@ -30,7 +36,7 @@ public static class InGameRoleInfoMenu
         Fill.transform.localPosition = new Vector3(0f, 0f, -980f);
         Fill.transform.localScale = new Vector3(20f, 10f, 1f);
         Fill.AddComponent<SpriteRenderer>().sprite = DOBScreen.FindChild("Fill").GetComponent<SpriteRenderer>().sprite;
-        FillSP.color = new Color(0f, 0f, 0f, 0.75f);
+        FillRend.color = new Color(0f, 0f, 0f, 0.75f);
 
         Menu = Object.Instantiate(DOBScreen.FindChild("InfoPage").gameObject, HudManager.Instance.transform.parent);
         Menu.name = "FinalSuspect Role Info Menu Page";
@@ -48,53 +54,55 @@ public static class InGameRoleInfoMenu
         RoleInfoTMP.alignment = TextAlignmentOptions.Left;
         RoleInfoTMP.fontSize = 2f;
 
-        RoleRoleIllustration = new GameObject("Character Illustration") { layer = 5 };
-        RoleRoleIllustration.transform.SetParent(Menu.transform);
-        RoleRoleIllustration.AddComponent<SpriteRenderer>();
-        RoleRoleIllustration.transform.localPosition = new Vector3(2.3f, 0.8f, 4f);
+        RoleIllustration = new GameObject("Character Illustration") { layer = 5 };
+        RoleIllustration.transform.SetParent(Menu.transform);
+        RoleIllustration.AddComponent<SpriteRenderer>();
+        RoleIllustration.transform.localPosition = new Vector3(2.3f, 0.8f, 4f);
+
+        ForceHide();
     }
 
     public static void SetRoleInfoRef(PlayerControl player)
     {
-        if (player == null) return;
+        if (!player) return;
         if (!Fill || !Menu) Init();
         var builder = new StringBuilder(256);
         builder.AppendFormat("<size={0}>\n", BlankLineSize);
         // 职业名
         var role = player.Data.Role.Role;
-        builder.AppendFormat("<size={0}>{1}", FirstHeaderSize, GetRoleName(role).Color(GetRoleColor(role)));
+        builder.Append($"<size={FirstHeaderSize}>{GetRoleName(role).Color(GetRoleColor(role))}");
         // 职业阵营 / 原版职业
-        var roleTeam = player.IsImpostor()? "Impostor":"Crewmate";
-        builder.AppendFormat("<size={0}> ({1})\n", BodySize, GetString($"Type{roleTeam}"));
-        builder.AppendFormat("<size={0}>{1}\n", BodySize, player.GetRoleType().GetRoleInfoForVanilla(true) ?? "");
+        var roleTeam = player.IsImpostor() ? "Imp" : "Crew";
+        builder.Append($"<size={BodySize}> ({GetString($"RoleType.{roleTeam}")})\n");
+        builder.Append($"<size={BodySize}>{player.GetRoleType().GetRoleInfoForVanilla(true) ?? ""}\n");
         RoleInfoTMP.text = builder.ToString();
         var HnSPrefix = "";
         if (!IsNormalGame && player.IsAlive())
             HnSPrefix = "HnS";
-        RoleRoleIllustrationSP.sprite = LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
+        RoleIllustrationRend.sprite = LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
     }
 
     public static void Show()
     {
         if (!Fill || !Menu) Init();
-        if (!Showing)
-        {
-            Fill?.SetActive(true);
-            Menu?.SetActive(true);
-        }
+        if (Showing) return;
+        Fill?.SetActive(true);
+        Menu?.SetActive(true);
         //HudManager.Instance?.gameObject.SetActive(false);
     }
+
     public static void Hide()
     {
-        if (Showing)
-        {
-            Fill?.SetActive(false);
-            Menu?.SetActive(false);
-        }
+        if (!Showing) return;
+        Fill?.SetActive(false);
+        Menu?.SetActive(false);
         //HudManager.Instance?.gameObject?.SetActive(true);
     }
-    public const string FirstHeaderSize = "130%";
-    public const string SecondHeaderSize = "100%";
-    public const string BodySize = "70%";
-    public const string BlankLineSize = "30%";
+
+    public static void ForceHide()
+    {
+        Fill?.SetActive(false);
+        Menu?.SetActive(false);
+        //HudManager.Instance?.gameObject?.SetActive(true);
+    }
 }

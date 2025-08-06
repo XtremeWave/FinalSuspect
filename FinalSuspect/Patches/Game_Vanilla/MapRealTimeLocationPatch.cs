@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Linq;
 using BepInEx.Unity.IL2CPP.Utils;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -8,13 +8,15 @@ namespace FinalSuspect.Patches.Game_Vanilla;
 [HarmonyPatch]
 public class MapRealTimeLocationPatch
 {
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Show)), HarmonyPostfix]
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Show))]
+    [HarmonyPostfix]
     public static void ShowMapAfter(MapBehaviour __instance, [HarmonyArgument(0)] MapOptions opts)
     {
-        XtremeLocalHandling.ShowMap(__instance, opts);
+        FinalLocalHandling.ShowMap(__instance, opts);
     }
 
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Awake)), HarmonyPostfix]
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Awake))]
+    [HarmonyPostfix]
     public static void AwakeAfter(MapBehaviour __instance)
     {
         AmongUsClient.Instance.StartCoroutine(CreateTargetRends(__instance));
@@ -22,48 +24,50 @@ public class MapRealTimeLocationPatch
 
     private static IEnumerator CreateTargetRends(MapBehaviour mapBehaviour)
     {
-        while (XtremePlayerData.AllPlayerData.Count < Main.AllPlayerControls.Count()) yield return null;
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        while (FinalPlayerData.AllPlayerData.Count < Main.AllPlayerControls.Count()) yield return null;
+        foreach (var data in FinalPlayerData.AllPlayerData)
         {
             var rend = Object.Instantiate(mapBehaviour.HerePoint, mapBehaviour.HerePoint.transform.parent, true);
             rend.gameObject.SetActive(false);
             data.Rend = rend;
-            data.Deadbodyrend = Object.Instantiate(rend, rend.transform.parent);
-            data.Deadbodyrend.flipY = true;
+            data.Rend_DeadBody = Object.Instantiate(rend, rend.transform.parent);
+            data.Rend_DeadBody.flipY = true;
         }
-    }
-    
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.FixedUpdate)), HarmonyPostfix]
-    public static void FixedUpdateAfter(MapBehaviour __instance)
-    {
-        XtremeLocalHandling.UpdateMap();
     }
 
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.SetPreMeetingPosition)), HarmonyPostfix]
-    public static void SetPreMeetingPositionAfter(MapBehaviour __instance, [HarmonyArgument(0)] Vector3 preMeetingPosition)
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.FixedUpdate))]
+    [HarmonyPostfix]
+    public static void FixedUpdateAfter(MapBehaviour __instance)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        FinalLocalHandling.UpdateMap();
+    }
+
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.SetPreMeetingPosition))]
+    [HarmonyPostfix]
+    public static void SetPreMeetingPositionAfter(MapBehaviour __instance,
+        [HarmonyArgument(0)] Vector3 preMeetingPosition)
+    {
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
         {
-            if (data.IsDisconnected) continue;
             data.PreMeetingPosition = data.Player.GetTruePosition();
+            data.PreMeetingRoomName = data.Player.GetPlainShipRoomName();
         }
     }
-    
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.GenericShow)), HarmonyPostfix]
+
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.GenericShow))]
+    [HarmonyPostfix]
     public static void GenericShowAfter(MapBehaviour __instance)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData)
+        foreach (var data in FinalPlayerData.AllPlayerData.Where(data => !data.IsDisconnected))
         {
-            if (data.IsDisconnected)continue;
             data.Rend.material.SetInt(PlayerMaterial.MaskLayer, 255);
         }
     }
-    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close)), HarmonyPostfix]
+
+    [HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close))]
+    [HarmonyPostfix]
     public static void CloseAfter(MapBehaviour __instance)
     {
-        foreach (var data in XtremePlayerData.AllPlayerData)
-        {
-            data.Rend.enabled = true;
-        }
+        foreach (var data in FinalPlayerData.AllPlayerData) data.Rend.enabled = true;
     }
 }

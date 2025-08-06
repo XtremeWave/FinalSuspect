@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -13,9 +12,9 @@ public class OutfitStrHandler : IRpcHandler
         (byte)RpcCalls.SetSkinStr,
         (byte)RpcCalls.SetPetStr,
         (byte)RpcCalls.SetVisorStr,
-        (byte)RpcCalls.SetNamePlateStr,
+        (byte)RpcCalls.SetNamePlateStr
     ];
-    
+
     public bool HandleGame_All(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {

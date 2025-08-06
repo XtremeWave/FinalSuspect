@@ -32,7 +32,7 @@ internal class Cloud
         }
         catch (Exception e)
         {
-            XtremeLogger.Exception(e, "Cloud Init");
+            FinalLogger.Exception(e, "Cloud Init");
         }
     }* /
     private static string GetResourcesTxt(string path)
@@ -47,11 +47,11 @@ internal class Cloud
     {
         try
         {
-            if (!Main.NewLobby || !XtremeGameData.GameStates.IsLobby) return false;
+            if (!Main.NewLobby || !FinalGameData.GameStates.IsLobby) return false;
             if (!AmongUsClient.Instance.AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) return false;
 
             if (IP == null || LOBBY_PORT == 0) throw new("Has no ip or port");
-            
+
             var msg = $"{GameStartManager.Instance.GameRoomNameCode.text}|{Main.DisplayedVersion_Head}|{GameData.Instance.PlayerCount}|{TranslationController.Instance.currentLanguage.languageID}|{ServerName}|{DataManager.player.customization.name}";
             if (msg.Length <= 60)
             {
@@ -61,12 +61,12 @@ internal class Cloud
                 ClientSocket.Send(buffer);
                 ClientSocket.Close();
             }
-            Main.NewLobby = false; 
+            Main.NewLobby = false;
 
         }
         catch (Exception e)
         {
-            XtremeLogger.Exception(e, "SentLobbyToQQ");
+            FinalLogger.Exception(e, "SentLobbyToQQ");
             throw;
         }
         return true;
@@ -90,12 +90,12 @@ internal class Cloud
                 LastRepotTimeStamp = Utils.GetTimeStamp();
                 EacClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 EacClientSocket.Connect(IP, FAC_PORT);
-                XtremeLogger.Warn("已连接至FinalSuspect服务器", "FAC Cloud");
+                FinalLogger.Warn("已连接至FinalSuspect服务器", "FAC Cloud");
             }
             catch (Exception ex)
             {
                 connecting = false;
-                XtremeLogger.Error($"Connect To FAC Failed:\n{ex.Message}", "FAC Cloud", false);
+                FinalLogger.Error($"Connect To FAC Failed:\n{ex.Message}", "FAC Cloud", false);
             }
             connecting = false;
         }, 3.5f, "FAC Cloud Connect");
@@ -110,7 +110,7 @@ internal class Cloud
         StartConnect();
         if (EacClientSocket == null || !EacClientSocket.Connected)
         {
-            XtremeLogger.Warn("未连接至FinalSuspect服务器，报告被取消", "FAC Cloud");
+            FinalLogger.Warn("未连接至FinalSuspect服务器，报告被取消", "FAC Cloud");
             return;
         }
         EacClientSocket.Send(Encoding.Default.GetBytes(msg));
@@ -124,9 +124,10 @@ internal class Cloud
             {
                 LastRepotTimeStamp = 0;
                 StopConnect();
-                XtremeLogger.Warn("超时自动断开与FinalSuspect服务器的连接", "FAC Cloud");
+                FinalLogger.Warn("超时自动断开与FinalSuspect服务器的连接", "FAC Cloud");
             }
         }
     }
 }
  */
+

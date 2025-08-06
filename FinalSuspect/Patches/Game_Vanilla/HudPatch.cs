@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
-using System.Linq;
 using System.Text;
 using AmongUs.Data;
 using AmongUs.GameOptions;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game;
+using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
 using InnerNet;
@@ -18,17 +19,19 @@ using Object = UnityEngine.Object;
 namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(Vent), nameof(Vent.SetOutline))]
-class SetVentOutlinePatch
+internal class SetVentOutlinePatch
 {
     public static void Postfix(Vent __instance, [HarmonyArgument(1)] ref bool mainTarget)
     {
-        XtremeLocalHandling.SetVentOutlineColor(__instance, ref mainTarget);
+        FinalLocalHandling.SetVentOutlineColor(__instance, ref mainTarget);
     }
 }
 
 [HarmonyPatch(typeof(TaskPanelBehaviour), nameof(TaskPanelBehaviour.SetTaskText))]
-class TaskPanelBehaviourPatch
+internal class TaskPanelBehaviourPatch
 {
+    private static bool even;
+
     public static void Postfix(TaskPanelBehaviour __instance)
     {
         if (!IsInGame) return;
@@ -43,19 +46,35 @@ class TaskPanelBehaviourPatch
 
         var AllText = StringHelper.ColorString(player.GetRoleColor(), RoleWithInfo);
 
-        var lines = taskText.Split("\r\n</color>\n")[0].Split("\r\n\n")[0].Split("\r\n");
-        StringBuilder sb = new();
-        foreach (var eachLine in lines)
+        if (!taskText.Contains(GetString(StringNames.FixComms)) || PlayerControl.LocalPlayer.IsImpostor())
         {
-            var line = eachLine.Trim();
-            if ((line.StartsWith("<color=#FF1919FF>") || line.StartsWith("<color=#FF0000FF>")) && sb.Length < 1 && !line.Contains('(')) continue;
-            sb.Append(line + "\r\n");
+            var lines = taskText.Split("\r\n</color>\n")[0].Split("\r\n\n")[0].Split("\r\n");
+            StringBuilder sb = new();
+            foreach (var eachLine in lines)
+            {
+                var line = eachLine.Trim();
+                if (((line.StartsWith("<color=#FF1919FF>") || line.StartsWith("<color=#FF0000FF>")) && sb.Length < 1 &&
+                     !line.Contains('(')) || line.Contains(GetString(StringNames.FixComms))) continue;
+                sb.Append(line + "\r\n");
+            }
+
+            if (sb.Length > 1)
+            {
+                var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
+                if (player.IsImpostor() && sb.ToString().Count(s => s == '\n') >= 2)
+                    text =
+                        $"{StringHelper.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
+                AllText += $"\r\n\r\n<size=85%>{text}</size>";
+            }
         }
-        if (sb.Length > 1)
+
+        if (taskText.Contains(GetString(StringNames.FixComms)))
         {
-            var text = sb.ToString().TrimEnd('\n').TrimEnd('\r');
-            if (player.IsImpostor() && sb.ToString().Count(s => s == '\n') >= 2)
-                text = $"{StringHelper.ColorString(new Color32(255, 20, 147, byte.MaxValue), GetString("FakeTask"))}\r\n{text}";
+            even = !even;
+            var color = even ? Color.yellow : Color.red;
+            var text = color.ToTextColor();
+            text += GetString(StringNames.FixComms);
+            text += "</color>";
             AllText += $"\r\n\r\n<size=85%>{text}</size>";
         }
 
@@ -67,28 +86,249 @@ class TaskPanelBehaviourPatch
 
 public static class HudManagerPatch
 {
-    static GameObject ModLoading;
+    private static GameObject ModLoading;
 
     private static int currentIndex;
+
+    private static TextMeshPro roleSummary;
+    public static SimpleButton showHideButton;
+    private static SpriteRenderer backgroundRenderer;
+
+    private static bool Refresh;
+
+    private static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
+    {
+        while (true)
+        {
+            if (AwakeAccountManager.AllRoleRoleIllustration.Length == 0) yield break;
+
+            spriter.sprite = AwakeAccountManager.AllRoleRoleIllustration[currentIndex];
+            var p = 1f;
+            while (p > 0f)
+            {
+                p -= Time.deltaTime * 2.8f;
+                var alpha = 1 - p;
+                spriter.color = Color.white.AlphaMultiplied(alpha);
+                yield return null;
+            }
+
+            currentIndex = (currentIndex + 1) % AwakeAccountManager.AllRoleRoleIllustration.Length;
+
+            yield return new WaitForSeconds(1f);
+            p = 1f;
+            while (p > 0f)
+            {
+                p -= Time.deltaTime * 2.8f;
+                spriter.color = Color.white.AlphaMultiplied(p);
+                yield return null;
+            }
+        }
+    }
+
+    [GameModuleInitializer]
+    public static void Init()
+    {
+        try
+        {
+            Object.Destroy(showHideButton.Button.gameObject);
+            Object.Destroy(roleSummary.gameObject);
+            Object.Destroy(backgroundRenderer.gameObject); //销毁背景
+        }
+        catch
+        {
+            /* ignored */
+        }
+
+        showHideButton = null;
+        roleSummary = null;
+        backgroundRenderer = null;
+    }
+
+    private static void SetChatBG(HudManager __instance)
+    {
+        Color color;
+        if (IsInGame)
+        {
+            if (PlayerControl.LocalPlayer.IsImpostor())
+                color = ColorHelper.ImpostorRedPale;
+            else
+                color = GetRoleColor(RoleTypes.Crewmate);
+        }
+        else
+        {
+            color = ColorHelper.AuthorColor;
+        }
+
+        __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("Background").gameObject
+            .GetComponent<SpriteRenderer>().color = color;
+    }
+
+    [GameModuleInitializer]
+    public static void InitForRefresh()
+    {
+        Refresh = false;
+    }
+
+    private static void SetAbilityButtonColor(HudManager __instance)
+    {
+        if (!IsInGame)
+            return;
+        var color = GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
+        __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
+        __instance.AbilityButton.cooldownTimerText.color = color;
+        __instance.KillButton.cooldownTimerText.color = ColorHelper.ImpostorRedPale;
+
+        // 刷新按钮状态
+        if (!__instance.AbilityButton.gameObject.active || Refresh) return;
+        Refresh = true;
+        __instance.AbilityButton.gameObject.SetActive(false);
+        __instance.AbilityButton.gameObject.SetActive(true);
+    }
+
+    private static int GetLineCount(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+            return 0;
+        var lines = text.Split(["\r\n", "\n"], StringSplitOptions.None);
+        return lines.Length;
+    }
+
+    private static void UpdateResult(HudManager __instance)
+    {
+        if (IsFreePlay || (!IsInGame && GetLineCount(FinalGameData.LastResultText) < 6))
+            return;
+        var showInitially = Main.ShowResults.Value;
+
+        showHideButton ??=
+            new SimpleButton(
+                __instance.transform,
+                "ShowHideResultsButton",
+                IsInGame
+                    ? new Vector3(0.2f * GetResolutionOffset(), 2.685f, -14f)
+                    : new Vector3(-4.5f * GetResolutionOffset(), 2.6f, -14f), // 比 BackgroundLayer(z = -13) 更靠前
+                new Color32(209, 190, 255, byte.MaxValue),
+                new Color32(208, 222, 255, byte.MaxValue),
+                () =>
+                {
+                    var setToActive = !roleSummary.gameObject.activeSelf;
+                    roleSummary.gameObject.SetActive(setToActive);
+                    Main.ShowResults.Value = setToActive;
+                    showHideButton.Label.text = GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");
+                },
+                GetString(showInitially ? "Summary.HideResults" : "Summary.ShowResults"))
+            {
+                Scale = new Vector2(1.5f, 0.5f),
+                FontSize = 2f
+            };
+
+        StringBuilder sb = new($"{GetString("Summary.Text")}{FinalGameData.LastGameResult}");
+        if (IsInGame)
+        {
+            FinalGameData.LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
+            FinalGameData.LastServer = IsOnlineGame
+                ? PingTrackerUpdatePatch.ServerName
+                : GetString("Local");
+        }
+
+        var gamecode = StringHelper.ColorString(
+            ColorHelper.FSColor,
+            DataManager.Settings.Gameplay.StreamerMode
+                ? new string('*', FinalGameData.LastRoomCode.Length)
+                : FinalGameData.LastRoomCode);
+        sb.Append("\n" + FinalGameData.LastServer + "  " + gamecode);
+        if (IsInGame)
+        {
+            StringBuilder sb2 = new();
+            foreach (var data in FinalPlayerData.AllPlayerData)
+                sb2.Append("\n\u3000 ").Append(SummaryTexts(data.PlayerId));
+
+            FinalGameData.LastGameData = sb2.ToString();
+        }
+
+        sb.Append(FinalGameData.LastGameData);
+        FinalGameData.LastResultText = sb.ToString();
+        if (!roleSummary)
+        {
+            roleSummary = TMPTemplate.Create(
+                "RoleSummaryText", FinalGameData.LastResultText,
+                Color.white,
+                1.25f,
+                TextAlignmentOptions.TopLeft,
+                showInitially,
+                showHideButton.Button.transform);
+            roleSummary.transform.localPosition =
+                new Vector3(IsInGame ? 0f : 1.7f, -0.4f, -1f);
+            roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            roleSummary.fontStyle = FontStyles.Bold;
+            roleSummary.SetOutlineColor(Color.black);
+            roleSummary.SetOutlineThickness(0.15f);
+
+            var backgroundObject = new GameObject("RoleSummaryBackground");
+            backgroundObject.transform.SetParent(roleSummary.transform);
+            backgroundRenderer = backgroundObject.AddComponent<SpriteRenderer>();
+            backgroundRenderer.sprite = LoadSprite("LastResult-BG.png", 200f);
+            backgroundRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        }
+
+        showHideButton.Button.transform.localPosition =
+            IsInGame ? new Vector3(0.2f, 2.685f, -14f) : new Vector3(-4.5f, 2.6f, -1f);
+        if (IsInGame)
+        {
+            showHideButton.Button.gameObject.SetActive
+            (PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost &&
+             !IsInMeeting);
+        }
+        else
+            showHideButton.Button.gameObject.SetActive(true);
+
+        roleSummary.text = FinalGameData.LastResultText;
+        AdjustBackgroundSize();
+    }
+
+    private static void AdjustBackgroundSize()
+    {
+        if (!roleSummary || !backgroundRenderer) return;
+        var textBounds = roleSummary.textBounds;
+
+        var backgroundSprite = backgroundRenderer.sprite;
+        if (!backgroundSprite) return;
+        var scaleX = (textBounds.size.x + 0.4f) / backgroundSprite.bounds.size.x;
+        var scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
+
+        backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+        backgroundRenderer.transform.localPosition = new Vector3(textBounds.center.x, textBounds.center.y, 2f);
+    }
+
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class Update
     {
         public static void Prefix(HudManager __instance)
         {
-            if (ModLoading == null && !IsFreePlay)
+            if (!ModLoading)
             {
                 ModLoading = new GameObject("ModLoading") { layer = 5 };
                 ModLoading.transform.SetParent(__instance.GameLoadAnimation.transform.parent);
-
-                ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
-                ModLoading.transform.localPosition = new Vector3(4.5833f, -2.25f, -600);
 
                 var Sprite = ModLoading.AddComponent<SpriteRenderer>();
                 Sprite.color = Color.white;
                 Sprite.flipX = false;
                 ModLoading.SetActive(false);
                 __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
+
+                var ap = ModLoading.AddComponent<AspectPosition>();
+                ap.Alignment = AspectPosition.EdgeAlignments.RightBottom;
+                ap.DistanceFromEdge = new Vector3(0.6f, 0.5f, -1000);
+                ap.updateAlways = true;
+
+                ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
             }
+
+            ModLoading.SetActive(!IsInGame && !IsLobby);
+
+            var ap_n = __instance.Notifier.GetComponent<AspectPosition>();
+            ap_n.DistanceFromEdge = new Vector3(ap_n.DistanceFromEdge.x, ap_n.DistanceFromEdge.y, -900);
+
+            //ModLogo.SetActive(!IsInGame && !IsLobby);
             /*Scrapped
             if (WarningText == null)
             {
@@ -141,231 +381,28 @@ public static class HudManagerPatch
                 UpdateResult(__instance);
                 SetChatBG(__instance);
                 SetAbilityButtonColor(__instance);
+
+                if (!IsFreePlay && IsInGame)
+                {
+                    var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
+                                      DisplayerRoleTagHelper.selectionUI != null &&
+                                      DisplayerRoleTagHelper.selectionUI.activeSelf ||
+                                      MapBehaviour.Instance.gameObject.activeSelf ||
+                                      !ControllerManagerUpdatePatch.ShowSettingsPanel ||
+                                      !FinalGameData.IntroDestroyed ||
+                                      !ControllerManagerUpdatePatch.ShowHudUI;
+
+                    if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)
+                    {
+                        GameStartManagerPatch.Instance.LobbyInfoPane.DeactivatePane();
+                    }
+
+                    GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.SetActive(!notShowPane);
+                }
             }
             catch
             {
                 /* ignored */
-            }
-        }
-    }
-    [HarmonyPatch(typeof(HudManager), nameof(HudManager.CoFadeFullScreen))]
-    public static class CoFadeFullScreen
-    {
-        public static void Prefix([HarmonyArgument(3)] ref bool showLoader)
-        {
-            ModLoading.SetActive(showLoader);
-            showLoader = false;
-        }
-    }
-    public static IEnumerator SwitchRoleIllustration(SpriteRenderer spriter)
-    {
-        while (true)
-        {
-            if (AwakeAccountManager.AllRoleRoleIllustration.Length == 0) yield break;
-
-            spriter.sprite = AwakeAccountManager.AllRoleRoleIllustration[currentIndex];
-            var p = 1f;
-            while (p > 0f)
-            {
-                p -= Time.deltaTime * 2.8f;
-                var alpha = 1 - p;
-                spriter.color = Color.white.AlphaMultiplied(alpha);
-                yield return null;
-            }
-            currentIndex = (currentIndex + 1) % AwakeAccountManager.AllRoleRoleIllustration.Length;
-
-            yield return new WaitForSeconds(1f);
-            p = 1f;
-            while (p > 0f)
-            {
-                p -= Time.deltaTime * 2.8f;
-                spriter.color = Color.white.AlphaMultiplied(p);
-                yield return null;
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(HudManager), nameof(HudManager.HideGameLoader))]
-    public static class HideGameLoader
-    {
-        public static void Prefix()
-        {
-            ModLoading.SetActive(false);
-        }
-    }
-
-    private static TextMeshPro roleSummary;
-    public static SimpleButton showHideButton;
-    private static SpriteRenderer backgroundRenderer;
-
-    [GameModuleInitializer]
-    public static void Init()
-    {
-        try
-        {
-            Object.Destroy(showHideButton.Button.gameObject);
-            Object.Destroy(roleSummary.gameObject);
-            Object.Destroy(backgroundRenderer.gameObject);  //销毁背景
-        }
-        catch
-        {
-            /* ignored */
-        }
-
-        showHideButton = null;
-        roleSummary = null;
-        backgroundRenderer = null;
-    }
-
-    public static void SetChatBG(HudManager __instance)
-    {
-        Color color;
-        if (IsInGame)
-        {
-            if (PlayerControl.LocalPlayer.IsImpostor())
-            {
-                color = ColorHelper.ImpostorRedPale;
-            }
-            else
-            {
-                color = GetRoleColor(RoleTypes.Crewmate);
-            }
-        }
-        else
-        {
-            color = ColorHelper.TeamColor32;
-        }
-
-        __instance.Chat.chatScreen.transform.FindChild("ChatScreenContainer").FindChild("Background").gameObject
-            .GetComponent<SpriteRenderer>().color = color;
-    }
-    public static void SetAbilityButtonColor(HudManager __instance)
-    {
-        if (!IsInGame) return;
-        var color = GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
-        __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
-        __instance.AbilityButton.cooldownTimerText.color = Color.green;
-        __instance.KillButton.cooldownTimerText.color = ColorHelper. ImpostorRedPale;
-    }
-    public static int GetLineCount(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-            return 0;
-        var lines = text.Split(["\r\n", "\n"], StringSplitOptions.None);
-        return lines.Length;
-    }
-    public static string LastResultText;
-    public static string LastGameData;
-    public static string LastGameResult;
-    public static string LastRoomCode;
-    public static string LastServer;
-
-    [GameModuleInitializer]
-    public static void InitForLastResult()
-    {
-        LastResultText = LastGameData = LastGameResult = LastRoomCode = LastServer = "";
-    }
-    public static void UpdateResult(HudManager __instance)
-    {
-        if (IsFreePlay || !IsInGame && GetLineCount(LastResultText) < 6 )
-            return;
-        var showInitially = Main.ShowResults.Value;
-       
-        showHideButton ??=
-            new SimpleButton(
-                __instance.transform,
-                "ShowHideResultsButton",
-                IsInGame? new Vector3(0.2f, 2.685f, -14f) : new Vector3(-4.5f, 2.6f, -14f),  // 比 BackgroundLayer(z = -13) 更靠前
-                new Color32(209, 190, 255, byte.MaxValue),
-                new Color32(208, 222, 255, byte.MaxValue),
-                () =>
-                {
-                    var setToActive = !roleSummary.gameObject.activeSelf;
-                    roleSummary.gameObject.SetActive(setToActive);
-                    Main.ShowResults.Value = setToActive;
-                    showHideButton.Label.text = GetString(setToActive ? "HideResults" : "ShowResults");
-                },
-                GetString(showInitially ? "HideResults" : "ShowResults"))
-            {
-                Scale = new Vector2(1.5f, 0.5f),
-                FontSize = 2f,
-            };
-
-        StringBuilder sb = new($"{GetString("RoleSummaryText")}{LastGameResult}");
-        if (IsInGame)
-        {
-            LastRoomCode = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
-            LastServer = IsOnlineGame
-                ? PingTrackerUpdatePatch.ServerName
-                : GetString("Local");
-        }
-            
-        var gamecode =  StringHelper.ColorString(
-            ColorHelper.ModColor32, 
-            DataManager.Settings.Gameplay.StreamerMode?  new string('*', LastRoomCode.Length): LastRoomCode);
-        sb.Append("\n"+ LastServer +"  "+gamecode);
-        if (IsInGame)
-        {
-            StringBuilder sb2 = new();
-            foreach (var data in XtremePlayerData.AllPlayerData)
-            {
-                sb2.Append("\n\u3000 ").Append(SummaryTexts(data.PlayerId));
-            }
-            LastGameData = sb2.ToString();
-        }
-
-        sb.Append(LastGameData);
-        LastResultText = sb.ToString();
-        if (roleSummary == null)
-        {
-            roleSummary = TMPTemplate.Create(
-                "RoleSummaryText",
-                LastResultText,
-                Color.white,
-                1.25f,
-                TextAlignmentOptions.TopLeft,
-                setActive: showInitially,
-                parent: showHideButton.Button.transform);
-            roleSummary.transform.localPosition = new Vector3(1.7f, -0.4f, -1f);
-            roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
-            roleSummary.fontStyle = FontStyles.Bold;
-            roleSummary.SetOutlineColor(Color.black);
-            roleSummary.SetOutlineThickness(0.15f);
- 
-            var backgroundObject = new GameObject("RoleSummaryBackground");
-            backgroundObject.transform.SetParent(roleSummary.transform); 
-            backgroundRenderer = backgroundObject.AddComponent<SpriteRenderer>();
-            backgroundRenderer.sprite = LoadSprite("LastResult-BG.png",200f);
-            backgroundRenderer.color = new Color(0.5f,0.5f,0.5f,1f); 
-        }
-        
-        showHideButton.Button.transform.localPosition =
-            IsInGame ? new Vector3(0.2f, 2.685f, -14f) : new Vector3(-4.5f, 2.6f, -1f);
-        if (IsInGame)
-            showHideButton.Button.gameObject.SetActive
-            (PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost &&
-             !IsMeeting);
-        else
-            showHideButton.Button.gameObject.SetActive(true);
-
-        roleSummary.text = LastResultText;
-        AdjustBackgroundSize();
-    }
-
-    private static void AdjustBackgroundSize()
-    {
-        if (roleSummary != null && backgroundRenderer != null)
-        {
-            var textBounds = roleSummary.textBounds;
-
-            var backgroundSprite = backgroundRenderer.sprite;
-            if (backgroundSprite != null)
-            {
-                var scaleX = (textBounds.size.x + 0.4f) / backgroundSprite.bounds.size.x;
-                var scaleY = (textBounds.size.y + 0.5f) / backgroundSprite.bounds.size.y;
-                
-                backgroundRenderer.transform.localScale = new Vector3(scaleX, scaleY, 1f);
-                backgroundRenderer.transform.localPosition = new Vector3(textBounds.center.x, textBounds.center.y,2f);
             }
         }
     }

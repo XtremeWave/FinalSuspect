@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace FinalSuspect.Templates;
 
-public sealed class TMPTemplate
+public static class TMPTemplate
 {
     private static TextMeshPro baseTMP;
+
     public static void SetBase(TextMeshPro tmp)
     {
-        if (baseTMP != null) return;
+        if (baseTMP) return;
 
         baseTMP = Object.Instantiate(tmp);
         Object.Destroy(baseTMP.GetComponent<AspectPosition>());
@@ -16,6 +17,7 @@ public sealed class TMPTemplate
         baseTMP.gameObject.SetActive(false);
         baseTMP.gameObject.name = "TMPTemplateBase";
     }
+
     public static TextMeshPro Create(
         string name,
         string text = null,
@@ -26,7 +28,7 @@ public sealed class TMPTemplate
         Transform parent = null
     )
     {
-        var replicatedObject = parent == null
+        var replicatedObject = !parent
             ? Object.Instantiate(baseTMP)
             : Object.Instantiate(baseTMP, parent);
         replicatedObject.text = text ?? "";
