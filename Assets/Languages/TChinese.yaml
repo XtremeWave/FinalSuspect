@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "職業"
 DisplayedRoleTag.PlayerIdentityTag: "身份標記"
 DisplayedRoleTag.Room: "房間"
 
-PlayerIdentityTag.Hard_Cleared: "金水"
-PlayerIdentityTag.Silver_Clear: "銀水"
-PlayerIdentityTag.Wolf_Bucket: "狼坑"
-PlayerIdentityTag.No_Kill: "不出刀"
-PlayerIdentityTag.Outside_Position: "外置位"
-PlayerIdentityTag.Inside_Position: "內置位"
+PlayerIdentityTag.Safe: "金水"
+PlayerIdentityTag.Likely_Safe: "銀水"
+PlayerIdentityTag.Suspect: "狼坑"
+PlayerIdentityTag.Alibi: "不出刀"
+PlayerIdentityTag.Confirmed_Position: "外置位"
+PlayerIdentityTag.Unconfirmed_Position: "內置位"
 
 # 通知 / Notifications
 ## 原版

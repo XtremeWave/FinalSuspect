@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Rol"
 DisplayedRoleTag.PlayerIdentityTag: "Etiqueta de identidad"
 DisplayedRoleTag.Room: "Sala"
 
-PlayerIdentityTag.Hard_Cleared: "Confirmado bueno"
-PlayerIdentityTag.Silver_Clear: "Semi-limpiado"
-PlayerIdentityTag.Wolf_Bucket: "Pozo de lobos"
-PlayerIdentityTag.No_Kill: "Sin asesinato"
-PlayerIdentityTag.Outside_Position: "Posición exterior"
-PlayerIdentityTag.Inside_Position: "Posición interior"
+PlayerIdentityTag.Safe: "Confirmado bueno"
+PlayerIdentityTag.Likely_Safe: "Semi-limpiado"
+PlayerIdentityTag.Suspect: "Pozo de lobos"
+PlayerIdentityTag.Alibi: "Sin asesinato"
+PlayerIdentityTag.Confirmed_Position: "Posición exterior"
+PlayerIdentityTag.Unconfirmed_Position: "Posición interior"
 
 # 通知 / Notifications
 ## 原版

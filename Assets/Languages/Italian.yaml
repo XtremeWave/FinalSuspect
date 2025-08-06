@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Ruolo"
 DisplayedRoleTag.PlayerIdentityTag: "Etichetta Identità"
 DisplayedRoleTag.Room: "Stanza"
 
-PlayerIdentityTag.Hard_Cleared: "Confermato buono"
-PlayerIdentityTag.Silver_Clear: "Probabilmente buono"
-PlayerIdentityTag.Wolf_Bucket: "Fossa dei lupi"
-PlayerIdentityTag.No_Kill: "Nessuna uccisione"
-PlayerIdentityTag.Outside_Position: "Posizione esterna"
-PlayerIdentityTag.Inside_Position: "Posizione interna"
+PlayerIdentityTag.Safe: "Confermato buono"
+PlayerIdentityTag.Likely_Safe: "Probabilmente buono"
+PlayerIdentityTag.Suspect: "Fossa dei lupi"
+PlayerIdentityTag.Alibi: "Nessuna uccisione"
+PlayerIdentityTag.Confirmed_Position: "Posizione esterna"
+PlayerIdentityTag.Unconfirmed_Position: "Posizione interna"
 
 # 通知 / Notifications
 ## 原版

@@ -11,16 +11,15 @@ namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
 #nullable enable
 public static class AudioManager
 {
-    public static List<string> CustomAudios = [];
+    public static readonly List<string> Extensions = [".zip", ".wav", ".flac", ".aif", ".aiff", ".mp3"];
 
     public static void ReloadTag(bool official = true)
     {
-        CustomAudios = [];
 #nullable disable
         if (official)
         {
             Init();
-            return;
+            // return;
         }
 
         try
@@ -54,21 +53,21 @@ public static class AudioManager
     public static bool ConvertExtension(ref string path)
     {
         if (path == null) return false;
-        List<string> extensions = [".zip", ".wav", ".flac", ".aiff", ".mp3", ".aac", ".ogg", ".m4a"];
+
 
         while (!File.Exists(path))
         {
             var currentPath = path;
-            var extensionsArray = extensions.ToArray();
+            var extensionsArray = Extensions.ToArray();
             if (extensionsArray.Length == 0) return false;
-            var matchingKey = extensions.FirstOrDefault(currentPath.Contains);
+            var matchingKey = Extensions.FirstOrDefault(currentPath.Contains);
             if (matchingKey is null) return false;
             var currentIndex = Array.IndexOf(extensionsArray, matchingKey);
             if (currentIndex == -1) return false;
 
             var nextIndex = (currentIndex + 1) % extensionsArray.Length;
             path = path.Replace(matchingKey, extensionsArray[nextIndex]);
-            extensions.Remove(matchingKey);
+            Extensions.Remove(matchingKey);
         }
 
         return true;
@@ -146,7 +145,7 @@ public enum AudiosStates
 
 public class FinalMusic
 {
-    public static readonly List<FinalMusic> musics = [];
+    public static readonly List<FinalMusic> Musics = [];
 
     private static readonly object finalMusicsLock = new();
     public string Author;
@@ -155,10 +154,10 @@ public class FinalMusic
     public SupportedMusics CurrentAudio;
     public AudiosStates CurrentAudioStates;
     public string FileName;
+    public string FilePath;
     public AudiosStates LastAudioStates;
 
     public string Name;
-    public string Path;
 
     public bool PlayAsMainMenuMusic;
 
@@ -176,22 +175,15 @@ public class FinalMusic
         mus.Create(name, music);
     }
 
-    public static async Task LoadClip(SupportedMusics music = SupportedMusics.UnOfficial)
+    public async Task Load()
     {
-        var mus = musics.FirstOrDefault(x => x.CurrentAudio == music);
-        if (mus != null)
-            await mus.Load();
-    }
-
-    private async Task Load()
-    {
-        if (CurrentAudioStates != AudiosStates.Exist) return;
-        var task = AudioLoader.LoadAudioClipAsync(Path);
+        if (CurrentAudioStates != AudiosStates.Exist || Clip != null) return;
+        var task = AudioLoader.LoadAudioClipAsync(FilePath);
         _ = new MainThreadTask(() =>
         {
             LastAudioStates = CurrentAudioStates = AudiosStates.IsLoading;
             MyMusicPanel.RefreshTagList();
-        }, "Update Audio States");
+        }, "Update Audio States Start");
         await task;
         _ = new MainThreadTask(() =>
         {
@@ -199,45 +191,45 @@ public class FinalMusic
                 Clip = task.Result;
             LastAudioStates = CurrentAudioStates = Clip ? AudiosStates.Exist : AudiosStates.NotExist;
             MyMusicPanel.RefreshTagList();
-        }, "Update Audio States");
+        }, "Update Audio States Finish");
     }
 
     private void Create(string name, SupportedMusics music)
     {
         if (music != SupportedMusics.UnOfficial)
         {
-            var Part = music.ToString().Split("__");
-            FileName = Part[0];
-            Name = GetString($"Mus.{Part[0]}");
-            Author = Part[1].Replace("_", " ");
+            var part = music.ToString().Split("__");
+            FileName = part[0] + ".wav";
+            Name = GetString($"Mus.{part[0]}");
+            Author = part[1].Replace("_", " ");
         }
         else
         {
-            AudioManager.CustomAudios.Remove(name);
-            AudioManager.CustomAudios.Add(name);
             FileName = Name = name;
             Author = "";
         }
 
         UnOfficial = music == SupportedMusics.UnOfficial;
         CurrentAudio = music;
-        Path = GetResourceFilesPath(FileType.Musics, FileName + ".wav");
+        FilePath = GetResourceFilesPath(FileType.Musics, FileName);
         CurrentAudioStates = LastAudioStates =
-            AudioManager.ConvertExtension(ref Path) ? AudiosStates.Exist : AudiosStates.NotExist;
+            AudioManager.ConvertExtension(ref FilePath) ? AudiosStates.Exist : AudiosStates.NotExist;
 
+        var ext = Path.GetExtension(FilePath)?.ToLowerInvariant();
+        if (!AudioManager.Extensions.Contains(ext)) return;
         lock (finalMusicsLock)
         {
-            var file = musics.Find(x => x.FileName == FileName);
+            var file = Musics.Find(x => x.FileName == FileName);
             if (file != null)
             {
-                file.Path = Path;
+                file.FilePath = FilePath;
                 if (file.CurrentAudioStates is AudiosStates.DownLoadFailureNotice or AudiosStates.DownLoadSucceedNotice
                     || CurrentAudioStates is AudiosStates.NotExist)
                     file.CurrentAudioStates = file.LastAudioStates = CurrentAudioStates;
             }
             else if (Name != string.Empty)
             {
-                musics.Add(this);
+                Musics.Add(this);
             }
         }
     }

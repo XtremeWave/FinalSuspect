@@ -36,8 +36,8 @@ public static class PathManager
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
 #endif
     };
@@ -61,16 +61,16 @@ public static class PathManager
     {
         var remoteBase = remoteType switch
         {
-            RemoteType.GithubMirror => "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/Assets/",
+            RemoteType.GithubMirror => "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
             RemoteType.GithubMirror_Assets =>
-                "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/Assets/",
-            RemoteType.Github => "github.com/Slok7565/FinalSuspect/FinalSus/Assets/",
-            RemoteType.Github_Assets => "github.com/Slok7565/FinalSuspect_Assets/FinalAsset/Assets/",
-            RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/Assets/",
+                "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
+            RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
+            RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/",
+            RemoteType.Github_Assets => "github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
             _ => "127.0.0.1"
         };
 
-        return remoteBase;
+        return remoteBase + "Assets/";
     }
 
     public static string GetLocalFilePath(FileType fileType, string file)
@@ -159,7 +159,7 @@ public static class PathManager
     {
         var list = URLs.ToList();
         if (!allowDesktop && DebugModeManager.IsDebugMode)
-            list.RemoveAt(4);
+            list.RemoveAt(5);
         if (IsChineseUser) list.Reverse();
         return list;
     }

@@ -20,7 +20,7 @@ public static class MyMusicPanel
 
     public static int CurrentPage { get; private set; } = 1;
     public static int ItemsPerPage => 7;
-    public static int TotalPageCount => (FinalMusic.musics.Count + ItemsPerPage - 1) / ItemsPerPage;
+    public static int TotalPageCount => (FinalMusic.Musics.Count + ItemsPerPage - 1) / ItemsPerPage;
 
     //public static ToggleButtonBehaviour ChangePlayMode { get; private set; }
     public static void Hide()
@@ -143,7 +143,7 @@ public static class MyMusicPanel
             var startIndex = (CurrentPage - 1) * ItemsPerPage;
 
             var count = 0;
-            foreach (var audio in FinalMusic.musics.Skip(startIndex))
+            foreach (var audio in FinalMusic.Musics.Skip(startIndex))
             {
                 if (count >= ItemsPerPage)
                 {
@@ -166,7 +166,7 @@ public static class MyMusicPanel
         {
             var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
             var name = audio.Name;
-            var path = audio.Path;
+            var path = audio.FilePath;
             var filename = audio.FileName;
             var author = audio.Author;
 

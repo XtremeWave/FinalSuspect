@@ -51,6 +51,12 @@ public static class ResourcesHelper
 
     public static List<string> RemoteDependList =
     [
+        "NAudio.dll",
+        "NAudio.Asio.dll",
+        "NAudio.Core.dll",
+        "NAudio.Flac.dll",
+        "NAudio,Wasapi.dll",
+        "NAudio.WinMM.dll",
         "YamlDotNet.dll",
         "YamlDotNet.xml"
     ];

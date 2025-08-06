@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Ról"
 DisplayedRoleTag.PlayerIdentityTag: "Clibeanna Aitheantais"
 DisplayedRoleTag.Room: "Seomra"
 
-PlayerIdentityTag.Hard_Cleared: "Daor dearg"
-PlayerIdentityTag.Silver_Clear: "Uisce airgid"
-PlayerIdentityTag.Wolf_Bucket: "Pota na mactíre"
-PlayerIdentityTag.No_Kill: "Gan marú"
-PlayerIdentityTag.Outside_Position: "Suíomh seachtrach"
-PlayerIdentityTag.Inside_Position: "Suíomh inmheánach"
+PlayerIdentityTag.Safe: "Daor dearg"
+PlayerIdentityTag.Likely_Safe: "Uisce airgid"
+PlayerIdentityTag.Suspect: "Pota na mactíre"
+PlayerIdentityTag.Alibi: "Gan marú"
+PlayerIdentityTag.Confirmed_Position: "Suíomh seachtrach"
+PlayerIdentityTag.Unconfirmed_Position: "Suíomh inmheánach"
 
 # 通知 / Notifications
 ## 原版

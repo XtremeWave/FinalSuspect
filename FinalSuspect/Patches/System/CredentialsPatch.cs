@@ -416,7 +416,7 @@ internal class ModManagerLateUpdatePatch
         if (name is "MainMenu" or "MatchMaking")
         {
             var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
-            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
+            var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
             if (audio != null)
             {
                 _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");

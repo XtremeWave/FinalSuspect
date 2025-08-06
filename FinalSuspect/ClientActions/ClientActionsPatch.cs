@@ -115,7 +115,6 @@ public static class OptionsMenuBehaviourStartPatch
                 AudioPlayer.StartPlayVanilla();
         });
         CreateOptionItem(ref _showPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
-        CreateOptionItem(ref _useModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
         CreateOptionItem(ref _fastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
         CreateOptionItem(ref _offlineMode, "OfflineMode", Main.OfflineMode, __instance, (() =>
         {
@@ -123,6 +122,8 @@ public static class OptionsMenuBehaviourStartPatch
             CustomPopup.Show(GetString("ClientOption.OfflineMode"), GetString("UpdateResult.Succeed_Text"),
                 [(GetString(StringNames.ExitGame), Application.Quit)]);
         }));
+        CreateOptionItem(ref _useModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
+
         if (DebugModeManager.IsDebugMode)
         {
             CreateOptionItem(ref _versionCheat, "VersionCheat", Main.VersionCheat, __instance);

@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Função"
 DisplayedRoleTag.PlayerIdentityTag: "Etiqueta de Identidade"
 DisplayedRoleTag.Room: "Sala"
 
-PlayerIdentityTag.Hard_Cleared: "Confirmado Bom"
-PlayerIdentityTag.Silver_Clear: "Parcialmente Seguro"
-PlayerIdentityTag.Wolf_Bucket: "Reduto de Lobos"
-PlayerIdentityTag.No_Kill: "Sem Abate"
-PlayerIdentityTag.Outside_Position: "Posição Exterior"
-PlayerIdentityTag.Inside_Position: "Posição Interior"
+PlayerIdentityTag.Safe: "Confirmado Bom"
+PlayerIdentityTag.Likely_Safe: "Parcialmente Seguro"
+PlayerIdentityTag.Suspect: "Reduto de Lobos"
+PlayerIdentityTag.Alibi: "Sem Abate"
+PlayerIdentityTag.Confirmed_Position: "Posição Exterior"
+PlayerIdentityTag.Unconfirmed_Position: "Posição Interior"
 
 # 通知 / Notifications
 ## 原版

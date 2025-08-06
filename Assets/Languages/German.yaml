@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Rolle"
 DisplayedRoleTag.PlayerIdentityTag: "Identität-Tag"
 DisplayedRoleTag.Room: "Raum"
 
-PlayerIdentityTag.Hard_Cleared: "Bestätigter Dorfbewohner"
-PlayerIdentityTag.Silver_Clear: "Wahrscheinlicher Dorfbewohner"
-PlayerIdentityTag.Wolf_Bucket: "Wolfsgrube"
-PlayerIdentityTag.No_Kill: "Kein Mord"
-PlayerIdentityTag.Outside_Position: "Außenposition"
-PlayerIdentityTag.Inside_Position: "Innenposition"
+PlayerIdentityTag.Safe: "Bestätigter Dorfbewohner"
+PlayerIdentityTag.Likely_Safe: "Wahrscheinlicher Dorfbewohner"
+PlayerIdentityTag.Suspect: "Wolfsgrube"
+PlayerIdentityTag.Alibi: "Kein Mord"
+PlayerIdentityTag.Confirmed_Position: "Außenposition"
+PlayerIdentityTag.Unconfirmed_Position: "Innenposition"
 
 # 通知 / Notifications
 ## 原版

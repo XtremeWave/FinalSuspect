@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Rol"
 DisplayedRoleTag.PlayerIdentityTag: "Etiqueta de Identidad"
 DisplayedRoleTag.Room: "Sala"
 
-PlayerIdentityTag.Hard_Cleared: "Confirmado Bueno"
-PlayerIdentityTag.Silver_Clear: "Semi-Limpiado"
-PlayerIdentityTag.Wolf_Bucket: "Cupo Lobo"
-PlayerIdentityTag.No_Kill: "Sin Asesinato"
-PlayerIdentityTag.Outside_Position: "Posición Externa"
-PlayerIdentityTag.Inside_Position: "Posición Interna"
+PlayerIdentityTag.Safe: "Confirmado Bueno"
+PlayerIdentityTag.Likely_Safe: "Semi-Limpiado"
+PlayerIdentityTag.Suspect: "Cupo Lobo"
+PlayerIdentityTag.Alibi: "Sin Asesinato"
+PlayerIdentityTag.Confirmed_Position: "Posición Externa"
+PlayerIdentityTag.Unconfirmed_Position: "Posición Interna"
 
 # 通知 / Notifications
 ## 原版

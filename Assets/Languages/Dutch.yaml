@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Rol"
 DisplayedRoleTag.PlayerIdentityTag: "Identiteitstag"
 DisplayedRoleTag.Room: "Kamer"
 
-PlayerIdentityTag.Hard_Cleared: "Bevestigd burger"
-PlayerIdentityTag.Silver_Clear: "Waarschijnlijk burger"
-PlayerIdentityTag.Wolf_Bucket: "Wolvenhol"
-PlayerIdentityTag.No_Kill: "Geen moord"
-PlayerIdentityTag.Outside_Position: "Buitenpositie"
-PlayerIdentityTag.Inside_Position: "Binnenpositie"
+PlayerIdentityTag.Safe: "Bevestigd burger"
+PlayerIdentityTag.Likely_Safe: "Waarschijnlijk burger"
+PlayerIdentityTag.Suspect: "Wolvenhol"
+PlayerIdentityTag.Alibi: "Geen moord"
+PlayerIdentityTag.Confirmed_Position: "Buitenpositie"
+PlayerIdentityTag.Unconfirmed_Position: "Binnenpositie"
 
 # 通知 / Notifications
 ## 原版

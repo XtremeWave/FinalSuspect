@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Função"
 DisplayedRoleTag.PlayerIdentityTag: "Marcação de Identidade"
 DisplayedRoleTag.Room: "Sala"
 
-PlayerIdentityTag.Hard_Cleared: "Confirmado"
-PlayerIdentityTag.Silver_Clear: "Semi-Livre"
-PlayerIdentityTag.Wolf_Bucket: "Poço de Lobos"
-PlayerIdentityTag.No_Kill: "Sem Facada"
-PlayerIdentityTag.Outside_Position: "Posição Externa"
-PlayerIdentityTag.Inside_Position: "Posição Interna"
+PlayerIdentityTag.Safe: "Confirmado"
+PlayerIdentityTag.Likely_Safe: "Semi-Livre"
+PlayerIdentityTag.Suspect: "Poço de Lobos"
+PlayerIdentityTag.Alibi: "Sem Facada"
+PlayerIdentityTag.Confirmed_Position: "Posição Externa"
+PlayerIdentityTag.Unconfirmed_Position: "Posição Interna"
 
 # 通知 / Notifications
 ## 原版

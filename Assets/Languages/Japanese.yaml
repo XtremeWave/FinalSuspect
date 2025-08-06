@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "役職"
 DisplayedRoleTag.PlayerIdentityTag: "アイデンティティ・タグ"
 DisplayedRoleTag.Room: "部屋"
 
-PlayerIdentityTag.Hard_Cleared: "確定市民"
-PlayerIdentityTag.Silver_Clear: "銀水"
-PlayerIdentityTag.Wolf_Bucket: "狼ポジション"
-PlayerIdentityTag.No_Kill: "襲撃なし"
-PlayerIdentityTag.Outside_Position: "外ポジション"
-PlayerIdentityTag.Inside_Position: "内ポジション"
+PlayerIdentityTag.Safe: "確定市民"
+PlayerIdentityTag.Likely_Safe: "銀水"
+PlayerIdentityTag.Suspect: "狼ポジション"
+PlayerIdentityTag.Alibi: "襲撃なし"
+PlayerIdentityTag.Confirmed_Position: "外ポジション"
+PlayerIdentityTag.Unconfirmed_Position: "内ポジション"
 
 # 通知 / Notifications
 ## 原版

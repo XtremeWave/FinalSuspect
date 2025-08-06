@@ -32,7 +32,11 @@ public static class LoadPatch
         CreateTextComponents(instance);
         yield return HandleFirstLaunch();
         CreateLogoComponents();
-        yield return HandleCoreLoadingProcess();
+        yield return HandleCoreLoadingProcess(instance);
+    }
+
+    private static void FinishSceneLoad(SplashManager instance)
+    {
         instance.sceneChanger.BeginLoadingScene();
         instance.doneLoadingRefdata = true;
     }
@@ -119,14 +123,16 @@ public static class LoadPatch
         _loadText.text = $"Welcome to <color={ColorHelper.FSColorHex}>FinalSuspect</color>.";
     }
 
-    private static IEnumerator HandleCoreLoadingProcess()
+    private static IEnumerator HandleCoreLoadingProcess(SplashManager instance)
     {
         var fastLaunchMode = (CheckFastLaunchModeCondition() || Main.OfflineMode.Value) && !_firstLaunch;
-        Main.OfflineMode.Value = Main.FastLaunchMode.Value = fastLaunchMode;
+        Main.FastLaunchMode.Value = fastLaunchMode;
+        if (!fastLaunchMode)
+            Main.OfflineMode.Value = false;
 
         yield return fastLaunchMode ? HandleFastLaunchMode() : HandleNormalBoot();
 
-        yield return LoadEssentialResources();
+        yield return LoadEssentialResources(instance);
         yield return HandlePostDownloadProcess(fastLaunchMode);
     }
 
@@ -164,7 +170,7 @@ public static class LoadPatch
         TranslatorInit();
         AudioManager.ReloadTag();
         var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
-        var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
+        var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
         if (audio != null)
             AudioPlayer.Play(audio, true);
 
@@ -256,11 +262,17 @@ public static class LoadPatch
 
     #region Resource Management
 
-    private static IEnumerator LoadEssentialResources()
+    private static IEnumerator LoadEssentialResources(SplashManager instance)
     {
         yield return LoadAmongUsTranslation();
 
-        if (Main.OfflineMode.Value) yield break;
+        if (Main.FastLaunchMode.Value)
+        {
+            FinishSceneLoad(instance);
+            if (Main.OfflineMode.Value)
+                yield break;
+        }
+
         CheckForListResources(ref ResourcesHelper.RemoteDependList, FileType.Depends);
         yield return DownloadResources(ResourcesHelper.RemoteDependList, FileType.Depends, null, true);
 
@@ -278,7 +290,7 @@ public static class LoadPatch
             TranslatorInit();
             AudioManager.ReloadTag();
             var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
-            var audio = FinalMusic.musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
+            var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
             if (audio != null)
                 AudioPlayer.Play(audio, true);
         }
@@ -415,7 +427,7 @@ public static class LoadPatch
             if (!task.IsFaulted && task.Result) continue;
 
             Error($"Download failed: {resource} - {task.Exception}", "Download Resource");
-            if (!essential) continue;
+            if (!essential || Main.FastLaunchMode.Value) continue;
             yield return HandleDownloadError();
             Fatal("DOWNLOAD ESSENTIAL RESOURCES FAILED", "Download Resource");
         }

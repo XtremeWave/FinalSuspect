@@ -231,12 +231,12 @@ DisplayedRoleTag.Role: "Tungkulin"
 DisplayedRoleTag.PlayerIdentityTag: "Tag ng Pagkakakilanlan"
 DisplayedRoleTag.Room: "Silid"
 
-PlayerIdentityTag.Hard_Cleared: "Tiyak na Mabuting Tao"
-PlayerIdentityTag.Silver_Clear: "Malamang na Mabuting Tao"
-PlayerIdentityTag.Wolf_Bucket: "Balon ng mga Lobo"
-PlayerIdentityTag.No_Kill: "Walang Patay"
-PlayerIdentityTag.Outside_Position: "Posisyon sa Labas"
-PlayerIdentityTag.Inside_Position: "Posisyon sa Loob"
+PlayerIdentityTag.Safe: "Tiyak na Mabuting Tao"
+PlayerIdentityTag.Likely_Safe: "Malamang na Mabuting Tao"
+PlayerIdentityTag.Suspect: "Balon ng mga Lobo"
+PlayerIdentityTag.Alibi: "Walang Patay"
+PlayerIdentityTag.Confirmed_Position: "Posisyon sa Labas"
+PlayerIdentityTag.Unconfirmed_Position: "Posisyon sa Loob"
 
 # 通知 / Notifications
 ## 原版

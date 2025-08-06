@@ -24,12 +24,12 @@ public static class DisplayerRoleTagHelper
 
     private static readonly Dictionary<IdentityTypes, string> identityColors = new()
     {
-        { IdentityTypes.Hard_Cleared, "#FFD700" },
-        { IdentityTypes.Silver_Clear, "#C0C0C0" },
-        { IdentityTypes.Wolf_Bucket, "#B22222" },
-        { IdentityTypes.No_Kill, "#94AA24" },
-        { IdentityTypes.Outside_Position, "#228B22" },
-        { IdentityTypes.Inside_Position, "#663399" }
+        { IdentityTypes.Safe, "#FFD700" },
+        { IdentityTypes.Likely_Safe, "#C0C0C0" },
+        { IdentityTypes.Suspect, "#B22222" },
+        { IdentityTypes.Alibi, "#94AA24" },
+        { IdentityTypes.Confirmed_Position, "#228B22" },
+        { IdentityTypes.Unconfirmed_Position, "#663399" }
     };
 
     private static void SelectCategory(CategoryType category, bool SetPage = true)
@@ -158,7 +158,7 @@ public static class DisplayerRoleTagHelper
                 var color = category switch
                 {
                     CategoryType.Role => GetRoleColor(RoleTypes.Crewmate),
-                    CategoryType.PlayerIdentityTag => GetIdentityColor(IdentityTypes.Hard_Cleared),
+                    CategoryType.PlayerIdentityTag => GetIdentityColor(IdentityTypes.Safe),
                     CategoryType.Room => (Color)ColorHelper.ClientlessColor,
                     _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
                 };
@@ -308,12 +308,12 @@ public static class DisplayerRoleTagHelper
 
     private enum IdentityTypes
     {
-        Hard_Cleared,
-        Silver_Clear,
-        Wolf_Bucket,
-        No_Kill,
-        Outside_Position,
-        Inside_Position
+        Safe,
+        Likely_Safe,
+        Suspect,
+        Alibi,
+        Confirmed_Position,
+        Unconfirmed_Position
     }
 }
 

@@ -137,9 +137,9 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> EnableFAC { get; private set; }
     public static ConfigEntry<bool> EnableGuardian { get; private set; }
     public static ConfigEntry<bool> ShowPlayerInfo { get; private set; }
-    public static ConfigEntry<bool> UseModCursor { get; private set; }
     public static ConfigEntry<bool> FastLaunchMode { get; private set; }
     public static ConfigEntry<bool> OfflineMode { get; private set; }
+    public static ConfigEntry<bool> UseModCursor { get; private set; }
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
     public static ConfigEntry<bool> NoGameEnd { get; private set; }
@@ -193,9 +193,10 @@ public class Main : BasePlugin
         EnableGuardian = Config.Bind("Client Options", "Enable Guardian", true);
         //PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
         ShowPlayerInfo = Config.Bind("Client Options", "Show Player Info", true);
-        UseModCursor = Config.Bind("Client Options", "Use Mod Cursor", true);
         FastLaunchMode = Config.Bind("Client Options", "Fast Launch Mode", false);
         OfflineMode = Config.Bind("Client Options", "Offline Mode", false);
+        UseModCursor = Config.Bind("Client Options", "Use Mod Cursor", true);
+
         VersionCheat = Config.Bind("Client Options", "Version Cheat", false);
         GodMode = Config.Bind("Client Options", "God Mode", false);
         NoGameEnd = Config.Bind("Client Options", "No Game End", false);
