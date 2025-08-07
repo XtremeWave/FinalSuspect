@@ -52,24 +52,24 @@ public static class FinalLocalHandling
         if (player.IsHost()) toptext = toptext.CheckAndAppendText(GetString("Id.Host"));
         if (GetPlayerVersion(player.GetClientId(), out var ver))
         {
-            if (Main.ForkId != ver.forkId)
+            if (Main.ForkId != ver.ForkId)
             {
-                toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.forkId}</size>");
+                toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.ForkId}</size>");
                 topcolor = ColorHelper.UnmatchedColor;
             }
             else
             {
-                switch (Main.version.CompareTo(ver.version))
+                switch (Main.version.CompareTo(ver.Version))
                 {
-                    case 0 when ver.tag == $"{Main.GitCommit}({Main.GitBranch})":
+                    case 0 when ver.Tag == $"{Main.GitCommit}({Main.GitBranch})":
                         topcolor = ColorHelper.FSColor;
                         break;
-                    case 0 when ver.tag != $"{Main.GitCommit}({Main.GitBranch})":
-                        toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.tag}</size>");
+                    case 0 when ver.Tag != $"{Main.GitCommit}({Main.GitBranch})":
+                        toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.Tag}</size>");
                         topcolor = Color.yellow;
                         break;
                     default:
-                        toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.version}</size>");
+                        toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.Version}</size>");
                         topcolor = Color.red;
                         break;
                 }
@@ -305,8 +305,8 @@ public static class FinalLocalHandling
         if (!IsInTask || IsFreePlay) return;
         var data = pc.GetFinalData();
         var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
-        var Task_NotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
-        var Role_NotAssgin = data.RoleWhenAlive == null;
+        var taskNotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
+        var roleNotAssgin = data.RoleWhenAlive == null;
 
         if (pc.GetFinalData().IsDisconnected)
         {
@@ -314,9 +314,9 @@ public static class FinalLocalHandling
             pc.Data.IsDead = true;
         }
 
-        if (!currectlyDisconnect && !Task_NotAssgin && !Role_NotAssgin) return;
+        if (!currectlyDisconnect && !taskNotAssgin && !roleNotAssgin) return;
         pc.SetDisconnected();
-        pc.SetDeathReason(VanillaDeathReason.Disconnect, Task_NotAssgin || Role_NotAssgin);
+        pc.SetDeathReason(VanillaDeathReason.Disconnect, taskNotAssgin || roleNotAssgin);
     }
 
     private static void DeathSync(PlayerControl pc)

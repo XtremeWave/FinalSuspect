@@ -6,7 +6,7 @@ namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 // 5, 6
 public class SetNameHandler : IRpcHandler
 {
-    private static readonly Dictionary<byte, int> _counters = new();
+    private static readonly Dictionary<byte, int> Counters = new();
 
     public List<byte> TargetRpcs =>
     [
@@ -17,8 +17,8 @@ public class SetNameHandler : IRpcHandler
     public bool HandleAll(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        _counters.TryAdd(sender.PlayerId, 0);
-        if (++_counters[sender.PlayerId] <= 3) return false;
+        Counters.TryAdd(sender.PlayerId, 0);
+        if (++Counters[sender.PlayerId] <= 3) return false;
         if (AmongUsClient.Instance.AmHost)
         {
             HandleCheat(sender, GetString("CheatDetected.SetName"));
@@ -42,6 +42,6 @@ public class SetNameHandler : IRpcHandler
 
     public void Dispose(byte id)
     {
-        _counters.Remove(id);
+        Counters.Remove(id);
     }
 }

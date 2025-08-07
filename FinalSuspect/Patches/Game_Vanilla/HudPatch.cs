@@ -30,7 +30,7 @@ internal class SetVentOutlinePatch
 [HarmonyPatch(typeof(TaskPanelBehaviour), nameof(TaskPanelBehaviour.SetTaskText))]
 internal class TaskPanelBehaviourPatch
 {
-    private static bool even;
+    private static bool _even;
 
     public static void Postfix(TaskPanelBehaviour __instance)
     {
@@ -70,8 +70,8 @@ internal class TaskPanelBehaviourPatch
 
         if (taskText.Contains(GetString(StringNames.FixComms)))
         {
-            even = !even;
-            var color = even ? Color.yellow : Color.red;
+            _even = !_even;
+            var color = _even ? Color.yellow : Color.red;
             var text = color.ToTextColor();
             text += GetString(StringNames.FixComms);
             text += "</color>";

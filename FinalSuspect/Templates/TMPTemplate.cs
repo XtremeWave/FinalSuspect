@@ -5,17 +5,17 @@ namespace FinalSuspect.Templates;
 
 public static class TMPTemplate
 {
-    private static TextMeshPro baseTMP;
+    private static TextMeshPro _baseTMP;
 
     public static void SetBase(TextMeshPro tmp)
     {
-        if (baseTMP) return;
+        if (_baseTMP) return;
 
-        baseTMP = Object.Instantiate(tmp);
-        Object.Destroy(baseTMP.GetComponent<AspectPosition>());
-        Object.DontDestroyOnLoad(baseTMP);
-        baseTMP.gameObject.SetActive(false);
-        baseTMP.gameObject.name = "TMPTemplateBase";
+        _baseTMP = Object.Instantiate(tmp);
+        Object.Destroy(_baseTMP.GetComponent<AspectPosition>());
+        Object.DontDestroyOnLoad(_baseTMP);
+        _baseTMP.gameObject.SetActive(false);
+        _baseTMP.gameObject.name = "TMPTemplateBase";
     }
 
     public static TextMeshPro Create(
@@ -29,13 +29,13 @@ public static class TMPTemplate
     )
     {
         var replicatedObject = !parent
-            ? Object.Instantiate(baseTMP)
-            : Object.Instantiate(baseTMP, parent);
+            ? Object.Instantiate(_baseTMP)
+            : Object.Instantiate(_baseTMP, parent);
         replicatedObject.text = text ?? "";
         replicatedObject.color = color ?? Color.white;
         replicatedObject.fontSize =
             replicatedObject.fontSizeMax =
-                replicatedObject.fontSizeMin = fontSize ?? baseTMP.fontSize;
+                replicatedObject.fontSizeMin = fontSize ?? _baseTMP.fontSize;
         replicatedObject.alignment = alignment ?? TextAlignmentOptions.Center;
 
         replicatedObject.gameObject.SetActive(setActive);

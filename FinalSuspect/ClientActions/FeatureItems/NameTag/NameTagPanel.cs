@@ -10,8 +10,8 @@ namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
 
 public static class NameTagPanel
 {
-    private static int numItems;
-    private static ToggleButtonBehaviour ButtonTemplate;
+    private static int _numItems;
+    private static ToggleButtonBehaviour _buttonTemplate;
     public static SpriteRenderer CustomBackground { get; set; }
     public static List<GameObject> Items { get; private set; } = [];
     public static int CurrentPage { get; private set; } = 1;
@@ -31,7 +31,7 @@ public static class NameTagPanel
 
         var mouseMoveToggle = optionsMenuBehaviour.DisableMouseMovement;
         CustomBackground = CreateBackground(optionsMenuBehaviour);
-        ButtonTemplate = mouseMoveToggle;
+        _buttonTemplate = mouseMoveToggle;
 
         CreateCloseButton(mouseMoveToggle);
         CreateNewButton(mouseMoveToggle);
@@ -133,7 +133,7 @@ public static class NameTagPanel
         {
             Items?.Do(Object.Destroy);
             Items = [];
-            numItems = 0;
+            _numItems = 0;
 
             var startIndex = (CurrentPage - 1) * ItemsPerPage;
             var count = 0;
@@ -142,10 +142,10 @@ public static class NameTagPanel
             {
                 if (nameTag.Value.Isinternal) continue;
                 if (count++ < startIndex) continue;
-                if (numItems >= ItemsPerPage) break;
+                if (_numItems >= ItemsPerPage) break;
 
                 CreateTagItem(nameTag.Key, nameTag.Value);
-                numItems++;
+                _numItems++;
             }
         }
         catch (Exception ex)
@@ -156,11 +156,11 @@ public static class NameTagPanel
 
     private static void CreateTagItem(string key, NameTagManager.NameTag value)
     {
-        if (ButtonTemplate == null || CustomBackground == null) return;
+        if (_buttonTemplate == null || CustomBackground == null) return;
 
-        var posY = 2.2f - 0.5f * numItems;
+        var posY = 2.2f - 0.5f * _numItems;
 
-        var button = Object.Instantiate(ButtonTemplate, CustomBackground.transform);
+        var button = Object.Instantiate(_buttonTemplate, CustomBackground.transform);
         button.transform.localPosition = new Vector3(-1.3f, posY, -4f);
         button.name = "Btn-" + key;
         button.Text.text = key;

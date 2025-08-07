@@ -8,9 +8,9 @@ namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
 
 public static class FAC
 {
-    private static int DeNum;
-    public static long _lastHandleCheater = -1;
-    public static readonly List<RpcHandlers> _handlers = [];
+    private static int _deNum;
+    public static long LastHandleCheater = -1;
+    public static readonly List<RpcHandlers> Handlers = [];
 
     static FAC()
     {
@@ -24,21 +24,21 @@ public static class FAC
             var activehandler = new RpcHandlers(rpcTypes);
             activehandler.Handlers.Add(handler);
 
-            _handlers.Add(activehandler);
+            Handlers.Add(activehandler);
         }
     }
 
     public static void Init_FAC()
     {
-        DeNum = 0;
+        _deNum = 0;
     }
 
     public static void WarnHost(int denum = 1)
     {
-        DeNum += denum;
+        _deNum += denum;
         if (!ErrorText.Instance) return;
-        ErrorText.Instance.CheatDetected = DeNum > 3;
-        ErrorText.Instance.SBDetected = DeNum > 10;
+        ErrorText.Instance.CheatDetected = _deNum > 3;
+        ErrorText.Instance.SBDetected = _deNum > 10;
         if (ErrorText.Instance.CheatDetected)
             ErrorText.Instance.AddError(ErrorText.Instance.SBDetected ? ErrorCode.SBDetected : ErrorCode.CheatDetected);
         else
@@ -69,7 +69,7 @@ public static class FAC
 
             var sr = MessageReader.Get(reader);
 
-            foreach (var handler in _handlers.Where(handlers => handlers.TargetRpcs.Contains(callId))
+            foreach (var handler in Handlers.Where(handlers => handlers.TargetRpcs.Contains(callId))
                          .SelectMany(handlers => handlers.Handlers))
             {
                 if (!Enum.IsDefined(typeof(RpcCalls), callId))
@@ -128,6 +128,6 @@ public static class FAC
 
     public static void Dispose(byte id)
     {
-        foreach (var handler in _handlers) handler.Handlers.Do(x => x.Dispose(id));
+        foreach (var handler in Handlers) handler.Handlers.Do(x => x.Dispose(id));
     }
 }

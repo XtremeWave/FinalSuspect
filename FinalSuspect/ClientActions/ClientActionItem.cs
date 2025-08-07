@@ -8,8 +8,8 @@ namespace FinalSuspect.ClientActions;
 
 public class ClientActionItem
 {
-    private static int numItems;
-    private string Name;
+    private static int _numItems;
+    private string _name;
 
     protected ClientActionItem(string name, OptionsMenuBehaviour optionsMenuBehaviour)
     {
@@ -20,7 +20,7 @@ public class ClientActionItem
             // 在生成第一个按钮时同时生成背景
             if (!CustomBackground)
             {
-                numItems = 0;
+                _numItems = 0;
                 CustomBackground = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
                 CustomBackground.name = "Client Options Background";
                 CustomBackground.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
@@ -77,9 +77,9 @@ public class ClientActionItem
             ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
             ToggleButton.transform.localPosition = new Vector3(
                 // 基于当前选项数量计算位置
-                numItems % 2 == 0 ? -1.3f : 1.3f,
+                _numItems % 2 == 0 ? -1.3f : 1.3f,
                 // ReSharper disable once PossibleLossOfFraction
-                2.2f - 0.5f * (numItems / 2),
+                2.2f - 0.5f * (_numItems / 2),
                 -6f);
             ToggleButton.name = name;
             Rename(name);
@@ -90,7 +90,7 @@ public class ClientActionItem
         }
         finally
         {
-            numItems++;
+            _numItems++;
         }
     }
 
@@ -126,8 +126,8 @@ public class ClientActionItem
     protected void Rename(string name = null)
     {
         if (name != null)
-            Name = name;
-        name ??= Name;
+            _name = name;
+        name ??= _name;
         ToggleButton.Text.text = GetString("ClientOption." + name);
     }
 }

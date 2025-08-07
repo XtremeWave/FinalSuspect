@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 using NAudio.Wave;
 
 // ReSharper disable RedundantAssignment

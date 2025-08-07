@@ -8,7 +8,7 @@ namespace FinalSuspect.ClientActions;
 
 public class ClientFeatureItem
 {
-    private static int numItems;
+    private static int _numItems;
 
     private ClientFeatureItem(string name, OptionsMenuBehaviour optionsMenuBehaviour)
     {
@@ -19,7 +19,7 @@ public class ClientFeatureItem
             // 1つ目のボタンの生成時に背景も生成
             if (!CustomBackground)
             {
-                numItems = 0;
+                _numItems = 0;
                 CustomBackground = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
                 CustomBackground.name = "More Options Background";
                 CustomBackground.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
@@ -76,9 +76,9 @@ public class ClientFeatureItem
             ToggleButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
             ToggleButton.transform.localPosition = new Vector3(
                 // 現在のオプション数を基に位置を計算
-                numItems % 2 == 0 ? -1.3f : 1.3f,
+                _numItems % 2 == 0 ? -1.3f : 1.3f,
                 // ReSharper disable once PossibleLossOfFraction
-                2.2f - 0.5f * (numItems / 2),
+                2.2f - 0.5f * (_numItems / 2),
                 -6f);
             ToggleButton.name = name;
             ToggleButton.Text.text = GetString("ClientFeature." + name);
@@ -89,7 +89,7 @@ public class ClientFeatureItem
         }
         finally
         {
-            numItems++;
+            _numItems++;
         }
     }
 

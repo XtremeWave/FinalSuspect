@@ -32,12 +32,12 @@ public static class GameStartManagerUpdatePatch
 
 public static class GameStartManagerPatch
 {
-    private static float timer = 600f;
-    private static Vector3 GameStartTextlocalPosition;
-    private static TextMeshPro timerText;
-    private static PassiveButton cancelButton;
-    private static TextMeshPro warningText;
-    private static TextMeshPro HideName;
+    private static float _timer = 600f;
+    private static Vector3 _gameStartTextlocalPosition;
+    private static TextMeshPro _timerText;
+    private static PassiveButton _cancelButton;
+    private static TextMeshPro _warningText;
+    private static TextMeshPro _hideName;
     public static GameStartManager Instance;
 
     [GameModuleInitializer]
@@ -61,55 +61,55 @@ public static class GameStartManagerPatch
             __instance.MinPlayers = 1;
 
             __instance.GameRoomNameCode.text = GameCode.IntToGameName(AmongUsClient.Instance.GameId);
-            timer = 600f;
+            _timer = 600f;
 
-            HideName = Object.Instantiate(__instance.GameRoomNameCode, __instance.GameRoomNameCode.transform.parent);
-            HideName.gameObject.SetActive(true);
-            HideName.name = "HideName";
-            HideName.color =
+            _hideName = Object.Instantiate(__instance.GameRoomNameCode, __instance.GameRoomNameCode.transform.parent);
+            _hideName.gameObject.SetActive(true);
+            _hideName.name = "HideName";
+            _hideName.color =
                 ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
-                ColorUtility.TryParseHtmlString(ColorHelper.FSColorHex, out var modColor) ? modColor : HideName.color;
-            HideName.text = Main.HideName.Value;
+                ColorUtility.TryParseHtmlString(ColorHelper.FSColorHex, out var modColor) ? modColor : _hideName.color;
+            _hideName.text = Main.HideName.Value;
 
-            warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
-            warningText.name = "WarningText";
-            warningText.transform.localPosition = new Vector3(0f, 0f - __instance.transform.localPosition.y, -1f);
-            warningText.gameObject.SetActive(false);
+            _warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
+            _warningText.name = "WarningText";
+            _warningText.transform.localPosition = new Vector3(0f, 0f - __instance.transform.localPosition.y, -1f);
+            _warningText.gameObject.SetActive(false);
 
-            timerText = Object.Instantiate(__instance.PlayerCounter,
+            _timerText = Object.Instantiate(__instance.PlayerCounter,
                 AmongUsClient.Instance.AmHost
                     ? __instance.StartButton.transform.parent
                     : __instance.StartButtonClient.transform.parent);
-            timerText.fontSize = 6.2f;
-            timerText.autoSizeTextContainer = true;
-            timerText.name = "Timer";
-            timerText.DestroyChildren();
-            timerText.DestroySubMeshObjects();
-            timerText.alignment = TextAlignmentOptions.Center;
-            timerText.outlineColor = Color.black;
-            timerText.outlineWidth = 0.40f;
-            timerText.hideFlags = HideFlags.None;
-            timerText.transform.localPosition += new Vector3(-0.55f, -0.4f, 0f);
-            timerText.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-            timerText.gameObject.SetActive(AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame &&
-                                           IsVanillaServer);
+            _timerText.fontSize = 6.2f;
+            _timerText.autoSizeTextContainer = true;
+            _timerText.name = "Timer";
+            _timerText.DestroyChildren();
+            _timerText.DestroySubMeshObjects();
+            _timerText.alignment = TextAlignmentOptions.Center;
+            _timerText.outlineColor = Color.black;
+            _timerText.outlineWidth = 0.40f;
+            _timerText.hideFlags = HideFlags.None;
+            _timerText.transform.localPosition += new Vector3(-0.55f, -0.4f, 0f);
+            _timerText.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            _timerText.gameObject.SetActive(AmongUsClient.Instance.NetworkMode == NetworkModes.OnlineGame &&
+                                            IsVanillaServer);
 
-            cancelButton = Object.Instantiate(__instance.StartButton, __instance.transform);
-            var cancelLabel = cancelButton.GetComponentInChildren<TextMeshPro>();
+            _cancelButton = Object.Instantiate(__instance.StartButton, __instance.transform);
+            var cancelLabel = _cancelButton.GetComponentInChildren<TextMeshPro>();
             cancelLabel.DestroyTranslator();
             cancelLabel.text = GetString("Cancel");
-            var cancelButtonInactiveRenderer = cancelButton.inactiveSprites.GetComponent<SpriteRenderer>();
+            var cancelButtonInactiveRenderer = _cancelButton.inactiveSprites.GetComponent<SpriteRenderer>();
             cancelButtonInactiveRenderer.color = new Color(0.8f, 0f, 0f, 1f);
-            var cancelButtonActiveRenderer = cancelButton.activeSprites.GetComponent<SpriteRenderer>();
+            var cancelButtonActiveRenderer = _cancelButton.activeSprites.GetComponent<SpriteRenderer>();
             cancelButtonActiveRenderer.color = Color.red;
-            var cancelButtonInactiveShine = cancelButton.inactiveSprites.transform.Find("Shine");
+            var cancelButtonInactiveShine = _cancelButton.inactiveSprites.transform.Find("Shine");
             if (cancelButtonInactiveShine) cancelButtonInactiveShine.gameObject.SetActive(false);
 
-            cancelButton.activeTextColor = cancelButton.inactiveTextColor = Color.white;
-            GameStartTextlocalPosition = __instance.GameStartText.transform.localPosition;
-            cancelButton.OnClick = new Button.ButtonClickedEvent();
-            cancelButton.OnClick.AddListener((Action)(__instance.ResetStartState));
-            cancelButton.gameObject.SetActive(false);
+            _cancelButton.activeTextColor = _cancelButton.inactiveTextColor = Color.white;
+            _gameStartTextlocalPosition = __instance.GameStartText.transform.localPosition;
+            _cancelButton.OnClick = new Button.ButtonClickedEvent();
+            _cancelButton.OnClick.AddListener((Action)(__instance.ResetStartState));
+            _cancelButton.gameObject.SetActive(false);
 
             if (!AmongUsClient.Instance.AmHost || (!VersionChecker.IsBroken &&
                                                    (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
@@ -122,8 +122,8 @@ public static class GameStartManagerPatch
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
     public class GameStartManagerUpdatePatch
     {
-        private static int updateTimer;
-        public static float exitTimer = -1f;
+        private static int _updateTimer;
+        public static float ExitTimer = -1f;
 
         public static bool Prefix(GameStartManager __instance)
         {
@@ -133,19 +133,19 @@ public static class GameStartManagerPatch
             {
                 __instance.GameRoomNameCode.color = new Color(__instance.GameRoomNameCode.color.r,
                     __instance.GameRoomNameCode.color.g, __instance.GameRoomNameCode.color.b, 0);
-                HideName.enabled = !IsLocalGame;
+                _hideName.enabled = !IsLocalGame;
             }
             else
             {
                 __instance.GameRoomNameCode.color = new Color(__instance.GameRoomNameCode.color.r,
                     __instance.GameRoomNameCode.color.g, __instance.GameRoomNameCode.color.b, 255);
-                HideName.enabled = false;
+                _hideName.enabled = false;
             }
 
             if (!Main.AutoStartGame.Value || !AmongUsClient.Instance.AmHost) return true;
-            updateTimer++;
-            if (updateTimer < 50) return true;
-            updateTimer = 0;
+            _updateTimer++;
+            if (_updateTimer < 50) return true;
+            _updateTimer = 0;
             var maxPlayers = GameManager.Instance.LogicOptions.MaxPlayers;
             if (GameData.Instance.PlayerCount < maxPlayers - 1 || IsCountDown) return true;
             GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
@@ -177,8 +177,8 @@ public static class GameStartManagerPatch
                     __instance.StartButton.gameObject.SetActive(false);
                     warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
                 }*/
-                cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
-                __instance.StartButton.gameObject.SetActive(!cancelButton.gameObject.active);
+                _cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
+                __instance.StartButton.gameObject.SetActive(!_cancelButton.gameObject.active);
             }
 
             /*if (MatchVersions(0, true) || Main.VersionCheat.Value)
@@ -198,12 +198,12 @@ public static class GameStartManagerPatch
             var warningMessage = "";
             if (warningMessage == "")
             {
-                warningText.gameObject.SetActive(false);
+                _warningText.gameObject.SetActive(false);
             }
             else
             {
-                warningText.text = warningMessage;
-                warningText.gameObject.SetActive(true);
+                _warningText.text = warningMessage;
+                _warningText.gameObject.SetActive(true);
             }
 
             if (AmongUsClient.Instance.AmHost)
@@ -211,19 +211,19 @@ public static class GameStartManagerPatch
                     __instance.GameStartText.transform.localPosition.x, 2f,
                     __instance.GameStartText.transform.localPosition.z);
             else
-                __instance.GameStartText.transform.localPosition = GameStartTextlocalPosition;
+                __instance.GameStartText.transform.localPosition = _gameStartTextlocalPosition;
 
-            timerText.text = "";
+            _timerText.text = "";
             // Lobby timer
             if (!GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame ||
                 !IsVanillaServer || !AmongUsClient.Instance.AmHost) return;
 
-            timer = Mathf.Max(0f, timer -= Time.deltaTime);
-            var minutes = (int)timer / 60;
-            var seconds = (int)timer % 60;
+            _timer = Mathf.Max(0f, _timer -= Time.deltaTime);
+            var minutes = (int)_timer / 60;
+            var seconds = (int)_timer % 60;
             var countDown = $"{minutes:00}:{seconds:00}";
-            if (timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
-            timerText.text = countDown;
+            if (_timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
+            _timerText.text = countDown;
         }
 
         /*private static bool MatchVersions(byte playerId, bool acceptVanilla = false)

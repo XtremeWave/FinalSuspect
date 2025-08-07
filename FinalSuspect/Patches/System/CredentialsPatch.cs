@@ -21,27 +21,27 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
 internal class PingTrackerUpdatePatch
 {
-    private static float deltaTime;
+    private static float _deltaTime;
     public static string ServerName = "";
-    private static TextMeshPro CreditTextCredential;
-    private static AspectPosition CreditTextCredentialAspectPos;
+    private static TextMeshPro _creditTextCredential;
+    private static AspectPosition _creditTextCredentialAspectPos;
 
     public static void Postfix(PingTracker __instance)
     {
-        if (!CreditTextCredential)
+        if (!_creditTextCredential)
         {
             var uselessPingTracker = Object.Instantiate(__instance, __instance.transform.parent);
-            CreditTextCredential = uselessPingTracker.GetComponent<TextMeshPro>();
+            _creditTextCredential = uselessPingTracker.GetComponent<TextMeshPro>();
             Object.Destroy(uselessPingTracker);
-            CreditTextCredential.alignment = TextAlignmentOptions.TopRight;
-            CreditTextCredential.color = new Color(1f, 1f, 1f, 0.7f);
-            CreditTextCredential.rectTransform.pivot = new Vector2(1f, 1f); // 将中心点设定在右上角
-            CreditTextCredentialAspectPos = CreditTextCredential.GetComponent<AspectPosition>();
-            CreditTextCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
+            _creditTextCredential.alignment = TextAlignmentOptions.TopRight;
+            _creditTextCredential.color = new Color(1f, 1f, 1f, 0.7f);
+            _creditTextCredential.rectTransform.pivot = new Vector2(1f, 1f); // 将中心点设定在右上角
+            _creditTextCredentialAspectPos = _creditTextCredential.GetComponent<AspectPosition>();
+            _creditTextCredentialAspectPos.Alignment = AspectPosition.EdgeAlignments.RightTop;
         }
 
-        if (CreditTextCredentialAspectPos)
-            CreditTextCredentialAspectPos.DistanceFromEdge =
+        if (_creditTextCredentialAspectPos)
+            _creditTextCredentialAspectPos.DistanceFromEdge =
                 DestroyableSingleton<HudManager>.InstanceExists &&
                 DestroyableSingleton<HudManager>.Instance.Chat.chatButton.gameObject.active
                     ? new Vector3(2.5f, 0f, -800f)
@@ -51,13 +51,13 @@ internal class PingTrackerUpdatePatch
 
         sb.Append(Main.CredentialsText);
 
-        CreditTextCredential.text = sb.ToString();
+        _creditTextCredential.text = sb.ToString();
         if (
             (GameSettingMenu.Instance?.gameObject.active ?? false)
             || IsInMeeting
             || (FriendsListUI.Instance?.gameObject.active ?? false)
             || ((HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value))
-            CreditTextCredential.text = "";
+            _creditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
         var color = ping switch
@@ -69,8 +69,8 @@ internal class PingTrackerUpdatePatch
             _ => "#ff4500"
         };
 
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        var fps = Mathf.Ceil(1.0f / deltaTime);
+        _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;
+        var fps = Mathf.Ceil(1.0f / _deltaTime);
 
         __instance.text.alignment = TextAlignmentOptions.TopGeoAligned;
         __instance.text.text =
@@ -89,7 +89,7 @@ public class VersionShowerStartPatch
     public static GameObject ModLogo;
     public static GameObject AuthorLogo;
 
-    private static VersionShower Instance;
+    private static VersionShower _instance;
 
     public static void Postfix(VersionShower __instance)
     {
@@ -204,9 +204,9 @@ public class VersionShowerStartPatch
     public static void CreateVisitText(VersionShower __instance)
     {
         if (!__instance)
-            __instance = Instance;
+            __instance = _instance;
         else
-            Instance = __instance;
+            _instance = __instance;
 
         VisitText = Object.Instantiate(__instance.text);
         VisitText.name = "FinalSuspect VisitText";
@@ -377,26 +377,26 @@ internal class TitleLogoPatch
 [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
 internal class ModManagerLateUpdatePatch
 {
-    private static bool firstRun;
-    private static string LastScene = "";
+    private static bool _firstRun;
+    private static string _lastScene = "";
 
 
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
-        if (firstRun)
+        if (_firstRun)
         {
-            if (LastScene != SceneManager.GetActiveScene().name)
+            if (_lastScene != SceneManager.GetActiveScene().name)
             {
-                LastScene = SceneManager.GetActiveScene().name;
-                OnSceneChange(LastScene);
+                _lastScene = SceneManager.GetActiveScene().name;
+                OnSceneChange(_lastScene);
             }
         }
         else
         {
             OptionsMenuBehaviourStartPatch.SetCursor();
             __instance.ModStamp.sprite = LoadSprite("ModStamp.png", 100f);
-            firstRun = true;
+            _firstRun = true;
         }
 
         LateTask.Update(Time.deltaTime);

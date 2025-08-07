@@ -30,7 +30,7 @@ public class SetupGameInfoPatch
 
         var game = __instance.gameListing;
         var color = "#ffffff";
-        string ShowHostName = null;
+        string showHostName = null;
         var trueHostName = __instance.gameListing.TrueHostName;
         var platform = "???";
 
@@ -68,7 +68,7 @@ public class SetupGameInfoPatch
                 var halfLength = trueHostName.Length / 2;
                 var firstHalf = trueHostName.AsSpan(0, halfLength).ToString();
                 var secondHalf = trueHostName.AsSpan(halfLength).ToString();
-                ShowHostName = $"<color=#00B2FF>{firstHalf}</color><color=#ff0000>{secondHalf}</color>";
+                showHostName = $"<color=#00B2FF>{firstHalf}</color><color=#ff0000>{secondHalf}</color>";
                 platform = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
                 break;
             case Platforms.Xbox:
@@ -85,10 +85,10 @@ public class SetupGameInfoPatch
                 break;
         }
 
-        ShowHostName ??= $"<color={color}>{trueHostName}</color>";
+        showHostName ??= $"<color={color}>{trueHostName}</color>";
         var platforms = $"<color={color}>{platform}</color>";
 
-        tmp.text = $"<size=40%>{ShowHostName}</size>" +
+        tmp.text = $"<size=40%>{showHostName}</size>" +
                    $"\n<size=18%><color={ColorHelper.FSColorHex}>{GameCode.IntToGameName(game.GameId)}</color>" +
                    $" <color=#ffff00>----</color>{platforms}<color=#ffff00>----</color></size>";
         tmp.fontStyle = FontStyles.Bold;

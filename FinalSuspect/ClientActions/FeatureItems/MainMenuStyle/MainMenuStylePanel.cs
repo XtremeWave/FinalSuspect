@@ -99,34 +99,34 @@ public static class MainMenuStylePanel
             var starGen = ModMainMenuManager.Starfield.GetComponent<StarGen>();
             starGen.SetDirection(new Vector2(0, style.StarGenDire));
 
-            var __instance = DestroyableSingleton<MainMenuManager>.Instance;
+            var instance = DestroyableSingleton<MainMenuManager>.Instance;
             Color shade = new(0f, 0f, 0f, 0f);
-            var standardActiveSprite = __instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
-            var minorActiveSprite = __instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
+            var standardActiveSprite = instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
+            var minorActiveSprite = instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
             AwakeFriendCodeUIPatch.Prefix();
             var friendsButton = ModMainMenuManager.FriendsButton.GetComponent<PassiveButton>();
             Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
             {
                 {
                     [
-                        __instance.playButton,
-                        __instance.inventoryButton,
-                        __instance.shopButton
+                        instance.playButton,
+                        instance.inventoryButton,
+                        instance.shopButton
                     ],
                     (standardActiveSprite, style.MainUIColors[0], shade, Color.white, Color.white)
                 },
                 {
                     [
-                        __instance.newsButton,
-                        __instance.myAccountButton,
-                        __instance.settingsButton
+                        instance.newsButton,
+                        instance.myAccountButton,
+                        instance.settingsButton
                     ],
                     (minorActiveSprite, style.MainUIColors[1], shade, Color.white, Color.white)
                 },
                 {
                     [
-                        __instance.creditsButton,
-                        __instance.quitButton,
+                        instance.creditsButton,
+                        instance.quitButton,
                         ModMainMenuManager.InviteButton.GetComponent<PassiveButton>(),
                         ModMainMenuManager.GithubButton.GetComponent<PassiveButton>()
                     ],
@@ -140,7 +140,7 @@ public static class MainMenuStylePanel
             foreach (var kvp in mainButtons)
                 kvp.Key.Do(passiveButton =>
                 {
-                    FormatButtonColor(__instance, passiveButton, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4,
+                    FormatButtonColor(instance, passiveButton, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4,
                         kvp.Value.Item5);
                 });
             var lastAudio = FinalMusic.Musics.FirstOrDefault(x => x.PlayAsMainMenuMusic);

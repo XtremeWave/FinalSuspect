@@ -6,7 +6,7 @@ namespace FinalSuspect.Helpers;
 
 public static class StringHelper
 {
-    public static readonly Encoding shiftJIS = CodePagesEncodingProvider.Instance.GetEncoding("Shift_JIS");
+    private static readonly Encoding shiftJIS = CodePagesEncodingProvider.Instance.GetEncoding("Shift_JIS");
 
     /// <summary>给字符串添加荧光笔样式的装饰</summary>
     /// <param name="self">字符串</param>

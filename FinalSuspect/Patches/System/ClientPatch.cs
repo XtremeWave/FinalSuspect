@@ -29,7 +29,7 @@ internal class MakePublicPatch
 }
 
 [HarmonyPatch(typeof(MMOnlineManager), nameof(MMOnlineManager.Start))]
-internal class MMOnlineManagerStartPatch
+internal class MmOnlineManagerStartPatch
 {
     public static void Postfix()
     {

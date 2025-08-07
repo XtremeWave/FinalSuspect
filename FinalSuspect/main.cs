@@ -86,34 +86,12 @@ public class Main : BasePlugin
         { RoleTypes.Phantom, "#CA8AFF" }
     };
 
-    public static List<int> clientIdList = [];
-
     public static string HostNickName = "";
     public static readonly bool IsInitialRelease = DateTime.Now.Month == 8 && DateTime.Now.Day is 15;
     public static readonly bool IsAprilFools = DateTime.Now is { Month: 4, Day: >= 1 and <= 10 };
     public static readonly bool IsValentines = DateTime.Now.Month == 2 && DateTime.Now.Day is 14;
 
     public static Main Instance;
-
-    //public static bool NewLobby = false;
-
-    public static readonly List<string> TName_Snacks_CN =
-    [
-        "冰激凌", "奶茶", "巧克力", "蛋糕", "甜甜圈", "可乐", "柠檬水", "冰糖葫芦", "果冻", "糖果", "牛奶",
-        "抹茶", "烧仙草", "菠萝包", "布丁", "椰子冻", "曲奇", "红豆土司", "三彩团子", "艾草团子", "泡芙", "可丽饼",
-        "桃酥", "麻薯", "鸡蛋仔", "马卡龙", "雪梅娘", "炒酸奶", "蛋挞", "松饼", "西米露", "奶冻", "奶酥", "可颂", "奶糖"
-    ];
-
-    public static readonly List<string> TName_Snacks_EN =
-    [
-        "Ice cream", "Milk tea", "Chocolate", "Cake", "Donut", "Coke", "Lemonade", "Candied haws", "Jelly", "Candy",
-        "Milk",
-        "Matcha", "Burning Grass Jelly", "Pineapple Bun", "Pudding", "Coconut Jelly", "Cookies", "Red Bean Toast",
-        "Three Color Dumplings", "Wormwood Dumplings", "Puffs", "Can be Crepe", "Peach Crisp", "Mochi", "Egg Waffle",
-        "Macaron",
-        "Snow Plum Niang", "Fried Yogurt", "Egg Tart", "Muffin", "Sago Dew", "panna cotta", "soufflé", "croissant",
-        "toffee"
-    ];
 
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
@@ -159,11 +137,6 @@ public class Main : BasePlugin
 
     public static IEnumerable<PlayerControl> AllAlivePlayerControls =>
         PlayerControl.AllPlayerControls.ToArray().Where(p => p && p.IsAlive() && !p.Data.Disconnected);
-
-    public static string Get_TName_Snacks =>
-        TranslationController.Instance.currentLanguage.languageID is SupportedLangs.SChinese or SupportedLangs.TChinese
-            ? TName_Snacks_CN[IRandom.Instance.Next(0, TName_Snacks_CN.Count)]
-            : TName_Snacks_EN[IRandom.Instance.Next(0, TName_Snacks_EN.Count)];
 
     public override void Load()
     {

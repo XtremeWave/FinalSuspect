@@ -6,25 +6,25 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(RegionMenu))]
 public static class RegionMenuPatch
 {
-    private static Scroller Scroller;
+    private static Scroller _scroller;
 
     [HarmonyPatch(nameof(RegionMenu.Awake))]
     [HarmonyPostfix]
     public static void Awake_Postfix(RegionMenu __instance)
     {
-        if (Scroller) return;
+        if (_scroller) return;
 
         var back = __instance.ButtonPool.transform.FindChild("Backdrop");
         back.transform.localScale *= 10f;
 
-        Scroller = __instance.ButtonPool.transform.parent.gameObject.AddComponent<Scroller>();
-        Scroller.Inner = __instance.ButtonPool.transform;
-        Scroller.MouseMustBeOverToScroll = true;
-        Scroller.ClickMask = back.GetComponent<BoxCollider2D>();
-        Scroller.ScrollWheelSpeed = 0.7f;
-        Scroller.SetYBoundsMin(0f);
-        Scroller.SetYBoundsMax(4f);
-        Scroller.allowY = true;
+        _scroller = __instance.ButtonPool.transform.parent.gameObject.AddComponent<Scroller>();
+        _scroller.Inner = __instance.ButtonPool.transform;
+        _scroller.MouseMustBeOverToScroll = true;
+        _scroller.ClickMask = back.GetComponent<BoxCollider2D>();
+        _scroller.ScrollWheelSpeed = 0.7f;
+        _scroller.SetYBoundsMin(0f);
+        _scroller.SetYBoundsMax(4f);
+        _scroller.allowY = true;
     }
 
     [HarmonyPatch(nameof(RegionMenu.ChooseOption))]

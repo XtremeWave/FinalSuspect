@@ -70,8 +70,8 @@ public class PlayerCheatData : IDisposable
     private void HandleSuspectCheater()
     {
         if (!Main.EnableFAC.Value || !IsSuspectCheater ||
-            (_lastHandleCheater != -1 && _lastHandleCheater + 1 >= GetTimeStamp())) return;
-        _lastHandleCheater = GetTimeStamp();
+            (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
+        LastHandleCheater = GetTimeStamp();
         if (!AmongUsClient.Instance.AmHost)
         {
             NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Cheater_NotHost"),
@@ -85,8 +85,8 @@ public class PlayerCheatData : IDisposable
     private void HandleHacker()
     {
         if (!Main.EnableGuardian.Value || !IsHacker ||
-            (_lastHandleCheater != -1 && _lastHandleCheater + 1 >= GetTimeStamp())) return;
-        _lastHandleCheater = GetTimeStamp();
+            (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
+        LastHandleCheater = GetTimeStamp();
         if (!AmongUsClient.Instance.AmHost)
         {
             NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Overload_NotHost"),
@@ -133,7 +133,7 @@ public class PlayerCheatData : IDisposable
             {
                 LastReceivedTime = currentTime,
                 Count = 1,
-                MaxiCount = _handlers.Where(handlers => handlers.TargetRpcs.Contains(rpcId))
+                MaxiCount = FAC.Handlers.Where(handlers => handlers.TargetRpcs.Contains(rpcId))
                     .SelectMany(handlers => handlers.Handlers)
                     .Where(handler => handler.Condition(_player))
                     .Select(handler => handler.MaxiReceivedNumPerSecond())

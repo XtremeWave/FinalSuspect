@@ -40,8 +40,8 @@ public static class _GamePlayer
 
     public static PlainShipRoom GetPlainShipRoom(this PlayerControl pc)
     {
-        var Rooms = ShipStatus.Instance.AllRooms;
-        return Rooms?.Where(room => room.roomArea).FirstOrDefault(room => pc.Collider.IsTouching(room.roomArea));
+        var rooms = ShipStatus.Instance.AllRooms;
+        return rooms?.Where(room => room.roomArea).FirstOrDefault(room => pc.Collider.IsTouching(room.roomArea));
     }
 
     public static string GetPlainShipRoomName(this PlayerControl pc)

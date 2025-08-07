@@ -11,14 +11,14 @@ internal static class DllChecker
     internal static void Init()
     {
         // SM的文件名是写死的
-        string[] SuspiciousFiles = ["SickoMenu.dll", "version.dll"];
+        string[] suspiciousFiles = ["SickoMenu.dll", "version.dll"];
         // 获取当前Dll启动目录
-        var DirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         // 获取游戏根目录
-        var AmongUsPath = Environment.CurrentDirectory;
+        var amongUsPath = Environment.CurrentDirectory;
         // 针对基于BepInEx注入检测
-        if (DirectoryPath != null)
-            foreach (var path in Directory.EnumerateFiles(DirectoryPath, "*.*"))
+        if (directoryPath != null)
+            foreach (var path in Directory.EnumerateFiles(directoryPath, "*.*"))
             {
                 var fileName = Path.GetFileName(path);
 
@@ -28,9 +28,9 @@ internal static class DllChecker
             }
 
         // 针对基于version注入检测
-        foreach (var fileName in SuspiciousFiles)
+        foreach (var fileName in suspiciousFiles)
         {
-            var fullPath = Path.Combine(AmongUsPath, fileName);
+            var fullPath = Path.Combine(amongUsPath, fileName);
 
             if (!File.Exists(fullPath)) continue;
             Error($"检测到非法文件: {fileName}！游戏将被强制终止。", "FAC");

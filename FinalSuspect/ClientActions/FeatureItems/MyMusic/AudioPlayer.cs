@@ -156,7 +156,7 @@ public class PlaySoundPatch
 [HarmonyPatch(typeof(SoundManager), nameof(SoundManager.PlayNamedSound))]
 public class PlayDynamicAndNamedSoundPatch
 {
-    public static bool Prefix([HarmonyArgument(0)] string name, [HarmonyArgument(1)] AudioClip clip,
+    public static bool Prefix([HarmonyArgument(0)] string name,
         [HarmonyArgument(2)] bool loop)
     {
         var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.IsPlaying);

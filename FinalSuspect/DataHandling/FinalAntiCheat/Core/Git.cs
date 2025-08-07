@@ -8,10 +8,10 @@ internal static class Git
     public static void Prefix(MainMenuManager __instance)
     {
         // 获取当前Dll启动目录
-        var DirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         // 针对基于BepInEx注入检测
-        if (DirectoryPath == null) return;
-        foreach (var path in Directory.EnumerateFiles(DirectoryPath, "*.*"))
+        if (directoryPath == null) return;
+        foreach (var path in Directory.EnumerateFiles(directoryPath, "*.*"))
         {
             var fileName = Path.GetFileName(path);
 

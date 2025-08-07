@@ -9,7 +9,7 @@ namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
 
 public static class UiHelper
 {
-    private static Transform TempCB;
+    private static Transform _tempCb;
 
     public static GameObject CreateBaseWindow(string name, Transform parent, float zOffset, float scale)
     {
@@ -42,8 +42,8 @@ public static class UiHelper
     {
         var template = parent.parent.Find("CloseButton");
         if (template != null)
-            TempCB = template;
-        template ??= TempCB;
+            _tempCb = template;
+        template ??= _tempCb;
         if (template == null) return null;
 
         var button = Object.Instantiate(template, parent).gameObject;

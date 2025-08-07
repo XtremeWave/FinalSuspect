@@ -10,10 +10,10 @@ public static class AwakeFriendCodeUIPatch
 {
     public static void Prefix()
     {
-        var BarSprit = GameObject.Find("BarSprite");
-        if (BarSprit)
+        var barSprit = GameObject.Find("BarSprite");
+        if (barSprit)
         {
-            BarSprit.GetComponent<SpriteRenderer>().color = Color.clear;
+            barSprit.GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
         FriendsButton = GameObject.Find("FriendsButton");
@@ -44,10 +44,10 @@ public static class AwakeAccountManager
         LoadSprite("CI_ImpostorGhost.png", 450f)
     ];
 
-    private static int currentIndex;
+    private static int _currentIndex;
 
-    private static GameObject crewpet_walk0001;
-    private static GameObject ModLoading;
+    private static GameObject _crewpetWalk0001;
+    private static GameObject _modLoading;
 
     public static void Prefix(AccountManager __instance)
     {
@@ -57,20 +57,20 @@ public static class AwakeAccountManager
             loading.SetActive(false);
 
             var bgf = GameObject.Find("BackgroundFill");
-            crewpet_walk0001 = bgf.transform.FindChild("crewpet_walk0001").gameObject;
-            var r = crewpet_walk0001.GetComponent<WaitingRotate>();
+            _crewpetWalk0001 = bgf.transform.FindChild("crewpet_walk0001").gameObject;
+            var r = _crewpetWalk0001.GetComponent<WaitingRotate>();
             r.speed = 0f;
-            ModLoading = new GameObject("ModLoading");
-            ModLoading.transform.SetParent(crewpet_walk0001.transform.parent);
-            ModLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
-            ModLoading.transform.localPosition = new Vector3(4.5f, -2.4f, -1f);
-            var Sprite = ModLoading.AddComponent<SpriteRenderer>();
-            Sprite.color = Color.white;
-            Sprite.flipX = false;
-            __instance.StartCoroutine(SwitchRoleIllustration(Sprite));
-            crewpet_walk0001.SetActive(false);
+            _modLoading = new GameObject("ModLoading");
+            _modLoading.transform.SetParent(_crewpetWalk0001.transform.parent);
+            _modLoading.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
+            _modLoading.transform.localPosition = new Vector3(4.5f, -2.4f, -1f);
+            var sprite = _modLoading.AddComponent<SpriteRenderer>();
+            sprite.color = Color.white;
+            sprite.flipX = false;
+            __instance.StartCoroutine(SwitchRoleIllustration(sprite));
+            _crewpetWalk0001.SetActive(false);
 
-            var ap = ModLoading.AddComponent<AspectPosition>();
+            var ap = _modLoading.AddComponent<AspectPosition>();
             ap.Alignment = AspectPosition.EdgeAlignments.RightBottom;
             ap.DistanceFromEdge = new Vector3(0.6f, 0.5f, -1000);
             ap.updateAlways = true;
@@ -87,7 +87,7 @@ public static class AwakeAccountManager
         {
             if (AllRoleRoleIllustration.Length == 0) yield break;
 
-            spriter.sprite = AllRoleRoleIllustration[currentIndex];
+            spriter.sprite = AllRoleRoleIllustration[_currentIndex];
             var p = 1f;
             while (p > 0f)
             {
@@ -97,7 +97,7 @@ public static class AwakeAccountManager
                 yield return null;
             }
 
-            currentIndex = (currentIndex + 1) % AllRoleRoleIllustration.Length;
+            _currentIndex = (_currentIndex + 1) % AllRoleRoleIllustration.Length;
 
             yield return new WaitForSeconds(1f);
             p = 1f;

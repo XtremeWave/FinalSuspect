@@ -10,8 +10,8 @@ internal class RoleOptionSettingPatch
 {
     public static void Postfix(RoleOptionSetting __instance)
     {
-        var rolecolor = GetRoleColor(__instance.Role.Role);
-        __instance.labelSprite.color = rolecolor.ShadeColor(0.2f);
+        var roleColor = GetRoleColor(__instance.Role.Role);
+        __instance.labelSprite.color = roleColor.ShadeColor(0.2f);
         __instance.titleText.color = Color.white;
     }
 }
@@ -64,13 +64,13 @@ internal class RolesSettingsMenuPatch
 
     private static void ConfigureAllButtonColors()
     {
-        var AllButton = GameObject.Find("HeaderButtons").transform.FindChild("AllButton").gameObject;
-        AllButton.transform.FindChild("Highlight").gameObject.GetComponent<SpriteRenderer>().color =
-            AllButton.transform.FindChild("Inactive").gameObject.GetComponent<SpriteRenderer>().color =
-                AllButton.transform.FindChild("Selected").gameObject.GetComponent<SpriteRenderer>().color =
+        var allButton = GameObject.Find("HeaderButtons").transform.FindChild("AllButton").gameObject;
+        allButton.transform.FindChild("Highlight").gameObject.GetComponent<SpriteRenderer>().color =
+            allButton.transform.FindChild("Inactive").gameObject.GetComponent<SpriteRenderer>().color =
+                allButton.transform.FindChild("Selected").gameObject.GetComponent<SpriteRenderer>().color =
                     ColorHelper.FSColor;
 
-        var text = AllButton.transform.FindChild("Text").gameObject.GetComponent<TextMeshPro>();
+        var text = allButton.transform.FindChild("Text").gameObject.GetComponent<TextMeshPro>();
         if (text.color == Color.white || text.color == ColorHelper.FSColor)
             text.color = ColorHelper.FSColor;
         else
@@ -79,11 +79,11 @@ internal class RolesSettingsMenuPatch
 
     private static void SetRoleAreaColors()
     {
-        var RoleArea = GameObject.Find("ROLES TAB").transform.FindChild("Scroller").FindChild("SliderInner");
+        var roleArea = GameObject.Find("ROLES TAB").transform.FindChild("Scroller").FindChild("SliderInner");
         GameOptionsMenuPatch.SetColorForCat(
-            RoleArea.FindChild("ChancesTab").FindChild("CategoryHeaderMasked").gameObject, Color.green);
+            roleArea.FindChild("ChancesTab").FindChild("CategoryHeaderMasked").gameObject, Color.green);
         GameOptionsMenuPatch.SetColorForCat(
-            RoleArea.FindChild("AdvancedTab").FindChild("CategoryHeaderMasked").gameObject, Color.blue);
+            roleArea.FindChild("AdvancedTab").FindChild("CategoryHeaderMasked").gameObject, Color.blue);
     }
 
     private static void SetColor(GameObject obj, Color iconcolor, Color bgcolor)
@@ -98,7 +98,7 @@ internal class RolesSettingsMenuPatch
 [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
 internal class GameOptionsMenuPatch
 {
-    private static readonly List<Color32> Normalbannercolors =
+    private static readonly List<Color32> normalbannercolors =
     [
         GetRoleColor(RoleTypes.Impostor),
         GetRoleColor(RoleTypes.Crewmate),
@@ -106,7 +106,7 @@ internal class GameOptionsMenuPatch
         Color.green
     ];
 
-    private static readonly List<Color32> HnSbannercolors =
+    private static readonly List<Color32> hnSbannercolors =
     [
         GetRoleColor(RoleTypes.Crewmate),
         GetRoleColor(RoleTypes.Impostor),
@@ -126,24 +126,24 @@ internal class GameOptionsMenuPatch
             foreach (var banner in banners)
                 if (banner.name == "CategoryHeaderMasked(Clone)")
                 {
-                    SetColorForCat(banner.gameObject, Normalbannercolors[headerindex]);
+                    SetColorForCat(banner.gameObject, normalbannercolors[headerindex]);
                     headerindex++;
                 }
                 else if (banner.name.Contains("Num") || banner.name.Contains("Str"))
                 {
                     Color color = numindex switch
                     {
-                        <= 3 => Normalbannercolors[0],
-                        <= 5 => Normalbannercolors[1],
-                        <= 9 => Normalbannercolors[2],
-                        _ => Normalbannercolors[3]
+                        <= 3 => normalbannercolors[0],
+                        <= 5 => normalbannercolors[1],
+                        <= 9 => normalbannercolors[2],
+                        _ => normalbannercolors[3]
                     };
                     SetColorForSettingsOpt_StringAndNumber(banner.gameObject, color);
                     numindex++;
                 }
                 else if (banner.name.Contains("Checkbox"))
                 {
-                    Color color = boxindex <= 1 ? Normalbannercolors[2] : Normalbannercolors[3];
+                    Color color = boxindex <= 1 ? normalbannercolors[2] : normalbannercolors[3];
                     SetColorForSettingsOpt_Checkbox(banner.gameObject, color);
                     boxindex++;
                 }
@@ -156,24 +156,24 @@ internal class GameOptionsMenuPatch
             foreach (var banner in banners)
                 if (banner.name == "CategoryHeaderMasked(Clone)")
                 {
-                    SetColorForCat(banner.gameObject, HnSbannercolors[headerindex]);
+                    SetColorForCat(banner.gameObject, hnSbannercolors[headerindex]);
                     headerindex++;
                 }
                 else if (banner.name.Contains("Num") || banner.name.Contains("Str") || banner.name.Contains("Play"))
                 {
                     Color color = numindex switch
                     {
-                        <= 5 => HnSbannercolors[0],
-                        <= 8 => HnSbannercolors[1],
-                        <= 11 => HnSbannercolors[2],
-                        _ => HnSbannercolors[3]
+                        <= 5 => hnSbannercolors[0],
+                        <= 8 => hnSbannercolors[1],
+                        <= 11 => hnSbannercolors[2],
+                        _ => hnSbannercolors[3]
                     };
                     SetColorForSettingsOpt_StringAndNumber(banner.gameObject, color);
                     numindex++;
                 }
                 else if (banner.name.Contains("Checkbox"))
                 {
-                    Color color = boxindex <= 1 ? HnSbannercolors[0] : HnSbannercolors[2];
+                    Color color = boxindex <= 1 ? hnSbannercolors[0] : hnSbannercolors[2];
                     SetColorForSettingsOpt_Checkbox(banner.gameObject, color);
                     boxindex++;
                 }
@@ -208,26 +208,26 @@ internal class GameOptionsMenuPatch
 [HarmonyPatch(typeof(GameSettingMenu), nameof(GameSettingMenu.Update))]
 internal class GameSettingMenuPatch
 {
-    private static GameObject GamePresetButton;
-    private static GameObject GameSettingsButton;
-    private static GameObject RoleSettingsButton;
+    private static GameObject _gamePresetButton;
+    private static GameObject _gameSettingsButton;
+    private static GameObject _roleSettingsButton;
 
     public static void Postfix()
     {
         try
         {
-            var Panel = GameObject.Find("LeftPanel");
+            var panel = GameObject.Find("LeftPanel");
 
-            if (!GamePresetButton) GamePresetButton = Panel.transform.FindChild("GamePresetButton").gameObject;
+            if (!_gamePresetButton) _gamePresetButton = panel.transform.FindChild("GamePresetButton").gameObject;
 
-            if (!GameSettingsButton) GameSettingsButton = Panel.transform.FindChild("GameSettingsButton").gameObject;
+            if (!_gameSettingsButton) _gameSettingsButton = panel.transform.FindChild("GameSettingsButton").gameObject;
 
-            if (!RoleSettingsButton && IsNormalGame)
-                RoleSettingsButton = Panel.transform.FindChild("RoleSettingsButton").gameObject;
+            if (!_roleSettingsButton && IsNormalGame)
+                _roleSettingsButton = panel.transform.FindChild("RoleSettingsButton").gameObject;
 
-            SetColor(GamePresetButton, new Color32(205, 255, 253, 255));
-            SetColor(GameSettingsButton, new Color32(206, 205, 253, 255));
-            SetColor(RoleSettingsButton, new Color32(185, 255, 181, 255));
+            SetColor(_gamePresetButton, new Color32(205, 255, 253, 255));
+            SetColor(_gameSettingsButton, new Color32(206, 205, 253, 255));
+            SetColor(_roleSettingsButton, new Color32(185, 255, 181, 255));
 
             var ps = GameObject.Find("PanelSprite");
             ps.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.4f);

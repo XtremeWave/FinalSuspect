@@ -6,9 +6,9 @@ public static partial class FinalGameData
 {
     public class PlayerVersion(Version ver, string tag_str, string forkId)
     {
-        public static Dictionary<int, PlayerVersion> playerVersion = new();
-        public readonly string forkId = forkId;
-        public readonly string tag = tag_str;
-        public readonly Version version = ver;
+        public static Dictionary<int, PlayerVersion> PlayerVersions = new();
+        public readonly string ForkId = forkId;
+        public readonly string Tag = tag_str;
+        public readonly Version Version = ver;
     }
 }

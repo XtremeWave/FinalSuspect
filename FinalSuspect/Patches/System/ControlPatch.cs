@@ -10,7 +10,7 @@ internal class ControllerManagerUpdatePatch
     private static readonly (int, int)[] resolutions =
         [(480, 270), (640, 360), (800, 450), (1280, 720), (1600, 900), (1920, 1080)];
 
-    private static int resolutionIndex;
+    private static int _resolutionIndex;
     public static bool ShowSettingsPanel = true;
     public static bool ShowHudUI = true;
 
@@ -34,15 +34,15 @@ internal class ControllerManagerUpdatePatch
         //更改分辨率
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            resolutionIndex++;
-            if (resolutionIndex >= resolutions.Length) resolutionIndex = 0;
-            ResolutionManager.SetResolution(resolutions[resolutionIndex].Item1, resolutions[resolutionIndex].Item2,
+            _resolutionIndex++;
+            if (_resolutionIndex >= resolutions.Length) _resolutionIndex = 0;
+            ResolutionManager.SetResolution(resolutions[_resolutionIndex].Item1, resolutions[_resolutionIndex].Item2,
                 Screen.fullScreen);
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            ResolutionManager.SetResolution(resolutions[resolutionIndex].Item1, resolutions[resolutionIndex].Item2,
+            ResolutionManager.SetResolution(resolutions[_resolutionIndex].Item1, resolutions[_resolutionIndex].Item2,
                 !Screen.fullScreen);
         }
 

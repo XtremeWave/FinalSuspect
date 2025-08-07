@@ -10,8 +10,8 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch(typeof(MeetingHud))]
 public class MeetingButtonManager
 {
-    private static int Count;
-    private static bool ButtonCreated;
+    private static int _count;
+    private static bool _buttonCreated;
 
     private static void ClearMeetingButton(MeetingHud __instance)
         => __instance.playerStates.ToList().ForEach(x =>
@@ -27,7 +27,7 @@ public class MeetingButtonManager
         textTemplate = Object.Instantiate(__instance.playerStates[0]!.NameText);
         textTemplate.enabled = false;
 
-        ButtonCreated = false;
+        _buttonCreated = false;
         CreateMeetingButton(__instance);
     }
 
@@ -36,8 +36,8 @@ public class MeetingButtonManager
     {
         if (__instance == null || !IsInGame || __instance.IsDestroyedOrNull()) return;
 
-        Count = Count > 20 ? 0 : ++Count;
-        if (Count != 0) return;
+        _count = _count > 20 ? 0 : ++_count;
+        if (_count != 0) return;
 
         if (!IsInMeeting && __instance.lastSecond < 1)
         {
@@ -45,7 +45,7 @@ public class MeetingButtonManager
             return;
         }
 
-        if (!ButtonCreated)
+        if (!_buttonCreated)
         {
             CreateMeetingButton(__instance);
         }
@@ -74,7 +74,7 @@ public class MeetingButtonManager
             button.OnClick.AddListener((Action)(() => { ShowSelectionPanel(__instance, pc); }));
         }
 
-        ButtonCreated = true;
+        _buttonCreated = true;
     }
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.OnDestroy)), HarmonyPostfix]

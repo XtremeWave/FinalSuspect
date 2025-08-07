@@ -15,7 +15,7 @@ namespace FinalSuspect.ClientActions.FeatureItems.Resources;
 
 public static class ResourcesPanel
 {
-    private static int numItems;
+    private static int _numItems;
 
     private static readonly Dictionary<string, CurrentState> PackageStates = new();
     public static SpriteRenderer CustomBackground { get; set; }
@@ -35,7 +35,7 @@ public static class ResourcesPanel
 
         if (CustomBackground == null)
         {
-            numItems = 0;
+            _numItems = 0;
             CustomBackground = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
             CustomBackground.name = "Resource Manager";
             CustomBackground.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
@@ -84,7 +84,7 @@ public static class ResourcesPanel
     public static void RefreshTagList()
     {
         if (!IsNotJoined) return;
-        numItems = 0;
+        _numItems = 0;
         var scroller = Slider.GetComponent<Scroller>();
         scroller.Inner.gameObject.ForEachChild((Action<GameObject>)DestroyObj);
 
@@ -98,10 +98,10 @@ public static class ResourcesPanel
         foreach (var (packageName, fileList) in AllResources)
         {
             PackageStates.TryAdd(packageName, CurrentState.None);
-            numItems++;
+            _numItems++;
 
             var button = Object.Instantiate(buttonPrefab, scroller.Inner);
-            button.transform.localPosition = new Vector3(-1f, 1.6f - 0.6f * numItems, -10.5f);
+            button.transform.localPosition = new Vector3(-1f, 1.6f - 0.6f * _numItems, -10.5f);
             button.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             button.name = "Btn-" + packageName;
 
@@ -197,7 +197,7 @@ public static class ResourcesPanel
         }
 
         scroller.SetYBoundsMin(0f);
-        scroller.SetYBoundsMax(0.6f * numItems);
+        scroller.SetYBoundsMax(0.6f * _numItems);
         return;
 
         static void DestroyObj(GameObject obj)

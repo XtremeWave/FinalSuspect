@@ -49,7 +49,7 @@ public class FinalPlayerData : IDisposable
         if (!RoleAssigned)
         {
             RoleWhenAlive = role;
-            SetAsImp(IsImpostor(role));
+            SetAsImp(role.IsImpostor());
         }
         else
         {

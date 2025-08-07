@@ -9,8 +9,8 @@ namespace FinalSuspect.Templates;
 
 public class SimpleButton
 {
-    private static PassiveButton baseButton;
-    private readonly BoxCollider2D buttonCollider;
+    private static PassiveButton _baseButton;
+    private readonly BoxCollider2D _buttonCollider;
 
     private float _fontSize;
     private Vector2 _scale;
@@ -34,13 +34,13 @@ public class SimpleButton
         string label,
         bool isActive = true)
     {
-        if (!baseButton) throw new InvalidOperationException("baseButtonが未設定");
+        if (!_baseButton) throw new InvalidOperationException("baseButtonが未設定");
 
-        Button = Object.Instantiate(baseButton, parent);
+        Button = Object.Instantiate(_baseButton, parent);
         Label = Button.transform.Find("FontPlacer/Text_TMP").GetComponent<TextMeshPro>();
         NormalSprite = Button.inactiveSprites.GetComponent<SpriteRenderer>();
         HoverSprite = Button.activeSprites.GetComponent<SpriteRenderer>();
-        buttonCollider = Button.GetComponent<BoxCollider2D>();
+        _buttonCollider = Button.GetComponent<BoxCollider2D>();
 
         var container = Label.transform.parent;
         Object.Destroy(Label.GetComponent<AspectPosition>());
@@ -65,7 +65,7 @@ public class SimpleButton
     public Vector2 Scale
     {
         get => _scale;
-        set => _scale = NormalSprite.size = HoverSprite.size = buttonCollider.size = value;
+        set => _scale = NormalSprite.size = HoverSprite.size = _buttonCollider.size = value;
     }
 
     public float FontSize
@@ -76,25 +76,25 @@ public class SimpleButton
 
     public static void SetBase(PassiveButton passiveButton)
     {
-        if (baseButton || !passiveButton) return;
+        if (_baseButton || !passiveButton) return;
 
         // 复制按钮
-        baseButton = Object.Instantiate(passiveButton);
-        var label = baseButton.transform.Find("FontPlacer/Text_TMP").GetComponent<TextMeshPro>();
-        baseButton.gameObject.SetActive(false);
+        _baseButton = Object.Instantiate(passiveButton);
+        var label = _baseButton.transform.Find("FontPlacer/Text_TMP").GetComponent<TextMeshPro>();
+        _baseButton.gameObject.SetActive(false);
         // 防止场景切换时被销毁
-        Object.DontDestroyOnLoad(baseButton);
-        baseButton.name = "FinalSuspect_SimpleButtonBase";
+        Object.DontDestroyOnLoad(_baseButton);
+        _baseButton.name = "FinalSuspect_SimpleButtonBase";
         // 移除不需要的组件
-        Object.Destroy(baseButton.GetComponent<AspectPosition>());
+        Object.Destroy(_baseButton.GetComponent<AspectPosition>());
         label.DestroyTranslator();
         label.fontSize = label.fontSizeMax = label.fontSizeMin = 3.5f;
         label.enableWordWrapping = false;
         label.text = "FinalSuspect SIMPLE BUTTON BASE";
         // 修复碰撞体偏移问题
-        var buttonCollider = baseButton.GetComponent<BoxCollider2D>();
+        var buttonCollider = _baseButton.GetComponent<BoxCollider2D>();
         buttonCollider.offset = new Vector2(0f, 0f);
-        baseButton.OnClick = new Button.ButtonClickedEvent();
+        _baseButton.OnClick = new Button.ButtonClickedEvent();
     }
 
     public static bool IsNullOrDestroyed(SimpleButton button)

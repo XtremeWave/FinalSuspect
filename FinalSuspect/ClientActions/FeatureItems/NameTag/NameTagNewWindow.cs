@@ -74,10 +74,10 @@ public static class NameTagNewWindow
         );
         EnterBox.name = "Enter Friend Code Box";
 
-        var enterBoxTBT = EnterBox.GetComponent<TextBoxTMP>();
-        enterBoxTBT.AllowEmail = false;
-        enterBoxTBT.AllowSymbols = true;
-        enterBoxTBT.AllowPaste = true;
+        var enterBoxTbt = EnterBox.GetComponent<TextBoxTMP>();
+        enterBoxTbt.AllowEmail = false;
+        enterBoxTbt.AllowSymbols = true;
+        enterBoxTbt.AllowPaste = true;
     }
 
     private static void CreateConfirmButton()

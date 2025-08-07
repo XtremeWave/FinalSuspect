@@ -8,7 +8,7 @@ namespace FinalSuspect.DataHandling.FinalAntiCheat.Handlers.Valid;
 // 33
 public class SendQuickChatHandler : IRpcHandler
 {
-    private static readonly Dictionary<byte, (long timestamp, int count)> _records = new();
+    private static readonly Dictionary<byte, (long timestamp, int count)> Records = new();
 
     public List<byte> TargetRpcs =>
     [
@@ -19,7 +19,7 @@ public class SendQuickChatHandler : IRpcHandler
         ref bool notify, ref string reason, ref bool ban)
     {
         var current = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        if (!_records.TryGetValue(sender.PlayerId, out var record)) record = (current, 0);
+        if (!Records.TryGetValue(sender.PlayerId, out var record)) record = (current, 0);
 
         if (current - record.timestamp < 3)
         {
@@ -43,7 +43,7 @@ public class SendQuickChatHandler : IRpcHandler
             record = (current, 0);
         }
 
-        _records[sender.PlayerId] = record;
+        Records[sender.PlayerId] = record;
         return false;
     }
 

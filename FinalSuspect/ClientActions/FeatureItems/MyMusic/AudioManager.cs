@@ -147,7 +147,7 @@ public class FinalMusic
 {
     public static readonly List<FinalMusic> Musics = [];
 
-    private static readonly object finalMusicsLock = new();
+    private static readonly object FinalMusicsLock = new();
     public string Author;
     public AudioClip Clip;
 
@@ -217,7 +217,7 @@ public class FinalMusic
 
         var ext = Path.GetExtension(FilePath)?.ToLowerInvariant();
         if (!AudioManager.Extensions.Contains(ext)) return;
-        lock (finalMusicsLock)
+        lock (FinalMusicsLock)
         {
             var file = Musics.Find(x => x.FileName == FileName);
             if (file != null)

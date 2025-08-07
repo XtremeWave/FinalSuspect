@@ -16,7 +16,7 @@ public class OnGameJoinedPatch
     {
         HudManagerPatch.Init();
         Info($"{__instance.GameId} 加入房间", "OnGameJoined");
-        FinalGameData.PlayerVersion.playerVersion = new Dictionary<int, FinalGameData.PlayerVersion>();
+        FinalGameData.PlayerVersion.PlayerVersions = new Dictionary<int, FinalGameData.PlayerVersion>();
         FinalPlayerData.InitializeAll();
         UpdateGameState_IsInGame(false);
         UpdateGameState_IsInMeeting(false);
@@ -27,7 +27,7 @@ public class OnGameJoinedPatch
         _ = new LateTask(() => { _ = RPC.RpcVersionCheck(); }, 0.5f, "SyncJoined");
         _ = new LateTask(() => { FinalGameData.JoinedCompleted = true; }, 4f, "SyncJoined");
 
-        if (AmongUsClient.Instance.AmHost) GameStartManagerPatch.GameStartManagerUpdatePatch.exitTimer = -1;
+        if (AmongUsClient.Instance.AmHost) GameStartManagerPatch.GameStartManagerUpdatePatch.ExitTimer = -1;
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
         //Main.NewLobby = true;
     }
@@ -152,7 +152,7 @@ internal class OnPlayerLeftPatch
 
             Dispose(data.Character?.PlayerId ?? 255);
 
-            FinalGameData.PlayerVersion.playerVersion.Remove(data.Character?.GetClientId() ?? 0);
+            FinalGameData.PlayerVersion.PlayerVersions.Remove(data.Character?.GetClientId() ?? 0);
             ClientsProcessed.Remove(data.Id);
         }
         catch

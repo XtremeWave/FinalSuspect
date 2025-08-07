@@ -32,20 +32,20 @@ public static class NameTagEditMenu
     private const float ButtonStartY = 2.1f;
 
     // 数据
-    private static string FriendCode;
-    private static NameTagManager.NameTag CacheTag;
+    private static string _friendCode;
+    private static NameTagManager.NameTag _cacheTag;
 
-    private static ComponentType CurrentComponent;
+    private static ComponentType _currentComponent;
 
     // UI 元素
     public static GameObject Menu { get; private set; }
     private static Dictionary<ComponentType, GameObject> ComponentButtons { get; } = new();
     public static GameObject Preview { get; private set; }
-    public static GameObject Text_Enter { get; private set; }
-    public static GameObject Size_Enter { get; private set; }
-    public static GameObject Color1_Enter { get; private set; }
-    public static GameObject Color2_Enter { get; private set; }
-    public static GameObject Color3_Enter { get; private set; }
+    public static GameObject TextEnter { get; private set; }
+    public static GameObject SizeEnter { get; private set; }
+    public static GameObject Color1Enter { get; private set; }
+    public static GameObject Color2Enter { get; private set; }
+    public static GameObject Color3Enter { get; private set; }
 
     public static void Hide()
     {
@@ -65,14 +65,14 @@ public static class NameTagEditMenu
         if (Menu == null) return;
 
         Menu.SetActive(true);
-        FriendCode = friendCode;
-        CacheTag = friendCode != null && AllExternalNameTags.TryGetValue(friendCode, out var tag)
+        _friendCode = friendCode;
+        _cacheTag = friendCode != null && AllExternalNameTags.TryGetValue(friendCode, out var tag)
             ? DeepClone(tag)
             : new NameTagManager.NameTag();
 
-        LoadComponent(GetComponent(CacheTag, ComponentType.DisplayName));
+        LoadComponent(GetComponent(_cacheTag, ComponentType.DisplayName));
         SetButtonHighlight(ComponentType.DisplayName);
-        CurrentComponent = ComponentType.DisplayName;
+        _currentComponent = ComponentType.DisplayName;
         UpdatePreview();
     }
 
@@ -93,14 +93,14 @@ public static class NameTagEditMenu
 
     private static void LoadComponent(Component com, bool name = false)
     {
-        Text_Enter.GetComponent<TextBoxTMP>().enabled = !name;
-        Text_Enter.GetComponent<TextBoxTMP>().SetText(!name ? com?.Text ?? "" : GetString("CanNotEdit"));
-        Size_Enter.GetComponent<TextBoxTMP>()
+        TextEnter.GetComponent<TextBoxTMP>().enabled = !name;
+        TextEnter.GetComponent<TextBoxTMP>().SetText(!name ? com?.Text ?? "" : GetString("CanNotEdit"));
+        SizeEnter.GetComponent<TextBoxTMP>()
             .SetText((com?.SizePercentage ?? 100).ToString(CultureInfo.CurrentCulture));
 
-        Color1_Enter.GetComponent<TextBoxTMP>().Clear();
-        Color2_Enter.GetComponent<TextBoxTMP>().Clear();
-        Color3_Enter.GetComponent<TextBoxTMP>().Clear();
+        Color1Enter.GetComponent<TextBoxTMP>().Clear();
+        Color2Enter.GetComponent<TextBoxTMP>().Clear();
+        Color3Enter.GetComponent<TextBoxTMP>().Clear();
 
         if (com?.Gradient?.IsValid ?? false)
             for (var i = 0; i < Mathf.Min(3, com.Gradient.Colors.Count); i++)
@@ -108,38 +108,38 @@ public static class NameTagEditMenu
                 var color = com.Gradient.Colors[i];
                 var textBox = i switch
                 {
-                    0 => Color1_Enter.GetComponent<TextBoxTMP>(),
-                    1 => Color2_Enter.GetComponent<TextBoxTMP>(),
-                    2 => Color3_Enter.GetComponent<TextBoxTMP>(),
+                    0 => Color1Enter.GetComponent<TextBoxTMP>(),
+                    1 => Color2Enter.GetComponent<TextBoxTMP>(),
+                    2 => Color3Enter.GetComponent<TextBoxTMP>(),
                     _ => null
                 };
                 textBox?.SetText(ColorUtility.ToHtmlStringRGBA(color)[..6]);
             }
         else if (com?.TextColor != null)
-            Color1_Enter.GetComponent<TextBoxTMP>().SetText(
+            Color1Enter.GetComponent<TextBoxTMP>().SetText(
                 ColorUtility.ToHtmlStringRGBA(com.TextColor.Value)[..6]);
     }
 
     private static void UpdatePreview()
     {
-        if (!Menu.activeSelf || CacheTag == null || Preview == null) return;
-        var displayName = CacheTag.Apply(null, true);
+        if (!Menu.activeSelf || _cacheTag == null || Preview == null) return;
+        var displayName = _cacheTag.Apply(null, true);
         Preview.GetComponent<TextMeshPro>().text = displayName.title;
     }
 
     private static void SaveToCache(ComponentType type)
     {
         var com = new Component();
-        var text = Text_Enter.GetComponent<TextBoxTMP>().text.Trim();
+        var text = TextEnter.GetComponent<TextBoxTMP>().text.Trim();
         if (text != "" && type != ComponentType.Name) com.Text = text;
 
-        var size = Size_Enter.GetComponent<TextBoxTMP>().text.Trim();
+        var size = SizeEnter.GetComponent<TextBoxTMP>().text.Trim();
         if (size != "" && float.TryParse(size, out var sizef)) com.SizePercentage = sizef;
 
         List<Color> colors = new();
-        AddColorIfValid(Color1_Enter, colors);
-        AddColorIfValid(Color2_Enter, colors);
-        AddColorIfValid(Color3_Enter, colors);
+        AddColorIfValid(Color1Enter, colors);
+        AddColorIfValid(Color2Enter, colors);
+        AddColorIfValid(Color3Enter, colors);
 
         if (colors.Count > 1) com.Gradient = new ColorGradient(colors.ToArray());
         else if (colors.Count == 1) com.TextColor = colors[0];
@@ -147,12 +147,12 @@ public static class NameTagEditMenu
 
         switch (type)
         {
-            case ComponentType.Title: CacheTag.Title = com; break;
-            case ComponentType.Prefix: CacheTag.Prefix = com; break;
-            case ComponentType.Suffix: CacheTag.Suffix = com; break;
-            case ComponentType.Name: CacheTag.Name = com; break;
-            case ComponentType.DisplayName: CacheTag.DisplayName = com; break;
-            case ComponentType.LastTag: CacheTag.LastTag = com; break;
+            case ComponentType.Title: _cacheTag.Title = com; break;
+            case ComponentType.Prefix: _cacheTag.Prefix = com; break;
+            case ComponentType.Suffix: _cacheTag.Suffix = com; break;
+            case ComponentType.Name: _cacheTag.Name = com; break;
+            case ComponentType.DisplayName: _cacheTag.DisplayName = com; break;
+            case ComponentType.LastTag: _cacheTag.LastTag = com; break;
         }
     }
 
@@ -223,7 +223,7 @@ public static class NameTagEditMenu
 
         writer.WriteEndObject();
 
-        var fileName = Path.Combine(TAGS_DIRECTORY_PATH, friendCode.Trim() + ".json");
+        var fileName = Path.Combine(TagsDirectoryPath, friendCode.Trim() + ".json");
         File.WriteAllText(fileName, sw.ToString());
         return true;
     }
@@ -278,10 +278,10 @@ public static class NameTagEditMenu
 
         button.GetComponent<PassiveButton>().OnClick.AddListener((Action)(() =>
         {
-            SaveToCache(CurrentComponent);
-            LoadComponent(GetComponent(CacheTag, type), type == ComponentType.Name);
+            SaveToCache(_currentComponent);
+            LoadComponent(GetComponent(_cacheTag, type), type == ComponentType.Name);
             SetButtonHighlight(type);
-            CurrentComponent = type;
+            _currentComponent = type;
         }));
 
         ComponentButtons[type] = button;
@@ -306,7 +306,7 @@ public static class NameTagEditMenu
             previewPassive.OnClick.RemoveAllListeners();
             previewPassive.OnClick.AddListener((Action)(() =>
             {
-                SaveToCache(CurrentComponent);
+                SaveToCache(_currentComponent);
                 UpdatePreview();
             }));
         }
@@ -327,10 +327,10 @@ public static class NameTagEditMenu
             savePassive.OnClick.RemoveAllListeners();
             savePassive.OnClick.AddListener((Action)(() =>
             {
-                SaveToCache(CurrentComponent);
-                if (SaveToFile(FriendCode, CacheTag))
+                SaveToCache(_currentComponent);
+                if (SaveToFile(_friendCode, _cacheTag))
                 {
-                    ReloadTag(FriendCode);
+                    ReloadTag(_friendCode);
                     NameTagPanel.RefreshTagList();
                 }
 
@@ -359,14 +359,14 @@ public static class NameTagEditMenu
             deletePassive.OnClick.RemoveAllListeners();
             deletePassive.OnClick.AddListener((Action)(() =>
             {
-                if (string.IsNullOrEmpty(FriendCode)) return;
+                if (string.IsNullOrEmpty(_friendCode)) return;
 
-                var fileName = Path.Combine(TAGS_DIRECTORY_PATH, $"{FriendCode.Trim()}.json");
+                var fileName = Path.Combine(TagsDirectoryPath, $"{_friendCode.Trim()}.json");
                 if (File.Exists(fileName))
                     try
                     {
                         File.Delete(fileName);
-                        ReloadTag(FriendCode);
+                        ReloadTag(_friendCode);
                         NameTagPanel.RefreshTagList();
                         Toggle(null, false);
                     }
@@ -397,42 +397,42 @@ public static class NameTagEditMenu
         var offset = GetResolutionOffset();
 
         // 文本输入区域
-        Text_Enter = UiHelper.CreateInputField(
+        TextEnter = UiHelper.CreateInputField(
             Menu.transform,
             new Vector3(-2.9f * offset, 0f * offset, 0f),
             true
         );
-        Text_Enter.name = "Edit Text Enter Box";
+        TextEnter.name = "Edit Text Enter Box";
 
         // 尺寸输入区域
-        Size_Enter = UiHelper.CreateInputField(
+        SizeEnter = UiHelper.CreateInputField(
             Menu.transform,
             new Vector3(-2.9f * offset, -1.2f * offset, 0f),
             false
         );
-        Size_Enter.name = "Edit Size Enter Box";
+        SizeEnter.name = "Edit Size Enter Box";
 
         // 颜色输入区域
-        Color1_Enter = UiHelper.CreateInputField(
+        Color1Enter = UiHelper.CreateInputField(
             Menu.transform,
             new Vector3(1.95f * offset, -0f * offset, 0f),
             true
         );
-        Color1_Enter.name = "Edit Color 1 Enter Box";
+        Color1Enter.name = "Edit Color 1 Enter Box";
 
-        Color2_Enter = UiHelper.CreateInputField(
+        Color2Enter = UiHelper.CreateInputField(
             Menu.transform,
             new Vector3(1.95f * offset, -0.6f * offset, 0f),
             true
         );
-        Color2_Enter.name = "Edit Color 2 Enter Box";
+        Color2Enter.name = "Edit Color 2 Enter Box";
 
-        Color3_Enter = UiHelper.CreateInputField(
+        Color3Enter = UiHelper.CreateInputField(
             Menu.transform,
             new Vector3(1.95f * offset, -1.2f * offset, 0f),
             true
         );
-        Color3_Enter.name = "Edit Color 3 Enter Box";
+        Color3Enter.name = "Edit Color 3 Enter Box";
 
         // 创建标签文本
         CreateLabel(GetString("Tip.TextContent"), new Vector3(-2.95f * offset, 0f, 0f));

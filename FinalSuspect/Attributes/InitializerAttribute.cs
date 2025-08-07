@@ -8,14 +8,14 @@ public abstract class InitializerAttribute<T>(InitializePriority priority) : Att
 {
     /// <summary>所有初始化方法</summary>
     // ReSharper disable once StaticMemberInGenericType
-    private static MethodInfo[] allInitializers;
+    private static MethodInfo[] _allInitializers;
 
-    private static readonly LogHandler logger = Handler(nameof(InitializerAttribute<T>));
+    private static readonly LogHandler Logger = Handler(nameof(InitializerAttribute<T>));
 
-    private readonly InitializePriority priority = priority;
+    private readonly InitializePriority _priority = priority;
 
     /// <summary>在初始化时调用的方法</summary>
-    private MethodInfo targetMethod;
+    private MethodInfo _targetMethod;
 
     protected InitializerAttribute() : this(InitializePriority.Normal)
     {
@@ -38,27 +38,28 @@ public abstract class InitializerAttribute<T>(InitializePriority priority) : Att
                 var attribute = method.GetCustomAttribute<InitializerAttribute<T>>();
                 if (attribute == null) continue;
                 // 如果获取到了，则注册
-                attribute.targetMethod = method;
+                attribute._targetMethod = method;
                 initializers.Add(attribute);
             }
         }
 
         // 将找到的初始化方法按照优先级排序并转换为数组
-        allInitializers =
+        _allInitializers =
         [
-            .. initializers.OrderBy(initializer => initializer.priority).Select(initializer => initializer.targetMethod)
+            .. initializers.OrderBy(initializer => initializer._priority)
+                .Select(initializer => initializer._targetMethod)
         ];
     }
 
     public static void InitializeAll()
     {
         // 在首次初始化时查找初始化方法
-        if (allInitializers == null) FindInitializers();
+        if (_allInitializers == null) FindInitializers();
 
-        if (allInitializers == null) return;
-        foreach (var initializer in allInitializers)
+        if (_allInitializers == null) return;
+        foreach (var initializer in _allInitializers)
         {
-            logger.Info($"初始化: {initializer?.DeclaringType?.Name}.{initializer?.Name}");
+            Logger.Info($"初始化: {initializer?.DeclaringType?.Name}.{initializer?.Name}");
             initializer?.Invoke(null, null);
         }
     }

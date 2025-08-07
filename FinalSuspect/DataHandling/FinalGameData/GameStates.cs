@@ -66,11 +66,11 @@ public partial class FinalGameData
             get
             {
                 if (!IsOnlineGame) return false;
-                const string Domain = "among.us";
+                const string domain = "among.us";
                 //Reactor.gg
                 return ServerManager.Instance.CurrentRegion?.TryCast<StaticHttpRegionInfo>() is { } regionInfo &&
-                       regionInfo.PingServer.EndsWith(Domain, StringComparison.Ordinal) &&
-                       regionInfo.Servers.All(serverInfo => serverInfo.Ip.EndsWith(Domain, StringComparison.Ordinal));
+                       regionInfo.PingServer.EndsWith(domain, StringComparison.Ordinal) &&
+                       regionInfo.Servers.All(serverInfo => serverInfo.Ip.EndsWith(domain, StringComparison.Ordinal));
             }
         }
 

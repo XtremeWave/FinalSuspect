@@ -13,9 +13,9 @@ namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
 
 public static class NameTagManager
 {
-    public static readonly string TAGS_DIRECTORY_PATH = GetLocalPath(LocalType.NameTag);
-    private static Dictionary<string, NameTag> NameTags = new();
-    public static IReadOnlyDictionary<string, NameTag> AllNameTags => NameTags;
+    public static readonly string TagsDirectoryPath = GetLocalPath(LocalType.NameTag);
+    private static Dictionary<string, NameTag> _nameTags = new();
+    public static IReadOnlyDictionary<string, NameTag> AllNameTags => _nameTags;
 
     public static IReadOnlyDictionary<string, NameTag> AllInternalNameTags =>
         AllNameTags.Where(t => t.Value.Isinternal).ToDictionary(x => x.Key, x => x.Value);
@@ -68,8 +68,8 @@ public static class NameTagManager
             return;
         }
 
-        NameTags.Remove(friendCode);
-        var path = Path.Combine(TAGS_DIRECTORY_PATH, $"{friendCode}.json");
+        _nameTags.Remove(friendCode);
+        var path = Path.Combine(TagsDirectoryPath, $"{friendCode}.json");
         if (File.Exists(path))
             try
             {
@@ -83,12 +83,12 @@ public static class NameTagManager
 
     public static void Init()
     {
-        NameTags = new Dictionary<string, NameTag>();
+        _nameTags = new Dictionary<string, NameTag>();
 
-        if (!Directory.Exists(TAGS_DIRECTORY_PATH))
-            Directory.CreateDirectory(TAGS_DIRECTORY_PATH);
+        if (!Directory.Exists(TagsDirectoryPath))
+            Directory.CreateDirectory(TagsDirectoryPath);
 
-        foreach (var file in Directory.EnumerateFiles(TAGS_DIRECTORY_PATH, "*.json", SearchOption.AllDirectories))
+        foreach (var file in Directory.EnumerateFiles(TagsDirectoryPath, "*.json", SearchOption.AllDirectories))
         {
             if (file.Contains("template", StringComparison.OrdinalIgnoreCase)) continue;
 
@@ -112,7 +112,7 @@ public static class NameTagManager
 
         if (tag != null && !string.IsNullOrEmpty(friendCode))
         {
-            NameTags[friendCode] = tag;
+            _nameTags[friendCode] = tag;
             Info($"Name Tag Loaded: {friendCode}", "NameTagManager");
         }
     }

@@ -58,13 +58,13 @@ public static class ColorHelper
     /// </summary>
     public static Color ShadeColor(this Color color, float Darkness = 0)
     {
-        var IsDarker = Darkness >= 0; //与黑色混合
-        if (!IsDarker) Darkness = -Darkness;
-        var Weight = IsDarker ? 0 : Darkness; //黑/白的混合比例
-        var R = (color.r + Weight) / (Darkness + 1);
-        var G = (color.g + Weight) / (Darkness + 1);
-        var B = (color.b + Weight) / (Darkness + 1);
-        return new Color(R, G, B, color.a);
+        var isDarker = Darkness >= 0; //与黑色混合
+        if (!isDarker) Darkness = -Darkness;
+        var weight = isDarker ? 0 : Darkness; //黑/白的混合比例
+        var r = (color.r + weight) / (Darkness + 1);
+        var g = (color.g + weight) / (Darkness + 1);
+        var b = (color.b + weight) / (Darkness + 1);
+        return new Color(r, g, b, color.a);
     }
 
     private static void ColorToHSV(Color color, out float hue /*, out float saturation, out float value*/)

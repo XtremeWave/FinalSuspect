@@ -8,7 +8,7 @@ namespace FinalSuspect.Patches.System;
 #region GameManager Patches
 
 [HarmonyPatch(typeof(NormalGameManager), nameof(NormalGameManager.GetBodyType))]
-public static class GetNormalBodyType_Patch
+public static class GetNormalBodyTypePatch
 {
     public static void Postfix(ref PlayerBodyTypes __result)
     {
@@ -29,7 +29,7 @@ public static class GetNormalBodyType_Patch
 }
 
 [HarmonyPatch(typeof(HideAndSeekManager), nameof(HideAndSeekManager.GetBodyType))]
-public static class GetHnsBodyType_Patch
+public static class GetHnsBodyTypePatch
 {
     public static void Postfix(ref PlayerBodyTypes __result, [HarmonyArgument(0)] PlayerControl player)
     {

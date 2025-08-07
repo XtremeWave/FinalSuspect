@@ -175,7 +175,7 @@ internal class RPCHandlerPatch
         var netId = __instance.NetId;
         var player = FinalPlayerData.AllPlayerData.FirstOrDefault(x => x.NetId == netId)?.Player;
         if (!player) return;
-        if (FinalGameData.PlayerVersion.playerVersion.ContainsKey(player.GetClientId())) return;
+        if (FinalGameData.PlayerVersion.PlayerVersions.ContainsKey(player.GetClientId())) return;
         Info($"Create Player version for {player.GetRealName()}", "Rpc Version Check");
         var rpcType = (RpcCalls)callId;
         switch (rpcType)
@@ -190,12 +190,12 @@ internal class RPCHandlerPatch
                     var id = player.GetClientId();
                     _ = RPC.RpcVersionCheck();
 
-                    FinalGameData.PlayerVersion.playerVersion[id] =
+                    FinalGameData.PlayerVersion.PlayerVersions[id] =
                         new FinalGameData.PlayerVersion(version, tag, forkId);
 
                     if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
-                        FinalGameData.PlayerVersion.playerVersion[id] =
-                            FinalGameData.PlayerVersion.playerVersion[id];
+                        FinalGameData.PlayerVersion.PlayerVersions[id] =
+                            FinalGameData.PlayerVersion.PlayerVersions[id];
 
                     // Kick Unmached Player Start
                     /*if (AmongUsClient.Instance.AmHost && tag != $"{Main.GitCommit}({Main.GitBranch})")
@@ -215,7 +215,7 @@ internal class RPCHandlerPatch
                 }
                 catch
                 {
-                    FinalGameData.PlayerVersion.playerVersion[player.GetClientId()] = null;
+                    FinalGameData.PlayerVersion.PlayerVersions[player.GetClientId()] = null;
                 }
 
                 break;
@@ -254,8 +254,8 @@ internal static class RPC
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
             }
 
-            if (FinalGameData.PlayerVersion.playerVersion != null)
-                FinalGameData.PlayerVersion.playerVersion[PlayerControl.LocalPlayer.GetClientId()] =
+            if (FinalGameData.PlayerVersion.PlayerVersions != null)
+                FinalGameData.PlayerVersion.PlayerVersions[PlayerControl.LocalPlayer.GetClientId()] =
                     new FinalGameData.PlayerVersion(
                         Version.Parse(Main.PluginVersion),
                         $"{Main.GitCommit}({Main.GitBranch})",

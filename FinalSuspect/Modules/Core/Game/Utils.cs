@@ -419,7 +419,7 @@ public static class Utils
         return GetRoleById(id);
     }
 
-    public static bool IsImpostor(RoleTypes role)
+    public static bool IsImpostor(this RoleTypes role)
     {
         return role switch
         {
@@ -559,17 +559,17 @@ public static class Utils
 
     public static bool OtherModClient(int id)
     {
-        return GetPlayerVersion(id, out var ver) && Main.ForkId != ver.forkId;
+        return GetPlayerVersion(id, out var ver) && Main.ForkId != ver.ForkId;
     }
 
     public static bool IsFinalSuspect(int id)
     {
-        return FinalGameData.PlayerVersion.playerVersion.TryGetValue(id, out var ver) && Main.ForkId == ver.forkId;
+        return FinalGameData.PlayerVersion.PlayerVersions.TryGetValue(id, out var ver) && Main.ForkId == ver.ForkId;
     }
 
     public static bool GetPlayerVersion(int id, out FinalGameData.PlayerVersion ver)
     {
-        return FinalGameData.PlayerVersion.playerVersion.TryGetValue(id, out ver) && ver != null;
+        return FinalGameData.PlayerVersion.PlayerVersions.TryGetValue(id, out ver) && ver != null;
     }
 
     #endregion

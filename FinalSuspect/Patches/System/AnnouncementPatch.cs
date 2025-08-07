@@ -44,7 +44,7 @@ public class ModNews
 [HarmonyPatch]
 public class ModNewsHistory
 {
-    private static readonly List<ModNews> AllModNews = [];
+    private static readonly List<ModNews> allModNews = [];
 
     public static bool AnnouncementLoadComplete;
 
@@ -73,14 +73,14 @@ public class ModNewsHistory
     {
         try
         {
-            var FinalAllNews = new List<Announcement>();
-            AllModNews.ForEach(n =>
+            var finalAllNews = new List<Announcement>();
+            allModNews.ForEach(n =>
             {
                 if (n.Lang == (uint)TranslationController.Instance.currentLanguage.languageID)
-                    FinalAllNews.Add(n.ToAnnouncement());
+                    finalAllNews.Add(n.ToAnnouncement());
             });
-            FinalAllNews.AddRange(aRange.Where(news => !AllModNews.Any(x => x.Number == news.Number)));
-            FinalAllNews.Sort((a1, a2) =>
+            finalAllNews.AddRange(aRange.Where(news => !allModNews.Any(x => x.Number == news.Number)));
+            finalAllNews.Sort((a1, a2) =>
             {
                 if (string.IsNullOrEmpty(a1.Date) || string.IsNullOrEmpty(a2.Date))
                     return string.IsNullOrEmpty(a1.Date) ? 1 : -1;
@@ -88,14 +88,14 @@ public class ModNewsHistory
                 return DateTime.Parse(a2.Date).CompareTo(DateTime.Parse(a1.Date));
             });
 
-            if (FinalAllNews.Count == 0)
+            if (finalAllNews.Count == 0)
             {
                 aRange = new Il2CppReferenceArray<Announcement>(0);
             }
             else
             {
-                aRange = new Il2CppReferenceArray<Announcement>(FinalAllNews.Count);
-                for (var i = 0; i < FinalAllNews.Count; i++) aRange[i] = FinalAllNews[i];
+                aRange = new Il2CppReferenceArray<Announcement>(finalAllNews.Count);
+                for (var i = 0; i < finalAllNews.Count; i++) aRange[i] = finalAllNews[i];
             }
         }
         catch (Exception ex)
@@ -126,7 +126,7 @@ public class ModNewsHistory
         try
         {
             // 如果 AllModNews 为空，加载所有语言的 ModNews
-            if (AllModNews.Count >= 1) return;
+            if (allModNews.Count >= 1) return;
             foreach (var lang in EnumHelper.GetAllValues<SupportedLangs>())
             foreach (var target in ResourcesHelper.RemoteModNewsList)
             foreach (var url in GetInfoFileUrlList())
@@ -139,7 +139,7 @@ public class ModNewsHistory
                 try
                 {
                     var content = GetContentFromRes(result.Item2, lang);
-                    if (content != null && !string.IsNullOrEmpty(content.Date)) AllModNews.Add(content);
+                    if (content != null && !string.IsNullOrEmpty(content.Date)) allModNews.Add(content);
                 }
                 catch
                 {
@@ -150,7 +150,7 @@ public class ModNewsHistory
             }
 
             // 对 AllModNews 进行排序，处理可能的空值
-            AllModNews.Sort((a1, a2) =>
+            allModNews.Sort((a1, a2) =>
             {
                 if (string.IsNullOrEmpty(a1.Date) || string.IsNullOrEmpty(a2.Date))
                     return string.IsNullOrEmpty(a1.Date) ? 1 : -1;
