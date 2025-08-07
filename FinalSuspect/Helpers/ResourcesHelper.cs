@@ -47,6 +47,9 @@ public static class ResourcesHelper
         "Plate_Clear.png",
         "Plate_Category.png",
         "Plate_Content.png",
+        "KeyBackground.png",
+        "KeyLeftShift.png",
+        "KeyRightShift.png",
     ];
 
     public static List<string> RemoteDependList =
@@ -69,7 +72,8 @@ public static class ResourcesHelper
         "FS.v1.1_20250216.txt",
         "FS.v1.1_20250412.txt",
         "FS.v1.1_20250501.txt",
-        "FS.v1.2_20250815.txt"
+        "FS.v1.2_20250815.txt",
+        "FeaturesIntroduction.v1.2.txt",
     ];
 
     #endregion
