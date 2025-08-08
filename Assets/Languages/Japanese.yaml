@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "未ダウンロード"
 MainMenuStyle.NotApply: "適用"
 MainMenuStyle.Applied: "適用済み"
 
-# 资源包
-Package.MainMenuStyle: "メインメニュースタイルパック"
+# 资源包 / Package
+Package.MainMenuStyle: "メインメニューのスタイルパック"
+Package.WorldMusic: "ワールドミュージックパック"
+Package.EmberVeinsDemo1: "「EmberVeins」デモミュージックパック1"
+Package.MotesInResonance: "「Motes In Resonance」アルバムパック"
+Package.OtherMusic: "その他のミュージックパック"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "1回再生"
@@ -211,21 +215,29 @@ MusPlay.CanPlay: "クリックして再生"
 MusPlay.NoFound: "ファイルなし"
 
 # 官方音乐 / Musics
-Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财（旧正月おめでとう）"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
+Mus.FinalSuspect: "Final Suspect 終極嫌疑"
+Mus.GongXiFaCai: "恭喜发财"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up（君を絶対に諦めない）"
+Mus.CountingStars: "Counting Stars（星を数える）"
+
+Mus.ChasingDawn: "光を追って夜明けを求める"
+Mus.ReturnToSimplicity2: "自然に戻る（完全版）"
+Mus.GatheredEchoes: "集められたエコー"
+
+Mus.Trajectory: "[終点を振り返るとき] 航跡"
+
+Mus.Affinity: "和の縁"
 Mus.TidalSurge: "潮のうねり"
-Mus.TrailOfTruth: "真実の痕跡"
-Mus.Interlude: "インタールード"
-Mus.Fractured: "破砕"
-Mus.ElegyOfFracturedVow: "破れた誓いの悲歌"
+Mus.ReturnToSimplicity: "自然に戻る"
+
+Mus.DawnmistEchoes: "夜明けの霧の足音"
+Mus.TrailOfTruth: "真実の道"
+Mus.Interlude: "中断"
+Mus.Fractured: "砕かれた"
+Mus.StruggleAgainstFadingFlame: "消える炎と戦う"
+Mus.ElegyOfFracturedVow: "砕かれた誓いの挽歌"
 Mus.VestigiumSplendoris: "残光"
-Mus.ReturnToSimplicity: "簡素への回帰"
-Mus.ReturnToSimplicity2: "簡素への回帰（フルバージョン）"
-Mus.ChasingDawn: "夜明けを追う"
-Mus.StruggleAgainstFadingFlame: "消えゆく炎との闘い"
-Mus.Affinity: "親和"
+Mus.FinisAnteInitium: "物語は出発前に幕を下ろす"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "役職"

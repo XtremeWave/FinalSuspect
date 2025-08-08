@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "다운로드되지 않음"
 MainMenuStyle.NotApply: "적용"
 MainMenuStyle.Applied: "적용됨"
 
-# 资源包
+# 资源包 / Package
 Package.MainMenuStyle: "메인 메뉴 스타일 팩"
+Package.WorldMusic: "세계 음악팩"
+Package.EmberVeinsDemo1: "「EmberVeins」데모 음악팩 1"
+Package.MotesInResonance: "「Motes In Resonance」앨범팩"
+Package.OtherMusic: "기타 음악팩"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "한 번 재생"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "파일 없음"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(행복한 중국 새해)"
+Mus.GongXiFaCai: "恭喜发财 (새해 복 많이 받으세요)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "조수의 밀물"
-Mus.TrailOfTruth: "진실의 흔적"
-Mus.Interlude: "인터루드"
-Mus.Fractured: "파편"
-Mus.ElegyOfFracturedVow: "부서진 맹세의 엘레지"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "단순함으로의 귀환"
-Mus.ReturnToSimplicity2: "단순함으로의 귀환(풀 버전)"
-Mus.ChasingDawn: "새벽을 좇아"
-Mus.StruggleAgainstFadingFlame: "사라지는 불꽃과의 싸움"
+Mus.CountingStars: "별 세기"
+
+Mus.ChasingDawn: "새벽을 쫓다"
+Mus.ReturnToSimplicity2: "순박함으로 돌아가기 (완전판)"
+Mus.GatheredEchoes: "모인 메아리"
+
+Mus.Trajectory: "[끝에서 뒤돌아볼 때] 궤적"
+
 Mus.Affinity: "친화력"
+Mus.TidalSurge: "물결의 솟구침"
+Mus.ReturnToSimplicity: "순박함으로 돌아가기"
+
+Mus.DawnmistEchoes: "새벽 안개의 메아리"
+Mus.TrailOfTruth: "진실의 흔적"
+Mus.Interlude: "중간 주제곡"
+Mus.Fractured: "파열된"
+Mus.StruggleAgainstFadingFlame: "바래가는 불길에 대항하는 투쟁"
+Mus.ElegyOfFracturedVow: "파열된 서약의挽歌"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (잿화)"
+Mus.FinisAnteInitium: "Finis Ante Initium (떠나기 전의 커튼콜)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "직업"

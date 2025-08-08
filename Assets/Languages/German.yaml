@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Nicht heruntergeladen"
 MainMenuStyle.NotApply: "Anwenden"
 MainMenuStyle.Applied: "Angewendet"
 
-# 资源包
-Package.MainMenuStyle: "Hauptmenü-Stil-Paket"
+# 资源包 / Package
+Package.MainMenuStyle: "Haupmenü-Stil-Paket"
+Package.WorldMusic: "Weltmusik-Paket"
+Package.EmberVeinsDemo1: "「EmberVeins」Demo-Musikpaket 1"
+Package.MotesInResonance: "「Motes In Resonance」Albumpaket"
+Package.OtherMusic: "Andere Musikpakete"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Einmal abspielen"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Datei fehlt"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财 (Frohes Chinesisches Neujahr)"
+Mus.GongXiFaCai: "恭喜发财 (Frohes Neues Jahr)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Flutwelle"
-Mus.TrailOfTruth: "Spur der Wahrheit"
-Mus.Interlude: "Zwischenspiel"
-Mus.Fractured: "Gebrochen"
-Mus.ElegyOfFracturedVow: "Elegie des gebrochenen Gelübdes"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
+Mus.CountingStars: "Sterne zählen"
+
+Mus.ChasingDawn: "Jagendes Morgengrauen"
+Mus.ReturnToSimplicity2: "zurück zur Einfachheit (Vollständige Version)"
+Mus.GatheredEchoes: "Gesammelte Echos"
+
+Mus.Trajectory: "[Wenn man am Ende zurückblickt] Trajektorie"
+
+Mus.Affinity: "Verwandtschaft"
+Mus.TidalSurge: "Gezeitenanwärts"
 Mus.ReturnToSimplicity: "zurück zur Einfachheit"
-Mus.ReturnToSimplicity2: "zurück zur Einfachheit (Volle Version)"
-Mus.ChasingDawn: "Jag der Morgenröte"
-Mus.StruggleAgainstFadingFlame: "Kampf gegen die verblassende Flamme"
-Mus.Affinity: "Verbundenheit"
+
+Mus.DawnmistEchoes: "Echoes des Morgennebels"
+Mus.TrailOfTruth: "Spur der Wahrheit"
+Mus.Interlude: "Intermezzo"
+Mus.Fractured: "Gebrochen"
+Mus.StruggleAgainstFadingFlame: "Kampf gegen das erlöschende Feuer"
+Mus.ElegyOfFracturedVow: "Elegie eines gebrochenen Gelübdes"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Aschenblüte)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Vor der Abreise)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Rolle"

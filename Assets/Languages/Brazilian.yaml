@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Não Baixado"
 MainMenuStyle.NotApply: "Aplicar"
 MainMenuStyle.Applied: "Aplicado"
 
-# 资源包
-Package.MainMenuStyle: "Pacote de Estilo de Menu Principal"
+# 资源包 / Package
+Package.MainMenuStyle: "Pacote de Estilo do Menu Principal"
+Package.WorldMusic: "Pacote de Música do Mundo"
+Package.EmberVeinsDemo1: "Pacote de Música Demo 1 de 「EmberVeins」"
+Package.MotesInResonance: "Pacote do Álbum 「Motes In Resonance」"
+Package.OtherMusic: "Pacote de Outras Músicas"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Reproduzir Uma Vez"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Arquivo Ausente"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Feliz Ano Novo Chinês)"
+Mus.GongXiFaCai: "恭喜发财 (Feliz Ano Novo Chinês)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Onda de Maré"
-Mus.TrailOfTruth: "Trilha da Verdade"
-Mus.Interlude: "Interlúdio"
-Mus.Fractured: "Fraturas"
-Mus.ElegyOfFracturedVow: "Elegia do Voto Fraturado"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "Retorno à Simplicidade"
-Mus.ReturnToSimplicity2: "Retorno à Simplicidade (Versão Completa)"
+Mus.CountingStars: "Contando Estrelas"
+
 Mus.ChasingDawn: "Perseguindo o Amanhecer"
-Mus.StruggleAgainstFadingFlame: "Luta Contra a Chama que Desaparece"
+Mus.ReturnToSimplicity2: "retornar à simplicidade (Versão Completa)"
+Mus.GatheredEchoes: "Ecos Recolhidos"
+
+Mus.Trajectory: "[Ao Olhar para Trás no Fim] Trajetória"
+
 Mus.Affinity: "Afinidade"
+Mus.TidalSurge: "Surgência da Maré"
+Mus.ReturnToSimplicity: "retornar à simplicidade"
+
+Mus.DawnmistEchoes: "Ecos da Neblina do Amanhecer"
+Mus.TrailOfTruth: "Rastro da Verdade"
+Mus.Interlude: "Interlúdio"
+Mus.Fractured: "Fraturado"
+Mus.StruggleAgainstFadingFlame: "Luta contra a Chama que Se Apaga"
+Mus.ElegyOfFracturedVow: "Elegia de um Voto Fraturado"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Florescimento de Cinzas)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Despedida Antes da Partida)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Função"

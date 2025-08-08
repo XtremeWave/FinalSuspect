@@ -1,10 +1,11 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -12,140 +13,126 @@ public static class ResourcesDownloader
 {
     public static async Task<bool> StartDownload(FileType fileType, string file)
     {
-        string filePath;
-        switch (fileType)
-        {
-            case FileType.Images:
-            case FileType.Musics:
-            case FileType.ModNews:
-            case FileType.Languages:
-            case FileType.SoundEffects:
-                filePath = GetResourceFilesPath(fileType, file);
-                break;
-            case FileType.Depends:
-                filePath = GetLocalPath(LocalType.BepInEx) + file;
-                break;
-            case FileType.Unknown:
-            default:
-                return false;
-        }
-
-        var downloadFileTempPath = filePath + ".xwr";
-
-        var retryTimes = IsChineseLanguageUser ? 0 : 3;
-        retry:
-        var remoteType = (RemoteType)retryTimes;
-
-        var url = GetFile(fileType, remoteType, file);
-
-        if (!IsValidUrl(url))
-        {
-            Error($"Invalid URL: {url}", "Download Resources", false);
-            return false;
-        }
-
-        File.Create(downloadFileTempPath).Close();
-
-        Msg("Start Downloading from: " + url, "Download Resources");
-        Msg("Saving file to: " + filePath, "Download Resources");
-
-        try
-        {
-            using var client = new HttpClientDownloadWithProgress(url, downloadFileTempPath);
-            await client.StartDownload();
-            Thread.Sleep(100);
-            File.Delete(filePath);
-            File.Move(downloadFileTempPath, filePath);
-
-            if (Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
-            {
-                try
-                {
-                    var extractPath = Path.GetDirectoryName(filePath);
-                    Msg($"Unzipping file: {filePath}", "Download Resources");
-                    if (extractPath != null) ZipFile.ExtractToDirectory(filePath, extractPath);
-                    File.Delete(filePath);
-                    Warn($"Unzipped successfully: {filePath}", "Download Resources");
-                }
-                catch (Exception ex)
-                {
-                    Error($"Failed to unzip file\n{ex.Message}", "Download Resources", false);
-                    return false;
-                }
-            }
-
-            Warn($"Succeed in {url}", "Download Resources");
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Error($"Failed to download\n{ex.Message}", "Download Resources", false);
-            File.Delete(downloadFileTempPath);
-            retryTimes++;
-            if (retryTimes < 4)
-                goto retry;
-            return false;
-        }
+        return await DownloadInternal(fileType, file,
+            (remoteType) => GetFile(fileType, remoteType, file));
     }
 
     public static async Task<bool> StartDownloadAsPackage(string packageName, FileType fileType, string file)
     {
-        string filePath;
-        switch (fileType)
+        return await DownloadInternal(fileType, file,
+            (remoteType) => GetPackageFile(packageName, remoteType, file));
+    }
+
+    private static async Task<bool> DownloadInternal(
+        FileType fileType,
+        string file,
+        Func<RemoteType, string> urlGenerator)
+    {
+        var currentFile = file;
+        var isMusic = fileType == FileType.Musics;
+
+        // 重试次数初始值
+        var retryTimes = IsChineseLanguageUser ? 0 : 3;
+
+        // 外层循环：处理扩展名转换
+        while (true)
         {
-            case FileType.Images:
-            case FileType.ModNews:
-            case FileType.Languages:
-            case FileType.Musics:
-            case FileType.SoundEffects:
-                filePath = GetResourceFilesPath(fileType, file);
-                break;
-            case FileType.Depends:
-                filePath = GetLocalPath(LocalType.BepInEx) + file;
-                break;
-            case FileType.Unknown:
-            default:
-                return false;
-        }
+            string filePath;
+            switch (fileType)
+            {
+                case FileType.Images:
+                case FileType.Musics:
+                case FileType.Languages:
+                case FileType.SoundEffects:
+                    filePath = GetResourceFilesPath(fileType, currentFile);
+                    break;
+                case FileType.Depends:
+                    filePath = GetLocalPath(LocalType.BepInEx) + currentFile;
+                    break;
+                case FileType.ModNews:
+                case FileType.Unknown:
+                default:
+                    return false;
+            }
 
-        var DownloadFileTempPath = filePath + ".xwr";
+            var downloadFileTempPath = filePath + ".slk";
+            var success = false;
+            var lastError = string.Empty;
 
-        var retrytimes = 0;
-        var remoteType = RemoteType.Github;
-        retry:
-        if (IsChineseLanguageUser)
-            remoteType = (RemoteType)retrytimes;
+            for (var i = retryTimes; i < 4; i++)
+            {
+                var remoteType = (RemoteType)i;
+                var url = urlGenerator(remoteType);
 
-        var url = GetPackageFile(packageName, remoteType, file);
+                if (!IsValidUrl(url))
+                {
+                    lastError = $"Invalid URL: {url}";
+                    Error(lastError, "Download Resources", false);
+                    continue;
+                }
 
-        if (!IsValidUrl(url))
-        {
-            Error($"Invalid URL: {url}", "Download Resources", false);
-            return false;
-        }
+                File.Create(downloadFileTempPath).Close();
+                Msg($"Start Downloading from: {url}", "Download Resources");
+                Msg($"Saving file to: {filePath}", "Download Resources");
 
-        File.Create(DownloadFileTempPath).Close();
+                try
+                {
+                    using var client = new HttpClientDownloadWithProgress(url, downloadFileTempPath);
+                    await client.StartDownload();
+                    Thread.Sleep(100);
 
-        Msg("Start Downloading from: " + url, "Download Resources");
-        Msg("Saving file to: " + filePath, "Download Resources");
+                    if (IsBlockedPage(downloadFileTempPath, fileType))
+                    {
+                        lastError = $"下载被拦截，返回了HTML页面: {url}";
+                        Error(lastError, "Download Resources", false);
+                        File.Delete(downloadFileTempPath);
+                        continue;
+                    }
 
-        try
-        {
-            using var client = new HttpClientDownloadWithProgress(url, DownloadFileTempPath);
-            await client.StartDownload();
-            Thread.Sleep(100);
-            File.Delete(filePath);
-            File.Move(DownloadFileTempPath, filePath);
-            Warn($"Succeed in {url}", "Download Resources");
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Error($"Failed to download\n{ex.Message}", "Download Resources", false);
-            File.Delete(DownloadFileTempPath);
-            retrytimes++;
-            if (retrytimes < 3)
-                goto retry;
+                    File.Delete(filePath);
+                    File.Move(downloadFileTempPath, filePath);
+
+                    if (Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
+                    {
+                        try
+                        {
+                            var extractPath = Path.GetDirectoryName(filePath);
+                            Msg($"Unzipping file: {filePath}", "Download Resources");
+                            if (extractPath != null) ZipFile.ExtractToDirectory(filePath, extractPath);
+                            File.Delete(filePath);
+                            Warn($"Unzipped successfully: {filePath}", "Download Resources");
+                        }
+                        catch (Exception ex)
+                        {
+                            lastError = $"Failed to unzip file\n{ex.Message}";
+                            Error(lastError, "Download Resources", false);
+                            continue;
+                        }
+                    }
+
+                    Warn($"Succeed in {url}", "Download Resources");
+                    success = true;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    lastError = $"Failed to download\n{ex.Message}";
+                    Error(lastError, "Download Resources", false);
+                    File.Delete(downloadFileTempPath);
+                }
+            }
+
+            if (success) return true;
+            if (!isMusic) return false;
+
+            if (AudioManager.ConvertExtensionRemote(ref currentFile))
+            {
+                Msg($"尝试转换文件扩展名: {file} -> {currentFile}", "Download Resources");
+                continue;
+            }
+
+            // 所有扩展名都已尝试，返回失败
+            Msg($"所有扩展名都已尝试，下载失败: {lastError}", "Download Resources");
             return false;
         }
     }
@@ -156,52 +143,39 @@ public static class ResourcesDownloader
         return Regex.IsMatch(url, pattern);
     }
 
-    public static string GetMD5HashFromFile(string fileName)
+    private static bool IsBlockedPage(string filePath, FileType fileType)
     {
         try
         {
-            using var md5 = MD5.Create();
-            using var stream = File.OpenRead(fileName);
-            var hash = md5.ComputeHash(stream);
-            return BitConverter.ToString(hash).Replace("-", "").ToLower();
+            var buffer = new byte[1024];
+            using var fs = File.OpenRead(filePath);
+            var bytesRead = fs.Read(buffer, 0, buffer.Length);
+            if (bytesRead == 0) return false;
+
+            var contentStart = Encoding.UTF8.GetString(buffer, 0, bytesRead).ToLower();
+
+            var hasHtmlTags = contentStart.Contains("<!doctype html>") ||
+                              contentStart.Contains("<html>") ||
+                              contentStart.Contains("<head>");
+
+            var hasBlockKeywords = contentStart.Contains("access denied") ||
+                                   contentStart.Contains("firewall") ||
+                                   contentStart.Contains("captive portal") ||
+                                   contentStart.Contains("authentication required") ||
+                                   contentStart.Contains("blocked") ||
+                                   contentStart.Contains("forbidden");
+
+            var fileSize = new FileInfo(filePath).Length;
+            var isSuspiciouslySmall = fileSize < 1024;
+
+            var isTextFile = contentStart.Contains("text/") ||
+                             contentStart.Contains("html");
+
+            return hasHtmlTags || hasBlockKeywords || (isSuspiciouslySmall && isTextFile);
         }
-        catch (Exception ex)
-        {
-            Exception(ex, "GetMD5HashFromFile");
-            return "";
-        }
-    }
-
-    /*private static void OnDownloadProgressChanged(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage)
-    {
-        var msg = $"\n{totalFileSize / 1000}KB / {totalBytesDownloaded / 1000}KB  -  {(int)progressPercentage}%";
-        Info(msg, "Download Resources");
-    }
-
-    public static async Task<bool> IsUrl404Async(FileType fileType, string file)
-    {
-        return false;
-            using var client = new HttpClient();
-            try
-            {
-                if (!IsChineseLanguageUser)
-                {
-                    var urlGithub = PathManager.GetFile(fileType, RemoteType.Github, file);
-
-                    var response = await client.GetAsync(urlGithub);
-                    return response.StatusCode == HttpStatusCode.NotFound;
-                }
-
-                var urlGitee = PathManager.GetFile(fileType, RemoteType.Gitee, file);
-                var urlApi = PathManager.GetFile(fileType, RemoteType.FinalApi, file);
-                var response1 = await client.GetAsync(urlGitee);
-                var response2 = await client.GetAsync(urlApi);
-                return response1.StatusCode == HttpStatusCode.NotFound && response2.StatusCode == HttpStatusCode.NotFound;
-            }
-
         catch
         {
             return false;
         }
-    }*/
+    }
 }

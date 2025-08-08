@@ -74,6 +74,22 @@ public static class AudioManager
         return true;
     }
 
+    public static bool ConvertExtensionRemote(ref string path)
+    {
+        if (path == null) return false;
+
+        var extensions = Extensions.ToArray().ToList();
+        var ext = Path.GetExtension(path).ToLowerInvariant();
+
+        var currentIndex = extensions.IndexOf(ext);
+
+        var nextIndex = (currentIndex + 1) % extensions.Count;
+
+        path = path.Replace(ext, extensions[nextIndex]);
+
+        return nextIndex != 0;
+    }
+
     public static void PlaySound(byte playerID, Sounds sound)
     {
         if (PlayerControl.LocalPlayer.PlayerId != playerID) return;
@@ -118,19 +134,25 @@ public enum SupportedMusics
     // 专辑
     ChasingDawn__Slok,
     ReturnToSimplicity2__Slok,
+    GatheredEchoes__Slok,
 
-    //
+    // 回望末端时
+    Trajectory__Slok,
+
+    // 其他
     Affinity__Slok,
     TidalSurge__Slok,
     ReturnToSimplicity__Slok,
 
     // 这里是EmberVeins的Demo曲
+    DawnmistEchoes__Slok,
     TrailOfTruth__Slok,
     Interlude__Slok,
     Fractured__Slok, // 这首会有大用
     StruggleAgainstFadingFlame__Slok,
     ElegyOfFracturedVow__Slok,
-    VestigiumSplendoris__Slok
+    VestigiumSplendoris__Slok,
+    FinisAnteInitium__Slok,
 }
 
 public enum AudiosStates

@@ -6,5 +6,35 @@
     "FinalSuspect-BG-NewYear.png", 
     "FinalSuspect-BG-Security.png", 
     "FinalSuspect-BG-XtremeWave.png" 
+  ],
+  "WorldMusic":
+  [
+    "CountingStars.wav",
+    "NeverGonnaGiveYouUp.wav",
+    "GongXiFaCai.wav"   
+  ],
+  "EmberVeinsDemo1": 
+  [
+    "DawnmistEchoes.wav",
+    "ElegyOfFracturedVow.wav",
+    "FinisAnteInitium.wav",
+    "Fractured.wav",
+    "Interlude.wav",
+    "StruggleAgainstFadingFlame.wav",
+    "TrailOfTruth.wav",
+    "VestigiumSplendoris.wav"
+  ],
+  "MotesInResonance": 
+  [
+    "ReturnToSimplicity2.wav",
+    "ChasingDawn.wav",
+    "GatheredEchoes.wav"
+  ],
+  "OtherMusic":
+  [
+    "Affinity.wav",
+    "ReturnToSimplicity.wav",
+    "TidalSurge.wav",
+    "Trajectory.wav"
   ]
 }

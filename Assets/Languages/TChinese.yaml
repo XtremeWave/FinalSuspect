@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "未下載"
 MainMenuStyle.NotApply: "應用"
 MainMenuStyle.Applied: "應用中"
 
-# 资源包
+# 资源包 / Package
 Package.MainMenuStyle: "主頁風格包"
+Package.WorldMusic: "世界音樂包"
+Package.EmberVeinsDemo1: "「願燼星迴」Demo音樂包（第1彈）"
+Package.MotesInResonance: "「瑣塵淬律」專輯包"
+Package.OtherMusic: "其他音樂包"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "單次播放"
@@ -210,22 +214,30 @@ MusPlay.Stop: "停止播放"
 MusPlay.CanPlay: "點擊播放"
 MusPlay.NoFound: "文件缺失"
 
-# 官方音乐 / Musics
-Mus.FinalSuspect: "Final Suspect 终极嫌疑"
+# 官方音樂 / Musics
+Mus.FinalSuspect: "Final Suspect 終極嫌疑"
 Mus.GongXiFaCai: "恭喜發財"
-Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "塘潮暗涌"
+Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up（永不放棄你）"
+Mus.CountingStars: "Counting Stars（數星星）"
+
+Mus.ChasingDawn: "逐光尋曉"
+Mus.ReturnToSimplicity2: "返璞歸真（完整版）"
+Mus.GatheredEchoes: "拾籟安塵"
+
+Mus.Trajectory: "[回望末端時]航跡"
+
+Mus.Affinity: "祉緣諧樂"
+Mus.TidalSurge: "塘潮暗湧"
+Mus.ReturnToSimplicity: "返璞歸真"
+
+Mus.DawnmistEchoes: "曙霧跫跡"
 Mus.TrailOfTruth: "真理之途"
 Mus.Interlude: "插敘"
 Mus.Fractured: "破碎"
-Mus.ElegyOfFracturedVow: "誓碎終殤"
-Mus.VestigiumSplendoris: "餘璨"
-Mus.ReturnToSimplicity: "返璞歸真"
-Mus.ReturnToSimplicity2: "返璞歸真（完整版）"
-Mus.ChasingDawn: "逐光尋曉"
 Mus.StruggleAgainstFadingFlame: "峙燃絕焰"
-Mus.Affinity: "祉緣諧樂"
+Mus.ElegyOfFracturedVow: "誓碎終殇"
+Mus.VestigiumSplendoris: "餘璨"
+Mus.FinisAnteInitium: "讓故事在啟程前落幕"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "職業"

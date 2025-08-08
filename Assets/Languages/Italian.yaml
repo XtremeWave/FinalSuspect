@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Non Scaricato"
 MainMenuStyle.NotApply: "Applica"
 MainMenuStyle.Applied: "Applicato"
 
-# 资源包
-Package.MainMenuStyle: "Pacchetto Stile Menu"
+# 资源包 / Package
+Package.MainMenuStyle: "Pacchetto di stile del menu principale"
+Package.WorldMusic: "Pacchetto di musica mondiale"
+Package.EmberVeinsDemo1: "「EmberVeins」Pacchetto di musica demo 1"
+Package.MotesInResonance: "「Motes In Resonance」Pacchetto dell'album"
+Package.OtherMusic: "Pacchetto di altre musiche"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Riproduci Una Volta"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "File Mancante"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Buon Capodanno Cinese)"
+Mus.GongXiFaCai: "恭喜发财 (Buon Anno Nuovo Cinese)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Onda di Marea"
-Mus.TrailOfTruth: "Traccia della Verità"
-Mus.Interlude: "Interludio"
-Mus.Fractured: "Fratturato"
-Mus.ElegyOfFracturedVow: "Elegia del Voto Fratturato"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "Ritorno alla Semplicità"
-Mus.ReturnToSimplicity2: "Ritorno alla Semplicità (Vers. Completa)"
+Mus.CountingStars: "Contare le Stelle"
+
 Mus.ChasingDawn: "Inseguendo l'Alba"
-Mus.StruggleAgainstFadingFlame: "Lotta Contro Fiamma Svanente"
+Mus.ReturnToSimplicity2: "ritorno alla semplicità (Versione completa)"
+Mus.GatheredEchoes: "Echi raccolti"
+
+Mus.Trajectory: "[Guardando indietro alla fine] Traiettoria"
+
 Mus.Affinity: "Affinità"
+Mus.TidalSurge: "Marea montante"
+Mus.ReturnToSimplicity: "ritorno alla semplicità"
+
+Mus.DawnmistEchoes: "Echi della nebbia dell'alba"
+Mus.TrailOfTruth: "Pista della verità"
+Mus.Interlude: "Intermezzo"
+Mus.Fractured: "Fratturato"
+Mus.StruggleAgainstFadingFlame: "Lotta contro la fiamma morente"
+Mus.ElegyOfFracturedVow: "Elegia di un giuramento infranto"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Fiori di cenere)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Prima della partenza)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Ruolo"

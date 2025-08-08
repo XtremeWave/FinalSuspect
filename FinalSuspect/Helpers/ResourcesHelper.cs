@@ -66,14 +66,14 @@ public static class ResourcesHelper
 
     public static readonly List<string> RemoteModNewsList =
     [
-        //"FeaturesIntroduction.v1.0.txt",
-        //"FS.v1.0_20250129.txt",
-        //"FeaturesIntroduction.v1.1.txt",
-        //"FS.v1.1_20250216.txt",
-        //"FS.v1.1_20250412.txt",
-        //"FS.v1.1_20250501.txt",
+        "FeaturesIntroduction.v1.0.txt",
+        "FS.v1.0_20250129.txt",
+        "FeaturesIntroduction.v1.1.txt",
+        "FS.v1.1_20250216.txt",
+        "FS.v1.1_20250412.txt",
+        "FS.v1.1_20250501.txt",
         "FS.v1.2_20250815.txt",
-        //"FeaturesIntroduction.v1.2.txt",
+        "FeaturesIntroduction.v1.2.txt",
     ];
 
     #endregion

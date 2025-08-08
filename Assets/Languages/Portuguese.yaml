@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Não Descarregado"
 MainMenuStyle.NotApply: "Aplicar"
 MainMenuStyle.Applied: "Aplicado"
 
-# 资源包
-Package.MainMenuStyle: "Pacote de Estilo do Menu Principal"
+# 资源包 / Package
+Package.MainMenuStyle: "Pacote de estilo do menu principal"
+Package.WorldMusic: "Pacote de música do mundo"
+Package.EmberVeinsDemo1: "Pacote de música demo 1 de 「EmberVeins」"
+Package.MotesInResonance: "Pacote do álbum 「Motes In Resonance」"
+Package.OtherMusic: "Pacote de outras músicas"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Tocar Uma Vez"
@@ -214,18 +218,26 @@ MusPlay.NoFound: "Ficheiro em Falta"
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
 Mus.GongXiFaCai: "恭喜发财 (Feliz Ano Novo Chinês)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Maré de Vazante"
-Mus.TrailOfTruth: "Trilha da Verdade"
+Mus.CountingStars: "Contando Estrelas"
+
+Mus.ChasingDawn: "Perseguindo o Amanhecer"
+Mus.ReturnToSimplicity2: "retornar à simplicidade (Versão Completa)"
+Mus.GatheredEchoes: "Ecos Recolhidos"
+
+Mus.Trajectory: "[Ao Olhar para Trás no Fim] Trajetória"
+
+Mus.Affinity: "Afinidade"
+Mus.TidalSurge: "Surgência da Maré"
+Mus.ReturnToSimplicity: "retornar à simplicidade"
+
+Mus.DawnmistEchoes: "Ecos da Neblina do Amanhecer"
+Mus.TrailOfTruth: "Rastro da Verdade"
 Mus.Interlude: "Interlúdio"
 Mus.Fractured: "Fraturado"
-Mus.ElegyOfFracturedVow: "Elegia do Voto Partido"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "regresso à simplicidade"
-Mus.ReturnToSimplicity2: "regresso à simplicidade (Versão Completa)"
-Mus.ChasingDawn: "Perseguindo a Aurora"
-Mus.StruggleAgainstFadingFlame: "Luta contra a Chama que se Apaga"
-Mus.Affinity: "Afinidade"
+Mus.StruggleAgainstFadingFlame: "Luta contra a Chama que Se Apaga"
+Mus.ElegyOfFracturedVow: "Elegia de um Voto Fraturado"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Florescimento de Cinzas)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Despedida Antes da Partida)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Função"

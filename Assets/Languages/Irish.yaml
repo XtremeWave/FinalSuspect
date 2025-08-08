@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Gan Íoslódáil"
 MainMenuStyle.NotApply: "Cuir i bhfeidhm"
 MainMenuStyle.Applied: "Curtha i bhfeidhm"
 
-# 资源包
-Package.MainMenuStyle: "Pacáiste Stíl an Phríomh-Roghchláir"
+# 资源包 / Package
+Package.MainMenuStyle: "Pacáiste Stíle Leathanach Príomhach"
+Package.WorldMusic: "Pacáiste Ceol an Domhain"
+Package.EmberVeinsDemo1: "「EmberVeins」Pacáiste Ceoil Demo 1"
+Package.MotesInResonance: "「Motes In Resonance」Pacáiste Álaimh"
+Package.OtherMusic: "Pacáiste Ceol Eile"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Seinn Uair Amháin"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Comhad ar Iarraidh"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财 (Athbhliain Shona Sínis)"
+Mus.GongXiFaCai: "恭喜发财 (Happy Chinese New Year)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Tonn Sileadh"
-Mus.TrailOfTruth: "Slí na Fírinne"
-Mus.Interlude: "Idirluí"
-Mus.Fractured: "Scoilte"
-Mus.ElegyOfFracturedVow: "Elegy of Fractured Vow"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "fill ar an tsimplíocht"
-Mus.ReturnToSimplicity2: "fill ar an tsimplíocht (Leagan Iomlán)"
-Mus.ChasingDawn: "Ag Tóir ar an Maidin"
-Mus.StruggleAgainstFadingFlame: "Streachailt in aghaidh lasair ag dul i léig"
-Mus.Affinity: "Caidreamh"
+
+Mus.ChasingDawn: "Chasing Dawn"
+Mus.ReturnToSimplicity2: "return to simplicity (Full Ver.)"
+Mus.GatheredEchoes: "Gathered Echoes"
+
+Mus.Trajectory: "[When Looking Back at the End] Trajectory"
+
+Mus.Affinity: "Affinity"
+Mus.TidalSurge: "Tidal Surge"
+Mus.ReturnToSimplicity: "return to simplicity"
+
+Mus.DawnmistEchoes: "Dawnmist Echoes"
+Mus.TrailOfTruth: "Trail Of Truth"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Fractured"
+Mus.StruggleAgainstFadingFlame: "Struggle Against Fading Flame"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Cinderbloom)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Curtain Call Before Departure)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Ról"

@@ -145,7 +145,7 @@ public static class PathManager
         if (!Directory.Exists(targetFolder)) return;
         try
         {
-            var filesToDelete = Directory.GetFiles(targetFolder, "*.xwr", SearchOption.AllDirectories);
+            var filesToDelete = Directory.GetFiles(targetFolder, "*.slk", SearchOption.AllDirectories);
 
             foreach (var file in filesToDelete) File.Delete(file);
         }

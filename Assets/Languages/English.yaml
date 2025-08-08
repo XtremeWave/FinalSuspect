@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Not Downloaded"
 MainMenuStyle.NotApply: "Apply"
 MainMenuStyle.Applied: "Applied"
 
-# 资源包
+# 资源包 / Package
 Package.MainMenuStyle: "Main Menu Style Pack"
+Package.WorldMusic: "World Mus Pack"
+Package.EmberVeinsDemo1: "「EmberVeins」Demo Mus Pack 1"
+Package.MotesInResonance: "「Motes In Resonance」Album Pack"
+Package.OtherMusic: "Other Mus Pack"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Play Once"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "File Missing"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Happy Chinese New Year)"
+Mus.GongXiFaCai: "恭喜发财 (Happy Chinese New Year)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
 Mus.CountingStars: "Counting Stars"
+
+Mus.ChasingDawn: "Chasing Dawn"
+Mus.ReturnToSimplicity2: "return to simplicity (Full Ver.)"
+Mus.GatheredEchoes: "Gathered Echoes"
+
+Mus.Trajectory: "[When Looking Back at the End] Trajectory"
+
+Mus.Affinity: "Affinity"
 Mus.TidalSurge: "Tidal Surge"
-Mus.TrailOfTruth: "Trail of Truth"
+Mus.ReturnToSimplicity: "return to simplicity"
+
+Mus.DawnmistEchoes: "Dawnmist Echoes"
+Mus.TrailOfTruth: "Trail Of Truth"
 Mus.Interlude: "Interlude"
 Mus.Fractured: "Fractured"
-Mus.ElegyOfFracturedVow: "Elegy of Fractured Vow"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "return to simplicity"
-Mus.ReturnToSimplicity2: "return to simplicity (Full Ver.)"
-Mus.ChasingDawn: "Chasing Dawn"
 Mus.StruggleAgainstFadingFlame: "Struggle Against Fading Flame"
-Mus.Affinity: "Affinity"
+Mus.ElegyOfFracturedVow: "Elegy Of Fractured Vow"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Cinderbloom)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Curtain Call Before Departure)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Role"

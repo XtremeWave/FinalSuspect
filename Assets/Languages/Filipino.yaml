@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Hindi Na-download"
 MainMenuStyle.NotApply: "Ilapat"
 MainMenuStyle.Applied: "Na-apply"
 
-# 资源包
-Package.MainMenuStyle: "Main Menu Style Pack"
+# 资源包 / Package
+Package.MainMenuStyle: "Pakete ng Estilo ng Pangunahing Menu"
+Package.WorldMusic: "Pakete ng Musika ng Mundo"
+Package.EmberVeinsDemo1: "「EmberVeins」Demo Musika Pakete 1"
+Package.MotesInResonance: "「Motes In Resonance」Album Pakete"
+Package.OtherMusic: "Iba pang Pakete ng Musika"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Play Once"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Nawawalang File"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Happy Chinese New Year)"
+Mus.GongXiFaCai: "恭喜发财 (Masaya ang Bagong Taon)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Tidal Surge"
-Mus.TrailOfTruth: "Trail of Truth"
+Mus.CountingStars: "Bilangin ang Bituin"
+
+Mus.ChasingDawn: "Tayo sa Parangal"
+Mus.ReturnToSimplicity2: "ibalik sa simplisidad (Puno na Bersyon)"
+Mus.GatheredEchoes: "Nakuha ang Echo"
+
+Mus.Trajectory: "[Sa pagbabalik tanaw sa katapusan] Trajectory"
+
+Mus.Affinity: "Kasapi"
+Mus.TidalSurge: "Pangungumpot ng Tide"
+Mus.ReturnToSimplicity: "ibalik sa simplisidad"
+
+Mus.DawnmistEchoes: "Echo ng Ulap ng Ulap"
+Mus.TrailOfTruth: "Tugma ng Katotohanan"
 Mus.Interlude: "Interlude"
-Mus.Fractured: "Fractured"
-Mus.ElegyOfFracturedVow: "Elegy of Fractured Vow"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "return to simplicity"
-Mus.ReturnToSimplicity2: "return to simplicity (Full Ver.)"
-Mus.ChasingDawn: "Chasing Dawn"
-Mus.StruggleAgainstFadingFlame: "Struggle Against Fading Flame"
-Mus.Affinity: "Affinity"
+Mus.Fractured: "Nabiruan"
+Mus.StruggleAgainstFadingFlame: "Labanan Laban sa Naglalaho na Apoy"
+Mus.ElegyOfFracturedVow: "Elegy ng Nabiruan na Panunumpa"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Cinderbloom)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Curtain Call Before Departure)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Tungkulin"

@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Niet Gedownload"
 MainMenuStyle.NotApply: "Toepassen"
 MainMenuStyle.Applied: "Toegepast"
 
-# 资源包
-Package.MainMenuStyle: "Hoofdmenustijl Pakket"
+# 资源包 / Package
+Package.MainMenuStyle: "Stijlpakket van het hoofdmenu"
+Package.WorldMusic: "Wereldmuziekpakket"
+Package.EmberVeinsDemo1: "「EmberVeins」Demo Muziekpakket 1"
+Package.MotesInResonance: "「Motes In Resonance」Albumpakket"
+Package.OtherMusic: "Overig Muziekpakket"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Eenmaal Afspelen"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Bestand Ontbreekt"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Gelukkig Chinees Nieuwjaar)"
+Mus.GongXiFaCai: "恭喜发财 (Gelukkig Nieuwjaar)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Vloedgolf"
-Mus.TrailOfTruth: "Spoor van Waarheid"
-Mus.Interlude: "Tussenspel"
-Mus.Fractured: "Gebroken"
-Mus.ElegyOfFracturedVow: "Elegie van Gebroken Gelofte"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "Terug naar Eenvoud"
-Mus.ReturnToSimplicity2: "Terug naar Eenvoud (Volledige Ver.)"
-Mus.ChasingDawn: "Dageraad Jagen"
-Mus.StruggleAgainstFadingFlame: "Strijd Tegen Vervagende Vlam"
+Mus.CountingStars: "Sterren Tellen"
+
+Mus.ChasingDawn: "Achter de Dageraad Aan"
+Mus.ReturnToSimplicity2: "terugkeren tot eenvoud (Volledige versie)"
+Mus.GatheredEchoes: "Gevangene Echo's"
+
+Mus.Trajectory: "[Bij het Terugkijken aan het Einde] Traject"
+
 Mus.Affinity: "Verwantschap"
+Mus.TidalSurge: "Vloedgolf"
+Mus.ReturnToSimplicity: "terugkeren tot eenvoud"
+
+Mus.DawnmistEchoes: "Echo's van de Morgendauw"
+Mus.TrailOfTruth: "Spoor van de Waarheid"
+Mus.Interlude: "Intermezzo"
+Mus.Fractured: "Gebroken"
+Mus.StruggleAgainstFadingFlame: "Strijd Tegen het Verdwijnende Vlammetje"
+Mus.ElegyOfFracturedVow: "Elegie van een Verbrijzelde Eed"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Asbloesem)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Voor de Vertrek)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Rol"

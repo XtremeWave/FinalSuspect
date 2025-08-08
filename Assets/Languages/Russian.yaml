@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Не загружено"
 MainMenuStyle.NotApply: "Применить"
 MainMenuStyle.Applied: "Применено"
 
-# 资源包
-Package.MainMenuStyle: "Пакет стилей главного меню"
+# 资源包 / Package
+Package.MainMenuStyle: "Пакет стиля главного меню"
+Package.WorldMusic: "Пакет мировой музыки"
+Package.EmberVeinsDemo1: "Пакет демо-музыки 1 для «EmberVeins»"
+Package.MotesInResonance: "Пакет альбома «Motes In Resonance»"
+Package.OtherMusic: "Пакет другой музыки"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Один раз"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Файл отсутствует"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财 (Счастливый китайский новый год)"
+Mus.GongXiFaCai: "恭喜发财 (С Новым годом!)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
+Mus.CountingStars: "Считая звезды"
+
+Mus.ChasingDawn: "Гонка за рассветом"
+Mus.ReturnToSimplicity2: "возвращение к простоте (Полная версия)"
+Mus.GatheredEchoes: "Собраные эхо"
+
+Mus.Trajectory: "[При взгляде назад в конце] Траектория"
+
+Mus.Affinity: "Сродство"
 Mus.TidalSurge: "Приливная волна"
+Mus.ReturnToSimplicity: "возвращение к простоте"
+
+Mus.DawnmistEchoes: "Эхо утреннего тумана"
 Mus.TrailOfTruth: "След истины"
 Mus.Interlude: "Интерлюдия"
-Mus.Fractured: "Разлом"
-Mus.ElegyOfFracturedVow: "Элегия разбитого обета"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "возвращение к простоте"
-Mus.ReturnToSimplicity2: "возвращение к простоте (Полная версия)"
-Mus.ChasingDawn: "В погоне за рассветом"
+Mus.Fractured: "Раздробленный"
 Mus.StruggleAgainstFadingFlame: "Борьба с угасающим пламенем"
-Mus.Affinity: "Симпатия"
+Mus.ElegyOfFracturedVow: "Элегия разбитого обета"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Цветение пепла)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Зан幕 перед отъездом)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Роль"

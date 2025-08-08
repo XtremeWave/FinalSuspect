@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "No descargado"
 MainMenuStyle.NotApply: "Aplicar"
 MainMenuStyle.Applied: "Aplicado"
 
-# 资源包
-Package.MainMenuStyle: "Paquete de Estilo del Menú Principal"
+# 资源包 / Package
+Package.MainMenuStyle: "Paquete de estilo del menú principal"
+Package.WorldMusic: "Paquete de música mundial"
+Package.EmberVeinsDemo1: "「EmberVeins」Paquete de música de demo 1"
+Package.MotesInResonance: "「Motes In Resonance」Paquete de álbum"
+Package.OtherMusic: "Paquete de otras músicas"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Reproducir una vez"
@@ -214,18 +218,26 @@ MusPlay.NoFound: "Archivo faltante"
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
 Mus.GongXiFaCai: "恭喜发财 (Feliz Año Nuevo Chino)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Oleaje de Marea"
-Mus.TrailOfTruth: "Camino de la Verdad"
+Mus.CountingStars: "Contando Estrellas"
+
+Mus.ChasingDawn: "Persiguiendo el Amanecer"
+Mus.ReturnToSimplicity2: "regresar a la simplicidad (Versión Completa)"
+Mus.GatheredEchoes: "Ecos Recogidos"
+
+Mus.Trajectory: "[Al Mirar Hacia Atrás al Final] Trayectoria"
+
+Mus.Affinity: "Afinidad"
+Mus.TidalSurge: "Aumento de Marea"
+Mus.ReturnToSimplicity: "regresar a la simplicidad"
+
+Mus.DawnmistEchoes: "Ecos de la Niebla del Amanecer"
+Mus.TrailOfTruth: "Rastro de la Verdad"
 Mus.Interlude: "Interludio"
 Mus.Fractured: "Fracturado"
-Mus.ElegyOfFracturedVow: "Elegía del Voto Roto"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "volver a la simplicidad"
-Mus.ReturnToSimplicity2: "volver a la simplicidad (Versión Completa)"
-Mus.ChasingDawn: "Persiguiendo el Amanecer"
-Mus.StruggleAgainstFadingFlame: "Lucha contra la Llama que se Apaga"
-Mus.Affinity: "Afinidad"
+Mus.StruggleAgainstFadingFlame: "Lucha contra la Llama que Se Apaga"
+Mus.ElegyOfFracturedVow: "Elegía de una Promesa Fracturada"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Florecimiento de Ceniza)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Despedida antes de la Partida)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Rol"

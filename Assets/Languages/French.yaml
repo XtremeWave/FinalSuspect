@@ -198,8 +198,12 @@ MainMenuStyle.NotFound: "Non Téléchargé"
 MainMenuStyle.NotApply: "Appliquer"
 MainMenuStyle.Applied: "Appliqué"
 
-# 资源包
-Package.MainMenuStyle: "Pack Style Menu Principal"
+# 资源包 / Package
+Package.MainMenuStyle: "Pack de style du menu principal"
+Package.WorldMusic: "Pack de musique du monde"
+Package.EmberVeinsDemo1: "「EmberVeins」Pack de musique de démo 1"
+Package.MotesInResonance: "「Motes In Resonance」Pack d'album"
+Package.OtherMusic: "Pack d'autres musiques"
 
 # 音频播放 / Audio Playback
 MusPlay.Mode0: "Lire Une Fois"
@@ -212,20 +216,28 @@ MusPlay.NoFound: "Fichier Manquant"
 
 # 官方音乐 / Musics
 Mus.FinalSuspect: "Final Suspect 终极嫌疑"
-Mus.GongXiFaCai: "恭喜发财(Joyeux Nouvel An Chinois)"
+Mus.GongXiFaCai: "恭喜发财 (Bonne Année Chinoise)"
 Mus.NeverGonnaGiveYouUp: "Never Gonna Give You Up"
-Mus.CountingStars: "Counting Stars"
-Mus.TidalSurge: "Vague de Marée"
-Mus.TrailOfTruth: "Piste de Vérité"
-Mus.Interlude: "Interlude"
-Mus.Fractured: "Fracturé"
-Mus.ElegyOfFracturedVow: "Élégie du Vœu Fracturé"
-Mus.VestigiumSplendoris: "Vestigium Splendoris"
-Mus.ReturnToSimplicity: "Retour à la Simplicité"
-Mus.ReturnToSimplicity2: "Retour à la Simplicité (Version Complète)"
-Mus.ChasingDawn: "Chasse à l'Aube"
-Mus.StruggleAgainstFadingFlame: "Lutte Contre la Flamme Faiblissante"
+Mus.CountingStars: "Compter les étoiles"
+
+Mus.ChasingDawn: "Chasser l'aube"
+Mus.ReturnToSimplicity2: "retour à la simplicité (Version complète)"
+Mus.GatheredEchoes: "Échos rassemblés"
+
+Mus.Trajectory: "[En regardant en arrière à la fin] Trajectoire"
+
 Mus.Affinity: "Affinité"
+Mus.TidalSurge: "Surge de marée"
+Mus.ReturnToSimplicity: "retour à la simplicité"
+
+Mus.DawnmistEchoes: "Échos de la brume de l'aube"
+Mus.TrailOfTruth: "Sentier de la vérité"
+Mus.Interlude: "Interlude"
+Mus.Fractured: "Brisé"
+Mus.StruggleAgainstFadingFlame: "Lutte contre la flamme qui s'éteint"
+Mus.ElegyOfFracturedVow: "Élégie d'un serment brisé"
+Mus.VestigiumSplendoris: "Vestigium Splendoris (Éclat de cendre)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Avant de partir)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Rôle"
