@@ -54,20 +54,21 @@ public static class AudioManager
     {
         if (path == null) return false;
 
+        var extensions = Extensions.ToArray().ToList();
 
         while (!File.Exists(path))
         {
             var currentPath = path;
-            var extensionsArray = Extensions.ToArray();
+            var extensionsArray = extensions.ToArray();
             if (extensionsArray.Length == 0) return false;
-            var matchingKey = Extensions.FirstOrDefault(currentPath.Contains);
+            var matchingKey = extensions.FirstOrDefault(currentPath.Contains);
             if (matchingKey is null) return false;
             var currentIndex = Array.IndexOf(extensionsArray, matchingKey);
             if (currentIndex == -1) return false;
 
             var nextIndex = (currentIndex + 1) % extensionsArray.Length;
             path = path.Replace(matchingKey, extensionsArray[nextIndex]);
-            Extensions.Remove(matchingKey);
+            extensions.Remove(matchingKey);
         }
 
         return true;
@@ -147,7 +148,7 @@ public class FinalMusic
 {
     public static readonly List<FinalMusic> Musics = [];
 
-    private static readonly object FinalMusicsLock = new();
+    private static readonly object finalMusicsLock = new();
     public string Author;
     public AudioClip Clip;
 
@@ -212,12 +213,15 @@ public class FinalMusic
         UnOfficial = music == SupportedMusics.UnOfficial;
         CurrentAudio = music;
         FilePath = GetResourceFilesPath(FileType.Musics, FileName);
+
         CurrentAudioStates = LastAudioStates =
             AudioManager.ConvertExtension(ref FilePath) ? AudiosStates.Exist : AudiosStates.NotExist;
 
         var ext = Path.GetExtension(FilePath)?.ToLowerInvariant();
+
         if (!AudioManager.Extensions.Contains(ext)) return;
-        lock (FinalMusicsLock)
+
+        lock (finalMusicsLock)
         {
             var file = Musics.Find(x => x.FileName == FileName);
             if (file != null)

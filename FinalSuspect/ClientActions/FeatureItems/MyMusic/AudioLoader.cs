@@ -37,7 +37,7 @@ public static class AudioLoader
                 }
                 catch (Exception e)
                 {
-                    Test(e.Message);
+                    Error(e.Message, "AudioLoader");
                     return null;
                 }
             case ".mp3":
@@ -50,7 +50,7 @@ public static class AudioLoader
                 }
                 catch (Exception e)
                 {
-                    Test(e.Message);
+                    Error(e.Message, "AudioLoader");
                     return null;
                 }
             default:

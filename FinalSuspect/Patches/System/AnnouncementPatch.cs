@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using AmongUs.Data;
 using AmongUs.Data.Player;
 using Assets.InnerNet;
 using FinalSuspect.Helpers;
@@ -48,22 +47,13 @@ public class ModNewsHistory
 
     public static bool AnnouncementLoadComplete;
 
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.Show))]
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.Init))]
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.ShowIfNew))]
+    private static AnnouncementPopUp.AnnounceState _lastState;
+
+    [HarmonyPatch(typeof(AnnouncementPopUp._ShowIfNew_d__42), nameof(AnnouncementPopUp._ShowIfNew_d__42.MoveNext))]
     [HarmonyPrefix]
     public static bool AnnouncementPopupPrefix()
     {
         return AnnouncementLoadComplete;
-    }
-
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.Show))]
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.Init))]
-    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.ShowIfNew))]
-    [HarmonyPostfix]
-    public static void AnnouncementPopupPostfix()
-    {
-        if (!AnnouncementLoadComplete) Instance.announcementPopUp.Close();
     }
 
 
@@ -87,7 +77,6 @@ public class ModNewsHistory
 
                 return DateTime.Parse(a2.Date).CompareTo(DateTime.Parse(a1.Date));
             });
-
             if (finalAllNews.Count == 0)
             {
                 aRange = new Il2CppReferenceArray<Announcement>(0);
@@ -106,26 +95,10 @@ public class ModNewsHistory
         return true;
     }
 
-    //Reference: https://github.com/Team-YuTeam/YuEzTools
-    [HarmonyPatch(typeof(AnnouncementPanel), nameof(AnnouncementPanel.SetUp))]
-    [HarmonyPostfix]
-    public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)
-    {
-        if (announcement.Number < 100000) return;
-        var authorLogo = new GameObject("AuthorLogo") { layer = 5 };
-        authorLogo.transform.SetParent(__instance.transform);
-        authorLogo.transform.localPosition = new Vector3(-0.75f, 0.2f, 0.5f);
-        authorLogo.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-        var sr = authorLogo.AddComponent<SpriteRenderer>();
-        sr.sprite = LoadSprite("AuthorLogo2.png", 1700f);
-        sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-    }
-
     public static async Task LoadModAnnouncements()
     {
         try
         {
-            // 如果 AllModNews 为空，加载所有语言的 ModNews
             if (allModNews.Count >= 1) return;
             foreach (var lang in EnumHelper.GetAllValues<SupportedLangs>())
             foreach (var target in ResourcesHelper.RemoteModNewsList)
@@ -149,7 +122,6 @@ public class ModNewsHistory
                 break;
             }
 
-            // 对 AllModNews 进行排序，处理可能的空值
             allModNews.Sort((a1, a2) =>
             {
                 if (string.IsNullOrEmpty(a1.Date) || string.IsNullOrEmpty(a2.Date))
@@ -166,17 +138,7 @@ public class ModNewsHistory
         _ = new MainThreadTask(() =>
         {
             AnnouncementLoadComplete = true;
-            DataManager.Player.Announcements.AllAnnouncements.Clear();
-            if (!Instance) return;
-            try
-            {
-                Instance.announcementPopUp.Show();
-                Info("Loading mod announcements complete.", "SetModAnnouncements");
-            }
-            catch
-            {
-                /* ignored */
-            }
+            Instance.announcementPopUp.ShowIfNew();
         }, "ReShow mod announcements");
     }
 
@@ -184,12 +146,13 @@ public class ModNewsHistory
     {
         try
         {
-            var task = JsonHelper.GetJsonStringAsync(url);
+            var task = RemoteHelper.GetRemoteStringAsync(url, false, false);
             await task;
             var (result, succeed) = task.Result;
             if (!succeed) return (false, "");
 
             await Task.Delay(100);
+            Warn($"Succeed in {url}", "SetModAnnouncements");
             return (true, result);
         }
         catch
@@ -213,10 +176,6 @@ public class ModNewsHistory
             if (line!.StartsWith("#Number:"))
             {
                 mn.Number = int.Parse(line.Replace("#Number:", string.Empty));
-            }
-            else if (line.StartsWith("#LangId:"))
-            {
-                langId = uint.Parse(line.Replace("#LangId:", string.Empty));
             }
             else if (line.StartsWith("#Title:"))
             {
@@ -266,5 +225,36 @@ public class ModNewsHistory
         Info($"ShortTitle:{mn.ShortTitle}", "ModNews");
         Info($"Date:{mn.Date}", "ModNews");
         return mn;
+    }
+
+    [HarmonyPatch(typeof(AnnouncementPopUp), nameof(AnnouncementPopUp.Update))]
+    [HarmonyPostfix]
+    public static void AnnouncementPopUp_Postfix(AnnouncementPopUp __instance)
+    {
+        if (!AnnouncementLoadComplete)
+        {
+            if (AnnouncementPopUp.UpdateState > AnnouncementPopUp.AnnounceState.Fetching)
+                _lastState = AnnouncementPopUp.UpdateState;
+            AnnouncementPopUp.UpdateState = AnnouncementPopUp.AnnounceState.Fetching;
+        }
+        else
+        {
+            AnnouncementPopUp.UpdateState = _lastState;
+        }
+    }
+
+    //Reference: https://github.com/Team-YuTeam/YuEzTools
+    [HarmonyPatch(typeof(AnnouncementPanel), nameof(AnnouncementPanel.SetUp))]
+    [HarmonyPostfix]
+    public static void SetUpPanel(AnnouncementPanel __instance, [HarmonyArgument(0)] Announcement announcement)
+    {
+        if (announcement.Number < 100000) return;
+        var authorLogo = new GameObject("AuthorLogo") { layer = 5 };
+        authorLogo.transform.SetParent(__instance.transform);
+        authorLogo.transform.localPosition = new Vector3(-0.75f, 0.2f, 0.5f);
+        authorLogo.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        var sr = authorLogo.AddComponent<SpriteRenderer>();
+        sr.sprite = LoadSprite("AuthorLogo2.png", 1700f);
+        sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
     }
 }

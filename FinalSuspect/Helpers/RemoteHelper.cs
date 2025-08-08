@@ -2,15 +2,20 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FinalSuspect.Helpers;
 
-public static class JsonHelper
+public static class RemoteHelper
 {
-    public static async Task<(string, bool)> GetJsonStringAsync(string url)
+    public static async Task<(string, bool)> GetRemoteStringAsync(string url, bool json = true,
+        bool removeLineBreaks = true)
     {
         string result;
+        bool isValid;
+
         if (url.StartsWith("file:///"))
         {
             result = await File.ReadAllTextAsync(url[8..]);
@@ -50,9 +55,45 @@ public static class JsonHelper
             }
 
             result = await response.Content.ReadAsStringAsync();
-            result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
+
+            if (removeLineBreaks)
+                result = result.Replace("\r", string.Empty).Replace("\n", string.Empty).Trim();
         }
 
-        return (result, true);
+        if (string.IsNullOrWhiteSpace(result)) return (result, false);
+        var hasInvalidChars = HasInvalidControlCharacters(result);
+
+        if (json)
+        {
+            isValid = !hasInvalidChars && IsValidJson(result);
+        }
+        else
+        {
+            isValid = !hasInvalidChars;
+        }
+
+        return (result, isValid);
+    }
+
+    private static bool HasInvalidControlCharacters(string input)
+    {
+        var allowedWhitespace = new[] { ' ', '\t', '\n', '\r' };
+
+        return input.Any(c => char.IsControl(c) && !allowedWhitespace.Contains(c));
+    }
+
+    private static bool IsValidJson(string str)
+    {
+        try
+        {
+            using (JsonDocument.Parse(str))
+            {
+                return true;
+            }
+        }
+        catch (JsonException)
+        {
+            return false;
+        }
     }
 }

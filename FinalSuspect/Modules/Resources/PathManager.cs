@@ -30,8 +30,8 @@ public static class PathManager
 #if DEBUG
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
+        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #else

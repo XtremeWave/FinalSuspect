@@ -64,7 +64,7 @@ public static class SpamManager
     {
         try
         {
-            var task = JsonHelper.GetJsonStringAsync(url);
+            var task = RemoteHelper.GetRemoteStringAsync(url);
             await task;
             var (result, succeed) = task.Result;
             if (!succeed) return false;
