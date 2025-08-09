@@ -30,19 +30,14 @@ public static class PathManager
 
     private static IReadOnlyList<string> URLs => new List<string>
     {
-#if DEBUG
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
         "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
         "https://dlhk.fangkuai.fun/FinalSuspect/",
+#if DEBUG
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
-#else
-        "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
-        "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
 #endif
     };
 
@@ -121,8 +116,8 @@ public static class PathManager
         CheckAndCreate(GetLocalPath(LocalType.NameTag));
 
         // 防止崩溃的必要措施
-        CheckAndDeleteXWR(LocalPath_Data);
-        CheckAndDeleteXWR(DependsSavePath);
+        CheckAndDeleteSLK(LocalPath_Data);
+        CheckAndDeleteSLK(DependsSavePath);
     }
 
     private static void CheckAndCreate(string path, bool hidden = true, bool isFile = false)
@@ -145,7 +140,7 @@ public static class PathManager
             : attributes & ~FileAttributes.Hidden);
     }
 
-    private static void CheckAndDeleteXWR(string targetFolder)
+    private static void CheckAndDeleteSLK(string targetFolder)
     {
         if (!Directory.Exists(targetFolder)) return;
         try
@@ -164,7 +159,7 @@ public static class PathManager
     {
         var list = URLs.ToList();
         if (!allowDesktop && DebugModeManager.IsDebugMode)
-            list.RemoveAt(5);
+            list.RemoveAt(6);
         if (IsChineseUser) list.Reverse();
         return list;
     }
