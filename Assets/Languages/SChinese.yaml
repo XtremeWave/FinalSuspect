@@ -96,6 +96,7 @@ Tip.Downloading: "下载中……"
 Tip.PleaseWait: "请稍候……"
 Tip.Playing: "播放中……"
 Tip.Parsing: "解析中……"
+Tip.Pausing: "已暂停"
 Tip.Updating: "更新中……"
 Tip.DownLoadFinished: "下载完成"
 Tip.DownLoadSucceeded: "下载成功！"
@@ -152,10 +153,11 @@ UpdateRemind.BySelf_Title: "更新提示"
 UpdateRemind.BySelf_Text: "该版本不支持一键更新，请您手动更新"
 
 # 选择更新渠道 / Update Chose Source
-UpdateSource.Choose: "请选择更新渠道\n如果您不知道选什么，请选择【Gitee】或者【Api（境内首选）】"
+UpdateSource.Choose: "请选择更新渠道\n如果您不知道选什么，请选择【Gitee】或【方块远程（境内首选）】"
 UpdateSource.Github: "Github（境外首选）"
+UpdateSource.GithubMirror: "Github（国内镜像）"
 UpdateSource.Gitee: "Gitee"
-UpdateSource.FinalApi: "Api（境内首选）"
+UpdateSource.FangKuaiRemote: "方块远程（境内首选）"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "我们有一个重要的更新，请更新本模组\n否则您无法加入公开房间"

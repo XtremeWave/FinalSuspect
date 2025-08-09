@@ -158,12 +158,11 @@ public enum SupportedMusics
 public enum AudiosStates
 {
     NotExist,
-    IsDownLoading,
+    DownLoading,
     Exist,
-    IsPlaying,
-    DownLoadSucceedNotice,
-    DownLoadFailureNotice,
-    IsLoading
+    Playing,
+    Pausing,
+    Parsing
 }
 
 public class FinalMusic
@@ -204,7 +203,7 @@ public class FinalMusic
         var task = AudioLoader.LoadAudioClipAsync(FilePath);
         _ = new MainThreadTask(() =>
         {
-            LastAudioStates = CurrentAudioStates = AudiosStates.IsLoading;
+            LastAudioStates = CurrentAudioStates = AudiosStates.Parsing;
             MyMusicPanel.RefreshTagList();
         }, "Update Audio States Start");
         await task;
@@ -249,8 +248,7 @@ public class FinalMusic
             if (file != null)
             {
                 file.FilePath = FilePath;
-                if (file.CurrentAudioStates is AudiosStates.DownLoadFailureNotice or AudiosStates.DownLoadSucceedNotice
-                    || CurrentAudioStates is AudiosStates.NotExist)
+                if (CurrentAudioStates is AudiosStates.NotExist)
                     file.CurrentAudioStates = file.LastAudioStates = CurrentAudioStates;
             }
             else if (Name != string.Empty)

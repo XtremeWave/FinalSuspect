@@ -101,14 +101,14 @@ internal class IntroCutscenePatch
                 await Task.Delay(20);
                 milliseconds += 20;
                 var time = milliseconds / (float)500;
-                var LerpingColor = Color.Lerp(start, end, time);
+                var lerpingColor = Color.Lerp(start, end, time);
                 if (!__instance || milliseconds > 500)
                 {
                     Info("break", "StartFadeIntro");
                     break;
                 }
 
-                __instance.BackgroundBar.material.color = LerpingColor;
+                __instance.BackgroundBar.material.color = lerpingColor;
             }
         }
         catch

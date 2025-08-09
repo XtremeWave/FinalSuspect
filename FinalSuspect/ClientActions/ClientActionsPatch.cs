@@ -158,6 +158,7 @@ public static class OptionsMenuBehaviourStartPatch
         {
             SetFeatureItemDisabled_Menu(_resourceBtn);
             SetFeatureItemDisabled_Menu(_mainMenuStyleBtn);
+            SetOptionItemDisabled(_offlineMode);
         }
 
         if (Directory.GetFiles(GetLogFolder(true).FullName).Length <= 0)
@@ -228,13 +229,12 @@ public static class OptionsMenuBehaviourStartPatch
         item.ToggleButton.Background.color = ColorHelper.ClientOptionColor_CanNotUse;
     }*/
 
-    // private static void SetOptionItemDisabled_Menu<T>(ClientOptionItem<T> item)
-    // {
-    //     item.Rename();
-    //     item.ToggleButton.Text.text += $"\n|{GetString("Tip.OnlyAvailableInMainMenu")}|";
-    //     item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
-    //     item.ToggleButton.Background.color = ColorHelper.ClientOptionColor_CanNotUse;
-    // }
+    private static void SetOptionItemDisabled<T>(ClientOptionItem<T> item)
+    {
+        item.ToggleButton.Text.text += $"\n|{GetString("Tip.OnlyAvailableInMainMenu")}|";
+        item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
+        item.ToggleButton.Background.color = ColorHelper.FSClientOptionColor_CanNotUse;
+    }
 
     private static void SetFeatureItemDisabled_Menu(ClientFeatureItem item)
     {
@@ -301,6 +301,15 @@ public static class OptionsMenuBehaviourClosePatch
         ResourcesPanel.Hide();
         MyMusicPanel.Hide();
         NameTagPanel.Hide();
+    }
+}
+
+[HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Update))]
+public static class OptionsMenuBehaviourUpdatePatch
+{
+    public static void Postfix()
+    {
+        MyMusicPanel.Update();
     }
 }
 

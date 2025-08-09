@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using AmongUs.Data;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientActions.FeatureItems.MyMusic;
@@ -18,12 +19,14 @@ public static class LoadPatch
     private static bool _reloadLanguage;
     private static bool _skipLoadAnimation;
     private static bool _firstLaunch;
+    public static SplashManager Instance;
 
     [HarmonyPatch(nameof(SplashManager.Start)), HarmonyPrefix]
     public static bool Start(SplashManager __instance)
     {
         __instance.startTime = Time.time;
         __instance.StartCoroutine(InitializeRefData(__instance));
+        Instance = __instance;
         return false;
     }
 
@@ -33,6 +36,7 @@ public static class LoadPatch
         yield return HandleFirstLaunch();
         CreateLogoComponents();
         yield return HandleCoreLoadingProcess(instance);
+        FinishSceneLoad(instance);
     }
 
     private static void FinishSceneLoad(SplashManager instance)

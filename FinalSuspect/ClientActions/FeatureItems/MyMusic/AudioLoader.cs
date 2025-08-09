@@ -10,15 +10,14 @@ using NAudio.Wave;
 namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
 
 /// <summary>
-/// 跨平台异步音频加载器
-/// 支持后缀：.wav .mp3 .ogg .aiff .aif .flac
-/// WebGL 下自动回退（不支持 NAudio）
+/// 异步音频加载器
+/// 支持后缀：.wav .mp3 .aiff .aif .flac
 /// </summary>
 public static class AudioLoader
 {
     #region Public API
 
-    /// <summary>异步加载任意受支持的音频文件</summary>
+    /// <summary>异步加载受支持的音频文件</summary>
     public static async Task<AudioClip> LoadAudioClipAsync(string filePath)
     {
         if (!File.Exists(filePath))
@@ -65,21 +64,22 @@ public static class AudioLoader
 
     private static async Task<byte[]> ReadAllBytesAsync(string path)
     {
-        using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true);
+        await using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
         var buffer = new byte[fs.Length];
-        _ = await fs.ReadAsync(buffer, 0, (int)fs.Length);
+        _ = await fs.ReadAsync(buffer.AsMemory(0, (int)fs.Length));
         return buffer;
     }
 
     #endregion
 
-    #region WAV (native parser)
+    #region WAV
 
     private static async Task<AudioClip> LoadWavAsync(string path)
     {
         var bytes = await ReadAllBytesAsync(path);
+        var name = Path.GetFileNameWithoutExtension(path);
         if (TryParseWavHeader(bytes, out var info))
-            return await CreateClipFromPcm(info.data, info.sampleRate, info.channels, info.bitDepth);
+            return await CreateClipFromPCM(info.data, info.sampleRate, info.channels, info.bitDepth, name);
 
         Warn("[AudioLoader] WAV header invalid, trying raw 16-bit fallback", "AudioLoader");
         return await CreateClipFromRaw(bytes);
@@ -139,50 +139,52 @@ public static class AudioLoader
 
     #endregion
 
-    #region NAudio (AIFF/FLAC/WebGL fallback)
+    #region NAudio
 
     private static async Task<AudioClip> LoadWithNAudioAsync(string path)
     {
-        using var reader = new AudioFileReader(path); // 自动识别 AIFF/FLAC/MP3/WAV
-        return await BuildClipFromNAudio(reader);
+        await using var reader = new AudioFileReader(path); // 自动识别 AIFF/FLAC/MP3/WAV，但WAV有更高效的方法
+        var name = Path.GetFileNameWithoutExtension(path);
+        return await BuildClipFromNAudio(reader, name);
     }
 
-    private static async Task<AudioClip> BuildClipFromNAudio(AudioFileReader reader)
+    private static async Task<AudioClip> BuildClipFromNAudio(AudioFileReader reader, string name)
     {
         var fmt = reader.WaveFormat;
         var channels = fmt.Channels;
         var sampleRate = fmt.SampleRate;
+        float[] samples;
 
-        // 将耗时操作移到后台线程
-        var (clip, samples) = await Task.Run(() =>
+        try
         {
-            var totalSamples = reader.Length / (fmt.BitsPerSample / 8);
-            var frames = totalSamples / channels;
-            var samples = new float[totalSamples];
-
-            var read = reader.Read(samples, 0, samples.Length);
-            if (read != samples.Length)
+            samples = await Task.Run(() =>
             {
-                Warn("[AudioLoader] NAudio read length mismatch.", "AudioLoader");
-            }
+                var totalSamples = reader.Length / (fmt.BitsPerSample / 8);
+                var data = new float[totalSamples];
+                var read = reader.Read(data, 0, data.Length);
+                return read == data.Length ? data : data.Take(read).ToArray();
+            });
+        }
+        finally
+        {
+            await reader.DisposeAsync();
+        }
 
-            return (AudioClip.Create("NAudioClip", (int)frames, channels, sampleRate, false), samples);
-        });
-
-        // 在主线程中设置数据
+        var frames = samples.Length / channels;
+        var clip = AudioClip.Create(name, frames, channels, sampleRate, false);
         clip.SetData(samples, 0);
         return clip;
     }
 
     #endregion
 
-    #region PCM → AudioClip
+    #region PCM
 
-    private static readonly HashSet<int> SupportedBits = [8, 16, 24, 32, 64];
+    private static readonly HashSet<int> supportedBits = [8, 16, 24, 32, 64];
 
-    private static async Task<AudioClip> CreateClipFromPcm(byte[] pcm, int sr, int ch, int bits)
+    private static async Task<AudioClip> CreateClipFromPCM(byte[] pcm, int sr, int ch, int bits, string name)
     {
-        if (!SupportedBits.Contains(bits))
+        if (!supportedBits.Contains(bits))
         {
             Debug.LogError($"[AudioLoader] Unsupported bit depth: {bits}");
             return null;
@@ -190,7 +192,7 @@ public static class AudioLoader
 
         var data = await Task.Run(() => ConvertBytesToFloats(pcm, bits));
         var frames = data.Length / ch;
-        var clip = AudioClip.Create("LoadedAudioClip", frames, ch, sr, false);
+        var clip = AudioClip.Create(name, frames, ch, sr, false);
         clip.SetData(data, 0);
         return clip;
     }
@@ -207,7 +209,7 @@ public static class AudioLoader
 
     #endregion
 
-    #region Bit Depth Conversion
+    #region Bit深度转换
 
     private static float[] ConvertBytesToFloats(byte[] src, int bits)
     {

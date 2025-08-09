@@ -92,8 +92,6 @@ public static class VersionChecker
                 Info("Creation: " + _creation, "CheckRelease");
                 Info("Force Update: " + ForceUpdate, "CheckRelease");
                 Info("File MD5: " + MD5, "CheckRelease");
-                Info("Github Url: " + downloadUrl_github, "CheckRelease");
-                Info("Gitee Url: " + downloadUrl_gitee, "CheckRelease");
 
                 if (_firstLaunch || IsBroken)
                 {

@@ -30,13 +30,19 @@ public class ModUpdater
     {
         if (url == "waitToSelect")
         {
-            CustomPopup.Show(GetString("UpdateRemind.updatePopup"), GetString("UpdateSource.Choose:"),
+            List<(string, Action)> btns =
             [
-                (GetString("UpdateSource.GithubMirror"), () => StartUpdate(downloadUrl_githubMirror)),
                 (GetString("UpdateSource.Github"), () => StartUpdate(downloadUrl_github)),
                 (GetString("UpdateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
-                (GetString(StringNames.Cancel), SetUpdateButtonStatus)
-            ]);
+            ];
+            if (IsChineseLanguageUser)
+            {
+                btns.Add((GetString("UpdateSource.GithubMirror"), () => StartUpdate(downloadUrl_githubMirror)));
+                btns.Add((GetString("UpdateSource.FangKuaiRemote"), () => StartUpdate(downloadUrl_fangKuaiRemote)));
+            }
+
+            btns.Add((GetString(StringNames.Cancel), SetUpdateButtonStatus));
+            CustomPopup.Show(GetString("UpdateRemind.updatePopup"), GetString("UpdateSource.Choose:"), btns);
             return;
         }
 
