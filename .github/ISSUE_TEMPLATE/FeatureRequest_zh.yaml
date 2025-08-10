@@ -4,13 +4,12 @@ title: "[Feat]:"
 labels: [Considered]
 assignees:
   - Slok7565
-  - QingFeng-awa
 body:
   - type: checkboxes
     id: preface
     attributes:
       label: 前置条件
-      description: 你好!感谢你为FinalSuspect提交新功能建议。在开始之前.请先确认以下内容。
+      description: 你好!感谢你为FinalSuspect提交新功能建议。在开始之前，请先确认以下内容。
       options:
         - label: 您使用的是最新版本的FinalSuspect。
           required: true

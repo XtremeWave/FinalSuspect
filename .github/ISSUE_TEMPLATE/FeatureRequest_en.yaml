@@ -2,7 +2,7 @@ name: Feature Request
 description: File a feature request
 title: "[Feat]:"
 labels: [Considered]
-assignees: 
+assignees:
   - Slok7565
 body:
   - type: checkboxes

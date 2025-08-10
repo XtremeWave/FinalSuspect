@@ -36,11 +36,11 @@ body:
   - type: textarea
     attributes:
       label: "该问题的复现步骤是?"
-      description: "如果可以稳定复现，请提供详细的步骤。<br>即使无法稳定复现,也请提供你是如何发现的步骤。"
+      description: "如果可以稳定复现，请提供详细的步骤。<br>即使无法稳定复现，也请提供你是如何发现的步骤。"
   - type: textarea
     attributes:
       label: "相关日志输出"
-      description: "打开游戏设置导出日志，将导出FinalSuspect日志并将其粘贴至此处。"
+      description: "打开游戏设置导出日志，将导出FinalSuspect日志复制并将其粘贴至此处。"
       render: shell
   - type: textarea
     attributes:
