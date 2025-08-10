@@ -4,15 +4,12 @@ title: "[Bug]:"
 labels: [Bug]
 assignees:
   - Slok7565
-  - QingFeng-awa
 body:
   - type: checkboxes
     attributes:
       label: 前置条件
       description: 感谢你花时间填写此错误报告！在开始之前,您需要确认以下内容。
       options: 
-        - label: 已经在[议题列表](https://github.com/Slok7565/FinalSuspect/issue)中搜索了相关问题。
-          required: true
         - label: 您使用的是最新版本的FinalSuspect。
           required: true
         - label: 这是FinalSusepct本身存在的问题。
@@ -43,7 +40,7 @@ body:
   - type: textarea
     attributes:
       label: "相关日志输出"
-      description: "请[根据此文档](https://www.Final.net.cn/docs/FS/Guide/OutputLog)导出FS日志并将其粘贴至此处。"
+      description: "打开游戏设置导出日志，然后定位该目录C:\Users\你的用户名\AppData\LocalLow\Innersloth\Among Us\FinalSuspect\Logs，将导出FS日志并将其粘贴至此处。"
       render: shell
   - type: textarea
     attributes:

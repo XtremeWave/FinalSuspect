@@ -4,7 +4,6 @@ title: "[Feat]:"
 labels: [Considered]
 assignees: 
   - Slok7565
-  - QingFeng-awa
 body:
   - type: checkboxes
     id: preface
@@ -12,8 +11,6 @@ body:
       label: Prerequisites
       description: Hello! Thank you for submitting a new feature suggestion for FinalSuspect. Before we begin, we highly recommend reading through the [Open Source Guides](https://opensource.guide/), which will greatly improve our mutual efficiency.
       options:
-        - label: I have searched for related issues in the [议题](https://github.com/Slok7565/FinalSuspect/issue) list.
-          required: true
         - label: I am using the latest version of FinalSuspect.
           required: true
   - type: markdown
