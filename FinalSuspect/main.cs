@@ -47,17 +47,16 @@ public class Main : BasePlugin
     /// <summary>
     ///     表示当前显示的版本类型。
     /// </summary>
-    private const VersionTypes DisplayedVersion_Type = VersionTypes.Release;
+    private const VersionTypes DisplayedVersion_Type = VersionTypes.RC;
 
-    private const int DisplayedVersion_TestCreation = 0;
+    private const int DisplayedVersion_TestCreation = 5;
 
 
     // == 链接相关设定 / Link Config ==
     //public static readonly string WebsiteUrl = IsChineseLanguageUser ? "https://www.Final.net.cn/project/FS/" : "https://www.Final.net.cn/en/project/FS/";
-    public const string QQInviteUrl = "https://qm.qq.com/q/GNbm9UjfCa";
+    public const string QQInviteUrl = "https://qm.qq.com/q/ZA7Lnjz3SC";
     public const string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
     public const string GithubRepoUrl = "https://github.com/Slok7565/FinalSuspect/";
-    public const float RoleTextSize = 2f;
 
     public static readonly string DisplayedVersion =
 #if RELEASE

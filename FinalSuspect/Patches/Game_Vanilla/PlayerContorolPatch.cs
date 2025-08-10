@@ -33,13 +33,15 @@ internal class CoSetRolePatch
 [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Start))]
 internal class PlayerStartPatch
 {
+    private const float RoleTextSize = 2f;
+
     public static void Postfix(PlayerControl __instance)
     {
         var topText = Object.Instantiate(__instance.cosmetics.nameText, __instance.cosmetics.nameText.transform, true);
         topText.text = topText.gameObject.name = "TopText";
         topText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
         topText.transform.localScale = new Vector3(1f, 1f, 1f);
-        topText.fontSize = Main.RoleTextSize;
+        topText.fontSize = RoleTextSize;
         topText.text = "TopText";
         topText.gameObject.name = "TopText";
         topText.enabled = false;
@@ -49,7 +51,7 @@ internal class PlayerStartPatch
             Object.Instantiate(__instance.cosmetics.nameText, __instance.cosmetics.nameText.transform, true);
         bottomText.transform.localPosition = new Vector3(0f, 0.2f, 0f);
         bottomText.transform.localScale = new Vector3(1f, 1f, 1f);
-        bottomText.fontSize = Main.RoleTextSize;
+        bottomText.fontSize = RoleTextSize;
         bottomText.text = "BottomText";
         bottomText.gameObject.name = "BottomText";
         bottomText.enabled = false;

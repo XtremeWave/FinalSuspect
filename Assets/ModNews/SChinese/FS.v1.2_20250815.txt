@@ -33,6 +33,7 @@ Slok在脱离原制作团队后会将精力聚焦于一个全新的游戏——�
 - [Elinmei]("https://github.com/linmeideli")
 - [Nonalus]("https://github.com/Reborn5537/")
 - [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
 
 ## 修正
 - 修复了快速启动模式失效的问题

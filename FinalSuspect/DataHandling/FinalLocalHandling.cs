@@ -108,10 +108,10 @@ public static class FinalLocalHandling
         {
             color = data.RoleTag.TagColor;
             roleText = !topswap
-                ? $"[<size=80%>{data.RoleTag.TagStr} " + StringHelper.ColorString(ColorHelper.ClientlessColor,
+                ? $"[<size=80%>{data.RoleTag.TagStr}" + StringHelper.ColorString(ColorHelper.ClientlessColor,
                     $"{data.RoleTag.Room}") + "</size>]"
                 : "[<size=80%>" + StringHelper.ColorString(ColorHelper.ClientlessColor, $"{data.RoleTag.Room}") +
-                  $" {data.RoleTag.TagStr}</size>]";
+                  $"{data.RoleTag.TagStr}</size>]";
         }
         else if (bothImp)
         {
