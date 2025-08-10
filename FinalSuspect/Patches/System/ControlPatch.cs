@@ -40,6 +40,7 @@ internal class ControllerManagerUpdatePatch
                 Screen.fullScreen);
         }
 
+        //更改是否全屏
         if (Input.GetKeyDown(KeyCode.F4))
         {
             ResolutionManager.SetResolution(resolutions[_resolutionIndex].Item1, resolutions[_resolutionIndex].Item2,

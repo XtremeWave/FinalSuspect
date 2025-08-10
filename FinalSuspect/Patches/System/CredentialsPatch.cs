@@ -291,8 +291,12 @@ internal class TitleLogoPatch
                 position = new Vector3(0, 0, 520f)
             }
         };
+
         var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
         bgRenderer.sprite = style.Sprite;
+
+        if (!(BackgroundTexture = GameObject.Find("BackgroundTexture"))) return;
+        BackgroundTexture.GetComponent<SpriteRenderer>().color = style.MainUIColors[0].SetAlpha(1);
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;

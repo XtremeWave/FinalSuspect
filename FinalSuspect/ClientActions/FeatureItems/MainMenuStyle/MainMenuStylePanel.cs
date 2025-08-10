@@ -98,7 +98,8 @@ public static class MainMenuStylePanel
             ModMainMenuManager.Starfield.SetActive(style.StarFieldActive);
             var starGen = ModMainMenuManager.Starfield.GetComponent<StarGen>();
             starGen.SetDirection(new Vector2(0, style.StarGenDire));
-
+            ModMainMenuManager.BackgroundTexture.GetComponent<SpriteRenderer>().color =
+                style.MainUIColors[0].SetAlpha(1);
             var instance = DestroyableSingleton<MainMenuManager>.Instance;
             Color shade = new(0f, 0f, 0f, 0f);
             var standardActiveSprite = instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;

@@ -396,7 +396,8 @@ public static class MyMusicPanel
 
             _timeText.text = $"{formattedCurrentTime}/{formattedClipLength}";
 
-            if (formattedCurrentTime != formattedClipLength) return;
+            if (formattedCurrentTime != formattedClipLength &&
+                currentSource.clip.length - currentSource.time < 0.1f) return;
             HandlePlayMode();
         }
         catch
@@ -422,7 +423,21 @@ public static class MyMusicPanel
 
                 break;
             case PlayMode.Sequential:
-                PlayNextTrack();
+                if (!press)
+                {
+                    PlayNextTrack();
+                    break;
+                }
+
+                if (next)
+                {
+                    PlayNextTrack();
+                }
+                else
+                {
+                    PlayLastTrack();
+                }
+
                 break;
             case PlayMode.Random:
                 PlayRandomTrack();

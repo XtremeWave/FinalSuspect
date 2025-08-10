@@ -219,13 +219,39 @@ public class ModNewsHistory
             }
             else
             {
-                const string pattern = @"\[(.*?)\]\((.*?)\)";
+                const string pattern = @"\[(.*?)\]\((.*?)\)"; // 匹配Markdown链接
+                const string boldPattern = @"\*\*(.*?)\*\*"; // 匹配Markdown加粗
+                const string italicPattern = @"\*(.*?)\*"; // 匹配Markdown斜体
+                const string deleteLinePattern = @"\~\~(.*?)\~\~"; // 匹配Markdown删除线
+
                 var regex = new Regex(pattern);
+                var boldRegex = new Regex(boldPattern);
+                var italicRegex = new Regex(italicPattern);
+                var deleteLineRegex = new Regex(deleteLinePattern);
+
                 line = regex.Replace(line, match =>
                 {
-                    var content1 = match.Groups[1].Value;
-                    var content2 = match.Groups[2].Value;
-                    return $"<color=#cdfffd><nobr><link={content2}>{content1}</nobr></link></color> ";
+                    var value1 = match.Groups[1].Value;
+                    var value2 = match.Groups[2].Value;
+                    return $"<color=#cdfffd><nobr><link={value2}>{value1}</nobr></link></color> ";
+                });
+
+                line = boldRegex.Replace(line, match =>
+                {
+                    var value = match.Groups[1].Value;
+                    return $"<b>{value}</b>";
+                });
+
+                line = italicRegex.Replace(line, match =>
+                {
+                    var value = match.Groups[1].Value;
+                    return $"<i>{value}</i>";
+                });
+
+                line = deleteLineRegex.Replace(line, match =>
+                {
+                    var value = match.Groups[1].Value;
+                    return $"<s>{value}</s>";
                 });
 
                 if (line.StartsWith("## ")) line = line.Replace("## ", "<b>") + "</b>";

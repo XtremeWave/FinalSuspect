@@ -83,11 +83,10 @@ public class MainMenuManagerPatch
         }
 
         if (ShowedBak || !isOnline) return;
-        var bak = GameObject.Find("BackgroundTexture");
-        if (!bak || !bak.active) return;
-        var pos2 = bak.transform.position;
+        if (!BackgroundTexture || !BackgroundTexture.active) return;
+        var pos2 = BackgroundTexture.transform.position;
         var lerp2 = Vector3.Lerp(pos2, new Vector3(pos2.x, 7.1f, pos2.z), Time.deltaTime * 1.4f);
-        bak.transform.position = lerp2;
+        BackgroundTexture.transform.position = lerp2;
         if (pos2.y > 7f) ShowedBak = true;
     }
 

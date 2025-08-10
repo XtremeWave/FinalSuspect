@@ -28,6 +28,7 @@ public static class ModMainMenuManager
     public static GameObject Sizer;
     public static GameObject AULogo;
     public static GameObject BottomButtonBounds;
+    public static GameObject BackgroundTexture;
 
     public static Vector3 RightPanelOp = new(2.8f, -0.4f, -5.0f);
     public static Dictionary<GameObject, (Vector3, bool)> AllButtons = new();

@@ -16,6 +16,7 @@ public static class AwakeFriendCodeUIPatch
             barSprit.GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
+        if (FriendsButton != null) return;
         FriendsButton = GameObject.Find("FriendsButton");
         FriendsButton.transform.FindChild("Highlight").FindChild("NewRequestActive").FindChild("Background").gameObject
             .GetComponent<SpriteRenderer>().color = Color.white.AlphaMultiplied(0.3f);
