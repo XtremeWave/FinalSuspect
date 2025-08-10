@@ -8,8 +8,8 @@ body:
   - type: checkboxes
     attributes:
       label: 前置条件
-      description: 感谢你花时间填写此错误报告！在开始之前,您需要确认以下内容。
-      options: 
+      description: 感谢你花时间填写此错误报告！在开始之前，您需要确认以下内容。
+      options:
         - label: 您使用的是最新版本的FinalSuspect。
           required: true
         - label: 这是FinalSusepct本身存在的问题。
@@ -40,7 +40,7 @@ body:
   - type: textarea
     attributes:
       label: "相关日志输出"
-      description: "打开游戏设置导出日志，然后定位该目录C:\Users\你的用户名\AppData\LocalLow\Innersloth\Among Us\FinalSuspect\Logs，将导出FS日志并将其粘贴至此处。"
+      description: "打开游戏设置导出日志，将导出FinalSuspect日志并将其粘贴至此处。"
       render: shell
   - type: textarea
     attributes:
