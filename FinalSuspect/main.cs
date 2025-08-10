@@ -12,6 +12,7 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Internal;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Random;
+using FinalSuspect.Modules.Resources;
 using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
 
@@ -128,7 +129,6 @@ public class Main : BasePlugin
     public static ConfigEntry<bool> ShowResults { get; private set; }
     public static ConfigEntry<string> WebhookURL { get; private set; }
     public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
-    public static ConfigEntry<string> LastStartVersion { get; private set; }
     public static ConfigEntry<BypassType> LanguageUpdateBypass { get; private set; }
     public static ConfigEntry<int> CurrentStyleId { get; private set; }
 
@@ -147,7 +147,6 @@ public class Main : BasePlugin
         HideColor = Config.Bind("Final System", "Hide Game Code Color", $"{ColorHelper.FSColorHex}");
         EnableFinalSuspect = Config.Bind("Final System", "Enable Final Suspect", true);
         ShowResults = Config.Bind("Final System", "Show Results", true);
-        LastStartVersion = Config.Bind("Final System", "Last Start Version", "0.0.0");
         LanguageUpdateBypass = Config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
         CurrentStyleId = Config.Bind("Final System", "BG Id", 0);
 
@@ -226,6 +225,7 @@ public class Main : BasePlugin
         else ConsoleManager.DetachConsole();
 
         Msg("========= FinalSuspect loaded! =========", "Plugin Load");
+        Application.quitting += new Action(() => VersionChecker.CancellationToken.Cancel());
         Application.quitting += new Action(SaveNowLog);
     }
 

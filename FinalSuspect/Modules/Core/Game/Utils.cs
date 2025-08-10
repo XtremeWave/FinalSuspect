@@ -156,7 +156,7 @@ public static class Utils
         return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
     }
 
-    #region Log Out Put
+    #region Log Output
 
     public static DirectoryInfo GetLogFolder(bool auto = false)
     {
@@ -171,39 +171,86 @@ public static class Utils
 
     public static void DumpLog(bool popup = false)
     {
-        var logs = GetLogFolder();
-        var filename = CopyLog(logs.FullName);
-        OpenDirectory(filename);
-        if (!PlayerControl.LocalPlayer) return;
-        var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        if (popup)
-            HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"),
-                $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
-        else
-            AddChatMessage(string.Format(GetString("Message.DumpfileSaved"),
-                $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+        try
+        {
+            var logs = GetLogFolder();
+            var filename = CopyLog(logs.FullName);
+            OpenDirectory(filename);
+            if (!PlayerControl.LocalPlayer) return;
+            var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+            if (popup)
+            {
+                HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"),
+                    $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+            }
+            else
+            {
+                AddChatMessage(string.Format(GetString("Message.DumpfileSaved"),
+                    $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+            }
+        }
+        catch (Exception ex)
+        {
+            Error($"Error in DumpLog: {ex.Message}", "DUMP LOG");
+        }
     }
 
     public static void ClearAutoLogs()
     {
-        foreach (var f in Directory.GetFiles(GetLogFolder(true).FullName)) File.Delete(f);
+        try
+        {
+            foreach (var f in Directory.GetFiles(GetLogFolder(true).FullName))
+            {
+                File.Delete(f);
+            }
+        }
+        catch
+        {
+            /* ignored */
+        }
     }
 
     public static void SaveNowLog()
     {
         var logs = GetLogFolder(true);
-        logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f => f.Delete());
+        try
+        {
+            logs.EnumerateFiles().Where(f => f.CreationTime < DateTime.Now.AddDays(-7)).ToList().ForEach(f =>
+            {
+                try
+                {
+                    f.Delete();
+                }
+                catch (Exception ex)
+                {
+                    Error($"Failed to delete file {f.FullName}: {ex.Message}", "SAVE LOG");
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            Error($"Failed to enumerate files: {ex.Message}", "SAVE LOG");
+        }
+
         CopyLog(logs.FullName);
     }
 
     public static string CopyLog(string path)
     {
-        var f = $"{path}";
-        var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
-        var fileName = $"{f}FinalSuspect-v{Main.DisplayedVersion}-{t}.log";
-        if (!Directory.Exists(f)) Directory.CreateDirectory(f);
+        var f = Path.Combine(path,
+            $"FinalSuspect-v{Main.DisplayedVersion}-{DateTime.Now:yyyy-MM-dd_HH.mm.ss}.log");
+        if (!Directory.Exists(Path.GetDirectoryName(f)))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(f) ?? string.Empty);
+        }
+
         FileInfo file = new($"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
-        var logFile = file.CopyTo(fileName);
+        if (!file.Exists)
+        {
+            return null;
+        }
+
+        var logFile = file.CopyTo(f, true);
         return logFile.FullName;
     }
 
@@ -214,11 +261,13 @@ public static class Utils
 
     private static void AddChatMessage(string text, string title = "")
     {
-        if (!AmongUsClient.Instance.AmHost) return;
+        if (!AmongUsClient.Instance.AmHost || PlayerControl.LocalPlayer == null || HudManager.Instance == null)
+            return;
+
         var player = PlayerControl.LocalPlayer;
         var name = player.Data.PlayerName;
         player.SetName(title + '\0');
-        DestroyableSingleton<HudManager>.Instance?.Chat?.AddChat(player, text);
+        HudManager.Instance.Chat?.AddChat(player, text);
         player.SetName(name);
     }
 

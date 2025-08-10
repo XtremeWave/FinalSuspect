@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using AmongUs.Data.Player;
 using Assets.InnerNet;
@@ -95,32 +96,45 @@ public class ModNewsHistory
         return true;
     }
 
-    public static async Task LoadModAnnouncements()
+    public static async Task LoadModAnnouncements(CancellationToken cancellationToken)
     {
         try
         {
             if (allModNews.Count >= 1) return;
-            foreach (var lang in EnumHelper.GetAllValues<SupportedLangs>())
-            foreach (var target in ResourcesHelper.RemoteModNewsList)
-            foreach (var url in GetInfoFileUrlList())
-            {
-                var task = GetAnnouncements(url + $"Assets/ModNews/{lang}/{target}");
-                await task;
-                var result = task.Result;
-                if (!result.Item1)
-                    continue;
-                try
-                {
-                    var content = GetContentFromRes(result.Item2, lang);
-                    if (content != null && !string.IsNullOrEmpty(content.Date)) allModNews.Add(content);
-                }
-                catch
-                {
-                    /* ignored */
-                }
 
-                break;
+            foreach (var lang in EnumHelper.GetAllValues<SupportedLangs>())
+            {
+                foreach (var target in ResourcesHelper.RemoteModNewsList)
+                {
+                    foreach (var url in GetInfoFileUrlList())
+                    {
+                        cancellationToken.ThrowIfCancellationRequested(); // 检查取消信号
+
+                        var task = GetAnnouncements(url + $"Assets/ModNews/{lang}/{target}");
+                        await task;
+
+                        var result = task.Result;
+                        if (!result.Item1)
+                            continue;
+
+                        try
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+
+                            var content = GetContentFromRes(result.Item2, lang);
+                            if (content != null && !string.IsNullOrEmpty(content.Date)) allModNews.Add(content);
+                        }
+                        catch
+                        {
+                            /* ignored */
+                        }
+
+                        break;
+                    }
+                }
             }
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             allModNews.Sort((a1, a2) =>
             {
@@ -129,6 +143,10 @@ public class ModNewsHistory
 
                 return DateTime.Parse(a2.Date).CompareTo(DateTime.Parse(a1.Date));
             });
+        }
+        catch (OperationCanceledException)
+        {
+            Warn("LoadModAnnouncements was canceled.", "Load mod announcements");
         }
         catch
         {

@@ -32,13 +32,13 @@ public class ModUpdater
         {
             List<(string, Action)> btns =
             [
-                (GetString("UpdateSource.Github"), () => StartUpdate(downloadUrl_github)),
-                (GetString("UpdateSource.Gitee"), () => StartUpdate(downloadUrl_gitee)),
+                (GetString("UpdateSource.Github"), () => StartUpdate(DownloadUrl_Github)),
+                (GetString("UpdateSource.Gitee"), () => StartUpdate(DownloadUrl_Gitee)),
             ];
             if (IsChineseLanguageUser)
             {
-                btns.Add((GetString("UpdateSource.GithubMirror"), () => StartUpdate(downloadUrl_githubMirror)));
-                btns.Add((GetString("UpdateSource.FangKuaiRemote"), () => StartUpdate(downloadUrl_fangKuaiRemote)));
+                btns.Add((GetString("UpdateSource.GithubMirror"), () => StartUpdate(DownloadUrl_GithubMirror)));
+                btns.Add((GetString("UpdateSource.FangKuaiRemote"), () => StartUpdate(DownloadUrl_FangKuaiRemote)));
             }
 
             btns.Add((GetString(StringNames.Cancel), SetUpdateButtonStatus));

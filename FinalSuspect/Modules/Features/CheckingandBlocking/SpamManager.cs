@@ -30,7 +30,7 @@ public static class SpamManager
             foreach (var target in Targets)
             foreach (var url in GetInfoFileUrlList())
             {
-                var task = GetConfigs(url + "Assets/Configs/" + target, target);
+                var task = GetConfigs(url + "Assets/Configs/" + target);
                 await task;
                 if (!task.Result) continue;
                 break;
@@ -60,7 +60,7 @@ public static class SpamManager
         return sendList;
     }
 
-    private static async Task<bool> GetConfigs(string url, string name)
+    private static async Task<bool> GetConfigs(string url)
     {
         try
         {

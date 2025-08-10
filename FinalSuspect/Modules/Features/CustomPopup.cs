@@ -12,7 +12,7 @@ namespace FinalSuspect.Modules.Features;
 #nullable enable
 public static class CustomPopup
 {
-    private static GameObject? Fill;
+    public static GameObject? Fill;
     private static GameObject? InfoScreen;
 
     private static TextMeshPro? TitleTMP;

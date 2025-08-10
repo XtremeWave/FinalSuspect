@@ -9,24 +9,21 @@ public static class PathManager
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
     private const string DependsSavePath = "BepInEx/core/";
-    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
     public const string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
+    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
 
-    public const string downloadUrl_github =
+    public const string DownloadUrl_Github =
         "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
-    public const string downloadUrl_githubMirror =
+    public const string DownloadUrl_GithubMirror =
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
-    public static string downloadUrl_gitee =
-        "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
-
-    public static string downloadUrl_fangKuaiRemote =
-        "https://dlhk.fangkuai.fun/FinalSuspect//FinalSuspect.dll";
-
+    public const string DownloadUrl_FangKuaiRemote = "https://dlhk.fangkuai.fun/FinalSuspect//FinalSuspect.dll";
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
 
+    public static string DownloadUrl_Gitee =
+        "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
 
     private static IReadOnlyList<string> URLs => new List<string>
     {

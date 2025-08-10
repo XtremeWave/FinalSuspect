@@ -119,13 +119,12 @@ public static class AudioPlayer
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.2f);
-
         var timeSamples = audioSource.timeSamples;
         var time = audioSource.time;
         TempTimeSample = timeSamples;
         TempTime = time;
         SoundManager.Instance.CrossFadeSound(fileName, clip, 0.7f);
+        audioSource.Stop();
         Object.Destroy(go);
     }
 

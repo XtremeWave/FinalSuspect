@@ -31,10 +31,8 @@ public static class ResourcesDownloader
         var currentFile = file;
         var isMusic = fileType == FileType.Musics;
 
-        // 重试次数初始值
         var retryTimes = IsChineseLanguageUser ? 0 : 3;
 
-        // 外层循环：处理扩展名转换
         while (true)
         {
             string filePath;
@@ -81,7 +79,7 @@ public static class ResourcesDownloader
                     await client.StartDownload();
                     Thread.Sleep(100);
 
-                    if (IsBlockedPage(downloadFileTempPath, fileType))
+                    if (IsBlockedPage(downloadFileTempPath))
                     {
                         lastError = $"下载被拦截，返回了HTML页面: {url}";
                         Error(lastError, "Download Resources", false);
@@ -131,7 +129,6 @@ public static class ResourcesDownloader
                 continue;
             }
 
-            // 所有扩展名都已尝试，返回失败
             Msg($"所有扩展名都已尝试，下载失败: {lastError}", "Download Resources");
             return false;
         }
@@ -143,7 +140,7 @@ public static class ResourcesDownloader
         return Regex.IsMatch(url, pattern);
     }
 
-    private static bool IsBlockedPage(string filePath, FileType fileType)
+    private static bool IsBlockedPage(string filePath)
     {
         try
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using FinalSuspect.ClientActions.FeatureItems.NameTag;
 using FinalSuspect.ClientActions.FeatureItems.Resources;
@@ -31,13 +32,15 @@ public static class VersionChecker
 
     private static int _retried;
     private static bool _firstLaunch = true;
+
+    public static readonly CancellationTokenSource CancellationToken = new();
     public static bool IsSupported { get; private set; } = true;
 
     private static async void StartTasks()
     {
         try
         {
-            _ = ModNewsHistory.LoadModAnnouncements();
+            _ = ModNewsHistory.LoadModAnnouncements(CancellationToken.Token);
             await Task.Delay(100);
             await SpamManager.Init();
             await Task.Delay(100);
@@ -51,7 +54,7 @@ public static class VersionChecker
         }
     }
 
-    public static void Check()
+    private static void Check()
     {
         var amongUsVersion = Version.Parse(Application.version);
         var lowestSupportedVersion = Version.Parse(Main.LowestSupportedVersion);
@@ -152,7 +155,7 @@ public static class VersionChecker
             var announcement = data["announcement"].Cast<JObject>();
             foreach (var langid in EnumHelper.GetAllValues<SupportedLangs>())
                 ModUpdater.announcement[langid] = announcement[langid.ToString()]?.ToString();
-            downloadUrl_gitee = downloadUrl_gitee.Replace("{showVer}", ShowVer);
+            DownloadUrl_Gitee = DownloadUrl_Gitee.Replace("{showVer}", ShowVer);
             HasUpdate = Main.version < _latestVersion && _creation > Main.PluginCreation;
             ForceUpdate = Main.version < _minimumVersion || _creation > Main.PluginCreation;
 
@@ -173,10 +176,12 @@ public static class VersionChecker
             CustomPopup.Init();
             if (FirstStart && !Main.OfflineMode.Value)
             {
+                Check();
                 StartTasks();
-                CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);
             }
 
+            if (!IsChecked)
+                CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);
             NameTagManager.ReloadTag(null);
             ModUpdater.SetUpdateButtonStatus();
             FirstStart = false;

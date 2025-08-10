@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using AmongUs.Data;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientActions.FeatureItems.MyMusic;
@@ -19,14 +18,12 @@ public static class LoadPatch
     private static bool _reloadLanguage;
     private static bool _skipLoadAnimation;
     private static bool _firstLaunch;
-    public static SplashManager Instance;
 
     [HarmonyPatch(nameof(SplashManager.Start)), HarmonyPrefix]
     public static bool Start(SplashManager __instance)
     {
         __instance.startTime = Time.time;
         __instance.StartCoroutine(InitializeRefData(__instance));
-        Instance = __instance;
         return false;
     }
 
@@ -145,13 +142,12 @@ public static class LoadPatch
         var currentVersion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{Main.GitCommit}-{Main.GitBranch}";
         var bypassType = Main.LanguageUpdateBypass.Value;
 
-        _reloadLanguage = currentVersion != Main.LastStartVersion.Value
-                          && bypassType == BypassType.Dont;
+        _reloadLanguage = currentVersion != RegistryManager.LastStartVersion && bypassType == BypassType.Dont;
 
         switch (bypassType)
         {
             case BypassType.Dont:
-                Main.LastStartVersion.Value = currentVersion;
+                RegistryManager.LastStartVersion = currentVersion;
                 break;
             case BypassType.Once:
                 Main.LanguageUpdateBypass.Value = BypassType.Dont;
