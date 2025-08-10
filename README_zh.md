@@ -1,5 +1,5 @@
 <div align="center">
-	
+
 ![FS-XW](Assets/LogoWithTeam.png)
 
 **Final Suspect 终极嫌疑，您最棒的Among Us原版辅助模组。**
@@ -11,9 +11,6 @@
 [English](README.md) | [简体中文]
 
 </div>
-
-> [!important]
-> 由于开发者学业原因，您的issue可能无法得到及时的答复，请谅解！
 
 > [!note]
 > 本模组不隶属于 Among Us 或 Innersloth LLC，其包含的内容也未得到 Innersloth LLC 的认可或以其他方式赞助。\

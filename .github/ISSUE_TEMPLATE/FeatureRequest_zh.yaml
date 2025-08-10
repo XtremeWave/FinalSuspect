@@ -12,8 +12,6 @@ body:
       label: 前置条件
       description: 你好!感谢你为FinalSuspect提交新功能建议。在开始之前.请先确认以下内容。
       options:
-        - label: 已经在[议题](https://github.com/Slok7565/FinalSuspect/issue)列表中搜索了相关问题。
-          required: true
         - label: 您使用的是最新版本的FinalSuspect。
           required: true
   - type: markdown
