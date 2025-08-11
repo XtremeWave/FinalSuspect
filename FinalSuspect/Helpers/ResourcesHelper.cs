@@ -58,7 +58,7 @@ public static class ResourcesHelper
         "NAudio.Asio.dll",
         "NAudio.Core.dll",
         "NAudio.Flac.dll",
-        "NAudio,Wasapi.dll",
+        "NAudio.Wasapi.dll",
         "NAudio.WinMM.dll",
         "YamlDotNet.dll",
         "YamlDotNet.xml"
