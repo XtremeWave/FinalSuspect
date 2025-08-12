@@ -109,7 +109,8 @@ public static class FAC
 
                 return (IsInGame && handler.HandleGame_All(pc, sr, ref notify, ref reason, ref ban))
                        || (IsInTask && handler.HandleGame_InTask(pc, sr, ref notify, ref reason, ref ban))
-                       || (IsInMeeting && handler.HandleGame_InMeeting(pc, sr, ref notify, ref reason, ref ban));
+                       || (IsInMeeting && handler.HandleGame_InMeeting(pc, sr, ref notify, ref reason, ref ban))
+                       || (IsHideNSeek && handler.HandleHideNSeek(pc, sr, ref notify, ref reason, ref ban));
             }
         }
         catch (Exception e)

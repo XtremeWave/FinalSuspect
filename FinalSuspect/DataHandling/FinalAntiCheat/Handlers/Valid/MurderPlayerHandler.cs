@@ -30,4 +30,10 @@ public class MurderPlayerHandler : IRpcHandler
     {
         return true;
     }
+
+    public bool HandleHideNSeek(PlayerControl sender, MessageReader reader,
+        ref bool notify, ref string reason, ref bool ban)
+    {
+        return false;
+    }
 }
