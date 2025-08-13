@@ -33,7 +33,6 @@ public static class LoadPatch
         yield return HandleFirstLaunch();
         CreateLogoComponents();
         yield return HandleCoreLoadingProcess(instance);
-        FinishSceneLoad(instance);
     }
 
     private static void FinishSceneLoad(SplashManager instance)
@@ -135,6 +134,8 @@ public static class LoadPatch
 
         yield return LoadEssentialResources(instance);
         yield return HandlePostDownloadProcess(fastLaunchMode);
+        if (fastLaunchMode) yield break;
+        FinishSceneLoad(instance);
     }
 
     private static bool CheckFastLaunchModeCondition()

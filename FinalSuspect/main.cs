@@ -49,7 +49,7 @@ public class Main : BasePlugin
     /// </summary>
     private const VersionTypes DisplayedVersion_Type = VersionTypes.RC;
 
-    private const int DisplayedVersion_TestCreation = 6;
+    private const int DisplayedVersion_TestCreation = 7;
 
 
     // == 链接相关设定 / Link Config ==
