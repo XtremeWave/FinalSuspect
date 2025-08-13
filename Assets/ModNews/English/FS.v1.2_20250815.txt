@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Looking forward to the next encounter with you!★★★★
+#ShortTitle:★Version Update v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# English
+Since v1.2，The feature development of "Final Suspect" is completed！
+In the future, the mod will focus on bug fixing and version adaptation, never or seldom add new feature
+Slok will focus on a new game "EmberVeins" after quiting XtremeWave
+At the same time, XtremeWave will focus on mutiple projects, including a new Among Us proeject!
+I am looking forward to the next encounter with you!
+
+## Required Version
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Mode Version Information
+- Assembly Version Number: v1.2.0
+- Version Type: Release
+- Build Number: 1
+
+## Update Contents
+- Bug Fixes: 23
+- Optimizations: 10
+- Adjustments: 17
+- New Contents: 37
+- Remakes: 1
+- Deletes: 1
+
+## Contributor
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Bug Fix
+- Fixed the failure of enabling "Fast Launch Mode"
+- Fixed the failure of creating practice mode datas
+- Fixed the incorrect display of dead bodies in mini map
+- Fixed the incorrect color of dead bodies in mini map
+- Fixed the failure of enabling Halloween Style
+- Fixed the reading failure of update logs.
+- Fixed the failure of coloring roundstart animation when reveal roles.
+- Fixed the issue that loading animation is not working in latest version
+- Fixed the crash of loading banned words
+- Fixed the incorrect display of tasks when communications sabotaged
+- Fixed the failure of searching informations in lobby
+- Fixed the incorrect display of tips in Among Us in left bottom
+- Fixed the issue that player nicknames are not colored in tips in left bottom
+- Fixed the stuttering when press F1 to show role introduction
+- Fixed the issue that deny names match incorrectly
+- Fixed the issue that killing at the exact moment that meeting starts is regarded as cheating
+- Fixed the issue that client killing possibly causes anti-cheat misjudgement
+- Fixed the issue that audio file that is stopped playing cannot release correctly
+Fixer: Slok
+- Fixed the issue that Haunting cannot be used when enable "Auto-return to lobby when game ends"
+Fixer: Slok
+Reporter: 秦始皇
+- Fixed the issue that store cannot be visited when enable "Auto-return to lobby when game ends"
+Fixer: Slok
+Reporter: QingFeng
+- Fixed the issue that blacklist is not working
+Fixer：LezaiYa
+Reporter：警长小蓝
+- Fixed the issue that LShift and RShift are not working
+Fixer: Elinmei
+- Fixed the issue of broken"April Fools' Horse Mode"
+Source: Town Of Host : Enhanced
+
+## Optimizations
+- Recoded loading screen to optimize the efficiency of running codes
+- Use asynchronous method to read banned words to prevent thread blocking
+- Use asynchronous method to complete update check to prevent thread blocking
+- Encrypt banned words to prevent remote bans.
+- Recoded the logic of banned words
+- Optimized Anti-cheat
+- Overall optimized the efficiency of running codes
+- Overall optimized the code format
+- Overall optimized the language file format
+- Improved the starting speed of "Fast Launch Mode"
+Maker: Slok
+
+## Adjustments
+- Mod announcements will be read when start game, instead of downloading to local
+- Forcefully terminate the game process instead of deleting needless mod files
+- Pop up the announcement after mod announcement loading successfully
+- The resolution will not be forced to change
+- Adjusted skill cooldown color
+- Tips in left buttom are set to the top
+- Server lists are not covered forcefully
+- Language file update will not be stopped through adding files
+- Switch "Kick players that not sign in" to"Kick players with abnormal Friend Codes"
+- Switch "Disable Anti-cheat" to "Enable Anti-cheat"
+- The color of role summary button changes according to role color
+- Quit the team "XtremeWave" and become personal mod by Slok
+- Transposition of information display in "My Music"
+- Adjusted the style of page changing button in "My Music"
+- Adjusted the style of playing button in "My Music"
+- Adjusted the method of adding custom musics in "My Music"
+Maker: Slok
+- Allow to use "Switch Outfit Type" in games
+Source: Town Of Host:Enhanced
+
+## New Contents
+- Auto-exit game when critical resource download failed
+- Client Option:Offline Mode(Experimental)
+Maker: Slok
+Idea: QingFeng
+- Recogition of cheating programs or mods
+- All RPC log check and more RPC cheating detection
+- UI adapts all resolutions 
+- Display host name in lobby list
+- Remove the blank at the end of name to avoid repeated names
+- Switch blanks to underlines in the name
+- April Fool's Easter eggs
+- Display Task progress by percentage
+- Colored the task bar
+- Enabled loading screen&Main menu music
+- Added a github mirror source and Fangkuai remote to optimize the download speed
+- SourcePack: MainMenu Style Pack(include 5 styles)
+- Added position in player information
+- Client Guardian(Completely defend crashing executables in cheating programs) 
+- Hotkeys:Instantly start game and stop playing start game sound effect
+- Hotkeys:F4 Fullscreen
+- Client Feature:Switch main menu style
+- Client Option:Enable Client Guardian (Experimental)
+- Client Feature:Resource Manager
+- Client Feature:"My Music" Show playing time
+- Client Feature:"My Music" Show pages
+- Client Feature:"My Music" added button: Switch playing mode(Repeat/Order/Random)
+- Client Feature:"My Music" added button: Pause/Continue
+- Client Feature:"My Music" added button: Last Music
+- Client Feature:"My Music" added button: Next Music
+- Client Feature:"My Music" added button: Add new supported types: ".flac", ".aif", ".aiff", ".mp3"
+Maker: Slok
+- Added Friend Code check
+- Added NonalusAntiCheatMenu RPC check
+Maker: Nonalus
+- Added BetterAmongUs RPC152 check
+- Added HostGuard RPC176 check
+- Stop the game when directory has other mods
+Maker: LezaiYa
+- Display game settings in game
+- Hotkeys: F2 Enable/Disable game settings display in game
+Maker: Slok, Elinmei
+- Client Feature: Name Tag Manager
+Maker: Slok
+Inspiration: Town Of Next
+- Tag System in Meetings
+Maker: Slok
+Idea: Slok, Amongus
+Inspiration: Town Of Next
+
+## Remake
+- Overall reconstructed FAC to optimize anti-cheat
+Maker: Slok
+
+## Delete
+- Deleted ~~Client Features: Audio Manager~~
+Reason: Replaced by "Resource Manager"
+Decider: Slok
