@@ -17,6 +17,7 @@ public class MurderPlayerHandler : IRpcHandler
     public bool HandleGame_InTask(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
+        if (IsHideNSeek) return false;
         var target = reader.ReadNetObject<PlayerControl>();
         var resultFlags = (MurderResultFlags)reader.ReadInt32();
 
@@ -29,11 +30,5 @@ public class MurderPlayerHandler : IRpcHandler
         ref bool notify, ref string reason, ref bool ban)
     {
         return true;
-    }
-
-    public bool HandleHideNSeek(PlayerControl sender, MessageReader reader,
-        ref bool notify, ref string reason, ref bool ban)
-    {
-        return false;
     }
 }

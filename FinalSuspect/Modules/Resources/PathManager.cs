@@ -1,4 +1,6 @@
+#if DEBUG
 using System;
+#endif
 using System.IO;
 using FinalSuspect.Attributes;
 

@@ -98,8 +98,7 @@ public static class MainMenuStylePanel
             ModMainMenuManager.Starfield.SetActive(style.StarFieldActive);
             var starGen = ModMainMenuManager.Starfield.GetComponent<StarGen>();
             starGen.SetDirection(new Vector2(0, style.StarGenDire));
-            ModMainMenuManager.BackgroundTexture.GetComponent<SpriteRenderer>().color =
-                style.MainUIColors[0].SetAlpha(1);
+
             var instance = DestroyableSingleton<MainMenuManager>.Instance;
             Color shade = new(0f, 0f, 0f, 0f);
             var standardActiveSprite = instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
@@ -144,6 +143,11 @@ public static class MainMenuStylePanel
                     FormatButtonColor(instance, passiveButton, kvp.Value.Item2, kvp.Value.Item3, kvp.Value.Item4,
                         kvp.Value.Item5);
                 });
+
+            if (ModMainMenuManager.BackgroundTexture)
+                ModMainMenuManager.BackgroundTexture.GetComponent<SpriteRenderer>().color =
+                    style.MainUIColors[0].SetAlpha(1);
+
             var lastAudio = FinalMusic.Musics.FirstOrDefault(x => x.PlayAsMainMenuMusic);
             var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
 

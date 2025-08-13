@@ -185,6 +185,24 @@ public static class HudManagerPatch
         __instance.AbilityButton.gameObject.SetActive(true);
     }
 
+    private static void SetShowInfoPanel()
+    {
+        if (IsFreePlay || !IsInGame) return;
+        var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
+                          DisplayerRoleTagHelper.selectionUI?.activeSelf == true ||
+                          MapBehaviour.Instance.gameObject.activeSelf ||
+                          !ControllerManagerUpdatePatch.ShowSettingsPanel ||
+                          !FinalGameData.IntroDestroyed ||
+                          !ControllerManagerUpdatePatch.ShowHudUI;
+
+        if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)
+        {
+            GameStartManagerPatch.Instance.LobbyInfoPane.DeactivatePane();
+        }
+
+        GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.SetActive(!notShowPane);
+    }
+
     private static int GetLineCount(string text)
     {
         if (string.IsNullOrEmpty(text))
@@ -381,24 +399,7 @@ public static class HudManagerPatch
                 UpdateResult(__instance);
                 SetChatBG(__instance);
                 SetAbilityButtonColor(__instance);
-
-                if (!IsFreePlay && IsInGame)
-                {
-                    var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
-                                      DisplayerRoleTagHelper.selectionUI != null &&
-                                      DisplayerRoleTagHelper.selectionUI.activeSelf ||
-                                      MapBehaviour.Instance.gameObject.activeSelf ||
-                                      !ControllerManagerUpdatePatch.ShowSettingsPanel ||
-                                      !FinalGameData.IntroDestroyed ||
-                                      !ControllerManagerUpdatePatch.ShowHudUI;
-
-                    if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)
-                    {
-                        GameStartManagerPatch.Instance.LobbyInfoPane.DeactivatePane();
-                    }
-
-                    GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.SetActive(!notShowPane);
-                }
+                SetShowInfoPanel();
             }
             catch
             {

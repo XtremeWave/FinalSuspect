@@ -99,16 +99,14 @@ public static class FAC
                 if (handler.HandleAll(pc, sr, ref notify, ref reason, ref ban))
                     return true;
 
-                if (handler.HandleHideNSeek(pc, sr, ref notify, ref reason, ref ban))
-                    return true;
 
                 if (IsLobby && handler.HandleLobby(pc, sr, ref notify, ref reason, ref ban))
-                    {
-                        if (AmongUsClient.Instance.AmHost) return true;
-                        NotificationPopperPatch.NotificationPop(GetString("Warning.RoomBroken"));
-                        notify = false;
-                        return true;
-                    }
+                {
+                    if (AmongUsClient.Instance.AmHost) return true;
+                    NotificationPopperPatch.NotificationPop(GetString("Warning.RoomBroken"));
+                    notify = false;
+                    return true;
+                }
 
                 return (IsInGame && handler.HandleGame_All(pc, sr, ref notify, ref reason, ref ban))
                        || (IsInTask && handler.HandleGame_InTask(pc, sr, ref notify, ref reason, ref ban))

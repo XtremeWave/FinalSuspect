@@ -199,15 +199,9 @@ public class CrossFadeSoundPatch
         if (AudioPlayer.TempTimeSample == null || AudioPlayer.TempTime == null) return;
         var audio = __instance.soundPlayers.ToArray().ToList().First(x => x.Name == name).Player;
         audio.Pause();
-        Test(audio.timeSamples);
-        Test(audio.time);
         audio.time = AudioPlayer.TempTime.Value;
         audio.timeSamples = AudioPlayer.TempTimeSample.Value;
-        Test(audio.timeSamples);
-        Test(audio.time);
         audio.UnPause();
-        Test(audio.timeSamples);
-        Test(audio.time);
         AudioPlayer.TempTimeSample = null;
         AudioPlayer.TempTime = null;
     }

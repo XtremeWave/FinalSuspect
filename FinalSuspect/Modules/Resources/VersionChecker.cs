@@ -173,10 +173,10 @@ public static class VersionChecker
     {
         public static void Postfix()
         {
+            Test(0);
             CustomPopup.Init();
             if (FirstStart && !Main.OfflineMode.Value)
             {
-                Check();
                 StartTasks();
             }
 
@@ -185,6 +185,7 @@ public static class VersionChecker
             NameTagManager.ReloadTag(null);
             ModUpdater.SetUpdateButtonStatus();
             FirstStart = false;
+            Check();
         }
     }
 }

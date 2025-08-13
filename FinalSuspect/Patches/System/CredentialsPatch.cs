@@ -295,8 +295,6 @@ internal class TitleLogoPatch
         var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
         bgRenderer.sprite = style.Sprite;
 
-        if (!(BackgroundTexture = GameObject.Find("BackgroundTexture"))) return;
-        BackgroundTexture.GetComponent<SpriteRenderer>().color = style.MainUIColors[0].SetAlpha(1);
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
@@ -369,6 +367,10 @@ internal class TitleLogoPatch
         var mainButtonsobj = GameObject.Find("Main Buttons");
         mainButtonsobj.transform.position = new Vector3(-3.4f * GetResolutionOffset(),
             mainButtonsobj.transform.position.y, mainButtonsobj.transform.position.z);
+
+        if (!(BackgroundTexture = GameObject.Find("BackgroundTexture"))) return;
+        BackgroundTexture.GetComponent<SpriteRenderer>().color = style.MainUIColors[0].SetAlpha(1);
+
         return;
 
         static void ResetParent(GameObject obj)
@@ -392,7 +394,9 @@ internal class ModManagerLateUpdatePatch
         {
             if (_lastScene != SceneManager.GetActiveScene().name)
             {
+                var last = _lastScene;
                 _lastScene = SceneManager.GetActiveScene().name;
+                if (last is "SplashIntro") return;
                 OnSceneChange(_lastScene);
             }
         }
@@ -417,14 +421,12 @@ internal class ModManagerLateUpdatePatch
 
     private static void OnSceneChange(string name)
     {
-        if (name is "MainMenu" or "MatchMaking")
+        if (name is not ("MainMenu" or "MatchMaking")) return;
+        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+        var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
+        if (audio != null)
         {
-            var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
-            var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
-            if (audio != null)
-            {
-                _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
-            }
+            _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
         }
     }
 }

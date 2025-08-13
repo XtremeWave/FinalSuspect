@@ -42,12 +42,6 @@ public interface IRpcHandler
         return false;
     }
 
-    bool HandleHideNSeek(PlayerControl sender, MessageReader reader, ref bool notify, ref string reason,
-        ref bool ban)
-    {
-        return false;
-    }
-
     int MaxiReceivedNumPerSecond()
     {
         return 5;
