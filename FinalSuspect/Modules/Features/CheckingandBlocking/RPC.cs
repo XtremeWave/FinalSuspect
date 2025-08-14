@@ -176,7 +176,6 @@ internal class RPCHandlerPatch
         var player = FinalPlayerData.AllPlayerData.FirstOrDefault(x => x.NetId == netId)?.Player;
         if (!player) return;
         if (FinalGameData.PlayerVersion.PlayerVersions.ContainsKey(player.GetClientId())) return;
-        Info($"Create Player version for {player.GetRealName()}", "Rpc Version Check");
         var rpcType = (RpcCalls)callId;
         switch (rpcType)
         {

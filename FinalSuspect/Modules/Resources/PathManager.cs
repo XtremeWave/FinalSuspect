@@ -20,7 +20,7 @@ public static class PathManager
     public const string DownloadUrl_GithubMirror =
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
-    public const string DownloadUrl_FangKuaiRemote = "https://dlhk.fangkuai.fun/FinalSuspect//FinalSuspect.dll";
+    public const string DownloadUrl_FangKuaiRemote = "https://dlhk.fangkuai.fun/FinalSuspect/FinalSuspect.dll";
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
 
@@ -177,9 +177,9 @@ public enum FileType
 
 public enum RemoteType
 {
+    FangKuaiRemote,
     GithubMirror,
     GithubMirror_Assets,
-    FangKuaiRemote,
     Gitee,
     Github_Assets,
     Github,

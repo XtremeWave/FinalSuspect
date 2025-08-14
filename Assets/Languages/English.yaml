@@ -15,12 +15,12 @@ Team.Crew: "Team-Crewmate"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>There are {0} impostors in our team</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>There is only 1 impostor among the crowd</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>There is only 1 impostor among the crowd</color>"
 ImpostorNum.Crew: "<color=#8cffff>There are </color><color=#ff1919>{0} impostors</color><color=#8cffff> among us</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>Let evils DOMINATE THE WORLD!</color>"
-IntroText.Imp_Only: "<color=#ff1919>Though alone, you have ENDLESS POWER!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>Though alone, you have ENDLESS POWER!</color>"
 IntroText.Crewmate: "<color=#8cffff>Complete your tasks and find out the impostors!</color>"
 
 # 原版职业 / Vanilla

@@ -20,7 +20,7 @@ public static class AudioPlayer
             return _currentMusic ?? FinalMusic.Musics?.FirstOrDefault(x =>
                 x.CurrentAudioStates is AudiosStates.Playing or AudiosStates.Pausing);
         }
-        set => _currentMusic = value;
+        private set => _currentMusic = value;
     }
 
     public static async void Play(FinalMusic audio, bool asMainMenuMusic = false)
@@ -135,7 +135,13 @@ public static class AudioPlayer
         Play(FinalMusic.Musics[randomIndex]);
     }
 
-    public static void PlayNextTrack()
+    public static void PlayByDirection(bool next)
+    {
+        if (next) PlayNextTrack();
+        else PlayLastTrack();
+    }
+
+    private static void PlayNextTrack()
     {
         if (CurrentMusic == null) return;
         var currentIndex = FinalMusic.Musics.IndexOf(CurrentMusic);
@@ -144,7 +150,7 @@ public static class AudioPlayer
         Play(FinalMusic.Musics[nextIndex]);
     }
 
-    public static void PlayLastTrack()
+    private static void PlayLastTrack()
     {
         if (CurrentMusic == null || FinalMusic.Musics == null || FinalMusic.Musics.Count == 0) return;
         var currentIndex = FinalMusic.Musics.IndexOf(CurrentMusic);

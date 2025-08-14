@@ -15,12 +15,12 @@ Team.Crew: "Team-Bemanningslid"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>Er zijn {0} impostors in ons team</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>Er is maar 1 impostor onder ons</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>Er is maar 1 impostor onder ons</color>"
 ImpostorNum.Crew: "<color=#8cffff>Er zijn </color><color=#ff1919>{0} impostors</color><color=#8cffff> onder ons</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>Laat het kwaad DE WERELD DOMINEREN!</color>"
-IntroText.Imp_Only: "<color=#ff1919>Alleen, maar met EINDELOZE KRACHT!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>Alleen, maar met EINDELOZE KRACHT!</color>"
 IntroText.Crewmate: "<color=#8cffff>Voltooi je taken en ontmasker de impostors!</color>"
 
 # 原版职业 / Vanilla

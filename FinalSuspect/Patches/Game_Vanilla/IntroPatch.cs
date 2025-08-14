@@ -46,12 +46,10 @@ internal class IntroCutscenePatch
 
         __instance.ImpostorText.gameObject.SetActive(true);
 
-        var playerCount = GameData.Instance.PlayerCount;
-        var impostorCount = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(playerCount);
+        var impostorCount = GameManager.Instance.LogicOptions.GetAdjustedNumImpostors(GameData.Instance.PlayerCount);
         var onlyImp = impostorCount == 1;
 
         var impColor = Palette.ImpostorRed;
-        var impColorCode = ColorHelper.ColorToHex(onlyImp ? Palette.DisabledGrey : impColor);
         var teamTitleText = GetString(onlyImp ? "Team.Imp_Only" : "Team.Imp");
         var introText = GetString(onlyImp ? "IntroText.Imp_Only" : "IntroText.Imp");
 
@@ -59,9 +57,8 @@ internal class IntroCutscenePatch
         __instance.TeamTitle.color = impColor;
 
         __instance.ImpostorText.text = onlyImp
-            ? $"<color=#{impColorCode}>{GetString("ImpostorNum.Imp_Only")}\n{introText}"
-            : $"<color=#{impColorCode}" +
-              $"{string.Format(GetString("ImpostorNum.Imp"), impostorCount)}\n{introText}";
+            ? $"{GetString("ImpostorNum.Imp_Only")}\n{introText}"
+            : $"{string.Format(GetString("ImpostorNum.Imp"), impostorCount)}\n{introText}";
 
         __instance.BackgroundBar.material.color = Palette.DisabledGrey;
         StartFadeIntro(__instance, Palette.DisabledGrey, impColor);

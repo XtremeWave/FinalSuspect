@@ -15,12 +15,12 @@ Team.Crew: "クルー陣営"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>味方の中にインポスターが{0}人います</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>この中にインポスターはたった1人だけ</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>この中にインポスターはたった1人だけ</color>"
 ImpostorNum.Crew: "<color=#8cffff>私たちの中に</color><color=#ff1919>インポスターが{0}人</color><color=#8cffff>います</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>悪が世界を支配する！</color>"
-IntroText.Imp_Only: "<color=#ff1919>孤独でも、無限の力を持っている！</color>"
+IntroText.Imp_Only: "<color=#a44c4c>孤独でも、無限の力を持っている！</color>"
 IntroText.Crewmate: "<color=#8cffff>タスクを完了し、インポスターを見つけろ！</color>"
 
 # 原版职业 / Vanilla

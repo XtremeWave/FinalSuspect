@@ -15,12 +15,12 @@ Team.Crew: "크루 팀"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>우리 팀에 임포스터 {0}명이 있습니다</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>군중 속에 임포스터는 단 한 명뿐입니다</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>군중 속에 임포스터는 단 한 명뿐입니다</color>"
 ImpostorNum.Crew: "<color=#8cffff>우리 중에 </color><color=#ff1919>임포스터 {0}명</color><color=#8cffff>이 있습니다</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>악이 세계를 지배하도록 하라!</color>"
-IntroText.Imp_Only: "<color=#ff1919>혼자지만 끝없는 힘을 가졌다!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>혼자지만 끝없는 힘을 가졌다!</color>"
 IntroText.Crewmate: "<color=#8cffff>임무를 완수하고 임포스터를 찾아라!</color>"
 
 # 原版职业 / Vanilla

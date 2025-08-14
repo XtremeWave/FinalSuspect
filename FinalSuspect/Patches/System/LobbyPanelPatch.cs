@@ -26,7 +26,7 @@ internal class LobbyInfoPaneUpdatePatch
         rect.sizeDelta = new Vector2(3f, rect.sizeDelta.y);
 
         DestroyableSingleton<LobbyInfoPane>.Instance.gameObject.GetComponent<AspectPosition>().DistanceFromEdge +=
-            Vector3.forward * -30;
+            Vector3.forward * -60;
     }
 
     public static void Postfix()

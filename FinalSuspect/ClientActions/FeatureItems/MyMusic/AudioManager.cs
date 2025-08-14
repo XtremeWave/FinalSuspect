@@ -8,28 +8,25 @@ using UnityEngine;
 
 namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
 
-#nullable enable
 public static class AudioManager
 {
     public static readonly List<string> Extensions = [".zip", ".wav", ".flac", ".aif", ".aiff", ".mp3"];
 
-    public static void ReloadTag(bool official = true)
+    public static void ReloadTag()
     {
-#nullable disable
-        if (official)
-        {
-            Init();
-            // return;
-        }
-
         try
         {
+            Init();
             var files = Directory.GetFiles(GetLocalPath(LocalType.Resources) + "Musics");
 
             foreach (var filePath in files)
             {
                 var fileName = Path.GetFileName(filePath);
-                if (EnumHelper.GetAllNames<SupportedMusics>().Skip(1).Any(x => fileName.Contains(x)))
+                if (EnumHelper.GetAllNames<SupportedMusics>().Skip(1).Any(x =>
+                    {
+                        var part = x.ToString().Split("__");
+                        return fileName.Contains(part[0]);
+                    }))
                     continue;
 
                 if (string.IsNullOrWhiteSpace(fileName))
@@ -93,30 +90,18 @@ public static class AudioManager
     public static void PlaySound(byte playerID, Sounds sound)
     {
         if (PlayerControl.LocalPlayer.PlayerId != playerID) return;
-        switch (sound)
+
+        var clip = sound switch
         {
-            case Sounds.KillSound:
-                SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.KillSfx, false);
-                break;
-            case Sounds.TaskComplete:
-                SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskCompleteSound,
-                    false);
-                break;
-            case Sounds.TaskUpdateSound:
-                SoundManager.Instance.PlaySound(DestroyableSingleton<HudManager>.Instance.TaskUpdateSound,
-                    false);
-                break;
-            case Sounds.ImpTransform:
-                SoundManager.Instance.PlaySound(
-                    DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx, false, 0.8f);
-                break;
-            case Sounds.Yeehawfrom:
-                SoundManager.Instance.PlaySound(
-                    DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx, false, 0.8f);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(sound), sound, null);
-        }
+            Sounds.KillSound => PlayerControl.LocalPlayer.KillSfx,
+            Sounds.TaskComplete => DestroyableSingleton<HudManager>.Instance.TaskCompleteSound,
+            Sounds.TaskUpdateSound => DestroyableSingleton<HudManager>.Instance.TaskUpdateSound,
+            Sounds.ImpTransform => DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSOtherImpostorTransformSfx,
+            Sounds.Yeehawfrom => DestroyableSingleton<HnSImpostorScreamSfx>.Instance.HnSLocalYeehawSfx,
+            _ => throw new ArgumentOutOfRangeException(nameof(sound), sound, null)
+        };
+        if (clip == null) return;
+        SoundManager.Instance.PlaySound(clip, false);
     }
 }
 

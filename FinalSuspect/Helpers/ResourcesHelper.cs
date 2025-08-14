@@ -8,7 +8,6 @@ public static class ResourcesHelper
     [
         "FinalSuspect-Logo.png",
         "FinalSuspect-Logo-Blurred.png",
-        "LastResult-BG.png",
         "AuthorLogo1.png",
     ];
 
@@ -50,6 +49,7 @@ public static class ResourcesHelper
         "KeyBackground.png",
         "KeyLeftShift.png",
         "KeyRightShift.png",
+        "LastResult-BG.png",
     ];
 
     public static List<string> RemoteDependList =

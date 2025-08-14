@@ -170,7 +170,7 @@ public static class MyMusicPanel
 
         var lastButton = Object.Instantiate(template, CustomBackground.transform);
         lastButton.transform.localPosition = new Vector3(1.3f, -1.88f, -6f);
-        lastButton.name = "NextButton";
+        lastButton.name = "PreciousButton";
         lastButton.Text.text = "|◀";
         lastButton.Background.color = Color.white;
         lastButton.Background.size = new Vector2(0.4f, 0.4f);
@@ -239,7 +239,7 @@ public static class MyMusicPanel
         _timeText.transform.localScale = Vector3.one;
 
         var tmp = _timeText.GetComponent<TextMeshPro>();
-        tmp.text = "PageCount";
+        tmp.text = "TimeData";
         tmp.alignment = TextAlignmentOptions.Left;
 
         _timeText.GetComponent<RectTransform>().sizeDelta = new Vector2(1f, 0.3f);
@@ -374,7 +374,7 @@ public static class MyMusicPanel
         {
             if (!CustomBackground || !CustomBackground.gameObject.active || !_timeText) return;
             var currentMusic = CurrentMusic;
-            if (currentMusic == null)
+            if (currentMusic == null || currentMusic.CurrentAudioStates is AudiosStates.Parsing)
             {
                 _timeText.text = FinalMusic.Musics.Any(x => x.CurrentAudioStates is AudiosStates.Parsing)
                     ? GetString("Tip.Parsing")
@@ -397,7 +397,7 @@ public static class MyMusicPanel
             _timeText.text = $"{formattedCurrentTime}/{formattedClipLength}";
 
             if (formattedCurrentTime != formattedClipLength &&
-                currentSource.clip.length - currentSource.time < 0.1f) return;
+                currentSource.clip.length - currentSource.time >= 0.1f) return;
             HandlePlayMode();
         }
         catch
@@ -411,37 +411,19 @@ public static class MyMusicPanel
         switch ((PlayMode)_playMode)
         {
             case PlayMode.Repeat:
-                if (!press) break;
-                if (next)
-                {
-                    PlayNextTrack();
-                }
-                else
-                {
-                    PlayLastTrack();
-                }
-
+                if (press)
+                    PlayByDirection(next);
                 break;
+
             case PlayMode.Sequential:
-                if (!press)
-                {
-                    PlayNextTrack();
-                    break;
-                }
-
-                if (next)
-                {
-                    PlayNextTrack();
-                }
-                else
-                {
-                    PlayLastTrack();
-                }
-
+                if (!press) next = true;
+                PlayByDirection(next);
                 break;
+
             case PlayMode.Random:
                 PlayRandomTrack();
                 break;
+
             default:
                 throw new ArgumentOutOfRangeException();
         }

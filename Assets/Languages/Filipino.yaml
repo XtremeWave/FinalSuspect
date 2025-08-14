@@ -15,12 +15,12 @@ Team.Crew: "Team-Crewmate"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>May {0} impostor sa aming team</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>Isang impostor lang sa grupo</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>Isang impostor lang sa grupo</color>"
 ImpostorNum.Crew: "<color=#8cffff>May </color><color=#ff1919>{0} impostor</color><color=#8cffff> sa amin</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>Hayaan ang masama na DOMINAHIN ANG MUNDO!</color>"
-IntroText.Imp_Only: "<color=#ff1919>Bagamat nag-iisa, may WALANG HANGGANG KAPANGYARIHAN ka!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>Bagamat nag-iisa, may WALANG HANGGANG KAPANGYARIHAN ka!</color>"
 IntroText.Crewmate: "<color=#8cffff>Kumpletuhin ang mga task at hanapin ang impostor!</color>"
 
 # 原版职业 / Vanilla

@@ -15,12 +15,12 @@ Team.Crew: "Equipo-Tripulante"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>Hay {0} impostores en nuestro equipo</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>Solo hay 1 impostor entre nosotros</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>Solo hay 1 impostor entre nosotros</color>"
 ImpostorNum.Crew: "<color=#8cffff>Hay </color><color=#ff1919>{0} impostores</color><color=#8cffff> entre nosotros</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>¡Que el mal DOMINE EL MUNDO!</color>"
-IntroText.Imp_Only: "<color=#ff1919>¡Aunque estés solo, tienes un PODER INFINITO!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>¡Aunque estés solo, tienes un PODER INFINITO!</color>"
 IntroText.Crewmate: "<color=#8cffff>¡Completa tus tareas y encuentra a los impostores!</color>"
 
 # 原版职业 / Vanilla

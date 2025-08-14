@@ -15,12 +15,12 @@ Team.Crew: "Foireann-Fhoireann"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>Tá {0} fhealltóir inár bhfoireann</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>Níl ach 1 fhealltóir i measc an slua</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>Níl ach 1 fhealltóir i measc an slua</color>"
 ImpostorNum.Crew: "<color=#8cffff>Tá </color><color=#ff1919>{0} fhealltóir</color><color=#8cffff> i meascainn</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>Lig don olc DOMHAN A RIALÚ!</color>"
-IntroText.Imp_Only: "<color=#ff1919>Cé uaigneach, tá CUMHACHT GAN DEIREADH agat!</color>"
+IntroText.Imp_Only: "<color=#a44c4c>Cé uaigneach, tá CUMHACHT GAN DEIREADH agat!</color>"
 IntroText.Crewmate: "<color=#8cffff>Críochnaigh do thascanna agus aimsigh na fealltóirí!</color>"
 
 # 原版职业 / Vanilla

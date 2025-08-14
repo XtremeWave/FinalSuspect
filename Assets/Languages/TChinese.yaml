@@ -15,12 +15,12 @@ Team.Crew: "船員陣營"
 
 # 伪装者数量文字 / Impostor Text
 ImpostorNum.Imp: "<color=#ff1919>團隊之中有{0}名偽裝者</color>"
-ImpostorNum.Imp_Only: "<color=#ff1919>人群之中僅有1名偽裝者</color>"
+ImpostorNum.Imp_Only: "<color=#8d8d8d>人群之中僅有1名偽裝者</color>"
 ImpostorNum.Crew: "<color=#8cffff>我們之中有</color><color=#ff1919>{0}</color><color=#8cffff>名</color><color=#ff1919>偽裝者</color>"
 
 # 阵营开场
 IntroText.Imp: "<color=#ff1919>讓邪惡的力量籠罩整個世界！</color>"
-IntroText.Imp_Only: "<color=#ff1919>儘管獨自一人，仍有無窮力量！</color>"
+IntroText.Imp_Only: "<color=#a44c4c>儘管獨自一人，仍有無窮力量！</color>"
 IntroText.Crewmate: "<color=#8cffff>完成你的任務，揪出那群壞蛋！</color>"
 
 # 原版职业 / Vanilla

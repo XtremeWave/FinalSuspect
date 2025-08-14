@@ -17,7 +17,7 @@ public static class ResourcesPanel
 {
     private static int _numItems;
 
-    private static readonly Dictionary<string, CurrentState> PackageStates = new();
+    private static readonly Dictionary<string, CurrentState> packageStates = new();
     public static SpriteRenderer CustomBackground { get; set; }
     private static GameObject Slider { get; set; }
     private static Dictionary<string, GameObject> Items { get; set; }
@@ -97,7 +97,7 @@ public static class ResourcesPanel
 
         foreach (var (packageName, fileList) in AllResources)
         {
-            PackageStates.TryAdd(packageName, CurrentState.None);
+            packageStates.TryAdd(packageName, CurrentState.None);
             _numItems++;
 
             var button = Object.Instantiate(buttonPrefab, scroller.Inner);
@@ -126,11 +126,26 @@ public static class ResourcesPanel
                 {
                     var type = GetType(name);
                     var path = GetLocalFilePath(type, name);
+                    switch (type)
+                    {
+                        case FileType.SoundEffects:
+                        case FileType.Images:
+                            break;
+                        case FileType.Musics:
+                            return AudioManager.ConvertExtension(ref path);
+                        case FileType.Unknown:
+                        case FileType.Depends:
+                        case FileType.ModNews:
+                        case FileType.Languages:
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
                     return File.Exists(path);
                 }))
-                PackageStates[packageName] = CurrentState.Complete;
+                packageStates[packageName] = CurrentState.Complete;
 
-            var state = PackageStates[packageName];
+            var state = packageStates[packageName];
             switch (state)
             {
                 case CurrentState.IsDownloading:
@@ -160,7 +175,7 @@ public static class ResourcesPanel
             passiveButton.OnClick = new Button.ButtonClickedEvent();
             passiveButton.OnClick.AddListener(new Action(() =>
             {
-                PackageStates[packageName] = CurrentState.IsDownloading;
+                packageStates[packageName] = CurrentState.IsDownloading;
                 RefreshTagList();
 
                 var downloadTasks = (from fileName in fileList
@@ -176,13 +191,14 @@ public static class ResourcesPanel
                     }
                     finally
                     {
-                        PackageStates[packageName] =
+                        packageStates[packageName] =
                             allSucceeded ? CurrentState.DownLoadSucceeded : CurrentState.DownLoadFailed;
                         _ = new MainThreadTask(RefreshTagList, "Notice");
                         _ = new LateTask(() =>
                         {
-                            PackageStates[packageName] = CurrentState.None;
+                            packageStates[packageName] = CurrentState.None;
                             RefreshTagList();
+                            AudioManager.ReloadTag();
                             MyMusicPanel.RefreshTagList();
                         }, 3F, "Refresh Tag List");
                     }

@@ -140,8 +140,10 @@ public static class GameStartManagerPatch
                 _hideName.enabled = false;
             }
 
-            if (!Main.AutoStartGame.Value || !AmongUsClient.Instance.AmHost || GameStartManager.Instance.startState ==
-                GameStartManager.StartingStates.Starting) return true;
+            if (!Main.AutoStartGame.Value
+                || !AmongUsClient.Instance.AmHost
+                || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
+                || IsInGame) return true;
             _updateTimer++;
             if (_updateTimer < 50) return true;
             _updateTimer = 0;

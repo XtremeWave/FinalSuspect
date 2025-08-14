@@ -60,7 +60,7 @@ public static class ResourcesDownloader
             for (var i = retryTimes; i < 4; i++)
             {
                 var remoteType = (RemoteType)i;
-                var url = urlGenerator(remoteType);
+                var url = urlGenerator(remoteType).Replace(file, currentFile);
 
                 if (!IsValidUrl(url))
                 {
@@ -81,7 +81,7 @@ public static class ResourcesDownloader
 
                     if (IsBlockedPage(downloadFileTempPath))
                     {
-                        lastError = $"下载被拦截，返回了HTML页面: {url}";
+                        lastError = $"BLOVKED! return HTML: {url}";
                         Error(lastError, "Download Resources", false);
                         File.Delete(downloadFileTempPath);
                         continue;
