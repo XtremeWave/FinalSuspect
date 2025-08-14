@@ -122,17 +122,21 @@ public static class ResourcesPanel
             var enable = true;
             var preview = $"{GetString($"Package.{packageName}")}";
 
+            var tempFileList = new List<string>();
             if (fileList.All(name =>
                 {
                     var type = GetType(name);
                     var path = GetLocalFilePath(type, name);
+                    bool exists;
                     switch (type)
                     {
                         case FileType.SoundEffects:
                         case FileType.Images:
+                            exists = File.Exists(path);
                             break;
                         case FileType.Musics:
-                            return AudioManager.ConvertExtension(ref path);
+                            exists = AudioManager.ConvertExtension(ref path);
+                            break;
                         case FileType.Unknown:
                         case FileType.Depends:
                         case FileType.ModNews:
@@ -141,7 +145,9 @@ public static class ResourcesPanel
                             throw new ArgumentOutOfRangeException();
                     }
 
-                    return File.Exists(path);
+                    if (exists)
+                        tempFileList.Add(name);
+                    return exists;
                 }))
                 packageStates[packageName] = CurrentState.Complete;
 
@@ -178,7 +184,7 @@ public static class ResourcesPanel
                 packageStates[packageName] = CurrentState.IsDownloading;
                 RefreshTagList();
 
-                var downloadTasks = (from fileName in fileList
+                var downloadTasks = (from fileName in fileList.Except(tempFileList)
                     let type = GetType(fileName)
                     select ResourcesDownloader.StartDownloadAsPackage(packageName, type, fileName)).ToList();
                 var allSucceeded = false;
