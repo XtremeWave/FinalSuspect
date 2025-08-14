@@ -1,0 +1,138 @@
+﻿#Number:100008
+#Title:v1.2 Funzionalità & Ottimizzazioni
+#SubTitle:★★★★Il nostro contenuto di aggiornamento★★★★
+#ShortTitle:★Introduzione all'aggiornamento v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Questo file copre le precauzioni e l'introduzione delle funzionalità! Leggi attentamente questo file!
+## Precauzioni!
+- Se individui un truffatore, ciò significa che ha truffato in passato o è nella lista nera dei mod, ma non significa che stia truffando quando lo vedi. 
+Esempio: Se incontri (Invalid RPC:151), potrebbero essere utenti di **「Better Among Us」**, ma FS non adatta il suo RPC e conferma il truffatore che invia un RPC non valido.
+Non preoccuparti, grazie ai nostri metodi di riconoscimento unici, non sarai considerato un truffatore da loro!
+- Se si verifica un bug, fai clic su "Funzionalità del client - Dump dei log" per esportare i log e inviarceli!
+- Oltre al "简体中文" e all' "English", le altre lingue sono tradotte da AI. Contattaci se la traduzione non è corretta!
+- Se attivi la modalità offline, il mod smetterà di acquisire parole vietate, annunci, risorse remote e verifica degli aggiornamenti, e non scaricherà le risorse necessarie. Questo potrebbe portare a mancare aggiornamenti critici o a incontrare errori sconosciuti. Usalo con cautela!
+
+## Ottimizzazioni - 26
+*Global:* 
+- Cursor del mod
+- Icona del mod
+*Menu principale:* 
+- Animazione di avvio del gioco
+- Animazione di caricamento - Illustrazioni dei ruoli
+- Layout dell'interfaccia del menu principale
+- Sfondo del menu principale
+*Ricerca online:* 
+- Ottimizzazione della visualizzazione del nome della lobby 
+- Nome del server privato colorato
+*InGame-Global:* 
+- Visualizzazione dei FPS e del server
+- Visualizzazione della versione del mod
+- Ottimizzazione del colore della chat bubble 
+- Ottimizzazione del background della chat bubble
+- Ottimizzazione del motivo di disconnessione
+- Ottimizzazione del controllo dei nomi ripetuti
+*InGame-Lobby:* 
+- Ottimizzazione del background delle informazioni della lobby
+- Interfaccia di modifica delle impostazioni di gioco colorata
+- Ottimizzazione del background della modifica delle impostazioni di gioco
+- Interfaccia di visualizzazione delle impostazioni di gioco colorata
+- Aggiunto logo del team nella lobby
+*InGame-Match:* 
+- Animazione di inizio round
+- Colorazione della minimappa in base alla tua squadra e ruolo
+- Colorazione diversa in base al tuo ruolo
+- Colorazione del testo dei pulsanti delle abilità
+- Colorazione del testo del cooldown dei pulsanti delle abilità
+- Visualizzazione del giocatore che lascia il gioco
+*GameResult:*
+- Ottimizzazione dei testi dei risultati
+
+## Funzionalità - 53
+*Global:(Impostazioni-Client Settings)*
+- Dump dei log
+- Cancellazione automatica dei log
+- Passaggio a Vanilla
+- Gestore delle risorse (Solo nel menu principale)
+- Gestore delle etichette dei nomi (Solo nel menu principale)
+- La mia musica (Supporto per musica personalizzata, tipo: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Cambio stile del menu principale
+*Caricamento:*
+- Download automatico delle risorse remote del mod (Uscita automatica dal gioco se il download delle risorse critiche fallisce)
+*Menu principale:*
+- Controllo automatico degli aggiornamenti
+*Ricerca online:*
+- Visualizzazione della piattaforma del host e colorazione del nome della lobby in base a essa
+- Visualizzazione del codice della stanza
+- Visualizzazione della percentuale di tempo rimanente
+- Più opzioni di server
+- Visualizzazione del nome del host
+*InGame-Global:*
+- Anti-tradu (FAC 2.0)
+- Protezione del client (Difesa dagli hacker che attaccano direttamente l'eseguibile)
+- Controllo e blocco delle parole vietate
+- Sblocco dei FPS (Da 60FPS a 165FPS)
+- Espulsione automatica dei giocatori che rispettano determinate condizioni
+*InGame-Lobby:*
+- Visualizzazione della piattaforma e delle informazioni del client del giocatore
+- Avvio automatico del gioco quando la lobby è piena
+- Riconoscimento degli altri giocatori che hanno installato FS
+- Visualizzazione del tempo rimanente (Funziona solo se l'host non ha modificato)
+*InGame-Match:*
+- Visualizzazione della scena e dei ruoli
+- Visualizzazione del processo delle missioni/conteggio delle uccisioni
+- Zoom avanti/indietro usando la rotella del mouse (Solo in modalità allenamento, gioco locale, nella lobby e dopo la morte quando non sei l'angelo custode)
+- Visualizzazione del ruolo, del processo delle missioni/conteggio delle uccisioni e della posizione di ogni giocatore dopo la morte quando non sei l'angelo custode
+- Visualizzazione delle posizioni di ogni giocatore e dei corpi nella minimappa dopo la morte quando non sei l'angelo custode
+- Visualizzazione della ragione della morte e degli omicidi
+- Visualizzazione degli ultimi risultati dopo la morte
+- Colorazione del nome quando si tracciano altri giocatori attraverso lo spettro
+- Uova di Pasqua nella mappa di aprile
+- Sistema di etichettatura nelle riunioni (È possibile etichettare altri giocatori per ricordare i loro ruoli)
+- Visualizzazione del progresso generale delle missioni in percentuale
+*Risultati:*
+- Riepilogo (Ruolo, progresso delle missioni/conteggio delle uccisioni, ragione della morte e omicidio)
+- Ritorno automatico alla lobby
+*Tasti di scelta rapida-Global:*
+- F4: Schermo intero
+- F10: Apri la directory radice del gioco
+- F11: Cambia risoluzione
+- Ctrl+F1: Dump dei log
+- Ctrl+F2: Attiva/Disattiva la possibilità di esportare i log durante le partite (Solo per l'host)
+*Tasti di scelta rapida-Menu principale:*
+- Tab: Nascondi interfaccia utente
+*Tasti di scelta rapida-Chat:*
+- Ctrl+C: Copia il testo nella tua casella di chat
+- Ctrl+V: Incolla il testo nella tua casella di chat
+- Ctrl+X: Taglia il testo nella tua casella di chat
+- ↑: Traccia la tua ultima cronologia di chat
+- ↓: Traccia la tua prossima cronologia di chat
+*Tasti di scelta rapida-Ricerca online:*
+- LShift: Unisciti all'ultima stanza a cui hai partecipato
+- RShift: Unisciti alla stanza con il codice della stanza negli appunti
+*Tasti di scelta rapida-InGame:*
+- F1: Mostra l'introduzione e l'illustrazione del tuo ruolo
+- F2: Mostra/Nascondi informazioni sulle impostazioni del gioco
+*Tasti di scelta rapida-Lobby:*
+- Shift: Salta il countdown di inizio gioco (Solo per l'host)
+- C: Resetta il countdown di inizio gioco (Solo per l'host)
+
+*Opzioni:(Impostazioni-Client Settings) - 15*
+- Cambia tipo di outfit
+[Modalità classica - Modalità cavallo del 1º aprile - Modalità lunga del 1º aprile]
+- Sblocca FPS
+- Espelli giocatori con codici amici anomali
+- Espelli giocatori con soprannomi vietati
+- Espelli giocatori bannati
+- Blocca parole vietate
+- Avvia automaticamente il gioco quando la lobby è piena
+- Ritorna automaticamente alla lobby quando il gioco finisce
+- Disattiva la musica del gioco Vanilla
+- Attiva anti-tradu
+- Attiva il guardiano del client (Sperimentale)
+- Mostra la piattaforma del giocatore e le informazioni del client
+- Usa il cursore del mod
+- Modalità di avvio rapido
+- Modalità offline (Sperimentale)
+*Opzioni:(Altre)*
+- Cambia stile della mappa (Solo in The Skeld, e il pulsante è nella sicurezza)

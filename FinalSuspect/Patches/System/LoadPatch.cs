@@ -105,7 +105,6 @@ public static class LoadPatch
         var logoAnimator = GameObject.Find("LogoAnimator");
         logoAnimator.SetActive(false);
 
-
         CheckForListResources(ref ResourcesHelper.PreReadyRemoteImageList, FileType.Images);
         CheckForListResources(ref ResourcesHelper.PreReadyRemoteMusicList, FileType.Musics);
         yield return DownloadResources(ResourcesHelper.PreReadyRemoteImageList, FileType.Images,

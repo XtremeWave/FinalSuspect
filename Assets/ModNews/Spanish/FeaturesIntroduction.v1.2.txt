@@ -1,0 +1,139 @@
+﻿#Number:100008
+#Title:v1.2 Funcionalidades y Optimizaciones
+#SubTitle:★★★★Contenido de nuestra actualización★★★★
+#ShortTitle:★Introducción a la Actualización v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Este archivo cubre advertencias y la introducción de funciones. ¡Por favor, léalo con atención!
+## Advertencia!
+- Si detectas a un tramposo, eso significa que han engañado anteriormente o están en la lista negra de mods, pero no significa que estén engañando en el momento en que los detectas.
+Ejemplo: Si encuentras (Invalid RPC:151), es posible que sean usuarios de **「Better Among Us」**, pero FS no adapta su RPC, y FS confirma que el tramposo que envía un RPC no válido.
+Por supuesto, no te preocupes, porque nuestros métodos de reconocimiento únicos, no serás considerado un tramposo por ellos.
+- Si ocurre un error, haga clic en "Características del Cliente - Volcar Registros" para volcar el registro y enviárnoslos.
+- Excepto "简体中文" y "English", los demás idiomas son traducidos por IA. Ponte en contacto con nosotros si la traducción no es correcta.
+- Si habilita el modo sin conexión, el mod dejará de adquirir palabras prohibidas, anuncios, recursos remotos y comprobación de actualizaciones, y no descargará recursos necesarios. Esto podría resultar en perder actualizaciones críticas o encontrarse con errores desconocidos. ¡Usa con cuidado!
+
+# Español
+## Optimizaciones - 26
+*Global:* 
+- Cursor del mod
+- Ícono del mod
+*Menú Principal:* 
+- Animación de inicio del juego
+- Animación de carga - Ilustraciones de personajes
+- Diseño de la interfaz de usuario del menú principal
+- Fondo del menú principal
+* Búsqueda en línea:* 
+- Optimizado el nombre de la sala de espera 
+- Nombre del servidor privado en colores
+*En el juego - Global:* 
+- FPS y visualización del servidor
+- Visualización de la versión del mod
+- Optimizado el color de la burbuja de chat 
+- Optimizado el fondo de la burbuja de chat
+- Optimizado el motivo de desconexión
+- Optimizado el chequeo de nombres repetidos
+*En el juego - Sala de espera:* 
+- Optimizado el fondo de información de la sala de espera
+- Interfaz de edición de configuración del juego en colores
+- Optimizado el fondo de edición de configuración del juego
+- Interfaz de visualización de configuración del juego en colores
+- Agregado el logo del equipo en la sala de espera
+*En el juego - Partidas:* 
+- Animación de inicio de ronda
+- Colorear el mini mapa según tu equipo y rol
+- Diferenciar colores según tu rol
+- Colorear el texto de los botones de habilidades
+- Colorear el texto de enfriamiento de los botones de habilidades
+- Mostrar al jugador que abandona el juego
+*Resultado del juego:*
+- Optimizado el texto de los resultados
+
+## Funcionalidades - 53
+*Global:(Configuración-Configuración del Cliente)*
+- Volcar registros
+- Borrar registros automáticos
+- Cambiar a la versión original
+- Administrador de recursos(Solo se usa en el menú principal)
+- Administrador de etiquetas de nombre(Solo se usa en el menú principal)
+- Mi Música(Admite música personalizada, tipo: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Cambiar el estilo del menú principal
+*Carga:*
+- Descarga automática de recursos de mods remotos(Salir automáticamente del juego si falla la descarga de recursos críticos)
+*Menú Principal:*
+- Verificación automática de actualizaciones
+* Búsqueda en línea:*
+- Mostrar la plataforma del anfitrión y colorear el nombre de la sala según ello
+- Mostrar el código de la sala
+- Mostrar el porcentaje de tiempo restante
+- Más opciones de servidores
+- Mostrar el nombre del anfitrión
+*En el juego - Global:*
+- Sistema Anti-Cheat Finalizado (FAC 2.0)
+- Protección del cliente(Defender contra los hackers que atacan directamente el ejecutable)
+- Verificación y bloqueo de palabras prohibidas
+- Desbloquear FPS(De 60FPS a 165FPS)
+- Expulsar automáticamente a los jugadores que cumplan ciertas condiciones
+*En el juego - Sala de espera:*
+- Mostrar la plataforma y la información del cliente del jugador
+- Iniciar automáticamente el juego cuando la sala esté llena
+- Saber qué otros jugadores tienen instalado FS
+- Mostrar el tiempo restante(Solo funciona si el anfitrión no ha cambiado)
+*En el juego - Partidas:*
+- Mostrar la escena y los roles
+- Mostrar el progreso de las tareas/contabilizar muertes
+- Acercar/alejar usando la rueda del ratón(Solo se usa en modo de práctica, juego local, en la sala de espera y después de morir cuando no eres el ángel guardián)
+- Mostrar el rol, el progreso de las tareas/contabilizar muertes y la posición de cada jugador después de morir cuando no eres el ángel guardián
+- Mostrar las posiciones de cada jugador y de los cuerpos en el mini mapa después de morir cuando no eres el ángel guardián
+- Mostrar la razón de muerte y los asesinatos
+- Mostrar los últimos resultados después de morir
+- Colorear el nombre al rastrear a otro jugador al acecharlo
+- Huevos de Pascua en el mapa de Abril
+- Sistema de etiquetas en las reuniones(Puedes etiquetar a otros jugadores para recordar sus roles)
+- Mostrar el progreso general de las tareas en porcentaje
+*Resultados:*
+- Resumen(Rol, progreso de las tareas/contabilizar muertes, razón de muerte y asesinato)
+- Regresar automáticamente a la sala de espera
+*Atajos de teclado - Global:*
+- F4: Pantalla completa
+- F10: Abrir la carpeta raíz del juego
+- F11: Cambiar la resolución
+- Ctrl+F1: Volcar registro
+- Ctrl+F2: Cambiar si los registros pueden volcarse durante las partidas(Solo el anfitrión)
+*Atajos de teclado - Menú Principal:*
+- Tab: Ocultar interfaz de usuario
+*Atajos de teclado - Chat:*
+- Ctrl+C: Copiar texto en tu cuadro de chat
+- Ctrl+V: Pegar texto en tu cuadro de chat
+- Ctrl+X: Cortar texto en tu cuadro de chat
+- ↑: Rastrear tu historial de chat anterior
+- ↓: Rastrear tu historial de chat siguiente
+*Atajos de teclado - Búsqueda en línea:*
+- LShift: Unirse a la última sala a la que te uniste
+- RShift: Unirse a una sala con el código de la sala en tu portapapeles
+*Atajos de teclado - En el juego:*
+- F1: Mostrar la introducción de tu rol e ilustración
+- F2: Mostrar/ocultar información de configuración del juego
+*Atajos de teclado - Sala de espera:*
+- Shift: Saltar la cuenta atrás para comenzar el juego(Solo el anfitrión)
+- C: Reiniciar la cuenta atrás para comenzar el juego(Solo el anfitrión)
+
+*Opciones:(Configuración-Configuración del Cliente) - 15*
+- Cambiar el tipo de atuendo
+[Modo Clásico - Modo Caballo del Día de los Inocentes - Modo Largo del Día de los Inocentes]
+- Desbloquear FPS
+- Expulsar jugadores con códigos de amigo anormales
+- Expulsar jugadores que usan apodos prohibidos
+- Expulsar jugadores prohibidos
+- Bloquear palabras prohibidas
+- Iniciar automáticamente el juego cuando esté lleno
+- Regresar automáticamente a la sala de espera cuando termine el juego
+- Deshabilitar la música del juego original
+- Habilitar el sistema anti-trampas
+- Habilitar el Guardian del Cliente (Experimental)
+- Mostrar la plataforma del jugador y la información del cliente
+- Usar el cursor del mod
+- Modo de lanzamiento rápido
+- Modo sin conexión(Experimental)
+*Opciones:(Otras)*
+- Cambiar el estilo del mapa(Solo en The Skeld, y el botón está en seguridad)

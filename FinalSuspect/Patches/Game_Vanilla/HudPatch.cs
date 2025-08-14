@@ -188,19 +188,19 @@ public static class HudManagerPatch
     private static void SetShowInfoPanel()
     {
         if (IsFreePlay || !IsInGame) return;
-        var notShowPane = DestroyableSingleton<HudManager>.Instance.Chat.IsOpenOrOpening ||
-                          DisplayerRoleTagHelper.selectionUI?.activeSelf == true ||
-                          MapBehaviour.Instance.gameObject.activeSelf ||
-                          !ControllerManagerUpdatePatch.ShowSettingsPanel ||
-                          !FinalGameData.IntroDestroyed ||
-                          !ControllerManagerUpdatePatch.ShowHudUI;
 
-        if (GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.activeSelf && notShowPane)
+        var notShowPane =
+            DestroyableSingleton<HudManager>.Instance?.Chat?.IsOpenOrOpening == true ||
+            MapBehaviour.Instance?.gameObject.activeSelf == true ||
+            !ControllerManagerUpdatePatch.ShowSettingsPanel ||
+            !FinalGameData.IntroDestroyed ||
+            DisplayerRoleTagHelper.selectionUI?.activeSelf == true;
+        if (DestroyableSingleton<LobbyInfoPane>.Instance?.gameObject.activeSelf == true && notShowPane)
         {
-            GameStartManagerPatch.Instance.LobbyInfoPane.DeactivatePane();
+            DestroyableSingleton<LobbyInfoPane>.Instance.DeactivatePane();
         }
 
-        GameStartManagerPatch.Instance.LobbyInfoPane.gameObject.SetActive(!notShowPane);
+        DestroyableSingleton<LobbyInfoPane>.Instance?.gameObject.SetActive(!notShowPane);
     }
 
     private static int GetLineCount(string text)

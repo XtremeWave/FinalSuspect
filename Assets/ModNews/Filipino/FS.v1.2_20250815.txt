@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Naninindigan sa susunod na pagkakataon sa iyo!★★★★
+#ShortTitle:★Bersyon Update v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Filipino
+Mula sa v1.2, natapos na ang pag-unlad ng tampok ng "Final Suspect"!
+Sa hinaharap, ang mod ay magkumpuni sa pagpapataw ng mga bug at pagpapalit-palit ng bersyon, at kadalasan ay hindi o kumpleto na magdaragdagan ng mga bagong tampok.
+Matapos umalis kay XtremeWave, magkumpuni si Slok sa isang bagong laro na "EmberVeins".
+Sa parehong oras, magkumpuni si XtremeWave sa maramihang mga proyekto, kabilang ang isang bagong proyekto ng Among Us!
+Naninindigan ko sa susunod na pagkakataon sa iyo!
+
+## Kinakailangang Bersyon
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Impormasyon ng Bersyon ng Modo
+- Bersyon ng Assembly: v1.2.0
+- Uri ng Bersyon: Release
+- Numero ng Build: 1
+
+## Nilalaman ng Update
+- Pagpapataw ng mga Bug: 23
+- Pagpapanaglaban: 10
+- Pagpapabago: 17
+- Bagong Nilalaman: 37
+- Pagpapalitan: 1
+- Pagtanggal: 1
+
+## Nagtrabaho
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [White Coffee]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Pagpapataw ng mga Bug
+- Naayos ang problema sa pagpapagana ng "Mabilis na Mode ng Pagsisimula"
+- Naayos ang problema sa paglikha ng mga datos ng mode ng pagsasanay
+- Naayos ang maling pagpapakita ng mga bangkay sa mini map
+- Naayos ang maling kulay ng mga bangkay sa mini map
+- Naayos ang problema sa pagpapagana ng estilo ng Halloween
+- Naayos ang problema sa pagbasa ng mga log ng update.
+- Naayos ang problema sa pagpapakita ng kulay ng animasyon ng pagsisimula kapag ipinakikilala ang mga papel.
+- Naayos ang problema na hindi gumagana ang animasyon ng pagloload sa pinakabagong bersyon
+- Naayos ang problema sa pagloload ng mga bawal na salita
+- Naayos ang maling pagpapakita ng mga gawain kapag pinagbanta ang komunikasyon
+- Naayos ang problema sa paghahanap ng impormasyon sa lobby
+- Naayos ang maling pagpapakita ng mga tip sa kaliwa ilalim ng Among Us
+- Naayos ang problema na hindi nakakulay ang mga nickname ng mga player sa mga tip sa kaliwa ilalim
+- Naayos ang pagtigil-tigil kapag pinindot ang F1 para ipakita ang pagpapakilala ng papel
+- Naayos ang problema na hindi tama ang pagkakasapat ng mga pangalan
+- Naayos ang problema na ang pagpatay sa eksaktong petsa na magsisimula ang pagpupulong ay itinuturing na paglilinlang
+- Naayos ang problema na ang pagpatay ng client ay maaaring magdulot ng maling paghuhukom ng anti-cheat
+- Naayos ang problema na ang pinagpapanahong audio file ay hindi maaaring maunlad nang wasto
+Fixer: Slok
+- Naayos ang problema na hindi maaaring gamitin ang pagka-haunted kapag "Automatically return to lobby when game ends" ay naka-enable
+Fixer: Slok
+Reporter: Emperador Qin Shi Huang
+- Naayos ang problema na hindi maaaring bisitahin ang tindahan kapag "Automatically return to lobby when game ends" ay naka-enable
+Fixer: Slok
+Reporter: QingFeng
+- Naayos ang problema na hindi gumagana ang blacklist
+Fixer: LezaiYa
+Reporter: Chief of Police Little Blue
+- Naayos ang problema na hindi gumagana ang LShift at RShift
+Fixer: Elinmei
+- Naayos ang problema ng "April Fools' Horse Mode" na nabagsak
+Source: Town Of Host : Enhanced
+
+## Pagpapanaglaban
+- Pagpapanahon ng screen ng pagloload upang mapabuti ang pagpapatakbo ng mga code
+- Ginagamit ang asynchronous method upang basahin ang mga bawal na salita upang maiwasan ang pagbukad ng thread
+- Ginagamit ang asynchronous method upang matapos ang pagpapatotoo ng update upang maiwasan ang pagbukad ng thread
+- Ang mga bawal na salita ay nai-encrypt upang maiwasan ang mga remote bans.
+- Ang logika ng mga bawal na salita ay muli isinulat
+- Pinabuti ang anti-cheat
+- Pinabuti ang pangkalahatang pagpapatakbo ng mga code
+- Pinabuti ang format ng code
+- Pinabuti ang format ng file ng wika
+- Pinabuti ang bilis ng "Mabilis na Mode ng Pagsisimula"
+Maker: Slok
+
+## Pagpapabago
+- Ang mga anunsyo ng mod ay babasahin kapag nagpapabalisa ang laro, sa halip na ilimbag sa lokal
+- Pilit matapos ang proseso ng laro sa halip na tanggalin ang mga hindi kailangang mga file ng mod
+- Papayagang mag-appear ang anunsyo matapos matagumpay na i-load ang anunsyo ng mod
+- Ang resolusyon ay hindi pilit magbago
+- Pinabago ang kulay ng cooldown ng skill
+- Ang mga tip sa kaliwang ilalim ay itinakda sa tuktok
+- Ang mga listahan ng server ay hindi pilit mababago
+- Ang pag-update ng file ng wika ay hindi matatagpuan sa pamamagitan ng pagdaragdag ng mga file
+- "Tanggihan ang mga player na hindi nakarehistro" ay binago sa "Tanggihan ang mga player na may abnormal na Friend Codes"
+- "Disable Anti-cheat" ay binago sa "Enable Anti-cheat"
+- Ang kulay ng button ng summary ng papel ay nagbabago ayon sa kulay ng papel
+- Lumabas si Slok mula sa koponan "XtremeWave" at naging personal na mod
+- Ang pagpapakita ng impormasyon sa "Aking Muzika" ay itinakda
+- Pinabago ang estilo ng button ng pagbabago ng pahina sa "Aking Muzika"
+- Pinabago ang estilo ng button ng paglalarawan sa "Aking Muzika"
+- Pinabago ang paraan ng pagdaragdag ng mga custom music sa "Aking Muzika"
+Maker: Slok
+- Pinapayagan na gamitin ang "Baguhin ang Uri ng Outfit" sa mga laro
+Source: Town Of Host: Enhanced
+
+## Bagong Nilalaman
+- Awtomatikong matututong maglabas ng laro kapag nabigo ang pag-download ng mga mahahalagang resource
+- Mga Pagpipilian ng Kliyente: Mode ng Offline (Eksperimento)
+Maker: Slok
+Idea: QingFeng
+- Pagkilala sa mga programa o mods na naglilinlang
+- Lahat ng RPC log check at higit pang deteksyon ng RPC na naglilinlang
+- UI ay nagpapabago sa lahat ng mga resolusyon 
+- Ipakita ang pangalan ng host sa listahan ng lobby
+- Alisin ang mga espasyo sa dulo ng pangalan upang maiwasan ang mga pangalan na paulit-ulit
+- Palitan ang mga espasyo sa pangalan sa mga guhit pahilis
+- mga itlog ng Easter ng April Fool's
+- Ipakita ang progreso ng gawain sa porsyento
+- Kulayan ang taskbar
+- Pagsising ang screen ng pagloload & pangunahing menu music
+- Magdagdag ng isang github mirror source at Fangkuai remote upang mapabuti ang bilis ng pag-download
+- SourcePack: Pangunahing Menu Style Pack (naglalaman ng 5 mga estilo)
+- Magdagdag ng posisyon sa player information
+- Kliyente Guardian (Pambihira laban sa mga crash na executables sa mga programa na naglilinlang) 
+- Mga Susing: Agad na simulan ang laro at itigil ang epekto ng simula ng laro
+- Mga Susing: F4 Fullscreen
+- Mga Kliyente na Paggawa: Baguhin ang estilo ng pangunahing menu
+- Mga Pagpipilian ng Kliyente: Pagsising ang Kliyente Guardian (Eksperimento)
+- Mga Kliyente na Paggawa: Manager ng mga Houseres
+- Mga Kliyente na Paggawa: "Aking Muzika" Ipakita ang oras ng paglalarawan
+- Mga Kliyente na Paggawa: "Aking Muzika" Ipakita ang mga pahina
+- Mga Kliyente na Paggawa: "Aking Muzika" Magdagdag ng pindutan: Baguhin ang mode ng paglalarawan (Umulit/ Order/ Random)
+- Mga Kliyente na Paggawa: "Aking Muzika" Magdagdag ng pindutan: Itigil/Tuloy
+- Mga Kliyente na Paggawa: "Aking Muzika" Magdagdag ng pindutan: Nakaraang Muzika
+- Mga Kliyente na Paggawa: "Aking Muzika" Magdagdag ng pindutan: Susunod na Muzika
+- Mga Kliyente na Paggawa: "Aking Muzika" Magdagdag ng mga suportado na mga uri: ".flac", ".aif", ".aiff", ".mp3"
+Maker: Slok
+- Magdagdag ng pagsubok ng Friend Code
+- Magdagdag ng pagsubok ng NonalusAntiCheatMenu RPC
+Maker: Nonalus
+- Magdagdag ng pagsubok ng BetterAmongUs RPC152
+- Magdagdag ng pagsubok ng HostGuard RPC176
+- Itigil ang laro kapag mayrong iba pang mga mods sa direktoryo
+Maker: LezaiYa
+- Ipakita ang mga setting ng laro sa laro
+- Mga Susing: F2 Pagsising ang pagpapakita ng mga setting ng laro sa laro
+Maker: Slok, Elinmei
+- Mga Kliyente na Paggawa: Manager ng mga Tag
+Maker: Slok
+Inspirasyon: Town Of Next
+- Tag System sa Mga Pagpupulong
+Maker: Slok
+Idea: Slok, Amongus
+Inspirasyon: Town Of Next
+
+## Pagpapalitan
+- Buong pagtatayuan ng FAC upang mapabuti ang anti-cheat
+Maker: Slok
+
+## Pagtanggal
+- Tinanggal ~~Mga Kliyente na Paggawa: Manager ng Audio~~
+Dahilan: Nilipat sa "Manager ng mga Houseres"
+Decider: Slok

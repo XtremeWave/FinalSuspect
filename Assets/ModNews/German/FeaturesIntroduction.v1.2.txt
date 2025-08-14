@@ -1,0 +1,138 @@
+﻿#Number:100008
+#Title:v1.2 Funktionen & Optimierungen
+#SubTitle:★★★★Unser Update-Inhalt★★★★
+#ShortTitle:★v1.2 Update-Einführung
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Diese Datei enthält Hinweise und eine Einführung in die Funktionen! Bitte lesen Sie diese Datei sorgfältig!
+## Hinweise!
+- Wenn Sie einen Cheater entdecken, bedeutet dies, dass sie bereits betrogen haben oder sie auf der Mod-Blacklist stehen, aber es bedeutet nicht, dass sie betrogen, wenn Sie sie entdecken.
+Beispiel: Wenn Sie (Invalid RPC:151) begegnen, könnten sie Benutzer von **「Better Among Us」** sein, aber FS passt seinen RPC nicht an und bestätigt FS den Cheater, der einen ungültigen RPC sendet.
+Keine Sorge, denn aufgrund unserer einzigartigen Erkennungsmethoden werden Sie von ihnen nicht als Cheater betrachtet!
+- Wenn ein Fehler auftritt, klicken Sie bitte auf "Client-Funktionen - Logs speichern", um die Logs zu speichern und sie an uns zu senden!
+- Mit Ausnahme von "简体中文" und "English" sind alle anderen Sprachen von KI übersetzt. Bitte kontaktieren Sie uns, wenn die Übersetzung nicht korrekt ist!
+- Wenn Sie den Offline-Modus aktivieren, wird das Mod die Erwerb von verbotenen Wörtern, Ankündigungen, entfernten Ressourcen und Update-Überprüfungen stoppen und wird keine notwendigen Ressourcen herunterladen. Dies kann dazu führen, dass Sie wichtige Updates verpassen oder unbekannte Fehler begegnen. Verwenden Sie es vorsichtig!
+
+## Optimierungen - 26
+*Global:* 
+- Mod-Cursor
+- Mod-Symbol
+*Hauptmenü:* 
+- Spielstartanimation
+- Ladeanimation - Rollen-Illustrationen
+- Hauptmenü-Benutzeroberfläche
+- Hauptmenü-Hintergrund
+*Online-Suche:* 
+- Optimiertes Anzeigen des Lobby-Namens 
+- Farbiger privater Servername
+*InGame-Global:* 
+- FPS & Server-Anzeige
+- Mod-Version-Anzeige
+- Optimierte Chat-Bubble-Farbe 
+- Optimierter Chat-Bubble-Hintergrund
+- Optimierter Grund für die Verbindungstrennung
+- Optimiertes Überprüfen von wiederholten Namen
+*InGame-Lobby:* 
+- Optimierter Lobby-Informationen-Hintergrund
+- Farbige Spieleinstellungen-Bearbeitungs-Oberfläche
+- Optimierter Spieleinstellungen-Bearbeitungs-Hintergrund
+- Farbige Spieleinstellungen-Ansichts-Oberfläche
+- Hinzugefügtes Team-Logo in der Lobby
+*InGame-Spiele:* 
+- Rundenstartanimation
+- Färben Sie die Minikarte entsprechend Ihrer Mannschaft und Rolle
+- Verschiedene Färbung entsprechend Ihrer Rolle
+- Färben Sie die Texte der Fähigkeits-Buttons
+- Färben Sie die Texte der Fähigkeits-Buttons während der Abkühlungszeit
+- Anzeigen des Spielers, der das Spiel verlässt
+*Spieleergebnis:*
+- Optimierte Ergebnistexte
+
+## Funktionen - 53
+*Global:(Einstellungen-Client-Einstellungen)*
+- Logs speichern
+- Automatische Logs löschen
+- Vanilla-Modus wechseln
+- Ressourcen-Manager (Nur im Hauptmenü verwenden)
+- Namens-Tag-Manager (Nur im Hauptmenü verwenden)
+- Meine Musik (Unterstützung für benutzerdefinierte Musik, Typ: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Hauptmenü-Stil wechseln
+*Loading:*
+- Automatisches Herunterladen entfernter Mod-Ressourcen (Spiel automatisch beenden, wenn das Herunterladen wichtiger Ressourcen fehlschlägt)
+*Hauptmenü:*
+- Automatische Überprüfungen auf Updates
+*Online-Suche:*
+- Anzeigen der Plattform des Hosts und Färben des Lobby-Namens entsprechend
+- Anzeigen des Raumcodes
+- Anzeigen des Prozentsatzes der verbleibenden Zeit
+- Mehr Serveroptionen
+- Anzeigen des Namens des Hosts
+*InGame-Global:*
+- Endgültige Anti-Cheat-Funktion (FAC 2.0)
+- Client-Schutz (Schutz vor Hackern, die direkt die ausführbare Datei angreifen)
+- Überprüfung und Blockierung verbotener Wörter
+- Entsperren der FPS (Von 60FPS auf 165FPS)
+- Automatisches Kicken von Spielern, die bestimmte Bedingungen erfüllen
+*InGame-Lobby:*
+- Anzeigen der Plattform und der Client-Informationen des Spielers
+- Automatisches Starten des Spiels, wenn die Lobby voll ist
+- Erkennen anderer Spieler, die FS installiert haben
+- Anzeigen der verbleibenden Zeit (Nur wenn der Host dies nicht geändert hat)
+*InGame-Spiele:*
+- Anzeigen der Szene und Rollen
+- Anzeigen des Aufgabenfortschritts/Tötungszahlen
+- Zoomen mit der Mausrad (Nur im Übungsmodus, lokalem Spiel, in der Lobby und nach dem Tod, wenn Sie nicht der Wächterengel sind)
+- Anzeigen der Rolle, des Aufgabenfortschritts/Tötungszahlen und der Position jedes Spielers nach dem Tod, wenn Sie nicht der Wächterengel sind
+- Anzeigen der Positionen jedes Spielers und der Leichen in der Minikarte nach dem Tod, wenn Sie nicht der Wächterengel sind
+- Anzeigen der Todesursache und Morde
+- Anzeigen der letzten Ergebnisse nach dem Tod
+- Färben des Namens, wenn Sie andere Spieler durch Spuken verfolgen
+- Ostereier in der April-Karte
+- Tag-System in Besprechungen (Sie können andere Spieler taggen, um sich an ihre Rollen zu erinnern)
+- Anzeigen des allgemeinen Aufgabenfortschritts in Prozent
+*Ergebnisse:*
+- Zusammenfassung (Rolle, Aufgabenfortschritt/Tötungszahlen, Todesursache und Mord)
+- Automatisches Zurückkehren in die Lobby
+*Tastenkürzel-Global:*
+- F4: Vollbild
+- F10: Spiel-Root-Verzeichnis öffnen
+- F11: Auflösung ändern
+- Ctrl+F1: Logs speichern
+- Ctrl+F2: Schalten Sie zwischen dem Speichern von Logs während der Spiele (Nur für den Host)
+*Tastenkürzel-Hauptmenü:*
+- Tab: Benutzeroberfläche ausblenden
+*Tastenkürzel-Chat:*
+- Ctrl+C: Text in Ihrem Chatfeld kopieren
+- Ctrl+V: Text in Ihrem Chatfeld einfügen
+- Ctrl+X: Text in Ihrem Chatfeld ausschneiden
+- ↑: Verfolgen Ihrer letzten Chat-Geschichte
+- ↓: Verfolgen Ihrer nächsten Chat-Geschichte
+*Tastenkürzel-Online-Suche:*
+- LShift: Treten Sie in den letzten Raum ein, den Sie betreten haben
+- RShift: Treten Sie in den Raum mit dem Raumcode in Ihrer Zwischenablage ein
+*Tastenkürzel-InGame:*
+- F1: Zeigen Sie Ihre Rollen-Einführung und -Illustration an
+- F2: Zeigen/Verbergen Sie Informationen zu den Spiel-Einstellungen
+*Tastenkürzel-Lobby:*
+- Shift: Überspringen des Spielstart-Countdowns (Nur für den Host)
+- C: Zurücksetzen des Spielstart-Countdowns (Nur für den Host)
+
+*Optionen:(Einstellungen-Client-Einstellungen) - 15*
+- Wechsel der Ausstattungsart
+[Standardmodus - April-Fools-Pferd-Modus - April-Fools-Langer-Modus]
+- FPS entsperren
+- Spieler mit ungewöhnlichen Freundescodes kicken
+- Spieler mit verbotenen Spitznamen kicken
+- Verbotene Spieler kicken
+- Verbotene Wörter blockieren
+- Spiel automatisch starten, wenn es voll ist
+- Automatisches Zurückkehren in die Lobby, wenn das Spiel endet
+- Vanilla-Spiel-Musik deaktivieren
+- Anti-Cheat aktivieren
+- Client-Bewacher aktivieren (Experimentell)
+- Plattform und Client-Informationen des Spielers anzeigen
+- Mod-Cursor verwenden
+- Schnellstart-Modus
+- Offline-Modus (Experimentell)
+*Optionen:(Sonstiges)*
+- Kartenstil wechseln (Nur in The Skeld und die Schaltfläche ist in der Sicherheit)

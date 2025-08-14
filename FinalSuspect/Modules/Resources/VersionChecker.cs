@@ -173,15 +173,13 @@ public static class VersionChecker
     {
         public static void Postfix()
         {
-            Test(0);
             CustomPopup.Init();
             if (FirstStart && !Main.OfflineMode.Value)
             {
                 StartTasks();
+                CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);
             }
 
-            if (!IsChecked)
-                CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);
             NameTagManager.ReloadTag(null);
             ModUpdater.SetUpdateButtonStatus();
             FirstStart = false;

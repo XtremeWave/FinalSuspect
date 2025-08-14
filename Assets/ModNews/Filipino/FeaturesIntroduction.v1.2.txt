@@ -1,0 +1,138 @@
+﻿#Number:100008
+#Title:v1.2 Mga Tampok at Optimisasyon
+#SubTitle:★★★★Ang mga nilalaman ng aming update★★★★
+#ShortTitle:★Pagsasabuhay ng v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Binabasa ng file na ito ang mga babala at pagsasabuhay ng tampok! Mangyaring basahin ang file na ito nang maingay!
+## Babala!
+- Kung nakikita mo ang isang cheater, ang ibig sabihin ay nag-cheat na sila o nasa blacklist ng mod, ngunit hindi ibig sabihin na nag-cheat sila nang ikaw ay nakikita sila. 
+Halimbawa: Kung kikita ka (Invalid RPC:151), maaaring mga user ng **「Better Among Us」** sila, ngunit hindi na-adapt ng FS ang RPC nito, at kumpirma ng FS ang cheater na nagpadala ng invalid RPC.
+Sigurado, huwag mag-alala, dahil sa aming natatanging mga paraan ng pagkilala, hindi ka itinuturing na cheater ng mga ito!
+- Kung lumalabas ang isang bug, mangyaring i-click ang "Client Features - Dump Logs" upang idump ang log at ipadala sa amin!
+- Maliban sa "简体中文" at "English", ang iba pang mga wika ay nagtratehniko ng AI. Mangyaring kontakin ang amin kung hindi tama ang pagsasalin!
+- Kung pumanahin mo ang offline mode, hihinto ang mod mula sa pagkuha ng mga bawal na salita, mga announcement, mga remote resources at update check, at hindi i-download ang mga kinakailangang resources. Maaari itong maging sanhi ng pagkawala ng mga kritikal na updates, o pagkakakita ng mga hindi kilalang mga error. Gamitin ito ng maingay!
+
+## Optimisasyon - 26
+*Global:* 
+- Mod cursor
+- Mod icon
+*Main Menu:* 
+- Start game animation
+- Loading animation - Role illustrations
+- Main menu UI layout
+- Main menu background
+*Online Search:* 
+- Optimized lobby name display 
+- Colored private server name
+*InGame-Global:* 
+- FPS & Server display
+- Mod version display
+- Optimized chat bubble color 
+- Optimized chat bubble background
+- Optimized disconnecting reason
+- Optimized repeated name check
+*InGame-Lobby:* 
+- Optimized Lobby Information Background
+- Colored game settings editing interface
+- Optimized game settings editing background
+- Colored game settings viewing interface
+- Added team logo in lobby
+*InGame-Matches:* 
+- Roundstart Animation
+- Color the mini map according to your team and role
+- Color differently according to your role
+- Color skill button texts
+- Color skill button cooldown texts
+- Display the player who leave game
+*GameResult:*
+- Optimized result texts
+
+## Tampok - 53
+*Global:(Settings-Client Settings)*
+- Dump logs
+- Clear auto logs
+- Switch Vanilla
+- Resource Manager (Only use in main menu)
+- Name Tag Manager (Only use in main menu)
+- My Music (Support custom musics, type: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Switch main menu style
+*Loading:*
+- Auto-download remote mod resources (Auto-exit game when critical resources download failed)
+*Main Menu:*
+- Auto-check updates
+*Online Search:*
+- Display host's platform and color the lobby name according to it
+- Display room code
+- Display the percentage of close time
+- More server options
+- Display host's name
+*InGame-Global:*
+- Final Anti-Cheat (FAC 2.0)
+- Client Protection (Defend against hackers who directly attack the executable)
+- Ban words check & block
+- Unlock FPS (From 60FPS to 165FPS)
+- Auto-kick players who meet certain conditions
+*InGame-Lobby:*
+- Display player's platform and client information
+- Auto-start game when the lobby is full
+- Know other players who install FS
+- Display close time (Only works when the host has not changed)
+*InGame-Matches:*
+- Display Scene & Roles
+- Display task process/kill counts
+- Zoom in/out using mouse wheel (Only use when in practice mode, local game, in lobby, and after death when not being the guardian angel)
+- Show each player's role, task process/kill counts, and position after death when not being the guardian angel
+- Show each player's and body's positions in mini map after death when not being the guardian angel
+- Show death reason & murders
+- Show last results after death
+- Color the name when tracking other players by haunting
+- Easter eggs in April Map
+- Tag system in meetings (Can tag other players to remember their roles)
+- Show general task progress by percentage
+*Results:*
+- Summary (Role, task progress/kill counts, death reason & murder)
+- Auto-return to lobby
+*Hotkeys-Global:*
+- F4: Fullscreen
+- F10: Open game root directory
+- F11: Change resolution
+- Ctrl+F1: Dump log
+- Ctrl+F2: Switch if logs can dump when in matches (Host only)
+*Hotkeys-MainMenu:*
+- Tab: Hide UI
+*Hotkeys-Chat:*
+- Ctrl+C: Copy texts in your chat box
+- Ctrl+V: Paste texts in your chat box
+- Ctrl+X: Cut texts in your chat box
+- ↑: Track your last chatting history
+- ↓: Track your next chatting history
+*Hotkeys-OnlineSearch:*
+- LShift: Join last room you have joined
+- RShift: Join room with room code in your clipboard
+*Hotkeys-InGame:*
+- F1: Show your role introduction and illustration
+- F2: Show/Hide game setting information
+*Hotkeys-Lobby:*
+- Shift: Skip game start countdown (Host only)
+- C: Reset game start countdown (Host only)
+
+*Option:(Settings-ClientSettings) - 15*
+- Switch Outfit Type
+[Classic Mode - April Fools' Horse Mode - April Fools' Long Mode]
+- Unlock FPS
+- Kick players with abnormal Friend Codes
+- Kick players using banned nicknames
+- Kick banned players
+- Block banned words
+- Auto-start the game when full
+- Auto-return to lobby when game ends
+- Disable Vanilla game music
+- Enable anti-cheat
+- Enable Client Guardian (Experimental)
+- Show player platform & client info
+- Use mod cursor
+- Fast launch mode
+- Offline mode (Experimental)
+*Option:(Others)*
+- Switch map style (Only in The Skeld, and the button is in security)

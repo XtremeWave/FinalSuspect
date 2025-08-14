@@ -12,7 +12,6 @@ internal class ControllerManagerUpdatePatch
 
     private static int _resolutionIndex;
     public static bool ShowSettingsPanel = true;
-    public static bool ShowHudUI = true;
 
     public static void Postfix()
     {
@@ -29,7 +28,10 @@ internal class ControllerManagerUpdatePatch
         }
 
         if (Input.GetKeyDown(KeyCode.F2) && IsInGame)
+        {
             ShowSettingsPanel = !ShowSettingsPanel;
+        }
+
 
         //更改分辨率
         if (Input.GetKeyDown(KeyCode.F11))

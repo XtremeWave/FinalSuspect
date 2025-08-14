@@ -1,0 +1,156 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★¡Espero encontrarnos en la próxima ocasión!★★★★
+#ShortTitle:★Actualización v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Español
+Desde la v1.2, ¡el desarrollo de funciones de «Final Suspect» está completo!
+En el futuro el mod se centrará en corregir errores y adaptar versiones; rara vez o nunca añadirá nuevas funciones.
+Slok se centrará en un nuevo juego «EmberVeins» tras abandonar XtremeWave.
+Al mismo tiempo XtremeWave trabajará en varios proyectos, ¡incluyendo un nuevo proyecto de Among Us!
+¡Espero encontrarnos pronto!
+
+## Versión requerida
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Información de la versión del mod
+- Número de versión de la asamblea: v1.2.0
+- Tipo de versión: Release
+- Número de compilación: 1
+
+## Contenido de la actualización
+- Correcciones de errores: 23
+- Optimizaciones: 10
+- Ajustes: 17
+- Contenidos nuevos: 37
+- Rehacidos: 1
+- Eliminados: 1
+
+## Contribuyentes
+- [LezaiYa](https://github.com/NewLezaiYa)
+- [Elinmei](https://github.com/linmeideli)
+- [Nonalus](https://github.com/Reborn5537/)
+- [Café con azúcar](https://space.bilibili.com/360363478?spm_id_from=333.337.0.0)
+- [FangKuai](https://github.com/FangkuaiYa)
+
+## Correcciones de errores
+- Se arregló el fallo al activar «Modo de inicio rápido»
+- Se arregló el fallo al crear datos del modo práctica
+- Se arregló la visualización incorrecta de cadáveres en el minimapa
+- Se arregló el color incorrecto de cadáveres en el minimapa
+- Se arregló el fallo al activar el estilo Halloween
+- Se arregló el fallo al leer los registros de actualización
+- Se arregló el fallo al colorear la animación de inicio de ronda al revelar roles
+- Se arregló que la animación de carga no funcionara en la versión más reciente
+- Se arregló el fallo al cargar palabras prohibidas
+- Se arregló la visualización incorrecta de tareas cuando se sabotean las comunicaciones
+- Se arregló el fallo al buscar información en el lobby
+- Se arregló la visualización incorrecta de consejos en la esquina inferior izquierda de Among Us
+- Se arregló que los apodos de jugadores no se coloreaban en las sugerencias
+- Se arregló el tartamudeo al presionar F1 para mostrar la introducción del rol
+- Se arregló la detección incorrecta de nombres denegados
+- Se arregló que matar justo cuando empieza una reunión se consideraba trampa
+- Se arregló que el cliente podía causar un falso positivo anti-trampa
+- Se arregló que los archivos de audio detenidos no se liberaban correctamente
+Fixer: Slok
+- Se arregló que no se podía usar Haunting si se activaba «Volver automáticamente al lobby al acabar la partida»
+Fixer: Slok | Reporter: Emperador Qin Shi Huang
+- Se arregló que no se podía visitar la tienda si se activaba «Volver automáticamente al lobby al acabar la partida»
+Fixer: Slok | Reporter: QingFeng
+- Se arregló que la lista negra no funcionaba
+Fixer: LezaiYa | Reporter: Sheriff Little Blue
+- Se arregló que LShift y RShift no funcionaban
+Fixer: Elinmei
+- Se arregló el fallo del «April Fool's Horse Mode»
+Source: Town Of Host : Enhanced
+
+## Optimizaciones
+- Se reescribió la pantalla de carga para optimizar la eficiencia de ejecución
+- Se usa el método asíncrono para leer palabras prohibidas y evitar bloqueos de hilo
+- Se usa el método asíncrono para verificar actualizaciones y evitar bloqueos de hilo
+- Se cifran las palabras prohibidas para evitar baneos remotos
+- Se reescribió la lógica de palabras prohibidas
+- Se optimizó el anti-trampa
+- Se optimizó la eficiencia general de ejecución
+- Se optimizó el formato general del código
+- Se optimizó el formato general del archivo de idioma
+- Se mejoró la velocidad de arranque del «Modo de inicio rápido»
+Maker: Slok
+
+## Ajustes
+- Los anuncios del mod se leerán al iniciar el juego en lugar de descargarse localmente
+- Se termina forzosamente el proceso del juego en lugar de eliminar archivos innecesarios
+- Se muestra el anuncio tras cargar correctamente el anuncio del mod
+- La resolución no se cambiará forzosamente
+- Se ajustó el color del enfriamiento de habilidades
+- Las sugerencias de la esquina inferior izquierda se colocan arriba
+- Las listas de servidores no se cubrirán forzosamente
+- La actualización del archivo de idioma no se detendrá al añadir archivos
+- «Expulsar jugadores no conectados» → «Expulsar jugadores con códigos de amigo anómalos»
+- «Desactivar anti-trampa» → «Activar anti-trampa»
+- El color del botón de resumen de rol cambia según el color del rol
+- Slok abandonó el equipo «XtremeWave» y pasó a ser un mod personal
+- Se transpuso la visualización de información en «Mi Música»
+- Se ajustó el estilo del botón de cambio de página en «Mi Música»
+- Se ajustó el estilo del botón de reproducción en «Mi Música»
+- Se ajustó el método para añadir música personalizada en «Mi Música»
+Maker: Slok
+- Se permite usar «Cambiar tipo de outfit» en partidas
+Source: Town Of Host : Enhanced
+
+## Nuevos contenidos
+- Cierre automático del juego si falla la descarga de recursos críticos
+- Opción de cliente: Modo Offline (Experimental)
+Maker: Slok | Idea: QingFeng
+- Reconocimiento de programas o mods de trampa
+- Revisión de todos los logs RPC y mayor detección de trampa por RPC
+- La interfaz se adapta a todas las resoluciones
+- Mostrar el nombre del host en la lista del lobby
+- Eliminar espacios finales en el nombre para evitar duplicados
+- Reemplazar espacios por guiones bajos en el nombre
+- Huevos de pascua de April Fool's
+- Mostrar el progreso de tareas en porcentaje
+- Colorear la barra de tareas
+- Activar música de pantalla de carga y menú principal
+- Añadir espejo GitHub y remoto Fangkuai para optimizar la velocidad de descarga
+- SourcePack: Paquete de estilos del menú principal (contiene 5 estilos)
+- Añadir posición en la información del jugador
+- Client Guardian (protege completamente contra ejecutables que crashen en programas de trampa)
+- Atajos: Iniciar partida instantáneamente y silenciar sonido de inicio
+- Atajo: F4 Pantalla completa
+- Función de cliente: Cambiar estilo del menú principal
+- Opción de cliente: Activar Client Guardian (Experimental)
+- Función de cliente: Administrador de recursos
+- Función de cliente: «Mi Música» mostrar tiempo de reproducción
+- Función de cliente: «Mi Música» mostrar páginas
+- Función de cliente: «Mi Música» añade botón: Cambiar modo de reproducción (Repetir/Secuencia/Aleatorio)
+- Función de cliente: «Mi Música» añade botón: Pausar/Continuar
+- Función de cliente: «Mi Música» añade botón: Canción anterior
+- Función de cliente: «Mi Música» añade botón: Siguiente canción
+- Función de cliente: «Mi Música» añade tipos soportados: «.flac», «.aif», «.aiff», «.mp3»
+Maker: Slok
+- Añadir verificación de código de amigo
+- Añadir verificación RPC NonalusAntiCheatMenu
+Maker: Nonalus
+- Añadir verificación RPC152 de BetterAmongUs
+- Añadir verificación RPC176 de HostGuard
+- Detener el juego si el directorio tiene otros mods
+Maker: LezaiYa
+- Mostrar configuración del juego durante la partida
+- Atajos: F2 Activar/Desactivar visualización de configuración del juego durante la partida
+Maker: Slok, Elinmei
+- Función de cliente: Administrador de etiquetas
+Maker: Slok | Inspiración: Town Of Next
+- Sistema de tags en reuniones
+Maker: Slok | Idea: Slok, Amongus | Inspiración: Town Of Next
+
+## Remake
+- FAC se rehizo por completo para optimizar el anti-trampas
+Maker: Slok
+
+## Delete
+- Eliminado ~~Client Features: Audio Manager~~
+Razón: Reemplazado por «Administrador de Recursos»
+Decisor: Slok

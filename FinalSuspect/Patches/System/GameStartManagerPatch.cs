@@ -38,7 +38,6 @@ public static class GameStartManagerPatch
     private static PassiveButton _cancelButton;
     private static TextMeshPro _warningText;
     private static TextMeshPro _hideName;
-    public static GameStartManager Instance;
 
     [GameModuleInitializer]
     public static void Init()
@@ -57,7 +56,6 @@ public static class GameStartManagerPatch
     {
         public static void Postfix(GameStartManager __instance)
         {
-            Instance = __instance;
             __instance.MinPlayers = 1;
 
             __instance.GameRoomNameCode.text = GameCode.IntToGameName(AmongUsClient.Instance.GameId);

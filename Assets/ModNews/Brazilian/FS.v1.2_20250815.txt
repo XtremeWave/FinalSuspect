@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Ansioso para o próximo encontro com você!★★★★
+#ShortTitle:★Atualização da Versão v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Brazilian
+Desde a v1.2, o desenvolvimento de recursos de "Final Suspect" está completo!
+No futuro, o mod se concentrará na correção de bugs e adaptação de versão, nunca ou raramente adicionando novos recursos.
+Slok se concentrará em um novo jogo "EmberVeins" após sair da XtremeWave.
+Ao mesmo tempo, a XtremeWave se concentrará em vários projetos, incluindo um novo projeto de Among Us!
+Estou ansioso para o próximo encontro com você!
+
+## Versão Necessária
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Informações da Versão do Modo
+- Número da Versão da Assembly: v1.2.0
+- Tipo de Versão: Release
+- Número de Build: 1
+
+## Conteúdo da Atualização
+- Correções de Bugs: 23
+- Otimizações: 10
+- Ajustes: 17
+- Novos Conteúdos: 37
+- Recriações: 1
+- Exclusões: 1
+
+## Contribuidor
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [Café com Açúcar]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correção de Bugs
+- Corrigido o problema de habilitar o "Modo de Inicialização Rápida"
+- Corrigido o problema de criação de dados do modo de prática
+- Corrigido o display incorreto dos corpos no mini mapa
+- Corrigido a cor incorreta dos corpos no mini mapa
+- Corrigido o problema de habilitar o estilo de Halloween
+- Corrigido o problema de leitura dos logs de atualização.
+- Corrigido o problema de coloração da animação de início de rodada ao revelar papéis.
+- Corrigido o problema de que a animação de carregamento não funciona na versão mais recente
+- Corrigido o problema de carregamento de palavras banidas
+- Corrigido o display incorreto das tarefas quando as comunicações são sabotadas
+- Corrigido o problema de pesquisa de informações no lobby
+- Corrigido o display incorreto das dicas no canto inferior esquerdo de Among Us
+- Corrigido o problema de que os apelidos dos jogadores não são coloridos nas dicas no canto inferior esquerdo
+- Corrigido o travamento ao pressionar F1 para mostrar a introdução do papel
+- Corrigido o problema de que nomes de jogadores correspondem incorretamente
+- Corrigido o problema de que matar no exato momento em que a reunião começa é considerado trapaça
+- Corrigido o problema de que a matança do cliente pode causar um julgamento errado do anti-trapaça
+- Corrigido o problema de que o arquivo de áudio que foi parado de tocar não pode ser liberado corretamente
+Fixer: Slok
+- Corrigido o problema de que o assombração não pode ser usado ao habilitar "Retornar automaticamente ao lobby ao finalizar o jogo"
+Fixer: Slok
+Reporter: Qin Shi Huang
+- Corrigido o problema de que a loja não pode ser visitada ao habilitar "Retornar automaticamente ao lobby ao finalizar o jogo"
+Fixer: Slok
+Reporter: QingFeng
+- Corrigido o problema de que a lista negra não funciona
+Fixer: LezaiYa
+Reporter: Chefe de Polícia Little Blue
+- Corrigido o problema de que LShift e RShift não funcionam
+Fixer: Elinmei
+- Corrigido o problema do "Modo Cavalo do Dia da Mentira" quebrado
+Fonte: Town Of Host : Enhanced
+
+## Otimizações
+- Reescrever a tela de carregamento para otimizar a eficiência da execução do código
+- Usar método assíncrono para ler palavras banidas para evitar bloqueio de thread
+- Usar método assíncrono para concluir a verificação de atualizações para evitar bloqueio de thread
+- Criptografar palavras banidas para evitar bans remotos.
+- Reescrever a lógica das palavras banidas
+- Otimizar o anti-trapaça
+- Otimizar a eficiência geral da execução do código
+- Otimizar o formato geral do código
+- Otimizar o formato geral do arquivo de idioma
+- Melhorar a velocidade de inicialização do "Modo de Inicialização Rápida"
+Criador: Slok
+
+## Ajustes
+- Anúncios do mod serão lidos ao iniciar o jogo, em vez de baixar para o local
+- Encerrar o processo do jogo forçadamente em vez de excluir arquivos desnecessários do mod
+- Exibir o anúncio após o carregamento bem-sucedido do anúncio do mod
+- A resolução não será forçada a mudar
+- Ajustado a cor da barra de resfriamento da habilidade
+- Dicas no canto inferior esquerdo são definidas como topo
+- Listas de servidores não são cobertas forçosamente
+- A atualização do arquivo de idioma não será interrompida através da adição de arquivos
+- Trocar "Expulsar jogadores que não se conectam" para "Expulsar jogadores com códigos de amigo anormais"
+- Trocar "Desativar Anti-trapaça" para "Ativar Anti-trapaça"
+- A cor do botão de resumo de papel muda de acordo com a cor do papel
+- Sair da equipe "XtremeWave" e tornar-se mod pessoal por Slok
+- Transposição da exibição de informações em "Minha Música"
+- Ajustado o estilo do botão de mudança de página em "Minha Música"
+- Ajustado o estilo do botão de reprodução em "Minha Música"
+- Ajustado o método de adição de músicas personalizadas em "Minha Música"
+Criador: Slok
+- Permitir o uso de "Alterar Tipo de Roupa" em jogos
+Fonte: Town Of Host: Enhanced
+
+## Novos Conteúdos
+- Sair do jogo automaticamente quando o download de recursos críticos falhar
+- Opção do Cliente: Modo Offline (Experimental)
+Criador: Slok
+Ideia: QingFeng
+- Reconhecimento de programas ou mods de trapaça
+- Verificação de logs de RPC e detecção adicional de trapaça de RPC
+- UI se adapta a todas as resoluções 
+- Exibir o nome do host na lista de lobby
+- Remover o espaço em branco no final do nome para evitar nomes repetidos
+- Trocar espaços em branco por sublinhados no nome
+- Ovos de Páscoa do Dia da Mentira
+- Exibir o progresso das tarefas em porcentagem
+- Colorir a barra de tarefas
+- Habilitar música da tela de carregamento e menu principal
+- Adicionar um espelho do GitHub e um remoto Fangkuai para otimizar a velocidade de download
+- SourcePack: Pacote de Estilo do Menu Principal (inclui 5 estilos)
+- Adicionar posição nas informações dos jogadores
+- Guardião do Cliente (Defender completamente contra executáveis que travam em programas de trapaça) 
+- Atalhos: Iniciar jogo instantaneamente e parar o efeito sonoro de início de jogo
+- Atalhos: F4 Tela Cheia
+- Funcionalidade do Cliente: Alterar estilo do menu principal
+- Opção do Cliente: Ativar Guardião do Cliente (Experimental)
+- Funcionalidade do Cliente: Gerenciador de Recursos
+- Funcionalidade do Cliente: "Minha Música" Mostrar tempo de reprodução
+- Funcionalidade do Cliente: "Minha Música" Mostrar páginas
+- Funcionalidade do Cliente: "Minha Música" Adicionar botão: Alterar modo de reprodução (Repetir/Ordem/Aleatório)
+- Funcionalidade do Cliente: "Minha Música" Adicionar botão: Pausar/Continuar
+- Funcionalidade do Cliente: "Minha Música" Adicionar botão: Música Anterior
+- Funcionalidade do Cliente: "Minha Música" Adicionar botão: Próxima Música
+- Funcionalidade do Cliente: "Minha Música" Adicionar novos tipos suportados: ".flac", ".aif", ".aiff", ".mp3"
+Criador: Slok
+- Adicionar verificação de código de amigo
+- Adicionar verificação de RPC NonalusAntiCheatMenu
+Criador: Nonalus
+- Adicionar verificação de RPC152 do BetterAmongUs
+- Adicionar verificação de RPC176 do HostGuard
+- Parar o jogo quando o diretório tiver outros mods
+Criador: LezaiYa
+- Exibir configurações do jogo durante o jogo
+- Atalhos: F2 Ativar/Desativar exibição de configurações do jogo durante o jogo
+Criador: Slok, Elinmei
+- Funcionalidade do Cliente: Gerenciador de Etiquetas de Nome
+Criador: Slok
+Inspirado em: Town Of Next
+- Sistema de Etiquetas em Reuniões
+Criador: Slok
+Ideia: Slok, Amongus
+Inspirado em: Town Of Next
+
+## Recriação
+- Recriação completa do FAC para otimizar o anti-trapaça
+Criador: Slok
+
+## Exclusão
+- Excluído ~~Funcionalidade do Cliente: Gerenciador de Áudio~~
+Motivo: Substituído por "Gerenciador de Recursos"
+Decisor: Slok

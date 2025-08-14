@@ -17,8 +17,14 @@ internal class LobbyInfoPaneUpdatePatch
             .FindChild("GameSettingsButtons");
         trans.FindChild("Host Buttons").gameObject.SetActive(false);
         trans.FindChild("Client Buttons").gameObject.SetActive(true);
-        trans.FindChild("ButtonSettingsHeader").gameObject.GetComponent<TextMeshPro>().text +=
-            $" - {GetString("PressF2ToHidePane")}";
+        var header = trans.FindChild("ButtonSettingsHeader").gameObject;
+        header.transform.localPosition =
+            new Vector3(-0.282f, header.transform.localPosition.y, header.transform.localPosition.z);
+        var tmp = header.GetComponent<TextMeshPro>();
+        tmp.text += $" - {GetString("PressF2ToHidePane")}";
+        var rect = header.gameObject.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(3f, rect.sizeDelta.y);
+
         DestroyableSingleton<LobbyInfoPane>.Instance.gameObject.GetComponent<AspectPosition>().DistanceFromEdge +=
             Vector3.forward * -30;
     }

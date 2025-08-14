@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Verkijk naar de volgende ontmoeting met jou!★★★★
+#ShortTitle:★Versie Update v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Dutch
+Vanaf v1.2 is de functieontwikkeling van "Final Suspect" voltooid!
+In de toekomst zal de mod zich richten op het oplossen van bugs en het aanpassen van versies, en zelden of nooit nieuwe functies toevoegen.
+Slok zal zich richten op een nieuw spel "EmberVeins" na het verlaten van XtremeWave.
+Tegelijkertijd zal XtremeWave zich richten op meerdere projecten, waaronder een nieuw Among Us project!
+Ik verheug me op de volgende ontmoeting met jou!
+
+## Vereiste Versie
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Mod Versie Informatie
+- Assembly Versie Nummer: v1.2.0
+- Versie Type: Release
+- Build Nummer: 1
+
+## Update Inhoud
+- Bug Fixes: 23
+- Optimalisaties: 10
+- Aanpassingen: 17
+- Nieuwe Inhoud: 37
+- Hergestalte: 1
+- Verwijderingen: 1
+
+## Bijdrager
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [Suiker met Koffie]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Bug Fix
+- Het probleem met het inschakelen van "Snel Start Modus" is opgelost
+- Het probleem met het maken van oefenmodedata is opgelost
+- De verkeerde weergave van lijken op de minimap is opgelost
+- De verkeerde kleur van lijken op de minimap is opgelost
+- Het probleem met het inschakelen van de Halloween-stijl is opgelost
+- Het probleem met het lezen van update logs is opgelost.
+- Het probleem met het kleuren van de startanimatie bij het onthullen van rollen is opgelost.
+- Het probleem dat de laadanimatie niet werkt in de nieuwste versie is opgelost
+- Het probleem met het laden van verboden woorden is opgelost
+- Het verkeerde weergeven van taken wanneer communicatie is sabotaged is opgelost
+- Het probleem met het zoeken naar informatie in de lobby is opgelost
+- Het verkeerde weergeven van tips in de linker onderhoek van Among Us is opgelost
+- Het probleem dat spelers bijnaamen niet gekleurd zijn in de tips in de linker onderhoek is opgelost
+- Het stotteren wanneer je F1 drukt om de rolintroductie te tonen is opgelost
+- Het probleem dat naamtoewijzingen onjuist matchen is opgelost
+- Het probleem dat doden op het exacte moment dat een vergadering start wordt beschouwd als cheat is opgelost
+- Het probleem dat client killing mogelijk leidt tot een verkeerde anti-cheat beoordeling is opgelost
+- Het probleem dat een gestopt audio bestand niet correct vrijgegeven kan worden is opgelost
+Fixer: Slok
+- Het probleem dat spoken niet kan worden gebruikt wanneer "Automatisch terugkeren naar de lobby wanneer het spel eindigt" is ingeschakeld is opgelost
+Fixer: Slok
+Reporter: Keizer Qin Shi Huang
+- Het probleem dat de winkel niet kan worden bezocht wanneer "Automatisch terugkeren naar de lobby wanneer het spel eindigt" is ingeschakeld is opgelost
+Fixer: Slok
+Reporter: QingFeng
+- Het probleem dat de blacklist niet werkt is opgelost
+Fixer: LezaiYa
+Reporter: Politiechef Little Blue
+- Het probleem dat LShift en RShift niet werken is opgelost
+Fixer: Elinmei
+- Het probleem van het gebroken "April Fools' Horse Mode" is opgelost
+Bron: Town Of Host : Enhanced
+
+## Optimalisaties
+- De laadschermcode is herschreven om de efficiëntie van de uitvoering van de code te optimaliseren
+- Asynchrone methode wordt gebruikt om verboden woorden te lezen om thread blokkades te voorkomen
+- Asynchrone methode wordt gebruikt om de updatecheck te voltooien om thread blokkades te voorkomen
+- Verboden woorden worden versleuteld om externe bans te voorkomen.
+- De logica van verboden woorden is herschreven
+- Anti-cheat is geoptimaliseerd
+- De algemene efficiëntie van de uitvoering van de code is geoptimaliseerd
+- Het algemene codeformaat is geoptimaliseerd
+- Het algemene formaat van het taalbestand is geoptimaliseerd
+- De start snelheid van "Snel Start Modus" is verbeterd
+Maker: Slok
+
+## Aanpassingen
+- Mod aankondigingen worden gelezen wanneer het spel wordt gestart, in plaats van lokaal te downloaden
+- Het spel proces wordt gedwongen te stoppen in plaats van onnodige mod bestanden te verwijderen
+- De aankondiging wordt getoond nadat de mod aankondiging succesvol is geladen
+- De resolutie wordt niet gedwongen om te veranderen
+- De vaardigheid cooldown kleur is aangepast
+- Tips in de linker onderhoek worden bovenaan gezet
+- Server lijsten worden niet gedwongen te worden bedekt
+- Het bijwerken van het taalbestand wordt niet gestopt door het toevoegen van bestanden
+- "Spelers die niet zijn aangemeld uitschakelen" wordt veranderd in "Spelers met abnormale vriendencodes uitschakelen"
+- "Anti-cheat uitschakelen" wordt veranderd in "Anti-cheat inschakelen"
+- De kleur van de rol samenvatting knop verandert overeenkomstig de rol kleur
+- Slok verlaat het team "XtremeWave" en wordt een persoonlijke mod
+- Informatie weergave in "Mijn Muziek" is omgewisseld
+- De stijl van de pagina wijzigingsknop in "Mijn Muziek" is aangepast
+- De stijl van de afspeelknop in "Mijn Muziek" is aangepast
+- De methode voor het toevoegen van aangepaste muziek in "Mijn Muziek" is aangepast
+Maker: Slok
+- Het gebruik van "Rouwtype wijzigen" in spellen is toegestaan
+Bron: Town Of Host: Enhanced
+
+## Nieuwe Inhoud
+- Automatisch afsluiten van het spel wanneer het downloaden van cruciale resources mislukt
+- Client Optie: Offline Modus (Experimenteel)
+Maker: Slok
+Idee: QingFeng
+- Herkenning van cheat programma's of mods
+- Alle RPC log controle en meer RPC cheat detectie
+- UI past zich aan alle resoluties aan 
+- Weergeef de hostnaam in de lobbylijst
+- Verwijder de spaties aan het einde van de naam om dubbele namen te voorkomen
+- Verander spaties in onderstrepingen in de naam
+- April Fool's Easter eggs
+- Toon taakvoortgang in procenten
+- Kleur de taakbalk
+- Schakel de laadscherm & hoofdmenu muziek in
+- Voeg een github spiegelbron en Fangkuai remote toe om de download snelheid te optimaliseren
+- SourcePack: Hoofdmenu Stijl Pack (bevat 5 stijlen)
+- Voeg positie toe aan speler informatie
+- Client Bewaker (Volledig beschermen tegen crashende executables in cheat programma's) 
+- Sneltoetsen: Start het spel onmiddellijk en stop het geluidseffect van het starten van het spel
+- Sneltoetsen: F4 Volledig Scherm
+- Client Functie: Verander het hoofdmenu stijl
+- Client Optie: Schakel Client Bewaker in (Experimenteel)
+- Client Functie: Hulpbronnen Beheerder
+- Client Functie: "Mijn Muziek" Toon afspeltijd
+- Client Functie: "Mijn Muziek" Toon pagina's
+- Client Functie: "Mijn Muziek" Toevoeging van knop: Verander afspelmodus (Herhalen/ Volgorde/ Willekeurig)
+- Client Functie: "Mijn Muziek" Toevoeging van knop: Pauzeer/ Hervat
+- Client Functie: "Mijn Muziek" Toevoeging van knop: Vorige Muziek
+- Client Functie: "Mijn Muziek" Toevoeging van knop: Volgende Muziek
+- Client Functie: "Mijn Muziek" Toevoeging van ondersteunde typen: ".flac", ".aif", ".aiff", ".mp3"
+Maker: Slok
+- Voeg vriendencode controle toe
+- Voeg NonalusAntiCheatMenu RPC controle toe
+Maker: Nonalus
+- Voeg BetterAmongUs RPC152 controle toe
+- Voeg HostGuard RPC176 controle toe
+- Stop het spel wanneer het directory andere mods heeft
+Maker: LezaiYa
+- Toon spelinstellingen tijdens het spel
+- Sneltoetsen: F2 Schakel het weergeven van spelinstellingen tijdens het spel in/uit
+Maker: Slok, Elinmei
+- Client Functie: Naamkaart Beheerder
+Maker: Slok
+Inspiratie: Town Of Next
+- Tag Systeem in Vergaderingen
+Maker: Slok
+Idee: Slok, Amongus
+Inspiratie: Town Of Next
+
+## Hergestalte
+- De FAC is volledig herbouwd om het anti-cheat te optimaliseren
+Maker: Slok
+
+## Verwijderingen
+- Verwijderd ~~Client Functie: Audio Beheerder~~
+Reden: Vervangen door "Hulpbronnen Beheerder"
+Beslisser: Slok

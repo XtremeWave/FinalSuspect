@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Non vedo l'ora di rivederti alla prossima occasione!★★★★
+#ShortTitle:★Aggiornamento della versione v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Italian
+A partire dalla v1.2, lo sviluppo delle funzionalità di "Final Suspect" è stato completato!
+In futuro, il mod si concentrerà sulla correzione degli errori e sull'adattamento delle versioni, e raramente o mai aggiungerà nuove funzionalità.
+Slok si concentrerà su un nuovo gioco "EmberVeins" dopo aver lasciato XtremeWave.
+Nel frattempo, XtremeWave si concentrerà su diversi progetti, tra cui un nuovo progetto di Among Us!
+Non vedo l'ora di rivederti alla prossima occasione!
+
+## Versione richiesta
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Informazioni sulla versione del mod
+- Numero della versione dell'assembly: v1.2.0
+- Tipo di versione: Release
+- Numero di build: 1
+
+## Contenuto dell'aggiornamento
+- Correzioni degli errori: 23
+- Ottimizzazioni: 10
+- Ajustamenti: 17
+- Nuovi contenuti: 37
+- Rimodellazioni: 1
+- Rimozioni: 1
+
+## Collaboratori
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [Caffè e zucchero]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correzioni degli errori
+- È stato risolto il problema di attivazione della "Modalità avvio rapido"
+- È stato risolto il problema della creazione dei dati della modalità di pratica
+- È stato risolto il problema della visualizzazione errata dei corpi sulla minimappa
+- È stato risolto il problema del colore errato dei corpi sulla minimappa
+- È stato risolto il problema di attivazione dello stile Halloween
+- È stato risolto il problema della lettura dei log di aggiornamento.
+- È stato risolto il problema della colorazione dell'animazione di inizio turno quando vengono rivelati i ruoli.
+- È stato risolto il problema che l'animazione di caricamento non funziona nella versione più recente
+- È stato risolto il problema del caricamento delle parole vietate
+- È stato risolto il problema della visualizzazione errata delle attività quando la comunicazione è sabotata
+- È stato risolto il problema della ricerca delle informazioni nella lobby
+- È stato risolto il problema della visualizzazione errata delle suggerenze nella parte inferiore sinistra di Among Us
+- È stato risolto il problema che i nomi degli utenti non sono colorati nelle suggerenze nella parte inferiore sinistra
+- È stato risolto il problema di intoppo quando si preme F1 per visualizzare l'introduzione del ruolo
+- È stato risolto il problema di corrispondenza errata dei nomi
+- È stato risolto il problema che uccidere nel momento esatto in cui inizia una riunione è considerato trucco
+- È stato risolto il problema che il client potrebbe causare un giudizio errato anti-trucco
+- È stato risolto il problema che un file audio fermato non può essere rilasciato correttamente
+Fixer: Slok
+- È stato risolto il problema che il fantasma non può essere utilizzato quando "Ritorna automaticamente alla lobby alla fine del gioco" è attivato
+Fixer: Slok
+Reporter: Imperatore Qin Shi Huang
+- È stato risolto il problema che il negozio non può essere visitato quando "Ritorna automaticamente alla lobby alla fine del gioco" è attivato
+Fixer: Slok
+Reporter: QingFeng
+- È stato risolto il problema che la lista nera non funziona
+Fixer: LezaiYa
+Reporter: Capitano della polizia Little Blue
+- È stato risolto il problema che LShift e RShift non funzionano
+Fixer: Elinmei
+- È stato risolto il problema del "Modalità cavallo del 1° aprile" rotto
+Fonte: Town Of Host : Enhanced
+
+## Ottimizzazioni
+- Il codice dello schermo di caricamento è stato riscritto per ottimizzare l'efficienza dell'esecuzione del codice
+- È stato utilizzato il metodo asincrono per leggere le parole vietate per evitare il blocco del thread
+- È stato utilizzato il metodo asincrono per completare la verifica degli aggiornamenti per evitare il blocco del thread
+- Le parole vietate sono state crittografate per evitare le ban remote.
+- La logica delle parole vietate è stata riscritta
+- L'anti-trucco è stato ottimizzato
+- L'efficienza generale dell'esecuzione del codice è stata ottimizzata
+- Il formato generale del codice è stato ottimizzato
+- Il formato generale del file di lingua è stato ottimizzato
+- La velocità di avvio della "Modalità avvio rapido" è stata migliorata
+Produttore: Slok
+
+## Ajustamenti
+- Le annunciazioni del mod saranno lette all'avvio del gioco, invece di scaricarle localmente
+- Il processo del gioco verrà terminato forzatamente invece di eliminare i file del mod non necessari
+- L'annuncio apparirà dopo che l'annuncio del mod è stato caricato con successo
+- La risoluzione non verrà modificata forzatamente
+- Ajustamento del colore del cooldown della skill
+- Le suggerenze nella parte inferiore sinistra vengono messe in alto
+- Le liste dei server non vengono coperte forzatamente
+- L'aggiornamento del file di lingua non verrà interrotto attraverso l'aggiunta di file
+- "Espelli giocatori non connessi" è stato modificato in "Espelli giocatori con codici amico anomali"
+- "Disattiva anti-trucco" è stato modificato in "Attiva anti-trucco"
+- Il colore del pulsante di riepilogo del ruolo cambia in base al colore del ruolo
+- Slok ha lasciato il team "XtremeWave" ed è diventato un mod personale
+- La visualizzazione delle informazioni in "La mia musica" è stata trasposta
+- Lo stile del pulsante di cambio pagina in "La mia musica" è stato ajustato
+- Lo stile del pulsante di riproduzione in "La mia musica" è stato ajustato
+- Il metodo di aggiunta della musica personalizzata in "La mia musica" è stato ajustato
+Produttore: Slok
+- È stato permesso di utilizzare "Cambia tipo di outfit" nei giochi
+Fonte: Town Of Host : Enhanced
+
+## Nuovi contenuti
+- Chiudi automaticamente il gioco se il download delle risorse critiche non riesce
+- Opzione del client: Modalità offline (Sperimentale)
+Produttore: Slok
+Idea: QingFeng
+- Riconoscimento dei programmi o mod di trucco
+- Tutti i log RPC controllati e più rilevazione di trucco RPC
+- L'interfaccia utente si adatta a tutte le risoluzioni 
+- Mostra il nome dell'host nella lista della lobby
+- Rimuovi gli spazi vuoti alla fine del nome per evitare nomi ripetuti
+- Sostituisci gli spazi con i trattini bassi nel nome
+- Uova di Pasqua del 1° aprile
+- Mostra il progresso delle attività in percentuale
+- Colora la barra delle attività
+- Abilita la musica dello schermo di caricamento e del menu principale
+- Aggiungi uno specchio GitHub e un remoto Fangkuai per ottimizzare la velocità di download
+- SourcePack: Pacchetto di stili del menu principale (contiene 5 stili)
+- Aggiungi posizione alle informazioni del giocatore
+- Client Guardian (proteggi completamente dagli eseguibili che causano crash nei programmi di trucco) 
+- Tasti di scelta rapida: Avvia immediatamente il gioco e fermano l'effetto sonoro di avvio del gioco
+- Tasti di scelta rapida: F4 Schermo intero
+- Funzione del client: Cambia stile del menu principale
+- Opzione del client: Attiva Client Guardian (Sperimentale)
+- Funzione del client: Gestore delle risorse
+- Funzione del client: "La mia musica" Mostra la durata della riproduzione
+- Funzione del client: "La mia musica" Mostra le pagine
+- Funzione del client: "La mia musica" Aggiungi pulsante: Cambia modalità di riproduzione (Ripeti/Ordine/Random)
+- Funzione del client: "La mia musica" Aggiungi pulsante: Pausa/Continua
+- Funzione del client: "La mia musica" Aggiungi pulsante: Musica precedente
+- Funzione del client: "La mia musica" Aggiungi pulsante: Prossima musica
+- Funzione del client: "La mia musica" Aggiungi tipi supportati: ".flac", ".aif", ".aiff", ".mp3"
+Produttore: Slok
+- Aggiungi controllo del codice amico
+- Aggiungi controllo RPC NonalusAntiCheatMenu
+Produttore: Nonalus
+- Aggiungi controllo RPC152 di BetterAmongUs
+- Aggiungi controllo RPC176 di HostGuard
+- Arresta il gioco se la directory contiene altri mod
+Produttore: LezaiYa
+- Mostra le impostazioni del gioco durante il gioco
+- Tasti di scelta rapida: F2 Attiva/Disattiva la visualizzazione delle impostazioni del gioco durante il gioco
+Produttore: Slok, Elinmei
+- Funzione del client: Gestore delle etichette
+Produttore: Slok
+Ispirazione: Town Of Next
+- Sistema di etichettatura nelle riunioni
+Produttore: Slok
+Idea: Slok, Amongus
+Ispirazione: Town Of Next
+
+## Rimodellato
+- Il FAC è stato completamente rimodellato per ottimizzare l'anti-trucco
+Produttore: Slok
+
+## Rimosso
+- Rimosso ~~Funzione del client: Gestore audio~~
+Motivo: Sostituito da "Gestore delle risorse"
+Decisore: Slok

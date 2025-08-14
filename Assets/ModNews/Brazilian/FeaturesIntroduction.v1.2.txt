@@ -1,0 +1,138 @@
+﻿#Number:100008
+#Title:v1.2 Funcionalidades e Otimizações
+#SubTitle:★★★★Nosso conteúdo de atualização★★★★
+#ShortTitle:★Introdução à Atualização v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Este arquivo cobre advertências e introdução de recursos! Por favor, leia este arquivo cuidadosamente!
+## Atenção!
+- Se você presenciar um trapaceiro, isso significa que eles já trapacearam ou estão na lista negra de mods, mas não significa que estão trapaceando quando você os presencia. 
+Exemplo: Se você encontrar (Invalid RPC:151), eles podem ser usuários de **「Better Among Us」**, mas o FS não adapta seu RPC e o FS confirma o trapaceiro que envia RPC inválido.
+Certamente, não se preocupe, porque devido aos nossos métodos de reconhecimento exclusivos, você não será considerado um trapaceiro por eles!
+- Se ocorrer um erro, clique em "Recursos do Cliente - Despejar Logs" para despejar o log e enviá-los para nós!
+- Com exceção de "简体中文" e "English", outros idiomas são traduzidos por IA. Entre em contato conosco se a tradução não estiver correta!
+- Se você ativar o modo offline, o mod deixará de adquirir palavras banidas, anúncios, recursos remotos e verificação de atualizações e não baixará recursos necessários. Isso pode resultar em atualizações críticas perdidas ou em erros desconhecidos. Use-o com cuidado!
+
+## Otimizações - 26
+*Global:* 
+- Cursor do mod
+- Ícone do mod
+*Menu Principal:* 
+- Animação de início do jogo
+- Animação de carregamento - Ilustrações de papéis
+- Layout da interface do menu principal
+- Fundo do menu principal
+*Busca Online:* 
+- Otimizado a exibição do nome do lobby 
+- Nome do servidor privado colorido
+*InGame-Global:* 
+- Exibição de FPS e servidor
+- Exibição da versão do mod
+- Otimizado a cor da bolha de chat 
+- Otimizado o fundo da bolha de chat
+- Otimizado o motivo da desconexão
+- Otimizado o check de nomes repetidos
+*InGame-Lobby:* 
+- Otimizado o fundo das informações do lobby
+- Interface de edição de configurações do jogo colorida
+- Otimizado o fundo da edição de configurações do jogo
+- Interface de visualização de configurações do jogo colorida
+- Adicionado logotipo da equipe no lobby
+*InGame-Partidas:* 
+- Animação de início de rodada
+- Colorir o mini mapa de acordo com sua equipe e papel
+- Colorir diferentemente de acordo com seu papel
+- Colorir texto dos botões de habilidade
+- Colorir texto de cooldown dos botões de habilidade
+- Exibir o jogador que saiu do jogo
+*Resultado do Jogo:*
+- Otimizado os textos dos resultados
+
+## Funcionalidades - 53
+*Global:(Configurações-Configurações do Cliente)*
+- Despejar logs
+- Limpar logs automáticos
+- Alternar Vanilla
+- Gerenciador de Recursos (Apenas no menu principal)
+- Gerenciador de Tags de Nome (Apenas no menu principal)
+- Minha Música (Suporte a músicas personalizadas, tipo: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Alternar estilo do menu principal
+*Carregamento:*
+- Baixar automaticamente recursos remotos do mod (Sair automaticamente do jogo se o download de recursos críticos falhar)
+*Menu Principal:*
+- Verificação automática de atualizações
+*Busca Online:*
+- Exibir a plataforma do host e colorir o nome do lobby de acordo com ela
+- Exibir código do quarto
+- Exibir a porcentagem de tempo restante
+- Mais opções de servidor
+- Exibir o nome do host
+*InGame-Global:*
+- Anti-trapaça Final (FAC 2.0)
+- Proteção do Cliente (Defender contra hackers que atacam diretamente o executável)
+- Verificação e bloqueio de palavras banidas
+- Desbloquear FPS (De 60FPS para 165FPS)
+- Expulsar jogadores que atendem a certas condições
+*InGame-Lobby:*
+- Exibir plataforma e informações do cliente do jogador
+- Iniciar o jogo automaticamente quando o lobby estiver cheio
+- Conhecer outros jogadores que instalaram o FS
+- Exibir tempo restante (Apenas funciona quando o host não alterou)
+*InGame-Partidas:*
+- Exibir Cena e Papéis
+- Exibir processo de tarefa/contagem de mortes
+- Zoom in/out usando a roda do mouse (Apenas no modo de prática, jogo local, no lobby e após a morte quando não for o anjo da guarda)
+- Mostrar o papel, processo de tarefa/contagem de mortes e posição de cada jogador após a morte quando não for o anjo da guarda
+- Mostrar posições de cada jogador e corpo no mini mapa após a morte quando não for o anjo da guarda
+- Mostrar razão da morte e assassinatos
+- Mostrar últimos resultados após a morte
+- Colorir o nome ao rastrear outro jogador ao assombrar
+- Ovos de Páscoa no Mapa de Abril
+- Sistema de tags nas reuniões (É possível marcar outros jogadores para lembrar seus papéis)
+- Mostrar progresso geral da tarefa em porcentagem
+*Resultados:*
+- Resumo (Papel, progresso da tarefa/contagem de mortes, razão da morte e assassinato)
+- Retornar automaticamente ao lobby
+*Atalhos Globais:*
+- F4: Tela cheia
+- F10: Abrir diretório raiz do jogo
+- F11: Alterar resolução
+- Ctrl+F1: Despejar log
+- Ctrl+F2: Alternar se os logs podem ser despejados durante as partidas (Apenas para o host)
+*Atalhos Menu Principal:*
+- Tab: Ocultar UI
+*Atalhos Chat:*
+- Ctrl+C: Copiar texto na caixa de chat
+- Ctrl+V: Colar texto na caixa de chat
+- Ctrl+X: Cortar texto na caixa de chat
+- ↑: Rastrear histórico de chat anterior
+- ↓: Rastrear histórico de chat seguinte
+*Atalhos Busca Online:*
+- LShift: Entrar no último quarto que você entrou
+- RShift: Entrar no quarto com o código do quarto na área de transferência
+*Atalhos InGame:*
+- F1: Mostrar introdução e ilustração do seu papel
+- F2: Mostrar/ocultar informações de configuração do jogo
+*Atalhos Lobby:*
+- Shift: Pular contagem regressiva de início do jogo (Apenas para o host)
+- C: Reiniciar contagem regressiva de início do jogo (Apenas para o host)
+
+*Opções:(Configurações-Configurações do Cliente) - 15*
+- 
+[Modo Clássico - Modo Cavalo de 1º de Abril - Modo Longo de 1º de Abril]
+- Desbloquear FPS
+- Expulsar jogadores com códigos de amigo anormais
+- Expulsar jogadores usando apelidos banidos
+- Expulsar jogadores banidos
+- Bloquear palavras banidas
+- Iniciar o jogo automaticamente quando estiver cheio
+- Retornar automaticamente ao lobby quando o jogo terminar
+- Desativar música do jogo Vanilla
+- Habilitar anti-trapaça
+- Habilitar Guardião do Cliente (Experimental)
+- Mostrar plataforma e informações do cliente do jogador
+- Usar cursor do mod
+- Modo de lançamento rápido
+- Modo offline (Experimental)
+*Opções:(Outros)*
+- Alternar estilo do mapa (Apenas no The Skeld, e o botão está na segurança)

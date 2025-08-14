@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Freue mich auf unser nächstes Treffen!★★★★
+#ShortTitle:★Versionsupdate v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# German
+Seit v1.2 ist die Funktionsentwicklung von "Final Suspect" abgeschlossen!
+In der Zukunft wird sich das Mod auf die Behebung von Fehlern und die Anpassung von Versionen konzentrieren und nur selten oder nie neue Funktionen hinzufügen.
+Slok wird sich nach dem Verlassen von XtremeWave auf ein neues Spiel "EmberVeins" konzentrieren.
+Gleichzeitig wird XtremeWave sich auf mehrere Projekte konzentrieren, darunter ein neues Among Us Projekt!
+Ich freue mich auf unser nächstes Treffen!
+
+## Erforderliche Version
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Mod Versionsinformationen
+- Assembly-Version: v1.2.0
+- Versionsart: Release
+- Buildnummer: 1
+
+## Aktualisierungsinhalt
+- Fehlerbehebungen: 23
+- Optimierungen: 10
+- Anpassungen: 17
+- Neue Inhalte: 37
+- Überarbeitungen: 1
+- Entfernt: 1
+
+## Mitwirkende
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [Zucker mit Kaffee]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Fehlerbehebungen
+- Das Problem mit der Aktivierung des "Schnellstart-Modus" wurde behoben
+- Das Problem der Erstellung von Übungsmodedaten wurde behoben
+- Die falsche Anzeige von Leichen auf der Minimap wurde behoben
+- Die falsche Farbe der Leichen auf der Minimap wurde behoben
+- Das Problem mit der Aktivierung des Halloween-Stils wurde behoben
+- Das Problem der Lesung der Aktualisierungsprotokolle wurde behoben.
+- Das Problem der Färbung der Startanimation, wenn Rollen offenbart werden, wurde behoben.
+- Das Problem, dass die Ladeanimation in der neuesten Version nicht funktioniert, wurde behoben
+- Das Problem des Ladens von verbotenen Wörtern wurde behoben
+- Die falsche Anzeige von Aufgaben, wenn die Kommunikation sabotiert wird, wurde behoben
+- Das Problem der Suche nach Informationen in der Lobby wurde behoben
+- Die falsche Anzeige von Tipps in der linken unteren Ecke von Among Us wurde behoben
+- Das Problem, dass die Spielernamen in den Tipps in der linken unteren Ecke nicht gefärbt sind, wurde behoben
+- Das Problem des Stockens, wenn Sie F1 drücken, um die Rolleneinführung anzuzeigen, wurde behoben
+- Das Problem der fehlerhaften Namensübereinstimmung wurde behoben
+- Das Problem, dass das Töten im exakten Moment, in dem eine Sitzung beginnt, als Cheating gilt, wurde behoben
+- Das Problem, dass das Client-Killing möglicherweise zu einer falschen Anti-Cheat-Bewertung führt, wurde behoben
+- Das Problem, dass ein gestopptes Audiodatei nicht korrekt freigegeben werden kann, wurde behoben
+Fixer: Slok
+- Das Problem, dass das Spuken nicht verwendet werden kann, wenn "Automatisch zur Lobby zurückkehren, wenn das Spiel endet" aktiviert ist, wurde behoben
+Fixer: Slok
+Reporter: Kaiser Qin Shi Huang
+- Das Problem, dass der Laden nicht besucht werden kann, wenn "Automatisch zur Lobby zurückkehren, wenn das Spiel endet" aktiviert ist, wurde behoben
+Fixer: Slok
+Reporter: QingFeng
+- Das Problem, dass die Sperrliste nicht funktioniert, wurde behoben
+Fixer: LezaiYa
+Reporter: Polizeichef Little Blue
+- Das Problem, dass LShift und RShift nicht funktionieren, wurde behoben
+Fixer: Elinmei
+- Das Problem des defekten "April Fool's Horse Mode" wurde behoben
+Quelle: Town Of Host : Enhanced
+
+## Optimierungen
+- Der Ladebildschirmcode wurde neu geschrieben, um die Effizienz der Codeausführung zu optimieren
+- Asynchrone Methode wird verwendet, um verbotene Wörter zu lesen, um Thread-Blockierungen zu vermeiden
+- Asynchrone Methode wird verwendet, um die Aktualisierungsprüfung abzuschließen, um Thread-Blockierungen zu vermeiden
+- Verbotene Wörter werden verschlüsselt, um entfernte Verbannungen zu verhindern.
+- Die Logik der verbotenen Wörter wurde neu geschrieben
+- Anti-Cheat wurde optimiert
+- Die allgemeine Effizienz der Codeausführung wurde optimiert
+- Das allgemeine Codeformat wurde optimiert
+- Das allgemeine Format der Sprachdatei wurde optimiert
+- Die Startgeschwindigkeit des "Schnellstart-Modus" wurde verbessert
+Hersteller: Slok
+
+## Anpassungen
+- Modankündigungen werden beim Start des Spiels gelesen, anstatt lokal heruntergeladen zu werden
+- Der Spielprozess wird erzwungen beendet, anstatt unnötige Mod-Dateien zu löschen
+- Die Ankündigung wird angezeigt, nachdem die Modankündigung erfolgreich geladen wurde
+- Die Auflösung wird nicht erzwungen geändert
+- Anpassung der Farbe der Fähigkeitsabklingzeit
+- Tipps in der linken unteren Ecke werden oben platziert
+- Serverlisten werden nicht erzwungen abgedeckt
+- Die Aktualisierung der Sprachdatei wird nicht durch das Hinzufügen von Dateien gestoppt
+- "Spieler, die nicht angemeldet sind, ausschließen" wurde in "Spieler mit abnormen Freundescodes ausschließen" geändert
+- "Anti-Cheat deaktivieren" wurde in "Anti-Cheat aktivieren" geändert
+- Die Farbe der Rollenzusammenfassungsschaltfläche ändert sich entsprechend der Rollenfarbe
+- Slok verlässt das Team "XtremeWave" und wird zu einem persönlichen Mod
+- Informationsanzeige in "Meine Musik" wurde vertauscht
+- Der Stil der Seitenwechsel-Schaltfläche in "Meine Musik" wurde angepasst
+- Der Stil der Wiedergabetaste in "Meine Musik" wurde angepasst
+- Die Methode zur Hinzufügung von benutzerdefinierter Musik in "Meine Musik" wurde angepasst
+Hersteller: Slok
+- Die Verwendung von "Ausstattungstyp ändern" in Spielen wurde erlaubt
+Quelle: Town Of Host : Enhanced
+
+## Neue Inhalte
+- Automatisches Schließen des Spiels, wenn das Herunterladen wichtiger Ressourcen fehlschlägt
+- Clientoption: Offline-Modus (Experimentell)
+Hersteller: Slok
+Idee: QingFeng
+- Erkennung von Cheats oder Mods
+- Überprüfung aller RPC-Logs und weitere Erkennung von RPC-Cheats
+- UI passt sich an alle Auflösungen an 
+- Hostnamen in der Lobbyliste anzeigen
+- Entfernen von Leerzeichen am Ende des Namens, um doppelte Namen zu vermeiden
+- Leerzeichen in Unterstriche im Namen umwandeln
+- April Fool's Easter Eggs
+- Aufgabenfortschritt in Prozent anzeigen
+- Die Aufgabenleiste einfärben
+- Ladebildschirm & Hauptmenümusik aktivieren
+- Hinzufügen eines GitHub-Spiegelquells und eines Fangkuai-Remotes, um die Downloadgeschwindigkeit zu optimieren
+- SourcePack: Hauptmenü-Stil-Paket (enthält 5 Stile)
+- Position in Spielerinformationen hinzufügen
+- Client-Bewacher (Vollständig schützen vor crashenden Executables in Cheats) 
+- Tastenkürzel: Spiel sofort starten und Startgame-Soundeffekt stoppen
+- Tastenkürzel: F4 Vollbild
+- Client-Funktion: Hauptmenü-Stil ändern
+- Client-Option: Client-Bewacher aktivieren (Experimentell)
+- Client-Funktion: Ressourcen-Manager
+- Client-Funktion: "Meine Musik" Wiedergabezeit anzeigen
+- Client-Funktion: "Meine Musik" Seiten anzeigen
+- Client-Funktion: "Meine Musik" Hinzufügen von Schaltflächen: Wiedergabemodus ändern (Wiederholen/Ordnen/Zufall)
+- Client-Funktion: "Meine Musik" Hinzufügen von Schaltflächen: Pause/Fortsetzung
+- Client-Funktion: "Meine Musik" Hinzufügen von Schaltflächen: Vorherige Musik
+- Client-Funktion: "Meine Musik" Hinzufügen von Schaltflächen: Nächste Musik
+- Client-Funktion: "Meine Musik" Hinzufügen unterstützter Dateitypen: ".flac", ".aif", ".aiff", ".mp3"
+Hersteller: Slok
+- Freundescode-Prüfung hinzufügen
+- NonalusAntiCheatMenu RPC-Prüfung hinzufügen
+Hersteller: Nonalus
+- BetterAmongUs RPC152-Prüfung hinzufügen
+- HostGuard RPC176-Prüfung hinzufügen
+- Spiel stoppen, wenn das Verzeichnis andere Mods enthält
+Hersteller: LezaiYa
+- Spielereinstellungen während des Spiels anzeigen
+- Tastenkürzel: F2 Aktivieren/Deaktivieren der Anzeige von Spielereinstellungen während des Spiels
+Hersteller: Slok, Elinmei
+- Client-Funktion: Namensschild-Manager
+Hersteller: Slok
+Anregung: Town Of Next
+- Tag-System in Sitzungen
+Hersteller: Slok
+Idee: Slok, Amongus
+Anregung: Town Of Next
+
+## Überarbeitungen
+- Die FAC wurde komplett überarbeitet, um das Anti-Cheat zu optimieren
+Hersteller: Slok
+
+## Entfernt
+- Entfernt ~~Client-Funktion: Audio-Manager~~
+Grund: Ersetzt durch "Ressourcen-Manager"
+Entscheider: Slok

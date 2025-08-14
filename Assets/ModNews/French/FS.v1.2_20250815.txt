@@ -1,0 +1,163 @@
+#Number:100007
+#Title:Final Suspect v1.2
+#SubTitle:★★★★Hâte de vous revoir lors de notre prochaine rencontre!★★★★
+#ShortTitle:★Mise à jour de la version v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# French
+Depuis la v1.2, le développement des fonctionnalités de "Final Suspect" est terminé !
+À l'avenir, le mod se concentrera sur la correction des bugs et l'adaptation des versions, et ajoutera rarement ou jamais de nouvelles fonctionnalités.
+Slok se concentrera sur un nouveau jeu "EmberVeins" après avoir quitté XtremeWave.
+En même temps, XtremeWave se concentrera sur plusieurs projets, y compris un nouveau projet Among Us !
+J'ai hâte de vous revoir lors de notre prochaine rencontre !
+
+## Version requise
+- Among Us v16.1.0
+- BepInEx v6.0.0-be.738
+
+## Informations sur la version du mode
+- Numéro de version de l'assembly : v1.2.0
+- Type de version : Release
+- Numéro de build : 1
+
+## Contenu de la mise à jour
+- Corrections de bugs : 23
+- Optimisations : 10
+- Ajustements : 17
+- Nouveaux contenus : 37
+- Refonte : 1
+- Suppressions : 1
+
+## Contributeur
+- [LezaiYa]("https://github.com/NewLezaiYa")
+- [Elinmei]("https://github.com/linmeideli")
+- [Nonalus]("https://github.com/Reborn5537/")
+- [Café au lait]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+- [FangKuai]("https://github.com/FangkuaiYa")
+
+## Correction de bugs
+- Le problème d'activation du "Mode de lancement rapide" a été résolu
+- Le problème de création des données du mode de pratique a été résolu
+- La mauvaise affichage des corps sur la minimap a été résolu
+- La mauvaise couleur des corps sur la minimap a été résolu
+- Le problème d'activation du style Halloween a été résolu
+- Le problème de lecture des journaux de mise à jour a été résolu.
+- Le problème de coloration de l'animation de début de tour lorsque les rôles sont révélés a été résolu.
+- Le problème que l'animation de chargement ne fonctionne pas dans la dernière version a été résolu
+- Le problème de chargement des mots interdits a été résolu
+- Le mauvais affichage des tâches lorsque la communication est sabotée a été résolu
+- Le problème de recherche d'informations dans le lobby a été résolu
+- Le mauvais affichage des conseils en bas à gauche d'Among Us a été résolu
+- Le problème que les pseudos des joueurs ne sont pas colorés dans les conseils en bas à gauche a été résolu
+- Le problème de saccade lors de l'appui sur F1 pour afficher la présentation du rôle a été résolu
+- Le problème de correspondance incorrecte des noms a été résolu
+- Le problème que tuer au moment exact où une réunion commence est considéré comme triche a été résolu
+- Le problème que le client peut causer une mauvaise évaluation anti-triche a été résolu
+- Le problème qu'un fichier audio arrêté ne peut pas être libéré correctement a été résolu
+Fixer : Slok
+- Le problème que le fantôme ne peut pas être utilisé lorsque "Retour automatique au lobby lorsque le jeu se termine" est activé a été résolu
+Fixer : Slok
+Reporter : Empereur Qin Shi Huang
+- Le problème que la boutique ne peut pas être visitée lorsque "Retour automatique au lobby lorsque le jeu se termine" est activé a été résolu
+Fixer : Slok
+Reporter : QingFeng
+- Le problème que la liste noire ne fonctionne pas a été résolu
+Fixer : LezaiYa
+Reporter : Chef de la police Petit Bleu
+- Le problème que LShift et RShift ne fonctionnent pas a été résolu
+Fixer : Elinmei
+- Le problème du "Mode Cheval du 1er avril" cassé a été résolu
+Source : Town Of Host : Enhanced
+
+## Optimisations
+- Le code de l'écran de chargement a été réécrit pour optimiser l'efficacité de l'exécution du code
+- La méthode asynchrone est utilisée pour lire les mots interdits afin d'éviter les blocages de thread
+- La méthode asynchrone est utilisée pour terminer la vérification des mises à jour afin d'éviter les blocages de thread
+- Les mots interdits sont chiffrés pour éviter les bannissements à distance.
+- La logique des mots interdits a été réécrite
+- L'anti-triche a été optimisé
+- L'efficacité générale de l'exécution du code a été optimisée
+- Le format général du code a été optimisé
+- Le format général du fichier de langue a été optimisé
+- La vitesse de démarrage du "Mode de lancement rapide" a été améliorée
+Fabricant : Slok
+
+## Ajustements
+- Les annonces du mod seront lues lors du démarrage du jeu, au lieu de les télécharger localement
+- Le processus du jeu est arrêté de force au lieu de supprimer les fichiers de mod inutiles
+- L'annonce apparaît après que l'annonce du mod a été chargée avec succès
+- La résolution ne sera pas modifiée de force
+- L'ajustement de la couleur de la barre de refroidissement de la compétence
+- Les conseils en bas à gauche sont mis en haut
+- Les listes de serveurs ne sont pas forcées à être couvertes
+- La mise à jour du fichier de langue ne sera pas arrêtée en ajoutant des fichiers
+- "Expulser les joueurs qui ne sont pas connectés" est modifié en "Expulser les joueurs avec des codes d'amis anormaux"
+- "Désactiver l'anti-triche" est modifié en "Activer l'anti-triche"
+- La couleur du bouton de résumé du rôle change en fonction de la couleur du rôle
+- Slok quitte l'équipe "XtremeWave" et devient un mod personnel
+- La disposition des informations dans "Ma Musique" est transposée
+- Le style du bouton de changement de page dans "Ma Musique" a été ajusté
+- Le style du bouton de lecture dans "Ma Musique" a été ajusté
+- La méthode d'ajout de musique personnalisée dans "Ma Musique" a été ajustée
+Fabricant : Slok
+- Autoriser l'utilisation de "Changer le type de vêtement" dans les jeux
+Source : Town Of Host : Enhanced
+
+## Nouveaux contenus
+- Fermeture automatique du jeu en cas d'échec du téléchargement de ressources critiques
+- Option du client : Mode hors ligne (expérimental)
+Fabricant : Slok
+Idée : QingFeng
+- Reconnaissance des programmes ou mods de triche
+- Vérification de tous les logs RPC et plus de détection de triche RPC
+- L'UI s'adapte à toutes les résolutions 
+- Afficher le nom de l'hôte dans la liste du lobby
+- Supprimer les espaces à la fin du nom pour éviter les noms répétés
+- Remplacer les espaces par des traits de soulignement dans le nom
+- œufs de Pâques du 1er avril
+- Afficher le progrès des tâches en pourcentage
+- Colorer la barre de tâches
+- Activer la musique du menu principal et de l'écran de chargement
+- Ajout d'un miroir GitHub et d'un remote Fangkuai pour optimiser la vitesse de téléchargement
+- SourcePack : Pack de styles de menu principal (contient 5 styles)
+- Ajout de la position dans les informations du joueur
+- Gardien du client (protège complètement contre les exécutable crashant dans les programmes de triche) 
+- Raccourcis : Démarrer le jeu instantanément et arrêter l'effet sonore du démarrage du jeu
+- Raccourcis : F4 Plein écran
+- Fonctionnalité du client : Changer le style du menu principal
+- Option du client : Activer le Gardien du client (expérimental)
+- Fonctionnalité du client : Gestionnaire de ressources
+- Fonctionnalité du client : "Ma Musique" Afficher la durée de lecture
+- Fonctionnalité du client : "Ma Musique" Afficher les pages
+- Fonctionnalité du client : "Ma Musique" Ajouter un bouton : Changer le mode de lecture (Répéter/Ordre/Aléatoire)
+- Fonctionnalité du client : "Ma Musique" Ajouter un bouton : Pause/Continuer
+- Fonctionnalité du client : "Ma Musique" Ajouter un bouton : Musique précédente
+- Fonctionnalité du client : "Ma Musique" Ajouter un bouton : Musique suivante
+- Fonctionnalité du client : "Ma Musique" Ajouter des types supportés : ".flac", ".aif", ".aiff", ".mp3"
+Fabricant : Slok
+- Ajouter la vérification du code d'ami
+- Ajouter la vérification du RPC NonalusAntiCheatMenu
+Fabricant : Nonalus
+- Ajouter la vérification du RPC152 de BetterAmongUs
+- Ajouter la vérification du RPC176 de HostGuard
+- Arrêter le jeu lorsque le répertoire contient d'autres mods
+Fabricant : LezaiYa
+- Afficher les paramètres du jeu pendant le jeu
+- Raccourcis : F2 Activer/Désactiver l'affichage des paramètres du jeu pendant le jeu
+Fabricant : Slok, Elinmei
+- Fonctionnalité du client : Gestionnaire d'étiquettes
+Fabricant : Slok
+Inspiration : Town Of Next
+- Système d'étiquettes dans les réunions
+Fabricant : Slok
+Idée : Slok, Amongus
+Inspiration : Town Of Next
+
+## Refonte
+- Refonte complète du FAC pour optimiser l'anti-triche
+Fabricant : Slok
+
+## Suppressions
+- Supprimé ~~Fonctionnalité du client : Gestionnaire d'audio~~
+Raison : Remplacé par "Gestionnaire de ressources"
+Décideur : Slok

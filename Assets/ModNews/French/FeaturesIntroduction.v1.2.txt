@@ -1,0 +1,138 @@
+﻿#Number:100008
+#Title:v1.2 Fonctionnalités & Optimisations
+#SubTitle:★★★★Nos contenus de mise à jour★★★★
+#ShortTitle:★Introduction à la mise à jour v1.2
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+## Ce fichier couvre les précautions et l'introduction des fonctionnalités ! Veuillez lire ce fichier attentivement !
+## Précautions !
+- Si vous repérez un tricheur, cela signifie qu'ils ont déjà triché ou qu'ils sont dans la liste noire des mods, mais cela ne signifie pas qu'ils trichent lorsque vous les repérez. 
+Exemple : Si vous rencontrez (Invalid RPC:151), ils pourraient être des utilisateurs de **「Better Among Us」**, mais FS n'adapte pas son RPC, et FS confirme le tricheur qui envoie un RPC invalide.
+Assurément, ne vous inquiétez pas, car grâce à nos méthodes de reconnaissance uniques, vous ne serez pas considéré comme un tricheur par eux !
+- Si un bug se produit, veuillez cliquer sur "Fonctionnalités du client - Dumper les journaux" pour dumper le journal et nous les envoyer !
+- À l'exception du "简体中文" et de l' "English", les autres langues sont traduites par IA. Veuillez nous contacter si la traduction n'est pas correcte !
+- Si vous activez le mode hors ligne, le mod cessera d'acquérir des mots interdits, des annonces, des ressources distantes et des vérifications de mise à jour, et ne téléchargera pas les ressources nécessaires. Cela pourrait entraîner des mises à jour critiques manquantes ou des erreurs inconnues. Utilisez-le avec précaution !
+
+## Optimisations - 26
+*Global :* 
+- Curseur du mod
+- Icône du mod
+*Menu Principal :* 
+- Animation de démarrage du jeu
+- Animation de chargement - Illustrations des rôles
+- Mise en page de l'interface du menu principal
+- Fond du menu principal
+*Recherche en ligne :* 
+- Optimisation de l'affichage du nom du lobby 
+- Nom du serveur privé coloré
+*InGame-Global :* 
+- Affichage des FPS et du serveur
+- Affichage de la version du mod
+- Optimisation de la couleur de la bulle de chat 
+- Optimisation du fond de la bulle de chat
+- Optimisation de la raison de la déconnexion
+- Optimisation du contrôle des noms répétés
+*InGame-Lobby :* 
+- Optimisation du fond des informations du lobby
+- Interface d'édition des paramètres de jeu colorée
+- Optimisation du fond de l'édition des paramètres de jeu
+- Interface de visualisation des paramètres de jeu colorée
+- Ajout du logo d'équipe dans le lobby
+*InGame-Parties :* 
+- Animation de début de manche
+- Coloration de la mini-carte selon votre équipe et votre rôle
+- Coloration différente selon votre rôle
+- Coloration des textes des boutons de compétence
+- Coloration des textes de temps de recharge des boutons de compétence
+- Affichage du joueur qui quitte le jeu
+*Résultat du Jeu :*
+- Optimisation des textes des résultats
+
+## Fonctionnalités - 53
+*Global:(Paramètres-Paramètres du Client)*
+- Dumper les journaux
+- Effacer les journaux automatiques
+- Basculer en mode Vanilla
+- Gestionnaire de ressources (Utilisation uniquement dans le menu principal)
+- Gestionnaire d'étiquettes de nom (Utilisation uniquement dans le menu principal)
+- Ma musique (Prise en charge des musiques personnalisées, type : ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Basculer le style du menu principal
+*Chargement :*
+- Téléchargement automatique des ressources de mod distantes (Fermeture automatique du jeu en cas d'échec du téléchargement de ressources critiques)
+*Menu Principal :*
+- Vérification automatique des mises à jour
+*Recherche en ligne :*
+- Afficher la plateforme de l'hôte et colorer le nom du lobby en conséquence
+- Afficher le code de la salle
+- Afficher le pourcentage de temps restant
+- Plus d'options de serveur
+- Afficher le nom de l'hôte
+*InGame-Global :*
+- Anti-triche final (FAC 2.0)
+- Protection du client (Défense contre les hackers qui attaquent directement l'exécutable)
+- Vérification et blocage des mots interdits
+- Déverrouillage des FPS (De 60FPS à 165FPS)
+- Expulsion automatique des joueurs qui remplissent certaines conditions
+*InGame-Lobby :*
+- Afficher la plateforme et les informations du client du joueur
+- Démarrage automatique du jeu lorsque le lobby est plein
+- Reconnaître les autres joueurs qui ont installé FS
+- Afficher le temps restant (Fonctionne uniquement lorsque l'hôte n'a pas modifié)
+*InGame-Parties :*
+- Afficher la scène et les rôles
+- Afficher le processus de tâche/comptage des morts
+- Zoom avant/arrière à l'aide de la molette de la souris (Utilisation uniquement en mode entraînement, jeu local, dans le lobby et après la mort lorsque vous n'êtes pas l'ange gardien)
+- Afficher le rôle, le processus de tâche/comptage des morts et la position de chaque joueur après la mort lorsque vous n'êtes pas l'ange gardien
+- Afficher les positions de chaque joueur et des corps dans la mini-carte après la mort lorsque vous n'êtes pas l'ange gardien
+- Afficher la raison de la mort et les meurtres
+- Afficher les derniers résultats après la mort
+- Colorer le nom lors du suivi d'autres joueurs par hantise
+- Pâques œufs dans la carte d'avril
+- Système de balises dans les réunions (Vous pouvez étiqueter d'autres joueurs pour vous souvenir de leurs rôles)
+- Afficher le progrès général des tâches en pourcentage
+*Résultats :*
+- Résumé (Rôle, progression des tâches/comptage des morts, raison de la mort et meurtre)
+- Retour automatique au lobby
+*Raccourcis-Global :*
+- F4 : Plein écran
+- F10 : Ouvrir le répertoire racine du jeu
+- F11 : Changer la résolution
+- Ctrl+F1 : Dumper le journal
+- Ctrl+F2 : Basculer si les journaux peuvent être dumpés lors des parties (Hôte uniquement)
+*Raccourcis-Menu Principal :*
+- Tab : Masquer l'interface utilisateur
+*Raccourcis-Chat :*
+- Ctrl+C : Copier le texte dans votre boîte de chat
+- Ctrl+V : Coller le texte dans votre boîte de chat
+- Ctrl+X : Couper le texte dans votre boîte de chat
+- ↑ : Suivre votre dernier historique de chat
+- ↓ : Suivre votre prochain historique de chat
+*Raccourcis-Recherche en ligne :*
+- LShift : Rejoindre la dernière salle que vous avez rejointe
+- RShift : Rejoindre la salle avec le code de la salle dans le presse-papiers
+*Raccourcis-InGame :*
+- F1 : Afficher l'introduction et l'illustration de votre rôle
+- F2 : Afficher/Masquer les informations des paramètres du jeu
+*Raccourcis-Lobby :*
+- Shift : Ignorer le compte à rebours de démarrage du jeu (Hôte uniquement)
+- C : Réinitialiser le compte à rebours de démarrage du jeu (Hôte uniquement)
+
+*Options:(Paramètres-Paramètres du Client) - 15*
+- Choisir le type de tenue
+[Mode classique - Mode cheval du 1er avril - Mode long du 1er avril]
+- Déverrouiller les FPS
+- Expulser les joueurs avec des codes d'amis anormaux
+- Expulser les joueurs utilisant des surnoms interdits
+- Expulser les joueurs bannis
+- Bloquer les mots interdits
+- Démarrer automatiquement le jeu lorsque le lobby est plein
+- Retour automatique au lobby lorsque le jeu se termine
+- Désactiver la musique du jeu Vanilla
+- Activer l'anti-triche
+- Activer le gardien du client (Expérimental)
+- Afficher la plateforme du joueur et les informations du client
+- Utiliser le curseur du mod
+- Mode de lancement rapide
+- Mode hors ligne (Expérimental)
+*Options:(Autres)*
+- Changer le style de la carte (Uniquement dans The Skeld, et le bouton est dans la sécurité)

@@ -212,33 +212,41 @@ public class StopAllSoundPatch
 {
     public static bool Prefix(SoundManager __instance)
     {
-        for (var i = __instance.soundPlayers.Count - 1; i >= 0; i--)
+        try
         {
-            var matchingMusic = FinalMusic.Musics.FirstOrDefault(x => x.Clip == __instance.soundPlayers[i].Player.clip);
-            if (matchingMusic != null)
+            for (var i = __instance.soundPlayers.Count - 1; i >= 0; i--)
             {
-                if (!matchingMusic.PlayAsMainMenuMusic) continue;
-                AudioPlayer.StopPlayMod();
+                var matchingMusic =
+                    FinalMusic.Musics.FirstOrDefault(x => x.Clip == __instance.soundPlayers[i].Player.clip);
+                if (matchingMusic != null)
+                {
+                    if (!matchingMusic.PlayAsMainMenuMusic) continue;
+                    AudioPlayer.StopPlayMod();
+                }
+
+                Object.Destroy(__instance.soundPlayers[i].Player);
+                __instance.soundPlayers.RemoveAt(i);
             }
 
-            Object.Destroy(__instance.soundPlayers[i].Player);
-            __instance.soundPlayers.RemoveAt(i);
-        }
+            var keysToRemove = new List<AudioClip>();
+            foreach (var (key, value) in __instance.allSources)
+            {
+                if (FinalMusic.Musics.Any(x => x.Clip == key && !x.PlayAsMainMenuMusic))
+                    continue;
 
-        var keysToRemove = new List<AudioClip>();
-        foreach (var (key, value) in __instance.allSources)
+                value.volume = 0f;
+                value.Stop();
+                Object.Destroy(value);
+                keysToRemove.Add(key);
+            }
+
+            foreach (var key in keysToRemove) __instance.allSources.Remove(key);
+
+            return false;
+        }
+        catch
         {
-            if (FinalMusic.Musics.Any(x => x.Clip == key && !x.PlayAsMainMenuMusic))
-                continue;
-
-            value.volume = 0f;
-            value.Stop();
-            Object.Destroy(value);
-            keysToRemove.Add(key);
+            return true;
         }
-
-        foreach (var key in keysToRemove) __instance.allSources.Remove(key);
-
-        return false;
     }
 }

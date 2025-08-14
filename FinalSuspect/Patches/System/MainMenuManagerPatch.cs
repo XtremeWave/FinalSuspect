@@ -65,8 +65,7 @@ public class MainMenuManagerPatch
         CustomPopup.Update();
 
         if (!GameObject.Find("MainUI")) ShowingPanel = false;
-        VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel &&
-                                                                          Active);
+        VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel && Active);
 
         if (RightPanel)
         {

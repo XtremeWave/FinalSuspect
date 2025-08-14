@@ -383,14 +383,14 @@ internal class TitleLogoPatch
 [HarmonyPatch(typeof(ModManager), nameof(ModManager.LateUpdate))]
 internal class ModManagerLateUpdatePatch
 {
-    private static bool _firstRun;
+    private static bool _firstRun = true;
     private static string _lastScene = "";
 
 
     public static void Prefix(ModManager __instance)
     {
         __instance.ShowModStamp();
-        if (_firstRun)
+        if (!_firstRun)
         {
             if (_lastScene != SceneManager.GetActiveScene().name)
             {
@@ -404,7 +404,7 @@ internal class ModManagerLateUpdatePatch
         {
             OptionsMenuBehaviourStartPatch.SetCursor();
             __instance.ModStamp.sprite = LoadSprite("ModStamp.png", 100f);
-            _firstRun = true;
+            _firstRun = false;
         }
 
         LateTask.Update(Time.deltaTime);

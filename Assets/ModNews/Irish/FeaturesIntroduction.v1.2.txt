@@ -1,20 +1,19 @@
 ﻿#Number:100008
-#Title:v1.2 Features&Optimizations
-#SubTitle:★★★★Our update contents★★★★
-#ShortTitle:★v1.2 Update Introduction
+#Title:v1.2 Feidhmeanna & Optimalisightheachtaí
+#SubTitle:★★★★O ábhar ár nuashonrú★★★★
+#ShortTitle:★Introduction to v1.2 Update
 #Date:2025-08-15T00:00:00Z
 #-----------------------------
-## This file covers cautions and feature introduction!Please red this file carefully!
-## Caution!
-- If you witness cheater, that means they once did cheat or they are in mod blacklist, but not means they are cheating when you witness them. 
-Example: If you meet(Invalid RPC:151), they might be **「Better Among Us」** users, but FS does not adapt its RPC, and FS confirms cheater who sends invalid RPC.
-Surely, don't worry, because of our unique recognition methods, you will not regard as cheater by them!
-- If bug occurs, please click "Client Features - Dump Logs" to dump log and send them to us!
-- Except "简体中文" and "English"，other languages are translated by AI.Please contact us if the translation is not correct!
-- If you enable offline mode, the mod will stop acquiring banned words, announcements, remote resources and update check, and will not download necessary resources.This might result in missing critical updates, or meeting unknown errors.Use it carefully!
+## Tá an comhad seo agus an t-ábhar faoina bhfuilimid ag súil! Léigh an comhad seo go cairdiúil!
+## Rothanna!
+- Má fhéachann tú ar cheathrúchán, is é sin nach bhfuil siad ag ceathrúcháin nuair a fhéachann tú orthu, ach is féidir leo a bheith ar an liosta dubh de módanna.
+Mar shampla: Má fhéachann tú ar (Invalid RPC:151), is féidir leo a bheith ag úsáid **「Better Among Us」**, ach ní bhíonn FS ag dearadh RPC, agus dearbhaíonn FS an ceathrúchán a sheoltar RPC neamhchiallmhar.
+Ná bíodh eagla ort, mar gheall ar ár mhodhnaithe aitiúla, ní bhainfidh siad leat mar cheathrúchán!
+- Má thagann glúin in éineacht, bain an t-athrú "Roghanna Cliant - Dún Logáil" chun na logála a dhúnadh agus a sholáthar dúinn!
+- Go háirithe "简体中文" agus "English", tugtar aistriúcháin trí AI don chuid eile de na teangacha. Téigh i dteagmháil linn má tá an aistriúchán mícheart!
+- Má chumasann tú an modh oifigeach, stopfaidh an modh ag lorg focal deirmeacha, ráitis, nascanna fada agus seiceáil nuashonruithe, agus ní ólfaidh sé na nascanna atá de dhíth. Is féidir go mbrisfidh sé le nuashonruithe tábhachtacha, nó go mbeidh earráidí neamhshuimneach ag tarlú. Úsáid é le cinneadh!
 
-# English
-## Optimizations - 26
+## Optimalisightheachtaí - 26
 *Global:* 
 - Mod cursor
 - Mod icon
@@ -27,14 +26,14 @@ Surely, don't worry, because of our unique recognition methods, you will not reg
 - Optimized lobby name display 
 - Colored private server name
 *InGame-Global:* 
-- FPS&Server display
+- FPS & Server display
 - Mod version display
 - Optimized chat bubble color 
 - Optimized chat bubble background
 - Optimized disconnecting reason
 - Optimized repeated name check
 *InGame-Lobby:* 
-- Optimized Lobby Infomation Background
+- Optimized Lobby Information Background
 - Colored game settings editing interface
 - Optimized game settings editing background
 - Colored game settings viewing interface
@@ -49,7 +48,7 @@ Surely, don't worry, because of our unique recognition methods, you will not reg
 *GameResult:*
 - Optimized result texts
 
-## Features - 53
+## Feidhmeanna - 53
 *Global:(Settings-Client Settings)*
 - Dump logs
 - Clear auto logs
@@ -63,7 +62,7 @@ Surely, don't worry, because of our unique recognition methods, you will not reg
 *Main Menu:*
 - Auto-check updates
 *Online Search:*
-- Display host's platform and color the lobby name accordingto it
+- Display host's platform and color the lobby name according to it
 - Display room code
 - Display the percentage of close time
 - More server options
@@ -118,7 +117,7 @@ Surely, don't worry, because of our unique recognition methods, you will not reg
 - Shift: Skip game start countdown(Host only)
 - C: Reset game start countdown(Host only)
 
-*Options:(Settings-ClientSettings) - 15*
+*Option:(Settings-ClientSettings) - 15*
 - Switch Outfit Type
 [Classic Mode - April Fools' Horse Mode - April Fools' Long Mode]
 - Unlock FPS
@@ -135,5 +134,5 @@ Surely, don't worry, because of our unique recognition methods, you will not reg
 - Use mod cursor
 - Fast launch mode
 - Offline mode(Experimental)
-*Options:(Others)*
+*Option:(Others)*
 - Switch map style(Only in The Skeld, and the button is in security)
