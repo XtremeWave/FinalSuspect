@@ -121,7 +121,6 @@ public static class GameStartManagerPatch
     public class GameStartManagerUpdatePatch
     {
         private static int _updateTimer;
-        public static float ExitTimer = -1f;
 
         public static bool Prefix(GameStartManager __instance)
         {

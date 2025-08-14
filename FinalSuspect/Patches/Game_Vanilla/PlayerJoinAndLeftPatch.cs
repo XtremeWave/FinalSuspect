@@ -4,7 +4,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
-using FinalSuspect.Patches.System;
 using InnerNet;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
@@ -27,7 +26,6 @@ public class OnGameJoinedPatch
         _ = new LateTask(() => { _ = RPC.RpcVersionCheck(); }, 0.5f, "SyncJoined");
         _ = new LateTask(() => { FinalGameData.JoinedCompleted = true; }, 4f, "SyncJoined");
 
-        if (AmongUsClient.Instance.AmHost) GameStartManagerPatch.GameStartManagerUpdatePatch.ExitTimer = -1;
         SoundManager.Instance.ChangeAmbienceVolume(DataManager.Settings.Audio.AmbienceVolume);
         //Main.NewLobby = true;
     }

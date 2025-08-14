@@ -56,6 +56,7 @@ public class ShipStatusPatch
             else if (Main.IsValentines)
             {
                 snow.startColor = new Color(0.85f, 0.5f, 0.6f, 1f);
+                return;
             }
             else if (Main.IsInitialRelease)
             {
