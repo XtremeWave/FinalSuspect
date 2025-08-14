@@ -1,6 +1,7 @@
-46 changes since v6.0.0-pre.2
+47 changes since v6.0.0-pre.2
 
 Changelog (excluding merge commits):
+* (af0cba7) [ManlyMarco] v6 - Bump Il2CppInterop to 1.5.0-ci.620 (#1106)
 * (5fef357) [ManlyMarco] Bump Cpp2IL to pre-release.19 (#1103)
 * (995f049) [js6pak] Fix CI webhook
 * (0c2a3f1) [ManlyMarco] Switch Build.csproj TargetFramework to net8.0 (#1039)

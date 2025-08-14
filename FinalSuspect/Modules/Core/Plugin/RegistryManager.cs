@@ -38,14 +38,6 @@ public static class RegistryManager
         List<string> FoldersNFileToDel = [];
 
         Info("上次启动的FinalSuspect版本：" + LastStartVersion, "Registry Manager");
-
-#if RELEASE
-        if (LastVersion < new Version(1, 2, 0))
-        {
-            Warn("v1.2 New Version Operation Needed", "Registry Manager");
-            FoldersNFileToDel.Add("./BepInEx/config");
-        }
-#endif
         FoldersNFileToDel.Add("./Final Suspect_Data/Sounds");
         FoldersNFileToDel.Add("./Final Suspect_Data/ModNews");
         FoldersNFileToDel.DoIf(Directory.Exists, p =>
