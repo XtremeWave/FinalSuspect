@@ -100,10 +100,10 @@ public class MainMenuManagerPatch
         var row = 1;
         var col = 0;
 
-        var extraLinkName = IsChineseUser ? "QQ群" : "Discord";
-        var extraLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
+        var inviteLinkName = IsChineseUser ? "QQ群" : "Discord";
+        var inviteLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
 
-        if (!InviteButton) InviteButton = CreatButton(extraLinkName, () => { Application.OpenURL(extraLinkUrl); });
+        if (!InviteButton) InviteButton = CreatButton(inviteLinkName, () => { Application.OpenURL(inviteLinkUrl); });
         InviteButton.gameObject.SetActive(true);
         InviteButton.name = "FinalSuspect Extra Link Button";
 
@@ -114,6 +114,12 @@ public class MainMenuManagerPatch
         if (!GithubButton) GithubButton = CreatButton("Github", () => Application.OpenURL(Main.GithubRepoUrl));
         GithubButton.gameObject.SetActive(true);
         GithubButton.name = "FinalSuspect Github Button";
+
+        var bugLinkName = IsChineseUser ? "Bug 反馈" : "Bug Report";
+        var bugLinkUrl = IsChineseUser ? Main.BugReportUrl_Gitee : Main.BugReportUrl_Github;
+        if (!BugReportButton) BugReportButton = CreatButton(bugLinkName, () => { Application.OpenURL(bugLinkUrl); });
+        BugReportButton.gameObject.SetActive(true);
+        BugReportButton.name = "FinalSuspect Bug Report Button";
         PlayButton = __instance.playButton.gameObject;
 
         if (!UpdateButton)

@@ -4,7 +4,7 @@
         <LangVersion>latest</LangVersion>
 
         <Description>Your best functional tool Mod for Among Us.</Description>
-        <Authors>Slok7565</Authors>
+        <Authors>Slok7565, LezaiYa</Authors>
 
         <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>

@@ -8,6 +8,7 @@ public static class ModMainMenuManager
 
     public static GameObject InviteButton;
     public static GameObject GithubButton;
+    public static GameObject BugReportButton;
     public static GameObject UpdateButton;
     public static GameObject PlayButton;
     public static GameObject FriendsButton;

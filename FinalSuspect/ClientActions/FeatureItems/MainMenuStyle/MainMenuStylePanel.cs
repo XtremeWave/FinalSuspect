@@ -128,7 +128,8 @@ public static class MainMenuStylePanel
                         instance.creditsButton,
                         instance.quitButton,
                         ModMainMenuManager.InviteButton.GetComponent<PassiveButton>(),
-                        ModMainMenuManager.GithubButton.GetComponent<PassiveButton>()
+                        ModMainMenuManager.GithubButton.GetComponent<PassiveButton>(),
+                        ModMainMenuManager.BugReportButton.GetComponent<PassiveButton>(),
                     ],
                     (minorActiveSprite, style.MainUIColors[2], shade, Color.white, Color.white)
                 },

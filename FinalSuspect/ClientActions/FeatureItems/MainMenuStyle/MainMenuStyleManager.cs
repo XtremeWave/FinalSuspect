@@ -55,6 +55,15 @@ public abstract class MainMenuStyleManager
                 new Color(0.7294f, 0.6353f, 1.0f, 0.8f),
                 new Color(0.9f, 0.551f, 0.9f, 0.8f),
             ]),
+        new(
+            "EmergencyMeeting",
+            true,
+            [
+                new Color(0.0235f, 0.6f, 1f, 0.8f),
+                new Color(0.255f, 0.482f, 1f, 0.8f),
+                new Color(0.333f, 0.255f, 1f, 0.8f),
+                new Color(0.0235f, 0.6f, 1f, 0.8f),
+            ])
         //new(
         //"WhenLookingBackAtTheEnd",
         //false,

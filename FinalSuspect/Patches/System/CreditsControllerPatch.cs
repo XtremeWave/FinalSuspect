@@ -11,9 +11,10 @@ public class CreditsControllerPatch
         {
             $"<size=120%><color={ColorHelper.FSColorHex}>{Main.ModName}</color></size>",
             $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>By Slok</color>",
+            "<color=#fffcbe>Thanks:</color> <color=#ffff00>LezaiYa</color>",
             //Others
             $"<size=120%>{GetString("Id.Contributor")}</size>",
-            "- LezaiYa",
+
             "- Nonalus",
             "- Elinmei",
             "- Yu(Night_瓜)",
