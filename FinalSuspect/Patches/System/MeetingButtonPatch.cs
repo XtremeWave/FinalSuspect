@@ -57,6 +57,7 @@ public class MeetingButtonManager
         {
             var pc = GetPlayerById(pva.TargetPlayerId);
             if (pc == null) continue;
+            if (CanSeeTargetRole(pc, out _)) continue;
             var template = pva.Buttons.transform.Find("CancelButton").gameObject;
             var targetBox = Object.Instantiate(template, pva.transform);
             targetBox.name = "Custom Meeting Button";

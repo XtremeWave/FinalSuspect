@@ -61,6 +61,25 @@ public static class MeetingHudPatch
 
             if (tie || !exiled) return;
             var player = GetPlayerById(exiled.PlayerId);
+            player.SetDeathReason(VanillaDeathReason.Exile, true);
+        }
+    }
+
+    [HarmonyPatch(typeof(ExileController), nameof(ExileController.Begin))]
+    [HarmonyPriority(Priority.First)]
+    public class ExileControllerBeginPatch
+    {
+        public static void Postfix(ExileController __instance)
+        {
+            foreach (var data in FinalPlayerData.AllPlayerData.Where(data => data?.Rend_DeadBody))
+            {
+                if (data == null) continue;
+                Object.Destroy(data.Rend_DeadBody);
+                data.Rend_DeadBody = null;
+            }
+
+            if (__instance.initData.networkedPlayer == null) return;
+            var player = GetPlayerById(__instance.initData.networkedPlayer.PlayerId);
             player.SetDead();
             player.SetDeathReason(VanillaDeathReason.Exile, true);
         }

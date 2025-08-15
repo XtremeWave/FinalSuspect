@@ -142,9 +142,9 @@ public static class VersionChecker
             CanUpdate = bool.Parse(new string(data["CanUpdate"]?.ToString()));
 
             _verDate = new string(data["verDate"]?.ToString());
+
             MD5 = data["md5"]?.ToString();
             _latestVersion = new Version(data["version"]?.ToString() ?? string.Empty);
-
             ShowVer = $"{_verHead}_{_verDate}";
 
             var minVer = data["minVer"]?.ToString();

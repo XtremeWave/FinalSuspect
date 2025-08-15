@@ -64,10 +64,17 @@ public static class AudioLoader
 
     private static async Task<byte[]> ReadAllBytesAsync(string path)
     {
-        await using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-        var buffer = new byte[fs.Length];
-        _ = await fs.ReadAsync(buffer.AsMemory(0, (int)fs.Length));
-        return buffer;
+        try
+        {
+            await using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            var buffer = new byte[fs.Length];
+            _ = await fs.ReadAsync(buffer.AsMemory(0, (int)fs.Length));
+            return buffer;
+        }
+        finally
+        {
+            GC.Collect();
+        }
     }
 
     #endregion
@@ -118,9 +125,14 @@ public static class AudioLoader
             info = (pcm, sampleRate, channels, bitDepth);
             return true;
         }
-        catch
+        catch (Exception e)
         {
+            Error(e.Message, "AudioLoader");
             return false;
+        }
+        finally
+        {
+            GC.Collect();
         }
     }
 
@@ -186,7 +198,7 @@ public static class AudioLoader
     {
         if (!supportedBits.Contains(bits))
         {
-            Debug.LogError($"[AudioLoader] Unsupported bit depth: {bits}");
+            Error($"[AudioLoader] Unsupported bit depth: {bits}", "AudioLoader");
             return null;
         }
 

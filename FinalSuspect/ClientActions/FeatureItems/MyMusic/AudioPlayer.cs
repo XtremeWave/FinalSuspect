@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,7 +30,9 @@ public static class AudioPlayer
         {
             if (audio.CurrentAudioStates is AudiosStates.NotExist or AudiosStates.Playing) return;
             if (!Constants.ShouldPlaySfx()) return;
-            var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.Playing);
+            if (FinalMusic.Musics.Any(x => x.CurrentAudioStates is AudiosStates.Parsing)) return;
+            var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates is AudiosStates.Playing);
+
             if (isPlaying && asMainMenuMusic) return;
 
             _ = new MainThreadTask(() => { StopPlayMod(true); }, "Playing Sfx-Stop Play Other Sfx");
@@ -74,6 +77,7 @@ public static class AudioPlayer
             x.CurrentAudioStates = x.LastAudioStates;
             x.PlayAsMainMenuMusic = false;
             SoundManager.Instance.StopNamedSound(x.FileName);
+            GC.Collect();
         });
         CurrentMusic = null;
         _ = new MainThreadTask(MyMusicPanel.RefreshTagList, "Refresh Tag List");
@@ -191,6 +195,7 @@ public class CrossFadeSoundPatch
 {
     public static bool Prefix([HarmonyArgument(0)] string name)
     {
+        if (name is "MainBG") return false;
         var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.Playing);
         var isModMusic = FinalMusic.Musics.Any(x => x.FileName == name);
         var disableVanilla = Main.DisableVanillaSound.Value;

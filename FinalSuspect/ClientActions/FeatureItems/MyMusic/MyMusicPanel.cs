@@ -330,7 +330,7 @@ public static class MyMusicPanel
                 case AudiosStates.Exist:
                     color = audio.UnOfficial ? Color.green : ColorHelper.FSClientFeatureColor;
                     preview = GetString("MusPlay.CanPlay");
-                    enable = CurrentMusic?.CurrentAudioStates is AudiosStates.Parsing;
+                    enable = FinalMusic.Musics.All(x => x.CurrentAudioStates is not AudiosStates.Parsing);
                     break;
                 case AudiosStates.Pausing:
                     color = ColorHelper.ShadeColor(ColorHelper.FSClientOptionColor, -0.2f);

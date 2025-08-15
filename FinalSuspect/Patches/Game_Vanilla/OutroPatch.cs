@@ -16,6 +16,9 @@ internal class AmongUsClientEndGamePatch
 
     public static void Postfix()
     {
+        FinalPlayerData.AllPlayerData
+            .Where(x => x.RealDeathReason is not VanillaDeathReason.None && !x.IsDead)
+            .Do(x => x.SetDead());
         FinalGameData.LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
         SummaryText = new Dictionary<byte, string>();
         foreach (var data in FinalPlayerData.AllPlayerData)

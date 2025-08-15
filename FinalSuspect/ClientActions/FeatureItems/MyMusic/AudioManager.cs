@@ -194,6 +194,7 @@ public class FinalMusic
         await task;
         _ = new MainThreadTask(() =>
         {
+            GC.Collect();
             if (task.Result)
                 Clip = task.Result;
             LastAudioStates = CurrentAudioStates = Clip ? AudiosStates.Exist : AudiosStates.NotExist;

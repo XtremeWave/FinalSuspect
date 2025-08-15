@@ -141,7 +141,7 @@ public class VersionShowerStartPatch
 #if DEBUG
             var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
 #elif RELEASE
-            var versionText = 
+            var versionText =
                 $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 #elif OPENBETA
             var versionText =
@@ -396,6 +396,8 @@ internal class ModManagerLateUpdatePatch
             {
                 var last = _lastScene;
                 _lastScene = SceneManager.GetActiveScene().name;
+                Test(_lastScene);
+                Test(SceneManager.GetActiveScene().name);
                 if (last is "SplashIntro") return;
                 OnSceneChange(_lastScene);
             }
@@ -421,12 +423,12 @@ internal class ModManagerLateUpdatePatch
 
     private static void OnSceneChange(string name)
     {
-        if (name is not ("MainMenu" or "MatchMaking")) return;
+        if (name is not "MainMenu" and not "MatchMaking") return;
         var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
         var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
         if (audio != null)
         {
-            _ = new LateTask(() => { AudioPlayer.Play(audio, true); }, 0.01f, "Play Custom MainBG");
+            AudioPlayer.Play(audio, true);
         }
     }
 }
