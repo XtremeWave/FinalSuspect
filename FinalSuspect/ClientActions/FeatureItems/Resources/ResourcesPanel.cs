@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
@@ -205,6 +206,7 @@ public static class ResourcesPanel
                             packageStates[packageName] = CurrentState.None;
                             RefreshTagList();
                             AudioManager.ReloadTag();
+                            MainMenuStylePanel.Refresh(MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value]);
                             MyMusicPanel.RefreshTagList();
                         }, 3F, "Refresh Tag List");
                     }
