@@ -18,7 +18,7 @@ Al mismo tiempo XtremeWave trabajará en varios proyectos, ¡incluyendo un nuevo
 ## Información de la versión del mod
 - Número de versión del ensamblado: v1.2.0
 - Tipo de versión: Release
-- Número de compilación: 1
+- Número de compilación: 2
 
 ## Contenido de la actualización
 - Correcciones de errores: 23

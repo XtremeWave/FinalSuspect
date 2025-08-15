@@ -18,7 +18,7 @@ Ik verheug me op de volgende ontmoeting met jou!
 ## Mod Versie Informatie
 - Assembly Versie Nummer: v1.2.0
 - Versie Type: Release
-- Build Nummer: 1
+- Build Nummer: 2
 
 ## Update Inhoud
 - Bug Fixes: 23

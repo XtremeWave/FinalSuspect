@@ -18,7 +18,7 @@ Ich freue mich auf unser nächstes Treffen!
 ## Mod Versionsinformationen
 - Assembly-Version: v1.2.0
 - Versionsart: Release
-- Buildnummer: 1
+- Buildnummer: 2
 
 ## Aktualisierungsinhalt
 - Fehlerbehebungen: 23

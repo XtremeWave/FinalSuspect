@@ -3,13 +3,12 @@
   "verHead": "1.2",
   "verDate": "20250815",
 
-
   "minVer": "latest",
-  "creation": "1",
+  "creation": "2",
   "allowStart": "true",
   "CanUpdate": "true",
 
-  "md5": "eaa5a0e3649b0a531b9cb6b74ecb8a3e",
+  "md5": "d1ae10187068b4ee2e19f3a0fe1693d2",
   "announcement": {
     "English": "If the update is unsuccessful, please try to visit the website to update manually.",
     "Latam": "Si la actualización no tiene éxito, por favor intente visitar el sitio web para actualizar manualmente.\nEl idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",

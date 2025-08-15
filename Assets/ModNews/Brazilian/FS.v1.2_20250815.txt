@@ -18,7 +18,7 @@ Estou ansioso para o próximo encontro com você!
 ## Informações da Versão do Modo
 - Número da Versão da Assembly: v1.2.0
 - Tipo de Versão: Release
-- Número de Build: 1
+- Número de Build: 2
 
 ## Conteúdo da Atualização
 - Correções de Bugs: 23

@@ -18,7 +18,7 @@ Estou ansioso para o nosso próximo encontro!
 ## Informações da versão do mod
 - Número da versão da assembly: v1.2.0
 - Tipo de versão: Release
-- Número de build: 1
+- Número de build: 2
 
 ## Conteúdo da atualização
 - Correções de bugs: 23
