@@ -190,11 +190,11 @@ public static class HudManagerPatch
         if (IsFreePlay || !IsInGame) return;
 
         var notShowPane =
-            DestroyableSingleton<HudManager>.Instance?.Chat?.IsOpenOrOpening == true ||
-            MapBehaviour.Instance?.gameObject.activeSelf == true ||
+            (DestroyableSingleton<HudManager>.Instance?.Chat?.IsOpenOrOpening ?? false) ||
+            (MapBehaviour.Instance?.gameObject.activeSelf ?? false) ||
             !ControllerManagerUpdatePatch.ShowSettingsPanel ||
             !FinalGameData.IntroDestroyed ||
-            DisplayerRoleTagHelper.selectionUI?.activeSelf == true;
+            (DisplayerRoleTagHelper.selectionUI?.active ?? false);
         if (DestroyableSingleton<LobbyInfoPane>.Instance?.gameObject.activeSelf == true && notShowPane)
         {
             DestroyableSingleton<LobbyInfoPane>.Instance.DeactivatePane();

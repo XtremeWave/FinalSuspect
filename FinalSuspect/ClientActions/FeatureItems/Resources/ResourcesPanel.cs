@@ -204,7 +204,6 @@ public static class ResourcesPanel
                         {
                             packageStates[packageName] = CurrentState.None;
                             RefreshTagList();
-                            AudioManager.ReloadTag();
                             MyMusicPanel.RefreshTagList();
                         }, 3F, "Refresh Tag List");
                     }

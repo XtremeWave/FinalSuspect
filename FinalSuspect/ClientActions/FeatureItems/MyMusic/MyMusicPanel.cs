@@ -12,6 +12,7 @@ namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
 [SuppressMessage("ReSharper", "PossibleLossOfFraction")]
 public static class MyMusicPanel
 {
+    private const int ItemsPerPage = 7;
     private static TextMeshPro _pageText;
     private static TextMeshPro _timeText;
     private static ToggleButtonBehaviour _playModeButton;
@@ -19,12 +20,11 @@ public static class MyMusicPanel
     private static int _numItems;
     private static int _playMode;
     public static SpriteRenderer CustomBackground { get; set; }
-    public static List<GameObject> Items { get; private set; }
-    public static OptionsMenuBehaviour OptionsMenuBehaviourNow { get; private set; }
+    private static List<GameObject> Items { get; set; }
+    private static OptionsMenuBehaviour OptionsMenuBehaviourNow { get; set; }
 
-    public static int CurrentPage { get; private set; } = 1;
-    public static int ItemsPerPage => 7;
-    public static int TotalPageCount => (FinalMusic.Musics.Count + ItemsPerPage - 1) / ItemsPerPage;
+    private static int CurrentPage { get; set; } = 1;
+    private static int TotalPageCount => (FinalMusic.Musics.Count + ItemsPerPage - 1) / ItemsPerPage;
 
     public static void Hide()
     {
@@ -249,6 +249,7 @@ public static class MyMusicPanel
     {
         try
         {
+            AudioManager.ReloadTag();
             Items?.Do(Object.Destroy);
             Items = [];
             _numItems = 0;
@@ -329,7 +330,7 @@ public static class MyMusicPanel
                 case AudiosStates.Exist:
                     color = audio.UnOfficial ? Color.green : ColorHelper.FSClientFeatureColor;
                     preview = GetString("MusPlay.CanPlay");
-                    enable = true;
+                    enable = CurrentMusic?.CurrentAudioStates is AudiosStates.Parsing;
                     break;
                 case AudiosStates.Pausing:
                     color = ColorHelper.ShadeColor(ColorHelper.FSClientOptionColor, -0.2f);

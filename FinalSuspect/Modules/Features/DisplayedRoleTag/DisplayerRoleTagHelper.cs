@@ -111,6 +111,7 @@ public static class DisplayerRoleTagHelper
             {
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
                 Object.Destroy(container.gameObject);
+                selectionUI = null;
             }));
             exitButton.GetComponent<PassiveButton>();
 
@@ -148,6 +149,7 @@ public static class DisplayerRoleTagHelper
                 thisTag.setRoom("");
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
                 Object.Destroy(container.gameObject);
+                selectionUI = null;
             }));
             clearButton.GetComponent<PassiveButton>();
 
@@ -228,8 +230,7 @@ public static class DisplayerRoleTagHelper
 
                 var displayText = category switch
                 {
-                    CategoryType.Role => GetString($"{category}.{value}"),
-                    CategoryType.PlayerIdentityTag => GetString($"{category}.{value}"),
+                    CategoryType.Role or CategoryType.PlayerIdentityTag => GetString($"{category}.{value}"),
                     CategoryType.Room => GetString(value),
                     _ => throw new ArgumentOutOfRangeException(nameof(category))
                 };

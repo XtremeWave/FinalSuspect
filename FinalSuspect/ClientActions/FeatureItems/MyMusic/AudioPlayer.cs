@@ -44,7 +44,6 @@ public static class AudioPlayer
                     file.PlayAsMainMenuMusic = asMainMenuMusic;
                 }
 
-                AudioManager.ReloadTag();
                 MyMusicPanel.RefreshTagList();
                 if (SceneManager.GetActiveScene().name is "SplashIntro")
                 {

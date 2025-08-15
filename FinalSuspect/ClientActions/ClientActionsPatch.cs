@@ -164,8 +164,6 @@ public static class OptionsMenuBehaviourStartPatch
         if (Directory.GetFiles(GetLogFolder(true).FullName).Length <= 0)
             SetFeatureItemDisabled(_clearAutoLogs);
 
-        AudioManager.ReloadTag();
-
         MainMenuStylePanel.Init(__instance);
         ResourcesPanel.Init(__instance);
         MyMusicPanel.Init(__instance);
