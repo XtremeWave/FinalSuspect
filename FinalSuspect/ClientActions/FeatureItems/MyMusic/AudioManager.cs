@@ -235,6 +235,8 @@ public class FinalMusic
                 file.FilePath = FilePath;
                 if (CurrentAudioStates is AudiosStates.NotExist)
                     file.CurrentAudioStates = file.LastAudioStates = CurrentAudioStates;
+                if (file.CurrentAudioStates is AudiosStates.NotExist && CurrentAudioStates is AudiosStates.Exist)
+                    file.CurrentAudioStates = file.LastAudioStates = CurrentAudioStates;
             }
             else if (Name != string.Empty)
             {

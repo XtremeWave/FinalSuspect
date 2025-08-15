@@ -284,7 +284,7 @@ public static class MainMenuStylePanel
         }));
     }
 
-    private static void Refresh(MainMenuStyleManager.MainMenuStyle style)
+    public static void Refresh(MainMenuStyleManager.MainMenuStyle style)
     {
         _titleText.text = style.Title;
         _authorText.text = $"{GetString("Author")}:{style.Author}";
