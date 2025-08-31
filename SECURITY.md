@@ -20,8 +20,5 @@
 - (建议)Slok7565
   - 微信号: \_Slok7565-S0kA1\_
   - (建议)QQ号: 639083778
-- QingFeng
-  - 微信号: qingfengawa
-  - (建议)QQ号: 3094606169
 
 你也可以通过在[安全](https://github.com/Slok7565/FinalSuspect/security)页面点击`Report a vulnerability`以通过GitHub向我们报告一个安全问题。
