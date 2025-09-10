@@ -81,7 +81,9 @@ public class Main : BasePlugin
         { RoleTypes.ImpostorGhost, "#FF1919" },
         { RoleTypes.Impostor, "#FF1919" },
         { RoleTypes.Shapeshifter, "#FF819E" },
-        { RoleTypes.Phantom, "#CA8AFF" }
+        { RoleTypes.Phantom, "#CA8AFF" },
+        { RoleTypes.Detective, ""},
+        { RoleTypes.Viper, ""}
     };
 
     public static string HostNickName = "";
