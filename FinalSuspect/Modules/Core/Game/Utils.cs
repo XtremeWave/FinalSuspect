@@ -472,7 +472,7 @@ public static class Utils
     {
         return role switch
         {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost => true,
+            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost or RoleTypes.Viper  => true,
             _ => false
         };
     }

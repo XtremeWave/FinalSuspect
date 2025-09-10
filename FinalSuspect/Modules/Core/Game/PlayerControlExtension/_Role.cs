@@ -16,7 +16,7 @@ public static class _Role
         if (IsLobby) return false;
         return pc.GetRoleType() switch
         {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost => true,
+            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost or RoleTypes.Viper => true,
             _ => false
         };
     }
