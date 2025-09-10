@@ -100,8 +100,8 @@ public class Main : BasePlugin
 
     // ==========
     public Harmony Harmony { get; } = new(PluginGuid);
-    public static NormalGameOptionsV09 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
-    public static HideNSeekGameOptionsV09 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
+    public static NormalGameOptionsV10 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
+    public static HideNSeekGameOptionsV10 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
 
     //Client Options
     public static ConfigEntry<bool> KickPlayerWithAbnormalFriendCode { get; private set; }
