@@ -31,9 +31,9 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.2.0";
+    public const string PluginVersion = "1.2.1";
     public const string PluginGuid = "cn.slok.finalsuspect";
-    public const int PluginCreation = 2;
+    public const int PluginCreation = 1;
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
     public const string DebugKeySalt = "59687b";
 
@@ -235,7 +235,7 @@ public class Main : BasePlugin
     /// <summary>
     ///     表示当前显示的版本类型。
     /// </summary>
-    private const VersionTypes DisplayedVersion_Type = VersionTypes.Release;
+    private const VersionTypes DisplayedVersion_Type = VersionTypes.Dev;
 
     private const int DisplayedVersion_TestCreation = 0;
 #endif
