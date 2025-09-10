@@ -38,7 +38,7 @@ public class Main : BasePlugin
     public const string DebugKeySalt = "59687b";
 
     // == 版本相关设定 / Version Config ==
-    public const string LowestSupportedVersion = "2025.6.10"; // 16.1.0
+    public const string LowestSupportedVersion = "2025.9.9"; // 17.0.0
 
     private const string DisplayedVersion_Head = "1.2";
 
