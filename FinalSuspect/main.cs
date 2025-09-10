@@ -237,7 +237,7 @@ public class Main : BasePlugin
     /// </summary>
     private const VersionTypes DisplayedVersion_Type = VersionTypes.Dev;
 
-    private const int DisplayedVersion_TestCreation = 0;
+    private const int DisplayedVersion_TestCreation = 1;
 #endif
 
 #pragma warning disable CS0618 // 类型或成员已过时
