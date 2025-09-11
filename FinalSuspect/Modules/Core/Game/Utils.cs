@@ -10,7 +10,6 @@ using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
 using InnerNet;
-using NAudio.CoreAudioApi;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game;
