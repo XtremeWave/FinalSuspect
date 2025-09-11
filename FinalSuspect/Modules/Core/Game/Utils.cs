@@ -10,6 +10,7 @@ using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
 using InnerNet;
+using NAudio.CoreAudioApi;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game;
@@ -537,7 +538,24 @@ public static class Utils
 
         var text = role.ToString();
         var Info = "Blurb" + (InfoLong ? "Long" : "");
-        if (IsNormalGame) return GetString($"{text}{Info}");
+        if (IsNormalGame)
+        {
+            // 只针对毒蛇和侦探没有BlurbLong进行本地化
+            if (role is RoleTypes.Viper or RoleTypes.Detective)
+            {
+                if (InfoLong)
+                {
+                    return $"{GetString($"RolesHelp_{text}_01")}{Environment.NewLine}" +
+                        $"{GetString($"RolesHelp_{text}_02")}";
+                }
+                else
+                {
+                    return GetString($"{text}Blurb");
+                }
+            }
+            // 保留原有格式
+            return GetString($"{text}{(InfoLong ? "BlurbLong" : "Blurb")}");
+        }
 
         if (InfoLong)
             switch (role)
