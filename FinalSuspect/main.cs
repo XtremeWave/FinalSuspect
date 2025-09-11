@@ -235,7 +235,7 @@ public class Main : BasePlugin
     /// <summary>
     ///     表示当前显示的版本类型。
     /// </summary>
-    private const VersionTypes DisplayedVersion_Type = VersionTypes.Dev;
+    private const VersionTypes DisplayedVersion_Type = VersionTypes.Canary;
 
     private const int DisplayedVersion_TestCreation = 1;
 #endif
