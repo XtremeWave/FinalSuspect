@@ -38,7 +38,7 @@ public class ModUpdater
             if (IsChineseLanguageUser)
             {
                 btns.Add((GetString("UpdateSource.GithubMirror"), () => StartUpdate(DownloadUrl_GithubMirror)));
-                btns.Add((GetString("UpdateSource.FangKuaiRemote"), () => StartUpdate(DownloadUrl_FangKuaiRemote)));
+                //btns.Add((GetString("UpdateSource.FangKuaiRemote"), () => StartUpdate(DownloadUrl_FangKuaiRemote)));
             }
 
             btns.Add((GetString(StringNames.Cancel), SetUpdateButtonStatus));
