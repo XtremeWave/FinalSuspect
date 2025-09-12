@@ -141,8 +141,7 @@ public static class GameStartManagerPatch
 
             if (!Main.AutoStartGame.Value
                 || !AmongUsClient.Instance.AmHost
-                || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
-                || IsInGame) return true;
+                || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting) return true;
             _updateTimer++;
             if (_updateTimer < 50) return true;
             _updateTimer = 0;
@@ -158,52 +157,8 @@ public static class GameStartManagerPatch
             if (!AmongUsClient.Instance) return;
             if (AmongUsClient.Instance.AmHost)
             {
-                /*bool canStartGame = true;
-                List<string> mismatchedPlayerNameList = new();
-                foreach (var client in AmongUsClient.Instance.allClients.ToArray())
-                {
-                    if (client.Character == null) continue;
-                    var dummyComponent = client.Character.GetComponent<DummyBehaviour>();
-                    if (dummyComponent != null && dummyComponent.enabled)
-                        continue;
-                    if (!MatchVersions(client.Character.PlayerId, true))
-                    {
-                        canStartGame = false;
-                        mismatchedPlayerNameList.Add(StringHelper.ColorString(Palette.PlayerColors[client.ColorId], client.Character.Data.PlayerName));
-                    }
-                }
-                if (!canStartGame)
-                {
-                    __instance.StartButton.gameObject.SetActive(false);
-                    warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.MismatchedVersion"), string.Join(" ", mismatchedPlayerNameList), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>"));
-                }*/
                 _cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!_cancelButton.gameObject.active);
-            }
-
-            /*if (MatchVersions(0, true) || Main.VersionCheat.Value)
-                exitTimer = 0;
-            else
-            {
-                exitTimer += Time.deltaTime;
-                if (exitTimer >= 5)
-                {
-                    exitTimer = 0;
-                    AmongUsClient.Instance.ExitGame(DisconnectReasons.ExitGame);
-                    SceneChanger.ChangeScene("MainMenu");
-                }
-                if (exitTimer != 0)
-                    warningMessage = StringHelper.ColorString(Color.red, string.Format(GetString("Warning.AutoExitAtMismatchedVersion"), $"<color={ColorHelper.ModColor}>{Main.ModName}</color>", Math.Round(5 - exitTimer).ToString()));
-            }*/
-            var warningMessage = "";
-            if (warningMessage == "")
-            {
-                _warningText.gameObject.SetActive(false);
-            }
-            else
-            {
-                _warningText.text = warningMessage;
-                _warningText.gameObject.SetActive(true);
             }
 
             if (AmongUsClient.Instance.AmHost)
@@ -225,14 +180,6 @@ public static class GameStartManagerPatch
             if (_timer <= 60) countDown = StringHelper.ColorString(Color.red, countDown);
             _timerText.text = countDown;
         }
-
-        /*private static bool MatchVersions(byte playerId, bool acceptVanilla = false)
-        {
-            if (!FinalGameData.PlayerVersion.playerVersion.TryGetValue(playerId, out var version)) return acceptVanilla;
-            return Main.ForkId == version.forkId
-                   && Main.version.CompareTo(version.version) == 0
-                   && version.tag == $"{Main.GitCommit}({Main.GitBranch})";
-        }*/
     }
 }
 

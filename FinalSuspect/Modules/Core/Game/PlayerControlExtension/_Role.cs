@@ -13,12 +13,7 @@ public static class _Role
 
     public static bool IsImpostor(this PlayerControl pc)
     {
-        if (IsLobby) return false;
-        return pc.GetRoleType() switch
-        {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost or RoleTypes.Viper => true,
-            _ => false
-        };
+        return !IsLobby && pc.GetRoleType().IsImpostor();
     }
 
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)

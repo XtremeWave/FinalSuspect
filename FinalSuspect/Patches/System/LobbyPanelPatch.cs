@@ -87,7 +87,7 @@ internal class LobbyViewSettingsPanePatch
 
     [HarmonyPatch(typeof(LobbyViewSettingsPane), nameof(LobbyViewSettingsPane.Update))]
     [HarmonyPostfix]
-    private static void Update()
+    private static void Update(LobbyViewSettingsPane __instance)
     {
         try
         {
@@ -99,7 +99,7 @@ internal class LobbyViewSettingsPanePatch
             {
                 #region 游戏设置
 
-                if (area.childCount == 21)
+                if (__instance.currentTab is StringNames.OverviewCategory)
                 {
                     var catIndex = 0;
                     var bannerIndex = 0;
@@ -147,7 +147,7 @@ internal class LobbyViewSettingsPanePatch
                                 break;
                             case "ViewSettingsInfoPanel_Role Variant(Clone)":
                             {
-                                var roleColor = bannerIndex <= 4
+                                var roleColor = bannerIndex <= 5
                                     ? GetRoleColor(RoleTypes.Crewmate)
                                     : GetRoleColor(RoleTypes.Impostor);
                                 SetColorForRolesBanner(banner.gameObject, rolecolors[bannerIndex], roleColor);
@@ -165,7 +165,7 @@ internal class LobbyViewSettingsPanePatch
                         if (banner.name == "AdvancedRoleViewPanel(Clone)")
                         {
                             var iconIndex = enableRoleIndex.First();
-                            var roleColor = iconIndex <= 4
+                            var roleColor = iconIndex <= 5
                                 ? GetRoleColor(RoleTypes.Crewmate)
                                 : GetRoleColor(RoleTypes.Impostor);
                             SetColorForIcon(banner.gameObject, rolecolors[iconIndex], roleColor);
