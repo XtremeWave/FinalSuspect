@@ -472,7 +472,7 @@ public static class Utils
     {
         return role switch
         {
-            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost => true,
+            RoleTypes.Impostor or RoleTypes.Shapeshifter or RoleTypes.Phantom or RoleTypes.ImpostorGhost or RoleTypes.Viper  => true,
             _ => false
         };
     }
@@ -537,7 +537,24 @@ public static class Utils
 
         var text = role.ToString();
         var Info = "Blurb" + (InfoLong ? "Long" : "");
-        if (IsNormalGame) return GetString($"{text}{Info}");
+        if (IsNormalGame)
+        {
+            // 只针对毒蛇和侦探没有BlurbLong进行本地化
+            if (role is RoleTypes.Viper or RoleTypes.Detective)
+            {
+                if (InfoLong)
+                {
+                    return $"{GetString($"RolesHelp_{text}_01")}{Environment.NewLine}" +
+                        $"{GetString($"RolesHelp_{text}_02")}";
+                }
+                else
+                {
+                    return GetString($"{text}Blurb");
+                }
+            }
+            // 保留原有格式
+            return GetString($"{text}{(InfoLong ? "BlurbLong" : "Blurb")}");
+        }
 
         if (InfoLong)
             switch (role)

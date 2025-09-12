@@ -16,9 +16,9 @@ I am looking forward to the next encounter with you!
 - BepInEx v6.0.0-be.738
 
 ## Mode Version Information
-- Assembly Version Number: v1.2.0
+- Assembly Version: v1.2.0
 - Version Type: Release
-- Build Number: 1
+- Creation: 2
 
 ## Update Contents
 - Bug Fixes: 23

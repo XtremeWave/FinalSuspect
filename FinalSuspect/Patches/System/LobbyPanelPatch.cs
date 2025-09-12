@@ -66,8 +66,10 @@ internal class LobbyViewSettingsPanePatch
         GetRoleColor(RoleTypes.Scientist),
         GetRoleColor(RoleTypes.Tracker),
         GetRoleColor(RoleTypes.Noisemaker),
+        GetRoleColor(RoleTypes.Detective),
         GetRoleColor(RoleTypes.Shapeshifter),
-        GetRoleColor(RoleTypes.Phantom)
+        GetRoleColor(RoleTypes.Phantom),
+        GetRoleColor(RoleTypes.Viper)
     ];
 
     private static readonly List<Color32> roleCatColors =

@@ -18,7 +18,7 @@ Naninindigan ko sa susunod na pagkakataon sa iyo!
 ## Impormasyon ng Bersyon ng Modo
 - Bersyon ng Assembly: v1.2.0
 - Uri ng Bersyon: Release
-- Numero ng Build: 1
+- Numero ng Build: 2
 
 ## Nilalaman ng Update
 - Pagpapataw ng mga Bug: 23

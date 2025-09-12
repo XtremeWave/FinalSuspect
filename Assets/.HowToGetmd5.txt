@@ -2,7 +2,7 @@
 Here is the command to run in PowerShell (Win+R to open PowerShell):
 
 
-$folderPath = "D:\RiderProjects\FinalSuspect\Export\Release\net6.0\"
+$folderPath = "{{path}}"
 $outputFile = Join-Path -Path $folderPath -ChildPath ".md5Pair.txt"
 
 Set-Content -Path $outputFile -Value $null

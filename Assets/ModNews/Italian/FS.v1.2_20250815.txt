@@ -18,7 +18,7 @@ Non vedo l'ora di rivederti alla prossima occasione!
 ## Informazioni sulla versione del mod
 - Numero della versione dell'assembly: v1.2.0
 - Tipo di versione: Release
-- Numero di build: 1
+- Numero di build: 2
 
 ## Contenuto dell'aggiornamento
 - Correzioni degli errori: 23

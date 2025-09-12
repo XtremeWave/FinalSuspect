@@ -42,7 +42,9 @@ public static class AwakeAccountManager
         LoadSprite("CI_HnSImpostor.png", 450f),
         LoadSprite("CI_Shapeshifter.png", 450f),
         LoadSprite("CI_Phantom.png", 450f),
-        LoadSprite("CI_ImpostorGhost.png", 450f)
+        LoadSprite("CI_ImpostorGhost.png", 450f),
+        LoadSprite("CI_Viper.png", 450f),
+        LoadSprite("CI_Detective.png", 450f)
     ];
 
     private static int _currentIndex;

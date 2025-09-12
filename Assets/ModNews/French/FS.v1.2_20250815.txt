@@ -18,7 +18,7 @@ J'ai hâte de vous revoir lors de notre prochaine rencontre !
 ## Informations sur la version du mode
 - Numéro de version de l'assembly : v1.2.0
 - Type de version : Release
-- Numéro de build : 1
+- Numéro de build : 2
 
 ## Contenu de la mise à jour
 - Corrections de bugs : 23

@@ -31,6 +31,8 @@ public static class ResourcesHelper
         "CI_Scientist.png",
         "CI_Shapeshifter.png",
         "CI_Tracker.png",
+        "CI_Viper.png",
+        "CI_Detective.png",
         "Cursor.png",
         "FinalSuspect-BG-MiraHQ.png",
         "FinalSuspect-BG-MiraHQ-Preview.png",

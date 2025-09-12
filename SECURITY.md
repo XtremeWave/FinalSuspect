@@ -9,7 +9,8 @@
 
 | 版本            | 是否支持               |
 |---------------|--------------------|
-| v1.2_20250815 | :white_check_mark: |
+| v1.2_2025XXXX | :white_check_mark: |
+| v1.2_20250815 | :x:                |
 | v1.1          | :x:                |
 | v1.0          | :x:                |
 
@@ -20,8 +21,5 @@
 - (建议)Slok7565
   - 微信号: \_Slok7565-S0kA1\_
   - (建议)QQ号: 639083778
-- QingFeng
-  - 微信号: qingfengawa
-  - (建议)QQ号: 3094606169
 
 你也可以通过在[安全](https://github.com/Slok7565/FinalSuspect/security)页面点击`Report a vulnerability`以通过GitHub向我们报告一个安全问题。
