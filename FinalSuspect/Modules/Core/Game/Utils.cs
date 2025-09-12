@@ -537,7 +537,7 @@ public static class Utils
             InfoLong = false;
 
         var text = role.ToString();
-        var Info = "Blurb" + (InfoLong ? "Long" : "");
+
         if (IsNormalGame)
         {
             if (InfoLong)
@@ -563,6 +563,7 @@ public static class Utils
                            $"\n{GetString(StringNames.RuleThreeImpostor)}";
             }
 
+        var Info = "Blurb" + (InfoLong ? "Long" : "");
         text = "HnS" + text;
         return GetString($"{text}{Info}");
     }
