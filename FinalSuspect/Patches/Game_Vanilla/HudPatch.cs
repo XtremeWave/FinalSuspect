@@ -176,13 +176,19 @@ public static class HudManagerPatch
         var color = GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
         __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
         __instance.AbilityButton.cooldownTimerText.color = color;
+        __instance.SecondaryAbilityButton.buttonLabelText.SetOutlineColor(color);
+        __instance.SecondaryAbilityButton.cooldownTimerText.color = color;
         __instance.KillButton.cooldownTimerText.color = ColorHelper.ImpostorRedPale;
 
         // 刷新按钮状态
-        if (!__instance.AbilityButton.gameObject.active || Refresh) return;
+        if (Refresh) return;
         Refresh = true;
+        var active1 = __instance.AbilityButton.gameObject.active;
         __instance.AbilityButton.gameObject.SetActive(false);
-        __instance.AbilityButton.gameObject.SetActive(true);
+        __instance.AbilityButton.gameObject.SetActive(active1);
+        var active2 = __instance.SecondaryAbilityButton.gameObject.active;
+        __instance.SecondaryAbilityButton.gameObject.SetActive(false);
+        __instance.SecondaryAbilityButton.gameObject.SetActive(active2);
     }
 
     private static void SetShowInfoPanel()

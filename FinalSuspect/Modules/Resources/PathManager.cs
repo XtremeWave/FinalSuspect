@@ -20,8 +20,9 @@ public static class PathManager
     public const string DownloadUrl_GithubMirror =
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
-    //public const string DownloadUrl_FangKuaiRemote =
-    //    "https://dlhk.fangkuai.fun/FinalSuspect/FinalSuspect.dll";
+    public const string DownloadUrl_FangKuaiRemote =
+        "https://dlhk.fangkuai.fun/FinalSuspect/FinalSuspect.dll";
+
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
 
@@ -35,7 +36,7 @@ public static class PathManager
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
         "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
-        //"https://dlhk.fangkuai.fun/FinalSuspect/",
+        "https://dlhk.fangkuai.fun/FinalSuspect/",
 #if DEBUG
         $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
 #endif
@@ -63,7 +64,7 @@ public static class PathManager
             RemoteType.GithubMirror => "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
             RemoteType.GithubMirror_Assets =>
                 "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
-            //RemoteType.FangKuaiRemote => "dlhk.fangkuai.fun/FinalSuspect/",
+            RemoteType.FangKuaiRemote => "dlhk.fangkuai.fun/FinalSuspect/",
             RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
             RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/",
             RemoteType.Github_Assets => "github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
@@ -178,7 +179,7 @@ public enum FileType
 
 public enum RemoteType
 {
-    //FangKuaiRemote,
+    FangKuaiRemote,
     GithubMirror,
     GithubMirror_Assets,
     Gitee,

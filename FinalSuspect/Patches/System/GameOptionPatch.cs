@@ -21,11 +21,12 @@ internal class RolesSettingsMenuPatch
 {
     private static readonly List<Color32> rolecolors =
     [
-        GetRoleColor(RoleTypes.Engineer),
-        GetRoleColor(RoleTypes.GuardianAngel),
         GetRoleColor(RoleTypes.Scientist),
-        GetRoleColor(RoleTypes.Tracker),
+        GetRoleColor(RoleTypes.GuardianAngel),
+        GetRoleColor(RoleTypes.Engineer),
+
         GetRoleColor(RoleTypes.Noisemaker),
+        GetRoleColor(RoleTypes.Tracker),
         GetRoleColor(RoleTypes.Detective),
         GetRoleColor(RoleTypes.Shapeshifter),
         GetRoleColor(RoleTypes.Phantom),
@@ -48,15 +49,15 @@ internal class RolesSettingsMenuPatch
 
     private static void ConfigureHeaderButtons()
     {
-        var header = GameObject.Find("HeaderButtons");
+        var header = GameObject.Find("HeaderButtons").transform.FindChild("ButtonsParentScroller");
         var headerbuttons = new List<GameObject>();
 
-        for (var i = 4; i <= 10; i++) headerbuttons.Add(header.transform.GetChild(i).gameObject);
+        for (var i = 1; i <= header.childCount - 1; i++) headerbuttons.Add(header.transform.GetChild(i).gameObject);
 
         var index = 0;
         foreach (var button in headerbuttons)
         {
-            var roleColor = index <= 4 ? GetRoleColor(RoleTypes.Crewmate) : GetRoleColor(RoleTypes.Impostor);
+            var roleColor = index <= 5 ? GetRoleColor(RoleTypes.Crewmate) : GetRoleColor(RoleTypes.Impostor);
             SetColor(button, rolecolors[index], roleColor);
             index++;
         }
@@ -66,7 +67,8 @@ internal class RolesSettingsMenuPatch
 
     private static void ConfigureAllButtonColors()
     {
-        var allButton = GameObject.Find("HeaderButtons").transform.FindChild("AllButton").gameObject;
+        var allButton = GameObject.Find("HeaderButtons").transform.FindChild("ButtonsParentScroller")
+            .FindChild("AllButton").gameObject;
         allButton.transform.FindChild("Highlight").gameObject.GetComponent<SpriteRenderer>().color =
             allButton.transform.FindChild("Inactive").gameObject.GetComponent<SpriteRenderer>().color =
                 allButton.transform.FindChild("Selected").gameObject.GetComponent<SpriteRenderer>().color =

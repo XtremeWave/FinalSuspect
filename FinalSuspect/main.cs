@@ -31,7 +31,7 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.2.1";
+    public const string PluginVersion = "1.2.99";
     public const string PluginGuid = "cn.slok.finalsuspect";
     public const int PluginCreation = 1;
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
@@ -40,7 +40,7 @@ public class Main : BasePlugin
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2025.9.9"; // 17.0.0
 
-    private const string DisplayedVersion_Head = "1.2";
+    private const string DisplayedVersion_Head = "1.3";
 
     private const string DisplayedVersion_Date = BuildTime.Date;
 
@@ -82,8 +82,8 @@ public class Main : BasePlugin
         { RoleTypes.Impostor, "#FF1919" },
         { RoleTypes.Shapeshifter, "#FF819E" },
         { RoleTypes.Phantom, "#CA8AFF" },
-        { RoleTypes.Detective, "#6490c3"},
-        { RoleTypes.Viper, "#e8524d"}
+        { RoleTypes.Detective, "#70A1DA" },
+        { RoleTypes.Viper, "#F06762" }
     };
 
     public static string HostNickName = "";
