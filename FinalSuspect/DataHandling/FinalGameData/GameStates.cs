@@ -11,6 +11,7 @@ public partial class FinalGameData
     {
         private static bool InGame { get; set; }
         private static bool InMeeting { get; set; }
+        private static bool InitGame { get; set; }
 
         public static bool OtherModHost
         {
@@ -42,6 +43,7 @@ public partial class FinalGameData
         public static bool IsFreePlay => AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay;
         public static bool IsInTask => IsInGame && !MeetingHud.Instance;
         public static bool IsInMeeting => IsInGame && MeetingHud.Instance && InMeeting;
+        public static bool IsInitGame => InitGame;
 
         public static bool IsVoting => IsInMeeting &&
                                        MeetingHud.Instance.state is MeetingHud.VoteStates.Voted
@@ -74,14 +76,22 @@ public partial class FinalGameData
             }
         }
 
-        public static void UpdateGameState_IsInGame(bool inGame)
+        public static void UpdateGameState(bool state, StateTypes type)
         {
-            InGame = inGame;
-        }
-
-        public static void UpdateGameState_IsInMeeting(bool inMeeting)
-        {
-            InMeeting = inMeeting;
+            switch (type)
+            {
+                case StateTypes.InGame:
+                    InGame = state;
+                    break;
+                case StateTypes.InMeeting:
+                    InMeeting = state;
+                    break;
+                case StateTypes.InitGame:
+                    InitGame = state;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
         }
 
         public static bool MapIsActive(MapNames name)
@@ -89,4 +99,11 @@ public partial class FinalGameData
             return (MapNames)GameOptionsManager.Instance.CurrentGameOptions.MapId == name;
         }
     }
+}
+
+public enum StateTypes
+{
+    InGame,
+    InMeeting,
+    InitGame
 }

@@ -270,7 +270,7 @@ public static class OptionsMenuBehaviourStartPatch
 
     private static void AutoStartButtonToggle()
     {
-        if (Main.AutoStartGame.Value == false && IsCountDown) GameStartManager.Instance.ResetStartState();
+        if (!Main.AutoStartGame.Value && IsCountDown) GameStartManager.Instance.ResetStartState();
     }
 
     public static void SetCursor()

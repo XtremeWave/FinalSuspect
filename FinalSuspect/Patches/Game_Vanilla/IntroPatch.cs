@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
@@ -13,7 +14,7 @@ internal class IntroCutscenePatch
     [HarmonyPrefix]
     public static void CoBegin_Prefix()
     {
-        UpdateGameState_IsInGame(true);
+        UpdateGameState(true, StateTypes.InGame);
         Info("Game Start", "IntroCutscene");
     }
 
