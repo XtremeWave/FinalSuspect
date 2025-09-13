@@ -19,7 +19,7 @@
 您可以通过联系Slok反馈安全问题。
 > 在我们修复此安全问题之前,请**不要公开讨论或宣扬此安全问题**。
 - (建议)Slok7565
-  - 微信号: \_Slok7565-S0kA1\_
+  - 微信号: The\_S1ok
   - (建议)QQ号: 639083778
 
 你也可以通过在[安全](https://github.com/Slok7565/FinalSuspect/security)页面点击`Report a vulnerability`以通过GitHub向我们报告一个安全问题。

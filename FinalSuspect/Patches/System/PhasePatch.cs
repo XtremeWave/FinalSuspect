@@ -17,7 +17,8 @@ public class AmongUsClientOnGameEndPatch
 {
     public static void Postfix()
     {
-        UpdateGameState_IsInGame(false);
+        UpdateGameState(false, StateTypes.InGame);
+        UpdateGameState(false, StateTypes.InitGame);
         Info("-----------游戏结束-----------", "Phase");
     }
 }
@@ -28,7 +29,7 @@ public class MeetingHudStartPatch
 {
     public static void Prefix()
     {
-        _ = new LateTask(() => UpdateGameState_IsInMeeting(true), 1f, "UpdateGameState_IsInMeeting");
+        _ = new LateTask(() => UpdateGameState(true, StateTypes.InMeeting), 1f, "Update game state");
         Info("------------会议开始------------", "Phase");
     }
 }
@@ -38,7 +39,7 @@ internal class MeetingHudOnDestroyPatch
 {
     public static void Postfix()
     {
-        UpdateGameState_IsInMeeting(false);
+        UpdateGameState(false, StateTypes.InMeeting);
         Info("------------会议结束------------", "Phase");
     }
 }
@@ -46,6 +47,11 @@ internal class MeetingHudOnDestroyPatch
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.CoStartGame))]
 internal class CoStartGamePatch
 {
+    public static void Prefix()
+    {
+        UpdateGameState(true, StateTypes.InitGame);
+    }
+
     public static void Postfix()
     {
         GameModuleInitializerAttribute.InitializeAll();

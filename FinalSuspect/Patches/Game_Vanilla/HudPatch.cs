@@ -173,11 +173,13 @@ public static class HudManagerPatch
     {
         if (!IsInGame)
             return;
-        var color = GetRoleColor(PlayerControl.LocalPlayer.GetRoleType());
+        var role = PlayerControl.LocalPlayer.GetRoleType();
+        var color = GetRoleColor(role);
         __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
         __instance.AbilityButton.cooldownTimerText.color = color;
         __instance.SecondaryAbilityButton.buttonLabelText.SetOutlineColor(color);
         __instance.SecondaryAbilityButton.cooldownTimerText.color = color;
+
         __instance.KillButton.cooldownTimerText.color = ColorHelper.ImpostorRedPale;
 
         // 刷新按钮状态

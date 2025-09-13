@@ -17,8 +17,8 @@ public class OnGameJoinedPatch
         Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         FinalGameData.PlayerVersion.PlayerVersions = new Dictionary<int, FinalGameData.PlayerVersion>();
         FinalPlayerData.InitializeAll();
-        UpdateGameState_IsInGame(false);
-        UpdateGameState_IsInMeeting(false);
+        UpdateGameState(false, StateTypes.InGame);
+        UpdateGameState(false, StateTypes.InMeeting);
         ErrorText.Instance.Clear();
         ServerAddManager.SetServerName();
         FinalGameData.JoinedCompleted = false;

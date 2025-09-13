@@ -141,7 +141,8 @@ public static class GameStartManagerPatch
 
             if (!Main.AutoStartGame.Value
                 || !AmongUsClient.Instance.AmHost
-                || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting) return true;
+                || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
+                || IsInitGame) return true;
             _updateTimer++;
             if (_updateTimer < 50) return true;
             _updateTimer = 0;
