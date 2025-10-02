@@ -31,17 +31,21 @@
 
 ## 修正
 - 修复了部分分辨率下出现UI错误的问题
+- 修复了「人满自动开始游戏」错误多次开始游戏导致游戏崩溃的问题
 修复: Slok
 
 ## 优化
 
 ## 更改
 - 修改职业介绍格式
+制作: Slok, LezaiYa
 - 将[LezaiYa]("https://github.com/NewLezaiYa")列入**开发者**
 
 ## 新增
 - 适配**Among Us v17.0.0**
+制作: LezaiYa
 - 适配**Starlight**安装模组启动器
+制作: Slok
 
 ## 重制
 
