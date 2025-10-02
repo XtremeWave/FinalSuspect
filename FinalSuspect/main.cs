@@ -11,6 +11,7 @@ using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.Helpers;
 using FinalSuspect.Internal;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using FinalSuspect.Modules.Core.Plugin.RegistryManager;
 using FinalSuspect.Modules.Random;
 using FinalSuspect.Modules.Resources;
 using Il2CppInterop.Runtime.Injection;
@@ -222,6 +223,7 @@ public class Main : BasePlugin
         Task.Run(SystemEnvironment.SetEnvironmentVariablesAsync);
 
         Harmony.PatchAll();
+
 
         if (DebugModeManager.IsDebugMode) ConsoleManager.CreateConsole();
         else ConsoleManager.DetachConsole();

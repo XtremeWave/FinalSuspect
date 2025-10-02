@@ -18,10 +18,9 @@ public static class UiHelper
         window.name = name;
         window.transform.localPosition += Vector3.forward * zOffset;
 
-        var offset = GetResolutionOffset();
         var background = window.transform.Find("Background");
         if (background != null)
-            background.localScale = background.localScale * scale * offset;
+            background.localScale = Vector3.one * scale;
 
         // 移除不需要的按钮
         var button2 = window.transform.Find("Button2");
@@ -61,13 +60,13 @@ public static class UiHelper
     }
 
     public static GameObject CreateButton(GameObject template, Transform parent, Vector3 position, string text,
-        float scale, bool getString = true)
+        bool getString = true)
     {
         var button = Object.Instantiate(template, parent);
         button.name = $"Button_{text}";
 
         button.transform.localPosition = position;
-        button.transform.localScale = new Vector3(scale, scale, 1f);
+        button.transform.localScale = new Vector3(1f, 1f, 1f);
 
         var passiveButton = button.GetComponent<PassiveButton>();
         if (passiveButton != null)
@@ -92,16 +91,14 @@ public static class UiHelper
         float fontSize)
     {
         var textObj = Object.Instantiate(template, parent);
-        textObj.name = $"Text_{text.Substring(0, Mathf.Min(10, text.Length))}";
+        textObj.name = $"Text_{text[..Mathf.Min(10, text.Length)]}";
 
         textObj.transform.localPosition = position;
 
         var textComp = textObj.GetComponent<TextMeshPro>();
-        if (textComp != null)
-        {
-            textComp.text = text;
-            textComp.fontSize = fontSize;
-        }
+        if (textComp == null) return textObj;
+        textComp.text = text;
+        textComp.fontSize = fontSize;
 
         return textObj;
     }

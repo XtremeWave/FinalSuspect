@@ -2,6 +2,7 @@ using System.Text;
 using FinalSuspect.ClientActions;
 using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+using FinalSuspect.ClientActions.FeatureItems.NameTag;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
@@ -208,7 +209,7 @@ public class VersionShowerStartPatch
         else
             _instance = __instance;
 
-        VisitText = Object.Instantiate(__instance.text);
+        VisitText = Object.Instantiate(__instance.text, OVersionShower.transform.parent);
         VisitText.name = "FinalSuspect VisitText";
         VisitText.alignment = TextAlignmentOptions.Left;
         VisitText.text = VersionChecker.IsChecked
@@ -220,12 +221,13 @@ public class VersionShowerStartPatch
         __instance.text.alignment = TextAlignmentOptions.Left;
         var ap1 = OVersionShower.GetComponent<AspectPosition>();
         ap1.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
-        ap1.DistanceFromEdge = new Vector3(0.4f, -0.3f);
+        ap1.DistanceFromEdge = new Vector3(0.5f, -0.3f);
         ap1.updateAlways = true;
 
+        VisitText.alignment = TextAlignmentOptions.Left;
         var ap2 = VisitText.gameObject.AddComponent<AspectPosition>();
         ap2.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
-        ap2.DistanceFromEdge = new Vector3(1.4f, 0.1f);
+        ap2.DistanceFromEdge = new Vector3(0.5f, -0.45f);
         ap2.updateAlways = true;
     }
 }
@@ -288,13 +290,13 @@ internal class TitleLogoPatch
         {
             transform =
             {
-                position = new Vector3(0, 0, 520f)
+                position = new Vector3(0, 0, 520f),
+                localScale = new Vector3(Mathf.Max(GetResolutionOffset(), 1), Mathf.Max(GetResolutionOffset(), 1), 1)
             }
         };
 
         var bgRenderer = FinalSuspect_Background.AddComponent<SpriteRenderer>();
         bgRenderer.sprite = style.Sprite;
-
 
         if (!(Ambience = GameObject.Find("Ambience"))) return;
         if (!(Starfield = Ambience.transform.FindChild("starfield").gameObject)) return;
@@ -314,7 +316,7 @@ internal class TitleLogoPatch
         if (!(RightPanel = GameObject.Find("RightPanel"))) return;
         var rightPanelAP = RightPanel.GetComponent<AspectPosition>();
         if (rightPanelAP) Object.Destroy(rightPanelAP);
-        RightPanel.transform.localPosition = RightPanelOp + new Vector3(10f, 0f, 0f);
+        RightPanel.transform.localPosition = RightPanelOp + new Vector3(20f, 0f, 0f);
         RightPanel.GetComponent<SpriteRenderer>().color = new Color(1f, 0.78f, 0.9f, 1f);
 
         CloseRightButton = new GameObject("CloseRightPanelButton");
@@ -396,8 +398,6 @@ internal class ModManagerLateUpdatePatch
             {
                 var last = _lastScene;
                 _lastScene = SceneManager.GetActiveScene().name;
-                Test(_lastScene);
-                Test(SceneManager.GetActiveScene().name);
                 if (last is "SplashIntro") return;
                 OnSceneChange(_lastScene);
             }
@@ -457,6 +457,8 @@ internal class ResolutionManagerPatch
             Tint.transform.localPosition =
                 new Vector3(-0.0824f * offset, 0.0513f, Tint.transform.localPosition.z);
             Sizer.transform.localPosition = new Vector3(-4.0f * offset, 1.4f, -1.0f);
+            FinalSuspect_Background.transform.localScale = new Vector3(Mathf.Max(GetResolutionOffset(), 1),
+                Mathf.Max(GetResolutionOffset(), 1), 1);
             var mainButtons = GameObject.Find("Main Buttons");
             mainButtons.transform.position = new Vector3(-3.4f * offset, mainButtons.transform.position.y,
                 mainButtons.transform.position.z);
@@ -480,6 +482,13 @@ internal class ResolutionManagerPatch
 
             CloseRightButton.transform.localPosition =
                 new Vector3(-4.78f * GetResolutionOffset(), 1.3f, 1f);
+            Object.Destroy(NameTagEditMenu.Menu);
+            NameTagEditMenu.Menu = null;
+            NameTagEditMenu.Init();
+
+            Object.Destroy(NameTagNewWindow.Window);
+            NameTagNewWindow.Window = null;
+            NameTagNewWindow.Init();
         }, 0.01f, "RefreshMenu");
     }
 }

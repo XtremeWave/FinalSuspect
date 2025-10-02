@@ -18,9 +18,14 @@ internal class IntroCutscenePatch
         Info("Game Start", "IntroCutscene");
     }
 
-    [HarmonyPatch(typeof(IntroCutscene._ShowRole_d__41), nameof(IntroCutscene._ShowRole_d__41.MoveNext))]
-    [HarmonyPostfix]
+#if Windows
+    [HarmonyPatch(typeof(IntroCutscene._ShowRole_d__41), nameof(IntroCutscene._ShowRole_d__41.MoveNext)),
+     HarmonyPostfix]
     public static void Postfix(IntroCutscene._ShowRole_d__41 __instance, ref bool __result)
+#elif Android
+    [HarmonyPatch(typeof(IntroCutscene._ShowRole_d__40), nameof(IntroCutscene._ShowRole_d__40.MoveNext)), HarmonyPostfix]
+    public static void Postfix(IntroCutscene._ShowRole_d__40 __instance, ref bool __result)
+#endif
     {
         if (!Main.EnableFinalSuspect.Value) return;
         var intro = __instance.__4__this;

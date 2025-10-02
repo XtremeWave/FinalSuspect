@@ -10,6 +10,7 @@ internal static class DllChecker
 {
     internal static void Init()
     {
+        return;
         // SM的文件名是写死的
         string[] suspiciousFiles = ["SickoMenu.dll", "version.dll"];
         // 获取当前Dll启动目录
@@ -33,7 +34,7 @@ internal static class DllChecker
             var fullPath = Path.Combine(amongUsPath, fileName);
 
             if (!File.Exists(fullPath)) continue;
-            Error($"检测到非法文件: {fileName}！游戏将被强制终止。", "FAC");
+            Error($"G检测到非法文件: {fileName}！游戏将被强制终止。", "FAC");
             Application.Quit(1);
         }
     }
@@ -44,6 +45,7 @@ public static class DisableOtherPlugins
 {
     public static bool Prefix([HarmonyArgument(0)] PluginInfo pluginInfo, [HarmonyArgument(1)] Assembly pluginAssembly)
     {
+        return true;
         return pluginInfo.Metadata.GUID
             is "com.sinai.unityexplorer"
             or "cn.slok.polarnight";

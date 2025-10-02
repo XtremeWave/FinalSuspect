@@ -7,6 +7,7 @@ internal static class Git
 {
     public static void Prefix(MainMenuManager __instance)
     {
+        return;
         // 获取当前Dll启动目录
         var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         // 针对基于BepInEx注入检测

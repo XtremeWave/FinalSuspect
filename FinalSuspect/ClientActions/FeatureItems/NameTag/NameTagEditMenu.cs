@@ -38,7 +38,7 @@ public static class NameTagEditMenu
     private static ComponentType _currentComponent;
 
     // UI 元素
-    public static GameObject Menu { get; private set; }
+    public static GameObject Menu { get; set; }
     private static Dictionary<ComponentType, GameObject> ComponentButtons { get; } = new();
     public static GameObject Preview { get; private set; }
     public static GameObject TextEnter { get; private set; }
@@ -238,7 +238,7 @@ public static class NameTagEditMenu
         );
 
         var closeButton = UiHelper.CreateCloseButton(Menu.transform, () => Toggle(null, false));
-        closeButton.transform.localPosition = new Vector3(4.9f, 2.5f, -1f) * GetResolutionOffset();
+        closeButton.transform.localPosition = new Vector3(4.9f, 2.5f, -1f);
         CreateComponentButtons();
         CreateActionButtons();
         CreatePreviewSection();
@@ -263,14 +263,12 @@ public static class NameTagEditMenu
     {
         var x = ButtonStartX + col * ButtonSpacing;
         var y = ButtonStartY - row * ButtonRowHeight;
-        var offset = GetResolutionOffset();
 
         var button = UiHelper.CreateButton(
             Menu.transform.Find("Button Prefab").gameObject,
             Menu.transform,
-            new Vector3(x, y, 0) * offset,
-            type.ToString(),
-            offset
+            new Vector3(x, y, 0),
+            type.ToString()
         );
 
         button.name = $"Edit{type}Button";
@@ -289,14 +287,11 @@ public static class NameTagEditMenu
 
     private static void CreateActionButtons()
     {
-        var offset = GetResolutionOffset();
-
         var previewButton = UiHelper.CreateButton(
             Menu.transform.Find("Button Prefab").gameObject,
             Menu.transform,
-            new Vector3(1.2f * offset, -2.5f * offset, 0f),
-            "RefreshPreview",
-            offset
+            new Vector3(1.2f, -2.5f, 0f),
+            "RefreshPreview"
         );
         previewButton.name = "RefreshPreviewButton";
 
@@ -315,9 +310,8 @@ public static class NameTagEditMenu
         var saveButton = UiHelper.CreateButton(
             Menu.transform.Find("Button Prefab").gameObject,
             Menu.transform,
-            new Vector3(3.5f * offset, -2.5f * offset, 0f),
-            "SaveAndClose",
-            offset
+            new Vector3(3.5f, -2.5f, 0f),
+            "SaveAndClose"
         );
         saveButton.name = "SaveAndExitButton";
 
@@ -342,9 +336,8 @@ public static class NameTagEditMenu
         var deleteButton = UiHelper.CreateButton(
             Menu.transform.Find("Button Prefab").gameObject,
             Menu.transform,
-            new Vector3(-3.5f * offset, -2.5f * offset, 0f),
+            new Vector3(-3.5f, -2.5f, 0f),
             GetString("Delete"),
-            offset,
             false
         );
         deleteButton.name = "DeleteButton";
@@ -380,12 +373,10 @@ public static class NameTagEditMenu
 
     private static void CreatePreviewSection()
     {
-        var offset = GetResolutionOffset();
-
         Preview = UiHelper.CreateText(
             Menu.transform.Find("Title Prefab").gameObject,
             Menu.transform,
-            new Vector3(0f, 1.2f * offset, 0f),
+            new Vector3(0f, 1.2f, 0f),
             DataManager.player.Customization.Name,
             0.6f
         );
@@ -394,12 +385,10 @@ public static class NameTagEditMenu
 
     private static void CreateInputFields()
     {
-        var offset = GetResolutionOffset();
-
         // 文本输入区域
         TextEnter = UiHelper.CreateInputField(
             Menu.transform,
-            new Vector3(-2.9f * offset, 0f * offset, 0f),
+            new Vector3(-2.9f, 0f, 0f),
             true
         );
         TextEnter.name = "Edit Text Enter Box";
@@ -407,7 +396,7 @@ public static class NameTagEditMenu
         // 尺寸输入区域
         SizeEnter = UiHelper.CreateInputField(
             Menu.transform,
-            new Vector3(-2.9f * offset, -1.2f * offset, 0f),
+            new Vector3(-2.9f, -1.2f, 0f),
             false
         );
         SizeEnter.name = "Edit Size Enter Box";
@@ -415,29 +404,29 @@ public static class NameTagEditMenu
         // 颜色输入区域
         Color1Enter = UiHelper.CreateInputField(
             Menu.transform,
-            new Vector3(1.95f * offset, -0f * offset, 0f),
+            new Vector3(1.95f, -0f, 0f),
             true
         );
         Color1Enter.name = "Edit Color 1 Enter Box";
 
         Color2Enter = UiHelper.CreateInputField(
             Menu.transform,
-            new Vector3(1.95f * offset, -0.6f * offset, 0f),
+            new Vector3(1.95f, -0.6f, 0f),
             true
         );
         Color2Enter.name = "Edit Color 2 Enter Box";
 
         Color3Enter = UiHelper.CreateInputField(
             Menu.transform,
-            new Vector3(1.95f * offset, -1.2f * offset, 0f),
+            new Vector3(1.95f, -1.2f, 0f),
             true
         );
         Color3Enter.name = "Edit Color 3 Enter Box";
 
         // 创建标签文本
-        CreateLabel(GetString("Tip.TextContent"), new Vector3(-2.95f * offset, 0f, 0f));
-        CreateLabel(GetString("Tip.TextSizeDescription"), new Vector3(-2.95f * offset, -1.2f * offset, 0f));
-        CreateLabel(GetString("Tip.TextColorDescription"), new Vector3(1.95f * offset, 0.2f, 0f));
+        CreateLabel(GetString("Tip.TextContent"), new Vector3(-2.95f, 0f, 0f));
+        CreateLabel(GetString("Tip.TextSizeDescription"), new Vector3(-2.95f, -1.2f, 0f));
+        CreateLabel(GetString("Tip.TextColorDescription"), new Vector3(1.95f, 0.2f, 0f));
     }
 
     private static void CreateLabel(string text, Vector3 position)

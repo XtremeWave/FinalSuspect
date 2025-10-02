@@ -1,19 +1,35 @@
-#if DEBUG
 using System;
-#endif
 using System.IO;
 using FinalSuspect.Attributes;
+using UnityEngine;
+#if Windows
+using System.Linq;
+#endif
 
 namespace FinalSuspect.Modules.Resources;
 
 public static class PathManager
 {
+#if Android
+    private static readonly string LocalPath_Data = Application.persistentDataPath + "/FinalSuspect_Data/";
+    public static readonly string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
+    private static readonly string DependsSavePath = LocalPath_Data + "Depend";
+    public static readonly string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
+#else
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
     private const string DependsSavePath = "BepInEx/core/";
     public const string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
-    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+#endif
 
+
+#if Android
+    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+#else
+    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+#endif
+
+    // 下载URL保持不变
     public const string DownloadUrl_Github =
         "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
@@ -29,18 +45,27 @@ public static class PathManager
     public static string DownloadUrl_Gitee =
         "https://gitee.com/LezaiYa/FinalSuspectAssets/releases/download/v{showVer}/FinalSuspect.dll";
 
-    private static IReadOnlyList<string> URLs => new List<string>
+    private static IReadOnlyList<string> URLs
     {
-        "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
-        "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
-        "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
-        "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
-        "https://dlhk.fangkuai.fun/FinalSuspect/",
-#if DEBUG
-        $"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/",
+        get
+        {
+            var urls = new List<string>
+            {
+                "https://raw.githubusercontent.com/Slok7565/FinalSuspect_Assets/FinalAsset/",
+                "https://raw.githubusercontent.com/Slok7565/FinalSuspect/FinalSus/",
+                "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
+                "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
+                "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
+                "https://dlhk.fangkuai.fun/FinalSuspect/",
+            };
+
+#if DEBUG && Windows
+            // 只有在 Windows 调试模式下才添加桌面路径
+            urls.Add($"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/");
 #endif
-    };
+            return urls.AsReadOnly();
+        }
+    }
 
     public static string GetFile(FileType fileType, RemoteType remoteType, string file)
     {
@@ -121,24 +146,53 @@ public static class PathManager
         CheckAndDeleteSLK(DependsSavePath);
     }
 
-    private static void CheckAndCreate(string path, bool hidden = true, bool isFile = false)
+    private static void CheckAndCreate(
+        string path,
+        bool hidden = true,
+        bool isFile = false)
     {
         if (path == null) return;
 
         switch (isFile)
         {
             case true when !File.Exists(path):
-                File.Create(path);
+                try
+                {
+                    File.Create(path).Close();
+                }
+                catch (Exception e)
+                {
+                    Error($"创建文件失败: {path}, 错误: {e.Message}", "PathManager");
+                }
+
                 break;
             case false when !Directory.Exists(path):
-                Directory.CreateDirectory(path);
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception e)
+                {
+                    Error($"创建目录失败: {path}, 错误: {e.Message}", "PathManager");
+                }
+
                 break;
         }
 
-        var attributes = File.GetAttributes(path);
-        File.SetAttributes(path, hidden
-            ? attributes | FileAttributes.Hidden
-            : attributes & ~FileAttributes.Hidden);
+#if Windows
+        // 只在 Windows 上设置隐藏属性
+        try
+        {
+            var attributes = File.GetAttributes(path);
+            File.SetAttributes(path, hidden
+                ? attributes | FileAttributes.Hidden
+                : attributes & ~FileAttributes.Hidden);
+        }
+        catch (Exception e)
+        {
+            Warn($"设置文件属性失败: {path}, 错误: {e.Message}", "PathManager");
+        }
+#endif
     }
 
     private static void CheckAndDeleteSLK(string targetFolder)
@@ -148,21 +202,41 @@ public static class PathManager
         {
             var filesToDelete = Directory.GetFiles(targetFolder, "*.slk", SearchOption.AllDirectories);
 
-            foreach (var file in filesToDelete) File.Delete(file);
+            foreach (var file in filesToDelete)
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception e)
+                {
+                    Warn($"删除文件失败: {file}, 错误: {e.Message}", "PathManager");
+                }
+            }
         }
-        catch
+        catch (Exception e)
         {
-            /* ignored */
+            Warn($"删除SLK文件时出错: {e.Message}", "PathManager");
         }
     }
 
     public static IReadOnlyList<string> GetInfoFileUrlList(bool allowDesktop = false)
     {
-        var list = URLs.ToList();
-        if (!allowDesktop && DebugModeManager.IsDebugMode)
-            list.RemoveAt(6);
-        if (IsChineseUser) list.Reverse();
-        return list;
+        var list = new List<string>(URLs);
+
+#if Android
+        allowDesktop = false;
+#endif
+
+        if (!allowDesktop)
+        {
+            list.RemoveAll(url => url.StartsWith("file://"));
+        }
+
+        if (IsChineseUser)
+            list.Reverse();
+
+        return list.AsReadOnly();
     }
 }
 

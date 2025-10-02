@@ -107,6 +107,12 @@ public static class ResourcesDownloader
                             continue;
                         }
                     }
+#if Android
+                    if (fileType is FileType.Depends)
+                    {
+                        File.Copy(filePath, "/data/data/dev.allofus.starlight/files/BepInEx/core/"+ currentFile);
+                    }
+#endif
 
                     Warn($"Succeed in {url}", "Download Resources");
                     success = true;

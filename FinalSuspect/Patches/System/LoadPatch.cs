@@ -5,6 +5,7 @@ using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientActions.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin.RegistryManager;
 using FinalSuspect.Modules.Resources;
 using TMPro;
 using UnityEngine;
@@ -104,7 +105,6 @@ public static class LoadPatch
     {
         var logoAnimator = GameObject.Find("LogoAnimator");
         logoAnimator.SetActive(false);
-
         CheckForListResources(ref ResourcesHelper.PreReadyRemoteImageList, FileType.Images);
         CheckForListResources(ref ResourcesHelper.PreReadyRemoteMusicList, FileType.Musics);
         yield return DownloadResources(ResourcesHelper.PreReadyRemoteImageList, FileType.Images,
@@ -128,6 +128,7 @@ public static class LoadPatch
         Main.FastLaunchMode.Value = fastLaunchMode;
         if (!fastLaunchMode)
             Main.OfflineMode.Value = false;
+
 
         yield return fastLaunchMode ? HandleFastLaunchMode() : HandleNormalBoot();
 
@@ -157,7 +158,9 @@ public static class LoadPatch
                 break;
         }
 
-        return Main.FastLaunchMode.Value && !_reloadLanguage;
+        CheckForListResources(ref ResourcesHelper.RemoteDependList, FileType.Depends);
+
+        return Main.FastLaunchMode.Value && !_reloadLanguage && ResourcesHelper.RemoteDependList.Count == 0;
     }
 
     #endregion
@@ -409,7 +412,15 @@ public static class LoadPatch
             if (fileType is FileType.Musics)
                 AudioManager.ConvertExtension(ref path);
             if (File.Exists(path))
+            {
                 targetList.Remove(resource);
+#if Android
+                if (fileType is FileType.Depends)
+                {
+                    File.Copy(path, "/data/data/dev.allofus.starlight/files/BepInEx/core/"+ resource);
+                }
+#endif
+            }
             else
                 Warn($"File does not exist: {GetLocalFilePath(fileType, resource)}", "Check");
         }
