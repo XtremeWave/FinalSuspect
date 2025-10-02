@@ -9,7 +9,7 @@ public static class NameTagNewWindow
 {
     private static readonly Regex FriendCodeRegex = new("^[a-z]+#[0-9]{4}$", RegexOptions.Compiled);
 
-    public static GameObject Window { get; private set; }
+    public static GameObject Window { get; set; }
     public static GameObject Info { get; private set; }
     public static GameObject EnterBox { get; private set; }
     public static GameObject ConfirmButton { get; private set; }
@@ -50,7 +50,7 @@ public static class NameTagNewWindow
     private static void CreateCloseButton()
     {
         var closeButton = UiHelper.CreateCloseButton(Window.transform, () => Window.SetActive(false));
-        closeButton.transform.localPosition = new Vector3(2.4f, 1.2f, -1f) * GetResolutionOffset();
+        closeButton.transform.localPosition = new Vector3(2.4f, 1.2f, -1f);
     }
 
     private static void CreateInfoText()
@@ -58,7 +58,7 @@ public static class NameTagNewWindow
         Info = UiHelper.CreateText(
             Window.transform.Find("Info Prefab").gameObject,
             Window.transform,
-            new Vector3(0f, 0.1f, 0f) * GetResolutionOffset(),
+            new Vector3(0f, 0.1f, 0f),
             GetString("Tip.PleaseEnterFriendCode"),
             1f
         );
@@ -69,7 +69,7 @@ public static class NameTagNewWindow
     {
         EnterBox = UiHelper.CreateInputField(
             Window.transform,
-            new Vector3(0f, -0.04f, 0f) * GetResolutionOffset(),
+            new Vector3(0f, -0.04f, 0f),
             true
         );
         EnterBox.name = "Enter Friend Code Box";
@@ -85,9 +85,8 @@ public static class NameTagNewWindow
         ConfirmButton = UiHelper.CreateButton(
             Window.transform.Find("Button Prefab").gameObject,
             Window.transform,
-            new Vector3(0, -0.8f, 0f) * GetResolutionOffset(),
+            new Vector3(0, -0.8f, 0f),
             GetString(StringNames.Confirm),
-            GetResolutionOffset(),
             false
         );
         ConfirmButton.name = "Confirm Button";

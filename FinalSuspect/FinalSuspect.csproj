@@ -18,17 +18,15 @@
         <CompileDate>$([System.DateTime]::Now.ToString("yyyyMMdd"))</CompileDate>
 
         <ImplicitUsings>disable</ImplicitUsings>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'OpenBeta' ">
-        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <NoWarn>MSB3246, CA2211, IDE0044, IDE0028, IDE0300</NoWarn>
-    </PropertyGroup>
 
+        <Platforms>Windows;Android</Platforms>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Platform)' == 'Windows'">
+        <DefineConstants>Windows</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Platform)' == 'Android'">
+        <DefineConstants>Android</DefineConstants>
+    </PropertyGroup>
     <Target Name="InjectBuildTime" BeforeTargets="CoreCompile">
         <WriteLinesToFile File="$(IntermediateOutputPath)BuildTime.cs" Lines="namespace FinalSuspect.Internal { public static class BuildTime { public const string Date = %22$(CompileDate)%22%3B } }" Overwrite="true" Encoding="UTF-8"/>
         <ItemGroup>
@@ -42,7 +40,8 @@
 
     <ItemGroup>
         <!-- nuget.bepinex.dev -->
-        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2025.9.9" PrivateAssets="all"/>
+        <PackageReference Include="AmongUs.GameLibs.Android" Version="2025.9.9" Condition="'$(Platform)' == 'Android'"/>
+        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2025.9.9" PrivateAssets="all" Condition="'$(Platform)' == 'Windows'"/>
         <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.738" Private="false" ExcludeAssets="runtime;native"/>
         <PackageReference Include="BunLabs.NAudio.Flac" Version="2.0.1"/>
         <!-- nuget.org -->
@@ -55,11 +54,11 @@
         <PackageReference Include="YamlDotNet" Version="16.3.0"/>
     </ItemGroup>
 
-    <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != ''">
+    <Target Name="Copy" AfterTargets="Build" Condition="'$(AmongUs)' != '' and '$(Platform)' == 'Windows'">
         <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'"/>
     </Target>
 
-    <Target Name="CopyModFolder" AfterTargets="Build" Condition="'$(Configuration)' != 'Debug'">
+    <Target Name="CopyModFolder" AfterTargets="Build" Condition="'$(Configuration)' != 'Debug'  and '$(Platform)' == 'Windows'">
         <PropertyGroup>
             <BaseBepInExDir>..\Assets\Mod\BaseBepInEx</BaseBepInExDir>
 
@@ -93,7 +92,7 @@
         <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(TargetModDir)\BepInEx\plugins\" ContinueOnError="true"/>
     </Target>
 
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="set &quot;sourcePath=..\Export\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)"/>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Platform)' == 'Windows'">
+        <Exec Command="set &quot;sourcePath=..\Export\Windows\$(ConfigurationName)\net6.0\FinalSuspect.dll&quot;&#xA;&#xA;if exist &quot;%sourcePath%&quot; (&#xA;    if not exist &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot; mkdir &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\&quot;&#xA;    copy &quot;%sourcePath%&quot; &quot;D:\SteamLibrary\steamapps\common\Among Us\BepInEx\plugins\FinalSuspect.dll&quot;&#xA;) else (&#xA;    echo Source file not found: %sourcePath%&#xA;)"/>
     </Target>
 </Project>

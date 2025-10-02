@@ -7,13 +7,18 @@ public class UnityEnginePatch
 {
     public static bool Prefix([HarmonyArgument(0)] Object obj)
     {
+        bool Return;
         try
         {
-            return obj.name is not "LobbyInfoPane" and not "GameStartManager" || IsFreePlay || IsNotJoined;
+            Return = obj.name is not "LobbyInfoPane" and not "GameStartManager" || IsFreePlay || IsNotJoined;
+            if (obj.name is "IntroCutscene")
+                IntroCutsceneOnDestroyPatch.Postfix();
         }
         catch
         {
             return true;
         }
+
+        return Return;
     }
 }

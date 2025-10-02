@@ -64,20 +64,23 @@ public class MainMenuManagerPatch
     {
         CustomPopup.Update();
 
+        var text = VersionShowerStartPatch.OVersionShower.transform.FindChild("Text_TMP").gameObject
+            .GetComponent<RectTransform>().sizeDelta = new Vector2(3.9f, 0.2359f);
         if (!GameObject.Find("MainUI")) ShowingPanel = false;
         VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel && Active);
-
+        __instance.quitButton.gameObject.SetActive(true);
+        GithubButton.SetActive(true);
         if (RightPanel)
         {
             var pos1 = RightPanel.transform.localPosition;
             var pos3 = new Vector3(
                 RightPanelOp.x * GetResolutionOffset(),
                 RightPanelOp.y, RightPanelOp.z);
-            var lerp1 = Vector3.Lerp(pos1, ShowingPanel ? pos3 : RightPanelOp + new Vector3(10f, 0f, 0f),
+            var lerp1 = Vector3.Lerp(pos1, ShowingPanel ? pos3 : RightPanelOp + new Vector3(20f, 0f, 0f),
                 Time.deltaTime * (ShowingPanel ? 3f : 2f));
             if (ShowingPanel
                     ? RightPanel.transform.localPosition.x > pos3.x + 0.03f
-                    : RightPanel.transform.localPosition.x < RightPanelOp.x + 9f
+                    : RightPanel.transform.localPosition.x < RightPanelOp.x + 29f
                ) RightPanel.transform.localPosition = lerp1;
         }
 
@@ -103,7 +106,7 @@ public class MainMenuManagerPatch
         var inviteLinkName = IsChineseUser ? "QQ群" : "Discord";
         var inviteLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
 
-        if (!InviteButton) InviteButton = CreatButton(inviteLinkName, () => { Application.OpenURL(inviteLinkUrl); });
+        if (!InviteButton) InviteButton = CreatButton(inviteLinkName, () => { OpenUrl(inviteLinkUrl); });
         InviteButton.gameObject.SetActive(true);
         InviteButton.name = "FinalSuspect Extra Link Button";
 
@@ -111,13 +114,13 @@ public class MainMenuManagerPatch
         //WebsiteButton.gameObject.SetActive(true);
         //WebsiteButton.name = "FinalSuspect Website Button";
 
-        if (!GithubButton) GithubButton = CreatButton("Github", () => Application.OpenURL(Main.GithubRepoUrl));
+        if (!GithubButton) GithubButton = CreatButton("Github", () => OpenUrl(Main.GithubRepoUrl));
         GithubButton.gameObject.SetActive(true);
         GithubButton.name = "FinalSuspect Github Button";
 
         var bugLinkName = IsChineseUser ? "Bug 反馈" : "Bug Report";
         var bugLinkUrl = IsChineseUser ? Main.BugReportUrl_Gitee : Main.BugReportUrl_Github;
-        if (!BugReportButton) BugReportButton = CreatButton(bugLinkName, () => { Application.OpenURL(bugLinkUrl); });
+        if (!BugReportButton) BugReportButton = CreatButton(bugLinkName, () => { OpenUrl(bugLinkUrl); });
         BugReportButton.gameObject.SetActive(true);
         BugReportButton.name = "FinalSuspect Bug Report Button";
         PlayButton = __instance.playButton.gameObject;
@@ -148,6 +151,15 @@ public class MainMenuManagerPatch
         Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
         return;
 
+        void OpenUrl(string url)
+        {
+#if Android
+            OpenURLAndroid(url);
+#elif Windows
+            Application.OpenURL(url);
+#endif
+        }
+
         GameObject CreatButton(string text, Action action)
         {
             col++;
@@ -173,4 +185,47 @@ public class MainMenuManagerPatch
             return button;
         }
     }
+#if Android
+    private static void OpenURLAndroid(string url)
+    {
+        try
+        {
+            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        
+            // 创建 Intent
+            AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
+            AndroidJavaObject intentObject =
+ new AndroidJavaObject("android.content.Intent", "android.intent.action.VIEW");
+        
+            // 创建 URI
+            AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
+            AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", url);
+        
+            // 设置 Intent 的数据
+            intentObject.Call<AndroidJavaObject>("setData", uriObject);
+        
+            // 设置标志确保在新任务中打开
+            int FLAG_ACTIVITY_NEW_TASK = 0x10000000;
+            intentObject.Call<AndroidJavaObject>("setFlags", FLAG_ACTIVITY_NEW_TASK);
+        
+            // 启动 Activity
+            currentActivity.Call("startActivity", intentObject);
+        
+            // 释放资源（虽然不是必须的，但推荐）
+            unityPlayer.Dispose();
+            currentActivity.Dispose();
+            intentClass.Dispose();
+            intentObject.Dispose();
+            uriClass.Dispose();
+            uriObject.Dispose();
+        }
+        catch 
+        {
+            // 降级到Application.OpenURL
+            Application.OpenURL(url);
+        }
+    }
+
+#endif
 }

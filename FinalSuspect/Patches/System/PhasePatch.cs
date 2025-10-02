@@ -79,7 +79,9 @@ internal class CoStartGameHPatch
     }
 }*/
 
+#if Windows
 [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
+#endif
 public static class IntroCutsceneOnDestroyPatch
 {
     public static void Postfix()
