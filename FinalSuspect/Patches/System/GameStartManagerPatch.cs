@@ -36,6 +36,7 @@ public static class GameStartManagerPatch
     private static Vector3 _gameStartTextlocalPosition;
     private static TextMeshPro _timerText;
     private static PassiveButton _cancelButton;
+    private static PassiveButton _skipButton;
     private static TextMeshPro _warningText;
     private static TextMeshPro _hideName;
 
@@ -109,6 +110,29 @@ public static class GameStartManagerPatch
             _cancelButton.OnClick.AddListener((Action)(__instance.ResetStartState));
             _cancelButton.gameObject.SetActive(false);
 
+            _skipButton = Object.Instantiate(__instance.StartButton, __instance.transform);
+            var skipLabel = _skipButton.GetComponentInChildren<TextMeshPro>();
+            skipLabel.DestroyTranslator();
+            _skipButton.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            _skipButton.transform.localPosition = new Vector3(2f, 0.13f, 0f);
+            skipLabel.text = GetString("Skip");
+            var skipButtonInactiveRenderer = _skipButton.inactiveSprites.GetComponent<SpriteRenderer>();
+            skipButtonInactiveRenderer.color = new Color(0f, 0.6f, 0.6f, 1f);
+            var skipButtonActiveRenderer = _skipButton.activeSprites.GetComponent<SpriteRenderer>();
+            skipButtonActiveRenderer.color = new Color(0f, 0.6f, 0.6f, 1f);
+            var skipButtonInactiveShine = _skipButton.inactiveSprites.transform.Find("Shine");
+            if (skipButtonInactiveShine) skipButtonInactiveShine.gameObject.SetActive(false);
+
+            _skipButton.activeTextColor = _skipButton.inactiveTextColor = Color.white;
+
+            _skipButton.OnClick = new Button.ButtonClickedEvent();
+            _skipButton.OnClick.AddListener(new Action(() =>
+            {
+                GameStartManager.Instance.countDownTimer = 0;
+                SoundManager.Instance.StopSound(GameStartManager.Instance.gameStartSound);
+            }));
+            _skipButton.gameObject.SetActive(false);
+
             if (!AmongUsClient.Instance.AmHost || (!VersionChecker.IsBroken &&
                                                    (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
                                                    VersionChecker.IsSupported)) return;
@@ -159,6 +183,7 @@ public static class GameStartManagerPatch
             if (AmongUsClient.Instance.AmHost)
             {
                 _cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
+                _skipButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
                 __instance.StartButton.gameObject.SetActive(!_cancelButton.gameObject.active);
             }
 
