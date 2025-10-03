@@ -160,10 +160,10 @@ public static class Utils
 
     public static DirectoryInfo GetLogFolder(bool auto = false)
     {
-        var folder = Directory.CreateDirectory($"{Application.persistentDataPath}/FinalSuspect/Logs");
+        var folder = Directory.CreateDirectory(FSLogOutPutPath);
         if (auto)
         {
-            folder = Directory.CreateDirectory($"{folder.FullName}/AutoLogs");
+            folder = Directory.CreateDirectory(AutoLogOutPutPath);
         }
 
         return folder;
@@ -178,15 +178,15 @@ public static class Utils
             OpenDirectory(filename);
             if (!PlayerControl.LocalPlayer) return;
             var t = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss");
+            var msg = string.Format(GetString("Message.DumpfileSaved"),
+                $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log");
             if (popup)
             {
-                HudManager.Instance.ShowPopUp(string.Format(GetString("Message.DumpfileSaved"),
-                    $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+                HudManager.Instance.ShowPopUp(msg);
             }
             else
             {
-                AddChatMessage(string.Format(GetString("Message.DumpfileSaved"),
-                    $"FinalSuspect - v{Main.DisplayedVersion}-{t}.log"));
+                AddChatMessage(msg);
             }
         }
         catch (Exception ex)
@@ -244,7 +244,7 @@ public static class Utils
             Directory.CreateDirectory(Path.GetDirectoryName(f) ?? string.Empty);
         }
 
-        FileInfo file = new($"{Environment.CurrentDirectory}/BepInEx/LogOutput.log");
+        FileInfo file = new(BepInLogOutPutPath);
         if (!file.Exists)
         {
             return null;

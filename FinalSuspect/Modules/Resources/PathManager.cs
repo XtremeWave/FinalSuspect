@@ -2,9 +2,6 @@ using System;
 using System.IO;
 using FinalSuspect.Attributes;
 using UnityEngine;
-#if Windows
-using System.Linq;
-#endif
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -15,6 +12,7 @@ public static class PathManager
     public static readonly string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
     private static readonly string DependsSavePath = LocalPath_Data + "Depend";
     public static readonly string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
+    public const string BepInExPath = "/data/data/dev.allofus.starlight/files/BepInEx/"
 #else
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
@@ -24,10 +22,16 @@ public static class PathManager
 
 
 #if Android
-    public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+    public static readonly string BepInLogOutPutPath = BepInExPath + "LogOutput.log";
+    public static readonly string BepInCorePath = BepInExPath + "core";
+    public static readonly string BepInLogOutPutPath = BepInExPath + "/BepInEx/LogOutput.log";
 #else
     public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
+    public static readonly string BepInLogOutPutPath = $"{Environment.CurrentDirectory}/BepInEx/LogOutput.log";
 #endif
+
+    public static readonly string FSLogOutPutPath = $"{Application.persistentDataPath}/FinalSuspect/Logs";
+    public static readonly string AutoLogOutPutPath = FSLogOutPutPath + "/AutoLogs";
 
     // 下载URL保持不变
     public const string DownloadUrl_Github =
@@ -66,6 +70,17 @@ public static class PathManager
             return urls.AsReadOnly();
         }
     }
+
+    public const string QQInviteUrl = "https://qm.qq.com/q/ZA7Lnjz3SC";
+    public const string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
+    public const string WebsiteUrl = "https://finalsuspect.pages.dev/";
+    public const string GithubRepoUrl = "https://github.com/Slok7565/FinalSuspect/";
+
+    public const string BugReportUrl_Github =
+        "https://github.com/Slok7565/FinalSuspect/issues/new?template=BugReport_en.yaml";
+
+    public const string BugReportUrl_Gitee =
+        "https://gitee.com/LezaiYa/FinalSuspectAssets/issues/new?template=BugReport.yaml";
 
     public static string GetFile(FileType fileType, RemoteType remoteType, string file)
     {

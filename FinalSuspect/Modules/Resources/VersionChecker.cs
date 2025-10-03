@@ -139,7 +139,13 @@ public static class VersionChecker
 
             _verHead = new string(data["verHead"]?.ToString());
 
-            CanUpdate = bool.Parse(new string(data["CanUpdate"]?.ToString()));
+            CanUpdate =
+#if Windows
+                bool.Parse(new string(data["CanUpdate"]?.ToString()));
+#elif Android
+                false;
+#endif
+
 
             _verDate = new string(data["verDate"]?.ToString());
 

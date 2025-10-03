@@ -14,8 +14,6 @@ namespace FinalSuspect.Patches.System;
 [HarmonyPatch]
 public class MainMenuManagerPatch
 {
-    //public static GameObject WebsiteButton;
-
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.OpenGameModeMenu))]
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.OpenAccountMenu))]
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.OpenCredits))]
@@ -63,9 +61,8 @@ public class MainMenuManagerPatch
     public static void MainMenuManager_LateUpdate(MainMenuManager __instance)
     {
         CustomPopup.Update();
-
-        var text = VersionShowerStartPatch.OVersionShower.transform.FindChild("Text_TMP").gameObject
-            .GetComponent<RectTransform>().sizeDelta = new Vector2(3.9f, 0.2359f);
+        VersionShowerStartPatch.OVersionShower.transform.FindChild("Text_TMP").gameObject.GetComponent<RectTransform>()
+            .sizeDelta = new Vector2(3.9f, 0.2359f);
         if (!GameObject.Find("MainUI")) ShowingPanel = false;
         VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel && Active);
         __instance.quitButton.gameObject.SetActive(true);
@@ -104,22 +101,22 @@ public class MainMenuManagerPatch
         var col = 0;
 
         var inviteLinkName = IsChineseUser ? "QQ群" : "Discord";
-        var inviteLinkUrl = IsChineseUser ? Main.QQInviteUrl : Main.DiscordInviteUrl;
+        var inviteLinkUrl = IsChineseUser ? QQInviteUrl : DiscordInviteUrl;
 
         if (!InviteButton) InviteButton = CreatButton(inviteLinkName, () => { OpenUrl(inviteLinkUrl); });
         InviteButton.gameObject.SetActive(true);
         InviteButton.name = "FinalSuspect Extra Link Button";
 
-        //if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => Application.OpenURL(Main.WebsiteUrl));
-        //WebsiteButton.gameObject.SetActive(true);
-        //WebsiteButton.name = "FinalSuspect Website Button";
+        if (WebsiteButton == null) WebsiteButton = CreatButton(GetString("Website"), () => OpenUrl(WebsiteUrl));
+        WebsiteButton.gameObject.SetActive(true);
+        WebsiteButton.name = "FinalSuspect Website Button";
 
-        if (!GithubButton) GithubButton = CreatButton("Github", () => OpenUrl(Main.GithubRepoUrl));
+        if (!GithubButton) GithubButton = CreatButton("Github", () => OpenUrl(GithubRepoUrl));
         GithubButton.gameObject.SetActive(true);
         GithubButton.name = "FinalSuspect Github Button";
 
         var bugLinkName = IsChineseUser ? "Bug 反馈" : "Bug Report";
-        var bugLinkUrl = IsChineseUser ? Main.BugReportUrl_Gitee : Main.BugReportUrl_Github;
+        var bugLinkUrl = IsChineseUser ? BugReportUrl_Gitee : BugReportUrl_Github;
         if (!BugReportButton) BugReportButton = CreatButton(bugLinkName, () => { OpenUrl(bugLinkUrl); });
         BugReportButton.gameObject.SetActive(true);
         BugReportButton.name = "FinalSuspect Bug Report Button";

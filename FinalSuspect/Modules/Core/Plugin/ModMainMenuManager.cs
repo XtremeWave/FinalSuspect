@@ -7,6 +7,7 @@ public static class ModMainMenuManager
     public static MainMenuManager Instance;
 
     public static GameObject InviteButton;
+    public static GameObject WebsiteButton;
     public static GameObject GithubButton;
     public static GameObject BugReportButton;
     public static GameObject UpdateButton;
