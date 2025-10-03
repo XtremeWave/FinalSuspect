@@ -45,18 +45,6 @@ public class Main : BasePlugin
 
     private const string DisplayedVersion_Date = BuildTime.Date;
 
-
-    // == 链接相关设定 / Link Config ==
-    public const string QQInviteUrl = "https://qm.qq.com/q/ZA7Lnjz3SC";
-    public const string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
-    public const string GithubRepoUrl = "https://github.com/Slok7565/FinalSuspect/";
-
-    public const string BugReportUrl_Github =
-        "https://github.com/Slok7565/FinalSuspect/issues/new?template=BugReport_en.yaml";
-
-    public const string BugReportUrl_Gitee =
-        "https://gitee.com/LezaiYa/FinalSuspectAssets/issues/new?template=BugReport.yaml";
-
     public static readonly string DisplayedVersion =
 #if RELEASE
         $"{DisplayedVersion_Head}_{DisplayedVersion_Date}";

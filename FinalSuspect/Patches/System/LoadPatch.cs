@@ -417,7 +417,7 @@ public static class LoadPatch
 #if Android
                 if (fileType is FileType.Depends)
                 {
-                    File.Copy(path, "/data/data/dev.allofus.starlight/files/BepInEx/core/"+ resource);
+                    File.Copy(path, BepInCorePath+ resource);
                 }
 #endif
             }

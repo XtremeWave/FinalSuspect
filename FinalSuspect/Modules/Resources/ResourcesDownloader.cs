@@ -110,7 +110,7 @@ public static class ResourcesDownloader
 #if Android
                     if (fileType is FileType.Depends)
                     {
-                        File.Copy(filePath, "/data/data/dev.allofus.starlight/files/BepInEx/core/"+ currentFile);
+                        File.Copy(filePath, BepInCorePath + currentFile);
                     }
 #endif
 

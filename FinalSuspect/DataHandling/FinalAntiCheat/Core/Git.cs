@@ -7,7 +7,7 @@ internal static class Git
 {
     public static void Prefix(MainMenuManager __instance)
     {
-        return;
+#if Windows
         // 获取当前Dll启动目录
         var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         // 针对基于BepInEx注入检测
@@ -18,5 +18,6 @@ internal static class Git
 
             if (fileName is not "FinalSuspect.dll" and not "PolarNight.dll") Application.Quit(1);
         }
+#endif
     }
 }
