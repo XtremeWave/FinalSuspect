@@ -16,11 +16,14 @@ internal class ControllerManagerUpdatePatch
     public static void Postfix()
     {
         //职业介绍
-        if (IsInGame && (IsCanMove || IsInMeeting) && Input.GetKey(KeyCode.F1))
+        if (IsInGame && (IsCanMove || IsInMeeting))
         {
-            if (!InGameRoleInfoMenu.Showing)
-                InGameRoleInfoMenu.SetRoleInfoRef(PlayerControl.LocalPlayer);
-            InGameRoleInfoMenu.Show();
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                if (!InGameRoleInfoMenu.Showing)
+                    InGameRoleInfoMenu.SetRoleInfoRef(PlayerControl.LocalPlayer);
+                InGameRoleInfoMenu.Toggle();
+            }
         }
         else
         {

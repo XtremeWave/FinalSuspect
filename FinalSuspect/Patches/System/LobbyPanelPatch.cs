@@ -1,20 +1,26 @@
 using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
-using Il2CppSystem;
+using System;
+using FinalSuspect.Modules.Features;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
 
 [HarmonyPatch(typeof(LobbyInfoPane), nameof(LobbyInfoPane.Update))]
 internal class LobbyInfoPaneUpdatePatch
 {
+    private static GameObject _showHidePaneButton;
+    private static GameObject _roleInfoPaneButton;
+
     [GameModuleInitializer]
     public static void Init()
     {
-        var trans = DestroyableSingleton<LobbyInfoPane>.Instance.transform.FindChild("AspectSize")
-            .FindChild("GameSettingsButtons");
+        var aspect = DestroyableSingleton<LobbyInfoPane>.Instance.transform.FindChild("AspectSize");
+        var trans = aspect.FindChild("GameSettingsButtons");
         trans.FindChild("Host Buttons").gameObject.SetActive(false);
         trans.FindChild("Client Buttons").gameObject.SetActive(true);
         var header = trans.FindChild("ButtonSettingsHeader").gameObject;
@@ -27,6 +33,73 @@ internal class LobbyInfoPaneUpdatePatch
 
         DestroyableSingleton<LobbyInfoPane>.Instance.gameObject.GetComponent<AspectPosition>().DistanceFromEdge +=
             Vector3.forward * -60;
+        DestroyableSingleton<LobbyInfoPane>.Instance.gameObject.transform.localScale *= 0.8f;
+        if (!_showHidePaneButton)
+        {
+            Object.Destroy(_showHidePaneButton);
+            _showHidePaneButton = null;
+        }
+
+        _showHidePaneButton =
+            Object.Instantiate(aspect.FindChild("GameCodeSection").FindChild("CopyGameCodeButton").gameObject,
+                aspect.parent.parent);
+        _showHidePaneButton.name = "Show Hide Panel Button";
+        _showHidePaneButton.transform.localPosition = new Vector3(-0.2f, -0.5f, 1f);
+        _showHidePaneButton.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        _showHidePaneButton.SetActive(true);
+        Object.Destroy(_showHidePaneButton.GetComponent<ConditionalHide>());
+        _showHidePaneButton.SetActive(true);
+        var _show_aspectPosi = _showHidePaneButton.AddComponent<AspectPosition>();
+
+        _show_aspectPosi.updateAlways = true;
+        var _show_passive = _showHidePaneButton.GetComponent<PassiveButton>();
+        _show_passive.OnClick = new Button.ButtonClickedEvent();
+        _show_passive.OnClick.AddListener(new Action(() =>
+        {
+            ControllerManagerUpdatePatch.ShowSettingsPanel = !ControllerManagerUpdatePatch.ShowSettingsPanel;
+        }));
+        _showHidePaneButton.transform.FindChild("Inactive").GetComponent<SpriteRenderer>().color =
+            new Color(0.8f, 0.8f, 1f, 0.3f);
+        _showHidePaneButton.transform.FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
+            LoadSprite("eye.png", 0.01f);
+        _ = new LateTask(() =>
+        {
+            _show_aspectPosi.Alignment = AspectPosition.EdgeAlignments.Right;
+            _show_aspectPosi.DistanceFromEdge = new Vector3(0.22f, 1.85f, -80f);
+            _showHidePaneButton.transform.FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
+                LoadSprite("eye.png", 100f);
+        }, 0.2f, "Reset Icon");
+
+
+        _roleInfoPaneButton =
+            Object.Instantiate(aspect.FindChild("GameCodeSection").FindChild("CopyGameCodeButton").gameObject,
+                aspect.parent.parent);
+        _roleInfoPaneButton.name = "Show Hide Panel Button";
+        _roleInfoPaneButton.transform.localPosition = new Vector3(-0.2f, -0.5f, 1f);
+        _roleInfoPaneButton.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        _roleInfoPaneButton.SetActive(true);
+        Object.Destroy(_roleInfoPaneButton.GetComponent<ConditionalHide>());
+        _roleInfoPaneButton.SetActive(true);
+        var aspectPosi = _roleInfoPaneButton.AddComponent<AspectPosition>();
+
+        aspectPosi.updateAlways = true;
+        var passive = _roleInfoPaneButton.GetComponent<PassiveButton>();
+        passive.OnClick = new Button.ButtonClickedEvent();
+        passive.OnClick.AddListener(new Action(() =>
+        {
+            if (IsInGame && (IsCanMove || IsInMeeting))
+            {
+                if (!InGameRoleInfoMenu.Showing)
+                    InGameRoleInfoMenu.SetRoleInfoRef(PlayerControl.LocalPlayer);
+                InGameRoleInfoMenu.Toggle();
+            }
+        }));
+        _roleInfoPaneButton.transform.FindChild("Inactive").GetComponent<SpriteRenderer>().color =
+            new Color(0.8f, 0.8f, 0.8f, 0.3f);
+        aspectPosi.Alignment = AspectPosition.EdgeAlignments.Right;
+        aspectPosi.DistanceFromEdge = new Vector3(0.58f, 1.85f, -80f);
+        _roleInfoPaneButton.transform.FindChild("Icon").GetComponent<SpriteRenderer>().sprite =
+            LoadSprite("roleHelp.png", 100f);
     }
 
     public static void Postfix()
@@ -232,7 +305,7 @@ internal class LobbyViewSettingsPanePatch
         cat.FindChild("Divider").gameObject.GetComponent<SpriteRenderer>().color = bgcolor.ShadeColor(0.32f);
         cat.FindChild("HeaderText").gameObject.GetComponent<TextMeshPro>().color = Color.white;
         cat.FindChild("Icon").gameObject.GetComponent<SpriteRenderer>().color = iconcolor;
-        obj.ForEachChild((Action<GameObject>)SetColor);
+        obj.ForEachChild((Il2CppSystem.Action<GameObject>)SetColor);
         return;
 
         void SetColor(GameObject _obj)
@@ -262,7 +335,6 @@ internal class LobbyViewSettingsPanePatch
             color.ShadeColor(0.18f);
     }
 }
-
 /*
 //不屎山更稳定，但是代码量大得多且还需要额外写Update
 [HarmonyPatch(typeof(LobbyViewSettingsPane))]

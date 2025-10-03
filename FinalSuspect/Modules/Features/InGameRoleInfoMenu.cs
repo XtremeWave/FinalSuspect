@@ -82,6 +82,16 @@ public static class InGameRoleInfoMenu
         RoleIllustrationRend.sprite = LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
     }
 
+    public static void Toggle()
+    {
+        if (Showing)
+            Hide();
+        else
+        {
+            Show();
+        }
+    }
+
     public static void Show()
     {
         if (!Fill || !Menu) Init();
