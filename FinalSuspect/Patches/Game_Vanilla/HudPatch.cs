@@ -41,8 +41,8 @@ internal class TaskPanelBehaviourPatch
         var taskText = __instance.taskText.text;
         if (taskText == "None") return;
 
-        var RoleWithInfo = $"{GetRoleName(role)}:\r\n";
-        RoleWithInfo += role.GetRoleInfoForVanilla();
+        var RoleWithInfo = $"{RoleHelper.GetRoleName(role)}:\r\n";
+        RoleWithInfo += RoleHelper.GetRoleInfoForVanilla(role);
 
         var AllText = StringHelper.ColorString(player.GetRoleColor(), RoleWithInfo);
 
@@ -152,7 +152,7 @@ public static class HudManagerPatch
             if (PlayerControl.LocalPlayer.IsImpostor())
                 color = ColorHelper.ImpostorRedPale;
             else
-                color = GetRoleColor(RoleTypes.Crewmate);
+                color = RoleHelper.GetRoleColor(RoleTypes.Crewmate);
         }
         else
         {
@@ -174,7 +174,7 @@ public static class HudManagerPatch
         if (!IsInGame)
             return;
         var role = PlayerControl.LocalPlayer.GetRoleType();
-        var color = GetRoleColor(role);
+        var color = RoleHelper.GetRoleColor(role);
         __instance.AbilityButton.buttonLabelText.SetOutlineColor(color);
         __instance.AbilityButton.cooldownTimerText.color = color;
         __instance.SecondaryAbilityButton.buttonLabelText.SetOutlineColor(color);
@@ -223,7 +223,7 @@ public static class HudManagerPatch
     {
         if (IsFreePlay || (!IsInGame && GetLineCount(FinalGameData.LastResultText) < 6))
             return;
-        var showInitially = Main.ShowResults.Value;
+        var showInitially = ConfigManager.ShowResults.Value;
 
         showHideButton ??=
             new SimpleButton(
@@ -238,7 +238,7 @@ public static class HudManagerPatch
                 {
                     var setToActive = !roleSummary.gameObject.activeSelf;
                     roleSummary.gameObject.SetActive(setToActive);
-                    Main.ShowResults.Value = setToActive;
+                    ConfigManager.ShowResults.Value = setToActive;
                     showHideButton.Label.text = GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");
                 },
                 GetString(showInitially ? "Summary.HideResults" : "Summary.ShowResults"))

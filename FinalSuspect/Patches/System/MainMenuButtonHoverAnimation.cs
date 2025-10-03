@@ -1,4 +1,4 @@
-﻿using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+﻿using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 using FinalSuspect.Helpers;
 using Il2CppSystem;
 using UnityEngine;
@@ -30,7 +30,7 @@ public class MainMenuButtonHoverAnimation
     {
         if (!GameObject.Find("MainUI")) return;
 
-        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+        var style = MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value];
         FormatButtonColor(__instance, __instance.newsButton,
             !ModNewsHistory.AnnouncementLoadComplete
                 ? ColorHelper.ConvertToLightGray(style.MainUIColors[1])

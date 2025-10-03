@@ -12,7 +12,8 @@ public static class HandleGameDataPatch
 {
     public static bool Prefix(InnerNetClient __instance, [HarmonyArgument(0)] MessageReader parentReader)
     {
-        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted ||
+            !ConfigManager.EnableGuardian.Value) return true;
 
         try
         {
@@ -36,7 +37,8 @@ public static class HandleGameDataInnerPatch
 
     public static bool Prefix(InnerNetClient._HandleGameDataInner_d__165 __instance)
     {
-        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted ||
+            !ConfigManager.EnableGuardian.Value) return true;
         var reader = __instance.reader;
         if (reader.BytesRemaining < 1)
         {
@@ -170,7 +172,8 @@ internal class HandleMessagePatch
 
     public static bool Prefix(InnerNetServer.Player client, MessageReader reader)
     {
-        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted || !Main.EnableGuardian.Value) return true;
+        if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted ||
+            !ConfigManager.EnableGuardian.Value) return true;
 
         if (!playerMsgCounters.TryGetValue(client.Id, out var counter))
         {

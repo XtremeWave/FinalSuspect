@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using FinalSuspect.DataHandling.FinalGameData;
+using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -32,7 +33,7 @@ public static class HostInfoPanelUpdatePatch
             HostText = __instance.content.transform.FindChild("Name").GetComponent<TextMeshPro>();
 
         var htmlStringRgb = ColorUtility.ToHtmlStringRGB(Palette.PlayerColors[__instance.player.ColorId]);
-        var hostName = Main.HostNickName;
+        var hostName = FinalGameData.HostNickName;
         var youLabel = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.HostYouLabel);
 
         HostText.text =

@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 using NAudio.Wave;
+using UnityEngine;
 
 // ReSharper disable RedundantAssignment
 
-namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
+namespace FinalSuspect.ClientItems.FeatureItems.MyMusic;
 
 /// <summary>
 /// 异步音频加载器

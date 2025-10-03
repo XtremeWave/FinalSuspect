@@ -1,3 +1,4 @@
+#if Windows
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -5,8 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using FinalSuspect.Modules.Features;
-using TMPro;
 using UnityEngine;
+#endif
+using TMPro;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -28,6 +30,7 @@ public class ModUpdater
 
     public static void StartUpdate(string url = "waitToSelect")
     {
+#if Windows
         if (url == "waitToSelect")
         {
             List<(string, Action)> btns =
@@ -145,5 +148,6 @@ public class ModUpdater
             Exception(ex, "GetMD5HashFromFile");
             return "";
         }
+#endif
     }
 }

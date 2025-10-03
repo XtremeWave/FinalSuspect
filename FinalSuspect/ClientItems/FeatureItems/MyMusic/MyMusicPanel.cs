@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using static FinalSuspect.ClientActions.FeatureItems.MyMusic.AudioPlayer;
+using static FinalSuspect.ClientItems.FeatureItems.MyMusic.AudioPlayer;
 
-namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
+namespace FinalSuspect.ClientItems.FeatureItems.MyMusic;
 
 [SuppressMessage("ReSharper", "PossibleLossOfFraction")]
 public static class MyMusicPanel
@@ -397,8 +397,7 @@ public static class MyMusicPanel
 
             _timeText.text = $"{formattedCurrentTime}/{formattedClipLength}";
 
-            if (formattedCurrentTime != formattedClipLength &&
-                currentSource.clip.length - currentSource.time >= 0.1f) return;
+            if (formattedCurrentTime != formattedClipLength && currentSource.GetRemainingTime() >= 0.1f) return;
             HandlePlayMode();
         }
         catch

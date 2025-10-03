@@ -3,7 +3,7 @@ using BepInEx.Configuration;
 using FinalSuspect.Helpers;
 using UnityEngine;
 
-namespace FinalSuspect.ClientActions;
+namespace FinalSuspect.ClientItems;
 
 public sealed class ClientOptionItem<T> : ClientActionItem
 {

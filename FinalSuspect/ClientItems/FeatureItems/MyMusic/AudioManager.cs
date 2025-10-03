@@ -6,7 +6,7 @@ using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Modules.Resources;
 using UnityEngine;
 
-namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
+namespace FinalSuspect.ClientItems.FeatureItems.MyMusic;
 
 public static class AudioManager
 {

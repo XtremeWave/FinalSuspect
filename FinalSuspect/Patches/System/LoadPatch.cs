@@ -2,8 +2,8 @@
 using System.Collections;
 using System.IO;
 using BepInEx.Unity.IL2CPP.Utils;
-using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Plugin.RegistryManager;
 using FinalSuspect.Modules.Resources;
@@ -124,10 +124,10 @@ public static class LoadPatch
 
     private static IEnumerator HandleCoreLoadingProcess(SplashManager instance)
     {
-        var fastLaunchMode = (CheckFastLaunchModeCondition() || Main.OfflineMode.Value) && !_firstLaunch;
-        Main.FastLaunchMode.Value = fastLaunchMode;
+        var fastLaunchMode = (CheckFastLaunchModeCondition() || ConfigManager.OfflineMode.Value) && !_firstLaunch;
+        ConfigManager.FastLaunchMode.Value = fastLaunchMode;
         if (!fastLaunchMode)
-            Main.OfflineMode.Value = false;
+            ConfigManager.OfflineMode.Value = false;
 
 
         yield return fastLaunchMode ? HandleFastLaunchMode() : HandleNormalBoot();
@@ -140,8 +140,9 @@ public static class LoadPatch
 
     private static bool CheckFastLaunchModeCondition()
     {
-        var currentVersion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{Main.GitCommit}-{Main.GitBranch}";
-        var bypassType = Main.LanguageUpdateBypass.Value;
+        var currentVersion =
+            $"{Main.PluginVersion}|{Main.DisplayedVersion}|{LaunchingInfo.GitCommit}-{LaunchingInfo.GitBranch}";
+        var bypassType = ConfigManager.LanguageUpdateBypass.Value;
 
         _reloadLanguage = currentVersion != RegistryManager.LastStartVersion && bypassType == BypassType.Dont;
 
@@ -151,7 +152,7 @@ public static class LoadPatch
                 RegistryManager.LastStartVersion = currentVersion;
                 break;
             case BypassType.Once:
-                Main.LanguageUpdateBypass.Value = BypassType.Dont;
+                ConfigManager.LanguageUpdateBypass.Value = BypassType.Dont;
                 break;
             case BypassType.LongTerm:
             default:
@@ -160,7 +161,7 @@ public static class LoadPatch
 
         CheckForListResources(ref ResourcesHelper.RemoteDependList, FileType.Depends);
 
-        return Main.FastLaunchMode.Value && !_reloadLanguage && ResourcesHelper.RemoteDependList.Count == 0;
+        return ConfigManager.FastLaunchMode.Value && !_reloadLanguage && ResourcesHelper.RemoteDependList.Count == 0;
     }
 
     #endregion
@@ -172,15 +173,15 @@ public static class LoadPatch
         SetFastLaunchModeVisuals();
         TranslatorInit();
         AudioManager.ReloadTag();
-        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+        var style = MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value];
         var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
         if (audio != null)
             AudioPlayer.Play(audio, true);
 
 
         UpdateProcessText(
-            GetString(Main.OfflineMode.Value ? "ClientOption.OfflineMode" : "ClientOption.FastLaunchMode"),
-            Main.OfflineMode.Value ? Color.gray : Color.green);
+            GetString(ConfigManager.OfflineMode.Value ? "ClientOption.OfflineMode" : "ClientOption.FastLaunchMode"),
+            ConfigManager.OfflineMode.Value ? Color.gray : Color.green);
         yield return new WaitForSeconds(1f);
         _skipLoadAnimation = true;
     }
@@ -195,7 +196,7 @@ public static class LoadPatch
         _modLogo.transform.localPosition = new Vector3(0, 0, -5f);
         _modLogo.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 
-        _glow.color = Main.OfflineMode.Value ? Color.gray : Color.green;
+        _glow.color = ConfigManager.OfflineMode.Value ? Color.gray : Color.green;
     }
 
     private static IEnumerator HandleNormalBoot()
@@ -267,12 +268,11 @@ public static class LoadPatch
 
     private static IEnumerator LoadEssentialResources(SplashManager instance)
     {
-        yield return LoadAmongUsTranslation();
-
-        if (Main.FastLaunchMode.Value)
+        if (ConfigManager.FastLaunchMode.Value)
         {
+            yield return LoadAmongUsTranslation();
             FinishSceneLoad(instance);
-            if (Main.OfflineMode.Value)
+            if (ConfigManager.OfflineMode.Value)
                 yield break;
         }
 
@@ -292,10 +292,11 @@ public static class LoadPatch
         {
             TranslatorInit();
             AudioManager.ReloadTag();
-            var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+            var style = MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value];
             var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
             if (audio != null)
                 AudioPlayer.Play(audio, true);
+            yield return LoadAmongUsTranslation();
         }
     }
 
@@ -417,7 +418,7 @@ public static class LoadPatch
 #if Android
                 if (fileType is FileType.Depends)
                 {
-                    File.Copy(path, BepInCorePath+ resource);
+                    File.Copy(path, BepInCorePath + resource);
                 }
 #endif
             }
@@ -438,7 +439,7 @@ public static class LoadPatch
             if (!task.IsFaulted && task.Result) continue;
 
             Error($"Download failed: {resource} - {task.Exception}", "Download Resource");
-            if (!essential || Main.FastLaunchMode.Value) continue;
+            if (!essential || ConfigManager.FastLaunchMode.Value) continue;
             yield return HandleDownloadError();
             Fatal("DOWNLOAD ESSENTIAL RESOURCES FAILED", "Download Resource");
         }

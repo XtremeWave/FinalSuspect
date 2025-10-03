@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static FinalSuspect.ClientActions.FeatureItems.Resources.ResourcesManager;
+using static FinalSuspect.ClientItems.FeatureItems.Resources.ResourcesManager;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions.FeatureItems.Resources;
+namespace FinalSuspect.ClientItems.FeatureItems.Resources;
 
 public static class ResourcesPanel
 {
@@ -205,7 +205,8 @@ public static class ResourcesPanel
                         {
                             packageStates[packageName] = CurrentState.None;
                             RefreshTagList();
-                            MainMenuStylePanel.Refresh(MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value]);
+                            MainMenuStylePanel.Refresh(
+                                MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value]);
                             MyMusicPanel.RefreshTagList();
                         }, 3F, "Refresh Tag List");
                     }

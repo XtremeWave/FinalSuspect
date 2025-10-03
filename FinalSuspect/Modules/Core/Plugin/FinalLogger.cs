@@ -1,47 +1,44 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
+using FinalSuspect.Attributes;
 using FinalSuspect.Patches.Game_Vanilla;
 using LogLevel = BepInEx.Logging.LogLevel;
 
 namespace FinalSuspect.Modules.Core.Plugin;
-
-internal class Webhook
-{
-    public static void Send(string text)
-    {
-        if (Main.WebhookURL.Value == "none") return;
-        HttpClient httpClient = new();
-        Dictionary<string, string> strs = new()
-        {
-            { "content", text },
-            { "username", "FinalSuspect-Debugger" },
-            { "avatar_url", "https://npm.elemecdn.com/hexo-static@1.0.1/img/avatar.webp" }
-        };
-        var awaiter = httpClient.PostAsync(
-            Main.WebhookURL.Value, new FormUrlEncodedContent(strs)).GetAwaiter();
-        awaiter.GetResult();
-    }
-}
 
 internal static class FinalLogger
 {
     private static bool isEnable;
     private static readonly List<string> disableList = [];
     private static readonly List<string> sendToGameList = [];
-    public static bool isDetail = false;
+    public static bool isDetail;
     public static bool isAlsoInGame = false;
+
+    [PluginModuleInitializer(InitializePriority.VeryHigh)]
+    public static void OnInitialization()
+    {
+        Main.Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
+        Enable();
+        Disable("SwitchSystem");
+        Disable("ModNews");
+        Disable("CancelPet");
+        if (!DebugModeManager.IsDebugMode)
+        {
+            Disable("Download Resources");
+            Disable("GetAnnouncements");
+            Disable("GetConfigs");
+            Disable("Get Remote");
+            Disable("Downloader");
+        }
+
+        isDetail = DebugModeManager.IsDebugMode;
+    }
 
     public static void Enable()
     {
         isEnable = true;
-    }
-
-    public static void Disable()
-    {
-        isEnable = false;
     }
 
     public static void Enable(string tag, bool toGame = false)
@@ -49,6 +46,11 @@ internal static class FinalLogger
         disableList.Remove(tag);
         if (toGame && !sendToGameList.Contains(tag)) sendToGameList.Add(tag);
         else sendToGameList.Remove(tag);
+    }
+
+    public static void Disable()
+    {
+        isEnable = false;
     }
 
     public static void Disable(string tag)

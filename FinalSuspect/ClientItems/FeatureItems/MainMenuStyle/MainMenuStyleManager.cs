@@ -1,9 +1,9 @@
 using System.IO;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Modules.Resources;
 using UnityEngine;
 
-namespace FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+namespace FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 
 public abstract class MainMenuStyleManager
 {
@@ -63,7 +63,7 @@ public abstract class MainMenuStyleManager
                 new Color(0.255f, 0.482f, 1f, 0.8f),
                 new Color(0.333f, 0.255f, 1f, 0.8f),
                 new Color(0.0235f, 0.6f, 1f, 0.8f),
-            ])
+            ]),
         //new(
         //"WhenLookingBackAtTheEnd",
         //false,

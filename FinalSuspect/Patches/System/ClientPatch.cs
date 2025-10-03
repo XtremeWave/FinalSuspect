@@ -18,7 +18,7 @@ internal class MakePublicPatch
 {
     public static bool Prefix()
     {
-        if (Main.OfflineMode.Value) return true;
+        if (ConfigManager.OfflineMode.Value) return true;
         if (!VersionChecker.IsBroken && (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
             VersionChecker.IsSupported) return true;
         var message = "";

@@ -69,7 +69,7 @@ public class PlayerCheatData : IDisposable
 
     private void HandleSuspectCheater()
     {
-        if (!Main.EnableFAC.Value || !IsSuspectCheater ||
+        if (!ConfigManager.EnableFAC.Value || !IsSuspectCheater ||
             (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
         LastHandleCheater = GetTimeStamp();
         if (!AmongUsClient.Instance.AmHost)
@@ -84,7 +84,7 @@ public class PlayerCheatData : IDisposable
 
     private void HandleHacker()
     {
-        if (!Main.EnableGuardian.Value || !IsHacker ||
+        if (!ConfigManager.EnableGuardian.Value || !IsHacker ||
             (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
         LastHandleCheater = GetTimeStamp();
         if (!AmongUsClient.Instance.AmHost)

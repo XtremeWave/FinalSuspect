@@ -52,7 +52,7 @@ public static class FAC
         reason = "Hacking";
         ban = false;
 
-        if (!Main.EnableFAC.Value || !pc || reader == null || pc.AmOwner)
+        if (!ConfigManager.EnableFAC.Value || !pc || reader == null || pc.AmOwner)
             return false;
 
         try

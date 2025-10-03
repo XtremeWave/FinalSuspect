@@ -8,23 +8,23 @@ public static class _Role
 {
     public static RoleTypes GetRoleType(this PlayerControl player)
     {
-        return Utils.GetRoleType(player.PlayerId);
+        return RoleHelper.GetRoleType(player.PlayerId);
     }
 
     public static bool IsImpostor(this PlayerControl pc)
     {
-        return !IsLobby && pc.GetRoleType().IsImpostor();
+        return !IsLobby && RoleHelper.IsImpostor(pc.GetRoleType());
     }
 
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)
     {
         var ret = $"{player?.Data?.PlayerName}{(IsInGame ?
-            $"({GetRoleName(player.GetRoleType())})" : "")}";
+            $"({RoleHelper.GetRoleName(player.GetRoleType())})" : "")}";
         return forUser ? ret : ret.RemoveHtmlTags();
     }
 
     public static Color GetRoleColor(this PlayerControl player)
     {
-        return Utils.GetRoleColor(player.GetRoleType());
+        return RoleHelper.GetRoleColor(player.GetRoleType());
     }
 }

@@ -6,12 +6,12 @@ using Il2CppSystem.IO;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
-using static FinalSuspect.ClientActions.FeatureItems.NameTag.NameTagManager;
-using Component = FinalSuspect.ClientActions.FeatureItems.NameTag.NameTagManager.Component;
+using static FinalSuspect.ClientItems.FeatureItems.NameTag.NameTagManager;
+using Component = FinalSuspect.ClientItems.FeatureItems.NameTag.NameTagManager.Component;
 using File = System.IO.File;
 using Path = System.IO.Path;
 
-namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
+namespace FinalSuspect.ClientItems.FeatureItems.NameTag;
 
 public static class NameTagEditMenu
 {

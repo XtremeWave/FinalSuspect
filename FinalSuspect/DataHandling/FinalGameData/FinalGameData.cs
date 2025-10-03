@@ -13,6 +13,7 @@ public static partial class FinalGameData
     public static Color LastLocalPlayerRoleColor;
     public static bool JoinedCompleted;
     public static bool IntroDestroyed;
+    public static string HostNickName = "";
 
     [GameModuleInitializer]
     public static void Init()

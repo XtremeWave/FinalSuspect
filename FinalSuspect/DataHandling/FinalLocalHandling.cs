@@ -1,4 +1,4 @@
-using FinalSuspect.ClientActions.FeatureItems.NameTag;
+using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
@@ -38,7 +38,7 @@ public static class FinalLocalHandling
         var ap = NameTagManager.ApplyFor(player).displayName;
         name += ap.RemoveHtmlTags() == "" ? "" : $" ({ap})";
         if (!player.GetCheatData().IsSuspectCheater && !player.GetCheatData().IsHacker ||
-            !Main.EnableFAC.Value) return name;
+            !ConfigManager.EnableFAC.Value) return name;
         topcolor = ColorHelper.FaultColor;
         toptext = toptext.CheckAndAppendText(GetString("Id.Cheater"));
         return name;
@@ -61,10 +61,10 @@ public static class FinalLocalHandling
             {
                 switch (Main.version.CompareTo(ver.Version))
                 {
-                    case 0 when ver.Tag == $"{Main.GitCommit}({Main.GitBranch})":
+                    case 0 when ver.Tag == $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
                         topcolor = ColorHelper.FSColor;
                         break;
-                    case 0 when ver.Tag != $"{Main.GitCommit}({Main.GitBranch})":
+                    case 0 when ver.Tag != $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
                         toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.Tag}</size>");
                         topcolor = Color.yellow;
                         break;
@@ -82,7 +82,7 @@ public static class FinalLocalHandling
             else topcolor = ColorHelper.ClientlessColor;
         }
 
-        if (!Main.ShowPlayerInfo.Value) return;
+        if (!ConfigManager.ShowPlayerInfo.Value) return;
         bottomtext = bottomtext.CheckAndAppendText($"{player.GetPlatform()} {player.GetClient().FriendCode}");
         bottomcolor = ColorHelper.DownloadYellow;
     }
@@ -91,7 +91,7 @@ public static class FinalLocalHandling
     private static void GetGameText(this FinalPlayerData data, ref Color color, ref string roleText, bool topswap)
     {
         if (!IsInGame) return;
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
 
         var roleType = GetRoleById(data.PlayerId);
         var player = data.Player;
@@ -99,7 +99,7 @@ public static class FinalLocalHandling
 
         if (CanSeeTargetRole(player, out var bothImp))
         {
-            color = GetRoleColor(roleType);
+            color = RoleHelper.GetRoleColor(roleType);
             roleText = !topswap
                 ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
                 : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
@@ -133,7 +133,7 @@ public static class FinalLocalHandling
 
     public static void SetVentOutlineColor(Vent __instance, ref bool mainTarget)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         var color = PlayerControl.LocalPlayer.GetRoleColor();
         __instance.myRend.material.SetColor(OutlineColor, color);
         __instance.myRend.material.SetColor(AddColor, mainTarget ? color : Color.clear);
@@ -141,7 +141,7 @@ public static class FinalLocalHandling
 
     public static void ShowMap(MapBehaviour map, MapOptions opts)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         foreach (var data in FinalPlayerData.AllPlayerData)
             if (data.IsDisconnected)
             {
@@ -163,7 +163,7 @@ public static class FinalLocalHandling
             }
 
         var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
-        var color = GetRoleColor(roleType);
+        var color = RoleHelper.GetRoleColor(roleType);
         var mode = opts.Mode;
         switch (mode)
         {
@@ -180,7 +180,7 @@ public static class FinalLocalHandling
 
     public static void UpdateMap()
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         foreach (var data in FinalPlayerData.AllPlayerData)
         {
             var player = data.Player;
@@ -212,11 +212,11 @@ public static class FinalLocalHandling
 
     public static bool GetHauntFilterText(HauntMenuMinigame __instance)
     {
-        if (!Main.EnableFinalSuspect.Value) return true;
+        if (!ConfigManager.EnableFinalSuspect.Value) return true;
         var role = __instance.HauntTarget.GetRoleType();
-        var color = GetRoleColor(role);
+        var color = RoleHelper.GetRoleColor(role);
         __instance.NameText.color = __instance.FilterText.color = color;
-        __instance.FilterText.text = GetRoleName(role);
+        __instance.FilterText.text = RoleHelper.GetRoleName(role);
         return false;
     }
 
@@ -224,7 +224,7 @@ public static class FinalLocalHandling
     {
         try
         {
-            if (!Main.EnableFinalSuspect.Value)
+            if (!ConfigManager.EnableFinalSuspect.Value)
             {
                 namecolor = Color.white;
                 return;
@@ -256,7 +256,7 @@ public static class FinalLocalHandling
     [HarmonyPostfix]
     public static void OnFixedUpdate(PlayerControl __instance)
     {
-        Main.EnableFinalSuspect.Value = !OtherModHost;
+        ConfigManager.EnableFinalSuspect.Value = !OtherModHost;
 
         if (!__instance) return;
 
@@ -264,7 +264,7 @@ public static class FinalLocalHandling
         {
             var name = __instance.CheckAndGetNameWithDetails(out var topcolor, out var bottomcolor, out var toptext,
                 out var bottomtext);
-            if (Main.EnableFinalSuspect.Value)
+            if (ConfigManager.EnableFinalSuspect.Value)
             {
                 DisconnectSync(__instance);
                 DeathSync(__instance);
@@ -334,7 +334,7 @@ public static class FinalLocalHandling
     [HarmonyPriority(Priority.HigherThanNormal)]
     public static void OnMeetingStart(MeetingHud __instance)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         foreach (var pva in __instance.playerStates)
             try
             {
@@ -368,7 +368,7 @@ public static class FinalLocalHandling
     [HarmonyPriority(Priority.First)]
     public static void MeetingHudUpdate(MeetingHud __instance)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         foreach (var pva in __instance.playerStates)
             try
             {

@@ -10,7 +10,7 @@ internal class RoleOptionSettingPatch
 {
     public static void Postfix(RoleOptionSetting __instance)
     {
-        var roleColor = GetRoleColor(__instance.Role.Role);
+        var roleColor = RoleHelper.GetRoleColor(__instance.Role.Role);
         __instance.labelSprite.color = roleColor.ShadeColor(0.2f);
         __instance.titleText.color = Color.white;
     }
@@ -21,16 +21,16 @@ internal class RolesSettingsMenuPatch
 {
     private static readonly List<Color32> rolecolors =
     [
-        GetRoleColor(RoleTypes.Scientist),
-        GetRoleColor(RoleTypes.GuardianAngel),
-        GetRoleColor(RoleTypes.Engineer),
+        RoleHelper.GetRoleColor(RoleTypes.Scientist),
+        RoleHelper.GetRoleColor(RoleTypes.GuardianAngel),
+        RoleHelper.GetRoleColor(RoleTypes.Engineer),
 
-        GetRoleColor(RoleTypes.Noisemaker),
-        GetRoleColor(RoleTypes.Tracker),
-        GetRoleColor(RoleTypes.Detective),
-        GetRoleColor(RoleTypes.Shapeshifter),
-        GetRoleColor(RoleTypes.Phantom),
-        GetRoleColor(RoleTypes.Viper)
+        RoleHelper.GetRoleColor(RoleTypes.Noisemaker),
+        RoleHelper.GetRoleColor(RoleTypes.Tracker),
+        RoleHelper.GetRoleColor(RoleTypes.Detective),
+        RoleHelper.GetRoleColor(RoleTypes.Shapeshifter),
+        RoleHelper.GetRoleColor(RoleTypes.Phantom),
+        RoleHelper.GetRoleColor(RoleTypes.Viper)
     ];
 
     public static void Postfix()
@@ -57,7 +57,9 @@ internal class RolesSettingsMenuPatch
         var index = 0;
         foreach (var button in headerbuttons)
         {
-            var roleColor = index <= 5 ? GetRoleColor(RoleTypes.Crewmate) : GetRoleColor(RoleTypes.Impostor);
+            var roleColor = index <= 5
+                ? RoleHelper.GetRoleColor(RoleTypes.Crewmate)
+                : RoleHelper.GetRoleColor(RoleTypes.Impostor);
             SetColor(button, rolecolors[index], roleColor);
             index++;
         }
@@ -104,16 +106,16 @@ internal class GameOptionsMenuPatch
 {
     private static readonly List<Color32> normalbannercolors =
     [
-        GetRoleColor(RoleTypes.Impostor),
-        GetRoleColor(RoleTypes.Crewmate),
+        RoleHelper.GetRoleColor(RoleTypes.Impostor),
+        RoleHelper.GetRoleColor(RoleTypes.Crewmate),
         Color.yellow,
         Color.green
     ];
 
     private static readonly List<Color32> hnSbannercolors =
     [
-        GetRoleColor(RoleTypes.Crewmate),
-        GetRoleColor(RoleTypes.Impostor),
+        RoleHelper.GetRoleColor(RoleTypes.Crewmate),
+        RoleHelper.GetRoleColor(RoleTypes.Impostor),
         Palette.Purple,
         Color.green
     ];

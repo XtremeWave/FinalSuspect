@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
+namespace FinalSuspect.ClientItems.FeatureItems.NameTag;
 
 public static class UiHelper
 {

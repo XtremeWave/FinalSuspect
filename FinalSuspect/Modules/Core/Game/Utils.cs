@@ -463,33 +463,6 @@ public static class Utils
         }
     }
 
-    public static RoleTypes GetRoleType(byte id)
-    {
-        return GetRoleById(id);
-    }
-
-    public static bool IsImpostor(this RoleTypes role)
-    {
-        return role switch
-        {
-            RoleTypes.Impostor
-                or RoleTypes.Shapeshifter
-                or RoleTypes.Phantom
-                or RoleTypes.ImpostorGhost
-                or RoleTypes.Viper => true,
-            _ => false
-        };
-    }
-
-    public static bool IsGhost(RoleTypes role)
-    {
-        return role switch
-        {
-            RoleTypes.ImpostorGhost or RoleTypes.CrewmateGhost or RoleTypes.GuardianAngel => true,
-            _ => false
-        };
-    }
-
     public static bool CanSeeTargetRole(PlayerControl target, out bool bothImp)
     {
         var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
@@ -500,7 +473,7 @@ public static class Utils
         return target.IsLocalPlayer() ||
                BothDeathCanSee ||
                (bothImp && LocalDead) ||
-               Main.GodMode.Value ||
+               ConfigManager.GodMode.Value ||
                IsFreePlay;
     }
 
@@ -512,63 +485,8 @@ public static class Utils
         var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
 
         return (!IsAngel && LocalDead) ||
-               Main.GodMode.Value ||
+               ConfigManager.GodMode.Value ||
                IsFreePlay;
-    }
-
-    public static string GetRoleName(RoleTypes role)
-    {
-        return GetRoleString(Enum.GetName(typeof(RoleTypes), role));
-    }
-
-    public static Color GetRoleColor(RoleTypes role)
-    {
-        Main.roleColors.TryGetValue(role, out var hexColor);
-        _ = ColorUtility.TryParseHtmlString(hexColor, out var c);
-        return c;
-    }
-
-    public static string GetRoleColorCode(RoleTypes role)
-    {
-        Main.roleColors.TryGetValue(role, out var hexColor);
-        return hexColor;
-    }
-
-    public static string GetRoleInfoForVanilla(this RoleTypes role, bool InfoLong = false)
-    {
-        if (role is RoleTypes.Crewmate or RoleTypes.Impostor)
-            InfoLong = false;
-
-        var text = role.ToString();
-
-        if (IsNormalGame)
-        {
-            if (InfoLong)
-            {
-                return role is not RoleTypes.Crewmate and not RoleTypes.Impostor
-                    ? $"{GetString($"RolesHelp_{text}_01")}\n{GetString($"RolesHelp_{text}_02")}"
-                    : $"{GetString($"RolesHelp_{text}Role")}";
-            }
-
-            return GetString($"{text}Blurb");
-        }
-
-        if (InfoLong)
-            switch (role)
-            {
-                case RoleTypes.Engineer:
-                    return $"{GetString(StringNames.RuleOneCrewmates)}" +
-                           $"\n{GetString(StringNames.RuleTwoCrewmates)}" +
-                           $"\n{GetString(StringNames.RuleThreeCrewmates)}";
-                case RoleTypes.Impostor:
-                    return $"{GetString(StringNames.RuleOneImpostor)}" +
-                           $"\n{GetString(StringNames.RuleTwoImpostor)}" +
-                           $"\n{GetString(StringNames.RuleThreeImpostor)}";
-            }
-
-        var Info = "Blurb" + (InfoLong ? "Long" : "");
-        text = "HnS" + text;
-        return GetString($"{text}{Info}");
     }
 
     public static string SummaryTexts(byte id)
@@ -596,10 +514,11 @@ public static class Utils
         var oldRole = thisData.RoleWhenAlive ?? RoleTypes.Crewmate;
         var newRole = thisData.RoleAfterDeath ??
                       (thisData.IsImpostor ? RoleTypes.ImpostorGhost : RoleTypes.CrewmateGhost);
-        builder.Append(StringHelper.ColorString(GetRoleColor(oldRole), GetRoleString($"{oldRole}")));
+        builder.Append(StringHelper.ColorString(RoleHelper.GetRoleColor(oldRole), GetRoleString($"{oldRole}")));
 
         if (thisData.IsDead && newRole != oldRole)
-            builder.Append($"=> {StringHelper.ColorString(GetRoleColor(newRole), GetRoleString($"{newRole}"))}");
+            builder.Append(
+                $"=> {StringHelper.ColorString(RoleHelper.GetRoleColor(newRole), GetRoleString($"{newRole}"))}");
 
         builder.Append("</pos>");
 

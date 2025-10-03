@@ -1,4 +1,5 @@
 using System;
+using FinalSuspect.Attributes;
 
 namespace FinalSuspect.Modules.Random;
 
@@ -41,5 +42,11 @@ public interface IRandom
         {
             Warn($"无效ID: {id}", "IRandom.SetInstanceById");
         }
+    }
+
+    [PluginModuleInitializer]
+    public static void OnInitialization()
+    {
+        SetInstance(new NetRandomWrapper());
     }
 }

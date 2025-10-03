@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FinalSuspect.Attributes;
 
 namespace FinalSuspect.Modules.Core.Plugin;
 
 public static class SystemEnvironment
 {
+    [PluginModuleInitializer(InitializePriority.VeryLow)]
+    public static void OnInitialization()
+    {
+        Task.Run(SetEnvironmentVariablesAsync);
+    }
+
     public static async Task SetEnvironmentVariablesAsync()
     {
         // 将最近打开的 FinalSuspect 应用程序文件夹的路径设置为用户环境变量

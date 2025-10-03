@@ -1,18 +1,18 @@
 using System;
 using System.IO;
 using BepInEx.Configuration;
-using FinalSuspect.ClientActions.FeatureItems;
-using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
-using FinalSuspect.ClientActions.FeatureItems.NameTag;
-using FinalSuspect.ClientActions.FeatureItems.Resources;
+using FinalSuspect.ClientItems.FeatureItems;
+using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.NameTag;
+using FinalSuspect.ClientItems.FeatureItems.Resources;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Patches.System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions;
+namespace FinalSuspect.ClientItems;
 
 [HarmonyPatch(typeof(OptionsMenuBehaviour), nameof(OptionsMenuBehaviour.Start))]
 public static class OptionsMenuBehaviourStartPatch
@@ -61,9 +61,9 @@ public static class OptionsMenuBehaviourStartPatch
         if (!_reseted || !DebugModeManager.IsDebugMode)
         {
             _reseted = true;
-            Main.VersionCheat.Value = false;
-            Main.GodMode.Value = false;
-            Main.NoGameEnd.Value = false;
+            ConfigManager.VersionCheat.Value = false;
+            ConfigManager.GodMode.Value = false;
+            ConfigManager.NoGameEnd.Value = false;
         }
 
         if (Recreate)
@@ -94,41 +94,45 @@ public static class OptionsMenuBehaviourStartPatch
             NameTagPanel.CustomBackground = null;
         }
 
-        CreateOptionItem(ref _unlockFPS, "UnlockFPS", Main.UnlockFPS, __instance, UnlockFPSButtonToggle);
-        CreateOptionItem(ref _switchOutfitType, "SwitchOutfitType", Main.SwitchOutfitType, __instance, SwitchMode);
+        CreateOptionItem(ref _unlockFPS, "UnlockFPS", ConfigManager.UnlockFPS, __instance, UnlockFPSButtonToggle);
+        CreateOptionItem(ref _switchOutfitType, "SwitchOutfitType", ConfigManager.SwitchOutfitType, __instance,
+            SwitchMode);
         CreateOptionItem(ref _kickPlayerWithAbnormalFriendCode, "KickPlayerWithAbnormalFriendCode",
-            Main.KickPlayerWithAbnormalFriendCode, __instance);
-        CreateOptionItem(ref _kickPlayerInBanList, "KickPlayerInBanList", Main.KickPlayerInBanList, __instance);
-        CreateOptionItem(ref _kickPlayerWithDenyName, "KickPlayerWithDenyName", Main.KickPlayerWithDenyName,
+            ConfigManager.KickPlayerWithAbnormalFriendCode, __instance);
+        CreateOptionItem(ref _kickPlayerInBanList, "KickPlayerInBanList", ConfigManager.KickPlayerInBanList,
             __instance);
-        CreateOptionItem(ref _spamDenyWord, "SpamDenyWord", Main.SpamDenyWord, __instance);
-        CreateOptionItem(ref _enableFac, "EnableFAC", Main.EnableFAC, __instance);
-        CreateOptionItem(ref _enableGuardian, "EnableGuardian", Main.EnableGuardian, __instance);
-        CreateOptionItem(ref _autoStartGame, "AutoStartGame", Main.AutoStartGame, __instance, AutoStartButtonToggle);
-        CreateOptionItem(ref _autoEndGame, "AutoEndGame", Main.AutoEndGame, __instance);
+        CreateOptionItem(ref _kickPlayerWithDenyName, "KickPlayerWithDenyName", ConfigManager.KickPlayerWithDenyName,
+            __instance);
+        CreateOptionItem(ref _spamDenyWord, "SpamDenyWord", ConfigManager.SpamDenyWord, __instance);
+        CreateOptionItem(ref _enableFac, "EnableFAC", ConfigManager.EnableFAC, __instance);
+        CreateOptionItem(ref _enableGuardian, "EnableGuardian", ConfigManager.EnableGuardian, __instance);
+        CreateOptionItem(ref _autoStartGame, "AutoStartGame", ConfigManager.AutoStartGame, __instance,
+            AutoStartButtonToggle);
+        CreateOptionItem(ref _autoEndGame, "AutoEndGame", ConfigManager.AutoEndGame, __instance);
         //CreateOptionItem<bool>(ref PrunkMode, "PrunkMode", Main.PrunkMode, __instance);
-        CreateOptionItem(ref _disableVanillaSound, "DisableVanillaSound", Main.DisableVanillaSound, __instance, () =>
-        {
-            if (Main.DisableVanillaSound.Value)
-                AudioPlayer.StopPlayVanilla();
-            else
-                AudioPlayer.StartPlayVanilla();
-        });
-        CreateOptionItem(ref _showPlayerInfo, "ShowPlayerInfo", Main.ShowPlayerInfo, __instance);
-        CreateOptionItem(ref _fastLaunchMode, "FastLaunchMode", Main.FastLaunchMode, __instance);
-        CreateOptionItem(ref _offlineMode, "OfflineMode", Main.OfflineMode, __instance, (() =>
+        CreateOptionItem(ref _disableVanillaSound, "DisableVanillaSound", ConfigManager.DisableVanillaSound, __instance,
+            () =>
+            {
+                if (ConfigManager.DisableVanillaSound.Value)
+                    AudioPlayer.StopPlayVanilla();
+                else
+                    AudioPlayer.StartPlayVanilla();
+            });
+        CreateOptionItem(ref _showPlayerInfo, "ShowPlayerInfo", ConfigManager.ShowPlayerInfo, __instance);
+        CreateOptionItem(ref _fastLaunchMode, "FastLaunchMode", ConfigManager.FastLaunchMode, __instance);
+        CreateOptionItem(ref _offlineMode, "OfflineMode", ConfigManager.OfflineMode, __instance, (() =>
         {
             __instance.Close();
             CustomPopup.Show(GetString("ClientOption.OfflineMode"), GetString("UpdateResult.Succeed_Text"),
                 [(GetString(StringNames.ExitGame), Application.Quit)]);
         }));
-        CreateOptionItem(ref _useModCursor, "UseModCursor", Main.UseModCursor, __instance, SetCursor);
+        CreateOptionItem(ref _useModCursor, "UseModCursor", ConfigManager.UseModCursor, __instance, SetCursor);
 
         if (DebugModeManager.IsDebugMode)
         {
-            CreateOptionItem(ref _versionCheat, "VersionCheat", Main.VersionCheat, __instance);
-            CreateOptionItem(ref _godMode, "GodMode", Main.GodMode, __instance);
-            CreateOptionItem(ref _noGameEnd, "NoGameEnd", Main.NoGameEnd, __instance);
+            CreateOptionItem(ref _versionCheat, "VersionCheat", ConfigManager.VersionCheat, __instance);
+            CreateOptionItem(ref _godMode, "GodMode", ConfigManager.GodMode, __instance);
+            CreateOptionItem(ref _noGameEnd, "NoGameEnd", ConfigManager.NoGameEnd, __instance);
         }
 
         CreateFeatureItem(ref _dumpLog, "DumpLog", () => { DumpLog(); }, __instance);
@@ -254,7 +258,7 @@ public static class OptionsMenuBehaviourStartPatch
 
     private static void UnlockFPSButtonToggle()
     {
-        Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
+        Application.targetFrameRate = ConfigManager.UnlockFPS.Value ? 165 : 60;
         SendInGame(string.Format(GetString("Notification.FPSSetTo"), Application.targetFrameRate));
     }
 
@@ -270,7 +274,7 @@ public static class OptionsMenuBehaviourStartPatch
 
     private static void AutoStartButtonToggle()
     {
-        if (!Main.AutoStartGame.Value && IsCountDown) GameStartManager.Instance.ResetStartState();
+        if (!ConfigManager.AutoStartGame.Value && IsCountDown) GameStartManager.Instance.ResetStartState();
     }
 
     public static void SetCursor()
@@ -278,11 +282,11 @@ public static class OptionsMenuBehaviourStartPatch
         try
         {
             var sprite = LoadSprite("Cursor.png");
-            Cursor.SetCursor(Main.UseModCursor.Value ? sprite.texture : null, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(ConfigManager.UseModCursor.Value ? sprite.texture : null, Vector2.zero, CursorMode.Auto);
         }
         catch
         {
-            Main.UseModCursor.Value = false;
+            ConfigManager.UseModCursor.Value = false;
         }
     }
 }
@@ -319,14 +323,14 @@ public static class LanguageSetterSetLanguagePatch
         OptionsMenuBehaviourStartPatch.Recreate = true;
         try
         {
-            Object.Destroy(VersionShowerStartPatch.VisitText);
+            Object.Destroy(ModMainMenuManager.VisitText);
         }
         catch
         {
             /* ignored */
         }
 
-        VersionShowerStartPatch.VisitText = null;
+        ModMainMenuManager.VisitText = null;
         VersionShowerStartPatch.CreateVisitText(null);
         OptionsMenuBehaviourStartPatch.Postfix(OptionsMenuBehaviourStartPatch.Instance);
     }

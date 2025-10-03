@@ -12,7 +12,7 @@ public static class GetNormalBodyTypePatch
 {
     public static void Postfix(ref PlayerBodyTypes __result)
     {
-        switch (Main.SwitchOutfitType.Value)
+        switch (ConfigManager.SwitchOutfitType.Value)
         {
             case OutfitType.HorseMode:
                 __result = PlayerBodyTypes.Horse;
@@ -34,7 +34,7 @@ public static class GetHnsBodyTypePatch
     public static void Postfix(ref PlayerBodyTypes __result, [HarmonyArgument(0)] PlayerControl player)
     {
         if (player == null || player.Data == null || player.Data.Role == null)
-            switch (Main.SwitchOutfitType.Value)
+            switch (ConfigManager.SwitchOutfitType.Value)
             {
                 case OutfitType.HorseMode:
                     __result = PlayerBodyTypes.Horse;
@@ -48,7 +48,7 @@ public static class GetHnsBodyTypePatch
                     return;
             }
 
-        switch (Main.SwitchOutfitType.Value)
+        switch (ConfigManager.SwitchOutfitType.Value)
         {
             case OutfitType.HorseMode when player.Data.Role.IsImpostor:
                 __result = PlayerBodyTypes.Normal;

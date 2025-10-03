@@ -40,7 +40,7 @@ internal class SetEverythingUpPatch
 
     public static void Postfix(EndGameManager __instance)
     {
-        var showInitially = Main.ShowResults.Value;
+        var showInitially = ConfigManager.ShowResults.Value;
 
         var WinnerTextObject = Object.Instantiate(__instance.WinText.gameObject);
         WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x,
@@ -69,7 +69,7 @@ internal class SetEverythingUpPatch
                 {
                     var setToActive = !roleSummary.gameObject.activeSelf;
                     roleSummary.gameObject.SetActive(setToActive);
-                    Main.ShowResults.Value = setToActive;
+                    ConfigManager.ShowResults.Value = setToActive;
                     __instance.WinText.gameObject.SetActive(!setToActive);
                     WinnerTextObject.SetActive(!setToActive);
                     showHideButton.Label.text = GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");

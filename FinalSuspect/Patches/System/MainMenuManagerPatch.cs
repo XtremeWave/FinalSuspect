@@ -61,12 +61,10 @@ public class MainMenuManagerPatch
     public static void MainMenuManager_LateUpdate(MainMenuManager __instance)
     {
         CustomPopup.Update();
-        VersionShowerStartPatch.OVersionShower.transform.FindChild("Text_TMP").gameObject.GetComponent<RectTransform>()
+        OVersionShower.transform.FindChild("Text_TMP").gameObject.GetComponent<RectTransform>()
             .sizeDelta = new Vector2(3.9f, 0.2359f);
         if (!GameObject.Find("MainUI")) ShowingPanel = false;
-        VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(!ShowingPanel && Active);
-        __instance.quitButton.gameObject.SetActive(true);
-        GithubButton.SetActive(true);
+        CreditTextCredential.gameObject.SetActive(!ShowingPanel && Active);
         if (RightPanel)
         {
             var pos1 = RightPanel.transform.localPosition;
@@ -145,7 +143,7 @@ public class MainMenuManagerPatch
             UpdateButton.transform.transform.FindChild("FontPlacer").GetChild(0).gameObject.DestroyTranslator();
         }
 
-        Application.targetFrameRate = Main.UnlockFPS.Value ? 165 : 60;
+        Application.targetFrameRate = ConfigManager.UnlockFPS.Value ? 165 : 60;
         return;
 
         void OpenUrl(string url)
@@ -168,6 +166,8 @@ public class MainMenuManagerPatch
 
             var template = col == 1 ? __instance.creditsButton.gameObject : __instance.quitButton.gameObject;
             var button = Object.Instantiate(template, template.transform.parent);
+            Object.Destroy(button.GetComponent<ConditionalHide>());
+            button.SetActive(true);
             button.transform.transform.FindChild("FontPlacer").GetChild(0).gameObject.DestroyTranslator();
             var buttonText = button.transform.FindChild("FontPlacer").GetChild(0).GetComponent<TextMeshPro>();
             buttonText.text = text;
@@ -175,7 +175,16 @@ public class MainMenuManagerPatch
             passiveButton.OnClick = new Button.ButtonClickedEvent();
             passiveButton.OnClick.AddListener(action);
             var aspectPosition = button.GetComponent<AspectPosition>();
-            aspectPosition.anchorPoint = new Vector2(col == 1 ? 0.415f : 0.583f, 0.5f - 0.08f * row);
+#if Android
+            var yPosition = col == 1 ? 0.5f - 0.08f * row : 0.5f - 0.08f * (row - 1);
+#else
+            var yPosition = 0.5f - 0.08f * row;
+#endif
+
+            aspectPosition.anchorPoint = new Vector2(
+                col == 1 ? 0.415f : 0.583f,
+                yPosition
+            );
             var scale = button.transform.localScale;
             button.transform.localScale = new Vector3(scale.x * GetResolutionOffset(), button.transform.localScale.y);
             MainMenuCustomButtons.Add(button);
@@ -189,26 +198,26 @@ public class MainMenuManagerPatch
         {
             AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        
+
             // 创建 Intent
             AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
             AndroidJavaObject intentObject =
- new AndroidJavaObject("android.content.Intent", "android.intent.action.VIEW");
-        
+                new AndroidJavaObject("android.content.Intent", "android.intent.action.VIEW");
+
             // 创建 URI
             AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
             AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", url);
-        
+
             // 设置 Intent 的数据
             intentObject.Call<AndroidJavaObject>("setData", uriObject);
-        
+
             // 设置标志确保在新任务中打开
             int FLAG_ACTIVITY_NEW_TASK = 0x10000000;
             intentObject.Call<AndroidJavaObject>("setFlags", FLAG_ACTIVITY_NEW_TASK);
-        
+
             // 启动 Activity
             currentActivity.Call("startActivity", intentObject);
-        
+
             // 释放资源（虽然不是必须的，但推荐）
             unityPlayer.Dispose();
             currentActivity.Dispose();
@@ -217,7 +226,7 @@ public class MainMenuManagerPatch
             uriClass.Dispose();
             uriObject.Dispose();
         }
-        catch 
+        catch
         {
             // 降级到Application.OpenURL
             Application.OpenURL(url);

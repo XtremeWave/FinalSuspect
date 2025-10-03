@@ -139,7 +139,7 @@ internal class RPCHandlerPatch
         var name = reader.ReadString();
         Info("RPC Check Name For Player: " + name, "CheckName");
         if (player.IsHost())
-            Main.HostNickName = name;
+            FinalGameData.HostNickName = name;
         if (FinalPlayerData.AllPlayerData.All(data => data.PlayerId != player.PlayerId))
             FinalPlayerData.CreateDataFor(player, name);
     }
@@ -192,7 +192,7 @@ internal class RPCHandlerPatch
                     FinalGameData.PlayerVersion.PlayerVersions[id] =
                         new FinalGameData.PlayerVersion(version, tag, forkId);
 
-                    if (Main.VersionCheat.Value && AmongUsClient.Instance.AmHost)
+                    if (ConfigManager.VersionCheat.Value && AmongUsClient.Instance.AmHost)
                         FinalGameData.PlayerVersion.PlayerVersions[id] =
                             FinalGameData.PlayerVersion.PlayerVersions[id];
 
@@ -241,14 +241,14 @@ internal static class RPC
             }
 
             if (PlayerControl.LocalPlayer == null || AmongUsClient.Instance == null) return;
-            if (!Main.VersionCheat.Value)
+            if (!ConfigManager.VersionCheat.Value)
             {
                 var writer = AmongUsClient.Instance.StartRpcImmediately(
                     PlayerControl.LocalPlayer.NetId,
                     (byte)RpcCalls.CancelPet,
                     SendOption.Reliable);
                 writer.Write(Main.PluginVersion);
-                writer.Write($"{Main.GitCommit}({Main.GitBranch})");
+                writer.Write($"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})");
                 writer.Write(Main.ForkId);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
             }
@@ -257,7 +257,7 @@ internal static class RPC
                 FinalGameData.PlayerVersion.PlayerVersions[PlayerControl.LocalPlayer.GetClientId()] =
                     new FinalGameData.PlayerVersion(
                         Version.Parse(Main.PluginVersion),
-                        $"{Main.GitCommit}({Main.GitBranch})",
+                        $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})",
                         Main.ForkId
                     );
         }
