@@ -247,6 +247,8 @@ public static class HudManagerPatch
                 FontSize = 2f
             };
 
+        showHideButton.Button.gameObject.SetActive(true);
+
         StringBuilder sb = new($"{GetString("Summary.Text")}{FinalGameData.LastGameResult}");
         if (IsInGame)
         {

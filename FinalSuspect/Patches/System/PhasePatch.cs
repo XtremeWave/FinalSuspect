@@ -80,7 +80,10 @@ internal class CoStartGameHPatch
 }*/
 
 #if Windows
-[HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
+[HarmonyPatch(nameof(IntroCutscene.OnDestroy))]
+#elif Android
+[HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.StartSFX))]
+[HarmonyPatch(typeof(FungleShipStatus), nameof(FungleShipStatus.StartSFX))]
 #endif
 public static class IntroCutsceneOnDestroyPatch
 {

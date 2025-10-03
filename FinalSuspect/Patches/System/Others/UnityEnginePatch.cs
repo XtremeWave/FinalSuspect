@@ -11,8 +11,6 @@ public class UnityEnginePatch
         try
         {
             Return = obj.name is not "LobbyInfoPane" and not "GameStartManager" || IsFreePlay || IsNotJoined;
-            if (obj.name is "IntroCutscene")
-                IntroCutsceneOnDestroyPatch.Postfix();
         }
         catch
         {

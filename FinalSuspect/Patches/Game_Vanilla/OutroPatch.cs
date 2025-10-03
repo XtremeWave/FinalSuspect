@@ -79,6 +79,10 @@ internal class SetEverythingUpPatch
                 Scale = new Vector2(1.5f, 0.5f),
                 FontSize = 2f
             };
+
+
+        showHideButton.Button.gameObject.SetActive(true);
+
         var lastGameResult = DidHumansWin ? GetString("Summary.CrewsWin") : GetString("Summary.ImpsWin");
         FinalGameData.LastGameResult = lastGameResult;
         StringBuilder sb = new($"{GetString("Summary.Text")}{lastGameResult}");
