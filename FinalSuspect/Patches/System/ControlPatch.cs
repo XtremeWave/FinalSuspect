@@ -84,12 +84,12 @@ internal class ControllerManagerUpdatePatch
         {
             if (IsNotJoined)
             {
-                VersionShowerStartPatch.ModLogo.SetActive(ModMainMenuManager.Active);
-                VersionShowerStartPatch.AuthorLogo.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.ModLogo.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.AuthorLogo.SetActive(ModMainMenuManager.Active);
                 ModMainMenuManager.Active = !ModMainMenuManager.Active;
                 ModMainMenuManager.Instance.mainMenuUI.SetActive(ModMainMenuManager.Active);
-                VersionShowerStartPatch.CreditTextCredential.gameObject.SetActive(ModMainMenuManager.Active);
-                VersionShowerStartPatch.VisitText.gameObject.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.CreditTextCredential.gameObject.SetActive(ModMainMenuManager.Active);
+                ModMainMenuManager.VisitText.gameObject.SetActive(ModMainMenuManager.Active);
                 DestroyableSingleton<AccountTab>.Instance.gameObject.SetActive(ModMainMenuManager.Active);
                 ModMainMenuManager.ModStamp.SetActive(ModMainMenuManager.Active);
             }

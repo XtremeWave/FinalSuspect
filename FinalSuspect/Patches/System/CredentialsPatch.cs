@@ -1,8 +1,8 @@
 using System.Text;
-using FinalSuspect.ClientActions;
-using FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
-using FinalSuspect.ClientActions.FeatureItems.NameTag;
+using FinalSuspect.ClientItems;
+using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Patches.Game_Vanilla;
@@ -57,7 +57,8 @@ internal class PingTrackerUpdatePatch
             (GameSettingMenu.Instance?.gameObject.active ?? false)
             || IsInMeeting
             || (FriendsListUI.Instance?.gameObject.active ?? false)
-            || ((HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) && Main.ShowResults.Value))
+            || ((HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) &&
+                ConfigManager.ShowResults.Value))
             _creditTextCredential.text = "";
 
         var ping = AmongUsClient.Instance.Ping;
@@ -84,13 +85,7 @@ internal class PingTrackerUpdatePatch
 [HarmonyPatch(typeof(VersionShower), nameof(VersionShower.Start))]
 public class VersionShowerStartPatch
 {
-    public static GameObject OVersionShower;
-    public static TextMeshPro VisitText;
-    public static TextMeshPro CreditTextCredential;
-    public static GameObject ModLogo;
-    public static GameObject AuthorLogo;
-
-    private static VersionShower _instance;
+    private static VersionShower Instance;
 
     public static void Postfix(VersionShower __instance)
     {
@@ -113,7 +108,8 @@ public class VersionShowerStartPatch
         }
 #endif
 #if !RELEASE
-        Main.CredentialsText += $"\r\n<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
+        Main.CredentialsText +=
+            $"\r\n<color={ColorHelper.FSColorHex}>{LaunchingInfo.GitBranch}</color> - {LaunchingInfo.GitCommit}";
 #endif
 
         if (Main.IsAprilFools)
@@ -140,7 +136,8 @@ public class VersionShowerStartPatch
                 $"<color={ColorHelper.AuthorColorHex}>Slok</color>");
             credentialsText += "\n";
 #if DEBUG
-            var versionText = $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}";
+            var versionText =
+                $"<color={ColorHelper.FSColorHex}>{LaunchingInfo.GitBranch}</color> - {LaunchingInfo.GitCommit}";
 #elif RELEASE
             var versionText =
                 $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
@@ -205,9 +202,9 @@ public class VersionShowerStartPatch
     public static void CreateVisitText(VersionShower __instance)
     {
         if (!__instance)
-            __instance = _instance;
+            __instance = Instance;
         else
-            _instance = __instance;
+            Instance = __instance;
 
         VisitText = Object.Instantiate(__instance.text, OVersionShower.transform.parent);
         VisitText.name = "FinalSuspect VisitText";
@@ -243,7 +240,7 @@ internal class TitleLogoPatch
         Color shade = new(0f, 0f, 0f, 0f);
         var standardActiveSprite = __instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
         var minorActiveSprite = __instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
-        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+        var style = MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value];
 
         var friendsButton = FriendsButton.GetComponent<PassiveButton>();
         Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
@@ -424,7 +421,7 @@ internal class ModManagerLateUpdatePatch
     private static void OnSceneChange(string name)
     {
         if (name is not "MainMenu" and not "MatchMaking") return;
-        var style = MainMenuStyleManager.MainMenuStyles[Main.CurrentStyleId.Value];
+        var style = MainMenuStyleManager.MainMenuStyles[ConfigManager.CurrentStyleId.Value];
         var audio = FinalMusic.Musics.FirstOrDefault(x => x.CurrentAudio == style.MainMenuMusic);
         if (audio != null)
         {

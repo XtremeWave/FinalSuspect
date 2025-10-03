@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions;
+namespace FinalSuspect.ClientItems;
 
 public class ClientFeatureItem
 {

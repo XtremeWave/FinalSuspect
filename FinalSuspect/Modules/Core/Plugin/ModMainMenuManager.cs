@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Plugin;
@@ -35,4 +36,9 @@ public static class ModMainMenuManager
     public static Vector3 RightPanelOp = new(2.8f, -0.4f, -5.0f);
     public static Dictionary<GameObject, (Vector3, bool)> AllButtons = new();
     public static bool Active = true;
+    public static GameObject OVersionShower;
+    public static TextMeshPro VisitText;
+    public static TextMeshPro CreditTextCredential;
+    public static GameObject ModLogo;
+    public static GameObject AuthorLogo;
 }

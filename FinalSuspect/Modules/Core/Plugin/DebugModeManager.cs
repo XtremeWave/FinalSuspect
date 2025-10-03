@@ -6,13 +6,12 @@ public static class DebugModeManager
     // 同时，可在游戏内选项菜单中启用调试模式。
     private static bool AmDebugger { get; set; }
 #if DEBUG
-         = true;
+        = true;
 #endif
     public static bool IsDebugMode => AmDebugger;
 
-    public static void Auth(HashAuth auth, string input)
+    public static void Auth()
     {
-        // AmDebugger = 启用调试版本 || 通过调试密钥认证
-        AmDebugger = AmDebugger || auth.CheckString(input);
+        // 以后还会有用的
     }
 }

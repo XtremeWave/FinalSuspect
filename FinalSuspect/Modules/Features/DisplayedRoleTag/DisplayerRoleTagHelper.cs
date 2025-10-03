@@ -159,7 +159,7 @@ public static class DisplayerRoleTagHelper
             {
                 var color = category switch
                 {
-                    CategoryType.Role => GetRoleColor(RoleTypes.Crewmate),
+                    CategoryType.Role => RoleHelper.GetRoleColor(RoleTypes.Crewmate),
                     CategoryType.PlayerIdentityTag => GetIdentityColor(IdentityTypes.Safe),
                     CategoryType.Room => (Color)ColorHelper.ClientlessColor,
                     _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
@@ -222,7 +222,7 @@ public static class DisplayerRoleTagHelper
 
                 var color = category switch
                 {
-                    CategoryType.Role => GetRoleColor(Enum.Parse<RoleTypes>(value)),
+                    CategoryType.Role => RoleHelper.GetRoleColor(Enum.Parse<RoleTypes>(value)),
                     CategoryType.PlayerIdentityTag => GetIdentityColor(Enum.Parse<IdentityTypes>(value)),
                     CategoryType.Room => (Color)ColorHelper.ClientlessColor,
                     _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)

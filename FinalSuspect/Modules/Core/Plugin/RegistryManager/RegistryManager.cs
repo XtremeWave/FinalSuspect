@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using FinalSuspect.Attributes;
 
 namespace FinalSuspect.Modules.Core.Plugin.RegistryManager;
 
@@ -23,7 +24,8 @@ public static class RegistryManager
         set => PreferenceStore.SetString("Last launched version", value);
     }
 
-    public static void Init()
+    [PluginModuleInitializer(InitializePriority.High)]
+    public static void OnInitialization()
     {
         try
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions.FeatureItems;
+namespace FinalSuspect.ClientItems.FeatureItems;
 
 public static class ModUnloaderScreen
 {
@@ -17,7 +17,7 @@ public static class ModUnloaderScreen
 
     public static void Init(OptionsMenuBehaviour optionsMenuBehaviour)
     {
-        Popup = Object.Instantiate(optionsMenuBehaviour.Background, ClientFeatureItem.CustomBackground.transform);
+        Popup = Object.Instantiate(optionsMenuBehaviour.Background, optionsMenuBehaviour.transform);
         Popup.name = "UnloadModPopup";
         Popup.transform.localPosition = new Vector3(0f, 0f, -8f);
         Popup.transform.localScale = new Vector3(0.8f, 0.8f, 1f);

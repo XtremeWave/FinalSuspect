@@ -3,6 +3,7 @@ using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalGameData;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.DisplayedRoleTag;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class FinalPlayerData : IDisposable
         if (!RoleAssigned)
         {
             RoleWhenAlive = role;
-            SetAsImp(role.IsImpostor());
+            SetAsImp(RoleHelper.IsImpostor(role));
         }
         else
         {

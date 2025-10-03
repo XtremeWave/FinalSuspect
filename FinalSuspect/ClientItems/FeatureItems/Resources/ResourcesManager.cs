@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FinalSuspect.Helpers;
 
-namespace FinalSuspect.ClientActions.FeatureItems.Resources;
+namespace FinalSuspect.ClientItems.FeatureItems.Resources;
 
 public static class ResourcesManager
 {

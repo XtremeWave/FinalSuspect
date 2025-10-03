@@ -216,7 +216,7 @@ public static class SpamManager
 
     public static void CheckSpam(ref string text)
     {
-        if (!Main.SpamDenyWord.Value || BanWords.Count == 0) return;
+        if (!ConfigManager.SpamDenyWord.Value || BanWords.Count == 0) return;
 
         try
         {

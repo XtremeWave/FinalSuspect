@@ -36,7 +36,7 @@ public static class Zoom
                 case < 0:
                 {
                     if (IsDead || IsFreePlay ||
-                        DebugModeManager.IsDebugMode || IsLobby || Main.GodMode.Value)
+                        DebugModeManager.IsDebugMode || IsLobby || ConfigManager.GodMode.Value)
                         if (Camera.main?.orthographicSize < 18.0f)
                             SetZoomSize(true);
                     break;

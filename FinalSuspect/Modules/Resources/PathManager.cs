@@ -10,9 +10,9 @@ public static class PathManager
 #if Android
     private static readonly string LocalPath_Data = Application.persistentDataPath + "/FinalSuspect_Data/";
     public static readonly string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
-    private static readonly string DependsSavePath = LocalPath_Data + "Depend";
+    private static readonly string DependsSavePath = LocalPath_Data + "Depend/";
     public static readonly string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
-    public const string BepInExPath = "/data/data/dev.allofus.starlight/files/BepInEx/"
+    public const string BepInExPath = "/data/data/dev.allofus.starlight/files/BepInEx/";
 #else
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
@@ -22,9 +22,8 @@ public static class PathManager
 
 
 #if Android
-    public static readonly string BepInLogOutPutPath = BepInExPath + "LogOutput.log";
-    public static readonly string BepInCorePath = BepInExPath + "core";
-    public static readonly string BepInLogOutPutPath = BepInExPath + "/BepInEx/LogOutput.log";
+    public const string BepInLogOutPutPath = BepInExPath + "LogOutput.log";
+    public const string BepInCorePath = BepInExPath + "core/";
 #else
     public const string DownloadFileTempPath = "BepInEx/plugins/FinalSuspect.dll.temp";
     public static readonly string BepInLogOutPutPath = $"{Environment.CurrentDirectory}/BepInEx/LogOutput.log";
@@ -33,7 +32,7 @@ public static class PathManager
     public static readonly string FSLogOutPutPath = $"{Application.persistentDataPath}/FinalSuspect/Logs";
     public static readonly string AutoLogOutPutPath = FSLogOutPutPath + "/AutoLogs";
 
-    // 下载URL保持不变
+#if Windows
     public const string DownloadUrl_Github =
         "https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
@@ -42,7 +41,8 @@ public static class PathManager
 
     public const string DownloadUrl_FangKuaiRemote =
         "https://dlhk.fangkuai.fun/FinalSuspect/FinalSuspect.dll";
-
+    // 下载URL保持不变 
+#endif
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
 
@@ -148,6 +148,9 @@ public static class PathManager
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "SoundEffects");
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Images");
         CheckAndCreate(GetLocalPath(LocalType.Resources) + "Languages", false);
+#if Android
+        CheckAndCreate(DependsSavePath);
+#endif
         CheckAndCreate(LANGUAGE_FOLDER_NAME, false);
 
         CheckAndCreate(GetLocalPath(LocalType.Ban));

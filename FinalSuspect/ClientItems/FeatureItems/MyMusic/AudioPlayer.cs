@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions.FeatureItems.MyMusic;
+namespace FinalSuspect.ClientItems.FeatureItems.MyMusic;
 
 public static class AudioPlayer
 {
@@ -81,7 +81,7 @@ public static class AudioPlayer
         });
         CurrentMusic = null;
         _ = new MainThreadTask(MyMusicPanel.RefreshTagList, "Refresh Tag List");
-        if (Main.DisableVanillaSound.Value || playNew)
+        if (ConfigManager.DisableVanillaSound.Value || playNew)
             StopPlayVanilla();
         else
             StartPlayVanilla();
@@ -171,7 +171,7 @@ public class PlaySoundPatch
         [HarmonyArgument(1)] bool loop)
     {
         var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.Playing);
-        var disableVanilla = Main.DisableVanillaSound.Value;
+        var disableVanilla = ConfigManager.DisableVanillaSound.Value;
         return !(isPlaying || disableVanilla) || !loop;
     }
 }
@@ -185,7 +185,7 @@ public class PlayDynamicAndNamedSoundPatch
     {
         var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.Playing);
         var isModMusic = FinalMusic.Musics.Any(x => x.FileName == name);
-        var disableVanilla = Main.DisableVanillaSound.Value;
+        var disableVanilla = ConfigManager.DisableVanillaSound.Value;
         return !(isPlaying || disableVanilla) || !loop || isModMusic;
     }
 }
@@ -198,7 +198,7 @@ public class CrossFadeSoundPatch
         if (name is "MainBG") return false;
         var isPlaying = FinalMusic.Musics.Any(x => x.CurrentAudioStates == AudiosStates.Playing);
         var isModMusic = FinalMusic.Musics.Any(x => x.FileName == name);
-        var disableVanilla = Main.DisableVanillaSound.Value;
+        var disableVanilla = ConfigManager.DisableVanillaSound.Value;
 
 
         return !(isPlaying || disableVanilla) || isModMusic;

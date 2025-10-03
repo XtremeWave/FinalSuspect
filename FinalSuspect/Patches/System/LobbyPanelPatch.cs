@@ -45,31 +45,31 @@ internal class LobbyViewSettingsPanePatch
 {
     private static readonly List<Color32> normalBannerColors =
     [
-        GetRoleColor(RoleTypes.Impostor),
-        GetRoleColor(RoleTypes.Crewmate),
+        RoleHelper.GetRoleColor(RoleTypes.Impostor),
+        RoleHelper.GetRoleColor(RoleTypes.Crewmate),
         Color.yellow,
         Color.green
     ];
 
     private static readonly List<Color32> hnsBannerColors =
     [
-        GetRoleColor(RoleTypes.Crewmate),
-        GetRoleColor(RoleTypes.Impostor),
+        RoleHelper.GetRoleColor(RoleTypes.Crewmate),
+        RoleHelper.GetRoleColor(RoleTypes.Impostor),
         Palette.Purple,
         Color.green
     ];
 
     private static readonly List<Color32> rolecolors =
     [
-        GetRoleColor(RoleTypes.Engineer),
-        GetRoleColor(RoleTypes.GuardianAngel),
-        GetRoleColor(RoleTypes.Scientist),
-        GetRoleColor(RoleTypes.Tracker),
-        GetRoleColor(RoleTypes.Noisemaker),
-        GetRoleColor(RoleTypes.Detective),
-        GetRoleColor(RoleTypes.Shapeshifter),
-        GetRoleColor(RoleTypes.Phantom),
-        GetRoleColor(RoleTypes.Viper)
+        RoleHelper.GetRoleColor(RoleTypes.Engineer),
+        RoleHelper.GetRoleColor(RoleTypes.GuardianAngel),
+        RoleHelper.GetRoleColor(RoleTypes.Scientist),
+        RoleHelper.GetRoleColor(RoleTypes.Tracker),
+        RoleHelper.GetRoleColor(RoleTypes.Noisemaker),
+        RoleHelper.GetRoleColor(RoleTypes.Detective),
+        RoleHelper.GetRoleColor(RoleTypes.Shapeshifter),
+        RoleHelper.GetRoleColor(RoleTypes.Phantom),
+        RoleHelper.GetRoleColor(RoleTypes.Viper)
     ];
 
     private static readonly List<Color32> roleCatColors =
@@ -148,8 +148,8 @@ internal class LobbyViewSettingsPanePatch
                             case "ViewSettingsInfoPanel_Role Variant(Clone)":
                             {
                                 var roleColor = bannerIndex <= 5
-                                    ? GetRoleColor(RoleTypes.Crewmate)
-                                    : GetRoleColor(RoleTypes.Impostor);
+                                    ? RoleHelper.GetRoleColor(RoleTypes.Crewmate)
+                                    : RoleHelper.GetRoleColor(RoleTypes.Impostor);
                                 SetColorForRolesBanner(banner.gameObject, rolecolors[bannerIndex], roleColor);
                                 if (banner.gameObject.transform.FindChild("LabelBackground").gameObject
                                         .GetComponent<SpriteRenderer>().color != new Color(0.3f, 0.3f, 0.3f, 1))
@@ -166,8 +166,8 @@ internal class LobbyViewSettingsPanePatch
                         {
                             var iconIndex = enableRoleIndex.First();
                             var roleColor = iconIndex <= 5
-                                ? GetRoleColor(RoleTypes.Crewmate)
-                                : GetRoleColor(RoleTypes.Impostor);
+                                ? RoleHelper.GetRoleColor(RoleTypes.Crewmate)
+                                : RoleHelper.GetRoleColor(RoleTypes.Impostor);
                             SetColorForIcon(banner.gameObject, rolecolors[iconIndex], roleColor);
                             enableRoleIndex.RemoveAt(0);
                         }

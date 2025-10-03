@@ -1,14 +1,19 @@
+#if Windows
 using System;
 using System.IO;
+using UnityEngine;
+#endif
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
-using UnityEngine;
+using FinalSuspect.Attributes;
+
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
 
-internal static class DllChecker
+public static class DllChecker
 {
-    internal static void Init()
+    [PluginModuleInitializer(InitializePriority.High)]
+    internal static void OnInitialization()
     {
 #if Windows
         // SM的文件名是写死的

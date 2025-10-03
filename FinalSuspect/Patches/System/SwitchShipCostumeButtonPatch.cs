@@ -1,4 +1,4 @@
-﻿using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+﻿using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using UnityEngine;
 

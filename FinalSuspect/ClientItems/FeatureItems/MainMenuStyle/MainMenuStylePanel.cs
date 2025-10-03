@@ -1,14 +1,14 @@
 ﻿using System;
-using FinalSuspect.ClientActions.FeatureItems.MyMusic;
+using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
 using FinalSuspect.Patches.System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static FinalSuspect.ClientActions.FeatureItems.MainMenuStyle.MainMenuStyleManager;
+using static FinalSuspect.ClientItems.FeatureItems.MainMenuStyle.MainMenuStyleManager;
 using Object = UnityEngine.Object;
 
-namespace FinalSuspect.ClientActions.FeatureItems.MainMenuStyle;
+namespace FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 
 public static class MainMenuStylePanel
 {
@@ -19,7 +19,7 @@ public static class MainMenuStylePanel
     private static SpriteRenderer _previewImage;
     public static SpriteRenderer CustomBackground { get; set; }
     public static List<GameObject> Items { get; private set; } = [];
-    private static int CurrentPage { get; set; } = Main.CurrentStyleId.Value + 1;
+    private static int CurrentPage { get; set; } = ConfigManager.CurrentStyleId.Value + 1;
     private static int TotalPageCount => MainMenuStyles.Count;
 
     public static void Hide() => CustomBackground?.gameObject.SetActive(false);
@@ -39,7 +39,7 @@ public static class MainMenuStylePanel
         CreateHelpText(optionsMenuBehaviour);
         CreateDescriptionText(optionsMenuBehaviour);
         CreatePageNavigationButtons(mouseMoveToggle);
-        var currentBackground = MainMenuStyles[Main.CurrentStyleId.Value];
+        var currentBackground = MainMenuStyles[ConfigManager.CurrentStyleId.Value];
         currentBackground.CurrentState = CurrentState.Applied;
         Refresh(currentBackground);
     }
@@ -80,7 +80,7 @@ public static class MainMenuStylePanel
         button.OnClick.AddListener(new Action(() =>
         {
             var id = CurrentPage - 1;
-            Main.CurrentStyleId.Value = id;
+            ConfigManager.CurrentStyleId.Value = id;
             var style = MainMenuStyles[id];
             MainMenuStyles.Where(x => x.Applied).Do(x => x.CurrentState = CurrentState.NotApply);
             style.CurrentState = CurrentState.Applied;
@@ -130,6 +130,7 @@ public static class MainMenuStylePanel
                         ModMainMenuManager.InviteButton.GetComponent<PassiveButton>(),
                         ModMainMenuManager.GithubButton.GetComponent<PassiveButton>(),
                         ModMainMenuManager.BugReportButton.GetComponent<PassiveButton>(),
+                        ModMainMenuManager.WebsiteButton.GetComponent<PassiveButton>()
                     ],
                     (minorActiveSprite, style.MainUIColors[2], shade, Color.white, Color.white)
                 },

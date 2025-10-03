@@ -1,5 +1,6 @@
 using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
+using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using Hazel;
 
@@ -22,6 +23,6 @@ public class SetRoleHandler : IRpcHandler
     public bool HandleGame_All(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        return sender.GetFinalData().RoleAssigned && !IsGhost((RoleTypes)reader.ReadUInt16());
+        return sender.GetFinalData().RoleAssigned && !RoleHelper.IsGhost((RoleTypes)reader.ReadUInt16());
     }
 }

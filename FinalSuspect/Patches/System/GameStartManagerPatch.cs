@@ -65,9 +65,9 @@ public static class GameStartManagerPatch
             _hideName.gameObject.SetActive(true);
             _hideName.name = "HideName";
             _hideName.color =
-                ColorUtility.TryParseHtmlString(Main.HideColor.Value, out var color) ? color :
+                ColorUtility.TryParseHtmlString(ConfigManager.HideColor.Value, out var color) ? color :
                 ColorUtility.TryParseHtmlString(ColorHelper.FSColorHex, out var modColor) ? modColor : _hideName.color;
-            _hideName.text = Main.HideName.Value;
+            _hideName.text = ConfigManager.HideName.Value;
 
             _warningText = Object.Instantiate(__instance.GameStartText, __instance.transform);
             _warningText.name = "WarningText";
@@ -139,7 +139,7 @@ public static class GameStartManagerPatch
                 _hideName.enabled = false;
             }
 
-            if (!Main.AutoStartGame.Value
+            if (!ConfigManager.AutoStartGame.Value
                 || !AmongUsClient.Instance.AmHost
                 || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
                 || IsInitGame) return true;

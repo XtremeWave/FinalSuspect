@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
-namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
+namespace FinalSuspect.ClientItems.FeatureItems.NameTag;
 
 public static class NameTagNewWindow
 {

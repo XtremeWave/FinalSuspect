@@ -9,7 +9,7 @@ using Il2CppSystem.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace FinalSuspect.ClientActions.FeatureItems.NameTag;
+namespace FinalSuspect.ClientItems.FeatureItems.NameTag;
 
 public static class NameTagManager
 {

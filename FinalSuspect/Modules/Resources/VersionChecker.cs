@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using FinalSuspect.ClientActions.FeatureItems.NameTag;
-using FinalSuspect.ClientActions.FeatureItems.Resources;
+using FinalSuspect.ClientItems.FeatureItems.NameTag;
+using FinalSuspect.ClientItems.FeatureItems.Resources;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Features;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
@@ -72,7 +72,10 @@ public static class VersionChecker
     private static async Task CheckForUpdate()
     {
         IsChecked = false;
-        ModUpdater.DeleteOldFiles();
+#if Windows
+       ModUpdater.DeleteOldFiles();
+#endif
+
 
         foreach (var url in GetInfoFileUrlList(true))
         {
@@ -119,7 +122,7 @@ public static class VersionChecker
             }
 
             ModUpdater.SetUpdateButtonStatus();
-            VersionShowerStartPatch.VisitText.text = IsChecked
+            ModMainMenuManager.VisitText.text = IsChecked
                 ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.FSColorHex)
                 : GetString("RetrieveVersionInfoFailed");
         }, "Check For Update");
@@ -181,7 +184,7 @@ public static class VersionChecker
         public static void Postfix()
         {
             CustomPopup.Init();
-            if (FirstStart && !Main.OfflineMode.Value)
+            if (FirstStart && !ConfigManager.OfflineMode.Value)
             {
                 StartTasks();
                 CustomPopup.Show(GetString("UpdateCheck.Popup_Title"), GetString("Tip.LoadingWithDot"), null);

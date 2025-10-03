@@ -7,7 +7,7 @@ public class EndGameManagerPatch
     [HarmonyPostfix]
     public static void ShowButtons_Postfix(EndGameManager __instance)
     {
-        if (!Main.AutoEndGame.Value) return;
+        if (!ConfigManager.AutoEndGame.Value) return;
         DestroyableSingleton<EndGameNavigation>.Instance.ContinueButton.gameObject.SetActive(false);
         _ = new LateTask(__instance.Navigation.NextGame, 2f, "Auto End Game");
     }
@@ -21,6 +21,6 @@ public class GameEndChecker
     [HarmonyPrefix]
     public static bool CheckEndCriteria()
     {
-        return !(Main.NoGameEnd.Value && DebugModeManager.IsDebugMode);
+        return !(ConfigManager.NoGameEnd.Value && DebugModeManager.IsDebugMode);
     }
 }

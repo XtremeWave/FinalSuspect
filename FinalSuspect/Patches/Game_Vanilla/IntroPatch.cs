@@ -27,7 +27,7 @@ internal class IntroCutscenePatch
     public static void Postfix(IntroCutscene._ShowRole_d__40 __instance, ref bool __result)
 #endif
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
         var intro = __instance.__4__this;
 
         _ = new MainThreadTask(() =>
@@ -35,12 +35,12 @@ internal class IntroCutscenePatch
             var roleType = PlayerControl.LocalPlayer.Data.Role.Role;
             intro.YouAreText.color =
                 intro.RoleText.color =
-                    intro.RoleBlurbText.color = GetRoleColor(roleType);
-            intro.RoleText.text = GetRoleName(roleType);
+                    intro.RoleBlurbText.color = RoleHelper.GetRoleColor(roleType);
+            intro.RoleText.text = RoleHelper.GetRoleName(roleType);
             intro.RoleText.fontWeight = FontWeight.Thin;
-            intro.RoleText.SetOutlineColor(GetRoleColor(roleType).ShadeColor(0.1f).SetAlpha(0.38f));
+            intro.RoleText.SetOutlineColor(RoleHelper.GetRoleColor(roleType).ShadeColor(0.1f).SetAlpha(0.38f));
             intro.RoleText.SetOutlineThickness(0.17f);
-            intro.RoleBlurbText.text = roleType.GetRoleInfoForVanilla();
+            intro.RoleBlurbText.text = RoleHelper.GetRoleInfoForVanilla(roleType);
         }, "Override Role Text");
     }
 
@@ -48,7 +48,7 @@ internal class IntroCutscenePatch
     [HarmonyPostfix]
     public static void BeginImpostor_Postfix(IntroCutscene __instance)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
 
         __instance.ImpostorText.gameObject.SetActive(true);
 
@@ -74,7 +74,7 @@ internal class IntroCutscenePatch
     [HarmonyPostfix]
     public static void BeginCrewmate_Postfix(IntroCutscene __instance)
     {
-        if (!Main.EnableFinalSuspect.Value) return;
+        if (!ConfigManager.EnableFinalSuspect.Value) return;
 
         __instance.TeamTitle.text = $"{GetString("Team.Crew")}";
         __instance.ImpostorText.text =

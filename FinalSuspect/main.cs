@@ -1,18 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using AmongUs.GameOptions;
 using BepInEx;
-using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using FinalSuspect;
 using FinalSuspect.Attributes;
-using FinalSuspect.DataHandling.FinalAntiCheat.Core;
-using FinalSuspect.Helpers;
 using FinalSuspect.Internal;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
-using FinalSuspect.Modules.Core.Plugin.RegistryManager;
-using FinalSuspect.Modules.Random;
 using FinalSuspect.Modules.Resources;
 using Il2CppInterop.Runtime.Injection;
 using UnityEngine;
@@ -35,8 +29,6 @@ public class Main : BasePlugin
     public const string PluginVersion = "1.2.99";
     public const string PluginGuid = "cn.slok.finalsuspect";
     public const int PluginCreation = 1;
-    public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
-    public const string DebugKeySalt = "59687b";
 
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2025.9.9"; // 17.0.0
@@ -58,24 +50,6 @@ public class Main : BasePlugin
     public static bool ExceptionMessageIsShown;
     public static string CredentialsText;
 
-    public static readonly Dictionary<RoleTypes, string> roleColors = new()
-    {
-        { RoleTypes.CrewmateGhost, "#8CFFFF" },
-        { RoleTypes.GuardianAngel, "#8CFFDB" },
-        { RoleTypes.Crewmate, "#8CFFFF" },
-        { RoleTypes.Scientist, "#F8FF8C" },
-        { RoleTypes.Engineer, "#A5A8FF" },
-        { RoleTypes.Noisemaker, "#FFC08C" },
-        { RoleTypes.Tracker, "#93FF8C" },
-        { RoleTypes.ImpostorGhost, "#FF1919" },
-        { RoleTypes.Impostor, "#FF1919" },
-        { RoleTypes.Shapeshifter, "#FF819E" },
-        { RoleTypes.Phantom, "#CA8AFF" },
-        { RoleTypes.Detective, "#70A1DA" },
-        { RoleTypes.Viper, "#F06762" }
-    };
-
-    public static string HostNickName = "";
     public static readonly bool IsInitialRelease = DateTime.Now is { Month: 8, Day: >= 15 and <= 19 };
     public static readonly bool IsAprilFools = DateTime.Now is { Month: 4, Day: >= 1 and <= 10 };
 
@@ -85,43 +59,10 @@ public class Main : BasePlugin
 
     public static Main Instance;
 
-    // == 认证设定 / Authentication Config ==
-    public static HashAuth DebugKeyAuth { get; private set; }
-    public static ConfigEntry<string> DebugKeyInput { get; private set; }
-
     // ==========
     public Harmony Harmony { get; } = new(PluginGuid);
     public static NormalGameOptionsV10 NormalOptions => GameOptionsManager.Instance.currentNormalGameOptions;
     public static HideNSeekGameOptionsV10 HideNSeekOptions => GameOptionsManager.Instance.currentHideNSeekGameOptions;
-
-    //Client Options
-    public static ConfigEntry<bool> KickPlayerWithAbnormalFriendCode { get; private set; }
-    public static ConfigEntry<bool> KickPlayerWithDenyName { get; private set; }
-    public static ConfigEntry<bool> KickPlayerInBanList { get; private set; }
-    public static ConfigEntry<bool> SpamDenyWord { get; private set; }
-    public static ConfigEntry<bool> UnlockFPS { get; private set; }
-    public static ConfigEntry<OutfitType> SwitchOutfitType { get; private set; }
-    public static ConfigEntry<bool> AutoStartGame { get; private set; }
-    public static ConfigEntry<bool> AutoEndGame { get; private set; }
-    public static ConfigEntry<bool> DisableVanillaSound { get; private set; }
-    public static ConfigEntry<bool> EnableFAC { get; private set; }
-    public static ConfigEntry<bool> EnableGuardian { get; private set; }
-    public static ConfigEntry<bool> ShowPlayerInfo { get; private set; }
-    public static ConfigEntry<bool> FastLaunchMode { get; private set; }
-    public static ConfigEntry<bool> OfflineMode { get; private set; }
-    public static ConfigEntry<bool> UseModCursor { get; private set; }
-    public static ConfigEntry<bool> VersionCheat { get; private set; }
-    public static ConfigEntry<bool> GodMode { get; private set; }
-    public static ConfigEntry<bool> NoGameEnd { get; private set; }
-
-    //Other Configs
-    public static ConfigEntry<string> HideName { get; private set; }
-    public static ConfigEntry<string> HideColor { get; private set; }
-    public static ConfigEntry<bool> ShowResults { get; private set; }
-    public static ConfigEntry<string> WebhookURL { get; private set; }
-    public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
-    public static ConfigEntry<BypassType> LanguageUpdateBypass { get; private set; }
-    public static ConfigEntry<int> CurrentStyleId { get; private set; }
 
     public static IEnumerable<PlayerControl> AllPlayerControls =>
         PlayerControl.AllPlayerControls.ToArray().Where(p => p);
@@ -133,83 +74,11 @@ public class Main : BasePlugin
     {
         Instance = this;
 
-        //Configs
-        HideName = Config.Bind("Final System", "Hide Game Code Name", "Final Suspect");
-        HideColor = Config.Bind("Final System", "Hide Game Code Color", $"{ColorHelper.FSColorHex}");
-        EnableFinalSuspect = Config.Bind("Final System", "Enable Final Suspect", true);
-        ShowResults = Config.Bind("Final System", "Show Results", true);
-        LanguageUpdateBypass = Config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
-        CurrentStyleId = Config.Bind("Final System", "BG Id", 0);
-
-        DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
-
-        UnlockFPS = Config.Bind("Client Options", "Unlock FPS", false);
-        SwitchOutfitType = Config.Bind("Client Options", "Switch Outfit", OutfitType.BeanMode);
-        KickPlayerWithAbnormalFriendCode = Config.Bind("Client Options", "Kick Player FriendCode Not Exist", true);
-        KickPlayerInBanList = Config.Bind("Client Options", "Kick Player In BanList", true);
-        KickPlayerWithDenyName = Config.Bind("Client Options", "Kick Player With Deny Name", true);
-        SpamDenyWord = Config.Bind("Client Options", "Spam Deny Word", true);
-        AutoStartGame = Config.Bind("Client Options", "Auto Start Game", false);
-        AutoEndGame = Config.Bind("Client Options", "Auto End Game", false);
-        DisableVanillaSound = Config.Bind("Client Options", "Disable Vanilla Sound", false);
-        EnableFAC = Config.Bind("Client Options", "Enable FAC", false);
-        EnableGuardian = Config.Bind("Client Options", "Enable Guardian", true);
-        //PrunkMode = Config.Bind("Client Options", "Prunk Mode", false);
-        ShowPlayerInfo = Config.Bind("Client Options", "Show Player Info", true);
-        FastLaunchMode = Config.Bind("Client Options", "Fast Launch Mode", false);
-        OfflineMode = Config.Bind("Client Options", "Offline Mode", false);
-        UseModCursor = Config.Bind("Client Options", "Use Mod Cursor", true);
-
-        VersionCheat = Config.Bind("Client Options", "Version Cheat", false);
-        GodMode = Config.Bind("Client Options", "God Mode", false);
-        NoGameEnd = Config.Bind("Client Options", "No Game End", false);
-
-        Logger = BepInEx.Logging.Logger.CreateLogSource("FinalSuspect");
-        Enable();
-        Disable("SwitchSystem");
-        Disable("ModNews");
-        Disable("CancelPet");
-        if (!DebugModeManager.IsDebugMode)
-        {
-            Disable("Download Resources");
-            Disable("GetAnnouncements");
-            Disable("GetConfigs");
-        }
-
-        isDetail = true;
-
-        // 認証関連-初期化
-        DebugKeyAuth = new HashAuth(DebugKeyHash, DebugKeySalt);
-
-        // 認証関連-認証
-        DebugModeManager.Auth(DebugKeyAuth, DebugKeyInput.Value);
-
-        WebhookURL = Config.Bind("hook", "WebhookURL", "none");
-
         hasArgumentException = false;
         ExceptionMessage = "";
-
-        RegistryManager.Init(); // 这是优先级最高的模块初始化方法，不能使用模块初始化属性
-        DllChecker.Init();
-
         PluginModuleInitializerAttribute.InitializeAll();
 
-        IRandom.SetInstance(new NetRandomWrapper());
-
-        Info($"{Application.version}", "AmongUs Version");
-
-        var handler = Handler("GitVersion");
-        handler.Info($"{nameof(GitBaseTag)}: {GitBaseTag}");
-        handler.Info($"{nameof(GitCommit)}: {GitCommit}");
-        handler.Info($"{nameof(GitCommits)}: {GitCommits}");
-        handler.Info($"{nameof(GitIsDirty)}: {GitIsDirty}");
-        handler.Info($"{nameof(GitSha)}: {GitSha}");
-        handler.Info($"{nameof(GitTag)}: {GitTag}");
-
         ClassInjector.RegisterTypeInIl2Cpp<ErrorText>();
-
-        Task.Run(SystemEnvironment.SetEnvironmentVariablesAsync);
-
         Harmony.PatchAll();
 
 
@@ -229,16 +98,6 @@ public class Main : BasePlugin
 
     private const int DisplayedVersion_TestCreation = 1;
 #endif
-
-#pragma warning disable CS0618 // 类型或成员已过时
-    public const string GitBaseTag = ThisAssembly.Git.BaseTag;
-    public const string GitCommit = ThisAssembly.Git.Commit;
-    public const string GitCommits = ThisAssembly.Git.Commits;
-    public const string GitBranch = ThisAssembly.Git.Branch;
-    public const bool GitIsDirty = ThisAssembly.Git.IsDirty;
-    public const string GitSha = ThisAssembly.Git.Sha;
-    public const string GitTag = ThisAssembly.Git.Tag;
-#pragma warning restore CS0618
 }
 
 /// <summary>
