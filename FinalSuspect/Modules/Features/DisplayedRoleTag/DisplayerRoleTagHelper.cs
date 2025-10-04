@@ -215,7 +215,6 @@ public static class DisplayerRoleTagHelper
 
             void CreateOption(CategoryType category, string value)
             {
-                // 初始化列表（.NET 6+ 语法）
                 CategoryButtons.TryAdd(category, []);
                 if (CategoryButtons[category].Any(x => x.parent.name == value)) return;
 

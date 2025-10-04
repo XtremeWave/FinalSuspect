@@ -52,6 +52,9 @@ public static class NameTagManager
     public static (string title, string prefix, string suffix, string name, string displayName, string lastTag)
         ApplyFor(PlayerControl player)
     {
+        if (player.shapeshiftTargetPlayerId != -1)
+            player = GetPlayerById((byte)player.shapeshiftTargetPlayerId);
+
         var a = AllNameTags.TryGetValue(player.FriendCode, out var tag);
 
         return a

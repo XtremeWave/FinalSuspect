@@ -20,7 +20,9 @@ public static class ConfigManager
     public static ConfigEntry<bool> ShowPlayerInfo { get; private set; }
     public static ConfigEntry<bool> FastLaunchMode { get; private set; }
     public static ConfigEntry<bool> OfflineMode { get; private set; }
+#if Windows
     public static ConfigEntry<bool> UseModCursor { get; private set; }
+#endif
     public static ConfigEntry<bool> VersionCheat { get; private set; }
     public static ConfigEntry<bool> GodMode { get; private set; }
     public static ConfigEntry<bool> NoGameEnd { get; private set; }
@@ -59,7 +61,9 @@ public static class ConfigManager
         ShowPlayerInfo = config.Bind("Client Options", "Show Player Info", true);
         FastLaunchMode = config.Bind("Client Options", "Fast Launch Mode", false);
         OfflineMode = config.Bind("Client Options", "Offline Mode", false);
+#if Windows
         UseModCursor = config.Bind("Client Options", "Use Mod Cursor", true);
+#endif
 
         VersionCheat = config.Bind("Debug Options", "Version Cheat", false);
         GodMode = config.Bind("Debug Options", "God Mode", false);
