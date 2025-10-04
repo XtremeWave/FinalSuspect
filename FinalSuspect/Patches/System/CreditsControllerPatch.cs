@@ -10,7 +10,7 @@ public class CreditsControllerPatch
         var devList = new List<string>
         {
             $"<size=120%><color={ColorHelper.FSColorHex}>{Main.ModName}</color></size>",
-            $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>By Slok</color>",
+            $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>Slok</color>",
             "<color=#fffcbe>Thanks:</color> <color=#ffff00>LezaiYa</color>",
             //Others
             $"<size=120%>{GetString("Id.Contributor")}</size>",
@@ -78,7 +78,8 @@ public class CreditsControllerPatch
     public static void AddCreditPrefix(CreditsController __instance,
         [HarmonyArgument(0)] CreditsController.CreditStruct originalCredit)
     {
-        if (originalCredit.columns[0] != "logoImage") return;
+        //这里安卓还有点小问题
+        if (originalCredit?.columns[0] != "logoImage") return;
 
         foreach (var credit in GetModCredits())
         {
