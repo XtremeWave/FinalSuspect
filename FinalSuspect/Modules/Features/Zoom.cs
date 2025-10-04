@@ -25,6 +25,8 @@ public static class Zoom
             }
 
             if (Camera.main?.orthographicSize > 3.0f) ResetButtons = true;
+
+#if Windows
             switch (Input.mouseScrollDelta.y)
             {
                 case > 0:
@@ -42,6 +44,37 @@ public static class Zoom
                     break;
                 }
             }
+#elif Android
+            if (Input.touchCount == 2)
+            {
+                var touchZero = Input.GetTouch(0);
+                var touchOne = Input.GetTouch(1);
+
+                var touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                var touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+                var prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                var currentMagnitude = (touchZero.position - touchOne.position).magnitude;
+
+                var difference = currentMagnitude - prevMagnitude;
+
+                if (Math.Abs(difference) > 0.1f)
+                {
+                    if (difference > 0)
+                    {
+                        if (Camera.main?.orthographicSize > 3.0f)
+                            SetZoomSize();
+                    }
+                    else
+                    {
+                        if (IsDead || IsFreePlay ||
+                            DebugModeManager.IsDebugMode || IsLobby || ConfigManager.GodMode.Value)
+                            if (Camera.main?.orthographicSize < 18.0f)
+                                SetZoomSize(true);
+                    }
+                }
+            }
+#endif
 
             Flag.NewFlag("Zoom");
         }

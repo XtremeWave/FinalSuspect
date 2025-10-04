@@ -57,7 +57,7 @@ public static class NameTagManager
 
         var a = AllNameTags.TryGetValue(player.FriendCode, out var tag);
 
-        return a
+        return a && !IsActive(SystemTypes.MushroomMixupSabotage)
             ? tag.Apply(player.GetDataName())
             : ("", "", "", "", "", "");
     }

@@ -138,7 +138,7 @@ public static class InGameRoleInfoMenu
             new Vector3(-0.2f, -0.5f, 1f),
             "roleHelp.png",
             new Color(0.8f, 0.8f, 0.8f, 0.3f),
-            new Vector3(0.58f, 1.85f, -800f),
+            new Vector3(0.58f, 1.85f, -980f),
             () =>
             {
                 if (!IsInGame || (!IsCanMove && !IsInMeeting)) return;
