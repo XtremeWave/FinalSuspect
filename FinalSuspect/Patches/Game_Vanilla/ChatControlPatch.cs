@@ -1,7 +1,6 @@
 using AmongUs.Data;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using InnerNet;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 

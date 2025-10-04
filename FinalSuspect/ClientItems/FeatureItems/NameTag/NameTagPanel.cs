@@ -1,7 +1,6 @@
 ﻿using System;
 using FinalSuspect.Helpers;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using static FinalSuspect.ClientItems.FeatureItems.NameTag.NameTagManager;
 using Object = UnityEngine.Object;

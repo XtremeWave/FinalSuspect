@@ -79,15 +79,17 @@ internal class CoStartGameHPatch
     }
 }*/
 
-#if Windows
-[HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
-#elif Android
-[HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.StartSFX))]
-[HarmonyPatch(typeof(FungleShipStatus), nameof(FungleShipStatus.StartSFX))]
-#endif
+[HarmonyPatch]
 public static class IntroCutsceneOnDestroyPatch
 {
-    public static void Postfix()
+#if Windows
+    [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.OnDestroy))]
+#elif Android
+    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.StartSFX))]
+    [HarmonyPatch(typeof(FungleShipStatus), nameof(FungleShipStatus.StartSFX))]
+#endif
+    [HarmonyPostfix]
+    public static void OnDestroy()
     {
         FinalGameData.IntroDestroyed = true;
         Info("OnDestroy", "IntroCutscene");

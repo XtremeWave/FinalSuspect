@@ -4,16 +4,15 @@ using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Game.UI;
 using FinalSuspect.Modules.Resources;
-using FinalSuspect.Patches.Game_Vanilla;
 using FinalSuspect.Templates;
 using Il2CppSystem;
 using TMPro;
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
+using static FinalSuspect.Modules.Core.Plugin.UI.MainMenu;
 using ColorHelper = FinalSuspect.Helpers.ColorHelper;
 using Object = UnityEngine.Object;
 
@@ -50,14 +49,14 @@ internal class PingTrackerUpdatePatch
 
         StringBuilder sb = new();
 
-        sb.Append(Main.CredentialsText);
+        sb.Append(CredentialsText);
 
         _creditTextCredential.text = sb.ToString();
         if (
             (GameSettingMenu.Instance?.gameObject.active ?? false)
             || IsInMeeting
             || (FriendsListUI.Instance?.gameObject.active ?? false)
-            || ((HudManagerPatch.showHideButton?.Button?.gameObject.active ?? false) &&
+            || ((LastResult.LastResultButton?.Button?.gameObject.active ?? false) &&
                 ConfigManager.ShowResults.Value))
             _creditTextCredential.text = "";
 
@@ -91,14 +90,14 @@ public class VersionShowerStartPatch
     {
         TMPTemplate.SetBase(__instance.text);
 
-        Main.CredentialsText =
+        CredentialsText =
             $"\r\n<size=120%>" +
             $"<color={ColorHelper.AuthorColorHex}>==</color> " +
             $"<color={ColorHelper.FSColorHex}>{Main.ModName}</color> " +
             $"<color={ColorHelper.AuthorColorHex}>==</color>"
             + "</size>";
-        Main.CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>Slok</color></size>";
-        Main.CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
+        CredentialsText += "\r\n <color=#fffcbe> By </color><color=#cdfffd>Slok</color></size>";
+        CredentialsText += $"\r\n<color=#C8FF78>v{Main.DisplayedVersion}</color>";
 
 #if !DEBUG
         var additionalCredentials = GetString("TextBelowVersionText");
@@ -108,20 +107,20 @@ public class VersionShowerStartPatch
         }
 #endif
 #if !RELEASE
-        Main.CredentialsText +=
+        CredentialsText +=
             $"\r\n<color={ColorHelper.FSColorHex}>{LaunchingInfo.GitBranch}</color> - {LaunchingInfo.GitCommit}";
 #endif
 
         if (Main.IsAprilFools)
         {
-            Main.CredentialsText =
+            CredentialsText =
                 $"\r\n<size=120%>" +
                 $"<color=#fffcbe>==</color> " +
                 $"<color=#C791F5>Feline Susspekt</color> " +
                 $"<color=#fffcbe>==</color>"
                 + "</size>";
-            Main.CredentialsText += "\r\n <color=#cdffdd> By </color><color=#fffcbe>XtremeWives</color></size>";
-            Main.CredentialsText += "\r\n <color=#ff0000>4.1.Never Gonna Give You Up</color>";
+            CredentialsText += "\r\n <color=#cdffdd> By </color><color=#fffcbe>XtremeWives</color></size>";
+            CredentialsText += "\r\n <color=#ff0000>4.1.Never Gonna Give You Up</color>";
         }
 
         ErrorText.Create(__instance.text);
@@ -178,7 +177,7 @@ public class VersionShowerStartPatch
         };
         AuthorLogo.AddComponent<SpriteRenderer>().sprite = LoadSprite("AuthorLogo2.png", 840f);
         AuthorLogo.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 120);
-        AuthorLogo.transform.SetParent(VisitText.transform.parent);
+        AuthorLogo.transform.SetParent(null);
         var ap_authorLogo = AuthorLogo.gameObject.AddComponent<AspectPosition>();
         ap_authorLogo.Alignment = AspectPosition.EdgeAlignments.LeftBottom;
         ap_authorLogo.DistanceFromEdge = new Vector3(0.6f, 0.5f);

@@ -1,5 +1,5 @@
 using Il2CppSystem;
-using UnityEngine;
+using TMPro;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Helpers;
@@ -58,5 +58,14 @@ public static class ObjectHelper
         renderer.color = Color.clear;
 
         return renderer;
+    }
+
+    public static TextMeshPro InstantiateTextComponent(TextMeshPro template, Vector3 position, Transform parent = null)
+    {
+        var text = Object.Instantiate(template, parent);
+        text.transform.localPosition = position;
+        text.fontStyle = FontStyles.Bold;
+        text.text = string.Empty;
+        return text;
     }
 }

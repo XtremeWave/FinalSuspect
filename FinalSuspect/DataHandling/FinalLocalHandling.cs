@@ -4,7 +4,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using TMPro;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.DataHandling;

@@ -5,7 +5,6 @@ using FinalSuspect.Helpers;
 using Il2CppSystem.IO;
 using Newtonsoft.Json;
 using TMPro;
-using UnityEngine;
 using static FinalSuspect.ClientItems.FeatureItems.NameTag.NameTagManager;
 using Component = FinalSuspect.ClientItems.FeatureItems.NameTag.NameTagManager.Component;
 using File = System.IO.File;

@@ -1,7 +1,6 @@
 using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
 using TMPro;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
 

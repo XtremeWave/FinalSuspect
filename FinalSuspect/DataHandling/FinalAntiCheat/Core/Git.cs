@@ -1,6 +1,5 @@
 #if Windows
 using System.IO;
-using UnityEngine;
 #endif
 
 [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]

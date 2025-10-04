@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using FinalSuspect.Attributes;
-using UnityEngine;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -266,7 +265,8 @@ public enum FileType
     SoundEffects,
     Depends,
     ModNews,
-    Languages
+    Languages,
+    //AutoDecided //v2.0
 }
 
 public enum RemoteType

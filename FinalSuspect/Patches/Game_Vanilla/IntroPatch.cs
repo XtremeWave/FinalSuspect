@@ -3,7 +3,6 @@ using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
@@ -40,7 +39,7 @@ internal class IntroCutscenePatch
             intro.RoleText.fontWeight = FontWeight.Thin;
             intro.RoleText.SetOutlineColor(RoleHelper.GetRoleColor(roleType).ShadeColor(0.1f).SetAlpha(0.38f));
             intro.RoleText.SetOutlineThickness(0.17f);
-            intro.RoleBlurbText.text = RoleHelper.GetRoleInfoForVanilla(roleType);
+            intro.RoleBlurbText.text = roleType.GetRoleInfoForVanilla();
         }, "Override Role Text");
     }
 

@@ -1,5 +1,4 @@
 ﻿using FinalSuspect.Modules.Core.Game;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
 

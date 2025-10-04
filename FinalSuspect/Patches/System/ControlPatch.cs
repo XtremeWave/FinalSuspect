@@ -1,6 +1,6 @@
 using System;
-using FinalSuspect.Modules.Features;
-using UnityEngine;
+using FinalSuspect.Modules.Core.Game.UI;
+using FinalSuspect.Modules.Core.Plugin.UI;
 
 namespace FinalSuspect.Patches.System;
 
@@ -11,29 +11,12 @@ internal class ControllerManagerUpdatePatch
         [(480, 270), (640, 360), (800, 450), (1280, 720), (1600, 900), (1920, 1080)];
 
     private static int _resolutionIndex;
-    public static bool ShowSettingsPanel = true;
 
     public static void Postfix()
     {
         //职业介绍
-        if (IsInGame && (IsCanMove || IsInMeeting))
-        {
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                if (!InGameRoleInfoMenu.Showing)
-                    InGameRoleInfoMenu.SetRoleInfoRef(PlayerControl.LocalPlayer);
-                InGameRoleInfoMenu.Toggle();
-            }
-        }
-        else
-        {
-            InGameRoleInfoMenu.Hide();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F2) && IsInGame)
-        {
-            ShowSettingsPanel = !ShowSettingsPanel;
-        }
+        InGameRoleInfoMenu.CheckForHotkey();
+        InGameInfoPane.CheckForHotkey();
 
 
         //更改分辨率
@@ -87,14 +70,14 @@ internal class ControllerManagerUpdatePatch
         {
             if (IsNotJoined)
             {
-                ModMainMenuManager.ModLogo.SetActive(ModMainMenuManager.Active);
-                ModMainMenuManager.AuthorLogo.SetActive(ModMainMenuManager.Active);
-                ModMainMenuManager.Active = !ModMainMenuManager.Active;
-                ModMainMenuManager.Instance.mainMenuUI.SetActive(ModMainMenuManager.Active);
-                ModMainMenuManager.CreditTextCredential.gameObject.SetActive(ModMainMenuManager.Active);
-                ModMainMenuManager.VisitText.gameObject.SetActive(ModMainMenuManager.Active);
-                DestroyableSingleton<AccountTab>.Instance.gameObject.SetActive(ModMainMenuManager.Active);
-                ModMainMenuManager.ModStamp.SetActive(ModMainMenuManager.Active);
+                MainMenu.ModLogo.SetActive(MainMenu.Active);
+                MainMenu.AuthorLogo.SetActive(MainMenu.Active);
+                MainMenu.Active = !MainMenu.Active;
+                MainMenu.Instance.mainMenuUI.SetActive(MainMenu.Active);
+                MainMenu.CreditTextCredential.gameObject.SetActive(MainMenu.Active);
+                MainMenu.VisitText.gameObject.SetActive(MainMenu.Active);
+                DestroyableSingleton<AccountTab>.Instance.gameObject.SetActive(MainMenu.Active);
+                MainMenu.ModStamp.SetActive(MainMenu.Active);
             }
         }
 

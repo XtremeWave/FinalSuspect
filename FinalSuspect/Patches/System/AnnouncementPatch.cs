@@ -8,8 +8,7 @@ using AmongUs.Data.Player;
 using Assets.InnerNet;
 using FinalSuspect.Helpers;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using UnityEngine;
-using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
+using static FinalSuspect.Modules.Core.Plugin.UI.MainMenu;
 
 namespace FinalSuspect.Patches.System;
 

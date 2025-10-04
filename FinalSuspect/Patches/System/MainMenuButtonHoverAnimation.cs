@@ -1,7 +1,7 @@
 ﻿using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin.UI;
 using Il2CppSystem;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.System;
 
@@ -20,8 +20,8 @@ public class MainMenuButtonHoverAnimation
 
     private static void SetButtonStatus(GameObject obj, bool active)
     {
-        ModMainMenuManager.AllButtons.TryAdd(obj, (obj.transform.position, active));
-        ModMainMenuManager.AllButtons[obj] = (ModMainMenuManager.AllButtons[obj].Item1, active);
+        MainMenu.AllButtons.TryAdd(obj, (obj.transform.position, active));
+        MainMenu.AllButtons[obj] = (MainMenu.AllButtons[obj].Item1, active);
     }
 
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.LateUpdate))]
@@ -37,7 +37,7 @@ public class MainMenuButtonHoverAnimation
                 : style.MainUIColors[1], new Color(0f, 0f, 0f, 0f), Color.white, Color.white);
 
         __instance.newsButton.enabled = ModNewsHistory.AnnouncementLoadComplete;
-        foreach (var (button, value) in ModMainMenuManager.AllButtons.Where(x => x.Key != null && x.Key.active))
+        foreach (var (button, value) in MainMenu.AllButtons.Where(x => x.Key != null && x.Key.active))
         {
             var pos = button.transform.position;
             var targetPos = value.Item1 + new Vector3(value.Item2 ? 0.35f : 0f, 0f, 0f);
@@ -50,14 +50,14 @@ public class MainMenuButtonHoverAnimation
 
     public static void RefreshButtons(GameObject obj)
     {
-        ModMainMenuManager.AllButtons = new Dictionary<GameObject, (Vector3, bool)>();
+        MainMenu.AllButtons = new Dictionary<GameObject, (Vector3, bool)>();
         obj.ForEachChild((Action<GameObject>)Init);
     }
 
     private static void Init(GameObject obj)
     {
         if (obj.name is "BottomButtonBounds" or "Divider") return;
-        if (ModMainMenuManager.AllButtons.ContainsKey(obj)) return;
+        if (MainMenu.AllButtons.ContainsKey(obj)) return;
         SetButtonStatus(obj, false);
         var pb = obj.GetComponent<PassiveButton>();
         pb.OnMouseOver.AddListener((global::System.Action)(() => SetButtonStatus(obj, true)));

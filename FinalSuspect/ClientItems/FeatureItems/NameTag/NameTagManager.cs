@@ -7,7 +7,6 @@ using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
 using Il2CppSystem.Linq;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace FinalSuspect.ClientItems.FeatureItems.NameTag;
 

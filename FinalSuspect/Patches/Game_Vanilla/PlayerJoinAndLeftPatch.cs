@@ -3,6 +3,7 @@ using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
+using FinalSuspect.Modules.Core.Game.UI;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using InnerNet;
 
@@ -13,7 +14,7 @@ public class OnGameJoinedPatch
 {
     public static void Postfix(AmongUsClient __instance)
     {
-        HudManagerPatch.Init();
+        LastResult.DestroyAll();
         Info($"{__instance.GameId} 加入房间", "OnGameJoined");
         FinalGameData.PlayerVersion.PlayerVersions = new Dictionary<int, FinalGameData.PlayerVersion>();
         FinalPlayerData.InitializeAll();
@@ -42,8 +43,8 @@ internal class DisconnectInternalPatch
             ShowDisconnectPopupPatch.StringReason = stringReason;
 
             Info($"断开连接(理由:{reason}:{stringReason}，Ping:{__instance.Ping})", "Session");
-            HudManagerPatch.Init();
             FinalPlayerData.DisposeAll();
+            LastResult.DestroyAll();
 
             ErrorText.Instance.CheatDetected = false;
             ErrorText.Instance.SBDetected = false;

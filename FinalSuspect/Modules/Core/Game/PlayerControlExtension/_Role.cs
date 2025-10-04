@@ -1,6 +1,5 @@
 using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
-using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
@@ -13,7 +12,7 @@ public static class _Role
 
     public static bool IsImpostor(this PlayerControl pc)
     {
-        return !IsLobby && RoleHelper.IsImpostor(pc.GetRoleType());
+        return !IsLobby && pc.GetRoleType().IsImpostor();
     }
 
     public static string GetNameWithRole(this PlayerControl player, bool forUser = false)

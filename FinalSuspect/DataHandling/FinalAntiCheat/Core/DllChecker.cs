@@ -1,11 +1,10 @@
-#if Windows
-using System;
-using System.IO;
-using UnityEngine;
-#endif
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using FinalSuspect.Attributes;
+#if Windows
+using System;
+using System.IO;
+#endif
 
 
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;

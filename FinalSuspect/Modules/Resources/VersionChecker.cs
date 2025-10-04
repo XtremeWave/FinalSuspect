@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.ClientItems.FeatureItems.Resources;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Features;
+using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
 using FinalSuspect.Patches.System;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -73,7 +72,7 @@ public static class VersionChecker
     {
         IsChecked = false;
 #if Windows
-       ModUpdater.DeleteOldFiles();
+        ModUpdater.DeleteOldFiles();
 #endif
 
 
@@ -122,7 +121,7 @@ public static class VersionChecker
             }
 
             ModUpdater.SetUpdateButtonStatus();
-            ModMainMenuManager.VisitText.text = IsChecked
+            MainMenu.VisitText.text = IsChecked
                 ? string.Format(GetString("FinalSuspectWelcomeText"), ColorHelper.FSColorHex)
                 : GetString("RetrieveVersionInfoFailed");
         }, "Check For Update");

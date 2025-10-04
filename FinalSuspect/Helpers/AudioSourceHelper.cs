@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace FinalSuspect.Helpers;
 
 public static class AudioSourceHelper
