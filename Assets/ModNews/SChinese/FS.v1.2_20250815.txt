@@ -135,8 +135,8 @@ Slok在脱离原制作团队后会将精力聚焦于一个全新的游戏——�
 - 增加对好友代码的检测
 - 增加对NonalusAntiCheatMenu的RPC检测
 制作: Nonalus
-- 为BetterAmongUs添加了RPC152检测
-- 为HostGuard添加了RPC176检测
+- 增加对BetterAmongUs的RPC检测
+- 增加对HostGuard的RPC检测
 - 当目录存在其它模组时，将强制关闭游戏
 制作: LezaiYa
 - 游戏内展示预设信息面板

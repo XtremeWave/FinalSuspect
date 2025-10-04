@@ -48,6 +48,8 @@ Starlight为安卓平台带来了模组体验。
 ## 新增
 - 适配**Among Us v17.0.0**
 - 恢复官网
+- 增加对BanMod的RPC检测
+- 增加对VersionCheck的RPC检测
 制作: LezaiYa | 立绘: 小黄117
 - 适配**Starlight**安装模组启动器
 - 开始游戏闪屏动画
