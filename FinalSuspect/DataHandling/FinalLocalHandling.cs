@@ -110,7 +110,8 @@ public static class FinalLocalHandling
                 ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
                 : $"{GetVitalText(data.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
-        else if (roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "")
+        else if ((roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "") &&
+                 !IsActive(SystemTypes.MushroomMixupSabotage))
         {
             color = data.RoleTag.TagColor;
             roleText = !topswap

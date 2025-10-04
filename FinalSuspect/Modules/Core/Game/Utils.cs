@@ -406,6 +406,7 @@ public static class Utils
 
     public static bool IsActive(SystemTypes type)
     {
+        if (!IsInGame) return false;
         if (!IsNormalGame) return false;
         if (!ShipStatus.Instance.Systems.ContainsKey(type)) return false;
 

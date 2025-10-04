@@ -127,6 +127,16 @@ public static class HudManagerPatch
         __instance.SecondaryAbilityButton.gameObject.SetActive(active2);
     }
 
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
+    public static class HudManagerStartPatch
+    {
+        public static void Postfix(HudManager __instance)
+        {
+            var notifier_aspectPosition = __instance.Notifier.GetComponent<AspectPosition>();
+            notifier_aspectPosition.DistanceFromEdge += Vector3.back * 900;
+        }
+    }
+
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class Update
     {
@@ -134,8 +144,6 @@ public static class HudManagerPatch
         {
             LoadingAnima.Create(__instance);
 
-            var notifier_aspectPosition = __instance.Notifier.GetComponent<AspectPosition>();
-            notifier_aspectPosition.DistanceFromEdge -= Vector3.back * 900;
 
             //ModLogo.SetActive(!IsInGame && !IsLobby);
             /*Scrapped

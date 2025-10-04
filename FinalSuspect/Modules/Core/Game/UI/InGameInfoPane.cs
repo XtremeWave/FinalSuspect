@@ -84,21 +84,68 @@ public static class InGameInfoPane
 
     public static void SetShowInfoPanel()
     {
-        var showInfo = ConfigManager.ShowInfoPanel.Value;
-        var map = MapBehaviour.Instance != null && (MapBehaviour.Instance?.gameObject.activeSelf ?? false);
-        var notShowPane =
-            (DestroyableSingleton<HudManager>.Instance?.Chat?.IsOpenOrOpening ?? false)
-            || map
-            || !showInfo
-            || !FinalGameData.IntroDestroyed
-            || (DisplayerRoleTagHelper.selectionUI?.active ?? false);
         if (IsFreePlay || !IsInGame) return;
-        if ((Instance?.gameObject.activeSelf ?? true) && notShowPane)
-        {
-            Test(0);
-            Instance?.DeactivatePane();
-        }
+        var showInfo = ConfigManager.ShowInfoPanel.Value;
 
-        Instance?.gameObject.SetActive(!notShowPane);
+        // 使用独立的方法处理每个可能失败的条件
+        var map = SafeCheckMapStatus();
+        var chatOpen = SafeCheckChatStatus();
+        var selectionUIActive = SafeCheckSelectionUIStatus();
+
+        var notShowPane = chatOpen || map || !showInfo || !FinalGameData.IntroDestroyed || selectionUIActive;
+        SafeSetPanelState(notShowPane);
+    }
+
+    private static bool SafeCheckMapStatus()
+    {
+        try
+        {
+            return MapBehaviour.Instance != null && (MapBehaviour.Instance?.gameObject.activeSelf ?? false);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static bool SafeCheckChatStatus()
+    {
+        try
+        {
+            return DestroyableSingleton<HudManager>.Instance?.Chat?.IsOpenOrOpening ?? false;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static bool SafeCheckSelectionUIStatus()
+    {
+        try
+        {
+            return DisplayerRoleTagHelper.selectionUI?.active ?? false;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static void SafeSetPanelState(bool notShowPane)
+    {
+        try
+        {
+            if ((Instance?.gameObject.activeSelf ?? true) && notShowPane)
+            {
+                Instance?.DeactivatePane();
+            }
+
+            Instance?.gameObject.SetActive(!notShowPane);
+        }
+        catch
+        {
+            /* ignored */
+        }
     }
 }

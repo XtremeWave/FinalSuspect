@@ -1,10 +1,8 @@
 using System;
 using System.Text;
 using AmongUs.Data;
-using AmongUs.GameOptions;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Patches.System;
 using FinalSuspect.Templates;
 using InnerNet;
@@ -65,9 +63,7 @@ public static class LastResult
             new SimpleButton(
                 __instance.transform,
                 "Show Hide Last Result Button",
-                IsInGame
-                    ? new Vector3(0.2f * GetResolutionOffset(), 2.685f, -14f)
-                    : new Vector3(-4.5f * GetResolutionOffset(), 2.6f, -14f), // 比 BackgroundLayer(z = -13) 更靠前
+                Vector3.zero,
                 new Color32(209, 190, 255, byte.MaxValue),
                 new Color32(208, 222, 255, byte.MaxValue),
                 () =>
@@ -84,8 +80,11 @@ public static class LastResult
                 FontSize = 2f
             };
 
-        LastResultButton.Button.gameObject.SetActive(true);
-
+        if (!LastResultButton.Button.gameObject.TryGetComponent<AspectPosition>(out var aspectPosition))
+            aspectPosition = LastResultButton.Button.gameObject.AddComponent<AspectPosition>();
+        aspectPosition.updateAlways = true;
+        aspectPosition.Alignment = AspectPosition.EdgeAlignments.LeftTop;
+        aspectPosition.DistanceFromEdge = new Vector3(IsInGame ? 5.6f : 0.8f, 0.3f, 1f);
         StringBuilder sb = new($"{GetString("Summary.Text")}{LastGameResult}");
         if (IsInGame)
         {
@@ -140,7 +139,7 @@ public static class LastResult
         if (IsInGame)
         {
             LastResultButton.Button.gameObject.SetActive
-            (PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.CrewmateGhost or RoleTypes.ImpostorGhost &&
+            (CanSeeOthersRole() &&
              !IsInMeeting);
         }
         else
