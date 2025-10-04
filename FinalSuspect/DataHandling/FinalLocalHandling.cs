@@ -92,8 +92,15 @@ public static class FinalLocalHandling
         if (!IsInGame) return;
         if (!ConfigManager.EnableFinalSuspect.Value) return;
 
-        var roleType = GetRoleById(data.PlayerId);
         var player = data.Player;
+        if (player.shapeshiftTargetPlayerId != -1)
+        {
+            var playerId = (byte)player.shapeshiftTargetPlayerId;
+            data = GetFinalDataById(playerId);
+            player = data.Player;
+        }
+
+        var roleType = GetRoleById(data.PlayerId);
         var roleTag = data.RoleTag;
 
         if (CanSeeTargetRole(player, out var bothImp))
@@ -101,7 +108,7 @@ public static class FinalLocalHandling
             color = RoleHelper.GetRoleColor(roleType);
             roleText = !topswap
                 ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
-                : $"{GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+                : $"{GetVitalText(data.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
         }
         else if (roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "")
         {

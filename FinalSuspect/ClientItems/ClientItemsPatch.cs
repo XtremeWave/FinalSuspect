@@ -29,7 +29,10 @@ public static class OptionsMenuBehaviourStartPatch
     private static ClientOptionItem<bool> _enableFac;
     private static ClientOptionItem<bool> _enableGuardian;
     private static ClientOptionItem<bool> _showPlayerInfo;
+#if Windows
     private static ClientOptionItem<bool> _useModCursor;
+#endif
+
     private static ClientOptionItem<bool> _fastLaunchMode;
     private static ClientOptionItem<bool> _offlineMode;
 
@@ -125,7 +128,9 @@ public static class OptionsMenuBehaviourStartPatch
             CustomPopup.Show(GetString("ClientOption.OfflineMode"), GetString("UpdateResult.Succeed_Text"),
                 [(GetString(StringNames.ExitGame), Application.Quit)]);
         }));
+#if Windows
         CreateOptionItem(ref _useModCursor, "UseModCursor", ConfigManager.UseModCursor, __instance, SetCursor);
+#endif
 
         if (DebugModeManager.IsDebugMode)
         {
@@ -278,6 +283,7 @@ public static class OptionsMenuBehaviourStartPatch
 
     public static void SetCursor()
     {
+#if Windows
         try
         {
             var sprite = LoadSprite("Cursor.png");
@@ -287,6 +293,7 @@ public static class OptionsMenuBehaviourStartPatch
         {
             ConfigManager.UseModCursor.Value = false;
         }
+#endif
     }
 }
 
