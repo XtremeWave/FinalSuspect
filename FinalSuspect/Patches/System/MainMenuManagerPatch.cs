@@ -1,12 +1,11 @@
 using System;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Features;
+using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Modules.Resources;
 using FinalSuspect.Templates;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
-using static FinalSuspect.Modules.Core.Plugin.ModMainMenuManager;
+using static FinalSuspect.Modules.Core.Plugin.UI.MainMenu;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;

@@ -1,7 +1,6 @@
 using System;
 using FinalSuspect.Helpers;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 

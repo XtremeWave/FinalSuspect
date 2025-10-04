@@ -1,9 +1,8 @@
-﻿#if Windows
+﻿using FinalSuspect.Helpers;
+using FinalSuspect.Patches.System;
+#if Windows
 using FinalSuspect.Attributes;
 #endif
-using FinalSuspect.Helpers;
-using FinalSuspect.Patches.System;
-using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game;
 

@@ -3,7 +3,6 @@ using AmongUs.GameOptions;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 

@@ -50,8 +50,8 @@ public static class ResourcesHelper
         "Plate_Category.png",
         "Plate_Content.png",
         "KeyBackground.png",
-        "KeyLeftShift.png",
-        "KeyRightShift.png",
+        //"KeyLeftShift.png",
+        //"KeyRightShift.png",
         "LastResult-BG.png",
     ];
 

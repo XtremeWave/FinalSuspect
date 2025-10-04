@@ -5,34 +5,27 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Templates;
 using TMPro;
-using UnityEngine;
+using static FinalSuspect.Modules.Core.Game.UI.LastResult;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 
 [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
 internal class AmongUsClientEndGamePatch
 {
-    public static Dictionary<byte, string> SummaryText = new();
-
     public static void Postfix()
     {
         FinalPlayerData.AllPlayerData
             .Where(x => x.RealDeathReason is not VanillaDeathReason.None && !x.IsDead)
             .Do(x => x.SetDead());
-        FinalGameData.LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
+        LastLocalPlayerRoleColor = PlayerControl.LocalPlayer.GetRoleColor();
         SummaryText = new Dictionary<byte, string>();
-        foreach (var data in FinalPlayerData.AllPlayerData)
-            SummaryText[data.PlayerId] = SummaryTexts(data.PlayerId);
+        foreach (var data in FinalPlayerData.AllPlayerData) SummaryText[data.PlayerId] = SummaryTexts(data.PlayerId);
     }
 }
 
 [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
 internal class SetEverythingUpPatch
 {
-    private static TextMeshPro roleSummary;
-    private static SimpleButton showHideButton;
-    private static bool DidHumansWin;
-
     public static void Prefix()
     {
         DidHumansWin = GameManager.Instance.DidHumansWin(EndGameResult.CachedGameOverReason);
@@ -41,7 +34,7 @@ internal class SetEverythingUpPatch
     public static void Postfix(EndGameManager __instance)
     {
         var showInitially = ConfigManager.ShowResults.Value;
-
+        var crewmateWin = DidHumansWin;
         var WinnerTextObject = Object.Instantiate(__instance.WinText.gameObject);
         WinnerTextObject.transform.position = new Vector3(__instance.WinText.transform.position.x,
             __instance.WinText.transform.position.y - 0.5f, __instance.WinText.transform.position.z);
@@ -49,22 +42,25 @@ internal class SetEverythingUpPatch
         var winnerText = WinnerTextObject.GetComponent<TextMeshPro>();
         winnerText.fontSizeMin = 3f;
 
-        var winnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
-        __instance.BackgroundBar.material.color = __instance.WinText.color =
-            winnerText.color = DidHumansWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
-        __instance.WinText.text = DidHumansWin ? GetString("Outro.Crews_Win") : GetString("Outro.Imps_Win");
-        winnerText.text = DidHumansWin ? GetString("Outro.Crews_WinBlurb") : GetString("Outro.Imps_WinBlurb");
+        __instance.BackgroundBar.material.color =
+            __instance.WinText.color =
+                winnerText.color = crewmateWin ? Palette.CrewmateBlue : Palette.ImpostorRed;
+        var winner = $"Outro.{(crewmateWin ? "Crews" : "Imps")}_Win";
+        __instance.WinText.text = GetString(winner);
+        winnerText.text = GetString($"{winner}Blurb");
 
         __instance.WinText.gameObject.SetActive(!showInitially);
         WinnerTextObject.SetActive(!showInitially);
 
-        showHideButton =
+        var winnerColor = DidHumansWin ? "#8CFFFF" : "#FF1919";
+        DestroyAll();
+        LastResultButton =
             new SimpleButton(
                 __instance.transform,
                 "ShowHideResultsButton",
                 new Vector3(-4.5f * GetResolutionOffset(), 2.6f, -14f), // 比 BackgroundLayer(z = -13) 更靠前
-                FinalGameData.LastLocalPlayerRoleColor,
-                FinalGameData.LastLocalPlayerRoleColor.ShadeColor(0.1f),
+                LastLocalPlayerRoleColor,
+                LastLocalPlayerRoleColor.ShadeColor(0.1f),
                 () =>
                 {
                     var setToActive = !roleSummary.gameObject.activeSelf;
@@ -72,7 +68,8 @@ internal class SetEverythingUpPatch
                     ConfigManager.ShowResults.Value = setToActive;
                     __instance.WinText.gameObject.SetActive(!setToActive);
                     WinnerTextObject.SetActive(!setToActive);
-                    showHideButton.Label.text = GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");
+                    LastResultButton.Label.text =
+                        GetString(setToActive ? "Summary.HideResults" : "Summary.ShowResults");
                 },
                 GetString(showInitially ? "Summary.HideResults" : "Summary.ShowResults"))
             {
@@ -81,44 +78,42 @@ internal class SetEverythingUpPatch
             };
 
 
-        showHideButton.Button.gameObject.SetActive(true);
+        LastResultButton.Button.gameObject.SetActive(true);
 
         var lastGameResult = DidHumansWin ? GetString("Summary.CrewsWin") : GetString("Summary.ImpsWin");
-        FinalGameData.LastGameResult = lastGameResult;
+        LastGameResult = lastGameResult;
         StringBuilder sb = new($"{GetString("Summary.Text")}{lastGameResult}");
         var gameCode = StringHelper.ColorString(
             ColorHelper.FSColor,
             DataManager.Settings.Gameplay.StreamerMode
-                ? new string('*', FinalGameData.LastRoomCode.Length)
-                : FinalGameData.LastRoomCode);
-        sb.Append("\n" + FinalGameData.LastServer + "  " + gameCode);
+                ? new string('*', LastRoomCode.Length)
+                : LastRoomCode);
+        sb.Append("\n" + LastServer + "  " + gameCode);
         sb.Append("\n" + GetString("Tip.HideSummaryTextToShowWinText"));
 
         StringBuilder sb2 = new();
         foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor != DidHumansWin))
             sb2.Append($"\n<color={winnerColor}>★</color> ")
-                .Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
+                .Append(SummaryText[data.PlayerId]);
 
         foreach (var data in FinalPlayerData.AllPlayerData.Where(x => x.IsImpostor == DidHumansWin))
-            sb2.Append("\n\u3000 ").Append(AmongUsClientEndGamePatch.SummaryText[data.PlayerId]);
+            sb2.Append("\n\u3000 ").Append(SummaryText[data.PlayerId]);
 
-        FinalGameData.LastGameData = sb2.ToString();
+        LastGameData = sb2.ToString();
         sb.Append(sb2);
-        HudManagerPatch.Init();
+
         roleSummary = TMPTemplate.Create(
             "RoleSummaryText",
             sb.ToString(),
             Color.white,
             1.25f,
             TextAlignmentOptions.TopLeft,
-            showInitially,
-            showHideButton.Button.transform);
+            showInitially, LastResultButton.Button.transform);
         roleSummary.transform.localPosition = new Vector3(1.7f, -0.4f, -1f);
         roleSummary.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
         roleSummary.fontStyle = FontStyles.Bold;
         roleSummary.SetOutlineColor(Color.black);
         roleSummary.SetOutlineThickness(0.15f);
-
         FinalPlayerData.DisposeAll();
     }
 }

@@ -1,5 +1,4 @@
 using FinalSuspect.Helpers;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.Game_Vanilla;

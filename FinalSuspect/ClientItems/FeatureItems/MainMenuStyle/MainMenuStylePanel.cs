@@ -1,9 +1,9 @@
 ﻿using System;
 using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.Helpers;
+using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Patches.System;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using static FinalSuspect.ClientItems.FeatureItems.MainMenuStyle.MainMenuStyleManager;
 using Object = UnityEngine.Object;
@@ -85,7 +85,7 @@ public static class MainMenuStylePanel
             MainMenuStyles.Where(x => x.Applied).Do(x => x.CurrentState = CurrentState.NotApply);
             style.CurrentState = CurrentState.Applied;
             Refresh(style);
-            var sr = ModMainMenuManager.FinalSuspect_Background.GetComponent<SpriteRenderer>();
+            var sr = MainMenu.FinalSuspect_Background.GetComponent<SpriteRenderer>();
 
             sr.sprite = style.Sprite;
             if (id == 3)
@@ -95,8 +95,8 @@ public static class MainMenuStylePanel
                     sr.sprite = LoadSprite("FinalSuspect-BG-MiraStudioNewYear.png", 179f);
             }
 
-            ModMainMenuManager.Starfield.SetActive(style.StarFieldActive);
-            var starGen = ModMainMenuManager.Starfield.GetComponent<StarGen>();
+            MainMenu.Starfield.SetActive(style.StarFieldActive);
+            var starGen = MainMenu.Starfield.GetComponent<StarGen>();
             starGen.SetDirection(new Vector2(0, style.StarGenDire));
 
             var instance = DestroyableSingleton<MainMenuManager>.Instance;
@@ -104,7 +104,7 @@ public static class MainMenuStylePanel
             var standardActiveSprite = instance.newsButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
             var minorActiveSprite = instance.quitButton.activeSprites.GetComponent<SpriteRenderer>().sprite;
             AwakeFriendCodeUIPatch.Prefix();
-            var friendsButton = ModMainMenuManager.FriendsButton.GetComponent<PassiveButton>();
+            var friendsButton = MainMenu.FriendsButton.GetComponent<PassiveButton>();
             Dictionary<List<PassiveButton>, (Sprite, Color, Color, Color, Color)> mainButtons = new()
             {
                 {
@@ -127,10 +127,10 @@ public static class MainMenuStylePanel
                     [
                         instance.creditsButton,
                         instance.quitButton,
-                        ModMainMenuManager.InviteButton.GetComponent<PassiveButton>(),
-                        ModMainMenuManager.GithubButton.GetComponent<PassiveButton>(),
-                        ModMainMenuManager.BugReportButton.GetComponent<PassiveButton>(),
-                        ModMainMenuManager.WebsiteButton.GetComponent<PassiveButton>()
+                        MainMenu.InviteButton.GetComponent<PassiveButton>(),
+                        MainMenu.GithubButton.GetComponent<PassiveButton>(),
+                        MainMenu.BugReportButton.GetComponent<PassiveButton>(),
+                        MainMenu.WebsiteButton.GetComponent<PassiveButton>()
                     ],
                     (minorActiveSprite, style.MainUIColors[2], shade, Color.white, Color.white)
                 },
@@ -146,8 +146,8 @@ public static class MainMenuStylePanel
                         kvp.Value.Item5);
                 });
 
-            if (ModMainMenuManager.BackgroundTexture)
-                ModMainMenuManager.BackgroundTexture.GetComponent<SpriteRenderer>().color =
+            if (MainMenu.BackgroundTexture)
+                MainMenu.BackgroundTexture.GetComponent<SpriteRenderer>().color =
                     style.MainUIColors[0].SetAlpha(1);
 
             var lastAudio = FinalMusic.Musics.FirstOrDefault(x => x.PlayAsMainMenuMusic);

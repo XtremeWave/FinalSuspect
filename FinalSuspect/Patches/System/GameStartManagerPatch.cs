@@ -5,7 +5,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Resources;
 using InnerNet;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 

@@ -7,9 +7,8 @@ using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.ClientItems.FeatureItems.Resources;
 using FinalSuspect.Helpers;
-using FinalSuspect.Modules.Features;
+using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Patches.System;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.ClientItems;
@@ -323,14 +322,14 @@ public static class LanguageSetterSetLanguagePatch
         OptionsMenuBehaviourStartPatch.Recreate = true;
         try
         {
-            Object.Destroy(ModMainMenuManager.VisitText);
+            Object.Destroy(MainMenu.VisitText);
         }
         catch
         {
             /* ignored */
         }
 
-        ModMainMenuManager.VisitText = null;
+        MainMenu.VisitText = null;
         VersionShowerStartPatch.CreateVisitText(null);
         OptionsMenuBehaviourStartPatch.Postfix(OptionsMenuBehaviourStartPatch.Instance);
     }

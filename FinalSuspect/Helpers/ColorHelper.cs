@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace FinalSuspect.Helpers;
+﻿namespace FinalSuspect.Helpers;
 
 public static class ColorHelper
 {

@@ -1,6 +1,5 @@
 using System;
 using AmongUs.GameOptions;
-using UnityEngine;
 
 namespace FinalSuspect.Helpers;
 

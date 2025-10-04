@@ -1,6 +1,5 @@
 using System;
 using FinalSuspect.Helpers;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 

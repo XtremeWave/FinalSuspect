@@ -2,7 +2,6 @@ using AmongUs.GameOptions;
 using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
-using UnityEngine;
 
 namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 

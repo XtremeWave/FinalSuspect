@@ -2,10 +2,9 @@
 using System.Diagnostics.CodeAnalysis;
 using FinalSuspect.Helpers;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 using static FinalSuspect.ClientItems.FeatureItems.MyMusic.AudioPlayer;
+using Object = UnityEngine.Object;
 
 namespace FinalSuspect.ClientItems.FeatureItems.MyMusic;
 

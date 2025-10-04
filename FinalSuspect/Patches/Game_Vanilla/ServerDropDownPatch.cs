@@ -1,6 +1,5 @@
 using System;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = Il2CppSystem.Object;
 

@@ -3,9 +3,9 @@ using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
-using UnityEngine;
+using static FinalSuspect.Modules.Core.Game.UI.ModGameManager;
 
-namespace FinalSuspect.Modules.Features;
+namespace FinalSuspect.Modules.Core.Game.UI;
 
 public static class InGameRoleInfoMenu
 {
@@ -20,6 +20,8 @@ public static class InGameRoleInfoMenu
 
     private static GameObject RoleInfo;
     private static GameObject RoleIllustration;
+
+    private static GameObject _roleInfoPaneButton;
     public static bool Showing => Fill && Fill.active && Menu && Menu.active;
     private static SpriteRenderer FillRend => Fill.GetComponent<SpriteRenderer>();
     private static SpriteRenderer RoleIllustrationRend => RoleIllustration.GetComponent<SpriteRenderer>();
@@ -62,7 +64,7 @@ public static class InGameRoleInfoMenu
         ForceHide();
     }
 
-    public static void SetRoleInfoRef(PlayerControl player)
+    private static void SetRoleInfoRef(PlayerControl player)
     {
         if (!player) return;
         if (!Fill || !Menu) Init();
@@ -74,7 +76,7 @@ public static class InGameRoleInfoMenu
         // 职业阵营 / 原版职业
         var roleTeam = player.IsImpostor() ? "Imp" : "Crew";
         builder.Append($"<size={BodySize}> ({GetString($"RoleType.{roleTeam}")})\n");
-        builder.Append($"<size={BodySize}>{RoleHelper.GetRoleInfoForVanilla(player.GetRoleType(), true) ?? ""}\n");
+        builder.Append($"<size={BodySize}>{player.GetRoleType().GetRoleInfoForVanilla(true) ?? ""}\n");
         RoleInfoTMP.text = builder.ToString();
         var HnSPrefix = "";
         if (!IsNormalGame && player.IsAlive())
@@ -82,7 +84,7 @@ public static class InGameRoleInfoMenu
         RoleIllustrationRend.sprite = LoadSprite($"CI_{HnSPrefix + role}.png", 320f);
     }
 
-    public static void Toggle()
+    private static void Toggle()
     {
         if (Showing)
             Hide();
@@ -92,27 +94,73 @@ public static class InGameRoleInfoMenu
         }
     }
 
-    public static void Show()
+    private static void Show()
     {
         if (!Fill || !Menu) Init();
         if (Showing) return;
         Fill?.SetActive(true);
         Menu?.SetActive(true);
-        //HudManager.Instance?.gameObject.SetActive(false);
     }
 
-    public static void Hide()
+    private static void Hide()
     {
         if (!Showing) return;
-        Fill?.SetActive(false);
-        Menu?.SetActive(false);
-        //HudManager.Instance?.gameObject?.SetActive(true);
+        ForceHide();
     }
 
-    public static void ForceHide()
+    private static void ForceHide()
     {
         Fill?.SetActive(false);
         Menu?.SetActive(false);
-        //HudManager.Instance?.gameObject?.SetActive(true);
+    }
+
+    [GameModuleInitializer]
+    public static void OnInitialization()
+    {
+        var lobbyPane = InGameInfoPane.Instance;
+        var aspect = lobbyPane.transform.FindChild("AspectSize");
+        CreateRoleInfoButton(aspect);
+    }
+
+    private static void CreateRoleInfoButton(Transform aspect)
+    {
+        if (_roleInfoPaneButton != null)
+        {
+            Object.Destroy(_roleInfoPaneButton);
+            _roleInfoPaneButton = null;
+        }
+
+        var buttonTemplate = aspect.FindChild("GameCodeSection").FindChild("CopyGameCodeButton").gameObject;
+        _roleInfoPaneButton = CreateFunctionalButton(
+            buttonTemplate,
+            HudManager.Instance.gameObject.transform,
+            "Role Info Panel Button",
+            new Vector3(-0.2f, -0.5f, 1f),
+            "roleHelp.png",
+            new Color(0.8f, 0.8f, 0.8f, 0.3f),
+            new Vector3(0.58f, 1.85f, -800f),
+            () =>
+            {
+                if (!IsInGame || (!IsCanMove && !IsInMeeting)) return;
+                if (!Showing)
+                    SetRoleInfoRef(PlayerControl.LocalPlayer);
+                Toggle();
+            }
+        );
+    }
+
+    public static void CheckForHotkey()
+    {
+        if (IsInGame && (IsCanMove || IsInMeeting))
+        {
+            if (!Input.GetKeyDown(KeyCode.F1)) return;
+            if (!Showing)
+                SetRoleInfoRef(PlayerControl.LocalPlayer);
+            Toggle();
+        }
+        else
+        {
+            Hide();
+        }
     }
 }

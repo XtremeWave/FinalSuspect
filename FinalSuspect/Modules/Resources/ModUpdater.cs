@@ -1,3 +1,5 @@
+using FinalSuspect.Modules.Core.Plugin.UI;
+using TMPro;
 #if Windows
 using System;
 using System.IO;
@@ -5,10 +7,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using FinalSuspect.Modules.Features;
-using UnityEngine;
 #endif
-using TMPro;
 
 namespace FinalSuspect.Modules.Resources;
 
@@ -19,10 +18,10 @@ public class ModUpdater
 
     public static void SetUpdateButtonStatus()
     {
-        ModMainMenuManager.UpdateButton.SetActive(VersionChecker.IsChecked && VersionChecker.HasUpdate &&
-                                                  (VersionChecker.FirstStart || VersionChecker.ForceUpdate));
-        ModMainMenuManager.PlayButton.SetActive(!ModMainMenuManager.UpdateButton.activeSelf);
-        var buttonText = ModMainMenuManager.UpdateButton.transform.FindChild("FontPlacer").GetChild(0)
+        MainMenu.UpdateButton.SetActive(VersionChecker.IsChecked && VersionChecker.HasUpdate &&
+                                        (VersionChecker.FirstStart || VersionChecker.ForceUpdate));
+        MainMenu.PlayButton.SetActive(!MainMenu.UpdateButton.activeSelf);
+        var buttonText = MainMenu.UpdateButton.transform.FindChild("FontPlacer").GetChild(0)
             .GetComponent<TextMeshPro>();
         buttonText.text =
             $"{(VersionChecker.CanUpdate ? GetString("UpdateRemind.updatePopup") : GetString("UpdateRemind.updateNotice"))}\nv{VersionChecker.ShowVer ?? " ???"}";

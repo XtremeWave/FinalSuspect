@@ -1,7 +1,6 @@
 using System;
 using BepInEx.Configuration;
 using FinalSuspect.Helpers;
-using UnityEngine;
 
 namespace FinalSuspect.ClientItems;
 

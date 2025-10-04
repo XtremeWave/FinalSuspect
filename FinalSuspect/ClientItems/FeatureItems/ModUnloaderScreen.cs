@@ -2,7 +2,6 @@ using System;
 using FinalSuspect.Patches.System;
 using InnerNet;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 

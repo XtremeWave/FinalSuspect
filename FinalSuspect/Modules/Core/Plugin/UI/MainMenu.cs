@@ -1,9 +1,8 @@
 using TMPro;
-using UnityEngine;
 
-namespace FinalSuspect.Modules.Core.Plugin;
+namespace FinalSuspect.Modules.Core.Plugin.UI;
 
-public static class ModMainMenuManager
+public static class MainMenu
 {
     public static MainMenuManager Instance;
 
@@ -41,4 +40,5 @@ public static class ModMainMenuManager
     public static TextMeshPro CreditTextCredential;
     public static GameObject ModLogo;
     public static GameObject AuthorLogo;
+    public static string CredentialsText;
 }

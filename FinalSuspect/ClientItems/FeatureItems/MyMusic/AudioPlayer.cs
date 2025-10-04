@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 

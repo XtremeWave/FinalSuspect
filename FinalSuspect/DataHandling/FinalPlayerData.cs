@@ -6,7 +6,6 @@ using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.DisplayedRoleTag;
-using UnityEngine;
 
 namespace FinalSuspect.DataHandling;
 
@@ -50,7 +49,7 @@ public class FinalPlayerData : IDisposable
         if (!RoleAssigned)
         {
             RoleWhenAlive = role;
-            SetAsImp(RoleHelper.IsImpostor(role));
+            SetAsImp(role.IsImpostor());
         }
         else
         {

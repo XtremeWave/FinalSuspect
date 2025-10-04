@@ -27,6 +27,7 @@ public static class ConfigManager
     public static ConfigEntry<string> HideName { get; private set; }
     public static ConfigEntry<string> HideColor { get; private set; }
     public static ConfigEntry<bool> ShowResults { get; private set; }
+    public static ConfigEntry<bool> ShowInfoPanel { get; private set; }
     public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
     public static ConfigEntry<BypassType> LanguageUpdateBypass { get; private set; }
     public static ConfigEntry<int> CurrentStyleId { get; private set; }
@@ -40,13 +41,14 @@ public static class ConfigManager
         HideColor = config.Bind("Final System", "Hide Game Code Color", $"{ColorHelper.FSColorHex}");
         EnableFinalSuspect = config.Bind("Final System", "Enable Final Suspect", true);
         ShowResults = config.Bind("Final System", "Show Results", true);
+        ShowInfoPanel = config.Bind("Final System", "Show InfoPanel", true);
         LanguageUpdateBypass = config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
-        CurrentStyleId = config.Bind("Final System", "BG Id", 0);
+        CurrentStyleId = config.Bind("Final System", "Background Id", 0);
 
         UnlockFPS = config.Bind("Client Options", "Unlock FPS", false);
         SwitchOutfitType = config.Bind("Client Options", "Switch Outfit", OutfitType.BeanMode);
-        KickPlayerWithAbnormalFriendCode = config.Bind("Client Options", "Kick Player FriendCode Not Exist", true);
-        KickPlayerInBanList = config.Bind("Client Options", "Kick Player In BanList", true);
+        KickPlayerWithAbnormalFriendCode = config.Bind("Client Options", "Kick Player With Abnormal FriendCode", true);
+        KickPlayerInBanList = config.Bind("Client Options", "Kick Player In Ban List", true);
         KickPlayerWithDenyName = config.Bind("Client Options", "Kick Player With Deny Name", true);
         SpamDenyWord = config.Bind("Client Options", "Spam Deny Word", true);
         AutoStartGame = config.Bind("Client Options", "Auto Start Game", false);
@@ -59,8 +61,8 @@ public static class ConfigManager
         OfflineMode = config.Bind("Client Options", "Offline Mode", false);
         UseModCursor = config.Bind("Client Options", "Use Mod Cursor", true);
 
-        VersionCheat = config.Bind("Client Options", "Version Cheat", false);
-        GodMode = config.Bind("Client Options", "God Mode", false);
-        NoGameEnd = config.Bind("Client Options", "No Game End", false);
+        VersionCheat = config.Bind("Debug Options", "Version Cheat", false);
+        GodMode = config.Bind("Debug Options", "God Mode", false);
+        NoGameEnd = config.Bind("Debug Options", "No Game End", false);
     }
 }

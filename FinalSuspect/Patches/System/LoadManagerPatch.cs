@@ -1,5 +1,4 @@
 using FinalSuspect.Helpers;
-using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
 namespace FinalSuspect.Patches.System;

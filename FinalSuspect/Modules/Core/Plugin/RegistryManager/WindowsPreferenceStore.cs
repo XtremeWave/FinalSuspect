@@ -1,6 +1,7 @@
 #if Windows
 #pragma warning disable CA1416
 using System;
+using System.IO;
 using Microsoft.Win32;
 
 namespace FinalSuspect.Modules.Core.Plugin.RegistryManager;
@@ -38,7 +39,7 @@ public class WindowsPreferenceStore : IPreferenceStore
     {
         try
         {
-            SetString("Path", System.IO.Path.GetFullPath("./"));
+            SetString("Path", Path.GetFullPath("./"));
             Info("[WindowsPreferenceStore] 注册表初始化完成", "Registry Manager");
         }
         catch (Exception e)

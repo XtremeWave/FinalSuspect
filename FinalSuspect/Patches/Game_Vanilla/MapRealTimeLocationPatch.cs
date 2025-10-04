@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 

@@ -14,13 +14,13 @@ public static class ResourcesDownloader
     public static async Task<bool> StartDownload(FileType fileType, string file)
     {
         return await DownloadInternal(fileType, file,
-            (remoteType) => GetFile(fileType, remoteType, file));
+            remoteType => GetFile(fileType, remoteType, file));
     }
 
     public static async Task<bool> StartDownloadAsPackage(string packageName, FileType fileType, string file)
     {
         return await DownloadInternal(fileType, file,
-            (remoteType) => GetPackageFile(packageName, remoteType, file));
+            remoteType => GetPackageFile(packageName, remoteType, file));
     }
 
     private static async Task<bool> DownloadInternal(

@@ -1,7 +1,7 @@
 ﻿using System;
 using FinalSuspect.Attributes;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
-using UnityEngine;
+using FinalSuspect.Modules.Core.Game.UI;
 
 namespace FinalSuspect.Modules.Features;
 

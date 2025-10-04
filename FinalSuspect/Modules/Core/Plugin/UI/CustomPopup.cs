@@ -1,13 +1,12 @@
 ﻿using System;
 using FinalSuspect.Helpers;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 #pragma warning disable CS8602 // 解引用可能出现空引用。
 
-namespace FinalSuspect.Modules.Features;
+namespace FinalSuspect.Modules.Core.Plugin.UI;
 
 #nullable enable
 public static class CustomPopup

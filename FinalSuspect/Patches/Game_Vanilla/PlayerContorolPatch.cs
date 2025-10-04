@@ -1,7 +1,6 @@
 using AmongUs.GameOptions;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using TMPro;
-using UnityEngine;
 
 namespace FinalSuspect.Patches.Game_Vanilla;
 

@@ -8,7 +8,6 @@ using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Plugin.RegistryManager;
 using FinalSuspect.Modules.Resources;
 using TMPro;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
@@ -72,17 +71,9 @@ public static class LoadPatch
 
     private static void CreateTextComponents(SplashManager instance)
     {
-        _loadText = CreateTextComponent(instance, new Vector3(0f, -0.28f, -10f));
-        _processText = CreateTextComponent(instance, new Vector3(0f, -0.7f, -10f));
-    }
-
-    private static TextMeshPro CreateTextComponent(SplashManager instance, Vector3 position)
-    {
-        var text = Object.Instantiate(instance.errorPopup.InfoText, null);
-        text.transform.localPosition = position;
-        text.fontStyle = FontStyles.Bold;
-        text.text = string.Empty;
-        return text;
+        var temp = instance.errorPopup.InfoText;
+        _loadText = ObjectHelper.InstantiateTextComponent(temp, new Vector3(0f, -0.28f, -10f));
+        _processText = ObjectHelper.InstantiateTextComponent(temp, new Vector3(0f, -0.7f, -10f));
     }
 
     private static void CreateLogoComponents()

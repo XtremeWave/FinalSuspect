@@ -9,7 +9,6 @@ using FinalSuspect.Internal;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Resources;
 using Il2CppInterop.Runtime.Injection;
-using UnityEngine;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -48,7 +47,6 @@ public class Main : BasePlugin
     public static bool hasArgumentException;
     public static string ExceptionMessage;
     public static bool ExceptionMessageIsShown;
-    public static string CredentialsText;
 
     public static readonly bool IsInitialRelease = DateTime.Now is { Month: 8, Day: >= 15 and <= 19 };
     public static readonly bool IsAprilFools = DateTime.Now is { Month: 4, Day: >= 1 and <= 10 };
