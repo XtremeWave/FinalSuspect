@@ -76,14 +76,12 @@ public static class RoleHelper
     {
         var text = role.ToString();
 
-        if (!roleHelp)
+        if (!roleHelp || role is RoleTypes.Crewmate or RoleTypes.Impostor)
         {
             return GetString($"{text}Blurb");
         }
 
-        return role is RoleTypes.Crewmate or RoleTypes.Impostor
-            ? GetString($"{text}Blurb")
-            : $"{GetString($"RolesHelp_{text}_01")}\n{GetString($"RolesHelp_{text}_02")}";
+        return $"{GetString($"RolesHelp_{text}_01")}\n{GetString($"RolesHelp_{text}_02")}";
     }
 
     private static string GetHideNSeekRoleInfo(RoleTypes role, bool roleHelp)

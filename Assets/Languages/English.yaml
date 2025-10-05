@@ -31,7 +31,6 @@ Role.Tracker: "Tracker"
 Role.Noisemaker: "Noisemaker"
 Role.Detective: "Detective"
 Role.GuardianAngel: "Guardian Angel"
-Role.Detective: "Detective"
 Role.Impostor: "Impostor"
 Role.Shapeshifter: "Shapeshifter"
 Role.Phantom: "Phantom"
@@ -159,8 +158,6 @@ UpdateRemind.BySelf_Text: "This version does not support one-click update, pleas
 UpdateSource.Choose: "Please choose update source\nIf unsure, choose [Github]"
 UpdateSource.Github: "Github"
 UpdateSource.Gitee: "Gitee"
-UpdateSource.FinalApi: "Api"
-UpdateSource.FangKuaiRemote: "Fangkuai Remote(Recommand not)"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "We have an important update, please update this mod\nOtherwise you cannot join public rooms"
