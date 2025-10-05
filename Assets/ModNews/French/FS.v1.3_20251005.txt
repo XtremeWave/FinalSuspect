@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Bienvenue Android！★★★★
+#ShortTitle:★Mise à Jour Version : v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Français
+Starlight offre une SUPERBE opportunité de jouer aux MODs sur Android !!!!
+Nous supportons maintenant Starlight dans sa dernière version.
+Profitez de votre jeu sur Starlight !
+
+## Version Requise
+- Basé sur Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Informations sur la Version du Mod
+- Version de l'Assembly : v1.3.0
+- Type de Version : Release
+- Création : 1
+
+## Contenu de la Mise à Jour
+- Corrections de Bugs : 5
+- Optimisations : 1
+- Ajustements : 3
+- Nouveaux Contenus : 9
+- Suppressions : 1
+
+## Contributeurs
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Corrections de Bugs
+- Corrigé le problème d'erreurs d'interface sur certaines résolutions
+- Corrigé le problème où 'démarrage auto quand plein' provoquait un plantage après plusieurs lancements
+- Corrigé le problème où le panneau d'informations prédéfini ne pouvait être masqué
+- Corrigé le problème où le Métamorphe affichait toujours notes originales et tags de réunion après transformation
+- Corrigé le problème de mauvais alignement des informations de revue
+Corrigé par : Slok
+
+## Optimisation
+- Optimisation d'une partie du code
+Optimisé par : Slok
+
+## Ajustements
+- Modifié le format de présentation des rôles
+Créé par : Slok, LezaiYa
+- Réduction appropriée du panneau d'informations prédéfini
+- [LezaiYa](https://github.com/NewLezaiYa) inclus comme **développeur**
+Créé par : Slok
+
+## Nouveaux Contenus
+- Site web rétabli
+- Détection RPC pour **BanMod** ajoutée
+- Détection RPC pour **VersionCheck** ajoutée
+Créé par : LezaiYa
+- Compatible avec **Starlight**
+- Animation de splash au démarrage
+- Raccourcis : Passer le compte à rebours de début de partie
+- Raccourcis : Présentation des rôles
+- Raccourcis : Afficher/Masquer le panneau d'infos prédéfini
+Créé par : Slok
+- Ajusté pour **Among Us v17.0.0**
+Créé par : LezaiYa | Illustré par : 小黄117
+
+## Suppressions
+- Supprimé temporairement : ~~MajG : Rejoindre le dernier lobby~~
+- Supprimé temporairement : ~~MajD : Rejoindre le lobby dans le presse-papiers~~
+Décidé par : Slok | Raison : Risque de clics accidentels & Aucun espace approprié pour l'affichage

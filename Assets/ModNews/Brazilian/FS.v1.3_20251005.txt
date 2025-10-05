@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Bem-vindo Android！★★★★
+#ShortTitle:★Atualização de Versão: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Portuguese
+Starlight oferece uma ótima oportunidade para jogar MODs no Android !!!!
+Agora, suportamos o Starlight na versão mais recente.
+Aproveite seu jogo no Starlight!
+
+## Versão Requerida
+- Baseado em Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Informações da Versão do Mod
+- Versão do Assembly: v1.3.0
+- Tipo de Versão: Release
+- Criação: 1
+
+## Conteúdos da Atualização
+- Correções de Bugs: 5
+- Otimizações: 1
+- Ajustes: 3
+- Novos Conteúdos: 9
+- Exclusões: 1
+
+## Contribuidores
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Correção de Bugs
+- Corrigido o problema de erros de UI em certas resoluções
+- Corrigido o problema em que o erro 'início automático quando lotado' causava crash do jogo após múltiplos inícios
+- Corrigido o problema em que o quadro de informações pré-definido não podia ser ocultado
+- Corrigido o problema em que o Metamorfo ainda exibia as notas originais e tags de reunião após se transformar
+- Corrigido o problema de informações de revisão desalinhadas
+Correções: Slok
+
+## Otimização
+- Otimização de parte do código
+Otimização: Slok
+
+## Ajustes
+- Modificado o formato de introdução de funções
+Criação: Slok, LezaiYa
+- Reduzido apropriadamente o painel de informações pré-definido
+- Incluir [LezaiYa](https://github.com/NewLezaiYa) como **desenvolvedor**
+Criação: Slok
+
+## Novos Conteúdos
+- Site recuperado
+- Adicionada detecção RPC para **BanMod**
+- Adicionada detecção RPC para **VersionCheck**
+Criação: LezaiYa
+- Compatibilidade com **Starlight**
+- Animação de splash ao iniciar o jogo
+- Teclas de atalho: Pular contagem regressiva de início do jogo
+- Teclas de atalho: Introdução de funções
+- Teclas de atalho: Mostrar/Ocultar painel de informações pré-definido
+Criação: Slok
+- Ajuste para **Among Us v17.0.0**
+Criação: LezaiYa | Ilustração: 小黄117
+
+## Exclusões
+- Exclusão temporária: ~~Shift Esquerdo: Entrar na última sala~~
+- Exclusão temporária: ~~Shift Direito: Entrar na sala na área de transferência~~
+Decisão: Slok | Razão: Fácil causar cliques acidentais & Sem espaço apropriado para exibição

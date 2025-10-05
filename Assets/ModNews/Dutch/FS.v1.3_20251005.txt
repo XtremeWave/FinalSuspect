@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Welkom Android！★★★★
+#ShortTitle:★Versie Update: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Dutch
+Starlight biedt een GEWELDIGE kans om MODs te spelen op Android !!!!
+We ondersteunen nu Starlight in de nieuwste versie.
+Geniet van je spel in Starlight!
+
+## Vereiste Versie
+- Gebaseerd op Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Mod Versie-informatie
+- Assembly Versie: v1.3.0
+- Versie Type: Release
+- Creatie: 1
+
+## Update-inhoud
+- Bug Reparaties: 5
+- Optimalisaties: 1
+- Aanpassingen: 3
+- Nieuwe Inhoud: 9
+- Verwijderingen: 1
+
+## Bijdragers
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Bug Reparaties
+- Opgelost: UI-fouten die optraden bij bepaalde resoluties
+- Opgelost: 'Auto-start wanneer vol' veroorzaakte crashes door meerdere startpogingen
+- Opgelost: Vooringesteld informatiebord kon niet worden verborgen
+- Opgelost: Vormverschuiver toonde nog originele notities en vergadertags na transformatie
+- Opgelost: Uitgelijnde reviewinformatie
+Opgelost door: Slok
+
+## Optimalisatie
+- Optimalisatie van enkele code
+Opgelost door: Slok
+
+## Aanpassingen
+- Aangepast formaat van rolintroductie
+Gemaakt door: Slok, LezaiYa
+- Verkleind vooringesteld informatiepaneel
+- [LezaiYa](https://github.com/NewLezaiYa) toegevoegd als **developer**
+Gemaakt door: Slok
+
+## Nieuwe Inhoud
+- Website hersteld
+- RPC-detectie voor **BanMod** toegevoegd
+- RPC-detectie voor **VersionCheck** toegevoegd
+Gemaakt door: LezaiYa
+- Compatibel met **Starlight**
+- Startanimatie bij opstarten spel
+- Sneltoetsen: Startaftelling overslaan
+- Sneltoetsen: Rolintroductie
+- Sneltoetsen: Vooringesteld infopaneel tonen/verbergen
+Gemaakt door: Slok
+- Aangepast voor **Among Us v17.0.0**
+Gemaakt door: LezaiYa | Geïllustreerd door: 小黄117
+
+## Verwijderd
+- Tijdelijk verwijderd: ~~LShift: Naar laatste lobby~~
+- Tijdelijk verwijderd: ~~RShift: Naar lobby op klembord~~
+Besloten door: Slok | Reden: Gemakkelijk per ongeluk aan te klikken & Geen geschikte weergaveruimte

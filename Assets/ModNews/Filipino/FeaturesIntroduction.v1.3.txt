@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Ang Aming Mga Nilalaman ng Update★★★★
+#ShortTitle:★v1.3 Pagpapakilala sa Update
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Filipino
+## Saklaw ng file na ito ang mga pag-iingat at pagpapakilala ng feature! Pakibasang mabuti ang file na ito!
+## Pag-iingat!
+- Kung nakakita ka ng cheater, ibig sabihin noon ay nandaya na sila dati o nasa mod blacklist, ngunit hindi ibig sabihin na nandadaya sila kapag nakita mo sila.
+Halimbawa: Kung makakita ka ng (Invalid RPC:151), maaaring sila ay mga gumagamit ng **「Better Among Us」**, ngunit hindi inaangkop ng FS ang RPC nito, at kinukumpirma ng FS bilang cheater ang nagpapadala ng invalid na RPC.
+Tiyak, huwag mag-alala, dahil sa aming mga natatanging paraan ng pagkilala, hindi ka maituring na cheater ng mga ito!
+- Kung may bug, paki-click ang "Client Features - Dump Logs" para i-dump ang log at ipadala sa amin!
+- Maliban sa "简体中文" at "English", ang ibang wika ay isinalin ng AI. Makipag-ugnayan kung hindi tama ang pagsasalin!
+- Kung i-enable ang offline mode, titigil ang mod sa pagkuha ng mga banned na salita, anunsyo, remote resources at update check, at hindi magda-download ng mga kailangang resources. Maaaring hindi makakuha ng mahahalagang update o makaranas ng hindi inaasahang error. Gamitin nang maingat!
+
+## Mga Optimize - 29
+*Global:* 
+- Mod cursor
+- Mod icon
+*Pangunahing Menu:* 
+- Start game animation
+- Loading animation - Role illustrations
+- Main menu UI layout
+- Main menu background
+*Online Search:* 
+- Pinahusay na pagpapakita ng pangalan ng lobby
+- May kulay na pangalan ng pribadong server
+*InGame-Global:* 
+- FPS & Server display
+- Mod version display
+- Pinahusay na kulay ng chat bubble
+- Pinahusay na background ng chat bubble
+- Pinahusay na dahilan ng pagdiskonekta
+- Pinahusay na paulit-ulit na pagsuri ng pangalan
+- Pinahusay na game start animation
+- Idinagdag na loading animation - Role illustrations
+- Pinahusay na kulay ng loading bar
+*InGame-Lobby:* 
+- Pinahusay na Lobby Information Background
+- May kulay na game settings editing interface
+- Pinahusay na game settings editing background
+- May kulay na game settings viewing interface
+- Idinagdag na team logo sa lobby
+*InGame-Matches:* 
+- Roundstart Animation
+- Kulayan ang mini map ayon sa iyong team at role
+- Iba't ibang kulay ayon sa iyong role
+- Kulayan ang mga teksto ng skill button
+- Kulayan ang mga teksto ng cooldown ng skill button
+- Ipakita ang player na umalis sa laro
+*GameResult:*
+- Pinahusay na mga teksto ng resulta
+
+## Mga Feature - 57
+*Global:(Settings-Client Settings)*
+- Dump logs
+- Clear auto logs
+- Switch Vanilla
+- Resource Manager(Pangunahing menu lang magamit)
+- Name Tag Manager(Pangunahing menu lang magamit)
+- My Music(Suportado ang custom na musika, uri: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Palitan ang istilo ng pangunahing menu
+*Loading:*
+- Auto-download ng remote mod resources(Auto-exit ng laro kapag nabigo ang pag-download ng mahahalagang resources)
+*Main Menu:*
+- Auto-check updates
+*Online Search:*
+- Ipakita ang platform ng host at kulayan ang pangalan ng lobby ayon dito
+- Ipakita ang room code
+- Ipakita ang porsyento ng oras ng pagsasara
+- Higit pang opsyon sa server
+- Ipakita ang pangalan ng host
+*InGame-Global:*
+- Final Anti-Cheat(FAC 2.0)
+- Client Protection(Depensahan ang hacker na direktang umaatake sa executable)
+- Pagsuri at pagharang sa mga banned na salita
+- I-unlock ang FPS(Mula 60FPS hanggang 165FPS)
+- Auto-kick sa mga player na umabot sa ilang kondisyon
+*InGame-Lobby:*
+- Ipakita ang platform at impormasyon ng client ng player
+- Auto-start game kapag puno ang lobby
+- Kilalanin ang ibang player na nag-i-install ng FS
+- Ipakita ang oras ng pagsasara(Gumagana lang kapag hindi nagbago ang host)
+- I-reset ang game start countdown
+- Laktawan ang game start countdown
+*InGame-Matches:*
+- Ipakita ang Scene & Roles
+- Ipakita ang task progress/kill counts
+- Mag-zoom in/out gamit ang mouse wheel(Gagamitin lang sa practice mode, local game, sa lobby at pagkatapos mamatay kapag hindi guardian angel)
+- Ipakita ang role, task progress/kill counts at posisyon ng bawat player pagkatapos mamatay kapag hindi guardian angel
+- Ipakita ang posisyon ng bawat player at katawan sa mini map pagkatapos mamatay kapag hindi guardian angel
+- Ipakita ang dahilan ng kamatayan at murderer
+- Ipakita ang huling resulta pagkatapos mamatay
+- Kulayan ang pangalan kapag tinutuntun ang ibang player sa pamamagitan ng haunting
+- Easter eggs sa April Map
+- Tag system sa mga pagpupulong(Maaaring i-tag ang ibang player para matandaan ang kanilang mga role)
+- Ipakita ang pangkalahatang task progress sa porsyento
+- Pagpapakilala sa role
+- Gamitin ang preset information board sa laro
+*Results:*
+- Buod(Role, task progress/kill counts, dahilan ng kamatayan at murderer)
+- Auto-return sa lobby
+*Hotkeys-Global:*
+- F4: Fullscreen
+- F10: Buksan ang game root directory
+- F11: Baguhin ang resolution
+- Ctrl+F1: Dump log
+- Ctrl+F2: I-switch kung maaaring mag-dump ng logs kapag nasa matches(Host lang)
+*Hotkeys-MainMenu:*
+- Tab: Itago ang UI
+*Hotkeys-Chat:*
+- Ctrl+C: Kopyahin ang teksto sa chat box
+- Ctrl+V: I-paste ang teksto sa chat box
+- Ctrl+X: I-cut ang teksto sa chat box
+- ↑: I-track ang iyong huling kasaysayan ng pag-chat
+- ↓: I-track ang iyong susunod na kasaysayan ng pag-chat
+*Hotkeys-OnlineSearch:*
+- LShift: Sumali sa huling room na sinalihan mo
+- RShift: Sumali sa room gamit ang room code sa iyong clipboard
+*Hotkeys-InGame:*
+- F1: Ipakita ang iyong pagpapakilala at ilustrasyon ng role
+- F2: Ipakita/Itago ang mga preset ng laro
+*Hotkeys-Lobby:*
+- Shift: Laktawan ang game start countdown(Host lang)
+- C: I-reset ang game start countdown(Host lang)
+
+*Options:(Settings-ClientSettings) - 15*
+- Palitan ang Uri ng Outfit
+[Classic Mode - April Fools' Horse Mode - April Fools' Long Mode]
+- I-unlock ang FPS
+- I-kick ang mga player na may abnormal na Friend Codes
+- I-kick ang mga player na gumagamit ng banned na palayaw
+- I-kick ang mga banned na player
+- Harangan ang mga banned na salita
+- Auto-start ang laro kapag puno
+- Auto-return sa lobby kapag nagtapos ang laro
+- I-disable ang Vanilla game music
+- I-enable ang anti-cheat
+- I-enable ang Client Guardian (Experimental)
+- Ipakita ang player platform & client info
+- Gamitin ang mod cursor
+- Fast launch mode
+- Offline mode(Experimental)
+*Options:(Others)*
+- Palitan ang istilo ng mapa(Sa The Skeld lang, at ang button ay nasa security)

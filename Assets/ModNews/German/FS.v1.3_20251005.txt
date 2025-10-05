@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Willkommen Android！★★★★
+#ShortTitle:★Versions-Update: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Deutsch
+Starlight bietet eine GROßARTIGE Möglichkeit, MODs auf Android zu spielen !!!
+Wir unterstützen nun Starlight in der neuesten Version.
+Viel Spaß beim Spielen mit Starlight!
+
+## Erforderliche Version
+- Basierend auf Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Mod-Versionsinformationen
+- Assembly-Version: v1.3.0
+- Versionstyp: Release
+- Erstellung: 1
+
+## Update-Inhalte
+- Fehlerbehebungen: 5
+- Optimierungen: 1
+- Anpassungen: 3
+- Neue Inhalte: 9
+- Entfernungen: 1
+
+## Mitwirkende
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Fehlerbehebungen
+- Behoben: UI-Fehler bei bestimmten Auflösungen
+- Behoben: "Auto-Start bei vollem Raum" verursachte Abstürze durch mehrfaches Starten
+- Behoben: Voreingestelltes Info-Board konnte nicht ausgeblendet werden
+- Behoben: Gestaltwandler zeigte nach Verwandlung weiterhin ursprüngliche Notizen und Meeting-Tags
+- Behoben: Fehlausrichtung der Überprüfungsinformationen
+Behoben von: Slok
+
+## Optimierung
+- Optimierung eines Teils des Codes
+Optimiert von: Slok
+
+## Anpassungen
+- Geändertes Format der Rolleneinführung
+Erstellt von: Slok, LezaiYa
+- Angemessene Verkleinerung des voreingestellten Info-Panels
+- [LezaiYa](https://github.com/NewLezaiYa) als **Entwickler** aufgenommen
+Erstellt von: Slok
+
+## Neue Inhalte
+- Website wiederhergestellt
+- RPC-Erkennung für **BanMod** hinzugefügt
+- RPC-Erkennung für **VersionCheck** hinzugefügt
+Erstellt von: LezaiYa
+- Kompatibel mit **Starlight**
+- Start-Splash-Animation
+- Tastenkombinationen: Countdown überspringen
+- Tastenkombinationen: Rolleneinführung
+- Tastenkombinationen: Voreingestelltes Info-Panel ein-/ausblenden
+Erstellt von: Slok
+- Angepasst für **Among Us v17.0.0**
+Erstellt von: LezaiYa | Illustriert von: 小黄117
+
+## Entfernungen
+- Vorläufig entfernt: ~~UmschaltLinks: Letzter Beitrittsraum~~
+- Vorläufig entfernt: ~~UmschaltRechts: Raum in Zwischenablage~~
+Entschieden von: Slok | Grund: Leichte Fehlbedienung & Kein angemessener Anzeigebereich

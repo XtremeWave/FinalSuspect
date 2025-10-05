@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★I Nostri Contenuti dell'Aggiornamento★★★★
+#ShortTitle:★Introduzione Aggiornamento v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Italiano
+## Questo file copre avvertenze e introduzioni alle funzionalità! Si prega di leggere attentamente questo file!
+## Attenzione!
+- Se vedi un cheater, significa che hanno già truccato o sono nella blacklist del mod, ma non significa che stiano truccando quando li vedi.
+Esempio: Se incontri (RPC Non Valido:151), potrebbero essere utenti di **「Better Among Us」**, ma FS non adatta il suo RPC, e FS conferma come cheater chi invia RPC non validi.
+Sicuramente, non preoccupatevi, grazie ai nostri metodi di riconoscimento unici, non sarete considerati cheater da loro!
+- Se si verifica un bug, fate clic su "Funzioni Client - Scarica Log" per scaricare il log e inviacelo!
+- Eccetto "简体中文" e "English", altre lingue sono tradotte da IA. Contattateci se la traduzione non è corretta!
+- Se abiliti la modalità offline, il mod smetterà di acquisire parole bannate, annunci, risorse remote e controllo aggiornamenti, e non scaricherà risorse necessarie. Ciò potrebbe comportare aggiornamenti critici mancanti o errori sconosciuti. Usare con cautela!
+
+## Ottimizzazioni - 29
+*Globale:*
+- Cursore del mod
+- Icona del mod
+*Menu Principale:*
+- Animazione avvio gioco
+- Animazione caricamento - Illustrazioni ruoli
+- Layout UI menu principale
+- Sfondo menu principale
+*Ricerca Online:*
+- Visualizzazione nome lobby ottimizzata
+- Nome server privato colorato
+*In Gioco-Globale:*
+- Visualizzazione FPS & Server
+- Visualizzazione versione mod
+- Colore bolla chat ottimizzato
+- Sfondo bolla chat ottimizzato
+- Motivo disconnessione ottimizzato
+- Controllo nomi ripetuti ottimizzato
+- Animazione inizio gioco ottimizzata
+- Aggiunta animazione caricamento - Illustrazioni ruoli
+- Colore barra caricamento ottimizzato
+*In Gioco-Lobby:*
+- Sfondo Informazioni Lobby ottimizzato
+- Interfaccia modifica impostazioni di gioco colorata
+- Sfondo modifica impostazioni di gioco ottimizzato
+- Interfaccia visualizzazione impostazioni di gioco colorata
+- Aggiunto logo squadra in lobby
+*In Gioco-Partite:*
+- Animazione Inizio Round
+- Colora la minimappa in base alla tua squadra e ruolo
+- Colori diversi in base al tuo ruolo
+- Colora testi pulsanti abilità
+- Colora testi ricarica abilità
+- Mostra il giocatore che lascia la partita
+*Risultato Gioco:*
+- Testi risultato ottimizzati
+
+## Funzionalità - 57
+*Globale:(Impostazioni-Impostazioni Client)*
+- Scarica log
+- Pulisci log automatici
+- Passa a Vanilla
+- Gestione Risorse (Usabile solo nel menu principale)
+- Gestione Etichette Nome (Usabile solo nel menu principale)
+- La Mia Musica (Supporta musica personalizzata, tipi: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Cambia stile menu principale
+*Caricamento:*
+- Download automatico risorse mod remote (Uscita automatica gioco se download risorse critiche fallisce)
+*Menu Principale:*
+- Controllo automatico aggiornamenti
+*Ricerca Online:*
+- Mostra piattaforma host e colora nome lobby di conseguenza
+- Mostra codice stanza
+- Mostra percentuale tempo chiusura
+- Più opzioni server
+- Mostra nome host
+*In Gioco-Globale:*
+- Final Anti-Cheat (FAC 2.0)
+- Protezione Client (Difende da hacker che attaccano l'eseguibile direttamente)
+- Controllo e blocco parole bannate
+- Sblocca FPS (Da 60FPS a 165FPS)
+- Espulsione automatica giocatori che soddisfano condizioni
+*In Gioco-Lobby:*
+- Mostra piattaforma giocatore e informazioni client
+- Avvio automatico quando lobby piena
+- Riconosci altri giocatori che installano FS
+- Mostra orario chiusura (Funziona solo se host non è cambiato)
+- Ripristina conto alla rovescia inizio partita
+- Salta conto alla rovescia inizio partita
+*In Gioco-Partite:*
+- Mostra Scena & Ruoli
+- Mostra avanzamento compiti/conteggio uccisioni
+- Zoom avanti/indietro con rotellina mouse (Usabile solo in modalità pratica, gioco locale, in lobby e dopo morte non essendo angelo custode)
+- Mostra ruolo, avanzamento compiti/conteggio uccisioni e posizione di ogni giocatore dopo morte non essendo angelo custode
+- Mostra posizioni di ogni giocatore e corpo sulla minimappa dopo morte non essendo angelo custode
+- Mostra causa morte e assassini
+- Mostra ultimi risultati dopo morte
+- Colora nome quando si traccia altro giocatore tramite infestazione
+- Uova di Pasqua nella Mappa di Aprile
+- Sistema etichette in riunioni (Puoi etichettare altri giocatori per ricordare i loro ruoli)
+- Mostra avanzamento compiti generale in percentuale
+- Introduzione ruoli
+- Usa pannello informazioni preimpostato in gioco
+*Risultati:*
+- Riepilogo (Ruolo, avanzamento compiti/conteggio uccisioni, causa morte e assassino)
+- Ritorno automatico a lobby
+*Scelte Rapide-Globale:*
+- F4: Schermo intero
+- F10: Apri directory radice gioco
+- F11: Cambia risoluzione
+- Ctrl+F1: Scarica log
+- Ctrl+F2: Attiva/disattiva scaricamento log in partita (Solo host)
+*Scelte Rapide-MenuPrincipale:*
+- Tab: Nascondi UI
+*Scelte Rapide-Chat:*
+- Ctrl+C: Copia testo nella chat
+- Ctrl+V: Incolla testo nella chat
+- Ctrl+X: Taglia testo nella chat
+- ↑: Traccia cronologia chat precedente
+- ↓: Traccia cronologia chat successiva
+*Scelte Rapide-RicercaOnline:*
+- MaiuscSx: Unisciti all'ultima stanza
+- MaiuscDx: Unisciti alla stanza con codice negli appunti
+*Scelte Rapide-InGioco:*
+- F1: Mostra introduzione e illustrazione del tuo ruolo
+- F2: Mostra/Nascondi preimpostazioni di gioco
+*Scelte Rapide-Lobby:*
+- Maiusc: Salta conto alla rovescia inizio partita (Solo host)
+- C: Ripristina conto alla rovescia inizio partita (Solo host)
+
+*Opzioni:(Impostazioni-Impostazioni Client) - 15*
+- Cambia Tipo Outfit
+[Modalità Classica - Modalità Cavallo Pesce d'Aprile - Modalità Lunga Pesce d'Aprile]
+- Sblocca FPS
+- Espelli giocatori con Codice Amico anormale
+- Espelli giocatori che usano nickname bannati
+- Espelli giocatori bannati
+- Blocca parole bannate
+- Avvio automatico quando pieno
+- Ritorno automatico a lobby a fine partita
+- Disabilita musica vanilla di gioco
+- Abilita anti-cheat
+- Abilita Guardiano Client (Sperimentale)
+- Mostra piattaforma giocatore e info client
+- Usa cursore mod
+- Modalità avvio veloce
+- Modalità offline (Sperimentale)
+*Opzioni:(Altri)*
+- Cambia stile mappa (Solo su The Skeld, pulsante in sicurezza)

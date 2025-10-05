@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★¡Bienvenido Android！★★★★
+#ShortTitle:★Actualización de Versión: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Español
+¡Starlight ofrece una GRAN oportunidad para jugar MODs en Android !!!!
+Ahora, admitimos Starlight en la versión más reciente.
+¡Disfruta tu juego en Starlight!
+
+## Versión Requerida
+- Basado en Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Información de Versión del Mod
+- Versión de Ensamblado: v1.3.0
+- Tipo de Versión: Release
+- Creación: 1
+
+## Contenido de Actualización
+- Correcciones de Errores: 5
+- Optimizaciones: 1
+- Ajustes: 3
+- Nuevos Contenidos: 9
+- Eliminaciones: 1
+
+## Contribuidores
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Corrección de Errores
+- Solucionado el problema de errores de UI en ciertas resoluciones
+- Solucionado el problema donde 'inicio automático cuando esté lleno' causaba fallos tras múltiples inicios
+- Solucionado el problema donde el panel de información preestablecido no podía ocultarse
+- Solucionado el problema donde el Cambiaformas seguía mostrando notas originales y etiquetas de reunión tras transformarse
+- Solucionado el problema de información de revisión desalineada
+Solucionado por: Slok
+
+## Optimización
+- Optimización de parte del código
+Optimizado por: Slok
+
+## Ajustes
+- Modificado el formato de introducción de roles
+Creado por: Slok, LezaiYa
+- Reducido apropiadamente el panel de información preestablecido
+- Incluir [LezaiYa](https://github.com/NewLezaiYa) como **desarrollador**
+Creado por: Slok
+
+## Nuevos Contenidos
+- Sitio web recuperado
+- Agregada detección RPC para **BanMod**
+- Agregada detección RPC para **VersionCheck**
+Creado por: LezaiYa
+- Compatible con **Starlight**
+- Animación splash al iniciar el juego
+- Accesos directos: Saltar cuenta regresiva de inicio
+- Accesos directos: Introducción de roles
+- Accesos directos: Mostrar/Ocultar panel de información preestablecido
+Creado por: Slok
+- Ajustado para **Among Us v17.0.0**
+Creado por: LezaiYa | Ilustrado por: 小黄117
+
+## Eliminaciones
+- Eliminado temporalmente: ~~MayúsIzq: Unirse a la última sala~~
+- Eliminado temporalmente: ~~MayúsDer: Unirse a la sala en el portapapeles~~
+Decidido por: Slok | Razón: Fácil causar clics accidentales & Sin espacio apropiado para mostrar

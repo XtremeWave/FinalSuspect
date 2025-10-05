@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Nuestros Contenidos de Actualización★★★★
+#ShortTitle:★Introducción a la Actualización v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Español
+## ¡Este archivo cubre advertencias e introducción de funciones! ¡Por favor lea este archivo completamente y con cuidado!
+## ¡Atención!
+- Si ves un tramposo, significa que alguna vez hicieron trampa o están en la lista negra del mod, pero no significa que estén haciendo trampa cuando los ves.
+Ejemplo: Si encuentras (RPC Inválido:151), podrían ser usuarios de **「Better Among Us」**, pero FS no adapta su RPC, y FS confirma como tramposo a quien envía RPC inválidos.
+Por supuesto, no te preocupes, debido a nuestros métodos de reconocimiento únicos, ¡no serás considerado tramposo por ellos!
+- Si ocurre un error, haz clic en "Funciones del Cliente - Volcar Registros" para volcar el registro y ¡envíanoslo junto con el error!
+- Excepto "简体中文" y "English", otros idiomas son traducidos por IA. ¡Por favor contáctanos si la traducción es incorrecta!
+- Si activas el modo offline, el mod dejará de obtener palabras prohibidas, anuncios, recursos remotos y verificaciones de actualización, y ya no descargará recursos necesarios. Esto podría hacerte perder actualizaciones críticas o encontrar errores imprevistos. ¡Úsalo con cuidado!
+
+## Optimizaciones - 29
+*Global:*
+- Cursor del mod
+- Icono del mod
+*Menú Principal:*
+- Animación de inicio del juego
+- Animación de carga - Illustraciones de roles
+- Diseño de UI del menú principal
+- Fondo del menú principal
+*Búsqueda en Línea:*
+- Visualización de nombre de sala optimizada
+- Nombre de servidor privado coloreado
+*En Juego-Global:*
+- Visualización de FPS y Servidor
+- Visualización de versión del mod
+- Color de burbuja de chat optimizado
+- Fondo de burbuja de chat optimizado
+- Razón de desconexión optimizada
+- Verificación de nombres repetidos optimizada
+- Animación de inicio de juego optimizada
+- Animación de carga agregada - Illustraciones de roles
+- Color de barra de carga optimizado
+*En Juego-Lobby:*
+- Fondo de Información del Lobby optimizado
+- Interfaz de edición de configuraciones de juego coloreada
+- Fondo de edición de configuraciones de juego optimizado
+- Interfaz de visualización de configuraciones de juego coloreada
+- Logo de equipo agregado en el lobby
+*En Juego-Partidas:*
+- Animación de Inicio de Ronda
+- Colorear el minimapa según tu equipo y rol
+- Colores diferentes según tu rol
+- Colorear textos de botones de habilidad
+- Colorear textos de enfriamiento
+- Mostrar al jugador que abandona el juego
+*Resultado del Juego:*
+- Textos de resultado optimizados
+
+## Funciones - 57
+*Global:(Configuraciones-Configuraciones del Cliente)*
+- Volcar registros
+- Limpiar registros automáticos
+- Cambiar a Vanilla
+- Administrador de Recursos (Solo usable en menú principal)
+- Administrador de Etiquetas de Nombre (Solo usable en menú principal)
+- Mi Música (Soporta música personalizada, tipos: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Cambiar estilo del menú principal
+*Cargando:*
+- Descarga automática de recursos remotos del mod (Salida automática del juego si falla descarga de recursos críticos)
+*Menú Principal:*
+- Verificación automática de actualizaciones
+*Búsqueda en Línea:*
+- Mostrar plataforma del anfitrión y colorear el nombre del lobby en consecuencia
+- Mostrar código de sala
+- Mostrar el porcentaje de tiempo restante
+- Más opciones de servidor
+- Mostrar nombre del anfitrión
+*En Juego-Global:*
+- Final Anti-Cheat (FAC 2.0)
+- Protección del Cliente (Defiende de hackers que atacan el ejecutable directamente)
+- Verificación y bloqueo de palabras prohibidas
+- Desbloquear FPS (De 60FPS a 165FPS)
+- Expulsión automática de jugadores que cumplen condiciones
+*En Juego-Lobby:*
+- Mostrar plataforma del jugador e información del cliente
+- Inicio automático cuando el lobby esté lleno
+- Reconocer otros jugadores que instalan FS
+- Mostrar tiempo de cierre (Solo funciona si el anfitrión no ha cambiado)
+- Reiniciar cuenta regresiva de inicio del juego
+- Saltar cuenta regresiva de inicio del juego
+*En Juego-Partidas:*
+- Mostrar Escena y Roles
+- Mostrar progreso de tareas/recuento de muertes
+- Acercar/Alejar usando la rueda del mouse (Solo usable en modo práctica, juego local, en lobby y después de morir sin ser ángel guardián)
+- Ver rol, progreso de tareas/recuento de muertes y posición de cada jugador después de morir sin ser ángel guardián
+- Ver posiciones de cada jugador y cadáveres en el minimapa después de morir sin ser ángel guardián
+- Ver causa de muerte y asesinos
+- Usar información de revisión después de morir
+- Colorear el nombre al rastrear otro jugador por fantasmas
+- Huevos de pascua en el Mapa de Abril
+- Sistema de etiquetas en reuniones (Puedes etiquetar otros jugadores para recordar sus identidades)
+- Mostrar progreso general de tareas en porcentaje
+- Introducción de roles
+- Usar panel de información preestablecido en el juego
+*Resultados:*
+- Información de revisión (Rol, progreso de tareas/recuento de muertes, causa de muerte y asesino)
+- Retorno automático al lobby
+*Accesos Directos-Global:*
+- F4: Pantalla completa
+- F10: Abrir directorio raíz del juego
+- F11: Cambiar resolución
+- Ctrl+F1: Volcar registro
+- Ctrl+F2: Cambiar si los registros se pueden volcar durante partidas (Solo anfitrión)
+*Accesos Directos-MenúPrincipal:*
+- Tab: Ocultar IU
+*Accesos Directos-Chat:*
+- Ctrl+C: Copiar texto en tu caja de chat
+- Ctrl+V: Pegar texto en tu caja de chat
+- Ctrl+X: Cortar texto en tu caja de chat
+- ↑: Rastrear tu historial de chat anterior
+- ↓: Rastrear tu siguiente historial de chat
+*Accesos Directos-BúsquedaEnLínea:*
+- MayúsIzq: Unirse a la última sala
+- MayúsDer: Unirse a la sala con el código en el portapapeles
+*Accesos Directos-EnJuego:*
+- F1: Mostrar introducción e ilustración de tu rol
+- F2: Mostrar/Ocultar preestablecimientos del juego
+*Accesos Directos-Lobby:*
+- Mayús: Saltar cuenta regresiva de inicio del juego (Solo anfitrión)
+- C: Reiniciar cuenta regresiva de inicio del juego (Solo anfitrión)
+
+*Opciones:(Configuraciones-Configuraciones del Cliente) - 15*
+- Cambiar Tipo de Atuendo
+[Modo Clásico - Modo Caballo de Abril - Modo Largo de Abril]
+- Desbloquear FPS
+- Expulsar jugadores con Códigos de Amigo anormales
+- Expulsar jugadores que usan apodos prohibidos
+- Expulsar jugadores prohibidos
+- Bloquear palabras prohibidas
+- Inicio automático cuando esté lleno
+- Retorno automático al lobby al terminar el juego
+- Desactivar música vanilla del juego
+- Activar anti-trampas
+- Activar Guardián del Cliente (Experimental)
+- Mostrar plataforma e información del cliente del jugador
+- Usar cursor del mod
+- Modo de inicio rápido
+- Modo offline (Experimental)
+*Opciones:(Otros)*
+- Cambiar estilo de mapa (Solo en The Skeld, botón en seguridad)

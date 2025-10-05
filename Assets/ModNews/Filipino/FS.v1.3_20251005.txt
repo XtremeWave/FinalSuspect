@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Maligayang Pagdating Android！★★★★
+#ShortTitle:★Update ng Bersyon: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Filipino
+Nagbibigay ang Starlight ng isang NAPAKAGANDANG pagkakataon para maglaro ng MODS sa Android !!!!
+Ngayon, sinusuportahan namin ang Starlight sa pinakabagong bersyon.
+Magsaya sa iyong laro sa Starlight!
+
+## Kinakailangang Bersyon
+- Batay sa Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Impormasyon ng Bersyon ng Mod
+- Bersyon ng Assembly: v1.3.0
+- Uri ng Bersyon: Release
+- Pagkakalikha: 1
+
+## Mga Nilalaman ng Update
+- Mga Pag-aayos ng Bug: 5
+- Mga Pag-optimize: 1
+- Mga Pag-aayos: 3
+- Mga Bagong Nilalaman: 9
+- Mga Pagtanggal: 1
+
+## Mga Kontribyutor
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Pag-aayos ng Bug
+- Inayos ang isyu ng mga error sa UI sa ilang mga resolution
+- Inayos ang isyu kung saan ang error na 'auto-start game kapag puno' ay nagdulot ng pag-crash ng laro pagkatapos ng maraming pag-start
+- Inayos ang isyu kung saan ang preset na information board ay hindi maaaring itago
+- Inayos ang isyu kung saan ang shapeshifter ay nagpapakita pa rin ng orihinal na mga tala at meeting tag pagkatapos mag-transform
+- Inayos ang isyu ng hindi pantay na review information
+Nag-ayos: Slok
+
+## Pag-optimize
+- Pinainam ang ilang bahagi ng code
+Nag-ayos: Slok
+
+## Mga Pag-aayos
+- Binago ang format ng role introduction
+Gumawa: Slok, LezaiYa
+- Angkop na binawasan ang preset information panel
+- Isinama si [LezaiYa](https://github.com/NewLezaiYa) bilang **developer**
+Gumawa: Slok
+
+## Mga Bagong Nilalaman
+- Naibalik ang website
+- Idinagdag ang RPC detection para sa **BanMod**
+- Idinagdag ang RPC detection para sa **VersionCheck**
+Gumawa: LezaiYa
+- Magkatugma sa **Starlight**
+- Game start splash animation
+- Mga Hotkey: Laktawan ang game start countdown
+- Mga Hotkey: Role introduction
+- Mga Hotkey: Ipakita/Itago ang preset info panel
+Gumawa: Slok
+- Inayos para sa **Among Us v17.0.0**
+Gumawa: LezaiYa |  Ilinustra: 小黄117
+
+## Mga Tinanggal
+- Pansamantaling tinanggal: ~~LShift: Pumasok sa huling lobby~~
+- Pansamantaling tinanggal: ~~RShift: Pumasok sa lobby na nasa clipboard~~
+Desisyon: Slok | Dahilan: Madaling magdulot ng maling pag-click at Walang angkop na espasyo para ipakita

@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Fáilte Android！★★★★
+#ShortTitle:★Nuashonrú Leagain: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Gaeilge
+Tugann Starlight deis iontach duit MODanna a imirt ar Android !!!!
+Tacaímid le Starlight sa leagan is déanaí anois.
+Bain sult as do chluiche i Starlight!
+
+## Leagan Atá ag Teastáil
+- Bunaithe ar Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Eolas Leagain Mod
+- Leagan an Tionóil: v1.3.0
+- Cineál Leagain: Release
+- Cruthú: 1
+
+## Ábhar an Nuashonraithe
+- Deiseanna Feabhais: 5
+- Optamúcháin: 1
+- Coigeartuithe: 3
+- Ábhar Nua: 9
+- Scartálaithe: 1
+
+## Rannpháirtithe
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Deiseanna Feabhais
+- Leasaigh an fhadhb go raibh earráidí UI ag léiriú ag réitigh áirithe
+- Leasaigh an fhadhb gur thúsú iomadach a chruthaigh an earráid 'tús uathoibríoch nuair líonta' agus gur thit an cluiche
+- Leasaigh an fhadbh nach bhféadfaí an bord faisnéise réamhshocraithe a cheilt
+- Leasaigh an fhadhb go raibh an Shapeshifter fós ag taispeáint na nótaí bunaidh agus clibeanna cruinnithe tar éis a chlaochlaithe
+- Leasaigh an fhadhb faisnéise athbhreithnithe mí-ailínithe
+Leasaithe ag: Slok
+
+## Optamú
+- Optamaigh cuid den chód
+Optamaithe ag: Slok
+
+## Coigeartuithe
+- Modhnaigh formáid na treorach ról
+Cruthaithe ag: Slok, LezaiYa
+- Laghdaigh an painéal faisnéise réamhshocraithe go cuí
+- Cuir [LezaiYa](https://github.com/NewLezaiYa) san áireamh mar **fhorbhraitheoir**
+Cruthaithe ag: Slok
+
+## Ábhar Nua
+- Suíomh Gréasáin athchóirithe
+- Braiteacht RPC le haghaidh **BanMod** curtha leis
+- Braiteacht RPC le haghaidh **VersionCheck** curtha leis
+Cruthaithe ag: LezaiYa
+- Comhoiriúnach le **Starlight**
+- Beochan Splais tosaigh cluiche
+- Eochaircheap: Scipeáil an t-íosluchtú tosaigh cluiche
+- Eochaircheap: Treorach Ról
+- Eochaircheap: Taispeáin/Folaigh an painéal faisnéise réamhshocraithe
+Cruthaithe ag: Slok
+- Coigeartaigh do **Among Us v17.0.0**
+Cruthaithe ag: LezaiYa | Maisithe ag: 小黄117
+
+## Scartálaithe
+- Scartáil go sealadach: ~~LShift: Dul isteach sa stocaireacht dheireanach~~
+- Scartáil go sealadach: ~~RShift: Dul isteach sa stocaireacht ar an ngearrthaisce~~
+Cinneadh ag: Slok | Fáth: Éasca do bhuitseáil & Gan spás iomchuí taispeána

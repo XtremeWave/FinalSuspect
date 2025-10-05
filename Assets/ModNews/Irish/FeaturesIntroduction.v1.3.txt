@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Ár nÁbhar Nuashonraithe★★★★
+#ShortTitle:★Réamhrá don Nuashonrú v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Gaeilge
+## Clúdaíonn an comhad seo rabhaidh agus cur síos ar ghnéithe! Léigh an comhad seo go cúramach!
+## Rabhadh!
+- Má fheiceann tú caimiléir, ciallaíonn sé sin go ndearna siad caimiléireacht cheana nó go bhfuil siad ar liosta dubh an mod, ach ní chiallaíonn sé go bhfuil siad ag caimiléireacht nuair a fheiceann tú iad.
+Sampla: Má bhuaileann tú le (RPC Neamhbhailí:151), d'fhéadfadh siad a bheith ina n-úsáideoirí de **「Better Among Us」**, ach ní oiriúnaíonn FS a RPC, agus deimhníonn FS gur caimiléir iad siúd a sheolann RPC neamhbhailí.
+Cinnte, ná bíodh imní ort, mar gheall ar ár modhanna aitheantais uathúla, ní mheasfar gur caimiléir thú acu!
+- Má tharlaíonn fabht, cliceáil ar "Gnóthais Cliant - Dumpáil Logaí" chun logaí a dhumpáil agus seol chugainn iad!
+- Seachas "简体中文" agus "English", is AI a d'aistrigh teangacha eile. Déan teagmháil linn mura bhfuil an t-aistriúchán ceart!
+- Má chumasaíonn tú mód as líne, stopfaidh an mod ag fáil focal coiscthe, fógraí, acmhainní cianda agus seiceálacha nuashonraithe, agus ní uaslódáilfidh sé acmhainní riachtanacha. D'fhéadfadh sé seo nuashonruithe criticiúla a chailleadh nó earráidí anaithnide a tharlú. Úsáid go cúramach!
+
+## Optamuithe - 29
+*Domhanda:*
+- Cúrsóir mod
+- Deilbhín mod
+*Príomhroghchlár:*
+- Beochan tosú cluiche
+- Beochan lódála - Léaráidí ról
+- Leagan amach Chomhéadain Príomhroghchláir
+- Cúlra Príomhroghchláir
+*Cuardach Ar Líne:*
+- Taispeáint aimn an stocaireacht feabhsaithe
+- Ainm freastalaí príobháidigh daite
+*Sa Chluiche-Domhanda:*
+- Taispeáint SRA & Freastalaí
+- Taispeáint leagain mod
+- Dath an bolgán comhrá feabhsaithe
+- Cúlra an bholgáin chomhrá feabhsaithe
+- Cúis dhícheangal feabhsaithe
+- Seic athchleachtaithe ainm feabhsaithe
+- Beochan tosú cluiche feabhsaithe
+- Beochan lódála curtha leis - Léaráidí ról
+- Dath an mhaide lódála feabhsaithe
+*Sa Chluiche-Stocaireacht:*
+- Cúlra Eolais Stocaireachta feabhsaithe
+- Comhéadan eagarthóireacht socruithe cluiche daite
+- Cúlra eagarthóireacht socruithe cluiche feabhsaithe
+- Comhéadan amharc socruithe cluiche daite
+- Lógó foirne curtha leis sa stocaireacht
+*Sa Chluiche-Cluichí:*
+- Beochan Tosaigh Babhta
+- Dath an mhapa bídeach de réir d'fhoireann agus ról
+- Dath éagsúil de réir do ról
+- Dath téacs cnaipí scileanna
+- Dath téacs fuarúcháin
+- Taispeáin an t-imreoir a fhágann an cluiche
+*Toradh Cluiche:*
+- Téacsanna toraidh feabhsaithe
+
+## Gnóthais - 57
+*Domhanda:(Socruithe-Socruithe Cliant)*
+- Dumpáil logaí
+- Glan logaí uathoibríocha
+- Athraigh go Vanilla
+- Bainisteoir Acmhainní (Ní húsáidte ach sa phríomhroghchlár)
+- Bainisteoir Lipéid Ainm (Ní húsáidte ach sa phríomhroghchlár)
+- Mo Cheol (Tacaíonn le ceol saincheaptha, cineál: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Athraigh stíl an phríomhroghchláir
+*Ag Lódáil:*
+- Uaslódáil uathoibríoch acmhainní mod cianda (Éaluathoibríoch as an gcluiche nuair a theipeann ar acmhainní criticiúla)
+*Príomhroghchlár:*
+- Seiceáil uathoibríoch nuashonraithe
+*Cuardach Ar Líne:*
+- Taispeáin ardán an óstaigh agus dath aimn an stocaireacht dá réir
+- Taispeáin cód seomra
+- Taispeáin an céatadán ama dúnta
+- Níos mó roghanna freastalaí
+- Taispeáin ainm an óstaigh
+*Sa Chluiche-Domhanda:*
+- Frithcheith Final (FAC 2.0)
+- Cosaint Cliant (Cosnaíonn in aghaidh hacaeir a ionsaíonn an inrite go díreach)
+- Seiceáil & bloc focal coiscthe
+- Díghlas SRA (Ó 60SRA go 165SRA)
+- Rútáil uathoibríoch imreoirí a chomhlíonann coinníollacha
+*Sa Chluiche-Stocaireacht:*
+- Taispeáin ardán an imreora agus eolas cliant
+- Tosú uathoibríoch nuair atá an stocaireacht lán
+- Aithnigh imreoirí eile a shuiteálann FS
+- Taispeáin am dúnta (Ní oibríonn ach gan athrú ar an óstach)
+- Athshocraigh comhaireamh siar tosú cluiche
+- Scipeáil comhaireamh siar tosú cluiche
+*Sa Chluiche-Cluichí:*
+- Taispeáin Radharc & Róil
+- Taispeáin dul chun cinn tasc/comhaireamh maraíochta
+- Súmáil isteach/amach ag úsáid roth na luiche (Ní húsáidte ach sa mhód cleachtaidh, cluiche logánta, sa stocaireacht agus tar éis báis gan a bheith mar aingeal coimirce)
+- Taispeáin ról, dul chun cinn tasc/comhaireamh maraíochta agus suíomh gach imreora tar éis báis gan a bheith mar aingeal coimirce
+- Taispeáin suíomhanna gach imreora agus coirp ar an mapa bídeach tar éis báis gan a bheith mar aingeal coimirce
+- Taispeáin cúis báis & dúnmharfóirí
+- Taispeáin torthaí deireanacha tar éis báis
+- Dath an ainm agus tú ag rianú imreora eile trí thaibhsiú
+- Uibheacha Cásca i Léarscáil an Aibreáin
+- Córas Clibeanna i gcruinnithe (Is féidir imreoirí eile a chlibeáil chun a n-róil a mheabhrú)
+- Taispeáin an dul chun cinn tasc ginearálta i gcéatadán
+- Réamhrá ról
+- Úsáid clár eolais réamhshocraithe sa chluiche
+*Torthaí:*
+- Achoimre (Ról, dul chun cinn tasc/comhaireamh maraíochta, cúis báis & dúnmharfóir)
+- Filleadh uathoibríoch ar an stocaireacht
+*Eochairroghanna-Domhanda:*
+- F4: Lánscáileán
+- F10: Oscail príomhchomhadlann an chluiche
+- F11: Athraigh táscríocht
+- Ctrl+F1: Dumpáil log
+- Ctrl+F2: Athraigh an bhfuil logaí indumpáilte ina cluichí (Ostach amháin)
+*Eochairroghanna-Príomhroghchlár:*
+- Tab: Folaigh Chomhéadain
+*Eochairroghanna-Comhrá:*
+- Ctrl+C: Cóipeáil téacs i do bhosca comhrá
+- Ctrl+V: Greamaigh téacs i do bhosca comhrá
+- Ctrl+X: Gearr téacs i do bhosca comhrá
+- ↑: Rianaigh do stair chomhrá deireanach
+- ↓: Rianaigh do stair chomhrá chéad cheann eile
+*Eochairroghanna-CuardachArLíne:*
+- LShift: Ceangail leis an seomra deireanach
+- RShift: Ceangail leis an seomra leis an cód sa ghearrthaisce
+*Eochairroghanna-SaChluiche:*
+- F1: Taispeáin do réamhrá ról agus léaráid
+- F2: Taispeáin/Folaigh réamhshocruithe an chluiche
+*Eochairroghanna-Stocaireacht:*
+- Shift: Scipeáil comhaireamh siar tosú cluiche (Ostach amháin)
+- C: Athshocraigh comhaireamh siar tosú cluiche (Ostach amháin)
+
+*Roghanna:(Socruithe-Socruithe Cliant) - 15*
+- Athraigh Cineál Feisteas
+[Mód Clasaiceach - Mód Capall an Amadáin - Mód Fada an Amadáin]
+- Díghlas SRA
+- Ciceáil imreoirí le Cód Cairde neamhghnácha
+- Ciceáil imreoirí a úsáideann leasainmneacha coiscthe
+- Ciceáil imreoirí coiscthe
+- Bac focal coiscthe
+- Tosú uathoibríoch nuair líonta
+- Filleadh uathoibríoch ar an stocaireacht nuair a chríochnaíonn an cluiche
+- Díchumasaigh ceol vanilla an chluiche
+- Cumasaigh frithcheith
+- Cumasaigh Caomhnóir Cliant (Trialach)
+- Taispeáin ardán imreora & eolas cliant
+- Úsáid cúrsóir mod
+- Mód tosaigh tapa
+- Mód as líne (Trialach)
+*Roghanna:(Eile)*
+- Athraigh stíl an léarscáil (Ní hamháin ar The Skeld, agus tá an cnaipe sa tslándáil)

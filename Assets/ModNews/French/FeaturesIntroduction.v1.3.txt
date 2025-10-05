@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Nos Contenus de Mise à Jour★★★★
+#ShortTitle:★Introduction à la Mise à Jour v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Français
+## Ce fichier couvre les avertissements et l'introduction des fonctionnalités ! Veuillez lire ce fichier attentivement !
+## Attention !
+- Si vous voyez un tricheur, cela signifie qu'il a déjà triché ou qu'il est sur la liste noire du mod, mais cela ne signifie pas qu'il triche au moment où vous le voyez.
+Exemple : Si vous rencontrez (RPC Invalide:151), ils pourraient être des utilisateurs de **「Better Among Us」**, mais FS n'adapte pas son RPC, et FS confirme comme tricheur quiconque envoie un RPC invalide.
+Bien sûr, ne vous inquiétez pas, grâce à nos méthodes de reconnaissance uniques, vous ne serez pas considéré comme tricheur par eux !
+- Si un bug survient, veuillez cliquer sur "Fonctions Client - Exporter les Logs" pour exporter les logs et nous les envoyer !
+- Sauf "简体中文" et "English", les autres langues sont traduites par IA. Veuillez nous contacter si la traduction est incorrecte !
+- Si vous activez le mode hors ligne, le mod cessera d'acquérir les mots bannis, annonces, ressources distantes et vérifications de mise à jour, et ne téléchargera pas les ressources nécessaires. Cela peut entraîner des mises à jour critiques manquées ou des erreurs inconnues. Utilisez-le avec prudence !
+
+## Optimisations - 29
+*Global :*
+- Curseur du mod
+- Icône du mod
+*Menu Principal :*
+- Animation de démarrage du jeu
+- Animation de chargement - Illustrations des rôles
+- Disposition de l'interface du menu principal
+- Arrière-plan du menu principal
+*Recherche en Ligne :*
+- Affichage du nom du salon optimisé
+- Nom du serveur privé coloré
+*En Jeu-Global :*
+- Affichage FPS & Serveur
+- Affichage de la version du mod
+- Couleur de la bulle de chat optimisée
+- Arrière-plan de la bulle de chat optimisé
+- Raison de déconnexion optimisée
+- Vérification des noms répétés optimisée
+- Animation de début de jeu optimisée
+- Animation de chargement ajoutée - Illustrations des rôles
+- Couleur de la barre de chargement optimisée
+*En Jeu-Salon :*
+- Arrière-plan des Informations du Salon optimisé
+- Interface d'édition des paramètres colorée
+- Arrière-plan d'édition des paramètres optimisé
+- Interface de consultation des paramètres colorée
+- Logo d'équipe ajouté dans le salon
+*En Jeu-Parties :*
+- Animation de Début de Manche
+- Colorer la mini-carte selon votre équipe et rôle
+- Couleurs différentes selon votre rôle
+- Colorer les textes des boutons de compétence
+- Colorer les textes de recharge des compétences
+- Afficher le joueur qui quitte la partie
+*Résultat du Jeu :*
+- Textes de résultat optimisés
+
+## Fonctionnalités - 57
+*Global :(Paramètres-Paramètres Client)*
+- Exporter les logs
+- Effacer les logs automatiques
+- Basculer en Vanilla
+- Gestionnaire de Ressources (Utilisable uniquement dans le menu principal)
+- Gestionnaire d'Étiquettes de Nom (Utilisable uniquement dans le menu principal)
+- Ma Musique (Prend en charge les musiques personnalisées, types : ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Changer le style du menu principal
+*Chargement :*
+- Téléchargement automatique des ressources distantes du mod (Sortie automatique du jeu en cas d'échec du téléchargement des ressources critiques)
+*Menu Principal :*
+- Vérification automatique des mises à jour
+*Recherche en Ligne :*
+- Afficher la plateforme de l'hôte et colorer le nom du salon en conséquence
+- Afficher le code du salon
+- Afficher le pourcentage de temps avant fermeture
+- Plus d'options de serveur
+- Afficher le nom de l'hôte
+*En Jeu-Global :*
+- Final Anti-Cheat (FAC 2.0)
+- Protection Client (Défend contre les hackers attaquant directement l'exécutable)
+- Vérification et blocage des mots bannis
+- Déverrouiller les FPS (De 60FPS à 165FPS)
+- Expulsion automatique des joueurs répondant à certaines conditions
+*En Jeu-Salon :*
+- Afficher la plateforme du joueur et les informations client
+- Démarrage automatique lorsque le salon est plein
+- Reconnaître les autres joueurs installant FS
+- Afficher l'heure de fermeture (Fonctionne seulement si l'hôte n'a pas changé)
+- Réinitialiser le compte à rebours de début de partie
+- Passer le compte à rebours de début de partie
+*En Jeu-Parties :*
+- Afficher Scène & Rôles
+- Afficher la progression des tâches/nombre de kills
+- Zoom avant/arrière avec la molette de la souris (Utilisable seulement en mode entraînement, jeu local, dans le salon et après la mort sans être Ange Gardien)
+- Voir le rôle, progression des tâches/nombre de kills et position de chaque joueur après la mort sans être Ange Gardien
+- Voir les positions de chaque joueur et corps sur la mini-carte après la mort sans être Ange Gardien
+- Voir la cause de la mort et les meurtriers
+- Voir les derniers résultats après la mort
+- Colorer le nom lors du suivi d'autre joueur par hantise
+- Easter eggs dans la Carte d'Avril
+- Système d'étiquettes en réunion (Peut étiqueter d'autres joueurs pour se souvenir de leurs rôles)
+- Afficher la progression générale des tâches en pourcentage
+- Introduction des rôles
+- Utiliser le tableau d'informations prédéfini en jeu
+*Résultats :*
+- Résumé (Rôle, progression des tâches/nombre de kills, cause de la mort et meurtrier)
+- Retour automatique au salon
+*Raccourcis-Global :*
+- F4 : Plein écran
+- F10 : Ouvrir le répertoire racine du jeu
+- F11 : Changer la résolution
+- Ctrl+F1 : Exporter les logs
+- Ctrl+F2 : Activer/désactiver l'exportation des logs en partie (Hôte seulement)
+*Raccourcis-MenuPrincipal :*
+- Tab : Masquer l'interface
+*Raccourcis-Chat :*
+- Ctrl+C : Copier le texte dans la boîte de chat
+- Ctrl+V : Coller le texte dans la boîte de chat
+- Ctrl+X : Couper le texte dans la boîte de chat
+- ↑ : Retracer votre historique de chat précédent
+- ↓ : Retracer votre historique de chat suivant
+*Raccourcis-RechercheEnLigne :*
+- MajG : Rejoindre le dernier salon
+- MajD : Rejoindre le salon avec le code dans le presse-papiers
+*Raccourcis-EnJeu :*
+- F1 : Afficher l'introduction et l'illustration de votre rôle
+- F2 : Afficher/Masquer les préréglages du jeu
+*Raccourcis-Salon :*
+- Maj : Passer le compte à rebours de début de partie (Hôte seulement)
+- C : Réinitialiser le compte à rebours de début de partie (Hôte seulement)
+
+*Options :(Paramètres-Paramètres Client) - 15*
+- Changer le Type de Tenue
+[Mode Classique - Mode Cheval du 1er Avril - Mode Long du 1er Avril]
+- Déverrouiller les FPS
+- Expulser les joueurs avec des Codes d'Ami anormaux
+- Expulser les joueurs utilisant des pseudos bannis
+- Expulser les joueurs bannis
+- Bloquer les mots bannis
+- Démarrage automatique quand plein
+- Retour automatique au salon en fin de partie
+- Désactiver la musique vanilla du jeu
+- Activer l'anti-triche
+- Activer le Gardien Client (Expérimental)
+- Afficher la plateforme et les infos client du joueur
+- Utiliser le curseur du mod
+- Mode démarrage rapide
+- Mode hors ligne (Expérimental)
+*Options :(Autres)*
+- Changer le style de carte (Seulement sur The Skeld, bouton dans la sécurité)

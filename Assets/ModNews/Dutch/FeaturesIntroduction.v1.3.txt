@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Onze Update-inhoud★★★★
+#ShortTitle:★v1.3 Update Introductie
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Dutch
+## Dit bestand bevat waarschuwingen en functiebeschrijvingen! Lees dit bestand zorgvuldig door!
+## Waarschuwing!
+- Als je een cheater ziet, betekent dit dat ze ooit hebben gehackt of op de mod zwarte lijst staan, maar niet dat ze op dat moment cheatgedrag vertonen.
+Voorbeeld: Als je (Ongeldige RPC:151) tegenkomt, zijn ze mogelijk **「Better Among Us」** gebruikers, maar FS ondersteunt hun RPC niet en FS markeert spelers die ongeldige RPC sturen als cheaters.
+Wees gerust, door onze unieke herkenning word je niet door hen als cheater gezien!
+- Bij bugs: klik op "Clientfuncties - Logs Dumpen" om logs op te slaan en naar ons te sturen!
+- Behalve "简体中文" en "English" zijn andere talen AI-vertaald. Neem contact op als de vertaling incorrect is!
+- Offlinemodus stopt het ophalen van verboden woorden, aankondigingen, externe bronnen en updatechecks, en downloadt geen benodigde bronnen. Dit kan leiden tot gemiste updates of onbekende fouten. Gebruik voorzichtig!
+
+## Optimalisaties - 29
+*Globaal:*
+- Mod cursor
+- Mod pictogram
+*Hoofdmenu:*
+- Startanimatie spel
+- Laadanimaties - Rolillustraties
+- Hoofdmenu UI-indeling
+- Hoofdmenu achtergrond
+*Online Zoeken:*
+- Geoptimaliseerde lobbynaamweergave
+- Gekleurde privéservernamen
+*InGame-Globaal:*
+- FPS & Serverweergave
+- Modversieweergave
+- Chatbelkleur geoptimaliseerd
+- Chatbelachtergrond geoptimaliseerd
+- Verbreekredenen geoptimaliseerd
+- Herhaalde naamcontrole geoptimaliseerd
+- Spelstartanimatie geoptimaliseerd
+- Laadanimaties toegevoegd - Rolillustraties
+- Laadbalkkleur geoptimaliseerd
+*InGame-Lobby:*
+- Lobby-informatieachtergrond geoptimaliseerd
+- Gekleurd instellingenbewerkingsscherm
+- Instellingenbewerkingsachtergrond geoptimaliseerd
+- Gekleurd instellingenbekijkscherm
+- Teamlogo toegevoegd in lobby
+*InGame-Wedstrijden:*
+- Ronstartanimatie
+- Kleur minimap op basis van team en rol
+- Verschillende kleuren per rol
+- Kleur vaardigheidsknoppenteksten
+- Kleur afkoelingsteksten
+- Toon speler die game verlaat
+*Spelresultaat:*
+- Resultaatteksten geoptimaliseerd
+
+## Functies - 57
+*Globaal:(Instellingen-Clientinstellingen)*
+- Logs dumpen
+- Auto-logs wissen
+- Omschakelen naar Vanilla
+- Bronbeheerder (Alleen hoofdmenu)
+- Naamlabelbeheerder (Alleen hoofdmenu)
+- Mijn Muziek (Ondersteunt aangepaste muziek, type: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Hoofdmenustijl wijzigen
+*Laden:*
+- Automatisch downloaden externe modbronnen (Auto-afsluiten bij mislukken kritieke bronnen)
+*Hoofdmenu:*
+- Automatische updatecontrole
+*Online Zoeken:*
+- Toon hostplatform en kleur lobbynaam dienovereenkomstig
+- Toon kamercode
+- Toon sluitingstijdspercentage
+- Meer serveropties
+- Toon hostnaam
+*InGame-Globaal:*
+- Final Anti-Cheat (FAC 2.0)
+- Clientbescherming (Verdedigt tegen executie-aanvallen)
+- Verboden woorden controleren & blokkeren
+- FPS ontgrendelen (Van 60FPS naar 165FPS)
+- Auto-kick spelers die aan voorwaarden voldoen
+*InGame-Lobby:*
+- Toon spelersplatform en clientinformatie
+- Auto-start bij volle lobby
+- Herken andere FS-spelers
+- Toon sluitingstijd (Alleen bij ongewijzigde host)
+- Herstart startaftelling
+- Startaftelling overslaan
+*InGame-Wedstrijden:*
+- Toon scène & rollen
+- Toon taakvoortgang/killtelling
+- In/uitzoomen met muiswiel (Alleen oefenmodus, lokaal spel, in lobby en na dood zonder beschermengel)
+- Toon rol, taakvoortgang/kills en positie na dood zonder beschermengel
+- Toon posities van spelers en lijken op minimap na dood zonder beschermengel
+- Toon doodsoorzaak & moordenaars
+- Toon laatste resultaten na dood
+- Kleur naam bij volgen via spoken
+- Paaseitjes in Aprilkaart
+- Tagsysteem in vergaderingen (Markeer spelers om rollen te onthouden)
+- Toon algemene taakvoortgang in percentage
+- Rolintroductie
+- Gebruik vooringesteld infobord in spel
+*Resultaten:*
+- Samenvatting (Rol, taakvoortgang/kills, doodsoorzaak & moordenaar)
+- Auto-terugkeer naar lobby
+*Sneltoetsen-Globaal:*
+- F4: Volledig scherm
+- F10: Open spelhoofdmap
+- F11: Wijzig resolutie
+- Ctrl+F1: Log dumpen
+- Ctrl+F2: Logdump in wedstrijden wisselen (Alleen host)
+*Sneltoetsen-Hoofdmenu:*
+- Tab: UI verbergen
+*Sneltoetsen-Chat:*
+- Ctrl+C: Kopieer chattekst
+- Ctrl+V: Plak chattekst
+- Ctrl+X: Knip chattekst
+- ↑: Vorige chatgeschiedenis
+- ↓: Volgende chatgeschiedenis
+*Sneltoetsen-OnlineZoeken:*
+- LShift: Voeg toe aan laatste lobby
+- RShift: Voeg toe aan lobby vanaf klembord
+*Sneltoetsen-InGame:*
+- F1: Toon rolintroductie en illustratie
+- F2: Toon/Verberg spelpresets
+*Sneltoetsen-Lobby:*
+- Shift: Startaftelling overslaan (Alleen host)
+- C: Startaftelling herstarten (Alleen host)
+
+*Opties:(Instellingen-Clientinstellingen) - 15*
+- Outfittype wijzigen
+[Klassieke Modus - 1 April Paardenmodus - 1 April Lange Modus]
+- FPS ontgrendelen
+- Kick spelers met afwijkende vriendcodes
+- Kick spelers met verboden namen
+- Kick verbannen spelers
+- Blokkeer verboden woorden
+- Auto-start bij vol
+- Auto-terugkeer bij spel einde
+- Schakel Vanilla-spelmuziek uit
+- Anti-cheat inschakelen
+- Clientbewaker inschakelen (Experimenteel)
+- Toon spelersplatform & clientinfo
+- Gebruik mod cursor
+- Snelle startmodus
+- Offlinemodus (Experimenteel)
+*Opties:(Anderen)*
+- Mapstijl wijzigen (Alleen The Skeld, knop in beveiliging)

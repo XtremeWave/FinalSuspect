@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Nossos Conteúdos de Atualização★★★★
+#ShortTitle:★Introdução da Atualização v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Portuguese
+## Este arquivo cobre advertências e introdução de recursos! Por favor, leia este arquivo com atenção!
+## Cuidado!
+- Se você testemunhar um trapaceiro, isso significa que eles já trapacearam ou estão na lista negra do mod, mas não significa que estejam trapaceando quando você os vê.
+Exemplo: Se você encontrar (RPC Inválido:151), eles podem ser usuários do **「Better Among Us」**, mas o FS não adapta seu RPC, e o FS confirma como trapaceiro quem envia RPC inválido.
+Com certeza, não se preocupe, por causa dos nossos métodos únicos de reconhecimento, você não será considerado trapaceiro por eles!
+- Se ocorrer um bug, clique em "Recursos do Cliente - Despejar Logs" para despejar o log e envie para nós!
+- Exceto "简体中文" e "English", outros idiomas são traduzidos por IA. Por favor, entre em contato conosco se a tradução não estiver correta!
+- Se você ativar o modo offline, o mod parará de adquirir palavras banidas, anúncios, recursos remotos e verificação de atualização, e não baixará recursos necessários. Isso pode resultar em falta de atualizações críticas ou encontrar erros desconhecidos. Use com cuidado!
+
+## Otimizações - 29
+*Global:*
+- Cursor do mod
+- Ícone do mod
+*Menu Principal:*
+- Animação de iniciar jogo
+- Animação de carregamento - Ilustrações de funções
+- Layout de UI do menu principal
+- Plano de fundo do menu principal
+*Busca Online:*
+- Otimizada exibição do nome da sala
+- Nome do servidor privado colorido
+*No Jogo-Global:*
+- Exibição de FPS e Servidor
+- Exibição da versão do mod
+- Cor da bolha de chat otimizada
+- Plano de fundo da bolha de chat otimizado
+- Motivo de desconexão otimizado
+- Verificação de nome repetido otimizada
+- Animação de início de jogo otimizada
+- Adicionada animação de carregamento - Ilustrações de funções
+- Cor da barra de carregamento otimizada
+*No Jogo-Sala:*
+- Plano de fundo de Informações da Sala otimizado
+- Interface de edição de configurações colorida
+- Plano de fundo de edição de configurações otimizado
+- Interface de visualização de configurações colorida
+- Logo da equipe adicionada na sala
+*No Jogo-Partidas:*
+- Animação de Início da Rodada
+- Colorir o mini mapa de acordo com seu time e função
+- Colorir diferentemente de acordo com sua função
+- Colorir textos dos botões de habilidade
+- Colorir textos de recarga dos botões de habilidade
+- Exibir o jogador que saiu do jogo
+*Resultado do Jogo:*
+- Textos de resultado otimizados
+
+## Recursos - 57
+*Global:(Configurações-Configurações do Cliente)*
+- Despejar logs
+- Limpar logs automáticos
+- Mudar para Vanilla
+- Gerenciador de Recursos (Somente no menu principal)
+- Gerenciador de Etiquetas de Nome (Somente no menu principal)
+- Minha Música (Suporta músicas personalizadas, tipo: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Mudar estilo do menu principal
+*Carregando:*
+- Download automático de recursos remotos do mod (Saída automática do jogo quando recursos críticos falham)
+*Menu Principal:*
+- Verificação automática de atualizações
+*Busca Online:*
+- Exibir plataforma do anfitrião e colorir o nome da sala de acordo
+- Exibir código da sala
+- Exibir a porcentagem do tempo de fechamento
+- Mais opções de servidor
+- Exibir nome do anfitrião
+*No Jogo-Global:*
+- Final Anti-Cheat (FAC 2.0)
+- Proteção do Cliente (Defende contra hackers que atacam o executivo diretamente)
+- Verificação e bloqueio de palavras banidas
+- Desbloquear FPS (De 60FPS para 165FPS)
+- Expulsão automática de jogadores que atendem certas condições
+*No Jogo-Sala:*
+- Exibir plataforma do jogador e informações do cliente
+- Início automático quando a sala estiver cheia
+- Reconhecer outros jogadores que instalam o FS
+- Exibir tempo de fechamento (Só funciona se o anfitrião não tiver mudado)
+- Redefinir contagem regressiva de início do jogo
+- Pular contagem regressiva de início do jogo
+*No Jogo-Partidas:*
+- Exibir Cena e Funções
+- Exibir progresso de tarefas/contagem de kills
+- Zoom in/out usando a roda do mouse (Somente no modo prática, jogo local, na sala e após morte quando não é anjo da guarda)
+- Mostrar função, progresso de tarefas/contagem de kills e posição de cada jogador após morte quando não é anjo da guarda
+- Mostrar posições de cada jogador e corpo no mini mapa após morte quando não é anjo da guarda
+- Mostrar causa da morte e assassinos
+- Mostrar últimos resultados após morte
+- Colorir o nome ao rastrear outro jogador por assombração
+- Easter eggs no Mapa de Abril
+- Sistema de tags em reuniões (Pode marcar outros jogadores para lembrar suas funções)
+- Mostrar progresso geral de tarefas em porcentagem
+- Introdução de funções
+- Usar quadro de informações pré-definido no jogo
+*Resultados:*
+- Resumo (Função, progresso de tarefas/contagem de kills, causa da morte e assassino)
+- Retorno automático à sala
+*Teclas de Atalho-Global:*
+- F4: Tela cheia
+- F10: Abrir diretório raiz do jogo
+- F11: Alterar resolução
+- Ctrl+F1: Despejar log
+- Ctrl+F2: Alternar se logs podem ser despejados durante partidas (Apenas anfitrião)
+*Teclas de Atalho-MenuPrincipal:*
+- Tab: Ocultar UI
+*Teclas de Atalho-Chat:*
+- Ctrl+C: Copiar textos na caixa de chat
+- Ctrl+V: Colar textos na caixa de chat
+- Ctrl+X: Recortar textos na caixa de chat
+- ↑: Rastrear seu último histórico de chat
+- ↓: Rastrear seu próximo histórico de chat
+*Teclas de Atalho-BuscaOnline:*
+- ShiftEsq: Entrar na última sala que entrou
+- ShiftDir: Entrar na sala com código na área de transferência
+*Teclas de Atalho-NoJogo:*
+- F1: Mostrar introdução e ilustração da sua função
+- F2: Mostrar/Ocultar predefinições do jogo
+*Teclas de Atalho-Sala:*
+- Shift: Pular contagem regressiva de início do jogo (Apenas anfitrião)
+- C: Redefinir contagem regressiva de início do jogo (Apenas anfitrião)
+
+*Opções:(Configurações-Configurações do Cliente) - 15*
+- Mudar Tipo de Visual
+[Modo Clássico - Modo Cavalo de Primeiro de Abril - Modo Longo de Primeiro de Abril]
+- Desbloquear FPS
+- Expulsar jogadores com Códigos de Amigo anormais
+- Expulsar jogadores usando apelidos banidos
+- Expulsar jogadores banidos
+- Bloquear palavras banidas
+- Início automático quando cheio
+- Retorno automático à sala quando o jogo termina
+- Desativar música vanilla do jogo
+- Ativar anti-cheat
+- Ativar Guardião do Cliente (Experimental)
+- Mostrar plataforma e informações do cliente do jogador
+- Usar cursor do mod
+- Modo de inicialização rápida
+- Modo offline (Experimental)
+*Opções:(Outros)*
+- Mudar estilo do mapa (Somente em The Skeld, e o botão está na segurança)

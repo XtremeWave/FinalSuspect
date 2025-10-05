@@ -1,0 +1,69 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Benvenuto Android！★★★★
+#ShortTitle:★Aggiornamento Versione: v1.3
+#Date:2025-10-05T00:00:00Z
+#-----------------------------
+# Italiano
+Starlight offre un'OTTIMA opportunità di giocare con le MOD su Android !!!!
+Ora supportiamo Starlight nell'ultima versione.
+Goditi il tuo gioco su Starlight!
+
+## Versione Richiesta
+- Basato su Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Informazioni Versione Mod
+- Versione Assembly: v1.3.0
+- Tipo Versione: Release
+- Creazione: 1
+
+## Contenuti Aggiornamento
+- Correzioni Bug: 5
+- Ottimizzazioni: 1
+- Modifiche: 3
+- Nuovi Contenuti: 9
+- Rimozioni: 1
+
+## Collaboratori
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0")
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
+
+## Correzioni Bug
+- Risolto il problema degli errori UI a certe risoluzioni
+- Risolto il problema per cui 'avvio automatico a sala piena' causava crash dopo avvii multipli
+- Risolto il problema per cui il pannello informazioni predefinito non poteva essere nascosto
+- Risolto il problema per cui il Mutante mostrava ancora note originali e tag riunione dopo trasformazione
+- Risolto il problema delle informazioni revisione disallineate
+Corretto da: Slok
+
+## Ottimizzazione
+- Ottimizzazione di parte del codice
+Ottimizzato da: Slok
+
+## Modifiche
+- Modificato il formato introduzione ruoli
+Creato da: Slok, LezaiYa
+- Ridotto appropriatamente il pannello informazioni predefinito
+- Incluso [LezaiYa](https://github.com/NewLezaiYa) come **sviluppatore**
+Creato da: Slok
+
+## Nuovi Contenuti
+- Sito web recuperato
+- Aggiunta rilevazione RPC per **BanMod**
+- Aggiunta rilevazione RPC per **VersionCheck**
+Creato da: LezaiYa
+- Compatibile con **Starlight**
+- Animazione splash avvio gioco
+- Scorciatoie: Salta conto alla rovescia inizio partita
+- Scorciatoie: Introduzione ruoli
+- Scorciatoie: Mostra/Nascondi pannello info predefinito
+Creato da: Slok
+- Adattato per **Among Us v17.0.0**
+Creato da: LezaiYa | Illustrato da: 小黄117
+
+## Rimozioni
+- Rimosso temporaneamente: ~~MaiuscSinistro: Entra nell'ultima lobby~~
+- Rimosso temporaneamente: ~~MaiuscDestro: Entra nella lobby negli appunti~~
+Deciso da: Slok | Motivo: Facile causare clic accidentali & Nessuno spazio appropriato per visualizzazione

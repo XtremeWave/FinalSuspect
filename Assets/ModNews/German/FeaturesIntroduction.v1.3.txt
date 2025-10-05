@@ -1,0 +1,146 @@
+﻿#Number:1000010
+#Title:v1.3 Features&Optimizations
+#SubTitle:★★★★Unsere Update-Inhalte★★★★
+#ShortTitle:★v1.3 Update-Einführung
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# Deutsch
+## Diese Datei enthält Warnhinweise und Funktionsbeschreibungen! Bitte lesen Sie diese Datei sorgfältig!
+## Achtung!
+- Wenn Sie einen Cheater sehen, bedeutet das, dass sie früher gecheatet haben oder auf der Mod-Blacklist stehen, aber nicht, dass sie beim Sichtkontakt cheatend sind.
+Beispiel: Bei (Ungültiges RPC:151) könnten es **「Better Among Us」**-Nutzer sein, aber FS passt dessen RPC nicht an und FS bestätigt Sender ungültiger RPCs als Cheater.
+Sicher, keine Sorge, durch unsere einzigartige Erkennung werden Sie nicht von ihnen als Cheater eingestuft!
+- Bei Bugs: Klicken Sie auf "Client-Funktionen - Logs Dumpen", um Logs zu exportieren und an uns zu senden!
+- Außer "简体中文" und "English" sind andere Sprachen KI-übersetzt. Bitte kontaktieren Sie uns bei Fehlern!
+- Im Offlinemodus stoppt der Mod den Bezug von Bannwörtern, Ankündigungen, Remote-Ressourcen und Update-Checks und lädt keine nötigen Ressourcen. Dies kann fehlende kritische Updates oder unbekannte Fehler verursachen. Vorsichtige Nutzung!
+
+## Optimierungen - 29
+*Global:*
+- Mod-Cursor
+- Mod-Symbol
+*Hauptmenü:*
+- Spielstartanimation
+- Ladeanimationen - Rollenillustrationen
+- Hauptmenü-UI-Layout
+- Hauptmenü-Hintergrund
+*Online-Suche:*
+- Optimierte Lobby-Namensanzeige
+- Gefärbte Privatservernamen
+*ImSpiel-Global:*
+- FPS & Server-Anzeige
+- Modversionsanzeige
+- Chatblasenfarbe optimiert
+- Chatblasenhintergrund optimiert
+- Verbindungsabbruchgründe optimiert
+- Wiederholte Namensprüfung optimiert
+- Spielstartanimation optimiert
+- Ladeanimationen hinzugefügt - Rollenillustrationen
+- Ladebalkenfarbe optimiert
+*ImSpiel-Lobby:*
+- Lobby-Informationshintergrund optimiert
+- Gefärbte Spieleinstellungsbearbeitung
+- Spieleinstellungsbearbeitungshintergrund optimiert
+- Gefärbte Spieleinstellungsansicht
+- Teamlogo in Lobby hinzugefügt
+*ImSpiel-Spiele:*
+- Rundenstartanimation
+- Minimap nach Team und Rolle färben
+- Unterschiedliche Farben nach Rolle
+- Fähigkeitsknopftexte färben
+- Abklingtexttexte färben
+- Spieler anzeigen, die das Spiel verlassen
+*Spielergebnis:*
+- Ergebnistexte optimiert
+
+## Funktionen - 57
+*Global:(Einstellungen-Client-Einstellungen)*
+- Logs dumpen
+- Auto-Logs löschen
+- Zu Vanilla wechseln
+- Ressourcen-Manager (Nur Hauptmenü)
+- Namensschild-Manager (Nur Hauptmenü)
+- Meine Musik (Unterstützt benutzerdefinierte Musik, Typen: ".wav", ".flac", ".aif", ".aiff", ".mp3")
+- Hauptmenü-Stil wechseln
+*Laden:*
+- Automatischer Download entfernter Mod-Ressourcen (Auto-Beenden bei fehlgeschlagenen kritischen Ressourcen)
+*Hauptmenü:*
+- Automatische Updateprüfung
+*Online-Suche:*
+- Host-Plattform anzeigen und Lobby-Name entsprechend färben
+- Raumnummer anzeigen
+- Prozentsatz der Schließzeit anzeigen
+- Mehr Serveroptionen
+- Host-Name anzeigen
+*ImSpiel-Global:*
+- Final Anti-Cheat (FAC 2.0)
+- Client-Schutz (Wehrt Hacker ab, die die Ausführbare direkt angreifen)
+- Bannwortprüfung & -blockierung
+- FPS entsperren (Von 60FPS auf 165FPS)
+- Auto-Kick von Spielern, die Bedingungen erfüllen
+*ImSpiel-Lobby:*
+- Spielerplattform und Client-Informationen anzeigen
+- Auto-Start bei voller Lobby
+- Andere FS-Spieler erkennen
+- Schließzeit anzeigen (Nur bei unverändertem Host)
+- Spielstart-Countdown zurücksetzen
+- Spielstart-Countdown überspringen
+*ImSpiel-Spiele:*
+- Szene & Rollen anzeigen
+- Aufgabenfortschritt/Killanzahl anzeigen
+- Mit Mausrad zoomen (Nur Übungsmodus, lokales Spiel, in Lobby und nach Tod ohne Schutzengel)
+- Rolle, Aufgabenfortschritt/Kills und Position jedes Spielers nach Tod ohne Schutzengel zeigen
+- Positionen jedes Spielers und Leichen auf Minimap nach Tod ohne Schutzengel zeigen
+- Todesursache & Mörder zeigen
+- Letzte Ergebnisse nach Tod zeigen
+- Namen färben beim Verfolgen durch Spuken
+- Easter Eggs im April-Kartenset
+- Tag-System in Besprechungen (Kann Spieler markieren, um Rollen zu merken)
+- Allgemeinen Aufgabenfortschritt in Prozent anzeigen
+- Rolleneinführung
+- Voreingestelltes Infobrett im Spiel verwenden
+*Ergebnisse:*
+- Zusammenfassung (Rolle, Aufgabenfortschritt/Kills, Todesursache & Mörder)
+- Auto-Rückkehr zur Lobby
+*Hotkeys-Global:*
+- F4: Vollbild
+- F10: Spiel-Stammverzeichnis öffnen
+- F11: Auflösung ändern
+- Strg+F1: Log dumpen
+- Strg+F2: Log-Dump in Spielen umschalten (Nur Host)
+*Hotkeys-Hauptmenü:*
+- Tab: UI ausblenden
+*Hotkeys-Chat:*
+- Strg+C: Chattext kopieren
+- Strg+V: Chattext einfügen
+- Strg+X: Chattext ausschneiden
+- ↑: Vorherigen Chatverlauf
+- ↓: Nächsten Chatverlauf
+*Hotkeys-OnlineSuche:*
+- UmschaltLinks: Letztem Raum beitreten
+- UmschaltRechts: Raum mit Code aus Zwischenablage beitreten
+*Hotkeys-ImSpiel:*
+- F1: Rolleneinführung und Illustration anzeigen
+- F2: Spielvoreinstellungen anzeigen/verbergen
+*Hotkeys-Lobby:*
+- Umschalt: Spielstart-Countdown überspringen (Nur Host)
+- C: Spielstart-Countdown zurücksetzen (Nur Host)
+
+*Optionen:(Einstellungen-Client-Einstellungen) - 15*
+- Outfit-Typ wechseln
+[Klassischer Modus - 1. April Pferdemodus - 1. April Langmodus]
+- FPS entsperren
+- Spieler mit abnormalen Freundescodes kicken
+- Spieler mit gebannten Namen kicken
+- Gebannte Spieler kicken
+- Gebannte Wörter blockieren
+- Auto-Start bei voll
+- Auto-Rückkehr bei Spielende
+- Vanilla-Spielmusik deaktivieren
+- Anti-Cheat aktivieren
+- Client-Wächter aktivieren (Experimentell)
+- Spielerplattform & Client-Info anzeigen
+- Mod-Cursor verwenden
+- Schnellstartmodus
+- Offlinemodus (Experimentell)
+*Optionen:(Andere)*
+- Kartenstil wechseln (Nur auf The Skeld, Knopf in Sicherheit)
