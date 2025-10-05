@@ -1,0 +1,68 @@
+#Number:100009
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Welcome Android！★★★★
+#ShortTitle:★Version Update: v1.3
+#Date:2025-08-15T00:00:00Z
+#-----------------------------
+# English
+Starlight give a GREATTTT chance to play MODS on Android !!!!
+Now, we support Starlight in the lateset version.
+Enjoy your game in Starlight!
+
+## Required Version
+- Based on Among Us v17.0.0
+- BepInEx v6.0.0-be.738
+
+## Mode Version Information
+- Assembly Version: v1.3.0
+- Version Type: Release
+- Creation: 3
+
+## Update Contents
+- Bug Fixes: 5
+- Optimizations: 1
+- Adjustments: 3
+- New Contents: 9
+- Deletes: 1
+
+## Contributor
+- [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+
+## Bug Fix
+- Fixed the issue of UI errors appearing at certain resolutions
+- Fixed the issue where the 'auto-start game when full' error caused the game to crash after starting multiple times
+- Fixed the issue where the preset information board could not be hidden
+- Fixed the issue where the shape-shifter still displayed the original notes and meeting tags after transforming
+- Fixed the issue of misaligned review information
+Fixer: Slok
+
+## Optimisation
+- Optimise some of the code
+Fixer: Slok
+
+## Adjustments
+- Modify the format of the job introduction
+Creator: Slok, LezaiYa
+- Appropriately reduce the preset information panel
+- Include [LezaiYa](https://github.com/NewLezaiYa) as a **developer**
+Creator: Slok
+
+## New Contents
+- Website
+- Added RPC detection for **BanMod**
+- Added RPC detection for **VersionCheck**
+Creator: LezaiYa
+- Compatible with **Starlight** mod launcher
+- Game start splash animation
+- Key: Skip countdown to start the game
+- Key: Class introduction
+- Key: Show/Hide preset info panel
+Creator: Slok
+- Adjust **Among Us v17.0.0**
+Creator: LezaiYa |  Illustrated: 小黄117
+
+##Delete
+- Temporarily delete: ~~LShift: Enter the last lobby~~
+- Temporarily delete: ~~RShift: Enter the lobby on your clipboard~~
+Decide: Slok | Reason: Easy to accidentally touch & no appropriate display space
