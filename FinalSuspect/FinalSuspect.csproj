@@ -3,7 +3,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>latest</LangVersion>
 
-        <Description>Your best functional tool Mod for Among Us.</Description>
+        <Description>The Ultimate Among Us Mod for the Vanilla Experience.</Description>
         <Authors>Slok7565, LezaiYa</Authors>
 
         <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>

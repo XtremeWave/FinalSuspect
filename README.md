@@ -2,7 +2,7 @@
 
 ![FS-XW](Assets/LogoWithTeam.png)
 
-**Final Suspect: The Ultimate Among Us Mod for the Original Experience.**
+**Final Suspect: The Ultimate Among Us Mod for the Vanilla Experience.**
 
 <img src="https://badgen.net/github/license/Slok7565/FinalSuspect" alt="Licences">
 <img src="https://badgen.net/github/tag/Slok7565/FinalSuspect" alt="LatestTag">

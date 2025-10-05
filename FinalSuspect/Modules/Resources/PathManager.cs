@@ -39,7 +39,7 @@ public static class PathManager
         "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/releases/latest/download/FinalSuspect.dll";
 
     public const string DownloadUrl_FangKuaiRemote =
-        "https://dlhk.fangkuai.fun/FinalSuspect/FinalSuspect.dll";
+        "https://dl.amongusclub.cn/FinalSuspect/FinalSuspect.dll";
     // 下载URL保持不变 
 #endif
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
@@ -59,7 +59,7 @@ public static class PathManager
                 "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
                 "https://hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
                 "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
-                "https://dlhk.fangkuai.fun/FinalSuspect/",
+                "https://dl.amongusclub.cn/FinalSuspect/",
             };
 
 #if DEBUG && Windows
@@ -103,7 +103,7 @@ public static class PathManager
             RemoteType.GithubMirror => "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect/raw/FinalSus/",
             RemoteType.GithubMirror_Assets =>
                 "hub.gitmirror.com/https://github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",
-            RemoteType.FangKuaiRemote => "dlhk.fangkuai.fun/FinalSuspect/",
+            RemoteType.FangKuaiRemote => "dl.amongusclub.cn/FinalSuspect/",
             RemoteType.Gitee => "gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
             RemoteType.Github => "github.com/Slok7565/FinalSuspect/raw/FinalSus/",
             RemoteType.Github_Assets => "github.com/Slok7565/FinalSuspect_Assets/raw/FinalAsset/",

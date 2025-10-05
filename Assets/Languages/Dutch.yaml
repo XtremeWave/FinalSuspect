@@ -159,7 +159,6 @@ UpdateSource.Choose: "Kies updatebron\nKies [Github] bij twijfel"
 UpdateSource.Github: "Github"
 UpdateSource.Gitee: "Gitee"
 UpdateSource.FinalApi: "Api"
-UpdateSource.FangKuaiRemote: "Fangkuai"
 
 # 无法加入公开游戏原因 / Unable to join public game reasons
 CanNotJoinPublicRoomNoLatest: "Belangrijke update beschikbaar, update deze mod\nAnders kun je geen openbare rooms joinen"
