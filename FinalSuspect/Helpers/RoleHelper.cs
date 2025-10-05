@@ -82,7 +82,7 @@ public static class RoleHelper
         }
 
         return role is RoleTypes.Crewmate or RoleTypes.Impostor
-            ? GetString($"{text}BlurbLong")
+            ? GetString($"{text}Blurb")
             : $"{GetString($"RolesHelp_{text}_01")}\n{GetString($"RolesHelp_{text}_02")}";
     }
 
