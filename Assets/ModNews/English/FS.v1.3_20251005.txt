@@ -28,6 +28,7 @@ Enjoy your game in Starlight!
 ## Contributor
 - [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
 - [Zeyan Remyur](https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0)
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
 
 ## Bug Fix
 - Fixed the issue of UI errors appearing at certain resolutions

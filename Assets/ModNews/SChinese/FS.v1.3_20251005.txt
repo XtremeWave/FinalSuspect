@@ -27,6 +27,8 @@ Starlight为安卓平台带来了模组体验。
 
 ## 贡献者
 - [小黄117]("https://space.bilibili.com/403301761?spm_id_from=333.337.0.0")
+- [Zeyan]("https://space.bilibili.com/3493119270062860?spm_id_from=333.1007.0.0")
+- [白糖咖啡]("https://space.bilibili.com/360363478?spm_id_from=333.337.0.0")
 
 ## 修正
 - 修复了部分分辨率下出现UI错误的问题

@@ -1,3 +1,4 @@
+using System;
 using BepInEx.Configuration;
 using FinalSuspect.Attributes;
 using FinalSuspect.Helpers;
@@ -32,6 +33,7 @@ public static class ConfigManager
     public static ConfigEntry<bool> ShowInfoPanel { get; private set; }
     public static ConfigEntry<bool> EnableFinalSuspect { get; private set; }
     public static ConfigEntry<BypassType> LanguageUpdateBypass { get; private set; }
+    public static ConfigEntry<Version> StoredLanguageVersion { get; private set; }
     public static ConfigEntry<int> CurrentStyleId { get; private set; }
 
     [PluginModuleInitializer(InitializePriority.VeryHigh)]
@@ -45,7 +47,9 @@ public static class ConfigManager
         ShowResults = config.Bind("Final System", "Show Results", true);
         ShowInfoPanel = config.Bind("Final System", "Show InfoPanel", true);
         LanguageUpdateBypass = config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
+        StoredLanguageVersion = config.Bind("Final System", "Language Version", new Version(0, 0, 0, 0));
         CurrentStyleId = config.Bind("Final System", "Background Id", 0);
+
 
         UnlockFPS = config.Bind("Client Options", "Unlock FPS", false);
         SwitchOutfitType = config.Bind("Client Options", "Switch Outfit", OutfitType.BeanMode);

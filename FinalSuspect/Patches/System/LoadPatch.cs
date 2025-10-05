@@ -135,7 +135,10 @@ public static class LoadPatch
             $"{Main.PluginVersion}|{Main.DisplayedVersion}|{LaunchingInfo.GitCommit}-{LaunchingInfo.GitBranch}";
         var bypassType = ConfigManager.LanguageUpdateBypass.Value;
 
-        _reloadLanguage = currentVersion != RegistryManager.LastStartVersion && bypassType == BypassType.Dont;
+        _reloadLanguage =
+            (currentVersion != RegistryManager.LastStartVersion
+             || RegistryManager.LangVersion != ConfigManager.StoredLanguageVersion.Value)
+            && bypassType == BypassType.Dont;
 
         switch (bypassType)
         {
@@ -274,10 +277,17 @@ public static class LoadPatch
         remoteLanguageList.AddRange(EnumHelper.GetAllNames<SupportedLangs>().Select(lang => lang + ".yaml"));
 
         if (!_reloadLanguage)
+        {
             CheckForListResources(ref remoteLanguageList, FileType.Languages);
+        }
+
 
         if (remoteLanguageList.Count > 0)
+        {
             yield return DownloadResources(remoteLanguageList, FileType.Languages, null, true);
+            RegistryManager.LangVersion = ConfigManager.StoredLanguageVersion.Value;
+        }
+
 
         if (!_skipLoadAnimation)
         {

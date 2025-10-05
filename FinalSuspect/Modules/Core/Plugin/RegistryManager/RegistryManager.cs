@@ -24,6 +24,14 @@ public static class RegistryManager
         set => PreferenceStore.SetString("Last launched version", value);
     }
 
+    public static Version LangVersion
+    {
+        get => string.IsNullOrEmpty(PreferenceStore.GetString("Lang version"))
+            ? new Version(0, 0, 0, 0)
+            : new Version(PreferenceStore.GetString("Lang version"));
+        set => PreferenceStore.SetString("Lang version", value.ToString());
+    }
+
     [PluginModuleInitializer(InitializePriority.High)]
     public static void OnInitialization()
     {

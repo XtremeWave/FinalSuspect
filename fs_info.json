@@ -1,12 +1,13 @@
 {
-  "version": "1.2.0",
-  "verHead": "1.2",
-  "verDate": "20250815",
+  "version": "1.3.0",
+  "verHead": "1.3",
+  "verDate": "20251005",
 
   "minVer": "latest",
   "creation": "2",
   "allowStart": "true",
   "CanUpdate": "true",
+  "langVersion": "1.3.0.0",
 
   "md5": "d1ae10187068b4ee2e19f3a0fe1693d2",
   "announcement": {
@@ -23,7 +24,7 @@
     "Italian": "Se l'aggiornamento non è riuscito, provi a visitare il sito web per aggiornare manualmente.\nLa lingua che stai utilizzando è tradotta da IA e può contenere inesattezze. Per favore, fornisci feedback allo sviluppatore prontamente.",
     "Japanese": "更新が成功しない場合は、ウェブサイトを訪れて手動で更新してください。\n使用している言語は AI で翻訳されており、不正確な部分がある場合があります。開発者に速やかにフィードバックを提供してください。",
     "Spanish": "Si la actualización no tiene éxito, por favor intente visitar el sitio web para actualizar manualmente.\nEl idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",
-    "SChinese": "不知不觉间，Final Suspect 已陪伴大家走过整整 365 个日夜！这一年，感谢每一位船员的信任与同行！如果你曾搭乘 Final Suspect 在《Among Us》的宇宙中展开惊险推理、欢乐开黑，那些悬疑拉满的会议时刻——当终极嫌疑在玩家间流转、最终落于谁身的屏息瞬间，或是你识破伪装、一锤定音的绝妙操作，是否还历历在目？我们诚挚邀请您，将这份独特的游戏记忆和感想化作文字！欢迎发送你的游玩故事、心得体验或任何想说的话至邮箱：slok7565@qq.com或QQ-639083778。您的分享，对我们无比珍贵！\n\n如果更新没有成功，请您尝试访问网站手动更新。",
+    "SChinese": "如果更新没有成功，请您尝试访问网站手动更新。",
     "TChinese": "如果更新没有成功，請您嘗試訪問網站手動更新。\n您所使用的語言使用AI翻譯，可能會出現偏差，請及時向開發者反饋。",
     "Irish": "Má theip ar an nuashonrú, déan iarracht an suíomh a cuairt ar son nuashonrú de láimh.\nIs féidir go mbeadh eolais ar na teanga a bhí agat agus go mbeadh deachtlúchán ann. Tabhair feadhbach chun an t-ábhar."
   }

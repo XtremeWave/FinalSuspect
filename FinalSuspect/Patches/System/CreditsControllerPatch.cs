@@ -10,8 +10,7 @@ public class CreditsControllerPatch
         var devList = new List<string>
         {
             $"<size=120%><color={ColorHelper.FSColorHex}>{Main.ModName}</color></size>",
-            $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>Slok</color>",
-            "<color=#fffcbe>Thanks:</color> <color=#ffff00>LezaiYa</color>",
+            $"<color=#fffcbe>By</color> <color={ColorHelper.AuthorColorHex}>Slok</color> & <color=#ffff00>LezaiYa</color>",
             //Others
             $"<size=120%>{GetString("Id.Contributor")}</size>",
 
@@ -24,6 +23,7 @@ public class CreditsControllerPatch
             "- KpCam",
             "- 小黄117",
             "- 白糖咖啡",
+            "- Zeyan",
             "",
             "- KARPED1EM",
             "- Niko233",
