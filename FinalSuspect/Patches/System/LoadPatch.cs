@@ -137,7 +137,7 @@ public static class LoadPatch
 
         _reloadLanguage =
             (currentVersion != RegistryManager.LastStartVersion
-             || RegistryManager.LangVersion != ConfigManager.StoredLanguageVersion.Value)
+             || RegistryManager.LangVersion != new Version(ConfigManager.StoredLanguageVersion.Value))
             && bypassType == BypassType.Dont;
 
         switch (bypassType)
@@ -285,7 +285,7 @@ public static class LoadPatch
         if (remoteLanguageList.Count > 0)
         {
             yield return DownloadResources(remoteLanguageList, FileType.Languages, null, true);
-            RegistryManager.LangVersion = ConfigManager.StoredLanguageVersion.Value;
+            RegistryManager.LangVersion = new Version(ConfigManager.StoredLanguageVersion.Value);
         }
 
 

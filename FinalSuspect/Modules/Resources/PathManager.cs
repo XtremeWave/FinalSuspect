@@ -61,11 +61,6 @@ public static class PathManager
                 "https://gitee.com/LezaiYa/FinalSuspectAssets/raw/main/",
                 "https://dl.amongusclub.cn/FinalSuspect/",
             };
-
-#if DEBUG && Windows
-            // 只有在 Windows 调试模式下才添加桌面路径
-            urls.Add($"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/");
-#endif
             return urls.AsReadOnly();
         }
     }
@@ -240,6 +235,10 @@ public static class PathManager
     public static IReadOnlyList<string> GetInfoFileUrlList(bool allowDesktop = false)
     {
         var list = new List<string>(URLs);
+#if DEBUG && Windows
+        // 只有在 Windows 调试模式下才添加桌面路径
+        list.Add($"file:///{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop))}/");
+#endif
 
 #if Android
         allowDesktop = false;

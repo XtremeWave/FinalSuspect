@@ -154,7 +154,7 @@ public static class VersionChecker
             MD5 = data["md5"]?.ToString();
             _latestVersion = new Version(data["version"]?.ToString() ?? string.Empty);
             ShowVer = $"{_verHead}_{_verDate}";
-            ConfigManager.StoredLanguageVersion.Value = new Version(data["langVersion"]?.ToString() ?? string.Empty);
+            ConfigManager.StoredLanguageVersion.Value = data["langVersion"]?.ToString();
 
             var minVer = data["minVer"]?.ToString();
             if (minVer != null) _minimumVersion = minVer.ToLower() == "latest" ? _latestVersion : new Version(minVer);

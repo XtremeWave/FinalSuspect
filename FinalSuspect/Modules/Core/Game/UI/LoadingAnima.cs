@@ -99,6 +99,8 @@ public static class LoadingAnima
     {
         while (true)
         {
+            if (AllRoleRoleIllustration.Contains(null))
+                OnInitialization();
             if (AllRoleRoleIllustration.Count == 0) yield break;
 
             renderer.sprite = AllRoleRoleIllustration[currentIndex];

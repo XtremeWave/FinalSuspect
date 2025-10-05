@@ -2,7 +2,7 @@
 #Title:Final Suspect v1.3
 #SubTitle:★★★★Welcome Android！★★★★
 #ShortTitle:★Version Update: v1.3
-#Date:2025-08-15T00:00:00Z
+#Date:2025-10-05T00:00:00Z
 #-----------------------------
 # English
 Starlight give a GREATTTT chance to play MODS on Android !!!!
@@ -16,7 +16,7 @@ Enjoy your game in Starlight!
 ## Mode Version Information
 - Assembly Version: v1.3.0
 - Version Type: Release
-- Creation: 3
+- Creation: 1
 
 ## Update Contents
 - Bug Fixes: 5
@@ -32,38 +32,38 @@ Enjoy your game in Starlight!
 
 ## Bug Fix
 - Fixed the issue of UI errors appearing at certain resolutions
-- Fixed the issue where the 'auto-start game when full' error caused the game to crash after starting multiple times
-- Fixed the issue where the preset information board could not be hidden
-- Fixed the issue where the shape-shifter still displayed the original notes and meeting tags after transforming
+- Fixed the issue that the 'auto-start game when full' error caused the game to crash after starting multiple times
+- Fixed the issue that the preset information board could not be hidden
+- Fixed the issue that the shapeshifter still displayed the original notes and meeting tags after transforming
 - Fixed the issue of misaligned review information
 Fixer: Slok
 
-## Optimisation
-- Optimise some of the code
+## Optimization
+- Optimize some of the code
 Fixer: Slok
 
 ## Adjustments
-- Modify the format of the job introduction
+- Modified the format of the role introduction
 Creator: Slok, LezaiYa
-- Appropriately reduce the preset information panel
+- Appropriately reduced the preset information panel
 - Include [LezaiYa](https://github.com/NewLezaiYa) as a **developer**
 Creator: Slok
 
 ## New Contents
-- Website
+- Recovered website 
 - Added RPC detection for **BanMod**
 - Added RPC detection for **VersionCheck**
 Creator: LezaiYa
-- Compatible with **Starlight** mod launcher
+- Compatible with **Starlight**
 - Game start splash animation
-- Key: Skip countdown to start the game
-- Key: Class introduction
-- Key: Show/Hide preset info panel
+- Hotkeys: Skip game start countdown
+- Hotkeys: Role introduction
+- Hotkeys: Show/Hide preset info panel
 Creator: Slok
 - Adjust **Among Us v17.0.0**
 Creator: LezaiYa |  Illustrated: 小黄117
 
-##Delete
+## Delete
 - Temporarily delete: ~~LShift: Enter the last lobby~~
 - Temporarily delete: ~~RShift: Enter the lobby on your clipboard~~
-Decide: Slok | Reason: Easy to accidentally touch & no appropriate display space
+Decided by Slok | Reason: Easy to cause misclicks & No appropriate space to display
