@@ -47,7 +47,7 @@ public static class ConfigManager
         ShowResults = config.Bind("Final System", "Show Results", true);
         ShowInfoPanel = config.Bind("Final System", "Show InfoPanel", true);
         LanguageUpdateBypass = config.Bind("Final System", "Language Update Bypass", BypassType.Dont);
-        StoredLanguageVersion = config.Bind("Final System", "Language Version", new Version(0, 0, 0, 0));
+        StoredLanguageVersion = config.Bind("Final System", "Language Version", new Version(1, 3, 0, 0));
         CurrentStyleId = config.Bind("Final System", "Background Id", 0);
 
 
