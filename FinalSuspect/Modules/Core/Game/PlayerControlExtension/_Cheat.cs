@@ -25,12 +25,12 @@ public static class _Cheat
 
     public static void MarkAsCheater(this PlayerControl pc)
     {
-        pc.GetFinalData().CheatData.MarkAsCheater();
+        pc.GetData().CheatData.MarkAsCheater();
     }
 
     public static void MarkAsHacker(this PlayerControl pc)
     {
-        pc.GetFinalData().CheatData.MarkAsHacker();
+        pc.GetData().CheatData.MarkAsHacker();
     }
 
     public static string GetHashedPuid(this PlayerControl player)

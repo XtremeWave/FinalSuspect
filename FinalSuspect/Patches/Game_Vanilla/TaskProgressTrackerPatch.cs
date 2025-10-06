@@ -32,7 +32,7 @@ public class TaskProgressTrackerPatch
 
         var instance = GameData.Instance;
         var percentage = instance.CompletedTasks / (float)instance.TotalTasks * 100f;
-        var data = PlayerControl.LocalPlayer.GetFinalData();
+        var data = PlayerControl.LocalPlayer.GetData();
         switch (GameManager.Instance.LogicOptions.GetTaskBarMode())
         {
             case TaskBarMode.Normal:

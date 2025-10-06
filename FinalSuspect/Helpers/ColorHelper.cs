@@ -19,6 +19,7 @@ public static class ColorHelper
     public static readonly Color32 ClientlessColor = new(225, 224, 179, 255);
     public static readonly Color32 DownloadYellow = new(252, 255, 152, 255);
     public static readonly Color32 CompleteGreen = new(185, 255, 181, 255);
+    public static readonly Color32 PanelPink = new Color(1f, 0.78f, 0.9f, 1f);
 
     public static readonly Color32 FSClientOptionColor = new(150, 149, 227, 255);
     public static readonly Color32 FSClientOptionColor_Disable = new(61, 60, 97, 255);

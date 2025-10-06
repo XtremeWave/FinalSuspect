@@ -70,7 +70,7 @@ public static class DisplayerRoleTagHelper
 
         try
         {
-            var thisTag = pc.GetFinalData().RoleTag;
+            var thisTag = pc.GetData().RoleTag;
             Page = 1;
             CategoryButtons = new Dictionary<CategoryType, List<Transform>>();
             CategorySelectButtons = new Dictionary<CategoryType, SpriteRenderer>();

@@ -64,7 +64,7 @@ internal class PlayerControlSetTasksPatch
         [HarmonyArgument(0)] Il2CppSystem.Collections.Generic.List<NetworkedPlayerInfo.TaskInfo> tasks)
     {
         // 自由模式假人处理
-        if (__instance.GetFinalData() == null)
+        if (__instance.GetData() == null)
             FinalPlayerData.CreateDataFor(__instance);
         __instance.SetTaskTotalCount(tasks.Count);
     }

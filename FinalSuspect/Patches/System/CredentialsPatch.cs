@@ -313,29 +313,22 @@ internal class TitleLogoPatch
         var rightPanelAP = RightPanel.GetComponent<AspectPosition>();
         if (rightPanelAP) Object.Destroy(rightPanelAP);
         RightPanel.transform.localPosition = RightPanelOp + new Vector3(20f, 0f, 0f);
-        RightPanel.GetComponent<SpriteRenderer>().color = new Color(1f, 0.78f, 0.9f, 1f);
 
-        CloseRightButton = new GameObject("CloseRightPanelButton");
-        CloseRightButton.transform.SetParent(RightPanel.transform);
-        CloseRightButton.transform.localPosition = new Vector3(-4.78f * GetResolutionOffset(), 1.3f, 1f);
-        CloseRightButton.transform.localScale = new Vector3(1f, 1f, 1f);
-        CloseRightButton.AddComponent<BoxCollider2D>().size = new Vector2(0.6f, 1.5f);
-        var closeRightSpriteRenderer = CloseRightButton.AddComponent<SpriteRenderer>();
-        closeRightSpriteRenderer.sprite = LoadSprite("RightPanelCloseButton.png", 100f);
-        closeRightSpriteRenderer.color = new Color(1f, 0.78f, 0.9f, 1f);
-        var closeRightPassiveButton = CloseRightButton.AddComponent<PassiveButton>();
-        closeRightPassiveButton.OnClick = new Button.ButtonClickedEvent();
-        closeRightPassiveButton.OnClick.AddListener((global::System.Action)MainMenuManagerPatch.HideRightPanel);
-        closeRightPassiveButton.OnMouseOut = new UnityEvent();
-        closeRightPassiveButton.OnMouseOut.AddListener((global::System.Action)(() =>
-            closeRightSpriteRenderer.color = new Color(1f, 0.78f, 0.9f, 1f)));
-        closeRightPassiveButton.OnMouseOver = new UnityEvent();
-        closeRightPassiveButton.OnMouseOver.AddListener((global::System.Action)(() =>
-            closeRightSpriteRenderer.color = new Color(1f, 0.68f, 0.99f, 1f)));
+        RightPanel.GetComponent<SpriteRenderer>().color = ColorHelper.PanelPink;
+
+        CloseRightButton = ObjectHelper.CreateButton(
+            "CloseRightPanelButton",
+            RightPanel.transform,
+            new Vector3(-4.78f * GetResolutionOffset(), 1.3f, 1f),
+            new Vector3(1f, 1f, 1f),
+            new Vector2(0.6f, 1.5f),
+            LoadSprite("RightPanelCloseButton.png", 100f),
+            ColorHelper.PanelPink,
+            new Color(1f, 0.68f, 0.99f, 1f),
+            MainMenuManagerPatch.HideRightPanel);
 
         Tint = __instance.screenTint.gameObject;
-        var ttap = Tint.GetComponent<AspectPosition>();
-        if (ttap) Object.Destroy(ttap);
+        if (Tint.TryGetComponent<AspectPosition>(out var tint_aspect)) Object.Destroy(tint_aspect);
         Tint.transform.SetParent(RightPanel.transform);
         Tint.transform.localPosition =
             new Vector3(-0.0824f * GetResolutionOffset(), 0.0513f, Tint.transform.localPosition.z);

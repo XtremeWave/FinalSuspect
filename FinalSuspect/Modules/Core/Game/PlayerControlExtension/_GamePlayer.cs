@@ -4,14 +4,14 @@ namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
 public static class _GamePlayer
 {
-    public static bool IsLocalPlayer(this PlayerControl player)
+    public static bool IsSelf(this PlayerControl player)
     {
         return PlayerControl.LocalPlayer == player;
     }
 
     public static bool IsAlive(this PlayerControl pc)
     {
-        return pc?.GetFinalData()?.IsDead == false || !IsInGame;
+        return pc?.GetData()?.IsDead == false || !IsInGame;
     }
 
     public static bool OtherModClient(this PlayerControl player)
@@ -49,7 +49,7 @@ public static class _GamePlayer
         try
         {
             if (IsInMeeting)
-                return pc.GetFinalData().PreMeetingRoomName;
+                return pc.GetData().PreMeetingRoomName;
             var roomStr = pc.GetPlainShipRoom().RoomId.ToString();
             var roomName = StringHelper.ColorString(ColorHelper.ClientlessColor, $"({GetString(roomStr)})");
             return roomName;

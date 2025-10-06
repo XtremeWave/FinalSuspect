@@ -26,7 +26,7 @@ public static class FinalLocalHandling
         var player = data.Player;
         var name = IsInTask
             ? player.GetRealName()
-            : data.Name ?? player.GetRealName();
+            : data.PlayerName ?? player.GetRealName();
         topcolor = Color.white;
         bottomcolor = Color.white;
         toptext = "";
@@ -76,7 +76,7 @@ public static class FinalLocalHandling
         }
         else
         {
-            if (player.IsLocalPlayer()) topcolor = ColorHelper.FSColor;
+            if (player.IsSelf()) topcolor = ColorHelper.FSColor;
             else if (player.IsHost()) topcolor = ColorHelper.HostNameColor;
             else topcolor = ColorHelper.ClientlessColor;
         }
@@ -125,7 +125,7 @@ public static class FinalLocalHandling
             color = Palette.ImpostorRed;
         }
 
-        if (player.GetFinalData().IsDisconnected) color = Color.gray;
+        if (player.GetData().IsDisconnected) color = Color.gray;
     }
 
     private static string CheckAndAppendText(this string toptext, string extratext)
@@ -192,8 +192,8 @@ public static class FinalLocalHandling
         {
             var player = data.Player;
             data.Rend_DeadBody?.gameObject.SetActive(CanSeeTargetRole(player, out _) &&
-                                                     player.GetFinalData().RealDeathReason is VanillaDeathReason.Kill);
-            if (data.IsDisconnected || !CanSeeTargetRole(player, out _) || player.IsLocalPlayer())
+                                                     player.GetData().RealDeathReason is VanillaDeathReason.Kill);
+            if (data.IsDisconnected || !CanSeeTargetRole(player, out _) || player.IsSelf())
             {
                 data.Rend.gameObject.SetActive(false);
                 continue;
@@ -239,9 +239,9 @@ public static class FinalLocalHandling
 
             var player = GetPlayerById(playerId);
             name = player.CheckAndGetNameWithDetails(out namecolor, out _, out var toptext, out _,
-                player.IsLocalPlayer());
+                player.IsSelf());
             toptext = toptext.Replace("\n", " ");
-            if (player.IsLocalPlayer())
+            if (player.IsSelf())
                 name = $"<size=60%>{toptext}</size>  " + name;
             else
                 name += $"  <size=60%>{toptext}</size>";
@@ -310,12 +310,12 @@ public static class FinalLocalHandling
     private static void DisconnectSync(PlayerControl pc)
     {
         if (!IsInTask || IsFreePlay) return;
-        var data = pc.GetFinalData();
+        var data = pc.GetData();
         var currectlyDisconnect = pc.Data.Disconnected && !data.IsDisconnected;
         var taskNotAssgin = data.TotalTaskCount == 0 && !data.IsImpostor;
         var roleNotAssgin = data.RoleWhenAlive == null;
 
-        if (pc.GetFinalData().IsDisconnected)
+        if (pc.GetData().IsDisconnected)
         {
             pc.Data.Disconnected = true;
             pc.Data.IsDead = true;
@@ -328,7 +328,7 @@ public static class FinalLocalHandling
 
     private static void DeathSync(PlayerControl pc)
     {
-        if (!IsInTask || pc.GetFinalData().IsDead) return;
+        if (!IsInTask || pc.GetData().IsDead) return;
         if (pc.Data.IsDead) pc.SetDead();
     }
 

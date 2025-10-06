@@ -4,6 +4,6 @@ public static class _Events
 {
     public static void OnCompleteTask(this PlayerControl pc)
     {
-        pc.GetFinalData().UpdateProcess();
+        pc.GetData().UpdateProcess();
     }
 }

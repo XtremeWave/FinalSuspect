@@ -20,7 +20,7 @@ public class FinalPlayerData : IDisposable
 
     public void SetName(string name)
     {
-        Name = name;
+        PlayerName = name;
     }
 
     public void SetDead()
@@ -58,7 +58,7 @@ public class FinalPlayerData : IDisposable
         }
 
         RoleAssigned = !IsFreePlay;
-        Info("Set Role For Player: " + Name + " => " + role, "SetRole");
+        Info("Set Role For Player: " + PlayerName + " => " + role, "SetRole");
     }
 
     public void SetDeathReason(VanillaDeathReason deathReason, bool focus = false)
@@ -114,7 +114,7 @@ public class FinalPlayerData : IDisposable
             playername = playername.TrimEnd();
             playername = playername.Replace(" ", "_");
 
-            var existingNames = new HashSet<string>(AllPlayerData.Select(data => data.Name));
+            var existingNames = new HashSet<string>(AllPlayerData.Select(data => data.PlayerName));
             var baseName = playername;
             var suffix = 0;
 
@@ -144,8 +144,8 @@ public class FinalPlayerData : IDisposable
     public static List<FinalPlayerData> AllPlayerData;
     public PlayerControl Player { get; private set; }
 
-    public string Name { get; private set; }
-    public int ColorId { get; private set; }
+    public string PlayerName { get; private set; }
+    public Color PlayerColor { get; private set; }
     public byte PlayerId { get; private set; }
     public uint NetId { get; private set; }
 
@@ -169,11 +169,11 @@ public class FinalPlayerData : IDisposable
 
     public PlayerCheatData CheatData { get; private set; }
 
-    private FinalPlayerData(PlayerControl player, string playername, int colorid)
+    private FinalPlayerData(PlayerControl player, string playerName, int colorId)
     {
         Player = player;
-        Name = playername;
-        ColorId = colorid;
+        PlayerName = playerName;
+        PlayerColor = Palette.PlayerColors[colorId];
         CheatData = new PlayerCheatData(player);
         PlayerId = player.PlayerId;
         NetId = player.NetId;
@@ -194,12 +194,11 @@ public class FinalPlayerData : IDisposable
 #pragma warning disable CA1816
     public void Dispose()
     {
-        Info($"Disposing FinalPlayerData For {Name}", "Data");
+        Info($"Disposing FinalPlayerData For {PlayerName}", "Data");
         Player = null;
         CheatData.Dispose();
         CheatData = null;
-        Name = null;
-        ColorId = -1;
+        PlayerName = null;
         IsImpostor = IsDead = RoleAssigned = false;
         ProcessInt = TotalTaskCount = -1;
         RealDeathReason = VanillaDeathReason.None;

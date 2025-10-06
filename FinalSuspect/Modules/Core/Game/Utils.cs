@@ -385,10 +385,11 @@ public static class Utils
                 break;
             case VanillaDeathReason.Kill:
                 color = Palette.ImpostorRed;
-                var killerColor = Palette.PlayerColors[data.RealKiller.ColorId];
+                var killerColor = data.RealKiller.PlayerColor;
 
                 if (summary)
-                    deathReason += $"<=<size=80%>{StringHelper.ColorString(killerColor, data.RealKiller.Name)}</size>";
+                    deathReason +=
+                        $"<=<size=80%>{StringHelper.ColorString(killerColor, data.RealKiller.PlayerName)}</size>";
                 else if (doColor)
                     deathReason = StringHelper.ColorString(killerColor, deathReason);
                 break;
@@ -465,17 +466,25 @@ public static class Utils
 
     public static bool CanSeeTargetRole(PlayerControl target, out bool bothImp)
     {
-        var LocalDead = !PlayerControl.LocalPlayer.IsAlive();
-        var IsAngel = PlayerControl.LocalPlayer.GetRoleType() is RoleTypes.GuardianAngel;
-        var BothDeathCanSee = LocalDead && ((!target.IsAlive() && IsAngel) || !IsAngel);
-        bothImp = PlayerControl.LocalPlayer.IsImpostor() && target.IsImpostor();
+        var localPlayer = PlayerControl.LocalPlayer;
+        var isLocalDead = !localPlayer.IsAlive();
+        var isAngel = localPlayer.GetRoleType() is RoleTypes.GuardianAngel;
 
-        return target.IsLocalPlayer() ||
-               BothDeathCanSee ||
-               (bothImp && LocalDead) ||
-               ConfigManager.GodMode.Value ||
-               IsFreePlay;
+        bothImp = localPlayer.IsImpostor() && target.IsImpostor();
+
+        return target.IsSelf()
+               || CheckSpecialModes()
+               || CheckDeathVisionConditions(isLocalDead, isAngel, target, bothImp);
     }
+
+    private static bool CheckDeathVisionConditions(bool isLocalDead, bool isAngel, PlayerControl target, bool bothImp)
+    {
+        if (!isLocalDead) return false;
+        return !isAngel || !target.IsAlive() || bothImp;
+    }
+
+    private static bool CheckSpecialModes()
+        => ConfigManager.GodMode.Value || IsFreePlay;
 
     public static bool CanSeeOthersRole()
     {
@@ -498,8 +507,7 @@ public static class Utils
 
         var pos = Math.Min((float)longestNameByteCount / 2 + 1.5f, 11.5f);
 
-        var colorId = thisData.ColorId;
-        builder.Append(StringHelper.ColorString(Palette.PlayerColors[colorId], thisData.Name));
+        builder.Append(StringHelper.ColorString(thisData.PlayerColor, thisData.PlayerName));
         pos += 1.5f;
         builder.Append($"<pos={pos}em>").Append(GetProgressText(id)).Append("</pos>");
         pos += 4.5f;
@@ -527,7 +535,7 @@ public static class Utils
 
     private static int GetLongestNameByteCount()
     {
-        return FinalPlayerData.AllPlayerData.Select(data => data.Name.GetByteCount())
+        return FinalPlayerData.AllPlayerData.Select(data => data.PlayerName.GetByteCount())
             .OrderByDescending(byteCount => byteCount).FirstOrDefault();
     }
 
@@ -573,7 +581,7 @@ public static class Utils
 
     public static string GetPlayerNameById(byte id)
     {
-        return GetFinalDataById(id).Name;
+        return GetFinalDataById(id).PlayerName;
     }
 
     public static RoleTypes GetRoleById(byte id)

@@ -1,5 +1,7 @@
 using Il2CppSystem;
 using TMPro;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Helpers;
@@ -67,5 +69,51 @@ public static class ObjectHelper
         text.fontStyle = FontStyles.Bold;
         text.text = string.Empty;
         return text;
+    }
+
+    public static GameObject CreateButton(
+        string buttonName,
+        Transform parent,
+        Vector3 localPosition,
+        Vector3 localScale,
+        Vector2 colliderSize,
+        Sprite defaultSprite,
+        Color defaultColor,
+        Color hoverColor,
+        System.Action clickAction,
+        bool aspectActive = false,
+        Sprite hoverSprite = null)
+    {
+        var button = new GameObject(buttonName);
+        button.transform.SetParent(parent);
+        button.transform.localPosition = localPosition;
+        button.transform.localScale = localScale;
+
+        button.AddComponent<BoxCollider2D>().size = colliderSize;
+
+        var spriteRenderer = button.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = defaultSprite;
+        spriteRenderer.color = defaultColor;
+
+        var passiveButton = button.AddComponent<PassiveButton>();
+        passiveButton.OnClick = new Button.ButtonClickedEvent();
+        passiveButton.OnClick.AddListener(clickAction);
+
+        passiveButton.OnMouseOut = new UnityEvent();
+        passiveButton.OnMouseOut.AddListener((System.Action)(() =>
+                {
+                    spriteRenderer.sprite = defaultSprite;
+                    spriteRenderer.color = defaultColor;
+                }
+            ));
+
+        passiveButton.OnMouseOver = new UnityEvent();
+        passiveButton.OnMouseOver.AddListener((System.Action)(() =>
+        {
+            spriteRenderer.sprite = hoverSprite;
+            spriteRenderer.color = hoverColor;
+        }));
+
+        return button;
     }
 }

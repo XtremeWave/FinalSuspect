@@ -14,7 +14,7 @@ public static class _Data
         string dataName = null;
         try
         {
-            var data = player.GetFinalData();
+            var data = player.GetData();
             if (data != null)
                 dataName = player.GetDataName();
         }
@@ -40,7 +40,7 @@ public static class _Data
             topswap);
     }
 
-    public static FinalPlayerData GetFinalData(this PlayerControl pc)
+    public static FinalPlayerData GetData(this PlayerControl pc)
     {
         try
         {
@@ -69,7 +69,7 @@ public static class _Data
         {
             try
             {
-                return pc.GetFinalData().CheatData;
+                return pc.GetData().CheatData;
             }
             catch
             {
@@ -95,7 +95,7 @@ public static class _Data
         try
         {
             var data = GetFinalDataById(pc.PlayerId);
-            return StringHelper.ColorString(Palette.PlayerColors[data.ColorId], data.Name);
+            return StringHelper.ColorString(data.PlayerColor, data.PlayerName);
         }
         catch
         {
@@ -105,33 +105,33 @@ public static class _Data
 
     public static void SetDead(this PlayerControl pc)
     {
-        pc.GetFinalData().SetDead();
+        pc.GetData().SetDead();
     }
 
     public static void SetDisconnected(this PlayerControl pc)
     {
-        pc.GetFinalData().SetDisconnected();
+        pc.GetData().SetDisconnected();
         FinalPlayerData.AllPlayerData.Do(_data => _data.AdjustPlayerId());
     }
 
     public static void SetRole(this PlayerControl pc, RoleTypes role)
     {
-        pc.GetFinalData().SetRole(role);
+        pc.GetData().SetRole(role);
     }
 
     public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
     {
-        pc.GetFinalData().SetDeathReason(deathReason, focus);
+        pc.GetData().SetDeathReason(deathReason, focus);
     }
 
     public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
     {
-        if (pc.GetFinalData().RealKiller != null || !pc.Data.IsDead) return;
-        pc.GetFinalData().SetRealKiller(killer.GetFinalData());
+        if (pc.GetData().RealKiller != null || !pc.Data.IsDead) return;
+        pc.GetData().SetRealKiller(killer.GetData());
     }
 
     public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount)
     {
-        pc.GetFinalData().SetTaskTotalCount(TaskTotalCount);
+        pc.GetData().SetTaskTotalCount(TaskTotalCount);
     }
 }

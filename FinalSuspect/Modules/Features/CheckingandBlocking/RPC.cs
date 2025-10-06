@@ -90,7 +90,7 @@ internal class RPCHandlerPatch
 
     private static void HandleCheater(PlayerControl player, bool notify, string reason, bool ban, byte callId)
     {
-        if (!player.IsLocalPlayer()) player.MarkAsCheater();
+        if (!player.IsSelf()) player.MarkAsCheater();
 
         if (AmongUsClient.Instance.AmHost)
         {

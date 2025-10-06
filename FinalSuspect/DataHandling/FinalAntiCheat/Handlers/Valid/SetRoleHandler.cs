@@ -23,6 +23,6 @@ public class SetRoleHandler : IRpcHandler
     public bool HandleGame_All(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        return sender.GetFinalData().RoleAssigned && !RoleHelper.IsGhost((RoleTypes)reader.ReadUInt16());
+        return sender.GetData().RoleAssigned && !RoleHelper.IsGhost((RoleTypes)reader.ReadUInt16());
     }
 }
