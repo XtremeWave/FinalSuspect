@@ -30,7 +30,7 @@ public class Main : BasePlugin
     public const int PluginCreation = 1;
 
     // == 版本相关设定 / Version Config ==
-    public const string LowestSupportedVersion = "2025.10.14"; // 17.0.1
+    public const string LowestSupportedVersion = "2025.11.18"; // 17.1.0
 
     private const string DisplayedVersion_Head = "1.3";
 
