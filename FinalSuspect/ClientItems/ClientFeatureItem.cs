@@ -40,14 +40,19 @@ public class ClientFeatureItem
                 UiElement[] selectableButtons = optionsMenuBehaviour.ControllerSelectable.ToArray();
                 PassiveButton leaveButton = null;
                 PassiveButton returnButton = null;
-                for (var i = 0; i < selectableButtons.Length; i++)
+                foreach (var button in selectableButtons)
                 {
-                    var button = selectableButtons[i];
                     if (button == null) continue;
 
-                    if (button.name == "LeaveGameButton")
-                        leaveButton = button.GetComponent<PassiveButton>();
-                    else if (button.name == "ReturnToGameButton") returnButton = button.GetComponent<PassiveButton>();
+                    switch (button.name)
+                    {
+                        case "LeaveGameButton":
+                            leaveButton = button.GetComponent<PassiveButton>();
+                            break;
+                        case "ReturnToGameButton":
+                            returnButton = button.GetComponent<PassiveButton>();
+                            break;
+                    }
                 }
 
                 var generalTab = mouseMoveToggle.transform.parent.parent.parent;

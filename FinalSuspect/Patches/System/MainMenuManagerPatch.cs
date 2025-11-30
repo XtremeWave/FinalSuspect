@@ -195,23 +195,23 @@ public class MainMenuManagerPatch
     {
         try
         {
-            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 
             // 创建 Intent
-            AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
-            AndroidJavaObject intentObject =
+            var intentClass = new AndroidJavaClass("android.content.Intent");
+            var intentObject =
                 new AndroidJavaObject("android.content.Intent", "android.intent.action.VIEW");
 
             // 创建 URI
-            AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
-            AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", url);
+            var uriClass = new AndroidJavaClass("android.net.Uri");
+            var uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", url);
 
             // 设置 Intent 的数据
             intentObject.Call<AndroidJavaObject>("setData", uriObject);
 
             // 设置标志确保在新任务中打开
-            int FLAG_ACTIVITY_NEW_TASK = 0x10000000;
+            const int FLAG_ACTIVITY_NEW_TASK = 0x10000000;
             intentObject.Call<AndroidJavaObject>("setFlags", FLAG_ACTIVITY_NEW_TASK);
 
             // 启动 Activity

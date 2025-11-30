@@ -45,7 +45,7 @@
         <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.752" Private="false" ExcludeAssets="runtime;native"/>
         <PackageReference Include="BunLabs.NAudio.Flac" Version="2.0.1"/>
         <!-- nuget.org -->
-        <PackageReference Include="GitInfo" Version="3.5.0"/>
+        <PackageReference Include="GitInfo" Version="3.6.0"/>
         <PackageReference Include="NAudio" Version="2.2.1"/>
         <PackageReference Include="NextBepLoader.BepInEx.IL2CPP.MSBuild" Version="2.1.0-ci.4">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

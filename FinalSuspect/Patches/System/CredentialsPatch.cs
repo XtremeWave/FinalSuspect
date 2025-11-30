@@ -9,9 +9,7 @@ using FinalSuspect.Modules.Resources;
 using FinalSuspect.Templates;
 using Il2CppSystem;
 using TMPro;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using static FinalSuspect.Modules.Core.Plugin.UI.MainMenu;
 using ColorHelper = FinalSuspect.Helpers.ColorHelper;
 using Object = UnityEngine.Object;
@@ -142,7 +140,7 @@ public class VersionShowerStartPatch
                 $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 #elif OPENBETA
             var versionText =
-                $"<color={ColorHelper.FSColorHex}>{Main.GitBranch}</color> - {Main.GitCommit}\n" +
+                $"<color={ColorHelper.FSColorHex}>{LaunchingInfo.GitBranch}</color> - {LaunchingInfo.GitCommit}\n" +
                 $"<color={ColorHelper.FSColorHex}>FS</color> - <color=#C8FF78>v{Main.DisplayedVersion}</color>";
 #endif
 
@@ -337,8 +335,7 @@ internal class TitleLogoPatch
         var creditsScreen = __instance.creditsScreen;
         if (creditsScreen)
         {
-            var csto = creditsScreen.GetComponent<TransitionOpen>();
-            if (csto) Object.Destroy(csto);
+            if (creditsScreen.TryGetComponent<TransitionOpen>(out var csto)) Object.Destroy(csto);
             var closeButton = creditsScreen.transform.FindChild("CloseButton");
             closeButton?.gameObject.SetActive(false);
         }

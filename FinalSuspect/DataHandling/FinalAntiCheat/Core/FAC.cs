@@ -21,10 +21,10 @@ public static class FAC
             if (handler == null) continue;
             var rpcTypes = handler.TargetRpcs;
 
-            var activehandler = new RpcHandlers(rpcTypes);
-            activehandler.Handlers.Add(handler);
+            var activeHandlers = new RpcHandlers(rpcTypes);
+            activeHandlers.Handlers.Add(handler);
 
-            Handlers.Add(activehandler);
+            Handlers.Add(activeHandlers);
         }
     }
 
