@@ -15,12 +15,21 @@ public class MainThreadTask
     /// <param name="name">本次行为名称，会输出日志</param>
     public MainThreadTask(Action action, string name = "No Name Task")
     {
-        this.action = action;
-        this.name = name;
+        try
+        {
+            this.action = action;
+            this.name = name;
 
-        if (name != "")
-            Info("\"" + name + "\" is created", "Main Thread Task");
-        Tasks.Add(this);
+            if (name != "")
+                Info("\"" + name + "\" is created", "Main Thread Task");
+            Tasks.Add(this);
+        }
+        catch (Exception ex)
+        {
+            Error($"{ex.GetType()}: {ex.Message}  in \"{name}\"\n{ex.StackTrace}",
+                "Main Thread Task.Error",
+                false);
+        }
     }
 
     public static void Update()
