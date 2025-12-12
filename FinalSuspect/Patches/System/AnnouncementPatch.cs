@@ -108,7 +108,6 @@ public class ModNewsHistory
                     foreach (var url in GetInfoFileUrlList())
                     {
                         cancellationToken.ThrowIfCancellationRequested(); // 检查取消信号
-
                         var task = GetAnnouncements(url + $"Assets/ModNews/{lang}/{target}");
                         await task;
 
@@ -146,6 +145,7 @@ public class ModNewsHistory
         catch (OperationCanceledException)
         {
             Warn("LoadModAnnouncements was canceled.", "Load mod announcements");
+            return;
         }
         catch
         {
