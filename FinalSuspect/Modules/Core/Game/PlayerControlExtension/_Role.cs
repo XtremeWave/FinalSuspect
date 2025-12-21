@@ -5,25 +5,28 @@ namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
 public static class _Role
 {
-    public static RoleTypes GetRoleType(this PlayerControl player)
+    extension(PlayerControl player)
     {
-        return RoleHelper.GetRoleType(player.PlayerId);
-    }
+        public RoleTypes GetRoleType()
+        {
+            return RoleHelper.GetRoleType(player.PlayerId);
+        }
 
-    public static bool IsImpostor(this PlayerControl pc)
-    {
-        return !IsLobby && pc.GetRoleType().IsImpostor();
-    }
+        public bool IsImpostor()
+        {
+            return !IsLobby && player.GetRoleType().IsImpostor();
+        }
 
-    public static string GetNameWithRole(this PlayerControl player, bool forUser = false)
-    {
-        var ret = $"{player?.Data?.PlayerName}{(IsInGame ?
-            $"({RoleHelper.GetRoleName(player.GetRoleType())})" : "")}";
-        return forUser ? ret : ret.RemoveHtmlTags();
-    }
+        public string GetNameWithRole(bool forUser = false)
+        {
+            var ret = $"{player?.Data?.PlayerName}{(IsInGame ?
+                $"({RoleHelper.GetRoleName(player.GetRoleType())})" : "")}";
+            return forUser ? ret : ret.RemoveHtmlTags();
+        }
 
-    public static Color GetRoleColor(this PlayerControl player)
-    {
-        return RoleHelper.GetRoleColor(player.GetRoleType());
+        public Color GetRoleColor()
+        {
+            return RoleHelper.GetRoleColor(player.GetRoleType());
+        }
     }
 }

@@ -8,34 +8,9 @@ namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
 public static class _Cheat
 {
-    public static bool IsFACPlayer(this PlayerControl player)
-    {
-        return player?.GetClient()?.IsFACPlayer() ?? false;
-    }
-
-    public static bool IsBannedPlayer(this PlayerControl player)
-    {
-        return player?.GetClient()?.IsBannedPlayer() ?? false;
-    }
-
     public static bool IsBannedPlayer(this ClientData player)
     {
         return BanManager.CheckBanStatus(player?.FriendCode, player?.GetHashedPuid());
-    }
-
-    public static void MarkAsCheater(this PlayerControl pc)
-    {
-        pc.GetData().CheatData.MarkAsCheater();
-    }
-
-    public static void MarkAsHacker(this PlayerControl pc)
-    {
-        pc.GetData().CheatData.MarkAsHacker();
-    }
-
-    public static string GetHashedPuid(this PlayerControl player)
-    {
-        return player.GetClient().GetHashedPuid();
     }
 
     public static string GetHashedPuid(this ClientData player)
@@ -48,5 +23,36 @@ public static class _Cheat
         var sha256Hash = BitConverter.ToString(sha256.ComputeHash(Encoding.UTF8.GetBytes(puid))).Replace("-", "")
             .ToLower();
         return string.Concat(sha256Hash.AsSpan(0, 5), sha256Hash.AsSpan(sha256Hash.Length - 4));
+    }
+
+    extension(PlayerControl player)
+    {
+        public bool IsFACPlayer()
+        {
+            return player?.GetClient()?.IsFACPlayer() ?? false;
+        }
+
+        public bool IsBannedPlayer()
+        {
+            return player?.GetClient()?.IsBannedPlayer() ?? false;
+        }
+    }
+
+    extension(PlayerControl pc)
+    {
+        public void MarkAsCheater()
+        {
+            pc.GetData().CheatData.MarkAsCheater();
+        }
+
+        public void MarkAsHacker()
+        {
+            pc.GetData().CheatData.MarkAsHacker();
+        }
+
+        public string GetHashedPuid()
+        {
+            return pc.GetClient().GetHashedPuid();
+        }
     }
 }

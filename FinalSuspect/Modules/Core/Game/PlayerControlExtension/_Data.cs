@@ -7,131 +7,132 @@ namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
 public static class _Data
 {
-    public static string GetRealName(this PlayerControl player, bool isMeeting = false)
+    extension(PlayerControl player)
     {
-        if (player == null) return null;
-
-        string dataName = null;
-        try
+        public string GetRealName(bool isMeeting = false)
         {
-            var data = player.GetData();
-            if (data != null)
-                dataName = player.GetDataName();
+            if (player == null) return null;
+
+            string dataName = null;
+            try
+            {
+                var data = player.GetData();
+                if (data != null)
+                    dataName = player.GetDataName();
+            }
+            catch
+            {
+                /* ignored */
+            }
+
+            var realName = isMeeting ? player.Data?.PlayerName : player.name;
+            return realName ?? dataName;
         }
-        catch
+
+        public string CheckAndGetNameWithDetails(out Color topcolor,
+            out Color bottomcolor,
+            out string toptext,
+            out string bottomtext,
+            bool topswap = false)
         {
-            /* ignored */
+            return FinalLocalHandling.CheckAndGetNameWithDetails(player.PlayerId, out topcolor, out bottomcolor,
+                out toptext, out bottomtext,
+                topswap);
         }
 
-        var realName = isMeeting ? player.Data?.PlayerName : player.name;
-        return realName ?? dataName;
-    }
-
-    public static string CheckAndGetNameWithDetails(
-        this PlayerControl player,
-        out Color topcolor,
-        out Color bottomcolor,
-        out string toptext,
-        out string bottomtext,
-        bool topswap = false)
-    {
-        return FinalLocalHandling.CheckAndGetNameWithDetails(player.PlayerId, out topcolor, out bottomcolor,
-            out toptext, out bottomtext,
-            topswap);
-    }
-
-    public static FinalPlayerData GetData(this PlayerControl pc)
-    {
-        try
-        {
-            return GetFinalDataById(pc.PlayerId);
-        }
-        catch
+        public FinalPlayerData GetData()
         {
             try
             {
-                return FinalPlayerData.AllPlayerData.FirstOrDefault(data => data.Player == pc);
+                return GetFinalDataById(player.PlayerId);
+            }
+            catch
+            {
+                try
+                {
+                    return FinalPlayerData.AllPlayerData.FirstOrDefault(data => data.Player == player);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public PlayerCheatData GetCheatData()
+        {
+            try
+            {
+                return GetCheatDataById(player.PlayerId);
+            }
+            catch
+            {
+                try
+                {
+                    return player.GetData().CheatData;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string GetDataName()
+        {
+            try
+            {
+                return GetPlayerNameById(player.PlayerId);
             }
             catch
             {
                 return null;
             }
         }
-    }
 
-    public static PlayerCheatData GetCheatData(this PlayerControl pc)
-    {
-        try
-        {
-            return GetCheatDataById(pc.PlayerId);
-        }
-        catch
+        public string GetColoredName()
         {
             try
             {
-                return pc.GetData().CheatData;
+                var data = GetFinalDataById(player.PlayerId);
+                return StringHelper.ColorString(data.PlayerColor, data.PlayerName);
             }
             catch
             {
                 return null;
             }
         }
-    }
 
-    public static string GetDataName(this PlayerControl pc)
-    {
-        try
+        public void SetDead()
         {
-            return GetPlayerNameById(pc.PlayerId);
+            player.GetData().SetDead();
         }
-        catch
+
+        public void SetDisconnected()
         {
-            return null;
+            player.GetData().SetDisconnected();
+            FinalPlayerData.AllPlayerData.Do(_data => _data.AdjustPlayerId());
         }
-    }
 
-    public static string GetColoredName(this PlayerControl pc)
-    {
-        try
+        public void SetRole(RoleTypes role)
         {
-            var data = GetFinalDataById(pc.PlayerId);
-            return StringHelper.ColorString(data.PlayerColor, data.PlayerName);
+            player.GetData().SetRole(role);
         }
-        catch
+
+        public void SetDeathReason(VanillaDeathReason deathReason, bool focus = false)
         {
-            return null;
+            player.GetData().SetDeathReason(deathReason, focus);
         }
-    }
 
-    public static void SetDead(this PlayerControl pc)
-    {
-        pc.GetData().SetDead();
-    }
+        public void SetRealKiller(PlayerControl killer)
+        {
+            if (player.GetData().RealKiller != null || !player.Data.IsDead) return;
+            player.GetData().SetRealKiller(killer.GetData());
+        }
 
-    public static void SetDisconnected(this PlayerControl pc)
-    {
-        pc.GetData().SetDisconnected();
-        FinalPlayerData.AllPlayerData.Do(_data => _data.AdjustPlayerId());
-    }
-
-    public static void SetRole(this PlayerControl pc, RoleTypes role)
-    {
-        pc.GetData().SetRole(role);
-    }
-
-    public static void SetDeathReason(this PlayerControl pc, VanillaDeathReason deathReason, bool focus = false)
-    {
-        pc.GetData().SetDeathReason(deathReason, focus);
-    }
-
-    public static void SetRealKiller(this PlayerControl pc, PlayerControl killer)
-    {
-        if (pc.GetData().RealKiller != null || !pc.Data.IsDead) return;
-        pc.GetData().SetRealKiller(killer.GetData());
-    }
-
-    public static void SetTaskTotalCount(this PlayerControl pc, int TaskTotalCount)
-    {
-        pc.GetData().SetTaskTotalCount(TaskTotalCount);
+        public void SetTaskTotalCount(int TaskTotalCount)
+        {
+            player.GetData().SetTaskTotalCount(TaskTotalCount);
+        }
     }
 }

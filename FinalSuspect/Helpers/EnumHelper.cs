@@ -24,36 +24,39 @@ public static class EnumHelper
         return Enum.GetNames(typeof(T));
     }
 
-    /// <summary>添加枚举值（返回新值，原值不变）</summary>
-    public static T AddFlag<T>(this T value, T flag) where T : Enum
+    extension<T>(T value) where T : Enum
     {
-        // 仅支持整数基类型（byte、sbyte、short、ushort、int、uint、long、ulong）
-        dynamic v = value;
-        dynamic f = flag;
-        return (T)(v | f);
-    }
+        /// <summary>添加枚举值（返回新值，原值不变）</summary>
+        public T AddFlag(T flag)
+        {
+            // 仅支持整数基类型（byte、sbyte、short、ushort、int、uint、long、ulong）
+            dynamic v = value;
+            dynamic f = flag;
+            return (T)(v | f);
+        }
 
-    /// <summary>移除枚举值（返回新值，原值不变）</summary>
-    public static T RemoveFlag<T>(this T value, T flag) where T : Enum
-    {
-        dynamic v = value;
-        dynamic f = flag;
-        return (T)(v & ~f);
-    }
+        /// <summary>移除枚举值（返回新值，原值不变）</summary>
+        public T RemoveFlag(T flag)
+        {
+            dynamic v = value;
+            dynamic f = flag;
+            return (T)(v & ~f);
+        }
 
-    /// <summary>
-    /// 根据 <paramref name="addFlag"/> 决定添加或移除某个标志位。
-    /// true 时调用 AddFlag，false 时调用 RemoveFlag。
-    /// </summary>
-    public static T AddOrRemoveFlag<T>(this T value, T flag, bool addFlag) where T : Enum
-    {
-        return addFlag ? value.AddFlag(flag) : value.RemoveFlag(flag);
-    }
+        /// <summary>
+        /// 根据 <paramref name="addFlag"/> 决定添加或移除某个标志位。
+        /// true 时调用 AddFlag，false 时调用 RemoveFlag。
+        /// </summary>
+        public T AddOrRemoveFlag(T flag, bool addFlag)
+        {
+            return addFlag ? value.AddFlag(flag) : value.RemoveFlag(flag);
+        }
 
-    public static bool HasAnyFlag<T>(this T value, T flags) where T : Enum
-    {
-        var v = (int)(object)value;
-        var f = (int)(object)flags;
-        return (v & f) != 0;
+        public bool HasAnyFlag(T flags)
+        {
+            var v = (int)(object)value;
+            var f = (int)(object)flags;
+            return (v & f) != 0;
+        }
     }
 }

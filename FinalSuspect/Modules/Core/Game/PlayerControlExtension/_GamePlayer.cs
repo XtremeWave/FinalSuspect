@@ -4,59 +4,63 @@ namespace FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 
 public static class _GamePlayer
 {
-    public static bool IsSelf(this PlayerControl player)
+    extension(PlayerControl player)
     {
-        return PlayerControl.LocalPlayer == player;
-    }
-
-    public static bool IsAlive(this PlayerControl pc)
-    {
-        return pc?.GetData()?.IsDead == false || !IsInGame;
-    }
-
-    public static bool OtherModClient(this PlayerControl player)
-    {
-        return Utils.OtherModClient(player.GetClientId()) ||
-               (player.Data.OwnerId == -2
-                && !Utils.IsFinalSuspect(player.GetClientId())
-                && !IsFreePlay
-                && !IsLocalGame);
-    }
-
-    public static bool ModClient(this PlayerControl player)
-    {
-        return Utils.ModClient(player.GetClientId());
-    }
-
-    public static bool IsFinalSuspect(this PlayerControl player)
-    {
-        return Utils.IsFinalSuspect(player.GetClientId());
-    }
-
-    public static bool IsDev(this PlayerControl pc)
-    {
-        return Utils.IsDev(pc.FriendCode);
-    }
-
-    public static PlainShipRoom GetPlainShipRoom(this PlayerControl pc)
-    {
-        var rooms = ShipStatus.Instance.AllRooms;
-        return rooms?.Where(room => room.roomArea).FirstOrDefault(room => pc.Collider.IsTouching(room.roomArea));
-    }
-
-    public static string GetPlainShipRoomName(this PlayerControl pc)
-    {
-        try
+        public bool IsSelf()
         {
-            if (IsInMeeting)
-                return pc.GetData().PreMeetingRoomName;
-            var roomStr = pc.GetPlainShipRoom().RoomId.ToString();
-            var roomName = StringHelper.ColorString(ColorHelper.ClientlessColor, $"({GetString(roomStr)})");
-            return roomName;
+            return PlayerControl.LocalPlayer == player;
         }
-        catch
+
+        public bool IsAlive()
         {
-            return "";
+            return player?.GetData()?.IsDead == false || !IsInGame;
+        }
+
+        public bool OtherModClient()
+        {
+            return Utils.OtherModClient(player.GetClientId()) ||
+                   (player.Data.OwnerId == -2
+                    && !Utils.IsFinalSuspect(player.GetClientId())
+                    && !IsFreePlay
+                    && !IsLocalGame);
+        }
+
+        public bool ModClient()
+        {
+            return Utils.ModClient(player.GetClientId());
+        }
+
+        public bool IsFinalSuspect()
+        {
+            return Utils.IsFinalSuspect(player.GetClientId());
+        }
+
+        public bool IsDev()
+        {
+            return Utils.IsDev(player.FriendCode);
+        }
+
+        public PlainShipRoom GetPlainShipRoom()
+        {
+            var rooms = ShipStatus.Instance.AllRooms;
+            return rooms?.Where(room => room.roomArea)
+                .FirstOrDefault(room => player.Collider.IsTouching(room.roomArea));
+        }
+
+        public string GetPlainShipRoomName()
+        {
+            try
+            {
+                if (IsInMeeting)
+                    return player.GetData().PreMeetingRoomName;
+                var roomStr = player.GetPlainShipRoom().RoomId.ToString();
+                var roomName = StringHelper.ColorString(ColorHelper.ClientlessColor, $"({GetString(roomStr)})");
+                return roomName;
+            }
+            catch
+            {
+                return "";
+            }
         }
     }
 }

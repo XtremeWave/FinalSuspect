@@ -43,90 +43,6 @@ public static class FinalLocalHandling
         return name;
     }
 
-    private static void GetLobbyText(this FinalPlayerData data, ref Color topcolor, ref Color bottomcolor,
-        ref string toptext, ref string bottomtext)
-    {
-        if (!IsLobby) return;
-        var player = data.Player;
-        if (player.IsHost()) toptext = toptext.CheckAndAppendText(GetString("Id.Host"));
-        if (GetPlayerVersion(player.GetClientId(), out var ver))
-        {
-            if (Main.ForkId != ver.ForkId)
-            {
-                toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.ForkId}</size>");
-                topcolor = ColorHelper.UnmatchedColor;
-            }
-            else
-            {
-                switch (Main.version.CompareTo(ver.Version))
-                {
-                    case 0 when ver.Tag == $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
-                        topcolor = ColorHelper.FSColor;
-                        break;
-                    case 0 when ver.Tag != $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
-                        toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.Tag}</size>");
-                        topcolor = Color.yellow;
-                        break;
-                    default:
-                        toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.Version}</size>");
-                        topcolor = Color.red;
-                        break;
-                }
-            }
-        }
-        else
-        {
-            if (player.IsSelf()) topcolor = ColorHelper.FSColor;
-            else if (player.IsHost()) topcolor = ColorHelper.HostNameColor;
-            else topcolor = ColorHelper.ClientlessColor;
-        }
-
-        if (!ConfigManager.ShowPlayerInfo.Value) return;
-        bottomtext = bottomtext.CheckAndAppendText($"{player.GetPlatform()} {player.GetClient().FriendCode}");
-        bottomcolor = ColorHelper.DownloadYellow;
-    }
-
-
-    private static void GetGameText(this FinalPlayerData data, ref Color color, ref string roleText, bool topswap)
-    {
-        if (!IsInGame) return;
-        if (!ConfigManager.EnableFinalSuspect.Value) return;
-
-        var player = data.Player;
-        if (player.shapeshiftTargetPlayerId != -1)
-        {
-            var playerId = (byte)player.shapeshiftTargetPlayerId;
-            data = GetFinalDataById(playerId);
-            player = data.Player;
-        }
-
-        var roleType = GetRoleById(data.PlayerId);
-        var roleTag = data.RoleTag;
-
-        if (CanSeeTargetRole(player, out var bothImp))
-        {
-            color = RoleHelper.GetRoleColor(roleType);
-            roleText = !topswap
-                ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
-                : $"{GetVitalText(data.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
-        }
-        else if ((roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "") &&
-                 !IsActive(SystemTypes.MushroomMixupSabotage))
-        {
-            color = data.RoleTag.TagColor;
-            roleText = !topswap
-                ? $"[<size=80%>{data.RoleTag.TagStr}" + StringHelper.ColorString(ColorHelper.ClientlessColor,
-                    $"{data.RoleTag.Room}") + "</size>]"
-                : "[<size=80%>" + StringHelper.ColorString(ColorHelper.ClientlessColor, $"{data.RoleTag.Room}") +
-                  $"{data.RoleTag.TagStr}</size>]";
-        }
-        else if (bothImp)
-        {
-            color = Palette.ImpostorRed;
-        }
-
-        if (player.GetData().IsDisconnected) color = Color.gray;
-    }
 
     private static string CheckAndAppendText(this string toptext, string extratext)
     {
@@ -134,6 +50,93 @@ public static class FinalLocalHandling
             toptext += "\n";
         toptext += extratext;
         return toptext;
+    }
+
+    extension(FinalPlayerData data)
+    {
+        private void GetLobbyText(ref Color topcolor, ref Color bottomcolor,
+            ref string toptext, ref string bottomtext)
+        {
+            if (!IsLobby) return;
+            var player = data.Player;
+            if (player.IsHost()) toptext = toptext.CheckAndAppendText(GetString("Id.Host"));
+            if (GetPlayerVersion(player.GetClientId(), out var ver))
+            {
+                if (Main.ForkId != ver.ForkId)
+                {
+                    toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.ForkId}</size>");
+                    topcolor = ColorHelper.UnmatchedColor;
+                }
+                else
+                {
+                    switch (Main.version.CompareTo(ver.Version))
+                    {
+                        case 0 when ver.Tag == $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
+                            topcolor = ColorHelper.FSColor;
+                            break;
+                        case 0 when ver.Tag != $"{LaunchingInfo.GitCommit}({LaunchingInfo.GitBranch})":
+                            toptext = toptext.CheckAndAppendText($"<size=1.5>{ver.Tag}</size>");
+                            topcolor = Color.yellow;
+                            break;
+                        default:
+                            toptext = toptext.CheckAndAppendText($"<size=1.5>v{ver.Version}</size>");
+                            topcolor = Color.red;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if (player.IsSelf()) topcolor = ColorHelper.FSColor;
+                else if (player.IsHost()) topcolor = ColorHelper.HostNameColor;
+                else topcolor = ColorHelper.ClientlessColor;
+            }
+
+            if (!ConfigManager.ShowPlayerInfo.Value) return;
+            bottomtext = bottomtext.CheckAndAppendText($"{player.GetPlatform()} {player.GetClient().FriendCode}");
+            bottomcolor = ColorHelper.DownloadYellow;
+        }
+
+        private void GetGameText(ref Color color, ref string roleText, bool topswap)
+        {
+            if (!IsInGame) return;
+            if (!ConfigManager.EnableFinalSuspect.Value) return;
+
+            var player = data.Player;
+            if (player.shapeshiftTargetPlayerId != -1 && !IsInMeeting && !CanSeeTargetRole(player, out _))
+            {
+                var playerId = (byte)player.shapeshiftTargetPlayerId;
+                data = GetFinalDataById(playerId);
+                player = data.Player;
+            }
+
+            var roleType = GetRoleById(data.PlayerId);
+            var roleTag = data.RoleTag;
+
+            if (CanSeeTargetRole(player, out var bothImp))
+            {
+                color = RoleHelper.GetRoleColor(roleType);
+                roleText = !topswap
+                    ? $"<size=80%>{GetRoleString(roleType.ToString())}</size> {GetProgressText(player)} {GetVitalText(player.PlayerId, doColor: CanSeeOthersRole())} "
+                    : $"{GetVitalText(data.PlayerId, doColor: CanSeeOthersRole())} {GetProgressText(player)} <size=80%>{GetRoleString(roleType.ToString())}</size>";
+            }
+            else if ((roleTag.TagColor != Color.white || roleTag.TagStr != "" || roleTag.Room != "") &&
+                     !IsActive(SystemTypes.MushroomMixupSabotage))
+            {
+                color = data.RoleTag.TagColor;
+                roleText = !topswap
+                    ? $"[<size=80%>{data.RoleTag.TagStr}" + StringHelper.ColorString(ColorHelper.ClientlessColor,
+                        $"{data.RoleTag.Room}") + "</size>]"
+                    : "[<size=80%>" + StringHelper.ColorString(ColorHelper.ClientlessColor, $"{data.RoleTag.Room}") +
+                      $"{data.RoleTag.TagStr}</size>]";
+            }
+            else if (bothImp)
+            {
+                color = Palette.ImpostorRed;
+            }
+
+            if (player.GetData().IsDisconnected) color = Color.gray;
+        }
     }
 
     #region HUD
