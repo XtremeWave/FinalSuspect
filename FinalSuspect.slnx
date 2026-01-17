@@ -1,0 +1,13 @@
+<Solution>
+    <Configurations>
+        <BuildType Name="Debug"/>
+        <BuildType Name="OpenBeta"/>
+        <BuildType Name="Release"/>
+        <Platform Name="Android"/>
+        <Platform Name="Windows"/>
+    </Configurations>
+    <Project Path="FinalSuspect/FinalSuspect.csproj">
+        <Platform Solution="*|Android" Project="Android"/>
+        <Platform Solution="*|Windows" Project="Windows"/>
+    </Project>
+</Solution>
