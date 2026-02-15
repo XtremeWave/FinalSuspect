@@ -20,7 +20,7 @@
 ## About
 
 FinalSuspect is an original optimization plugin designed for Among Us.\
-The plugin introduces 20+ optimizations to the original game, enhancing the overall experience.\
+The plugin introduces 20+ optimizations to the original game, enhancing the overall experience.
 
 ## Contributors
 

@@ -4,9 +4,9 @@
 
 **Final Suspect 终极嫌疑，您最棒的Among Us原版辅助模组。**
 
-<img src="https://badgen.net/github/license/XtremeWave/FinalSuspect" alt="Licences">
-<img src="https://badgen.net/github/tag/XtremeWave/FinalSuspect" alt="LatestTag">
-<img src="https://badgen.net/github/stars/XtremeWave/FinalSuspect/" alt="Stars">
+<img src="https://badgen.net/github/license/Slok7565/FinalSuspect" alt="Licences">
+<img src="https://badgen.net/github/tag/Slok7565/FinalSuspect" alt="LatestTag">
+<img src="https://badgen.net/github/stars/Slok7565/FinalSuspect/" alt="Stars">
 
 [English](README.md) | [简体中文]
 
@@ -21,6 +21,7 @@
 
 FinalSuspect是一个适用于Among Us的原版优化插件。\
 插件为原版带来了20+项优化以及许多功能,使得原版也能获得更好的体验。\
+有关该插件的详细使用文档(安装,更新以及完整的配置说明),请参阅[网站文档](https://finalsuspect.pages.dev/)。
 
 ## 贡献者
 
