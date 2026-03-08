@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using BepInEx;
 using FinalSuspect.Attributes;
 
 namespace FinalSuspect.Modules.Resources;
@@ -15,7 +16,7 @@ public static class PathManager
 #else
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
-    private const string DependsSavePath = "BepInEx/core/";
+    private static readonly string DependsSavePath = Paths.BepInExAssemblyDirectory;
     public const string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
 #endif
 
@@ -40,7 +41,7 @@ public static class PathManager
 
     public const string DownloadUrl_FangKuaiRemote =
         "https://dl.amongusclub.cn/FinalSuspect/FinalSuspect.dll";
-    // 下载URL保持不变 
+    // 下载URL保持不变
 #endif
     public static readonly string BANEDWORDS_FILE_PATH = GetBanFilesPath("BanWords.json");
     public static readonly string DENY_NAME_LIST_PATH = GetBanFilesPath("DenyName.json");
