@@ -21,13 +21,13 @@
 
 FinalSuspect是一个适用于Among Us的原版优化插件。\
 插件为原版带来了20+项优化以及许多功能,使得原版也能获得更好的体验。\
-有关该插件的详细使用文档(安装,更新以及完整的配置说明),请参阅[网站文档](https://finalsuspect.pages.dev/)。
+有关该插件的详细使用文档(安装,更新以及完整的配置说明),请参阅[网站文档](https://finalsuspect.zh-cn.edgeone.cool/)。
 
 ## 贡献者
 
 <div align="center">
   <a href="https://github.com/Slok7565/FinalSuspect/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=XtremeWave/FinalSuspect" alt="Contributors List">
+    <img src="https://contrib.rocks/image?repo=Slok7565/FinalSuspect" alt="Contributors List">
   </a>
 </div>
 
@@ -36,4 +36,4 @@ FinalSuspect是一个适用于Among Us的原版优化插件。\
 要为FinalSuspect做贡献?请参阅[贡献指南](CONTRIBUTING.md)。
 
 ## 星标历史
-![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)
+![Star History Chart](https://api.star-history.com/svg?repos=Slok7565/FinalSuspect&type=Date)
