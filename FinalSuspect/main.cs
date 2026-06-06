@@ -25,7 +25,7 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.3.9";
+    public const string PluginVersion = "1.3.10";
     public const string PluginGuid = "cn.slok.finalsuspect";
     public const int PluginCreation = 1;
 
@@ -92,7 +92,7 @@ public class Main : BasePlugin
     /// <summary>
     ///     表示当前显示的版本类型。
     /// </summary>
-    private const VersionTypes DisplayedVersion_Type = VersionTypes.Alpha;
+    private const VersionTypes DisplayedVersion_Type = VersionTypes.Canary;
 
     private const int DisplayedVersion_TestCreation = 1;
 #endif
