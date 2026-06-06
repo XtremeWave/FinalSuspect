@@ -41,8 +41,8 @@
     <ItemGroup>
         <!-- nuget.bepinex.dev -->
         <PackageReference Include="AmongUs.GameLibs.Android" Version="2025.10.14" Condition="'$(Platform)' == 'Android'"/>
-        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2025.11.18" PrivateAssets="all" Condition="'$(Platform)' == 'Windows'"/>
-        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.752" Private="false" ExcludeAssets="runtime;native"/>
+        <PackageReference Include="AmongUs.GameLibs.Steam" Version="2026.3.31" PrivateAssets="all" Condition="'$(Platform)' == 'Windows'"/>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.755" Private="false" ExcludeAssets="runtime;native"/>
         <PackageReference Include="BunLabs.NAudio.Flac" Version="2.0.1"/>
         <!-- nuget.org -->
         <PackageReference Include="GitInfo" Version="3.6.0"/>
