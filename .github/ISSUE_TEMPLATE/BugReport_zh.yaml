@@ -40,7 +40,7 @@ body:
   - type: textarea
     attributes:
       label: "相关日志输出"
-      description: "打开游戏设置导出日志，将导出FinalSuspect日志复制并将其粘贴至此处。\n你也可以通过该[网站](https://finalsuspect.pages.dev/FinalSuspect/Guide/OutputLog)查看如何导出日志。"
+      description: "打开游戏设置导出日志，将导出FinalSuspect日志复制并将其粘贴至此处。\n你也可以通过该[网站](https://finalsuspect.zh-cn.edgeone.cool/FinalSuspect/Guide/OutputLog)查看如何导出日志。"
       render: shell
   - type: textarea
     attributes:
