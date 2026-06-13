@@ -6,7 +6,6 @@ using System;
 using System.IO;
 #endif
 
-
 namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
 
 public static class DllChecker
@@ -38,7 +37,7 @@ public static class DllChecker
             var fullPath = Path.Combine(amongUsPath, fileName);
 
             if (!File.Exists(fullPath)) continue;
-            Error($"G检测到非法文件: {fileName}！游戏将被强制终止。", "FAC");
+            Error($"检测到非法文件: {fileName}！游戏将被强制终止。", "FAC");
             Application.Quit(1);
         }
 #endif

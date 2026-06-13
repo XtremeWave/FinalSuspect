@@ -95,10 +95,11 @@ internal static class Git
             {
                 var FN = Path.GetFileName(path);
                 // 使用解密后的字符串进行比较
-                if (FN == C || FN == D)
-                    continue;
-                Error(G, J);
-                Application.Quit(1);
+                if (FN == C || FN == D) continue;
+                {
+                    Error(G, J);
+                    Application.Quit(1);
+                }
             }
         }
 
@@ -107,8 +108,10 @@ internal static class Git
         {
             var fullPath = Path.Combine(USPath, FN);
             if (File.Exists(fullPath))
+            {
                 Error(H, J);
                 Application.Quit(1);
+            }
         }
 
         // 检测非法进程
