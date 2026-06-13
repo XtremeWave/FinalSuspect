@@ -94,7 +94,7 @@ public class Main : BasePlugin
     /// </summary>
     private const VersionTypes DisplayedVersion_Type = VersionTypes.Canary;
 
-    private const int DisplayedVersion_TestCreation = 1;
+    private const int DisplayedVersion_TestCreation = 2;
 #endif
 }
 
