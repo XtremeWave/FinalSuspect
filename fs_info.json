@@ -1,7 +1,7 @@
 {
-  "version": "1.3.0",
+  "version": "1.3.11",
   "verHead": "1.3",
-  "verDate": "20251005",
+  "verDate": "20260620",
 
   "minVer": "latest",
   "creation": "0",
@@ -9,7 +9,7 @@
   "CanUpdate": "true",
   "langVersion": "1.3.0.1",
 
-  "md5": "c98dc61bdba1cb8e645b73c257716474",
+  "md5": "9e6afd6f77d85526a1be1874fd8e1b8f",
   "announcement": {
     "English": "If the update is unsuccessful, please try to visit the website to update manually.",
     "Latam": "Si la actualización no tiene éxito, por favor intente visitar el sitio web para actualizar manualmente.\nEl idioma que estás utilizando se traduce mediante IA y puede contener inexactitudes. Por favor, proporciona retroalimentación al desarrollador de manera oportuna.",

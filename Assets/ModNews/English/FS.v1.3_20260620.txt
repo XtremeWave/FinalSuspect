@@ -1,0 +1,29 @@
+#Number:100011
+#Title:Final Suspect v1.3
+#SubTitle:★★★★Four Centuries Fly By★★★★
+#ShortTitle:★Patch v1.3
+#Date:2026-06-20T00:00:00Z
+#-----------------------------
+# English
+
+## Required Version
+- Based on Among Us v17.4.0
+- BepInEx v6.0.0-be.755
+
+## Mode Version Information
+- Assembly Version: v1.3.11
+- Version Type: Release
+- Creation: 1
+
+## Update Contents
+- Bug Fixes: 2
+- New Contents: 1
+
+## Bug Fix
+- Fixed the issue of crewmate text display errors
+- Fixed the issue that after reverting, the shapeshifter still displayed the notes and meeting tags of the transformed object
+Fixer: Slok
+
+## New Contents
+- Adjust **Among Us v17.4.0**
+Creator: LezaiYa
