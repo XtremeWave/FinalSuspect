@@ -131,8 +131,7 @@ public static class LoadPatch
 
     private static bool CheckFastLaunchModeCondition()
     {
-        var currentVersion =
-            $"{Main.PluginVersion}|{Main.DisplayedVersion}|{LaunchingInfo.GitCommit}-{LaunchingInfo.GitBranch}";
+        const string currentVersion = $"{Main.PluginVersion}|{Main.DisplayedVersion}|{LaunchingInfo.GitCommit}-{LaunchingInfo.GitBranch}";
         var bypassType = ConfigManager.LanguageUpdateBypass.Value;
 
         _reloadLanguage =

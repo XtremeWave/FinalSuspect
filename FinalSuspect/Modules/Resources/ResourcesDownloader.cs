@@ -81,7 +81,7 @@ public static class ResourcesDownloader
 
                     if (IsBlockedPage(downloadFileTempPath))
                     {
-                        lastError = $"BLOVKED! return HTML: {url}";
+                        lastError = $"BLOCKED! return HTML: {url}";
                         Error(lastError, "Download Resources", false);
                         File.Delete(downloadFileTempPath);
                         continue;
