@@ -10,10 +10,6 @@ namespace FinalSuspect.DataHandling.FinalAntiCheat.Core;
 
 public static class DllChecker
 {
-#if Windows
-    private static readonly Type LinkedGuard = typeof(ExeChecker);
-#endif
-
     [PluginModuleInitializer(InitializePriority.High)]
     internal static void OnInitialization()
     {
