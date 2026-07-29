@@ -16,7 +16,7 @@ public static class PathManager
 #else
     private const string LocalPath_Data = "Final Suspect_Data/";
     public const string LANGUAGE_FOLDER_NAME = LocalPath_Data + "Language";
-    private static readonly string DependsSavePath = Paths.BepInExAssemblyDirectory;
+    private static readonly string DependsSavePath = Paths.BepInExAssemblyDirectory+"/";
     public const string BAN_LIST_PATH = LocalPath_Data + "BanList.txt";
 #endif
 
