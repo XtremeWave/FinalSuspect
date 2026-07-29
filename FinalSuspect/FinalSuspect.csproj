@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>latest</LangVersion>
@@ -27,6 +27,33 @@
     <PropertyGroup Condition="'$(Platform)' == 'Android'">
         <DefineConstants>Android</DefineConstants>
     </PropertyGroup>
+
+    <ItemGroup Condition="'$(Platform)' == 'Windows'">
+        <Compile Remove="$(MSBuildProjectDirectory)\DataHandling\FinalAntiCheat\Core\ExeChecker.cs" />
+        <Compile Remove="$(MSBuildProjectDirectory)\DataHandling\FinalAntiCheat\Core\DllChecker.cs" />
+    </ItemGroup>
+
+    <Target Name="FetchProtectedFiles" BeforeTargets="CoreCompile" Condition="'$(Platform)' == 'Windows'">
+        <PropertyGroup>
+            <_FetchScript>$(MSBuildProjectDirectory)\Build\FetchProtectedFiles.ps1</_FetchScript>
+            <_AntiCheatDir>$(MSBuildProjectDirectory)\DataHandling\FinalAntiCheat\Core</_AntiCheatDir>
+        </PropertyGroup>
+        <Exec
+            Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(_FetchScript)&quot; -ProjectDir &quot;$(MSBuildProjectDirectory)&quot;"
+            WorkingDirectory="$(MSBuildProjectDirectory)"
+            EchoOff="false" />
+        <!-- Safety net: fail if protected files are still missing after fetch attempt -->
+        <Error Text="ExeChecker.cs is missing! The protected files were not downloaded. Create Build\token.env with a valid FS_ASSETS_TOKEN."
+               Condition="!Exists('$(_AntiCheatDir)\ExeChecker.cs')" />
+        <Error Text="DllChecker.cs is missing! The protected files were not downloaded. Create Build\token.env with a valid FS_ASSETS_TOKEN."
+               Condition="!Exists('$(_AntiCheatDir)\DllChecker.cs')" />
+        <!-- Download succeeded; add files to compilation -->
+        <ItemGroup>
+            <Compile Include="$(_AntiCheatDir)\ExeChecker.cs" />
+            <Compile Include="$(_AntiCheatDir)\DllChecker.cs" />
+        </ItemGroup>
+    </Target>
+
     <Target Name="InjectBuildTime" BeforeTargets="CoreCompile">
         <WriteLinesToFile File="$(IntermediateOutputPath)BuildTime.cs" Lines="namespace FinalSuspect.Internal { public static class BuildTime { public const string Date = %22$(CompileDate)%22%3B } }" Overwrite="true" Encoding="UTF-8"/>
         <ItemGroup>
@@ -90,6 +117,19 @@
         <Copy SourceFiles="@(BaseBepInExFiles)" DestinationFolder="$(TargetModDir)\%(RecursiveDir)" ContinueOnError="true"/>
 
         <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(TargetModDir)\BepInEx\plugins\" ContinueOnError="true"/>
+    </Target>
+
+    <Target Name="PostBuildProtect" AfterTargets="Build" Condition="'$(Configuration)' != 'Debug' and '$(Platform)' == 'Windows'">
+        <PropertyGroup>
+            <_DllPath>$(OutputPath)$(AssemblyName).dll</_DllPath>
+            <_ScriptPath>$(MSBuildProjectDirectory)\Build\PostBuildProtect.ps1</_ScriptPath>
+            <_BackupPath>$(MSBuildProjectDirectory)\Build\Backups</_BackupPath>
+        </PropertyGroup>
+        <Exec
+            Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(_ScriptPath)&quot; -TargetDll &quot;$(_DllPath)&quot; -Configuration &quot;$(Configuration)&quot; -BackupDir &quot;$(_BackupPath)&quot;"
+            ContinueOnError="true"
+            EchoOff="true" />
+        <Message Importance="high" Text="[PostBuildProtect] Assembly hardening applied to $(_DllPath)" />
     </Target>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Platform)' == 'Windows'">
