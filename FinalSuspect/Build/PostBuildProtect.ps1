@@ -1,12 +1,5 @@
-<#
-Post-Build PE 混淆加固 — 纯 PowerShell 实现，兼容 WinPS 5.1+ / PS Core 6+
-#>
-
 param([string]$TargetDll, [string]$Configuration, [string]$BackupDir)
 
-# ============================================================
-# 全局 trap — 任何错误都安全退出 0，绝不阻断 MSBuild
-# ============================================================
 trap {
     $msg = "TRAP: $($_.Exception.Message)"
     Write-Host "[PostBuildProtect] $msg" -ForegroundColor Red
@@ -20,7 +13,6 @@ trap {
 $ErrorActionPreference = "Stop"
 $script:__bak = ""
 
-# 前置
 if (-not $TargetDll) { Write-Host "[PostBuildProtect] No target" ; exit 0 }
 if (-not (Test-Path $TargetDll -PathType Leaf)) { Write-Host "[PostBuildProtect] Not found: $TargetDll" ; exit 0 }
 
@@ -35,7 +27,6 @@ Write-Host "  Post-Build Protection"               -ForegroundColor Cyan
 Write-Host "  $fullPath"                            -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 
-# ── Backup ──
 if ($BackupDir) {
     $null = New-Item -ItemType Directory -Path $BackupDir -Force -ErrorAction SilentlyContinue
     $script:__bak = Join-Path $BackupDir "$([IO.Path]::GetFileNameWithoutExtension($TargetDll))_$(Get-Date -Format 'yyyyMMdd_HHmmss').bak"
@@ -43,8 +34,6 @@ if ($BackupDir) {
     Write-Host "[1/5] Backup OK" -ForegroundColor Green
 }
 
-# ── [2] Strip PDB RSDS header ──
-#      hardcoded 'RSDS' = 0x52 0x53 0x44 0x53
 for ($p = 0; $p -lt $len - 4; $p++) {
     if ($bytes[$p] -eq 82 -and $bytes[$p+1] -eq 83 -and $bytes[$p+2] -eq 68 -and $bytes[$p+3] -eq 83) {
         $end = if ($p + 24 -le $len) { $p + 24 } else { $len }
@@ -56,7 +45,6 @@ for ($p = 0; $p -lt $len - 4; $p++) {
     }
 }
 
-# ── [3] PE offset & TimeDateStamp ──
 if ($len -lt 64) { Write-Host "[PostBuildProtect] PE too short" ; exit 0 }
 $pe = [BitConverter]::ToInt32($bytes, 0x3C)
 if ($pe -le 0 -or $pe -gt $len - 64) {
@@ -64,12 +52,8 @@ if ($pe -le 0 -or $pe -gt $len - 64) {
     exit 0
 }
 $tds = $pe + 8
-# 用 Get-Random 生成 4 字节（纯 PowerShell，无 .NET API 兼容问题）
 for ($i = 0; $i -lt 4; $i++) { $bytes[$tds + $i] = [byte](Get-Random -Min 0 -Max 256) }
 Write-Host "[3/5] TimeDateStamp randomized" -ForegroundColor Green
-
-# ── [4] Randomize MVID @ CLI header ──
-#      hardcoded 'BSJB' = 0x42 0x53 0x4A 0x42
 $mvid = -1
 for ($i = 0; $i -lt $len - 4; $i++) {
     if ($bytes[$i] -eq 66 -and $bytes[$i+1] -eq 83 -and $bytes[$i+2] -eq 74 -and $bytes[$i+3] -eq 66) {
@@ -84,8 +68,6 @@ if ($mvid -gt 0 -and $mvid -lt $len - 16) {
     Write-Host "[4/5] MVID not found (skip)" -ForegroundColor Yellow
 }
 
-# ── [5] Obfuscate PE optional header metadata ──
-# Major/MinorLinkerVersion @ PE+26
 if ($pe + 27 -lt $len) { $bytes[$pe + 26] = 0; $bytes[$pe + 27] = 0 }
 # Major/MinorImageVersion @ PE+32
 if ($pe + 35 -lt $len) { for ($z=0;$z -lt 4;$z++) { $bytes[$pe+32+$z] = 0 } }
@@ -93,10 +75,6 @@ if ($pe + 35 -lt $len) { for ($z=0;$z -lt 4;$z++) { $bytes[$pe+32+$z] = 0 } }
 if ($pe + 43 -lt $len) { for ($z=0;$z -lt 4;$z++) { $bytes[$pe+40+$z] = 0 } }
 Write-Host "[5/5] PE metadata obfuscated" -ForegroundColor Green
 
-# ── Write ──
 [System.IO.File]::WriteAllBytes($fullPath, $bytes)
 
-Write-Host "========================================" -ForegroundColor Green
-Write-Host "  Protection OK — 5 layers applied"    -ForegroundColor Green
-Write-Host "========================================" -ForegroundColor Green
 exit 0
