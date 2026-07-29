@@ -26,12 +26,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Platform)' == 'Android'">
         <DefineConstants>Android</DefineConstants>
-
     </PropertyGroup>
 
-    <!-- ==================== 受保护文件完整性检查 ==================== -->
-    <!-- ExeChecker.cs / DllChecker.cs / PostBuildProtect.ps1 缺一不可 -->
-    <!-- 文件缺失 → 构建直接终止并输出明确错误 -->
     <Target Name="VerifyProtectedFilesExist" BeforeTargets="CoreCompile" Condition="'$(Platform)' == 'Windows'">
         <PropertyGroup>
             <_AntiCheatDir>$(MSBuildProjectDirectory)\DataHandling\FinalAntiCheat\Core</_AntiCheatDir>
