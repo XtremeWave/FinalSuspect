@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>latest</LangVersion>
@@ -27,6 +27,23 @@
     <PropertyGroup Condition="'$(Platform)' == 'Android'">
         <DefineConstants>Android</DefineConstants>
     </PropertyGroup>
+
+    <Target Name="VerifyProtectedFilesExist" BeforeTargets="CoreCompile" Condition="'$(Platform)' == 'Windows'">
+        <PropertyGroup>
+            <_AntiCheatDir>$(MSBuildProjectDirectory)\DataHandling\FinalAntiCheat\Core</_AntiCheatDir>
+            <_BuildDir>$(MSBuildProjectDirectory)\Build</_BuildDir>
+        </PropertyGroup>
+        <Error
+            Text="[BuildGuard] ExeChecker.cs is MISSING!&#x9;Path: $(_AntiCheatDir)\ExeChecker.cs&#x9;This anti-cheat file is required. Restore it from source control."
+            Condition="!Exists('$(_AntiCheatDir)\ExeChecker.cs')" />
+        <Error
+            Text="[BuildGuard] DllChecker.cs is MISSING!&#x9;Path: $(_AntiCheatDir)\DllChecker.cs&#x9;This anti-cheat file is required. Restore it from source control."
+            Condition="!Exists('$(_AntiCheatDir)\DllChecker.cs')" />
+        <Error
+            Text="[BuildGuard] PostBuildProtect.ps1 is MISSING!&#x9;Path: $(_BuildDir)\PostBuildProtect.ps1&#x9;This post-build protection script is required. Restore it from source control."
+            Condition="!Exists('$(_BuildDir)\PostBuildProtect.ps1')" />
+    </Target>
+
     <Target Name="InjectBuildTime" BeforeTargets="CoreCompile">
         <WriteLinesToFile File="$(IntermediateOutputPath)BuildTime.cs" Lines="namespace FinalSuspect.Internal { public static class BuildTime { public const string Date = %22$(CompileDate)%22%3B } }" Overwrite="true" Encoding="UTF-8"/>
         <ItemGroup>
@@ -90,6 +107,21 @@
         <Copy SourceFiles="@(BaseBepInExFiles)" DestinationFolder="$(TargetModDir)\%(RecursiveDir)" ContinueOnError="true"/>
 
         <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(TargetModDir)\BepInEx\plugins\" ContinueOnError="true"/>
+    </Target>
+
+    <Target Name="PostBuildProtect" AfterTargets="Build" Condition="'$(Configuration)' != 'Debug' and '$(Platform)' == 'Windows'">
+        <PropertyGroup>
+            <_DllPath>$(OutputPath)$(AssemblyName).dll</_DllPath>
+            <_ScriptPath>$(MSBuildProjectDirectory)\Build\PostBuildProtect.ps1</_ScriptPath>
+            <_BackupPath>$(MSBuildProjectDirectory)\Build\Backups</_BackupPath>
+        </PropertyGroup>
+        <Error
+            Text="[BuildGuard] PostBuildProtect.ps1 is MISSING!&#x9;Path: $(_ScriptPath)&#x9;This script is required for non-Debug builds."
+            Condition="!Exists('$(_ScriptPath)')" />
+        <Exec
+            Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(_ScriptPath)&quot; -TargetDll &quot;$(_DllPath)&quot; -Configuration &quot;$(Configuration)&quot; -BackupDir &quot;$(_BackupPath)&quot;"
+            EchoOff="true" />
+        <Message Importance="high" Text="[PostBuildProtect] Assembly hardening applied to $(_DllPath)" />
     </Target>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Platform)' == 'Windows'">

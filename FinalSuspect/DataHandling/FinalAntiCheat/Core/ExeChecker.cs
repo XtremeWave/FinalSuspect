@@ -13,6 +13,7 @@ internal static class ExeChecker
 #if Windows
     private static System.Threading.Timer _windowCheckTimer;
     private static bool _isQuitting;
+    private static readonly Type LinkedGuard = typeof(DllChecker);
 #endif
 
     public static void Prefix(MainMenuManager __instance)
