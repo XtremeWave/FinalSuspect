@@ -27,7 +27,7 @@ public static class HostInfoPanelUpdatePatch
 
     public static void Postfix(HostInfoPanel __instance)
     {
-        if (!AmongUsClient.Instance.AmHost) return;
+        if (!AmHost) return;
         if (!HostText)
             HostText = __instance.content.transform.FindChild("Name").GetComponent<TextMeshPro>();
 

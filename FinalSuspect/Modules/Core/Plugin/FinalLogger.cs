@@ -24,12 +24,12 @@ internal static class FinalLogger
         Disable("SwitchSystem");
         Disable("ModNews");
         Disable("CancelPet");
+        Disable("Get Remote");
         if (!DebugModeManager.IsDebugMode)
         {
             Disable("Download Resources");
             Disable("GetAnnouncements");
             Disable("GetConfigs");
-            Disable("Get Remote");
             Disable("Downloader");
         }
 

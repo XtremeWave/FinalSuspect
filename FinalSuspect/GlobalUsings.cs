@@ -11,3 +11,4 @@ global using static FinalSuspect.Modules.Core.Game.Utils;
 global using static FinalSuspect.Modules.Core.Plugin.FinalLogger;
 global using static FinalSuspect.Modules.Core.Plugin.Translator;
 global using static FinalSuspect.Modules.Resources.PathManager;
+global using static FinalSuspect.GlobalAlias;

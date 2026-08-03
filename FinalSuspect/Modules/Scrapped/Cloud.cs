@@ -48,7 +48,7 @@ internal class Cloud
         try
         {
             if (!Main.NewLobby || !FinalGameData.GameStates.IsLobby) return false;
-            if (!AmongUsClient.Instance.AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) return false;
+            if (!AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) return false;
 
             if (IP == null || LOBBY_PORT == 0) throw new("Has no ip or port");
 
@@ -79,7 +79,7 @@ internal class Cloud
         connecting = true;
         _ = new LateTask(() =>
         {
-            if (!AmongUsClient.Instance.AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame)
+            if (!AmHost || !GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame)
             {
                 connecting = false;
                 return;

@@ -13,7 +13,7 @@ public class VersionCheck : IRpcHandler
     public bool HandleInvalidRPC(PlayerControl sender, MessageReader reader,
         ref bool notify, ref string reason, ref bool ban)
     {
-        reason = "VersionCheck";
+        reason = "VersionCheck(Host Only Mod)";
         return false;
     }
 }

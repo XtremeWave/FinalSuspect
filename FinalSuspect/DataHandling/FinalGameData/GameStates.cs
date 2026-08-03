@@ -19,9 +19,7 @@ public partial class FinalGameData
             {
                 try
                 {
-                    return Main.AllPlayerControls.ToArray().FirstOrDefault(x => x.IsHost()
-                        && !PlayerControl.LocalPlayer.IsHost()
-                        && x.OtherModClient());
+                    return !AmHost && AmongUsClient.Instance?.GetHost()?.Character?.OtherModClient()==true;
                 }
                 catch
                 {

@@ -260,7 +260,7 @@ public static class Utils
 
     private static void AddChatMessage(string text, string title = "")
     {
-        if (!AmongUsClient.Instance.AmHost || PlayerControl.LocalPlayer == null || HudManager.Instance == null)
+        if (!AmHost || PlayerControl.LocalPlayer == null || HudManager.Instance == null)
             return;
 
         var player = PlayerControl.LocalPlayer;
@@ -550,7 +550,7 @@ public static class Utils
 
     public static bool OtherModClient(int id)
     {
-        return GetPlayerVersion(id, out var ver) && Main.ForkId != ver.ForkId;
+        return !IsFinalSuspect(id);
     }
 
     public static bool IsFinalSuspect(int id)

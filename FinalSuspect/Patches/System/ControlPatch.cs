@@ -82,7 +82,7 @@ internal class ControllerManagerUpdatePatch
         }
 
         //-- 下面是主机专用的命令--//
-        if (!AmongUsClient.Instance.AmHost) return;
+        if (!AmHost) return;
 
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && IsCountDown)
         {

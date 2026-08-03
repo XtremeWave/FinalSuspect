@@ -1,3 +1,4 @@
+using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using TMPro;
 
 namespace FinalSuspect.Modules.Core.Plugin;
@@ -8,7 +9,7 @@ public class ErrorText : MonoBehaviour
     public Camera Camera;
     public Vector3 TextOffset = new(0, 0.3f, -1000f);
 
-    public bool CheatDetected;
+    public bool cheatDetected;
     public bool SBDetected;
     private readonly List<ErrorData> AllErrors = [];
 
@@ -78,12 +79,12 @@ public class ErrorText : MonoBehaviour
         else
         {
             text += $"{GetString($"ErrorLevel{maxLevel}")}";
-            if (CheatDetected)
-                text = SBDetected ? GetString("CheatDetected.HighLevel") : GetString("FAC.CheatDetected.LowLevel");
+            if (cheatDetected)
+                text = SBDetected ? GetString(CheatDetected.HighLevel) : GetString(CheatDetected.LowLevel);
             Text.enabled = true;
         }
 
-        if (IsInGame && maxLevel != 3 && !CheatDetected)
+        if (IsInGame && maxLevel != 3 && !cheatDetected)
             text += $"\n{GetString("TerminateCommand")}: Shift+L+Enter";
         Text.text = text;
     }

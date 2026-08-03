@@ -31,6 +31,7 @@ public class PlayerCheatData : IDisposable
         ClientData = null;
         InComingOverloaded = false;
         _rpcRecords.Clear();
+        GC.SuppressFinalize(this);
     }
 
     public void MarkAsCheater()
@@ -72,9 +73,9 @@ public class PlayerCheatData : IDisposable
         if (!ConfigManager.EnableFAC.Value || !IsSuspectCheater ||
             (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
         LastHandleCheater = GetTimeStamp();
-        if (!AmongUsClient.Instance.AmHost)
+        if (!AmHost)
         {
-            NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Cheater_NotHost"),
+            NotificationPopperPatch.NotificationPop(string.Format(GetString(CheatDetected.Cheater_NotHost),
                 _player.GetColoredName()));
             return;
         }
@@ -87,9 +88,9 @@ public class PlayerCheatData : IDisposable
         if (!ConfigManager.EnableGuardian.Value || !IsHacker ||
             (LastHandleCheater != -1 && LastHandleCheater + 1 >= GetTimeStamp())) return;
         LastHandleCheater = GetTimeStamp();
-        if (!AmongUsClient.Instance.AmHost)
+        if (!AmHost)
         {
-            NotificationPopperPatch.NotificationPop(string.Format(GetString("CheatDetected.Overload_NotHost"),
+            NotificationPopperPatch.NotificationPop(string.Format(GetString(CheatDetected.Overload_NotHost),
                 _player.GetColoredName()));
             return;
         }
@@ -99,6 +100,7 @@ public class PlayerCheatData : IDisposable
 
     public bool HandleIncomingRpc(byte rpcId)
     {
+        return false;
         if (InComingOverloaded) return true;
         var currentTime = GetCurrentTimestamp();
 
@@ -133,12 +135,13 @@ public class PlayerCheatData : IDisposable
             {
                 LastReceivedTime = currentTime,
                 Count = 1,
-                MaxiCount = FAC.Handlers.Where(handlers => handlers.TargetRpcs.Contains(rpcId))
-                    .SelectMany(handlers => handlers.Handlers)
-                    .Where(handler => handler.Condition(_player))
-                    .Select(handler => handler.MaxiReceivedNumPerSecond())
-                    .Prepend(5)
-                    .Max()
+                MaxiCount = FAC.Handlers.TryGetValue(rpcId, out var handlerList)
+                    ? handlerList
+                        .Where(handler => handler.Condition(_player))
+                        .Select(handler => handler.MaxiReceivedNumPerSecond())
+                        .Prepend(5)
+                        .Max()
+                    : 5
             };
         }
 

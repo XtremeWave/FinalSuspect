@@ -19,7 +19,7 @@ public static class BanManager
 
     public static void AddBanPlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || player == null) return;
+        if (!AmHost || player == null) return;
         if (!player.IsBannedPlayer())
         {
             File.AppendAllText(BAN_LIST_PATH, $"{player.FriendCode},{player.GetHashedPuid()},{player.PlayerName}\n");
@@ -34,7 +34,7 @@ public static class BanManager
 
     public static void CheckDenyNamePlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || !ConfigManager.KickPlayerWithDenyName.Value) return;
+        if (!AmHost || !ConfigManager.KickPlayerWithDenyName.Value) return;
         try
         {
             var existingNames = SpamManager.ReturnAllNewLinesInFile(DENY_NAME_LIST_PATH);
@@ -61,7 +61,7 @@ public static class BanManager
 
     public static void CheckFriendCode(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost || !ConfigManager.KickPlayerWithAbnormalFriendCode.Value) return;
+        if (!AmHost || !ConfigManager.KickPlayerWithAbnormalFriendCode.Value) return;
         //用于检测是否为xxx#1145/xxx#1337的重复代码前缀
         //InnerSloth的好友代码不会出现前端重复 如果有前端重复一定是UE或者SM黑客
         var currentPrefixes = AmongUsClient.Instance.allClients
@@ -97,7 +97,7 @@ public static class BanManager
 
     public static void CheckBanPlayer(ClientData player)
     {
-        if (!AmongUsClient.Instance.AmHost && !ConfigManager.KickPlayerInBanList.Value) return;
+        if (!AmHost && !ConfigManager.KickPlayerInBanList.Value) return;
         if (player.IsBannedPlayer() ||
             DestroyableSingleton<FriendsListManager>.Instance.IsPlayerBlockedUsername(player.FriendCode))
             KickPlayer(player.Id, true, "BanedByBanList", KickLevel.CheatDetected);

@@ -66,7 +66,7 @@ public static class PathManager
         }
     }
 
-    public const string QQInviteUrl = "https://qm.qq.com/q/ZA7Lnjz3SC";
+    public const string QQInviteUrl = "https://qm.qq.com/q/mKesRGai4g";
     public const string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8/";
     public const string WebsiteUrl = "https://finalsuspect.zh-cn.edgeone.cool/";
     public const string GithubRepoUrl = "https://github.com/Slok7565/FinalSuspect/";

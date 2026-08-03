@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalGameData;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game;
@@ -92,19 +93,19 @@ internal class RPCHandlerPatch
     {
         if (!player.IsSelf()) player.MarkAsCheater();
 
-        if (AmongUsClient.Instance.AmHost)
+        if (AmHost)
         {
             KickPlayer(player.PlayerId, ban, reason, KickLevel.None);
             WarnHost();
             if (notify)
                 NotificationPopperPatch.NotificationPop(
-                    string.Format(GetString("CheatDetected.InvalidSlothRPC"), player.GetRealName(),
+                    string.Format(GetString(CheatDetected.InvalidSlothRPC), player.GetRealName(),
                         $"{callId}({RPC.GetRpcName(callId)})"));
         }
         else if (notify)
         {
             NotificationPopperPatch.NotificationPop(
-                string.Format(GetString("CheatDetected.InvalidSlothRPC_NotHost"), player.GetRealName(),
+                string.Format(GetString(CheatDetected.InvalidSlothRPC_NotHost), player.GetRealName(),
                     $"{callId}({RPC.GetRpcName(callId)})"));
         }
     }
@@ -182,6 +183,7 @@ internal class RPCHandlerPatch
             case RpcCalls.CancelPet:
                 try
                 {
+                    if (IsInGame) break;
                     var version = Version.Parse(reader.ReadString());
                     var tag = reader.ReadString();
                     var forkId = reader.ReadString();
@@ -192,12 +194,12 @@ internal class RPCHandlerPatch
                     FinalGameData.PlayerVersion.PlayerVersions[id] =
                         new FinalGameData.PlayerVersion(version, tag, forkId);
 
-                    if (ConfigManager.VersionCheat.Value && AmongUsClient.Instance.AmHost)
+                    if (ConfigManager.VersionCheat.Value && AmHost)
                         FinalGameData.PlayerVersion.PlayerVersions[id] =
                             FinalGameData.PlayerVersion.PlayerVersions[id];
 
                     // Kick Unmached Player Start
-                    /*if (AmongUsClient.Instance.AmHost && tag != $"{Main.GitCommit}({Main.GitBranch})")
+                    /*if (AmHost && tag != $"{Main.GitCommit}({Main.GitBranch})")
                     {
                         if (forkId != Main.ForkId)
                             _ = new LateTask(() =>
@@ -270,12 +272,7 @@ internal static class RPC
             /* ignored */
         }
     }
-
-    public static void Cleanup()
-    {
-        _rpcCts?.Cancel();
-        _rpcCts?.Dispose();
-    }
+    
 
     public static void SendRpcLogger(uint targetNetId, byte callId, int targetClientId = -1)
     {

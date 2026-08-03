@@ -95,6 +95,12 @@ public static class Translator
         if (replacementDic == null) return str;
         return replacementDic.Aggregate(str, (current, rd) => current.Replace(rd.Key, rd.Value));
     }
+    
+    public static string GetString<T>(T s, Dictionary<string, string> replacementDic = null, bool console = false) where T : Enum
+    {
+        var str = GetString($"{typeof(T).Name}.{s.ToString()}", replacementDic, console);
+        return str;
+    }
 
     private static string GetString(string str, SupportedLangs langId)
     {

@@ -1,6 +1,7 @@
 #if DEBUG
 using System;
 #endif
+using AmongUs.Data.Player;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Game.PlayerControlExtension;
 using FinalSuspect.Modules.Features.CheckingandBlocking;
@@ -68,7 +69,7 @@ internal class RunLoginPatch
         // 如果您修改了代码，请在房间公告内表明这是修改版本，并给出修改作者
         // If you wish to make your lobby public in a debug build, please use it only for testing purposes
         // If you modify the code, please indicate in the lobby announcement that this is a modified version and provide the author of the modification
-        canOnline = Environment.UserName is "Slok7" or "LezaiYa";
+        canOnline = true;
 #endif
     }
 }
@@ -78,7 +79,7 @@ internal class BanMenuSetVisiblePatch
 {
     public static bool Prefix(BanMenu __instance, bool show)
     {
-        if (!AmongUsClient.Instance.AmHost) return true;
+        if (!AmHost) return true;
         show &= PlayerControl.LocalPlayer && PlayerControl.LocalPlayer.Data;
         __instance.BanButton.gameObject.SetActive(AmongUsClient.Instance.CanBan());
         __instance.KickButton.gameObject.SetActive(AmongUsClient.Instance.CanKick());

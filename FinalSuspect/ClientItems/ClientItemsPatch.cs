@@ -168,6 +168,7 @@ public static class OptionsMenuBehaviourStartPatch
             SetFeatureItemDisabled_Menu(_mainMenuStyleBtn);
             SetOptionItemDisabled(_offlineMode);
         }
+        SetOptionItemDisabled(_enableGuardian, false);
 
         if (Directory.GetFiles(GetLogFolder(true).FullName).Length <= 0)
             SetFeatureItemDisabled(_clearAutoLogs);
@@ -235,9 +236,10 @@ public static class OptionsMenuBehaviourStartPatch
         item.ToggleButton.Background.color = ColorHelper.ClientOptionColor_CanNotUse;
     }*/
 
-    private static void SetOptionItemDisabled<T>(ClientOptionItem<T> item)
+    private static void SetOptionItemDisabled<T>(ClientOptionItem<T> item, bool notice = true)
     {
-        item.ToggleButton.Text.text += $"\n|{GetString("Tip.OnlyAvailableInMainMenu")}|";
+        if (notice)
+            item.ToggleButton.Text.text += $"\n|{GetString("Tip.OnlyAvailableInMainMenu")}|";
         item.ToggleButton.GetComponent<PassiveButton>().enabled = false;
         item.ToggleButton.Background.color = ColorHelper.FSClientOptionColor_CanNotUse;
     }

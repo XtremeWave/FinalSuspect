@@ -91,7 +91,7 @@ internal class SetHighlightedPatch
 {
     public static bool Prefix(PlayerVoteArea __instance, bool value)
     {
-        if (!AmongUsClient.Instance.AmHost) return true;
+        if (!AmHost) return true;
         if (!__instance.HighlightedFX) return false;
         __instance.HighlightedFX.enabled = value;
         return false;

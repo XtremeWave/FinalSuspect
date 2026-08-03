@@ -320,6 +320,7 @@ public static class FinalLocalHandling
 
         if (pc.GetData().IsDisconnected)
         {
+            //问题不在这
             pc.Data.Disconnected = true;
             pc.Data.IsDead = true;
         }
@@ -331,8 +332,8 @@ public static class FinalLocalHandling
 
     private static void DeathSync(PlayerControl pc)
     {
-        if (!IsInTask || pc.GetData().IsDead) return;
-        if (pc.Data.IsDead) pc.SetDead();
+        if (!IsInTask || pc.GetData().IsDead || !pc.Data.IsDead) return;
+        pc.SetDead();
     }
 
     #endregion

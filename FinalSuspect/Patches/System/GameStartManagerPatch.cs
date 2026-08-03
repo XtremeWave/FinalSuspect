@@ -18,7 +18,7 @@ public static class GameStartManagerUpdatePatch
         __instance.MinPlayers = 1;
 
         /*Scrapped
-        if (CreateOptionsPickerPatch.SetDleks && AmongUsClient.Instance.AmHost)
+        if (CreateOptionsPickerPatch.SetDleks && AmHost)
         {
             if (IsNormalGame)
                 Main.NormalOptions.MapId = 3;
@@ -75,7 +75,7 @@ public static class GameStartManagerPatch
             _warningText.gameObject.SetActive(false);
 
             _timerText = Object.Instantiate(__instance.PlayerCounter,
-                AmongUsClient.Instance.AmHost
+                AmHost
                     ? __instance.StartButton.transform.parent
                     : __instance.StartButtonClient.transform.parent);
             _timerText.fontSize = 6.2f;
@@ -132,7 +132,7 @@ public static class GameStartManagerPatch
             }));
             _skipButton.gameObject.SetActive(false);
 
-            if (!AmongUsClient.Instance.AmHost || (!VersionChecker.IsBroken &&
+            if (!AmHost || (!VersionChecker.IsBroken &&
                                                    (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
                                                    VersionChecker.IsSupported)) return;
             __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
@@ -163,7 +163,7 @@ public static class GameStartManagerPatch
             }
 
             if (!ConfigManager.AutoStartGame.Value
-                || !AmongUsClient.Instance.AmHost
+                || !AmHost
                 || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
                 || IsInitGame) return true;
             _updateTimer++;
@@ -179,14 +179,14 @@ public static class GameStartManagerPatch
         public static void Postfix(GameStartManager __instance)
         {
             if (!AmongUsClient.Instance) return;
-            if (AmongUsClient.Instance.AmHost)
+            if (AmHost)
             {
-                _cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
-                _skipButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
+                _cancelButton.gameObject.SetActive(IsCountDown);
+                _skipButton.gameObject.SetActive(IsCountDown);
                 __instance.StartButton.gameObject.SetActive(!_cancelButton.gameObject.active);
             }
 
-            if (AmongUsClient.Instance.AmHost)
+            if (AmHost)
                 __instance.GameStartText.transform.localPosition = new Vector3(
                     __instance.GameStartText.transform.localPosition.x, 2f,
                     __instance.GameStartText.transform.localPosition.z);
@@ -196,7 +196,7 @@ public static class GameStartManagerPatch
             _timerText.text = "";
             // Lobby timer
             if (!GameData.Instance || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame ||
-                !IsVanillaServer || !AmongUsClient.Instance.AmHost) return;
+                !IsVanillaServer || !AmHost) return;
 
             _timer = Mathf.Max(0f, _timer -= Time.deltaTime);
             var minutes = (int)_timer / 60;

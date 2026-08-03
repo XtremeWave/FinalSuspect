@@ -42,9 +42,9 @@ internal class LobbyViewSettingsPanePatch
 
     private static readonly List<Color32> rolecolors =
     [
-        RoleHelper.GetRoleColor(RoleTypes.Engineer),
-        RoleHelper.GetRoleColor(RoleTypes.GuardianAngel),
         RoleHelper.GetRoleColor(RoleTypes.Scientist),
+        RoleHelper.GetRoleColor(RoleTypes.GuardianAngel),
+        RoleHelper.GetRoleColor(RoleTypes.Engineer),
         RoleHelper.GetRoleColor(RoleTypes.Tracker),
         RoleHelper.GetRoleColor(RoleTypes.Noisemaker),
         RoleHelper.GetRoleColor(RoleTypes.Detective),

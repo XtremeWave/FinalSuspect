@@ -15,7 +15,7 @@ internal static class RpcEnterVentPatch
         var killbutton = DestroyableSingleton<KillButton>.Instance;
         if (!killbutton.currentTarget || killbutton.isCoolingDown || PlayerControl.LocalPlayer.Data.IsDead)
             return false;
-        if (AmongUsClient.Instance.AmClient)
+        if (AmongUsClient.Instance.!AmHost)
         {
             AmongUsClient.Instance.StopAllCoroutines();
             AmongUsClient.Instance.StartCoroutine(__instance.CoEnterVent(id));

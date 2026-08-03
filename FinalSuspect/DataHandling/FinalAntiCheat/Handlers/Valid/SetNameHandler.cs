@@ -1,3 +1,4 @@
+using FinalSuspect.DataHandling.FinalAntiCheat.Core;
 using FinalSuspect.DataHandling.FinalAntiCheat.Interfaces;
 using Hazel;
 
@@ -19,14 +20,14 @@ public class SetNameHandler : IRpcHandler
     {
         Counters.TryAdd(sender.PlayerId, 0);
         if (++Counters[sender.PlayerId] <= 3) return false;
-        if (AmongUsClient.Instance.AmHost)
+        if (AmHost)
         {
-            HandleCheat(sender, GetString("CheatDetected.SetName"));
+            HandleCheat(sender, GetString(CheatDetected.SetName));
             WarnHost();
         }
         else if (!OtherModHost)
         {
-            HandleCheat(sender, GetString("CheatDetected.SetName_NotHost"));
+            HandleCheat(sender, GetString(CheatDetected.SetName_NotHost));
         }
 
         ban = true;
