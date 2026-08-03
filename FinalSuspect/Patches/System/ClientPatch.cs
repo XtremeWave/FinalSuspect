@@ -97,6 +97,18 @@ internal class InnerNetClientCanBanPatch
     }
 }
 
+[HarmonyPatch(typeof(PlayerBanData))]
+internal class BanPointsGetter_Patch
+{
+    [HarmonyPatch(nameof(PlayerBanData.IsBanned), MethodType.Getter)]
+    [HarmonyPrefix]
+    public static bool Get_IsBanned_Prefix(ref bool __result)
+    {
+        __result = false;
+        return false;
+    }
+}
+
 [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.KickPlayer))]
 internal class KickPlayerPatch
 {
