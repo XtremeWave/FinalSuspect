@@ -31,6 +31,7 @@ public class PlayerCheatData : IDisposable
         ClientData = null;
         InComingOverloaded = false;
         _rpcRecords.Clear();
+        GC.SuppressFinalize(this);
     }
 
     public void MarkAsCheater()
@@ -99,6 +100,7 @@ public class PlayerCheatData : IDisposable
 
     public bool HandleIncomingRpc(byte rpcId)
     {
+        return false;
         if (InComingOverloaded) return true;
         var currentTime = GetCurrentTimestamp();
 

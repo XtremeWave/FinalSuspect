@@ -29,16 +29,19 @@ public static class HandleGameDataPatch
     }
 }
 
-[HarmonyPatch(typeof(InnerNetClient._HandleGameDataInner_d__165),
-    nameof(InnerNetClient._HandleGameDataInner_d__165.MoveNext))]
+[HarmonyPatch(typeof(InnerNetClient._HandleGameDataInner_d__167),
+    nameof(InnerNetClient._HandleGameDataInner_d__167.MoveNext))]
 public static class HandleGameDataInnerPatch
 {
     private static readonly Dictionary<int, MsgCounter> playerMsgCounters = new();
 
-    public static bool Prefix(InnerNetClient._HandleGameDataInner_d__165 __instance)
+    public static bool Prefix(InnerNetClient._HandleGameDataInner_d__167 __instance)
     {
+        
         if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted ||
             !ConfigManager.EnableGuardian.Value) return true;
+        ConfigManager.EnableGuardian.Value = false;
+        return true;
         var reader = __instance.reader;
         if (reader.BytesRemaining < 1)
         {
@@ -174,7 +177,8 @@ internal class HandleMessagePatch
     {
         if (!IsLobby || IsNotJoined || !FinalGameData.JoinedCompleted ||
             !ConfigManager.EnableGuardian.Value) return true;
-
+        ConfigManager.EnableGuardian.Value = false;
+        return true;
         if (!playerMsgCounters.TryGetValue(client.Id, out var counter))
         {
             counter = new MsgCounter();

@@ -58,8 +58,8 @@ public static class ConfigManager
         AutoStartGame = config.Bind("Client Options", "Auto Start Game", false);
         AutoEndGame = config.Bind("Client Options", "Auto End Game", false);
         DisableVanillaSound = config.Bind("Client Options", "Disable Vanilla Sound", false);
-        EnableFAC = config.Bind("Client Options", "Enable FAC", false);
-        EnableGuardian = config.Bind("Client Options", "Enable Guardian", true);
+        EnableFAC = config.Bind("Client Options", "Enable FAC", true);
+        EnableGuardian = config.Bind("Client Options", "Enable Guardian", false);
         ShowPlayerInfo = config.Bind("Client Options", "Show Player Info", true);
         FastLaunchMode = config.Bind("Client Options", "Fast Launch Mode", false);
         OfflineMode = config.Bind("Client Options", "Offline Mode", false);

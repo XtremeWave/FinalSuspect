@@ -1,4 +1,5 @@
 using System;
+using AmongUs.Data;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Modules.Resources;
@@ -91,7 +92,6 @@ public class MainMenuManagerPatch
     public static void Start_Postfix(MainMenuManager __instance)
     {
         Instance = __instance;
-
         SimpleButton.SetBase(__instance.quitButton);
 
         var row = 1;

@@ -270,12 +270,7 @@ internal static class RPC
             /* ignored */
         }
     }
-
-    public static void Cleanup()
-    {
-        _rpcCts?.Cancel();
-        _rpcCts?.Dispose();
-    }
+    
 
     public static void SendRpcLogger(uint targetNetId, byte callId, int targetClientId = -1)
     {

@@ -73,7 +73,7 @@ public class OnPlayerJoinedPatch
 
     private static void KickUnspawnedPlayers(ClientData client)
     {
-        _ = new LateTask(() =>
+        /*_ = new LateTask(() =>
         {
             try
             {
@@ -88,9 +88,9 @@ public class OnPlayerJoinedPatch
             }
             catch
             {
-                /* ignored */
+                /* ignored #1#
             }
-        }, 4.5f, "Kick Unspawned Players");
+        }, 4.5f, "Kick Unspawned Players");*/
     }
 }
 
@@ -117,8 +117,8 @@ internal class OnPlayerLeftPatch
 
             data.Character?.SetDisconnected();
 
-            Info(
-                $"{data.PlayerName}(ClientID:{data.Id}/FriendCode:{data.FriendCode})断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})",
+            Info($"{data.PlayerName}(ClientID:{data.Id}/FriendCode:{data.FriendCode})" +
+                 $"断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})",
                 "Session");
             var id = data.ColorId;
             var color = Palette.PlayerColors[id];
@@ -150,8 +150,9 @@ internal class OnPlayerLeftPatch
             }
 
             Dispose(data.Character?.PlayerId ?? 255);
-
+           
             FinalGameData.PlayerVersion.PlayerVersions.Remove(data.Character?.GetClientId() ?? 0);
+            
             ClientsProcessed.Remove(data.Id);
         }
         catch

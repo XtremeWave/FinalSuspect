@@ -181,8 +181,8 @@ public static class GameStartManagerPatch
             if (!AmongUsClient.Instance) return;
             if (AmongUsClient.Instance.AmHost)
             {
-                _cancelButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
-                _skipButton.gameObject.SetActive(__instance.startState == GameStartManager.StartingStates.Countdown);
+                _cancelButton.gameObject.SetActive(IsCountDown);
+                _skipButton.gameObject.SetActive(IsCountDown);
                 __instance.StartButton.gameObject.SetActive(!_cancelButton.gameObject.active);
             }
 

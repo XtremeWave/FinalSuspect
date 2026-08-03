@@ -33,8 +33,8 @@ public class FinalPlayerData : IDisposable
     {
         if (IsLobby)
         {
-            Dispose();
             AllPlayerData.Remove(this);
+            Dispose();
             return;
         }
 
@@ -82,15 +82,11 @@ public class FinalPlayerData : IDisposable
         TotalTaskCount = count;
     }
 
-    public void UpdateProcess()
-    {
+    public void UpdateProcess()=>
         ProcessInt++;
-    }
 
-    private void SetAsImp(bool isimp)
-    {
+    private void SetAsImp(bool isimp) =>
         IsImpostor = isimp;
-    }
 
     [GameModuleInitializer]
     public static void InitializeAll()
@@ -190,8 +186,7 @@ public class FinalPlayerData : IDisposable
     public string PreMeetingRoomName { get; set; }
 
     #endregion
-
-#pragma warning disable CA1816
+    
     public void Dispose()
     {
         Info($"Disposing FinalPlayerData For {PlayerName}", "Data");
@@ -207,6 +202,7 @@ public class FinalPlayerData : IDisposable
         PreMeetingPosition = null;
         RoleTag = null;
         PreMeetingRoomName = null;
+        GC.SuppressFinalize(this);
     }
 
     public static void DisposeAll()
@@ -222,4 +218,3 @@ public class FinalPlayerData : IDisposable
         }
     }
 }
-#pragma warning restore CA1816
