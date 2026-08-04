@@ -115,7 +115,9 @@ internal class OnPlayerLeftPatch
                 Error("错误的客户端数据：数据为空", "Session");
                 return;
             }
-            
+
+            data.Character?.SetDisconnected();
+
             Info($"{data.PlayerName}(ClientID:{data.Id}/FriendCode:{data.FriendCode})" +
                  $"断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})",
                 "Session");
