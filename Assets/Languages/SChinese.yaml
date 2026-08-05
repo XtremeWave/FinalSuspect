@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>尽管独自一人，仍有无穷力量！</
 IntroText.Crewmate: "<color=#8cffff>完成你的任务，揪出那群坏蛋！</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "船员"
-Role.Engineer: "工程师"
-Role.Scientist: "科学家"
-Role.Tracker: "侦查员"
-Role.Noisemaker: "大嗓门"
-Role.Detective: "侦探"
-Role.GuardianAngel: "守护天使"
-Role.Impostor: "伪装者"
-Role.Shapeshifter: "变形者"
-Role.Phantom: "幻象师"
-Role.Viper: "毒蛇"
-Role.CrewmateGhost: "船员灵魂"
-Role.ImpostorGhost: "伪装者灵魂"
+CrewmateGhostRole: "船员灵魂"
+ImpostorGhostRole: "伪装者灵魂"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -185,7 +174,7 @@ MainMenuStyle.Author_MiraHQ: "KpCam"
 MainMenuStyle.Description_MiraHQ: "随着时间的推移，北半球的冬天迎来尾声，春意正在各处复苏。\n眺望米拉的雪景，内心中的回忆是否唤醒？暖流依旧心中流淌。\n无论嫌疑最终落在谁身，无论真理最后破碎于谁手，\n在焕然一新的体验中，头脑风暴，留下全新的快乐回忆。\n玩游戏，开心最重要！！！<size=80%>\n\n命名：一念旧情丶</size>"
 MainMenuStyle.Title_Security: "<color=#cdfffd>赤心炽爱<size=80%>（TONEX经典背景）</size></color>"
 MainMenuStyle.Author_Security: "KpCam"
-MainMenuStyle.Description_Security: "我们不会就此跌下、不会就此放弃、不会让玩家失望、更不会停止进步\n若有人冷眼相待，我们会证明给所有人看！\n伴着热爱，我们再次起航<size=80%>\n\n命名：Slok</size>"
+MainMenuStyle.Description_Security: "我们不会就此跌下、不会就此放弃、不会让玩家失望、更不会停止进步\n若有人冷眼相待，我们会证明给所有人看！\n伴着热爱，我们再次起航！<size=80%>\n\n命名：Slok</size>"
 MainMenuStyle.Title_NewYear: "<color=#ff0000>祉缘谐乐</color><color=#ffff00><size=80%>（新春特别节目）</size></color>"
 MainMenuStyle.Author_NewYear: "小黄117"
 MainMenuStyle.Description_NewYear: "祉，祝予福    缘，织于心\n谐，连与情    乐，安喻人\n挚缘，创谐乐  致远，谐得乐\n至元，皆怀乐  只愿，人皆乐\n愿每个人在新的一年都能寻得自己的道路\n带着我们的祝福，勇往直前，追寻属于自己的人生吧！<size=80%>\n\n命名：Slok</size>"

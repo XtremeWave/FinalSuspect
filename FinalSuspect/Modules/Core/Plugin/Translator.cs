@@ -157,7 +157,7 @@ public static class Translator
 
     public static string GetRoleString(string str)
     {
-        return GetString($"Role.{str}");
+        return GetString($"{str}Role");
     }
 
     public static SupportedLangs GetUserLangByRegion()

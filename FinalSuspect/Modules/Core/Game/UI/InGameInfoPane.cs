@@ -25,9 +25,6 @@ public static class InGameInfoPane
     {
         var trans = aspect.FindChild("GameSettingsButtons");
 
-        trans.FindChild("Host Buttons").gameObject.SetActive(false);
-        trans.FindChild("Client Buttons").gameObject.SetActive(true);
-
         var header = trans.FindChild("ButtonSettingsHeader").gameObject;
         var headerTransform = header.transform;
         headerTransform.localPosition =
@@ -68,9 +65,7 @@ public static class InGameInfoPane
             new Vector3(0.22f, 1.85f, -80f),
             () =>
             {
-                Test(1);
                 ConfigManager.ShowInfoPanel.Value = !ConfigManager.ShowInfoPanel.Value;
-                Test(ConfigManager.ShowInfoPanel.Value);
             });
     }
 

@@ -9,26 +9,6 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
-
-[HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
-public static class GameStartManagerUpdatePatch
-{
-    public static void Prefix(GameStartManager __instance)
-    {
-        __instance.MinPlayers = 1;
-
-        /*Scrapped
-        if (CreateOptionsPickerPatch.SetDleks && AmHost)
-        {
-            if (IsNormalGame)
-                Main.NormalOptions.MapId = 3;
-
-            else if (IsHideNSeek)
-                Main.HideNSeekOptions.MapId = 3;
-        }*/
-    }
-}
-
 public static class GameStartManagerPatch
 {
     private static float _timer = 600f;
@@ -38,22 +18,32 @@ public static class GameStartManagerPatch
     private static PassiveButton _skipButton;
     private static TextMeshPro _warningText;
     private static TextMeshPro _hideName;
+    private static GameStartManager Instance;
 
     [GameModuleInitializer]
     public static void Init()
     {
         DestroyableSingleton<GameStartManager>.Instance.transform.gameObject.ForEachChild(
             (Action<GameObject>)HideAllBtns);
+        Instance.ClientPrivacyValue.gameObject.SetActive(true);
+        Instance.HostPrivacyButtons.gameObject.SetActive(false);
+        Instance.ClientInfoPanelButtons.gameObject.SetActive(true);
+        Instance.HostInfoPanelButtons.gameObject.SetActive(false);
     }
 
     private static void HideAllBtns(GameObject obj)
     {
         obj.SetActive(false);
     }
+    
 
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Start))]
     public class GameStartManagerStartPatch
     {
+        public static bool Prefix(GameStartManager __instance)
+        {
+            return !IsInGame;
+        }
         public static void Postfix(GameStartManager __instance)
         {
             __instance.MinPlayers = 1;
@@ -132,9 +122,9 @@ public static class GameStartManagerPatch
             }));
             _skipButton.gameObject.SetActive(false);
 
-            if (!AmHost || (!VersionChecker.IsBroken &&
-                                                   (!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) &&
-                                                   VersionChecker.IsSupported)) return;
+            if (!AmHost || (!VersionChecker.IsBroken 
+                            &&(!VersionChecker.HasUpdate || !VersionChecker.ForceUpdate) 
+                            && VersionChecker.IsSupported)) return;
             __instance.HostPrivateButton.inactiveTextColor = Palette.DisabledClear;
             __instance.HostPrivateButton.activeTextColor = Palette.DisabledClear;
         }
@@ -147,7 +137,7 @@ public static class GameStartManagerPatch
 
         public static bool Prefix(GameStartManager __instance)
         {
-            if (IsInGame) return false;
+            __instance.MinPlayers = 1;
             // Lobby code
             if (DataManager.Settings.Gameplay.StreamerMode)
             {
@@ -165,7 +155,8 @@ public static class GameStartManagerPatch
             if (!ConfigManager.AutoStartGame.Value
                 || !AmHost
                 || GameStartManager.Instance.startState == GameStartManager.StartingStates.Starting
-                || IsInitGame) return true;
+                || IsInitGame
+                || !IsLobby) return true;
             _updateTimer++;
             if (_updateTimer < 50) return true;
             _updateTimer = 0;
@@ -178,7 +169,8 @@ public static class GameStartManagerPatch
 
         public static void Postfix(GameStartManager __instance)
         {
-            if (!AmongUsClient.Instance) return;
+            Instance = __instance;
+            if (!AmongUsClient.Instance || !IsLobby) return;
             if (AmHost)
             {
                 _cancelButton.gameObject.SetActive(IsCountDown);
@@ -208,20 +200,34 @@ public static class GameStartManagerPatch
     }
 }
 
+[HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.ResetStartState))]
+internal class ResetStartStatePatch
+{
+    public static bool Prefix(GameStartManager __instance)
+    {
+        if (IsInGame) return false;
+        if (IsCountDown) SoundManager.Instance.StopSound(__instance.gameStartSound);
+        return true;
+    }
+}
+
+[HarmonyPatch(typeof(GameStartManager))]
+[HarmonyPatch(nameof(GameStartManager.HandleDisconnect), typeof(PlayerControl), typeof(DisconnectReasons))]
+[HarmonyPatch(nameof(GameStartManager.HandleDisconnect), [])]
+[HarmonyPatch(nameof(GameStartManager.CheckSettingsDiffs))]
+internal class HandleDisconnectPatch
+{
+    public static bool Prefix(GameStartManager __instance)
+    {
+        return !IsInGame;
+    }
+}
+
 [HarmonyPatch(typeof(TextBoxTMP), nameof(TextBoxTMP.SetText))]
 public static class HiddenTextPatch
 {
     public static void Postfix(TextBoxTMP __instance)
     {
         if (__instance.name == "GameIdText") __instance.outputText.text = new string('*', __instance.text.Length);
-    }
-}
-
-[HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.ResetStartState))]
-internal class ResetStartStatePatch
-{
-    public static void Prefix(GameStartManager __instance)
-    {
-        if (IsCountDown) SoundManager.Instance.StopSound(__instance.gameStartSound);
     }
 }

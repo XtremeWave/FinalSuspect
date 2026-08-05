@@ -116,8 +116,6 @@ internal class OnPlayerLeftPatch
                 return;
             }
 
-            data.Character?.SetDisconnected();
-
             Info($"{data.PlayerName}(ClientID:{data.Id}/FriendCode:{data.FriendCode})" +
                  $"断开连接(理由:{reason}，Ping:{AmongUsClient.Instance.Ping})",
                 "Session");
@@ -149,7 +147,6 @@ internal class OnPlayerLeftPatch
                             name));
                     break;
             }
-            return;
             data.Character?.SetDisconnected();
             Dispose(data.Character?.PlayerId ?? 255);
            

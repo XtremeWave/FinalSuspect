@@ -25,6 +25,7 @@ internal static class FinalLogger
         Disable("ModNews");
         Disable("CancelPet");
         Disable("Get Remote");
+        Disable(("SetModAnnouncements"));
         if (!DebugModeManager.IsDebugMode)
         {
             Disable("Download Resources");

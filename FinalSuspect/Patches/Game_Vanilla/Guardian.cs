@@ -1,3 +1,4 @@
+#if Windows
 using System;
 using AmongUs.InnerNet.GameDataMessages;
 using FinalSuspect.DataHandling.FinalGameData;
@@ -225,3 +226,4 @@ internal class HandleMessagePatch
         }
     }
 }
+#endif
