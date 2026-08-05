@@ -163,7 +163,7 @@ public static class GameStartManagerPatch
             var maxPlayers = GameManager.Instance.LogicOptions.MaxPlayers;
             if (GameData.Instance.PlayerCount < maxPlayers - 1 || IsCountDown) return true;
             GameStartManager.Instance.startState = GameStartManager.StartingStates.Countdown;
-            GameStartManager.Instance.countDownTimer = 10;
+            GameStartManager.Instance.countDownTimer = 5;
             return true;
         }
 

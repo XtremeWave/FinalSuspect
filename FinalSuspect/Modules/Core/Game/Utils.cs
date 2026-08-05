@@ -550,7 +550,7 @@ public static class Utils
 
     public static bool OtherModClient(int id)
     {
-        return !IsFinalSuspect(id);
+        return FinalGameData.PlayerVersion.PlayerVersions.TryGetValue(id, out var ver) && Main.ForkId != ver.ForkId;
     }
 
     public static bool IsFinalSuspect(int id)

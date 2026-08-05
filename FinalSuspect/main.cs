@@ -25,8 +25,8 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.3.13";
-    public const string PluginGuid = "cn.slok.finalsuspect";
+    public const string PluginVersion = "1.3.14";
+    public const string PluginGuid = "cn.havenglow.finalsuspect";
     public const int PluginCreation = 1;
 
     // == 版本相关设定 / Version Config ==
@@ -47,7 +47,7 @@ public class Main : BasePlugin
     public static string ExceptionMessage;
     public static bool ExceptionMessageIsShown;
 
-    public static readonly bool IsInitialRelease = DateTime.Now is { Month: 8, Day: >= 15 and <= 19 };
+    public static readonly bool IsInitialRelease = DateTime.Now is { Month: 8, Day: >= 15 and <= 29 };
     public static readonly bool IsAprilFools = DateTime.Now is { Month: 4, Day: >= 1 and <= 10 };
 
     public static readonly bool IsValentines = DateTime.Now is { Month: 2, Day: >= 14 and <= 20 } ||
