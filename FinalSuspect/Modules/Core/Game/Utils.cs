@@ -47,7 +47,7 @@ public static class Utils
     // ReSharper disable once RedundantAssignment
     public static void KickPlayer(int clientId, bool ban, string reason = "", KickLevel level = KickLevel.Notification)
     {
-        if (OnPlayerLeftPatch.ClientsProcessed.Contains(clientId)) return;
+        if (AmongUsClientPatch.ClientsProcessed.Contains(clientId)) return;
         var client = GetClientById(clientId);
         Info($"try to kick {client?.Character?.GetRealName()} Due to {reason}", "Kick Player");
         var _player = FinalPlayerData.AllPlayerData.FirstOrDefault(p => p.CheatData?.ClientData?.Id == clientId)
@@ -57,7 +57,7 @@ public static class Utils
 #if DEBUG
             ban = false;
 #endif
-            OnPlayerLeftPatch.Add(clientId);
+            AmongUsClientPatch.Add(clientId);
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             AmongUsClient.Instance.KickPlayer(clientId, ban);
             if (level != KickLevel.None)

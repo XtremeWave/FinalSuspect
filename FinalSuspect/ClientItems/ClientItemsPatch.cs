@@ -6,6 +6,7 @@ using FinalSuspect.ClientItems.FeatureItems.MainMenuStyle;
 using FinalSuspect.ClientItems.FeatureItems.MyMusic;
 using FinalSuspect.ClientItems.FeatureItems.NameTag;
 using FinalSuspect.ClientItems.FeatureItems.Resources;
+using FinalSuspect.Features.OnlineGame.Global._02_UnlockFrameRate;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Patches.System;
@@ -96,7 +97,7 @@ public static class OptionsMenuBehaviourStartPatch
             NameTagPanel.CustomBackground = null;
         }
 
-        CreateOptionItem(ref _unlockFPS, "UnlockFPS", ConfigManager.UnlockFPS, __instance, UnlockFPSButtonToggle);
+        CreateOptionItem(ref _unlockFPS, "UnlockFPS", ConfigManager.UnlockFPS, __instance, FrameRateManager.AdjustFrameRate);
         CreateOptionItem(ref _switchOutfitType, "SwitchOutfitType", ConfigManager.SwitchOutfitType, __instance,
             SwitchMode);
         CreateOptionItem(ref _kickPlayerWithAbnormalFriendCode, "KickPlayerWithAbnormalFriendCode",
@@ -261,12 +262,6 @@ public static class OptionsMenuBehaviourStartPatch
         item.ToggleButton.GetComponent<PassiveButton>().enabled = true;
         item.ToggleButton.Background.color = ColorHelper.ClientFeatureColor;
     }*/
-
-    private static void UnlockFPSButtonToggle()
-    {
-        Application.targetFrameRate = ConfigManager.UnlockFPS.Value ? 165 : 60;
-        SendInGame(string.Format(GetString("Notification.FPSSetTo"), Application.targetFrameRate));
-    }
 
     private static void SwitchMode()
     {

@@ -28,6 +28,6 @@ public static class AwakeAccountManager
 {
     public static void Prefix(AccountManager __instance)
     {
-        LoadingAnima.Create(__instance);
+        RoleIllustrationManager.Create(__instance);
     }
 }

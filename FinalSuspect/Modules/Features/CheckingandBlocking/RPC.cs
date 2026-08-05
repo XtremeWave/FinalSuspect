@@ -41,7 +41,7 @@ internal class RPCHandlerPatch
 
         var player = GetPlayerFromInstance(__instance, reader);
         if (!player) return true;
-        if (OnPlayerLeftPatch.ClientsProcessed.Contains(player.PlayerId)) return false;
+        if (AmongUsClientPatch.ClientsProcessed.Contains(player.PlayerId)) return false;
 
         if (player.GetCheatData()?.InComingOverloaded != true)
         {

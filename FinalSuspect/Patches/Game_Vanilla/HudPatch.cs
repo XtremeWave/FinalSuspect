@@ -142,7 +142,7 @@ public static class HudManagerPatch
     {
         public static void Prefix(HudManager __instance)
         {
-            LoadingAnima.Create(__instance);
+            RoleIllustrationManager.Create(__instance);
 
 
             //ModLogo.SetActive(!IsInGame && !IsLobby);

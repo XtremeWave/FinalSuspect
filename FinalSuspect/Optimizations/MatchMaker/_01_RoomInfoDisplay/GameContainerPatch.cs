@@ -6,10 +6,12 @@ using Object = UnityEngine.Object;
 
 namespace FinalSuspect.Patches.System;
 
-[HarmonyPatch(typeof(GameContainer), nameof(GameContainer.SetupGameInfo))]
-public class SetupGameInfoPatch
+[HarmonyPatch(typeof(GameContainer))]
+public class GameContainerPatch
 {
-    public static void Postfix(GameContainer __instance)
+    [HarmonyPatch(nameof(GameContainer.SetupGameInfo))]
+    [HarmonyPostfix]
+    public static void SetupGameInfo_Postfix(GameContainer __instance)
     {
         var mapTrans = __instance.mapLogo.transform;
         var old = mapTrans.parent.FindChild("NameText")?.gameObject;
@@ -31,61 +33,63 @@ public class SetupGameInfoPatch
         var color = "#ffffff";
         string showHostName = null;
         var trueHostName = __instance.gameListing.TrueHostName;
-        var platform = "???";
+        string platformName;
+        var platform = game.Platform;
 
-        switch (game.Platform)
+        switch (platform)
         {
             case Platforms.StandaloneEpicPC:
                 color = "#905CDA";
-                platform = "Epic";
+                platformName = "Epic";
                 break;
             case Platforms.StandaloneSteamPC:
                 color = "#4391CD";
-                platform = "Steam";
+                platformName = "Steam";
                 break;
             case Platforms.StandaloneMac:
                 color = "#e3e3e3";
-                platform = "Mac.";
+                platformName = "Mac.";
                 break;
             case Platforms.StandaloneWin10:
                 color = "#0078d4";
-                platform = GetString("Platform.MicrosoftStore");
+                platformName = GetString("Platform.MicrosoftStore");
                 break;
             case Platforms.StandaloneItch:
                 color = "#E35F5F";
-                platform = "Itch";
+                platformName = "Itch";
                 break;
             case Platforms.IPhone:
                 color = "#e3e3e3";
-                platform = GetString("Platform.IPhone");
+                platformName = GetString(platform);
                 break;
             case Platforms.Android:
                 color = "#1EA21A";
-                platform = GetString("Platform.Android");
+                platformName = GetString(platform);
                 break;
             case Platforms.Switch:
                 var halfLength = trueHostName.Length / 2;
                 var firstHalf = trueHostName.AsSpan(0, halfLength).ToString();
                 var secondHalf = trueHostName.AsSpan(halfLength).ToString();
                 showHostName = $"<color=#00B2FF>{firstHalf}</color><color=#ff0000>{secondHalf}</color>";
-                platform = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
+                platformName = "<color=#00B2FF>Nintendo</color><color=#ff0000>Switch</color>";
                 break;
             case Platforms.Xbox:
                 color = "#07ff00";
-                platform = "Xbox";
+                platformName = "Xbox";
                 break;
             case Platforms.Playstation:
                 color = "#0014b4";
-                platform = "PlayStation";
+                platformName = "PlayStation";
                 break;
             case Platforms.Unknown:
             default:
                 color = "#E57373";
+                platformName = "???";
                 break;
         }
 
         showHostName ??= $"<color={color}>{trueHostName}</color>";
-        var platforms = $"<color={color}>{platform}</color>";
+        var platforms = $"<color={color}>{platformName}</color>";
 
         tmp.text = $"<size=40%>{showHostName}</size>" +
                    $"\n<size=18%><color={ColorHelper.FSColorHex}>{GameCode.IntToGameName(game.GameId)}</color>" +

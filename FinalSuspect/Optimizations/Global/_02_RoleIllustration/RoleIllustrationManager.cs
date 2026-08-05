@@ -1,42 +1,24 @@
 using System.Collections;
 using BepInEx.Unity.IL2CPP.Utils;
 using FinalSuspect.Attributes;
+using FinalSuspect.Helpers;
+using JetBrains.Annotations;
 
 namespace FinalSuspect.Modules.Core.Game.UI;
 
-public static class LoadingAnima
+public static class RoleIllustrationManager
 {
     private static GameObject ModLoading;
     private static int currentIndex;
 
-    private static readonly List<Sprite> AllRoleRoleIllustration =
-        [];
-
-    private static readonly string[] CI_Order =
-    [
-        "Crewmate",
-        "HnSEngineer",
-        "Engineer",
-        "GuardianAngel",
-        "Scientist",
-        "Tracker",
-        "Noisemaker",
-        "Detective",
-        "CrewmateGhost",
-        "Impostor",
-        "HnSImpostor",
-        "Shapeshifter",
-        "Phantom",
-        "Viper",
-        "ImpostorGhost",
-    ];
+    private static readonly List<Sprite> RoleIllustrations = [];
 
     [PluginModuleInitializer]
     public static void OnInitialization()
     {
-        foreach (var role in CI_Order)
+        foreach (var role in EnumHelper.GetAllValues<RoleIllustration>())
         {
-            AllRoleRoleIllustration.Add(LoadSprite($"CI_{role}.png", 450f));
+            RoleIllustrations.Add(LoadSprite($"CI_{role}.png", 450f));
         }
     }
 
@@ -99,11 +81,11 @@ public static class LoadingAnima
     {
         while (true)
         {
-            if (AllRoleRoleIllustration.Contains(null))
+            if (RoleIllustrations.Contains(null))
                 OnInitialization();
-            if (AllRoleRoleIllustration.Count == 0) yield break;
+            if (RoleIllustrations.Count == 0) yield break;
 
-            renderer.sprite = AllRoleRoleIllustration[currentIndex];
+            renderer.sprite = RoleIllustrations[currentIndex];
             var p = 1f;
             while (p > 0f)
             {
@@ -113,7 +95,7 @@ public static class LoadingAnima
                 yield return null;
             }
 
-            currentIndex = (currentIndex + 1) % AllRoleRoleIllustration.Count;
+            currentIndex = (currentIndex + 1) % RoleIllustrations.Count;
 
             yield return new WaitForSeconds(1f);
             p = 1f;
@@ -125,4 +107,23 @@ public static class LoadingAnima
             }
         }
     }
+}
+
+public enum RoleIllustration
+{
+    Crewmate,
+    HnSEngineer,
+    Engineer,
+    GuardianAngel,
+    Scientist,
+    Tracker,
+    Noisemaker,
+    Detective,
+    CrewmateGhost,
+    Impostor,
+    HnSImpostor,
+    Shapeshifter,
+    Phantom,
+    Viper,
+    ImpostorGhost,
 }

@@ -1,5 +1,6 @@
 using System;
 using AmongUs.Data;
+using FinalSuspect.Features.OnlineGame.Global._02_UnlockFrameRate;
 using FinalSuspect.Helpers;
 using FinalSuspect.Modules.Core.Plugin.UI;
 using FinalSuspect.Modules.Resources;
@@ -142,7 +143,7 @@ public class MainMenuManagerPatch
             UpdateButton.transform.transform.FindChild("FontPlacer").GetChild(0).gameObject.DestroyTranslator();
         }
 
-        Application.targetFrameRate = ConfigManager.UnlockFPS.Value ? 165 : 60;
+        FrameRateManager.AdjustFrameRate();
         return;
 
         void OpenUrl(string url)

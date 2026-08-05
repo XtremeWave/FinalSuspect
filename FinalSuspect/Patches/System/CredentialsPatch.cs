@@ -57,7 +57,7 @@ internal class PingTrackerUpdatePatch
             || ((LastResult.LastResultButton?.Button?.gameObject.active ?? false) &&
                 ConfigManager.ShowResults.Value))
             _creditTextCredential.text = "";
-
+return;
         var ping = AmongUsClient.Instance.Ping;
         var color = ping switch
         {
@@ -390,7 +390,6 @@ internal class ModManagerLateUpdatePatch
         }
         else
         {
-            OptionsMenuBehaviourStartPatch.SetCursor();
             __instance.ModStamp.sprite = LoadSprite("ModStamp.png", 100f);
             _firstRun = false;
         }

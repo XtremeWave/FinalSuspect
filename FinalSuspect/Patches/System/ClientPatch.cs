@@ -125,8 +125,8 @@ internal class KickPlayerPatch
                 return false;
             }
 
-            if (OnPlayerLeftPatch.ClientsProcessed.Contains(clientId)) return true;
-            OnPlayerLeftPatch.Add(clientId);
+            if (AmongUsClientPatch.ClientsProcessed.Contains(clientId)) return true;
+            AmongUsClientPatch.Add(clientId);
             var color = Palette.PlayerColors[AmongUsClient.Instance.GetRecentClient(clientId).ColorId];
             var name = AmongUsClient.Instance.GetRecentClient(clientId).PlayerName;
             if (ban)
