@@ -25,7 +25,7 @@ public class Main : BasePlugin
     // == 程序基本设定 / Program Config ==
     public const string ModName = "Final Suspect";
     public const string ForkId = "Final Suspect";
-    public const string PluginVersion = "1.3.14";
+    public const string PluginVersion = "1.3.15";
     public const string PluginGuid = "cn.havenglow.finalsuspect";
     public const int PluginCreation = 1;
 

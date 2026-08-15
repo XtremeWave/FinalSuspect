@@ -47,7 +47,7 @@ public class OnPlayerJoinedPatch
 
     private static void KickUnspawnedPlayers(ClientData client)
     {
-        /*_ = new LateTask(() =>
+        _ = new LateTask(() =>
         {
             try
             {
@@ -62,9 +62,9 @@ public class OnPlayerJoinedPatch
             }
             catch
             {
-                /* ignored #1#
+                /* ignored */
             }
-        }, 4.5f, "Kick Unspawned Players");*/
+        }, 4.5f, "Kick Unspawned Players");
     }
 }
 

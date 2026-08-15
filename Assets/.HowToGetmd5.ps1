@@ -1,8 +1,8 @@
-//Change the {{path}} to your own path
-Here is the command to run in PowerShell (Win+R to open PowerShell):
+#Change the {{path}} to your own path
+#Here is the command to run in PowerShell (Win+R to open PowerShell):
 
 
-$folderPath = "{{path}}"
+$folderPath = "D:\RiderProjects\FinalSuspect\Export\Windows\Release\net6.0"
 $outputFile = Join-Path -Path $folderPath -ChildPath ".md5Pair.txt"
 
 Set-Content -Path $outputFile -Value $null
