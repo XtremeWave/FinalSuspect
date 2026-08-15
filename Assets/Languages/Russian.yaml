@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>Хоть ты и один, у тебя БЕ�
 IntroText.Crewmate: "<color=#8cffff>Выполняй задания и выяви предателей!</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "Член Экипажа"
-Role.Engineer: "Инженер"
-Role.Scientist: "Учёный"
-Role.Tracker: "Следопыт"
-Role.Noisemaker: "Шумахер"
-Role.Detective: "детектив"
-Role.GuardianAngel: "Ангел-Хранитель"
-Role.Impostor: "Предатель"
-Role.Shapeshifter: "Оборотень"
-Role.Phantom: "Фантом"
-Role.Viper: "гадюка"
-Role.CrewmateGhost: "Призрак Члена Экипажа"
-Role.ImpostorGhost: "Призрак Предателя"
+CrewmateGhostRole: "Призрак Члена Экипажа"
+ImpostorGhostRole: "Призрак Предателя"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -243,7 +232,7 @@ Mus.Fractured: "Раздробленный"
 Mus.StruggleAgainstFadingFlame: "Борьба с угасающим пламенем"
 Mus.ElegyOfFracturedVow: "Элегия разбитого обета"
 Mus.VestigiumSplendoris: "Vestigium Splendoris (Цветение пепла)"
-Mus.FinisAnteInitium: "Finis Ante Initium (Зан幕 перед отъездом)"
+Mus.FinisAnteInitium: "Finis Ante Initium (Занавес перед отъездом)"
 
 # 会议界面职业标签 / DisplayedRoleTag
 DisplayedRoleTag.Role: "Роль"

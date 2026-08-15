@@ -24,18 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>Cé uaigneach, tá CUMHACHT GAN DEIREADH aga
 IntroText.Crewmate: "<color=#8cffff>Críochnaigh do thascanna agus aimsigh na fealltóirí!</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "Foireann"
-Role.Engineer: "Innealtóir"
-Role.Scientist: "Eolaí"
-Role.Tracker: "Rianaitheoir"
-Role.Noisemaker: "Ceannteoir Fuaime"
-Role.GuardianAngel: "Aingeal Caomhnóra"
-Role.Impostor: "Fealltóir"
-Role.Shapeshifter: "Athraitheoir Cruth"
-Role.Phantom: "Fantóm"
-Role.Viper: "Víopar"
-Role.CrewmateGhost: "Taibhse-Fhoireann"
-Role.ImpostorGhost: "Taibhse-Fhealltóir"
+CrewmateGhostRole: "Taibhse-Fhoireann"
+ImpostorGhostRole: "Taibhse-Fhealltóir"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -366,6 +356,7 @@ Back: "Siar"
 Yes: "Tá"
 No: "Níl"
 Cancel: "Cealaigh"
+Skip: "Scipeáil"
 Unload: "Athraigh"
 Retry: "Arís"
 PreviousPage: "Leathanach Roimhe Seo"

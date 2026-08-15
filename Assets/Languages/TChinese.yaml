@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>儘管獨自一人，仍有無窮力量！</
 IntroText.Crewmate: "<color=#8cffff>完成你的任務，揪出那群壞蛋！</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "船員"
-Role.Engineer: "工程師"
-Role.Scientist: "科學家"
-Role.Tracker: "偵查員"
-Role.Noisemaker: "大嗓門"
-Role.Detective: "偵探"
-Role.GuardianAngel: "守護天使"
-Role.Impostor: "偽裝者"
-Role.Shapeshifter: "變形者"
-Role.Phantom: "幻象師"
-Role.Viper: "毒蛇"
-Role.CrewmateGhost: "船員靈魂"
-Role.ImpostorGhost: "偽裝者靈魂"
+CrewmateGhostRole: "船員靈魂"
+ImpostorGhostRole: "偽裝者靈魂"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现

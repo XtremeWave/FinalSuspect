@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>孤独でも、無限の力を持ってい�
 IntroText.Crewmate: "<color=#8cffff>タスクを完了し、インポスターを見つけろ！</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "クルー"
-Role.Engineer: "エンジニア"
-Role.Scientist: "科学者"
-Role.Tracker: "トラッカー"
-Role.Noisemaker: "ノイズメーカー"
-Role.Detective: "探偵"
-Role.GuardianAngel: "守護天使"
-Role.Impostor: "インポスター"
-Role.Shapeshifter: "シェイプシフター"
-Role.Phantom: "ファントム"
-Role.Viper: "毒蛇"
-Role.CrewmateGhost: "クルーゴースト"
-Role.ImpostorGhost: "インポスターゴースト"
+CrewmateGhostRole: "クルーゴースト"
+ImpostorGhostRole: "インポスターゴースト"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现

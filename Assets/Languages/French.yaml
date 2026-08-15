@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>Seul mais avec un POUVOIR INFINI !</color>"
 IntroText.Crewmate: "<color=#8cffff>Complétez vos tâches et démasquez les imposteurs !</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "Équipier"
-Role.Engineer: "Ingénieur"
-Role.Scientist: "Scientifique"
-Role.Tracker: "Traqueur"
-Role.Noisemaker: "Bruiteur"
-Role.Detective: "Détective"
-Role.GuardianAngel: "Ange Gardien"
-Role.Impostor: "Imposteur"
-Role.Shapeshifter: "Métamorphe"
-Role.Phantom: "Fantôme"
-Role.Viper: "Vipère"
-Role.CrewmateGhost: "Fantôme d'Équipier"
-Role.ImpostorGhost: "Fantôme d'Imposteur"
+CrewmateGhostRole: "Fantôme d'Équipier"
+ImpostorGhostRole: "Fantôme d'Imposteur"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现

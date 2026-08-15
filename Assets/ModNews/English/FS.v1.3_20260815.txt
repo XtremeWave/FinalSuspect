@@ -1,0 +1,49 @@
+#Number:100012
+#Title:Final Suspect v1.3
+#SubTitle:★★★★2nd Anniversary Patch★★★★
+#ShortTitle:★Fix Patch v1.3
+#Date:2026-08-15T00:00:00Z
+#-----------------------------
+# English
+
+2nd Anniversary!!!
+Two years ago, it was just an immature mod, an attempt at a client-only optimization mod
+In the blink of an eye, everyone has accompanied FinalSuspect and Slok for two years!
+Thank you all for being with us!
+
+## Required Version
+- Based on Among Us v17.4.0
+- BepInEx v6.0.0-be.755
+
+## Mode Version Information
+- Assembly Version: v1.3.15
+- Version Type: Release
+- Build Number: 1
+
+## Update Contents
+- Bug Fixes: 2
+- Changes: 1
+
+## Bug Fix
+- Fixed the issue where the client was abnormally flagged by the official anti-cheat when a player disconnected
+- Fixed the core resource download issue caused by [#72]() and the first-launch failure it triggered
+- Fixed the issue of the QQ group link pointing to the wrong group chat
+Fixer: Slok
+
+## Changes
+- The mod will no longer allow decompilation
+Creator: Slok
+
+## New Contents
+- Bypass the official abnormal disconnection time penalty
+Creator: Slok
+
+## Removals
+- Temporarily removed option: ~~Client Guardian~~
+Reason: Official anti-cheat update made the feature ineffective
+Decision: Slok
+
+## Removal Notice
+- Preset info panel for in-game use
+Reason: The official version will implement this feature, so the mod will no longer provide it
+Decision: Slok

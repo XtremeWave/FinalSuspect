@@ -24,19 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>Alleen, maar met EINDELOZE KRACHT!</color>"
 IntroText.Crewmate: "<color=#8cffff>Voltooi je taken en ontmasker de impostors!</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "Bemanningslid"
-Role.Engineer: "Ingenieur"
-Role.Scientist: "Wetenschapper"
-Role.Tracker: "Tracker"
-Role.Noisemaker: "Lawaaimaker"
-Role.Detective: "Detektiv"
-Role.GuardianAngel: "Beschermengel"
-Role.Impostor: "Impostor"
-Role.Shapeshifter: "Vormenwisselaar"
-Role.Phantom: "Fantoom"
-Role.Viper: "Hugorm"
-Role.CrewmateGhost: "Bemanningslid Spook"
-Role.ImpostorGhost: "Impostor Spook"
+CrewmateGhostRole: "Bemanningslid Spook"
+ImpostorGhostRole: "Impostor Spook"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -300,7 +289,7 @@ CheatDetected.SendQuickChat_NotHost: "[{0}] cheatverdacht, vraag host om eruit t
 CheatDetected.InvalidSlothRPC: "[{0}] eruit gegooid wegens illegale data <color=#ffff00>(Illegale Rpc: {1})</color>"
 CheatDetected.InvalidSlothRPC_NotHost: "[{0}] cheatverdacht, vraag host om eruit te gooien <color=#ffff00>(Illegale Rpc: {1})</color>"
 CheatDetected.Overload: "[{0}] eruit gegooid wegens overloadaanval"
-CheatDetected.Overload_NotHost: "[{0]} startte overloadaanval, room beschadigd - speel elders"
+CheatDetected.Overload_NotHost: "[{0}] startte overloadaanval, room beschadigd - speel elders"
 CheatDetected.Cheater: "[{0}] eruit gegooid wegens cheatverdacht"
 CheatDetected.Cheater_NotHost: "[{0}] cheatverdacht, vraag host om eruit te gooien"
 CheatDetected.BanedByBanList: "[{0}] eruit gegooid wegens banlijst"

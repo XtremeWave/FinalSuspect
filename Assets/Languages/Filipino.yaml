@@ -24,18 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>Bagamat nag-iisa, may WALANG HANGGANG KAPANG
 IntroText.Crewmate: "<color=#8cffff>Kumpletuhin ang mga task at hanapin ang impostor!</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "Crewmate"
-Role.Engineer: "Engineer"
-Role.Scientist: "Scientist"
-Role.Tracker: "Tracker"
-Role.Noisemaker: "Noisemaker"
-Role.GuardianAngel: "Guardian Angel"
-Role.Impostor: "Impostor"
-Role.Shapeshifter: "Shapeshifter"
-Role.Phantom: "Multo"
-Role.Viper: "Viper"
-Role.CrewmateGhost: "Multo ng Crewmate"
-Role.ImpostorGhost: "Multo ng Impostor"
+CrewmateGhostRole: "Multo ng Crewmate"
+ImpostorGhostRole: "Multo ng Impostor"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -366,6 +356,7 @@ Back: "Bumalik"
 Yes: "Oo"
 No: "Hindi"
 Cancel: "Kanselahin"
+Skip: "Laktawan"
 Unload: "Palitan"
 Retry: "Subukan Muli"
 PreviousPage: "Nakaraang Pahina"

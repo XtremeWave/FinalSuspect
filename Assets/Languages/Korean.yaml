@@ -24,17 +24,8 @@ IntroText.Imp_Only: "<color=#a44c4c>혼자지만 끝없는 힘을 가졌다!</co
 IntroText.Crewmate: "<color=#8cffff>임무를 완수하고 임포스터를 찾아라!</color>"
 
 # 原版职业 / Vanilla
-Role.Crewmate: "크루"
-Role.Engineer: "엔지니어"
-Role.Scientist: "과학자"
-Role.Tracker: "추적자"
-Role.Noisemaker: "소음제조자"
-Role.GuardianAngel: "수호천사"
-Role.Impostor: "임포스터"
-Role.Shapeshifter: "변신자"
-Role.Phantom: "팬텀"
-Role.CrewmateGhost: "크루 유령"
-Role.ImpostorGhost: "임포스터 유령"
+CrewmateGhostRole: "크루 유령"
+ImpostorGhostRole: "임포스터 유령"
 
 # 职业信息 / RoleInfo
 ## 因为原版职业在enum StringNames中已经有格式，所以按此格式呈现
@@ -239,7 +230,7 @@ Mus.TrailOfTruth: "진실의 흔적"
 Mus.Interlude: "중간 주제곡"
 Mus.Fractured: "파열된"
 Mus.StruggleAgainstFadingFlame: "바래가는 불길에 대항하는 투쟁"
-Mus.ElegyOfFracturedVow: "파열된 서약의挽歌"
+Mus.ElegyOfFracturedVow: "파열된 서약의 비가"
 Mus.VestigiumSplendoris: "Vestigium Splendoris (잿화)"
 Mus.FinisAnteInitium: "Finis Ante Initium (떠나기 전의 커튼콜)"
 
