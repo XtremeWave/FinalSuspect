@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>Alleen, maar met EINDELOZE KRACHT!</color>"
 IntroText.Crewmate: "<color=#8cffff>Voltooi je taken en ontmasker de impostors!</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "Bemanningslid"
+Role.Engineer: "Ingenieur"
+Role.Scientist: "Wetenschapper"
+Role.Tracker: "Tracker"
+Role.Noisemaker: "Lawaaimaker"
+Role.Detective: "Detective"
+Role.GuardianAngel: "Beschermengel"
+Role.Impostor: "Impostor"
+Role.Shapeshifter: "Vormenwisselaar"
+Role.Phantom: "Fantoom"
+Role.Viper: "Hugorm"
+Role.CrewmateGhost: "Bemanningslid Spook"
+Role.ImpostorGhost: "Impostor Spook"
 CrewmateGhostRole: "Bemanningslid Spook"
 ImpostorGhostRole: "Impostor Spook"
 
@@ -336,7 +349,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "Vorige Lobby"
 RShift: "Klembord Lobby"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

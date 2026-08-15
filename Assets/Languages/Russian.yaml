@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>Хоть ты и один, у тебя БЕ�
 IntroText.Crewmate: "<color=#8cffff>Выполняй задания и выяви предателей!</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "Член Экипажа"
+Role.Engineer: "Инженер"
+Role.Scientist: "Учёный"
+Role.Tracker: "Следопыт"
+Role.Noisemaker: "Шумахер"
+Role.Detective: "Детектив"
+Role.GuardianAngel: "Ангел-Хранитель"
+Role.Impostor: "Предатель"
+Role.Shapeshifter: "Оборотень"
+Role.Phantom: "Фантом"
+Role.Viper: "Гадюка"
+Role.CrewmateGhost: "Призрак Члена Экипажа"
+Role.ImpostorGhost: "Призрак Предателя"
 CrewmateGhostRole: "Призрак Члена Экипажа"
 ImpostorGhostRole: "Призрак Предателя"
 
@@ -336,7 +349,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "Предыдущее лобби"
 RShift: "Лобби из буфера"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

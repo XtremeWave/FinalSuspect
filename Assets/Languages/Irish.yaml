@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>Cé uaigneach, tá CUMHACHT GAN DEIREADH aga
 IntroText.Crewmate: "<color=#8cffff>Críochnaigh do thascanna agus aimsigh na fealltóirí!</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "Foireann"
+Role.Engineer: "Innealtóir"
+Role.Scientist: "Eolaí"
+Role.Tracker: "Rianaitheoir"
+Role.Noisemaker: "Ceannteoir Fuaime"
+Role.Detective: "Bleachtaire"
+Role.GuardianAngel: "Aingeal Caomhnóra"
+Role.Impostor: "Fealltóir"
+Role.Shapeshifter: "Athraitheoir Cruth"
+Role.Phantom: "Fantóm"
+Role.Viper: "Víopar"
+Role.CrewmateGhost: "Taibhse-Fhoireann"
+Role.ImpostorGhost: "Taibhse-Fhealltóir"
 CrewmateGhostRole: "Taibhse-Fhoireann"
 ImpostorGhostRole: "Taibhse-Fhealltóir"
 
@@ -336,7 +349,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "Lobaidh Roimhe Seo"
 RShift: "Lobaidh Gearrthaisce"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

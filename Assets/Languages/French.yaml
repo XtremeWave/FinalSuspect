@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>Seul mais avec un POUVOIR INFINI !</color>"
 IntroText.Crewmate: "<color=#8cffff>Complétez vos tâches et démasquez les imposteurs !</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "Équipier"
+Role.Engineer: "Ingénieur"
+Role.Scientist: "Scientifique"
+Role.Tracker: "Traqueur"
+Role.Noisemaker: "Bruiteur"
+Role.Detective: "Détective"
+Role.GuardianAngel: "Ange Gardien"
+Role.Impostor: "Imposteur"
+Role.Shapeshifter: "Métamorphe"
+Role.Phantom: "Fantôme"
+Role.Viper: "Vipère"
+Role.CrewmateGhost: "Fantôme d'Équipier"
+Role.ImpostorGhost: "Fantôme d'Imposteur"
 CrewmateGhostRole: "Fantôme d'Équipier"
 ImpostorGhostRole: "Fantôme d'Imposteur"
 
@@ -337,7 +350,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "Lobby Précédent"
 RShift: "Lobby Presse-papiers"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

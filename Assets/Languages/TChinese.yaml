@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>儘管獨自一人，仍有無窮力量！</
 IntroText.Crewmate: "<color=#8cffff>完成你的任務，揪出那群壞蛋！</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "船員"
+Role.Engineer: "工程師"
+Role.Scientist: "科學家"
+Role.Tracker: "偵查員"
+Role.Noisemaker: "大嗓門"
+Role.Detective: "偵探"
+Role.GuardianAngel: "守護天使"
+Role.Impostor: "偽裝者"
+Role.Shapeshifter: "變形者"
+Role.Phantom: "幻象師"
+Role.Viper: "毒蛇"
+Role.CrewmateGhost: "船員靈魂"
+Role.ImpostorGhost: "偽裝者靈魂"
 CrewmateGhostRole: "船員靈魂"
 ImpostorGhostRole: "偽裝者靈魂"
 
@@ -337,7 +350,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "上一個大廳"
 RShift: "剪切板大廳"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "蘋果"
+Platforms.Android: "安卓"
+Platforms.MicrosoftStore: "微軟"
 Platform.IPhone: "蘋果"
 Platform.Android: "安卓"
 Platform.MicrosoftStore: "微軟"

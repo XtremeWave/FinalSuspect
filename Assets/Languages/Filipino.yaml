@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>Bagamat nag-iisa, may WALANG HANGGANG KAPANG
 IntroText.Crewmate: "<color=#8cffff>Kumpletuhin ang mga task at hanapin ang impostor!</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "Crewmate"
+Role.Engineer: "Engineer"
+Role.Scientist: "Scientist"
+Role.Tracker: "Tracker"
+Role.Noisemaker: "Noisemaker"
+Role.Detective: "Detektib"
+Role.GuardianAngel: "Guardian Angel"
+Role.Impostor: "Impostor"
+Role.Shapeshifter: "Shapeshifter"
+Role.Phantom: "Multo"
+Role.Viper: "Viper"
+Role.CrewmateGhost: "Multo ng Crewmate"
+Role.ImpostorGhost: "Multo ng Impostor"
 CrewmateGhostRole: "Multo ng Crewmate"
 ImpostorGhostRole: "Multo ng Impostor"
 
@@ -336,7 +349,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "Nakaraang Lobby"
 RShift: "Clipboard Lobby"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

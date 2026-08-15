@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>혼자지만 끝없는 힘을 가졌다!</co
 IntroText.Crewmate: "<color=#8cffff>임무를 완수하고 임포스터를 찾아라!</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "크루"
+Role.Engineer: "엔지니어"
+Role.Scientist: "과학자"
+Role.Tracker: "추적자"
+Role.Noisemaker: "소음제조자"
+Role.Detective: "형사"
+Role.GuardianAngel: "수호천사"
+Role.Impostor: "임포스터"
+Role.Shapeshifter: "변신자"
+Role.Phantom: "팬텀"
+Role.Viper: "독사"
+Role.CrewmateGhost: "크루 유령"
+Role.ImpostorGhost: "임포스터 유령"
 CrewmateGhostRole: "크루 유령"
 ImpostorGhostRole: "임포스터 유령"
 
@@ -336,7 +349,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "이전 로비"
 RShift: "클립보드 로비"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"

@@ -24,6 +24,19 @@ IntroText.Imp_Only: "<color=#a44c4c>孤独でも、無限の力を持ってい�
 IntroText.Crewmate: "<color=#8cffff>タスクを完了し、インポスターを見つけろ！</color>"
 
 # 原版职业 / Vanilla
+Role.Crewmate: "クルー"
+Role.Engineer: "エンジニア"
+Role.Scientist: "科学者"
+Role.Tracker: "トラッカー"
+Role.Noisemaker: "ノイズメーカー"
+Role.Detective: "探偵"
+Role.GuardianAngel: "守護天使"
+Role.Impostor: "インポスター"
+Role.Shapeshifter: "シェイプシフター"
+Role.Phantom: "ファントム"
+Role.Viper: "毒蛇"
+Role.CrewmateGhost: "クルーゴースト"
+Role.ImpostorGhost: "インポスターゴースト"
 CrewmateGhostRole: "クルーゴースト"
 ImpostorGhostRole: "インポスターゴースト"
 
@@ -337,7 +350,10 @@ MainMenuCredential: "{0} © 2025"
 LShift: "前のロビー"
 RShift: "クリップボードロビー"
 
-# 客户端平台 / Platform
+# 客户端平台 / Platforms
+Platforms.IPhone: "iOS"
+Platforms.Android: "Android"
+Platforms.MicrosoftStore: "Microsoft"
 Platform.IPhone: "iOS"
 Platform.Android: "Android"
 Platform.MicrosoftStore: "Microsoft"
