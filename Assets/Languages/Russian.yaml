@@ -37,6 +37,8 @@ Role.Phantom: "Фантом"
 Role.Viper: "Гадюка"
 Role.CrewmateGhost: "Призрак Члена Экипажа"
 Role.ImpostorGhost: "Призрак Предателя"
+CrewmateRole: "Член Экипажа"
+ImpostorRole: "Предатель"
 CrewmateGhostRole: "Призрак Члена Экипажа"
 ImpostorGhostRole: "Призрак Предателя"
 

@@ -37,6 +37,8 @@ Role.Phantom: "ファントム"
 Role.Viper: "毒蛇"
 Role.CrewmateGhost: "クルーゴースト"
 Role.ImpostorGhost: "インポスターゴースト"
+CrewmateRole: "クルー"
+ImpostorRole: "インポスター"
 CrewmateGhostRole: "クルーゴースト"
 ImpostorGhostRole: "インポスターゴースト"
 

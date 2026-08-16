@@ -37,6 +37,8 @@ Role.Phantom: "Fantasma"
 Role.Viper: "Vipera"
 Role.CrewmateGhost: "Fantasma dell'Equipaggio"
 Role.ImpostorGhost: "Fantasma dell'Impostore"
+CrewmateRole: "Membro dell'Equipaggio"
+ImpostorRole: "Impostore"
 CrewmateGhostRole: "Fantasma dell'Equipaggio"
 ImpostorGhostRole: "Fantasma dell'Impostore"
 

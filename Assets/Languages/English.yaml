@@ -37,6 +37,8 @@ Role.Phantom: "Phantom"
 Role.Viper: "Viper"
 Role.CrewmateGhost: "Crewmate Ghost"
 Role.ImpostorGhost: "Impostor Ghost"
+CrewmateRole: "Crewmate"
+ImpostorRole: "Impostor"
 CrewmateGhostRole: "Crewmate Ghost"
 ImpostorGhostRole: "Impostor Ghost"
 

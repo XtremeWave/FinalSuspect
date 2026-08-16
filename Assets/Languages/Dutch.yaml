@@ -37,6 +37,8 @@ Role.Phantom: "Fantoom"
 Role.Viper: "Hugorm"
 Role.CrewmateGhost: "Bemanningslid Spook"
 Role.ImpostorGhost: "Impostor Spook"
+CrewmateRole: "Bemanningslid"
+ImpostorRole: "Impostor"
 CrewmateGhostRole: "Bemanningslid Spook"
 ImpostorGhostRole: "Impostor Spook"
 

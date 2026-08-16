@@ -37,6 +37,8 @@ Role.Phantom: "Multo"
 Role.Viper: "Viper"
 Role.CrewmateGhost: "Multo ng Crewmate"
 Role.ImpostorGhost: "Multo ng Impostor"
+CrewmateRole: "Crewmate"
+ImpostorRole: "Impostor"
 CrewmateGhostRole: "Multo ng Crewmate"
 ImpostorGhostRole: "Multo ng Impostor"
 

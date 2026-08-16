@@ -37,6 +37,8 @@ Role.Phantom: "幻影"
 Role.Viper: "毒蛇"
 Role.CrewmateGhost: "船员灵魂"
 Role.ImpostorGhost: "伪装者灵魂"
+CrewmateRole: "船员"
+ImpostorRole: "伪装者"
 CrewmateGhostRole: "船员灵魂"
 ImpostorGhostRole: "伪装者灵魂"
 

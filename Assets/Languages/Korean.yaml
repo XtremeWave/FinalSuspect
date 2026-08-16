@@ -37,6 +37,8 @@ Role.Phantom: "팬텀"
 Role.Viper: "독사"
 Role.CrewmateGhost: "크루 유령"
 Role.ImpostorGhost: "임포스터 유령"
+CrewmateRole: "크루"
+ImpostorRole: "임포스터"
 CrewmateGhostRole: "크루 유령"
 ImpostorGhostRole: "임포스터 유령"
 

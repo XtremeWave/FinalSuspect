@@ -37,6 +37,8 @@ Role.Phantom: "Fantóm"
 Role.Viper: "Víopar"
 Role.CrewmateGhost: "Taibhse-Fhoireann"
 Role.ImpostorGhost: "Taibhse-Fhealltóir"
+CrewmateRole: "Foireann"
+ImpostorRole: "Fealltóir"
 CrewmateGhostRole: "Taibhse-Fhoireann"
 ImpostorGhostRole: "Taibhse-Fhealltóir"
 
