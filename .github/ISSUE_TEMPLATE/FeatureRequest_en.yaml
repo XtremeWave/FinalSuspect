@@ -1,31 +1,29 @@
-name: Feature Request
-description: File a feature request
-title: "[Feat]:"
-labels: [Considered]
-assignees:
-  - Slok7565
+name: "🎉 Feature Suggestion"
+title: "[Feature] "
+description: Submit a new feature idea or suggestion to us.
+labels: ["Considered"]
 body:
   - type: checkboxes
-    id: preface
     attributes:
-      label: Prerequisites
-      description: Hello! Thank you for submitting a new feature suggestion for FinalSuspect. Before we begin, we highly recommend reading through the [Open Source Guides](https://opensource.guide/), which will greatly improve our mutual efficiency.
+      label: Checklist
       options:
-        - label: I am using the latest version of FinalSuspect.
+        - label: I have searched the [Issue list](https://github.com/Slok7565/FinalSuspect/issues) for related features and confirmed that this feature idea has never been proposed before.
           required: true
-  - type: markdown
-    id: details
-    attributes:
-      value: "## Details"
+        - label: I have read and agree to this project's [Contributor Code of Conduct](https://github.com/Slok7565/FinalSuspect/blob/FinalSus/CODE_OF_CONDUCT.md).
+          required: true
+
   - type: textarea
-    id: description
     attributes:
-      label: "Describe this feature"
-      description: "For ease of management, please do not submit multiple unrelated features under the same issue."
+      label: Feature Description
+      placeholder: Describe in detail the feature you would like to see added.
     validations:
       required: true
+
   - type: textarea
-    id: additional-information
     attributes:
-      label: "Additional information"
-      description: "If you have other information to note, you can fill it in here."
+      label: Use Case
+      placeholder: Describe the use case for the feature you are suggesting.
+
+  - type: markdown
+    attributes:
+      value: "Thank you for submitting your valuable idea to us!"

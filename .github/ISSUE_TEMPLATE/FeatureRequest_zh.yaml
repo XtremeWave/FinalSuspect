@@ -1,31 +1,29 @@
-name: 新功能建议
-description: 提交新功能或原功能优化建议
-title: "[Feat]:"
-labels: [Considered]
-assignees:
-  - Slok7565
+name: "🎉 功能建议"
+title: "[Feature] "
+description: 向我们提交一个新的功能想法或建议。
+labels: ["Considered"]
 body:
   - type: checkboxes
-    id: preface
     attributes:
-      label: 前置条件
-      description: 你好!感谢你为FinalSuspect提交新功能建议。在开始之前，请先确认以下内容。
+      label: 检查清单
       options:
-        - label: 您使用的是最新版本的FinalSuspect。
+        - label: 我已在 [Issue 列表](https://github.com/Slok7565/FinalSuspect/issues)中搜索过相关功能，确认该功能想法从未被提出过。
           required: true
-  - type: markdown
-    id: details
-    attributes:
-      value: "## 详细信息"
+        - label: 我已阅读并同意本项目的[贡献者行为准则](https://github.com/Slok7565/FinalSuspect/blob/FinalSus/CODE_OF_CONDUCT.md)。
+          required: true
+
   - type: textarea
-    id: description
     attributes:
-      label: "描述一下此特性"
-      description: "为了方便我们管理，请不要在同一个issue下提交多个功能。"
+      label: 功能描述
+      placeholder: 详细描述您希望添加的功能。
     validations:
       required: true
+
   - type: textarea
-    id: additional-information
     attributes:
-      label: "附加信息"
-      description: "如果你还有其他需要提供的信息，可以在这里填写。"
+      label: 使用场景
+      placeholder: 描述您建议的功能的使用场景。
+
+  - type: markdown
+    attributes:
+      value: "感谢您向我们提交您宝贵的想法！"

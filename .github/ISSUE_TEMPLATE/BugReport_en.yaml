@@ -1,48 +1,65 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]:"
-labels: [Bug]
-assignees: 
-  - Slok7565
+name: "🐛 Report a Bug"
+title: "[Bug] "
+description: Submit an issue report to help us improve.
+labels: ["bug"]
 body:
   - type: checkboxes
     attributes:
-      label: Prerequisites
-      description: Thank you for taking the time to fill out this issue report! Before you begin, you will need to confirm the following.
+      label: Checklist
       options:
-        - label: I am using the latest version of FinalSuspect.
+        - label: I am using the latest version of Final Suspect.
           required: true
-        - label: This is an issue with the FinalSuspect project itself.
+        - label: Final Suspect is incompatible with any other mods, and I confirm that I have not installed any other mods alongside Final Suspect.
           required: true
+        - label: I have searched the [Issue list](https://github.com/Slok7565/FinalSuspect/issues) for related issues and still cannot resolve my problem, or this issue has never been reported before.
+          required: true
+        - label: I have read and agree to this project's [Contributor Code of Conduct](https://github.com/Slok7565/FinalSuspect/blob/FinalSus/CODE_OF_CONDUCT.md).
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Problem Description
+      description: What happened?
+      placeholder: Clearly and specifically describe what happened or what problem you encountered.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: How to Reproduce?
+      description: Steps to reproduce the issue.
+      placeholder: |
+        For example:
+        1. Open ...
+        2. Click ...
+        3. Issue reproduced
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Final Suspect Version
+      description: The version of Final Suspect in which the issue occurred. Please do not use meaningless values such as `latest`.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Error Logs
+      description: Debug-level logs related to the issue. Issues without valid logs will be closed. Thank you for your understanding.
+      render: text
+    validations:
+      required: true
+
+  - type: upload
+    attributes:
+      label: Additional Information
+      description: |
+        Other supporting materials related to the issue, such as a reproduction video or the complete log file. Please upload images in the Problem Description section.<br>
+        If your logs are too long to paste directly into the field above, you may paste only the key log entries there and upload the complete log file here.
+    validations:
+      accept: ".txt,.log,.mp4,.mov,.webm,.zip,.gz"
+
   - type: markdown
     attributes:
-      value: "## Details"
-  - type: textarea
-    attributes:
-      label: "What happened?"
-      description: "For ease of management, please do not report multiple unrelated issues under the same issue."
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: What is the frequency of recurrence for this issue?
-      options:
-        - The issue can be consistently reproduced.
-        - The issue is reproducible, but the probability is not 100%.
-        - The probability of this issue recurring depends on the user's device.
-        - I don't know.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: "Reproduce Steps"
-      description: "If it can be consistently reproduced, please provide detailed steps.<br>Even if it cannot be consistently reproduced, please still provide the steps of how you discovered it."
-  - type: textarea
-    attributes:
-      label: "Relevant log output"
-      description: "Open the game settings to export logs, then copy the exported FinalSuspect logs and paste them here."
-      render: shell
-  - type: textarea
-    attributes:
-      label: "Additional information"
-      description: "If you have other information to note, you can fill it in here."
+      value: "Finally, thank you for taking the time to report this issue!"
