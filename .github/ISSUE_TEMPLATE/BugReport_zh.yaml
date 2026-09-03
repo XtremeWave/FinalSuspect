@@ -1,48 +1,65 @@
-name: Bug 反馈
-description: 提交 Bug 反馈
-title: "[Bug]:"
-labels: [Bug]
-assignees:
-  - Slok7565
+name: "🐛 报告 Bug"
+title: "[Bug] "
+description: 提交问题报告以帮助我们改进。
+labels: ["bug"]
 body:
   - type: checkboxes
     attributes:
-      label: 前置条件
-      description: 感谢你花时间填写此错误报告！在开始之前，您需要确认以下内容。
+      label: 检查清单
       options:
-        - label: 您使用的是最新版本的FinalSuspect。
+        - label: 我使用的是最新版本的 Final Suspect。
           required: true
-        - label: 这是FinalSusepct本身存在的问题。
+        - label: Final Suspect 不兼容其它任何模组，我确认我没有在安装 Final Suspect 的同时安装了其它任何模组。
           required: true
+        - label: 我已在 [Issue 列表](https://github.com/Slok7565/FinalSuspect/issues)中搜索过相关问题仍无法解决，或该问题从未被报告过。
+          required: true
+        - label: 我已阅读并同意本项目的[贡献者行为准则](https://github.com/Slok7565/FinalSuspect/blob/FinalSus/CODE_OF_CONDUCT.md)。
+          required: true
+
+  - type: textarea
+    attributes:
+      label: 问题描述
+      description: 发生了什么？
+      placeholder: 清晰且具体的描述发生了什么，或遇到了什么问题。
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 如何复现？
+      description: 复现该问题的步骤。
+      placeholder: |
+        例如:
+        1. 打开 ...
+        2. 点击 ...
+        3. 问题复现
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Final Suspect 版本
+      description: 发生问题的 Final Suspect 版本。请勿使用诸如 `latest` 之类的无意义值。
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 错误日志
+      description: 与问题相关的 Debug 级别的日志。没有有效日志的 Issue 将被关闭，谢谢理解。
+      render: text
+    validations:
+      required: true
+
+  - type: upload
+    attributes:
+      label: 辅助信息
+      description: |
+        与问题相关的其他辅助信息，例如复现视频、完整日志文件。图片请在问题描述中上传。<br>
+        如果您要提供的日志过长以至不适合直接填写到上一栏，您可以选择只在上一栏贴关键日志，将完整的日志文件上传到这里。
+    validations:
+      accept: ".txt,.log,.mp4,.mov,.webm,.zip,.gz"
+
   - type: markdown
     attributes:
-      value: "## 详细信息"
-  - type: textarea
-    attributes:
-      label: "发生了什么？"
-      description: "为了方便我们管理，请不要在同一个issue报告多个问题。"
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: 该问题的复现频率是?
-      options:
-        - 该问题可以稳定复现。
-        - 该问题可以复现，但概率并非100%。
-        - 问题复现概率的取决于用户设备或环境。
-        - 我不知道。
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: "该问题的复现步骤是?"
-      description: "如果可以稳定复现，请提供详细的步骤。<br>即使无法稳定复现，也请提供你是如何发现的步骤。"
-  - type: textarea
-    attributes:
-      label: "相关日志输出"
-      description: "打开游戏设置导出日志，将导出FinalSuspect日志复制并将其粘贴至此处。\n你也可以通过该[网站](https://finalsuspect.pages.dev/FinalSuspect/Guide/OutputLog)查看如何导出日志。"
-      render: shell
-  - type: textarea
-    attributes:
-      label: "附加信息"
-      description: "如果你还有其他需要提供的信息，可以在这里填写。"
+      value: "最后，感谢您抽出时间报告问题！"

@@ -12,27 +12,20 @@
 
 </div>
 
-> [!NOTE]
-> This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC.\
-> Portions of the materials contained herein are property of Innersloth LLC. \
+> [!Note]
+> This mod is not affiliated with Among Us or Innersloth LLC, and the content it contains is not endorsed or otherwise sponsored by Innersloth LLC.\
+> Portions of the materials contained herein are property of Innersloth LLC.\
 > © Innersloth LLC.
 
 ## About
 
-FinalSuspect is an original optimization plugin designed for Among Us.\
-The plugin introduces 20+ optimizations to the original game, enhancing the overall experience.
+Final Suspect is a premium companion mod for vanilla Among Us, dedicated to delivering a smoother and richer gaming experience for players. As a deep extension of the vanilla core mechanics, we adhere to the development philosophy of "preserving the classic, optimizing the experience". Through 20+ feature iterations, we comprehensively cover core scenarios such as controls, visual presentation, and social interaction.\
+To learn more, please refer to our [official website](https://finalsuspect.pages.dev).
 
 ## Contributors
 
 <div align="center">
   <a href="https://github.com/Slok7565/FinalSuspect/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=XtremeWave/FinalSuspect" alt="Contributors List">
+    <img src="https://contrib.rocks/image?repo=Slok7565/FinalSuspect" alt="Contributors List">
   </a>
 </div>
-
----
-
-Want to contribute to FinalSuspect? Check out the [CONTRIBUTING](CONTRIBUTING.md).
-
-## Star History
-![Star History Chart](https://api.star-history.com/svg?repos=XtremeWave/FinalSuspect&type=Date)
