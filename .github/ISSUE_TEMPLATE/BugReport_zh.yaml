@@ -16,6 +16,17 @@ body:
         - label: 我已阅读并同意本项目的[贡献者行为准则](https://github.com/Slok7565/FinalSuspect/blob/FinalSus/CODE_OF_CONDUCT.md)。
           required: true
 
+  - type: dropdown
+    attributes:
+      label: 客户端类型
+      description: 在确认问题之前，首先需要知道使用的是什么客户端。
+      options:
+      - Steam
+      - Epic
+      - Starlight Android
+    validations:
+      required: true
+
   - type: textarea
     attributes:
       label: 问题描述
