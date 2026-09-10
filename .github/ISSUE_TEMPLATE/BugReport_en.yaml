@@ -25,15 +25,15 @@ body:
       required: true
 
   - type: dropdown
-  attributes:
-    label: Client Type
-    description: Before confirming the issue, we first need to know which client is being used.
-    options:
+    attributes:
+      label: Client Type
+      description: Before confirming the issue, we first need to know which client is being used.
+      options:
       - Steam
       - Epic
       - Starlight Android
-  validations:
-    required: true
+    validations:
+      required: true
 
   - type: textarea
     attributes:
